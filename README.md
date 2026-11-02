@@ -2,9 +2,11 @@
 
 # StaadPro.Interop
 
-**Current source increment:** Completed all 29 main-project Table overloads with the final nine color/alignment/table-size ports, and added View ShowFront as the tenth function. Table covers all 24 reviewed native names; View has 69 main-source overloads pending. See [contracts and examples](docs/Table-Completion-and-View-Foundations.md). Prepared preview **1.0.0-preview.20261028.3**. Passed 6,944 offline tests and 1,282 installed-package XML examples.
+By **Srinivasa Rao Masanam**. Published by **StruXllence**.
 
-[![Build Status](https://github.com/structuraldeveloper/StaadPro.Interop/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/structuraldeveloper/StaadPro.Interop/actions)
+**Current source increment:** Added View ShowBack and ShowLeft with matching XML IntelliSense, named completion receipts and shared captured-binding dispatch. View now provides 3/70 reference overloads and reaches 3/67 native names. See [orientation contracts](docs/View-Orientations.md). Prepared preview **1.0.0-preview.20261102**. Passed 6,964 offline tests and 1,286 installed-package XML examples.
+
+[![Build Status](https://github.com/StruXllence/StaadPro.Interop/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/StruXllence/StaadPro.Interop/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Target: .NET 4.8.1](https://img.shields.io/badge/.NET-4.8.1-blue.svg)](https://dotnet.microsoft.com/)
 
@@ -16,9 +18,9 @@ Use the [installation guide](docs/Installation.md) for public/local NuGet feeds 
 
 ---
 
-## Latest prepared preview - 1.0.0-preview.20261028.3
+## Latest prepared preview - 1.0.0-preview.20261102
 
-Completed all 29 main-project Table overloads with the final nine color/alignment/table-size ports, and added View ShowFront as the tenth function. Table covers all 24 reviewed native names; View has 69 main-source overloads pending. See [contracts and examples](docs/Table-Completion-and-View-Foundations.md).
+Added ShowBack and ShowLeft graphical orientation requests, comprehensive comparative IntelliSense and regression coverage. See [orientation usage](docs/View-Orientations.md). The package includes the full MIT license, attribution notice and publishing/installation guidance.
 
 ## Earlier prepared preview - 1.0.0-preview.20261027.1
 
@@ -117,7 +119,7 @@ Implemented 15 additional Load observations with complete XML contracts, named s
 
 The prepared 1.0.0-preview.20261026.1 archive includes 249 common Property overloads plus five separately acquired catalog queries, 171 Load overloads, all 143 reference Geometry overloads, 40 typed Output queries, 53 common Root operations, three optional Root operations and the approved wrapper bindings. It targets Windows/.NET Framework 4.8.1 and ships the XML documentation and updated usage guides. At that archive checkpoint, Support, Design, Commands, Table, View and IDEA StatiCa were binding/contract placeholders.
 
-Validated the Release build, 5,353 offline tests and isolated package consumption with 1,002 compiled/executed XML examples. Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261026.1.nupkg` for manual upload; it has not been published. Author is Srinivasa Rao Masanam; company and copyright holder are TensorStruct. See [release notes](docs/Release-Notes.md) and [NuGet readiness](docs/NuGet-Readiness.md) for verification scope and native qualification limits.
+Validated the Release build, 5,353 offline tests and isolated package consumption with 1,002 compiled/executed XML examples. Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261026.1.nupkg` for manual upload; it has not been published. The archive retains its original author and publisher metadata. See [release notes](docs/Release-Notes.md) and [NuGet readiness](docs/NuGet-Readiness.md) for verification scope and native qualification limits.
 
 ## Output comparison and planned work
 
@@ -332,8 +334,16 @@ Completed all 29 main-project Table overloads with the final nine color/alignmen
 
 ## Independence and trademarks
 
-StaadPro.Interop is an independent open-source project published by TensorStruct. Neither this project, its repository, nor its NuGet packages are affiliated with, sponsored by, endorsed by, or officially supported by Bentley Systems, Incorporated or its subsidiaries or affiliates.
+StaadPro.Interop is an independent open-source project published by StruXllence. Neither this project, its repository, nor its NuGet packages are affiliated with, sponsored by, endorsed by, or officially supported by Bentley Systems, Incorporated or its subsidiaries or affiliates.
 
 Bentley, STAAD, STAAD.Pro and OpenSTAAD are trademarks or registered trademarks of Bentley Systems, Incorporated and/or its subsidiaries or affiliates. All other product names and trademarks belong to their respective owners. These names are used solely to identify the products with which this library interoperates; no trademark rights or endorsement are claimed.
 
 The MIT license applies to this project's code. It does not grant a license to Bentley software or trademarks. A separately licensed STAAD.Pro installation is required for live use; no Bentley proprietary binaries are included.
+
+## Attribution
+
+Created by **Srinivasa Rao Masanam** and published by **StruXllence**. **Copyright (c) 2026 StruXllence**. Preserve the copyright and MIT permission notices when redistributing copied code or substantial portions. Please identify the upstream project when publishing an extension; this is a requested credit, not an additional license condition. See [LICENSE](LICENSE), [NOTICE](NOTICE.md), [citation](CITATION.cff) and [name and logo guidance](TRADEMARKS.md).
+
+## View orientations
+
+Use `wrapper.View.ShowFront()`, `ShowBack()` or `ShowLeft()` for the acquired instance's active graphical orientation. Each returns a named unacknowledged completion receipt; no model-coordinate change, analysis or implicit save occurs. See [the View guide](docs/View-Orientations.md).

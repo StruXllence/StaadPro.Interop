@@ -38,7 +38,7 @@ The source's Bentley COM types are represented by object/dynamic, matching this 
 | `RawTable` | Captures native Table interface; null when absent, except retained legacy Geometry/Load direct-root fallback. |
 | `RawView` | Captures native View interface; null when absent, except retained legacy Geometry/Load direct-root fallback. |
 | `Table` | All twenty-nine main-source Table operations through `IOSTable` / `OSTableAdapter`; [contracts and examples](Table-Report-Foundations.md). Reference Table parity is complete. |
-| `View` | `IOSView` / `OSViewAdapter` implement ShowFront; 69 source overloads remain. See the [View comparison and plan](View-Porting.md). |
+| `View` | `IOSView` / `OSViewAdapter` implement ShowFront, ShowBack and ShowLeft; 67 source overloads remain. See the [View comparison and plan](View-Porting.md). |
 | `IdeaStatiCa` | Placeholder created only when Geometry, Load and Output bindings exist. See the [integration source review and plan](IDEA-StatiCa-Porting.md) for the additional operation prerequisites. |
 | `StaadVersion` | Native STAAD version; independent copy on access; null if version member absent. |
 | `ApplicationVersion` | Entry/calling host assembly version; never native STAAD version selection. |

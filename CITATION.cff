@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If this software supports your work, please cite the original StaadPro.Interop project."
+type: software
+title: "StaadPro.Interop"
+authors:
+  - family-names: "Masanam"
+    given-names: "Srinivasa Rao"
+version: "1.0.0-preview.20261102"
+date-released: 2026-11-02
+url: "https://github.com/StruXllence/StaadPro.Interop"
+repository-code: "https://github.com/StruXllence/StaadPro.Interop"
+license: MIT
+abstract: "A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD, published by StruXllence."

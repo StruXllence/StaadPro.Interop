@@ -30,6 +30,12 @@ try {
     if ($null -eq $archive.GetEntry('lib/net481/StaadPro.Interop.dll')) { throw 'Missing net481 library.' }
     [xml] $xml = Read-PackageEntry 'lib/net481/StaadPro.Interop.xml'
     $readme = Read-PackageEntry 'README.md'
+    $license = Read-PackageEntry 'LICENSE'
+    $notice = Read-PackageEntry 'NOTICE.md'
+    $citation = Read-PackageEntry 'CITATION.cff'
+    $trademarks = Read-PackageEntry 'TRADEMARKS.md'
+    if ($license -notmatch 'MIT License' -or $license -notmatch 'Copyright \(c\) 2026 StruXllence' -or $license -notmatch 'Srinivasa Rao Masanam' -or $license -notmatch 'permission notice shall be included') { throw 'Incomplete copyright-bearing MIT license.' }
+    if ($notice -notmatch 'Srinivasa Rao Masanam' -or $notice -notmatch 'StruXllence' -or $notice -notmatch 'neither|Neither' -or $citation -notmatch 'Masanam' -or $citation -notmatch 'StruXllence/StaadPro.Interop' -or $trademarks -notmatch 'does not amend') { throw 'Incomplete attribution, citation or trademark guidance.' }
     $guide = Read-PackageEntry 'docs/Load-Queries.md'
     $installation = Read-PackageEntry 'docs/Installation.md'
     $publishing = Read-PackageEntry 'docs/Publishing.md'
@@ -75,7 +81,7 @@ try {
     }
     $bannerEntry = $archive.GetEntry('images/logo-with-text.png')
     if ($null -eq $bannerEntry -or $bannerEntry.Length -lt 1) { throw 'The package must include the adopted logo with text.' }
-    $markdownBanner = '![StaadPro.Interop](https://raw.githubusercontent.com/structuraldeveloper/StaadPro.Interop/main/docs/images/logo-with-text-400.png)'
+    $markdownBanner = '![StaadPro.Interop](https://raw.githubusercontent.com/StruXllence/StaadPro.Interop/main/docs/images/logo-with-text-400.png)'
     if (!$readme.StartsWith($markdownBanner) -or $readme -match '(?i)<img\b|&lt;img\b') {
         throw 'The NuGet README must use supported Markdown image syntax; inline HTML is disabled by NuGet.'
     }
@@ -97,10 +103,10 @@ try {
         $compactBuffer.Dispose()
         $compactStream.Dispose()
     }
-    if ($metadata.repository.url -ne 'https://github.com/structuraldeveloper/StaadPro.Interop') { throw 'Missing repository metadata.' }
+    if ($metadata.repository.url -ne 'https://github.com/StruXllence/StaadPro.Interop') { throw 'Missing repository metadata.' }
     if ([string]$metadata.authors -cne 'Srinivasa Rao Masanam') { throw 'Incorrect package author.' }
-    if ([string]$metadata.copyright -cne 'Copyright (c) 2026 TensorStruct') { throw 'Incorrect package copyright.' }
-    if ($readme -notmatch 'Srinivasa Rao Masanam' -or $readme -notmatch 'TensorStruct' -or $readme -notmatch 'Copyright \(c\) 2026 TensorStruct') { throw 'Incorrect packaged README author/publisher metadata.' }
+    if ([string]$metadata.copyright -cne 'Copyright (c) 2026 StruXllence') { throw 'Incorrect package copyright.' }
+    if ($readme -notmatch 'Srinivasa Rao Masanam' -or $readme -notmatch 'StruXllence' -or $readme -notmatch 'Copyright \(c\) 2026 StruXllence') { throw 'Incorrect packaged README author/publisher metadata.' }
     if ([string]$metadata.description -ne 'A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD') { throw 'Incorrect package description.' }
     if ([string]::IsNullOrWhiteSpace([string]$metadata.releaseNotes)) { throw 'Missing release notes in package metadata.' }
     if ($releaseNotes -notmatch '1.0.0-preview.20261012' -or $releaseNotes -notmatch 'GetLoadCasesFromIds') { throw 'Incomplete packaged release notes.' }
@@ -335,10 +341,13 @@ try {
     }
     if ($tableSnippets.Count -ne 58) { throw 'Expected fifty-eight Table XML examples.' }
     $viewSnippets = @()
-    $viewGuide = Read-PackageEntry 'docs/Table-Completion-and-View-Foundations.md'
+    $viewGuide = Read-PackageEntry 'docs/View-Orientations.md'
     foreach ($owner in @('Adapters.Interfaces.IOSView', 'Adapters.Models.OSViewAdapter')) {
         $entries = @($xml.doc.members.member | Where-Object { $_.name.StartsWith("M:StaadPro.Interop.$owner.") -and $_.name -notmatch '\.#ctor' })
-        if ($entries.Count -ne 1 -or $viewGuide -notmatch 'ShowFront') { throw 'Expected one documented View function.' }
+        if ($entries.Count -ne 3) { throw 'Expected three documented View functions.' }
+        foreach ($function in @('ShowFront','ShowBack','ShowLeft')) {
+            if ($viewGuide -notmatch $function) { throw "Missing View guidance for $function." }
+        }
         foreach ($entry in $entries) {
             foreach ($tag in @('summary','returns','remarks','example/code')) {
                 if ([string]::IsNullOrWhiteSpace($entry.SelectSingleNode($tag).InnerText)) { throw "Incomplete View $tag." }
@@ -347,7 +356,7 @@ try {
             $viewSnippets += 'using (var wrapper = new OpenStaadWrapper(new PackageVerification.ViewFoundationFixture.Root { View = new PackageVerification.ViewFoundationFixture.Native() })) {' + $newLine + $binding + $newLine + $entry.SelectSingleNode('example/code').InnerText + $newLine + '}'
         }
     }
-    if ($viewSnippets.Count -ne 2) { throw 'Expected two View XML examples.' }
+    if ($viewSnippets.Count -ne 6) { throw 'Expected six View XML examples.' }
     $designGuide = Read-PackageEntry 'docs/Design-Porting.md'
     $designSnippets = @()
     foreach ($owner in @('Adapters.Interfaces.IOSDesign', 'Adapters.Models.OSDesignAdapter')) {
@@ -513,10 +522,10 @@ public static class Program
     {
         var copyright = (System.Reflection.AssemblyCopyrightAttribute)typeof(OpenStaadWrapper).Assembly
             .GetCustomAttributes(typeof(System.Reflection.AssemblyCopyrightAttribute), false)[0];
-        Check(copyright.Copyright == "Copyright (c) 2026 TensorStruct", "installed assembly copyright");
+        Check(copyright.Copyright == "Copyright (c) 2026 StruXllence", "installed assembly copyright");
         var company = (System.Reflection.AssemblyCompanyAttribute)typeof(OpenStaadWrapper).Assembly
             .GetCustomAttributes(typeof(System.Reflection.AssemblyCompanyAttribute), false)[0];
-        Check(company.Company == "TensorStruct", "installed assembly company");
+        Check(company.Company == "StruXllence", "installed assembly company");
         var fake = new FakeLoad();
         using (var wrapper = new OpenStaadWrapper(new FakeRoot(fake)))
         {
@@ -800,7 +809,11 @@ public static class Program
         {
             var receipt = wrapper.View.ShowFront();
             Check(receipt.Status == ViewOperationStatus.InvokedWithoutAcknowledgement && !receipt.IsSuccessful && receipt.NativeReturnCode == null, "View void completion");
-            Check(viewNative.Calls.SequenceEqual(new[] { "ShowFront" }), "Captured View front request");
+            var back = wrapper.View.ShowBack();
+            var left = wrapper.View.ShowLeft();
+            Check(back.NativeFunction == "ShowBack" && left.NativeFunction == "ShowLeft", "View orientation identities");
+            Check(new[] { back, left }.All(result => result.Status == ViewOperationStatus.InvokedWithoutAcknowledgement && !result.IsSuccessful && result.NativeReturnCode == null), "View orientation void completions");
+            Check(viewNative.Calls.SequenceEqual(new[] { "ShowFront", "ShowBack", "ShowLeft" }), "Captured View orientation requests");
         }
         Console.WriteLine("PASS: __EXAMPLE_COUNT__ packaged XML examples and Geometry/Load/Root/Output/Property/Support/Commands/Design/Table/View IntelliSense.");
     }

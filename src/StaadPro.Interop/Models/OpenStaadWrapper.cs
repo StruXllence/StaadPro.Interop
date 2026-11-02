@@ -146,7 +146,7 @@ namespace StaadPro.Interop.Models
         public dynamic RawView { get; private set; }
 
         /// <summary>Gets the managed View adapter.</summary>
-        /// <remarks>Provides ShowFront on the captured native View object. Other source View functions remain pending. Null when the native interface is unavailable.</remarks>
+        /// <remarks>Provides ShowFront, ShowBack and ShowLeft on the captured native View object. Other source View functions remain pending. Null when the native interface is unavailable.</remarks>
         public IOSView View { get; private set; }
 
         /// <summary>Gets the reserved IDEA StatiCa integration binding.</summary>

@@ -19,7 +19,13 @@ namespace PackageVerification
             public readonly List<int> Threads = new List<int>();
             public Action OnCall;
             public void ShowFront()
-            { Calls.Add("ShowFront"); Threads.Add(Thread.CurrentThread.ManagedThreadId); OnCall?.Invoke(); }
+            { Record("ShowFront"); }
+            public void ShowBack()
+            { Record("ShowBack"); }
+            public void ShowLeft()
+            { Record("ShowLeft"); }
+            private void Record(string nativeFunction)
+            { Calls.Add(nativeFunction); Threads.Add(Thread.CurrentThread.ManagedThreadId); OnCall?.Invoke(); }
         }
     }
 }

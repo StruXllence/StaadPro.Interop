@@ -1,5 +1,7 @@
 # Table completion and View foundation
 
+**Current View follow-up:** ShowBack and ShowLeft are also available. View now has three orientation requests; see [current contracts and coverage](View-Orientations.md). The implementation checkpoint below records the original Table completion and ShowFront increment.
+
 Implemented 28 October 2026. This increment ports **nine remaining main-project Table overloads** and **one main-project View function**, `ShowFront`. Table now adapts **all 29/29 main-interface overloads** and dispatches **all 24/24 reviewed native Table names**. View has **1/70 main-source overloads** and **1/67 reviewed native names**; 69 source overloads remain. The main project is strictly read-only. Source coverage is not native runtime or storage certification.
 
 ## Table signatures and differences

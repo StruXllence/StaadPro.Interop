@@ -1,6 +1,10 @@
 # NuGet readiness assessment
 
-**Latest 28 October 2026 checkpoint:** prepared 1.0.0-preview.20261028.3 with all 29 main-project Table overloads / 24 reviewed native names and View ShowFront (1/70 source overloads). Passed **6,944 offline tests**, including **496 Table/View cases** (164 additional cases in this increment), and **1,282 installed-package XML examples**, including all 58 Table examples and two View examples. Managed fixture workflows cover the current Table routes and ShowFront; live native COM/UI/storage qualification remains separate. Public NuGet.org availability is not confirmed.
+**Current checkpoint, 2 November 2026:** prepared 1.0.0-preview.20261102 with View ShowBack and ShowLeft, matching XML IntelliSense and common captured-binding dispatch. View now provides 3/70 source overloads over 3/67 native names. Author: Srinivasa Rao Masanam. Publisher: StruXllence. Copyright (c) 2026 StruXllence. Passed 6,964 offline tests and 1,286 installed-package XML examples. Public availability of this new preview is not confirmed; native COM/UI qualification remains separate.
+
+**Latest 28 October 2026 checkpoint:** prepared 1.0.0-preview.20261028.4 with an updated README. API scope and the prior verification checkpoint follow.
+
+**Previous implementation checkpoint:** prepared 1.0.0-preview.20261028.3 with all 29 main-project Table overloads / 24 reviewed native names and View ShowFront (1/70 source overloads). Passed **6,944 offline tests**, including **496 Table/View cases** (164 additional cases in this increment), and **1,282 installed-package XML examples**, including all 58 Table examples and two View examples. Managed fixture workflows cover the current Table routes and ShowFront; live native COM/UI/storage qualification remains separate. Public NuGet.org availability is not confirmed.
 
 **Earlier 28 October 2026 checkpoint:** prepared 1.0.0-preview.20261028.2 with twenty main-source Table overloads (ten added in this increment). Passed 6,780 offline tests, including 332 Table cases. Installed-package verification passed 1,262 XML examples, including forty Table examples, and a report lifecycle/formatting workflow. Live native UI, COM, licensing and persistence qualification remain separate. NuGet.org publication is not confirmed.
 
@@ -234,11 +238,11 @@ This verifies an installable preview with expanded IntelliSense. The prior six f
 
 ## Previously verified public preview
 
-Assessment date: 12 October 2026. Current release: `1.0.0-preview.20261012.1`, including the model attachment fixes and copyright update to StaadDev. The source commit is recorded in the package's repository metadata.
+Assessment date: 12 October 2026. Current release: `1.0.0-preview.20261012.1`, including the model attachment fixes. The source commit is recorded in the package's repository metadata.
 
 ## Decision
 
-**The corrected preview is publicly available on NuGet.org. A stable public release is not yet verified.** Local build, offline tests, package archive checks, isolated installation, compilation, execution, and live model connection checks on STAAD.Pro 2025 have passed. Public `1.0.0-preview.20261012` was downloaded and successfully restored/built in a copy of the user's legacy WPF project. Corrected `1.0.0-preview.20261012.1` was subsequently confirmed in the public index, downloaded, and restored/built/run through a fresh public-feed-only consumer with HTTP caching disabled. Its DLL, XML and README match the verified local archive; author remains Srinivasa Rao Masanam and copyright is Copyright (c) 2026 StaadDev.
+**The corrected preview is publicly available on NuGet.org. A stable public release is not yet verified.** Local build, offline tests, package archive checks, isolated installation, compilation, execution, and live model connection checks on STAAD.Pro 2025 have passed. Public `1.0.0-preview.20261012` was downloaded and successfully restored/built in a copy of the user's legacy WPF project. Corrected `1.0.0-preview.20261012.1` was subsequently confirmed in the public index, downloaded, and restored/built/run through a fresh public-feed-only consumer with HTTP caching disabled. Its DLL, XML and README match the verified local archive; the original published author and copyright metadata were verified.
 
 The corrected release artifact is `artifacts/release/StaadPro.Interop.1.0.0-preview.20261012.1.nupkg`. The public package is [StaadPro.Interop 1.0.0-preview.20261012.1](https://www.nuget.org/packages/StaadPro.Interop/1.0.0-preview.20261012.1). NuGet records its publication at 2026-10-12 16:37:20 UTC (22:07:20 India time). The project's default version remains `1.0.0`; use an explicit preview version while engineering-unit and broader compatibility gates remain open. Public-feed availability and installation are verified. See [Publishing.md](Publishing.md) and [Installation.md](Installation.md) for the exact steps.
 
@@ -299,7 +303,7 @@ Every new method has comprehensive, expanded XML documentation on both the inter
 | CI verification | Passed for implementation commit `991f7ae` | [Windows CI run](https://github.com/structuraldeveloper/StaadPro.Interop/actions/runs/38230643566) built, tested, packed and verified the implemented queries; subsequent release metadata changes are verified locally before upload |
 | Real OpenSTAAD query execution | **Pending** | Native COM dispatch/marshaling, unit conventions, version compatibility |
 | Live model connection | Passed on STAAD.Pro 2025 | Supplied model opened in approximately 41.8 seconds, exposing Geometry/Load with 6,444 nodes and 74 primary load cases. Repeated calls reused the same process without launching another session. Does not certify engineering units or every query. |
-| NuGet.org publication | **Corrected preview publicly available and verified** | `.1` appears in the public index; public download matches verified DLL/XML/README. Fresh nuget.org-only restore with a unique package cache and `--no-http-cache`, build and assembly-load/copyright checks passed. Author and StaadDev copyright confirmed in the published nuspec. |
+| NuGet.org publication | **Corrected preview publicly available and verified** | `.1` appears in the public index; public download matches verified DLL/XML/README. Fresh nuget.org-only restore with a unique package cache and `--no-http-cache`, build and assembly-load/copyright checks passed. Original author and copyright metadata were confirmed in the published nuspec. |
 
 The current test result file is `artifacts/publish/tests/connection-fix.trx`. The suite contains 361 offline cases plus the explicit ROT/environment test, which is excluded from ordinary runs. Offline passing results are not a certification of live STAAD engineering output.
 

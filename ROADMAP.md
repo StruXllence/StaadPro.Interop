@@ -8,7 +8,9 @@ Our mission is to provide the structural engineering and computational design co
 
 ## Current implementation and next steps — 27 October 2026
 
-**Latest prepared preview:** 1.0.0-preview.20261028.3 completes all 29 Table main-source overloads / 24 reviewed native names and adds View ShowFront. Main-source priority remains; View has 69 source overloads pending. Reused existing color/Table contracts and ported native alignment maps, with full XML documentation and 6,944 passed offline tests. See [completion and View foundation](docs/Table-Completion-and-View-Foundations.md). Live COM/report/UI acceptance remains separate.
+**Latest prepared preview:** 1.0.0-preview.20261102 adds View ShowBack and ShowLeft. View now provides 3/70 reference overloads over 3/67 reviewed native names; 67 reference overloads remain. See [orientation usage](docs/View-Orientations.md).
+
+**Latest implementation checkpoint:** 1.0.0-preview.20261028.3 completes all 29 Table main-source overloads / 24 reviewed native names and adds View ShowFront. Main-source priority remains; View has 69 source overloads pending. Reused existing color/Table contracts and ported native alignment maps, with full XML documentation and 6,944 passed offline tests. See [completion and View foundation](docs/Table-Completion-and-View-Foundations.md). Live COM/report/UI acceptance remains separate.
 
 **Previous prepared preview:** 1.0.0-preview.20261028.2 adds ten further existing main-project Table lifecycle/typography methods. Table now has twenty of 29 reference overloads, reaching 20/24 native names; nine reference overloads remain. Reused the established result/status types and common service, with full XML documentation and 6,780 passed offline tests. See [current contracts](docs/Table-Lifecycle-and-Formatting.md). Retained the compact Markdown banner and independence/trademark notices.
 
@@ -236,7 +238,7 @@ Viewport graphical automation, diagnostic visualizers, and direct command stream
 
 We encourage structural engineers, software developers, and research institutions to participate in shaping the future of StaadPro.Interop:
 
-1. **Vote on Features**: Check out our [GitHub Discussions](https://github.com/structuraldeveloper/StaadPro.Interop/discussions) and upvote proposals.
+1. **Vote on Features**: Check out our [GitHub Discussions](https://github.com/StruXllence/StaadPro.Interop/discussions) and upvote proposals.
 2. **Submit RFCs**: Propose new design code support or engineering workflows via [Feature Requests](.github/ISSUE_TEMPLATE/feature_request.md).
 ---
 

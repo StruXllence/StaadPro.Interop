@@ -12,17 +12,18 @@
     <RootNamespace>StaadPro.Interop</RootNamespace>
     <PackageId>StaadPro.Interop</PackageId>
     <Version>1.0.0</Version>
-    <ReleaseDocumentationVersion>1.0.0-preview.20261028.3</ReleaseDocumentationVersion>
+    <ReleaseDocumentationVersion>1.0.0-preview.20261102</ReleaseDocumentationVersion>
     <PackageVersion>$(ReleaseDocumentationVersion)</PackageVersion>
     <Authors>Srinivasa Rao Masanam</Authors>
-    <Copyright>Copyright (c) 2026 TensorStruct</Copyright>
-    <PackageReleaseNotes>Completed all 29 main-project Table overloads with color conversions, typed alignment and table-wide font sizing. Added the first View function, ShowFront. Included comprehensive XML documentation, managed regression coverage and updated usage/coverage reports. Retained compact Markdown branding and independence/trademark notices. Publisher: TensorStruct. Full release notes: https://github.com/structuraldeveloper/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
+    <Company>StruXllence</Company>
+    <Copyright>Copyright (c) 2026 StruXllence</Copyright>
+    <PackageReleaseNotes>Added ShowBack and ShowLeft graphical orientation requests with comprehensive XML IntelliSense, named completion receipts and regression coverage. Updated README and usage guidance. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
     <Description>A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags>staad;openstaad;geometry;loads;structural-engineering;bim;bentley;interop</PackageTags>
+    <PackageTags>staad;staad-pro;openstaad;structural-engineering;structural-analysis;engineering-automation;csharp;dotnet-framework;com-interop;geometry;loads;bentley;struxllence</PackageTags>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/structuraldeveloper/StaadPro.Interop</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/structuraldeveloper/StaadPro.Interop</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/StruXllence/StaadPro.Interop</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/StruXllence/StaadPro.Interop</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>images/symbol-only-logo.png</PackageIcon>
   </PropertyGroup>
@@ -49,6 +50,10 @@
     <None Include="..\..\logo-with-text.png" Pack="true" PackagePath="images\" />
     <None Include="..\..\docs\images\logo-with-text-400.png" Pack="true" PackagePath="images\" />
     <None Include="..\..\NOTICE.md" Pack="true" PackagePath="NOTICE.md" />
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
+    <None Include="..\..\CITATION.cff" Pack="true" PackagePath="CITATION.cff" />
+    <None Include="..\..\TRADEMARKS.md" Pack="true" PackagePath="TRADEMARKS.md" />
+    <None Include="..\..\docs\View-Orientations.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Table-Report-Foundations.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Table-Lifecycle-and-Formatting.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Table-Completion-and-View-Foundations.md" Pack="true" PackagePath="docs\" />
@@ -110,6 +115,11 @@
 
   <Target Name="PreparePackageDocumentation" BeforeTargets="_GetPackageFiles">
     <Error Condition="'$(Authors)' != 'Srinivasa Rao Masanam'" Text="The package Authors metadata must be exactly Srinivasa Rao Masanam." />
+    <Error Condition="'$(Company)' != 'StruXllence'" Text="The package Company metadata must be exactly StruXllence." />
+    <Error Condition="'$(Copyright)' != 'Copyright (c) 2026 StruXllence'" Text="The package Copyright metadata must be exactly Copyright (c) 2026 StruXllence." />
+    <Error Condition="'$(Description)' != 'A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD'" Text="The package Description metadata must be exactly A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD." />
+    <Error Condition="'$(RepositoryUrl)' != 'https://github.com/StruXllence/StaadPro.Interop'" Text="The package RepositoryUrl metadata must be exactly https://github.com/StruXllence/StaadPro.Interop." />
+    <Error Condition="'$(PackageProjectUrl)' != 'https://github.com/StruXllence/StaadPro.Interop'" Text="The package PackageProjectUrl metadata must be exactly https://github.com/StruXllence/StaadPro.Interop." />
     <Error Condition="!$([System.Text.RegularExpressions.Regex]::IsMatch('$(PackageVersion)', '^[0-9A-Za-z][0-9A-Za-z.+-]*$'))" Text="The package version contains unsupported characters." />
     <Error Condition="!$([System.Text.RegularExpressions.Regex]::IsMatch('$(ReleaseDocumentationVersion)', '^[0-9A-Za-z][0-9A-Za-z.+-]*$'))" Text="The release documentation version contains unsupported characters." />
     <Exec Command="powershell -NoProfile -NonInteractive -File &quot;$(MSBuildProjectDirectory)\..\..\eng\Prepare-PackageDocumentation.ps1&quot; -PackageVersion &quot;$(PackageVersion)&quot; -DocumentedVersion &quot;$(ReleaseDocumentationVersion)&quot; -ReadmeSource &quot;$(MSBuildProjectDirectory)\..\..\docs\NuGet-README.md&quot; -ReleaseNotesSource &quot;$(MSBuildProjectDirectory)\..\..\docs\Release-Notes.md&quot; -OutputDirectory &quot;$(MSBuildProjectDirectory)\$(BaseIntermediateOutputPath)package-docs&quot;" />

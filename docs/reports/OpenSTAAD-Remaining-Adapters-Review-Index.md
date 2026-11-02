@@ -1,5 +1,7 @@
 # Remaining OpenSTAAD adapter reviews and implementation sequence
 
+**Current checkpoint, 2 November 2026:** View provides ShowFront, ShowBack and ShowLeft (3/70 source overloads and 3/67 native names). See [orientation contracts](../View-Orientations.md); 67 source overloads remain.
+
 **Current checkpoint, 28 October 2026:** Table reaches all 29 source overloads / 24 native names, and View starts with ShowFront (one source/native function). Main-source ports retain priority over native-only expansion. See [current contracts](../Table-Completion-and-View-Foundations.md).
 
 **Latest implementation checkpoint, 28 October 2026:** Twenty existing main-source Table overloads are implemented, reaching 20/24 native names. The latest ten cover report/table deletion, renaming/resizing, scoped saves and cell typography. Nine source overloads remain. Passed 6,780 offline tests, including 332 Table cases. See [lifecycle and formatting contracts](../Table-Lifecycle-and-Formatting.md). Main-source parity precedes native-only expansion.
@@ -35,7 +37,7 @@
 | Design | 31 / 45 / 45 | 7 | Ten common methods over five native names; extended GROUP and forty union native names pending. [Design plan](OpenSTAAD-Design-Multi-Version-Architecture-and-Plan.md) |
 | Commands | 18 / 18 / 18, including one deprecated summary | 21 | 17 managed methods cover sixteen active analysis-command targets; steel catalog group pending. [Commands plan](OpenSTAAD-Commands-Multi-Version-Architecture-and-Plan.md) |
 | Table | 24 / 24 / 24 | 29 | All 29 reference overloads and 24 reviewed native names implemented; live qualification separate. [Table plan](OpenSTAAD-Table-Multi-Version-Architecture-and-Plan.md) |
-| View | 67 / 67 / 67 | 70 | ShowFront implemented; 69 reference overloads and 66 native names remain. [View plan](OpenSTAAD-View-Multi-Version-Architecture-and-Plan.md) |
+| View | 67 / 67 / 67 | 70 | ShowFront, ShowBack and ShowLeft implemented; 67 reference overloads and 64 native names remain. [View plan](OpenSTAAD-View-Multi-Version-Architecture-and-Plan.md) |
 | IDEA StatiCa | Not a native OpenSTAAD group | 24 | Managed integration placeholder. [Integration plan](OpenSTAAD-IDEA-StatiCa-Architecture-and-Porting-Plan.md) |
 
 These are domain report scopes, not interchangeable measures. Managed overloads, native names, class helpers, reserved entries and metadata-only functions must not be summed as a single “implemented API” total. In particular, Output-owned functions filed under the Design steel help page are counted in Output.

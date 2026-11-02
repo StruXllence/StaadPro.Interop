@@ -1,11 +1,13 @@
 # StaadPro.Interop branding
 
+StaadPro.Interop is created by **Srinivasa Rao Masanam** and published by **StruXllence**. Current package and assembly copyright is **Copyright (c) 2026 StruXllence**. These exact values apply from every workstation; see [publishing identity and verification](Publishing.md#publishing-identity-on-every-computer), [LICENSE](../LICENSE), [NOTICE](../NOTICE.md) and [citation information](../CITATION.cff).
+
 The two supplied root PNG files are the package's adopted logo assets. Preserve the original artwork and reuse these assets for future package and documentation updates.
 
 | Asset | Purpose | Original dimensions | File size |
 | --- | --- | --- | --- |
-| [symbol-only-logo.png](https://github.com/structuraldeveloper/StaadPro.Interop/blob/main/symbol-only-logo.png) | Embedded NuGet package icon, including package-list and Visual Studio display | 1254 × 1254 | 873,573 bytes |
-| [logo-with-text.png](https://github.com/structuraldeveloper/StaadPro.Interop/blob/main/logo-with-text.png) | Repository and NuGet README banner; wider documentation placements | 2172 × 724 | 430,180 bytes |
+| [symbol-only-logo.png](https://github.com/StruXllence/StaadPro.Interop/blob/main/symbol-only-logo.png) | Embedded NuGet package icon, including package-list and Visual Studio display | 1254 × 1254 | 873,573 bytes |
+| [logo-with-text.png](https://github.com/StruXllence/StaadPro.Interop/blob/main/logo-with-text.png) | Repository and NuGet README banner; wider documentation placements | 2172 × 724 | 430,180 bytes |
 
 The [400-pixel README rendition](images/logo-with-text-400.png) is a 400 × 133 PNG derived from the original wordmark solely for compact display. Both root PNG originals remain unchanged.
 

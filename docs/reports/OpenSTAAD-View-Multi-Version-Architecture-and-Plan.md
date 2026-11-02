@@ -1,16 +1,18 @@
 # OpenSTAAD View multi-version comparison, architecture and implementation plan
 
+**Current implementation, 2 November 2026:** View exposes ShowFront, ShowBack and ShowLeft (3/70 main-source overloads; 3/67 native names). There are 67 source overloads and 64 reviewed native names pending. Common captured-binding dispatch, named void-completion receipts and complete XML documentation are shared. See [orientation contracts and examples](../View-Orientations.md). Native-only expansion follows main-source porting; live COM/UI qualification is separate.
+
 **Current implementation, 28 October 2026:** All 29 main-project Table overloads are adapted and all 24 reviewed native Table names are dispatched. View now ports ShowFront (1/70 source overloads; 1/67 native names). Native-only expansion follows remaining main-source work. See [completion contracts and usage](../Table-Completion-and-View-Foundations.md). This coverage is not live COM or report/UI qualification.
 
 **Reviewed:** 23 October 2026<br>
 **Baseline:** main at 1d8285ce66c95c60da55530d4c721fb7274893da<br>
-**Status:** Documentation and architecture only. View domain functions remain pending.
+**Original review status:** Documentation and architecture only at the review baseline. See the current implementation checkpoint above.
 
 ## 1. Findings
 
 All three manuals contain **67 detailed View functions** with matching declarations. Five scale-related non-example text changes between 2024 and 2025 correct generated cross-reference/tooltip text and punctuation; they do not change the scale slots, units, directions or status codes. No separate year implementation is justified by these differences.
 
-The current IOSView / OSViewAdapter are binding-only placeholders. The main source contains 70 interface/public-adapter overloads targeting 66 native names. SetModeSectionPage has no source adapter target. Main-source parity alone would therefore miss one documented function and retain several correctness problems.
+At the original review baseline, IOSView / OSViewAdapter were binding-only placeholders. The main source contains 70 interface/public-adapter overloads targeting 66 native names. SetModeSectionPage has no source adapter target. Main-source parity alone would therefore miss one documented function and retain several correctness problems.
 
 | Measure | Finding |
 | --- | --- |
@@ -19,7 +21,7 @@ The current IOSView / OSViewAdapter are binding-only placeholders. The main sour
 | Main private adapter helpers | 0 |
 | Main distinct native targets | 66 |
 | Native names without main-adapter target | 1 |
-| Current typed domain methods | 0 (binding-only placeholder) |
+| Current typed domain methods | 3 orientation requests; see current checkpoint |
 | Common signature changes, 2024 to 2025 | 0 |
 | Non-example text changes, 2024 to 2025 | 5 |
 | Example changes, 2024 to 2025 | 24 |

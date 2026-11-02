@@ -1,5 +1,19 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261102 - 2 November 2026 (prepared preview)
+
+Added ShowBack and ShowLeft to IOSView and OSViewAdapter. Both reuse the captured native View binding and the existing named completion receipt, invoke once on the caller's established COM thread, and preserve stale-binding and native-error behavior. Matching XML IntelliSense explains the difference from ShowFront and Root application-window controls, the native viewing convention and unacknowledged void completion.
+
+View now provides 3/70 main-source overloads and reaches 3/67 reviewed native names; 67 source overloads remain. Updated the README and [orientation usage guide](View-Orientations.md). The package targets Windows/.NET Framework 4.8.1; managed verification does not certify native UI effects or every STAAD build.
+
+Author: Srinivasa Rao Masanam. Publisher: StruXllence. Copyright (c) 2026 StruXllence. Licensed under MIT.
+
+Passed **6,964 offline tests**, including **28 View orientation cases**, and verified **1,286 installed-package XML examples**, including six View examples. The package checks cover metadata, notices and a fresh consumer restore/build/runtime workflow; live native COM/UI qualification remains separate. Prepared for manual upload; public availability of this version is not confirmed.
+
+## 1.0.0-preview.20261028.4 - 28 October 2026 (prepared preview)
+
+Updated the README file.
+
 ## 1.0.0-preview.20261028.3 - 28 October 2026 (prepared preview)
 
 Ported nine remaining main-project Table overloads: five SetCellTextColor forms (RGB, WPF Color, text, packed ARGB and explicit ARGB bytes), SetCellTextColorHsl, horizontal/vertical alignment and table-wide font sizing. Table now covers all 29 main-interface overloads and all 24 reviewed native names. Added the first main-project View function, ShowFront, with an immutable void-completion receipt; 69 main-source View overloads remain.

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "date": "2026-10-28",
+  "date": "2026-11-02",
   "mainProjectReadOnly": true,
   "sourceFiles": [
     {
@@ -32,6 +32,48 @@
         "2024": "void OSViewUI::ShowFront()",
         "2025": "void OSViewUI::ShowFront()",
         "2026": "void OSViewUI::ShowFront()"
+      }
+    },
+    {
+      "managedName": "ShowBack",
+      "returnType": "ViewOperationResult",
+      "nativeName": "ShowBack",
+      "parameters": "",
+      "source": [
+        {
+          "managedName": "ShowBack",
+          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
+          "line": 114,
+          "name": "ShowBack",
+          "receiver": "ComObject",
+          "arguments": []
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::ShowBack()",
+        "2025": "void OSViewUI::ShowBack()",
+        "2026": "void OSViewUI::ShowBack()"
+      }
+    },
+    {
+      "managedName": "ShowLeft",
+      "returnType": "ViewOperationResult",
+      "nativeName": "ShowLeft",
+      "parameters": "",
+      "source": [
+        {
+          "managedName": "ShowLeft",
+          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
+          "line": 119,
+          "name": "ShowLeft",
+          "receiver": "ComObject",
+          "arguments": []
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::ShowLeft()",
+        "2025": "void OSViewUI::ShowLeft()",
+        "2026": "void OSViewUI::ShowLeft()"
       }
     }
   ],
