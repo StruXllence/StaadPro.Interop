@@ -39,6 +39,18 @@ Use the same checked-in identity values from every workstation and build runner.
 
 The project rejects identity and license-expression overrides during packing. The installed-package verifier also checks the generated nuspec, assembly Company/Copyright, README, LICENSE, NOTICE and citation information. Clone the current repository, use its checked-in project and scripts, run the documented verification, and upload the exact archive that passed. Account-name casing used for authentication is controlled by the registry; it does not change these author/publisher values.
 
+## Maintainer Git identity
+
+For a maintainer checkout used to publish this project, authenticate GitHub as StruXllence and configure this repository locally. These settings override a different global identity without affecting other repositories:
+
+~~~powershell
+git config --local user.name "StruXllence"
+git config --local user.email "351340027+StruXllence@users.noreply.github.com"
+git config --local credential.https://github.com.username "StruXllence"
+~~~
+
+The no-reply address identifies the StruXllence GitHub account. On another computer, verify the account and its no-reply address before using it. Contributors should use their own identities; these maintainer commands are not a contribution requirement. Git commit identity and push authentication are separate from NuGet Authors, which remains Srinivasa Rao Masanam.
+
 ## Publisher metadata and NuGet.org ownership
 
 This archive declares `Srinivasa Rao Masanam` in package Authors and `StruXllence` in assembly Company, with `Copyright (c) 2026 StruXllence` in package and assembly copyright metadata. NuGet.org account ownership is managed separately from the archive: its Authors/Owners manifest fields do not transfer portal ownership. Review the package's **Manage package → Owners** page to confirm the intended branded account is its owner. The display name of registry accounts is controlled by NuGet.org. See Microsoft's [ownership instructions](https://learn.microsoft.com/en-us/nuget/nuget-org/publish-a-package#manage-package-owners-on-nugetorg).
