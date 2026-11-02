@@ -34,7 +34,11 @@ try {
     $notice = Read-PackageEntry 'NOTICE.md'
     $citation = Read-PackageEntry 'CITATION.cff'
     $trademarks = Read-PackageEntry 'TRADEMARKS.md'
-    if ($license -notmatch 'MIT License' -or $license -notmatch 'Copyright \(c\) 2026 StruXllence' -or $license -notmatch 'Srinivasa Rao Masanam' -or $license -notmatch 'permission notice shall be included') { throw 'Incomplete copyright-bearing MIT license.' }
+    $legacyLicense = Read-PackageEntry 'LICENSES/MIT-legacy.txt'
+    $licensingGuide = Read-PackageEntry 'docs/Licensing.md'
+    if ($license -notmatch 'Apache License' -or $license -notmatch 'Version 2.0, January 2004' -or $license -notmatch 'Grant of Patent License' -or $license -notmatch 'END OF TERMS AND CONDITIONS') { throw 'Incomplete Apache-2.0 license.' }
+    if ($legacyLicense -notmatch 'MIT License' -or $legacyLicense -notmatch 'Copyright \(c\) 2026 StruXllence' -or $legacyLicense -notmatch 'Srinivasa Rao Masanam' -or $legacyLicense -notmatch 'permission notice shall be included') { throw 'Missing retained MIT-origin notice.' }
+    if ($notice -notmatch 'Apache License 2.0' -or $notice -notmatch 'MIT-legacy.txt' -or $licensingGuide -notmatch 'Apache-2.0') { throw 'Incomplete distribution licensing guidance.' }
     if ($notice -notmatch 'Srinivasa Rao Masanam' -or $notice -notmatch 'StruXllence' -or $notice -notmatch 'neither|Neither' -or $citation -notmatch 'Masanam' -or $citation -notmatch 'StruXllence/StaadPro.Interop' -or $trademarks -notmatch 'does not amend') { throw 'Incomplete attribution, citation or trademark guidance.' }
     $guide = Read-PackageEntry 'docs/Load-Queries.md'
     $installation = Read-PackageEntry 'docs/Installation.md'
@@ -58,7 +62,7 @@ try {
     if ($nuspecEntry.Count -ne 1) { throw 'Expected exactly one nuspec.' }
     [xml] $nuspec = Read-PackageEntry $nuspecEntry[0].FullName
     $metadata = $nuspec.package.metadata
-    if ($metadata.id -ne 'StaadPro.Interop' -or $metadata.license.InnerText -ne 'MIT' -or $metadata.readme -ne 'README.md') { throw 'Invalid package identity, license or README metadata.' }
+    if ($metadata.id -ne 'StaadPro.Interop' -or $metadata.license.InnerText -ne 'Apache-2.0' -or $metadata.readme -ne 'README.md') { throw 'Invalid package identity, license or README metadata.' }
     if ([string]$metadata.icon -cne 'images/symbol-only-logo.png') { throw 'The package must use the adopted symbol-only logo as its embedded icon.' }
     $iconEntry = $archive.GetEntry([string]$metadata.icon)
     if ($null -eq $iconEntry -or $iconEntry.Length -lt 1 -or $iconEntry.Length -gt 1MB) { throw 'The embedded package icon is missing, empty or exceeds the NuGet 1 MB limit.' }
@@ -85,6 +89,10 @@ try {
     if (!$readme.StartsWith($markdownBanner) -or $readme -match '(?i)<img\b|&lt;img\b') {
         throw 'The NuGet README must use supported Markdown image syntax; inline HTML is disabled by NuGet.'
     }
+    foreach ($destination in @('https://www.youtube.com/@StruXllence','https://struxllence.com','https://forum.struxllence.com','https://new-forum.struxllence.com')) {
+        if (!$readme.Contains($destination)) { throw "Missing community destination: $destination" }
+    }
+    if ($readme -notmatch 'Coming%20soon' -or $readme -notmatch 'Preview' -or $readme.IndexOf('YouTube-%40StruXllence') -gt $readme.IndexOf('## Version')) { throw 'Community navigation must appear near the top with clear destination status.' }
     $compactEntry = $archive.GetEntry('images/logo-with-text-400.png')
     if ($null -eq $compactEntry -or $compactEntry.Length -lt 1) { throw 'Missing compact README banner.' }
     $compactStream = $compactEntry.Open()

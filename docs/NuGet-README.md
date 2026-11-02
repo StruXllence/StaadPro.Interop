@@ -6,7 +6,11 @@ A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD
 
 By **Srinivasa Rao Masanam**.
 
-## Version 1.0.0-preview.20261102
+[![YouTube @StruXllence](https://img.shields.io/badge/YouTube-%40StruXllence-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@StruXllence) [![Website — coming soon](https://img.shields.io/badge/Website-Coming%20soon-64748B?style=flat-square)](https://struxllence.com) [![Community forum](https://img.shields.io/badge/Community-Forum-0866C6?style=flat-square)](https://forum.struxllence.com) [![Revamp forum — preview](https://img.shields.io/badge/Revamp%20forum-Preview-7657B5?style=flat-square)](https://new-forum.struxllence.com)
+
+The main website is coming soon. Join the community forum for structural-engineering discussions, explore the forum preview, or follow @StruXllence on YouTube. Report package defects through [GitHub Issues](https://github.com/StruXllence/StaadPro.Interop/issues).
+
+## Version 1.0.0-preview.20261102.1
 
 Added ShowBack and ShowLeft graphical orientation requests with comprehensive XML IntelliSense and managed regression coverage. Together with ShowFront, View now exposes three of 70 main-source overloads and reaches three of 67 reviewed native functions. Each request preserves the acquired View binding, caller thread and unacknowledged native void-completion contract. See the [orientation guide](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/View-Orientations.md).
 
@@ -29,6 +33,10 @@ New operations cover report/table deletion, renaming, growing existing table dim
 ## Earlier Table report foundations
 
 The preceding foundation increment adapted ten existing functions from the read-only main Table adapter. Rows and columns are one-based; counts and cell strings return validated values directly. Creation/mutation receipts retain native creation IDs or explicit unacknowledged void completion. See the [Table guide](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Table-Report-Foundations.md). The latest increment completes all twenty-nine main-source Table overloads.
+
+## View orientations
+
+Use ShowFront(), ShowBack() or ShowLeft() for the acquired instance's active graphical direction. These requests return named unacknowledged completion receipts; they do not change model coordinates, run analysis or save. See [the View guide](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/View-Orientations.md).
 
 ## Commands, Support and Design foundations
 
@@ -270,7 +278,7 @@ Silent and hidden options do not guarantee unattended operation. Synchronous nat
 
 ## Licence
 
-MIT. Package copyright (c) 2026 StruXllence. Bentley STAAD.Pro is a separate product.
+Apache License 2.0. Copyright (c) 2026 StruXllence. Original author: Srinivasa Rao Masanam. The archive includes LICENSE, NOTICE.md and the retained MIT-origin notice. Bentley STAAD.Pro is a separate product.
 
 For package submission and availability checks, see the [publishing guide](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Publishing.md).
 
@@ -280,4 +288,4 @@ StaadPro.Interop is an independent open-source project published by StruXllence.
 
 Bentley, STAAD, STAAD.Pro and OpenSTAAD are trademarks or registered trademarks of Bentley Systems, Incorporated and/or its subsidiaries or affiliates. All other product names and trademarks belong to their respective owners. These names are used solely to identify the products with which this library interoperates; no trademark rights or endorsement are claimed.
 
-The MIT license applies to this project's code. It does not grant a license to Bentley software or trademarks. A separately licensed STAAD.Pro installation is required for live use; no Bentley proprietary binaries are included.
+Apache License 2.0 applies to the current project distribution; the retained notice for MIT-origin code is in LICENSES/MIT-legacy.txt. It does not grant a license to Bentley software or trademarks. A separately licensed STAAD.Pro installation is required for live use; no Bentley proprietary binaries are included.

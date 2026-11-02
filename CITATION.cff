@@ -5,9 +5,9 @@ title: "StaadPro.Interop"
 authors:
   - family-names: "Masanam"
     given-names: "Srinivasa Rao"
-version: "1.0.0-preview.20261102"
+version: "1.0.0-preview.20261102.1"
 date-released: 2026-11-02
 url: "https://github.com/StruXllence/StaadPro.Interop"
 repository-code: "https://github.com/StruXllence/StaadPro.Interop"
-license: MIT
+license: Apache-2.0
 abstract: "A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD, published by StruXllence."

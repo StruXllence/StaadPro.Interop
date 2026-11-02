@@ -12,14 +12,14 @@
     <RootNamespace>StaadPro.Interop</RootNamespace>
     <PackageId>StaadPro.Interop</PackageId>
     <Version>1.0.0</Version>
-    <ReleaseDocumentationVersion>1.0.0-preview.20261102</ReleaseDocumentationVersion>
+    <ReleaseDocumentationVersion>1.0.0-preview.20261102.1</ReleaseDocumentationVersion>
     <PackageVersion>$(ReleaseDocumentationVersion)</PackageVersion>
     <Authors>Srinivasa Rao Masanam</Authors>
     <Company>StruXllence</Company>
     <Copyright>Copyright (c) 2026 StruXllence</Copyright>
-    <PackageReleaseNotes>Added ShowBack and ShowLeft graphical orientation requests with comprehensive XML IntelliSense, named completion receipts and regression coverage. Updated README and usage guidance. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
+    <PackageReleaseNotes>Updated README and project documentation. This preview is distributed under Apache License 2.0 and retains the notice for MIT-origin code. Previous releases retain their original terms. API behavior is unchanged.</PackageReleaseNotes>
     <Description>A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD</Description>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageTags>staad;staad-pro;openstaad;structural-engineering;structural-analysis;engineering-automation;csharp;dotnet-framework;com-interop;geometry;loads;bentley;struxllence</PackageTags>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/StruXllence/StaadPro.Interop</RepositoryUrl>
@@ -50,6 +50,8 @@
     <None Include="..\..\logo-with-text.png" Pack="true" PackagePath="images\" />
     <None Include="..\..\docs\images\logo-with-text-400.png" Pack="true" PackagePath="images\" />
     <None Include="..\..\NOTICE.md" Pack="true" PackagePath="NOTICE.md" />
+    <None Include="..\..\LICENSES\MIT-legacy.txt" Pack="true" PackagePath="LICENSES\" />
+    <None Include="..\..\docs\Licensing.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
     <None Include="..\..\CITATION.cff" Pack="true" PackagePath="CITATION.cff" />
     <None Include="..\..\TRADEMARKS.md" Pack="true" PackagePath="TRADEMARKS.md" />
@@ -115,6 +117,7 @@
 
   <Target Name="PreparePackageDocumentation" BeforeTargets="_GetPackageFiles">
     <Error Condition="'$(Authors)' != 'Srinivasa Rao Masanam'" Text="The package Authors metadata must be exactly Srinivasa Rao Masanam." />
+    <Error Condition="'$(PackageLicenseExpression)' != 'Apache-2.0'" Text="The package license expression must be exactly Apache-2.0." />
     <Error Condition="'$(Company)' != 'StruXllence'" Text="The package Company metadata must be exactly StruXllence." />
     <Error Condition="'$(Copyright)' != 'Copyright (c) 2026 StruXllence'" Text="The package Copyright metadata must be exactly Copyright (c) 2026 StruXllence." />
     <Error Condition="'$(Description)' != 'A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD'" Text="The package Description metadata must be exactly A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD." />

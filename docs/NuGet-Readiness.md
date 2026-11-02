@@ -1,5 +1,7 @@
 # NuGet readiness assessment
 
+**Current distribution, 2 November 2026:** prepared 1.0.0-preview.20261102.1 with Apache-2.0 metadata, full license/NOTICE and the retained MIT-origin notice. API behavior is unchanged. The current implementation passed 6,964 offline tests; installed-package verification covers 1,286 XML examples. Public availability is not confirmed.
+
 **Current checkpoint, 2 November 2026:** prepared 1.0.0-preview.20261102 with View ShowBack and ShowLeft, matching XML IntelliSense and common captured-binding dispatch. View now provides 3/70 source overloads over 3/67 native names. Author: Srinivasa Rao Masanam. Publisher: StruXllence. Copyright (c) 2026 StruXllence. Passed 6,964 offline tests and 1,286 installed-package XML examples. Public availability of this new preview is not confirmed; native COM/UI qualification remains separate.
 
 **Latest 28 October 2026 checkpoint:** prepared 1.0.0-preview.20261028.4 with an updated README. API scope and the prior verification checkpoint follow.
@@ -333,7 +335,7 @@ These are inherited implementation concerns, not failures found in the new offli
 
 ### 3. Complete release administration and reproducibility
 
-Confirm the intended NuGet ID/owner and available preview/stable versions. Verify provenance and MIT redistribution rights for the source being released. Observe a clean Windows CI run with the package consumer check, choose the release version/tag, prepare release notes and the supported-runtime matrix, and decide how to expose source/symbols for debugging. Symbol packages and Source Link are improvements to consider; their absence does not prevent NuGet installation. Publishing requires the package owner's credentials and a deliberate release action.
+Confirm the intended NuGet ID/owner and available preview/stable versions. Verify provenance, Apache-2.0 distribution rights and applicable inherited notices for the source being released. Observe a clean Windows CI run with the package consumer check, choose the release version/tag, prepare release notes and the supported-runtime matrix, and decide how to expose source/symbols for debugging. Symbol packages and Source Link are improvements to consider; their absence does not prevent NuGet installation. Publishing requires the package owner's credentials and a deliberate release action.
 
 ## Recommended sequence
 

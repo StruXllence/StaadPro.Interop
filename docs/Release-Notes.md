@@ -1,5 +1,11 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261102.1 - 2 November 2026 (prepared preview)
+
+Updated the README and project documentation. This distribution uses Apache License 2.0, with NOTICE attribution and the retained MIT-origin notice included. Previously published packages retain their original license terms. The package identity, Windows/net481 target and runtime API behavior are unchanged.
+
+The current implementation passed 6,964 offline tests. Installed-package verification covers 1,286 selected XML examples. Prepared for manual upload; public availability of this version is not confirmed.
+
 ## 1.0.0-preview.20261102 - 2 November 2026 (prepared preview)
 
 Added ShowBack and ShowLeft to IOSView and OSViewAdapter. Both reuse the captured native View binding and the existing named completion receipt, invoke once on the caller's established COM thread, and preserve stale-binding and native-error behavior. Matching XML IntelliSense explains the difference from ShowFront and Root application-window controls, the native viewing convention and unacknowledged void completion.
