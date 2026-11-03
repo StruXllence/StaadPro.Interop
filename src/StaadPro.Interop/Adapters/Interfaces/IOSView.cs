@@ -2,8 +2,8 @@ using StaadPro.Interop.Models.View;
 using System;
 namespace StaadPro.Interop.Adapters.Interfaces
 {
-    /// <summary>Provides the captured View binding and front, back and left graphical orientation requests.</summary>
-    /// <remarks>ShowFront, ShowBack and ShowLeft are implemented; other main-source View functions remain pending.</remarks>
+    /// <summary>Provides captured-view graphical orientations and incremental rotation requests.</summary>
+    /// <remarks>Seven standard orientations and RotateUp are implemented; other main-source View functions remain pending.</remarks>
     public interface IOSView : IOSBase
     {
         /// <summary>Gets the native View automation object captured by this adapter.</summary>
@@ -59,5 +59,93 @@ namespace StaadPro.Interop.Adapters.Interfaces
         ///     System.Console.WriteLine(result.NativeFunction + ": " + result.Status);
         /// }</code></example>
         ViewOperationResult ShowLeft();
+
+        /// <summary>Requests the right orientation in the acquired instance's active graphical view.</summary>
+        /// <returns>A <see cref="ViewOperationResult"/> identifying native ShowRight and <see cref="StaadPro.Interop.Enums.View.ViewOperationStatus.InvokedWithoutAcknowledgement"/> after normal native void completion and the final binding check. <see cref="ViewOperationResult.NativeReturnCode"/> is null and <see cref="ViewOperationResult.IsSuccessful"/> is false because no native success acknowledgement exists; false does not indicate native failure.</returns>
+        /// <remarks>
+        /// <para>Use this method when the intended graphical direction is right. Requests the native right view, opposite to the left view. Unlike <see cref="StaadPro.Interop.Adapters.Interfaces.IOSView.ShowLeft()"/>, it requests right orientation. STAAD defines the view convention; this API does not guess axis signs, viewing extents, orthographic projection settings or exact camera vectors. Unlike Root application-window controls, this operates within the acquired graphical view. It does not change structural coordinates, member or plate local axes, analysis results, the selected window or application visibility. A normal return does not certify the visible result, repaint completion or persistence.</para>
+        /// <para>The main-source adapter and reviewed STAAD.Pro 2024, 2025 and 2026 help share this contract; inspected 2025/2026 automation metadata agrees. The common internal service invokes the captured RawView exactly once, on the caller's established COM apartment, under a per-adapter gate, with binding checks before and after dispatch. The gate does not coordinate other adapters, raw automation access or the STAAD UI. Reacquire wrapper.View after wrapper refresh. Native errors propagate unchanged; a post-call binding error can follow an actual graphical change. Coordinate model and UI access before calling. There is no automatic retry, rollback, thread-pool dispatch, alternate instance, model launch, analysis, implicit save or orientation read-back. Signature agreement and managed fixtures do not establish live native graphical readiness or certify every servicing build.</para>
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The wrapper is disposed or its captured View binding was replaced, including during native dispatch.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native graphical request failed; effects may precede the exception.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured automation object lacks ShowRight with the reviewed contract.</exception>
+        /// <example><code>bool changeView = false; // Set true only when a graphical change is intended.
+        /// if (changeView)
+        /// {
+        ///     var result = view.ShowRight();
+        ///     System.Console.WriteLine(result.NativeFunction + ": " + result.Status);
+        /// }</code></example>
+        ViewOperationResult ShowRight();
+
+        /// <summary>Requests the top (plan) orientation in the acquired instance's active graphical view.</summary>
+        /// <returns>A <see cref="ViewOperationResult"/> identifying native ShowPlan and <see cref="StaadPro.Interop.Enums.View.ViewOperationStatus.InvokedWithoutAcknowledgement"/> after normal native void completion and the final binding check. <see cref="ViewOperationResult.NativeReturnCode"/> is null and <see cref="ViewOperationResult.IsSuccessful"/> is false because no native success acknowledgement exists; false does not indicate native failure.</returns>
+        /// <remarks>
+        /// <para>Use this method when the intended graphical direction is top (plan). Requests the native top (plan) view rather than the bottom view. Unlike <see cref="StaadPro.Interop.Adapters.Interfaces.IOSView.ShowBottom()"/>, it requests top (plan) orientation. STAAD defines the view convention; this API does not guess axis signs, viewing extents, orthographic projection settings or exact camera vectors. Unlike Root application-window controls, this operates within the acquired graphical view. It does not change structural coordinates, member or plate local axes, analysis results, the selected window or application visibility. A normal return does not certify the visible result, repaint completion or persistence.</para>
+        /// <para>The main-source adapter and reviewed STAAD.Pro 2024, 2025 and 2026 help share this contract; inspected 2025/2026 automation metadata agrees. The common internal service invokes the captured RawView exactly once, on the caller's established COM apartment, under a per-adapter gate, with binding checks before and after dispatch. The gate does not coordinate other adapters, raw automation access or the STAAD UI. Reacquire wrapper.View after wrapper refresh. Native errors propagate unchanged; a post-call binding error can follow an actual graphical change. Coordinate model and UI access before calling. There is no automatic retry, rollback, thread-pool dispatch, alternate instance, model launch, analysis, implicit save or orientation read-back. Signature agreement and managed fixtures do not establish live native graphical readiness or certify every servicing build.</para>
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The wrapper is disposed or its captured View binding was replaced, including during native dispatch.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native graphical request failed; effects may precede the exception.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured automation object lacks ShowPlan with the reviewed contract.</exception>
+        /// <example><code>bool changeView = false; // Set true only when a graphical change is intended.
+        /// if (changeView)
+        /// {
+        ///     var result = view.ShowPlan();
+        ///     System.Console.WriteLine(result.NativeFunction + ": " + result.Status);
+        /// }</code></example>
+        ViewOperationResult ShowPlan();
+
+        /// <summary>Requests the bottom orientation in the acquired instance's active graphical view.</summary>
+        /// <returns>A <see cref="ViewOperationResult"/> identifying native ShowBottom and <see cref="StaadPro.Interop.Enums.View.ViewOperationStatus.InvokedWithoutAcknowledgement"/> after normal native void completion and the final binding check. <see cref="ViewOperationResult.NativeReturnCode"/> is null and <see cref="ViewOperationResult.IsSuccessful"/> is false because no native success acknowledgement exists; false does not indicate native failure.</returns>
+        /// <remarks>
+        /// <para>Use this method when the intended graphical direction is bottom. Requests the native bottom view rather than the top (plan) view. Unlike <see cref="StaadPro.Interop.Adapters.Interfaces.IOSView.ShowPlan()"/>, it requests bottom orientation. STAAD defines the view convention; this API does not guess axis signs, viewing extents, orthographic projection settings or exact camera vectors. Unlike Root application-window controls, this operates within the acquired graphical view. It does not change structural coordinates, member or plate local axes, analysis results, the selected window or application visibility. A normal return does not certify the visible result, repaint completion or persistence.</para>
+        /// <para>The main-source adapter and reviewed STAAD.Pro 2024, 2025 and 2026 help share this contract; inspected 2025/2026 automation metadata agrees. The common internal service invokes the captured RawView exactly once, on the caller's established COM apartment, under a per-adapter gate, with binding checks before and after dispatch. The gate does not coordinate other adapters, raw automation access or the STAAD UI. Reacquire wrapper.View after wrapper refresh. Native errors propagate unchanged; a post-call binding error can follow an actual graphical change. Coordinate model and UI access before calling. There is no automatic retry, rollback, thread-pool dispatch, alternate instance, model launch, analysis, implicit save or orientation read-back. Signature agreement and managed fixtures do not establish live native graphical readiness or certify every servicing build.</para>
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The wrapper is disposed or its captured View binding was replaced, including during native dispatch.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native graphical request failed; effects may precede the exception.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured automation object lacks ShowBottom with the reviewed contract.</exception>
+        /// <example><code>bool changeView = false; // Set true only when a graphical change is intended.
+        /// if (changeView)
+        /// {
+        ///     var result = view.ShowBottom();
+        ///     System.Console.WriteLine(result.NativeFunction + ": " + result.Status);
+        /// }</code></example>
+        ViewOperationResult ShowBottom();
+
+        /// <summary>Requests the isometric orientation in the acquired instance's active graphical view.</summary>
+        /// <returns>A <see cref="ViewOperationResult"/> identifying native ShowIsometric and <see cref="StaadPro.Interop.Enums.View.ViewOperationStatus.InvokedWithoutAcknowledgement"/> after normal native void completion and the final binding check. <see cref="ViewOperationResult.NativeReturnCode"/> is null and <see cref="ViewOperationResult.IsSuccessful"/> is false because no native success acknowledgement exists; false does not indicate native failure.</returns>
+        /// <remarks>
+        /// <para>Use this method when the intended graphical direction is isometric. Requests the native isometric view rather than an orthographic plan view. Unlike <see cref="StaadPro.Interop.Adapters.Interfaces.IOSView.ShowPlan()"/>, it requests isometric orientation. STAAD defines the view convention; this API does not guess axis signs, viewing extents, orthographic projection settings or exact camera vectors. Unlike Root application-window controls, this operates within the acquired graphical view. It does not change structural coordinates, member or plate local axes, analysis results, the selected window or application visibility. A normal return does not certify the visible result, repaint completion or persistence.</para>
+        /// <para>The main-source adapter and reviewed STAAD.Pro 2024, 2025 and 2026 help share this contract; inspected 2025/2026 automation metadata agrees. The common internal service invokes the captured RawView exactly once, on the caller's established COM apartment, under a per-adapter gate, with binding checks before and after dispatch. The gate does not coordinate other adapters, raw automation access or the STAAD UI. Reacquire wrapper.View after wrapper refresh. Native errors propagate unchanged; a post-call binding error can follow an actual graphical change. Coordinate model and UI access before calling. There is no automatic retry, rollback, thread-pool dispatch, alternate instance, model launch, analysis, implicit save or orientation read-back. Signature agreement and managed fixtures do not establish live native graphical readiness or certify every servicing build.</para>
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The wrapper is disposed or its captured View binding was replaced, including during native dispatch.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native graphical request failed; effects may precede the exception.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured automation object lacks ShowIsometric with the reviewed contract.</exception>
+        /// <example><code>bool changeView = false; // Set true only when a graphical change is intended.
+        /// if (changeView)
+        /// {
+        ///     var result = view.ShowIsometric();
+        ///     System.Console.WriteLine(result.NativeFunction + ": " + result.Status);
+        /// }</code></example>
+        ViewOperationResult ShowIsometric();
+
+        /// <summary>Rotates the acquired instance's active graphical view about the global X-axis by the specified angle in degrees.</summary>
+        /// <param name="angleDegrees">The finite signed rotation angle, in degrees. Zero and negative angles are accepted and passed unchanged. No normalization, rounding, radians conversion or undocumented angular range is imposed.</param>
+        /// <returns>A <see cref="ViewOperationResult"/> identifying native RotateUp and <see cref="StaadPro.Interop.Enums.View.ViewOperationStatus.InvokedWithoutAcknowledgement"/> after normal native void completion and the final binding check. <see cref="ViewOperationResult.NativeReturnCode"/> is null and <see cref="ViewOperationResult.IsSuccessful"/> is false because no native success acknowledgement exists; false does not indicate native failure.</returns>
+        /// <remarks>
+        /// <para>Unlike the fixed-direction <see cref="StaadPro.Interop.Adapters.Interfaces.IOSView.ShowIsometric()"/> request, this applies an incremental graphical rotation to the current view. The reviewed native contract describes rotation about global X; STAAD controls the positive-angle screen convention. The requested signed Double is passed to the native VARIANT input without interpreting an absolute orientation. A zero angle is still dispatched once; repeated calls are cumulative requests, so callers should not retry an ambiguous completion without inspecting the current view. Unlike Root application-window controls, this operates within the acquired graphical view. It does not change structural coordinates, member or plate local axes, analysis results, the selected window or application visibility. A normal return does not certify the visible result, repaint completion or persistence.</para>
+        /// <para>The main-source adapter and reviewed STAAD.Pro 2024, 2025 and 2026 help share this contract; inspected 2025/2026 automation metadata agrees. The common internal service invokes the captured RawView exactly once, on the caller's established COM apartment, under a per-adapter gate, with binding checks before and after dispatch. The gate does not coordinate other adapters, raw automation access or the STAAD UI. Reacquire wrapper.View after wrapper refresh. Native errors propagate unchanged; a post-call binding error can follow an actual graphical change. Coordinate model and UI access before calling. There is no automatic retry, rollback, thread-pool dispatch, alternate instance, model launch, analysis, implicit save or orientation read-back. Signature agreement and managed fixtures do not establish live native graphical readiness or certify every servicing build.</para>
+        /// </remarks>
+        /// <exception cref="ArgumentOutOfRangeException">angleDegrees is NaN or positive or negative infinity. Validation occurs before native dispatch.</exception>
+        /// <exception cref="InvalidOperationException">The wrapper is disposed or its captured View binding was replaced, including during native dispatch.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native graphical request failed; effects may precede the exception.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured automation object lacks RotateUp with the reviewed contract.</exception>
+        /// <example><code>bool changeView = false; // Set true only when a graphical change is intended.
+        /// if (changeView)
+        /// {
+        ///     double angleDegrees = 15.0;
+        ///     var result = view.RotateUp(angleDegrees);
+        ///     System.Console.WriteLine(result.NativeFunction + ": " + result.Status);
+        /// }</code></example>
+        ViewOperationResult RotateUp(double angleDegrees);
     }
 }

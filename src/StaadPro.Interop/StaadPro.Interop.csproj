@@ -12,12 +12,12 @@
     <RootNamespace>StaadPro.Interop</RootNamespace>
     <PackageId>StaadPro.Interop</PackageId>
     <Version>1.0.0</Version>
-    <ReleaseDocumentationVersion>1.0.0-preview.20261102.1</ReleaseDocumentationVersion>
+    <ReleaseDocumentationVersion>1.0.0-preview.20261103</ReleaseDocumentationVersion>
     <PackageVersion>$(ReleaseDocumentationVersion)</PackageVersion>
     <Authors>Srinivasa Rao Masanam</Authors>
     <Company>StruXllence</Company>
     <Copyright>Copyright (c) 2026 StruXllence</Copyright>
-    <PackageReleaseNotes>Updated README and project documentation. This preview is distributed under Apache License 2.0 and retains the notice for MIT-origin code. Previous releases retain their original terms. API behavior is unchanged.</PackageReleaseNotes>
+    <PackageReleaseNotes>Ported ShowRight, ShowPlan, ShowBottom, ShowIsometric and RotateUp from the main source, with comprehensive comparative XML documentation and managed regression coverage. Reused captured View dispatch and named void-completion receipts; RotateUp accepts finite signed degrees. View now covers 8 of 70 source overloads. Updated the README, release notes and source-porting inventory. Native COM/UI qualification remains separate.</PackageReleaseNotes>
     <Description>A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageTags>staad;staad-pro;openstaad;structural-engineering;structural-analysis;engineering-automation;csharp;dotnet-framework;com-interop;geometry;loads;bentley;struxllence</PackageTags>
@@ -56,6 +56,8 @@
     <None Include="..\..\CITATION.cff" Pack="true" PackagePath="CITATION.cff" />
     <None Include="..\..\TRADEMARKS.md" Pack="true" PackagePath="TRADEMARKS.md" />
     <None Include="..\..\docs\View-Orientations.md" Pack="true" PackagePath="docs\" />
+    <None Include="..\..\docs\reports\OpenSTAAD-Main-Source-Porting-Status.md" Pack="true" PackagePath="docs\reports\" />
+    <None Include="..\..\docs\reports\data\OpenSTAAD-Main-Source-Porting-Status.json" Pack="true" PackagePath="docs\reports\data\" />
     <None Include="..\..\docs\Table-Report-Foundations.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Table-Lifecycle-and-Formatting.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Table-Completion-and-View-Foundations.md" Pack="true" PackagePath="docs\" />

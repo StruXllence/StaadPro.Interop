@@ -20,7 +20,10 @@ namespace StaadPro.Interop.Tests.Adapter
     [TestFixture]
     public class OSViewFoundationTests
     {
-        private static readonly string[] Names = { "ShowFront", "ShowBack", "ShowLeft" };
+        private static readonly string[] Names =
+        {
+            "ShowFront", "ShowBack", "ShowLeft", "ShowRight", "ShowPlan", "ShowBottom", "ShowIsometric", "RotateUp"
+        };
 
         private static IEnumerable<object[]> OrientationVersions
         {
@@ -39,6 +42,11 @@ namespace StaadPro.Interop.Tests.Adapter
                 case "ShowFront": return view.ShowFront();
                 case "ShowBack": return view.ShowBack();
                 case "ShowLeft": return view.ShowLeft();
+                case "ShowRight": return view.ShowRight();
+                case "ShowPlan": return view.ShowPlan();
+                case "ShowBottom": return view.ShowBottom();
+                case "ShowIsometric": return view.ShowIsometric();
+                case "RotateUp": return view.RotateUp(15.0);
                 default: throw new ArgumentOutOfRangeException(nameof(name));
             }
         }
@@ -57,6 +65,7 @@ namespace StaadPro.Interop.Tests.Adapter
                 Assert.That(result.Status, Is.EqualTo(ViewOperationStatus.InvokedWithoutAcknowledgement));
                 Assert.That(result.IsSuccessful, Is.False);
                 Assert.That(result.NativeReturnCode, Is.Null);
+                Assert.That(native.RotationAngles, Is.EqualTo(name == "RotateUp" ? new[] { 15.0 } : new double[0]));
             }
         }
 
@@ -134,17 +143,85 @@ namespace StaadPro.Interop.Tests.Adapter
             var methods = typeof(IOSView).GetMethods().Where(m => !m.IsSpecialName).ToArray();
             Assert.That(methods.Select(m => m.Name), Is.EquivalentTo(Names));
             Assert.That(methods.Single(m => m.Name == name).ReturnType, Is.EqualTo(typeof(ViewOperationResult)));
-            Assert.That(methods.Single(m => m.Name == name).GetParameters(), Is.Empty);
+            var parameters = methods.Single(m => m.Name == name).GetParameters();
+            if (name == "RotateUp")
+            {
+                Assert.That(parameters.Length, Is.EqualTo(1));
+                Assert.That(parameters[0].ParameterType, Is.EqualTo(typeof(double)));
+                Assert.That(parameters[0].Name, Is.EqualTo("angleDegrees"));
+                Assert.That(parameters[0].ParameterType.IsByRef, Is.False);
+            }
+            else
+                Assert.That(parameters, Is.Empty);
             var xml = XDocument.Load(Path.ChangeExtension(typeof(IOSView).Assembly.Location, ".xml"));
-            var contract = xml.Descendants("member").Single(m => (string)m.Attribute("name") == "M:" + typeof(IOSView).FullName + "." + name);
-            var adapter = xml.Descendants("member").Single(m => (string)m.Attribute("name") == "M:" + typeof(OSViewAdapter).FullName + "." + name);
+            string suffix = name == "RotateUp" ? "(System.Double)" : string.Empty;
+            var contract = xml.Descendants("member").Single(m => (string)m.Attribute("name") == "M:" + typeof(IOSView).FullName + "." + name + suffix);
+            var adapter = xml.Descendants("member").Single(m => (string)m.Attribute("name") == "M:" + typeof(OSViewAdapter).FullName + "." + name + suffix);
             Assert.That(contract.Elements().Select(x => x.ToString()), Is.EqualTo(adapter.Elements().Select(x => x.ToString())));
             foreach (string tag in new[] { "summary", "returns", "remarks", "example" })
                 Assert.That(contract.Element(tag)?.Value, Is.Not.Null.And.Not.Empty);
             Assert.That(contract.Element("remarks").Value, Does.Contain("Unlike").Or.Contain("unlike"));
-            Assert.That(contract.Descendants("exception").Count(), Is.EqualTo(3));
+            Assert.That(contract.Descendants("exception").Count(), Is.EqualTo(name == "RotateUp" ? 4 : 3));
             Assert.That(contract.Descendants().Attributes("cref").Any(a => a.Value.StartsWith("!:")), Is.False);
-            Assert.That(contract.Descendants("code").Single().Value, Does.Contain("view." + name + "()"));
+            Assert.That(contract.Descendants("code").Single().Value, Does.Contain("view." + name + "(" + (name == "RotateUp" ? "angleDegrees" : "") + ")"));
+            Assert.That(contract.Elements("param").Select(p => (string)p.Attribute("name")),
+                Is.EqualTo(name == "RotateUp" ? new[] { "angleDegrees" } : new string[0]));
+            if (name == "RotateUp")
+                Assert.That(contract.Element("param").Value, Does.Contain("degrees").And.Contain("negative").And.Contain("Zero"));
+        }
+
+        [TestCase(0.0)]
+        [TestCase(15.25)]
+        [TestCase(-15.25)]
+        [TestCase(360.0)]
+        [TestCase(-720.0)]
+        [TestCase(double.Epsilon)]
+        [TestCase(double.MaxValue)]
+        [TestCase(double.MinValue)]
+        public void RotationPreservesFiniteSignedDegreesWithoutNormalization(double angleDegrees)
+        {
+            var native = new Native();
+            using (var wrapper = new OpenStaadWrapper(new Root { View = native }))
+            {
+                var adapter = (OSViewAdapter)wrapper.View;
+                var result = adapter.RotateUp(angleDegrees);
+                Assert.That(native.Calls, Is.EqualTo(new[] { "RotateUp" }));
+                Assert.That(native.RotationAngles.Single(), Is.EqualTo(angleDegrees));
+                Assert.That(BitConverter.DoubleToInt64Bits(native.RotationAngles.Single()),
+                    Is.EqualTo(BitConverter.DoubleToInt64Bits(angleDegrees)));
+                Assert.That(result.Status, Is.EqualTo(ViewOperationStatus.InvokedWithoutAcknowledgement));
+            }
+        }
+
+        [TestCase(double.NaN)]
+        [TestCase(double.PositiveInfinity)]
+        [TestCase(double.NegativeInfinity)]
+        public void RotationRejectsNonfiniteDegreesBeforeNativeDispatch(double angleDegrees)
+        {
+            var native = new Native();
+            using (var wrapper = new OpenStaadWrapper(new Root { View = native }))
+            {
+                var error = Assert.Throws<ArgumentOutOfRangeException>(() => wrapper.View.RotateUp(angleDegrees));
+                Assert.That(error.ParamName, Is.EqualTo("angleDegrees"));
+                Assert.That(native.Calls, Is.Empty);
+                Assert.That(native.RotationAngles, Is.Empty);
+            }
+        }
+
+        [Test]
+        public void RepeatedRotationsRemainSeparateRequestsAndPreserveNegativeZero()
+        {
+            var native = new Native();
+            using (var wrapper = new OpenStaadWrapper(new Root { View = native }))
+            {
+                double negativeZero = BitConverter.Int64BitsToDouble(long.MinValue);
+                foreach (double angle in new[] { 15.0, -15.0, negativeZero })
+                    wrapper.View.RotateUp(angle);
+
+                Assert.That(native.Calls, Is.EqualTo(new[] { "RotateUp", "RotateUp", "RotateUp" }));
+                Assert.That(native.RotationAngles, Is.EqualTo(new[] { 15.0, -15.0, negativeZero }));
+                Assert.That(BitConverter.DoubleToInt64Bits(native.RotationAngles[2]), Is.EqualTo(long.MinValue));
+            }
         }
 
         [Test]

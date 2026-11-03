@@ -6,9 +6,11 @@ Our mission is to provide the structural engineering and computational design co
 
 ---
 
-## Current implementation and next steps — 27 October 2026
+## Current implementation and next steps — 3 November 2026
 
-**Latest prepared preview:** 1.0.0-preview.20261102 adds View ShowBack and ShowLeft. View now provides 3/70 reference overloads over 3/67 reviewed native names; 67 reference overloads remain. See [orientation usage](docs/View-Orientations.md).
+**Latest prepared preview:** 1.0.0-preview.20261103 ports ShowRight, ShowPlan, ShowBottom, ShowIsometric and RotateUp from the read-only main project. View now exposes 8/70 reference overloads over 8/67 native names, leaving 62 View source overloads. Across all reviewed source interfaces, 160 active overloads were pending before this increment and 155 remain afterwards; eight obsolete/deprecated overloads are excluded. See [source totals and counting rules](docs/reports/OpenSTAAD-Main-Source-Porting-Status.md) and [orientation/rotation usage](docs/View-Orientations.md).
+
+**Previous prepared preview:** 1.0.0-preview.20261102 adds View ShowBack and ShowLeft. View now provides 3/70 reference overloads over 3/67 reviewed native names; 67 reference overloads remain. See [orientation usage](docs/View-Orientations.md).
 
 **Latest implementation checkpoint:** 1.0.0-preview.20261028.3 completes all 29 Table main-source overloads / 24 reviewed native names and adds View ShowFront. Main-source priority remains; View has 69 source overloads pending. Reused existing color/Table contracts and ported native alignment maps, with full XML documentation and 6,944 passed offline tests. See [completion and View foundation](docs/Table-Completion-and-View-Foundations.md). Live COM/report/UI acceptance remains separate.
 

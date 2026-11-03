@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "date": "2026-11-02",
+  "date": "2026-11-03",
   "mainProjectReadOnly": true,
   "sourceFiles": [
     {
@@ -75,6 +75,114 @@
         "2025": "void OSViewUI::ShowLeft()",
         "2026": "void OSViewUI::ShowLeft()"
       }
+    },
+    {
+      "managedName": "ShowRight",
+      "returnType": "ViewOperationResult",
+      "nativeName": "ShowRight",
+      "parameters": "",
+      "source": [
+        {
+          "managedName": "ShowRight",
+          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
+          "line": 124,
+          "name": "ShowRight",
+          "receiver": "ComObject",
+          "arguments": []
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::ShowRight()",
+        "2025": "void OSViewUI::ShowRight()",
+        "2026": "void OSViewUI::ShowRight()"
+      }
+    },
+    {
+      "managedName": "ShowPlan",
+      "returnType": "ViewOperationResult",
+      "nativeName": "ShowPlan",
+      "parameters": "",
+      "source": [
+        {
+          "managedName": "ShowPlan",
+          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
+          "line": 129,
+          "name": "ShowPlan",
+          "receiver": "ComObject",
+          "arguments": []
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::ShowPlan()",
+        "2025": "void OSViewUI::ShowPlan()",
+        "2026": "void OSViewUI::ShowPlan()"
+      }
+    },
+    {
+      "managedName": "ShowBottom",
+      "returnType": "ViewOperationResult",
+      "nativeName": "ShowBottom",
+      "parameters": "",
+      "source": [
+        {
+          "managedName": "ShowBottom",
+          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
+          "line": 134,
+          "name": "ShowBottom",
+          "receiver": "ComObject",
+          "arguments": []
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::ShowBottom()",
+        "2025": "void OSViewUI::ShowBottom()",
+        "2026": "void OSViewUI::ShowBottom()"
+      }
+    },
+    {
+      "managedName": "ShowIsometric",
+      "returnType": "ViewOperationResult",
+      "nativeName": "ShowIsometric",
+      "parameters": "",
+      "source": [
+        {
+          "managedName": "ShowIsometric",
+          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
+          "line": 139,
+          "name": "ShowIsometric",
+          "receiver": "ComObject",
+          "arguments": []
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::ShowIsometric()",
+        "2025": "void OSViewUI::ShowIsometric()",
+        "2026": "void OSViewUI::ShowIsometric()"
+      }
+    },
+    {
+      "managedName": "RotateUp",
+      "returnType": "ViewOperationResult",
+      "nativeName": "RotateUp",
+      "parameters": "double angleDegrees",
+      "source": [
+        {
+          "managedName": "RotateUp",
+          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
+          "line": 144,
+          "name": "RotateUp",
+          "receiver": "ComObject",
+          "arguments": [
+            "angle"
+          ]
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::RotateUp(const VARIANT FAR&dDegrees)",
+        "2025": "void OSViewUI::RotateUp(const VARIANT FAR&dDegrees)",
+        "2026": "void OSViewUI::RotateUp(const VARIANT FAR&dDegrees)"
+      },
+      "argumentPolicy": "A finite signed Double in degrees, passed unchanged. Zero, negative values and values outside one revolution are accepted. Nonfinite inputs throw before dispatch."
     }
   ],
   "nativeRuntimeQualified": false

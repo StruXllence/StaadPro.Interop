@@ -10,17 +10,17 @@ By **Srinivasa Rao Masanam**.
 
 The main website is coming soon. Join the community forum for structural-engineering discussions, explore the forum preview, or follow @StruXllence on YouTube. Report package defects through [GitHub Issues](https://github.com/StruXllence/StaadPro.Interop/issues).
 
-## Version 1.0.0-preview.20261102.1
+## Version 1.0.0-preview.20261103
 
-Added ShowBack and ShowLeft graphical orientation requests with comprehensive XML IntelliSense and managed regression coverage. Together with ShowFront, View now exposes three of 70 main-source overloads and reaches three of 67 reviewed native functions. Each request preserves the acquired View binding, caller thread and unacknowledged native void-completion contract. See the [orientation guide](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/View-Orientations.md).
+Ported ShowRight, ShowPlan, ShowBottom, ShowIsometric and RotateUp from the read-only main source, with comprehensive comparative XML IntelliSense and managed regression coverage. View now exposes eight of 70 main-source overloads and reaches eight of 67 reviewed native functions. RotateUp passes finite signed degrees unchanged and rejects nonfinite input before dispatch. Each request preserves the acquired View binding, caller thread and unacknowledged native void-completion contract. See the [orientation guide](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/View-Orientations.md).
 
 Published by **StruXllence**. **Copyright (c) 2026 StruXllence**. The package targets Windows and .NET Framework 4.8.1 (net481) and requires a licensed STAAD.Pro installation for live use. This preview is prepared for manual upload; public availability of this exact version is not confirmed. Native COM/UI and engineering qualification remain separate from managed tests.
 
-Passed **6,964 offline tests**, including **28 View orientation cases**, and verified **1,286 installed-package XML examples**, including six View examples. The package checks cover metadata, notices and a fresh consumer restore/build/runtime workflow; live native COM/UI qualification remains separate.
+Passed **7,021 offline tests**, including **85 View cases**. The installed-package verifier checks **1,296 XML examples**, including sixteen View examples. The package checks cover metadata, notices and a fresh consumer restore/build/runtime workflow; live native COM/UI qualification remains separate.
 
 StaadPro.Interop provides typed adapters and managed models for working with an existing Bentley STAAD.Pro application through OpenSTAAD. It includes geometry and load operations, model information and lifecycle functions, application-window controls, and native analysis requests.
 
-This preview includes 249 common Property overloads and five optional catalog queries, all 171 current Load overloads, the completed reference Geometry ports, 96 managed Output overloads reaching 47 native names, 27 Support operations, seventeen Commands methods, ten Design methods, twenty-nine Table methods and three View methods, the reviewed Root APIs and approved wrapper surface, including separately acquired, version-aware export and analysis-message capabilities. See the [release notes](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md) for the changes included in each version.
+This preview includes 249 common Property overloads and five optional catalog queries, all 171 current Load overloads, the completed reference Geometry ports, 96 managed Output overloads reaching 47 native names, 27 Support operations, seventeen Commands methods, ten Design methods, twenty-nine Table methods and eight View methods, the reviewed Root APIs and approved wrapper surface, including separately acquired, version-aware export and analysis-message capabilities. See the [release notes](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md) for the changes included in each version.
 
 ## Completed Table ports and View foundation
 
@@ -36,7 +36,7 @@ The preceding foundation increment adapted ten existing functions from the read-
 
 ## View orientations
 
-Use ShowFront(), ShowBack() or ShowLeft() for the acquired instance's active graphical direction. These requests return named unacknowledged completion receipts; they do not change model coordinates, run analysis or save. See [the View guide](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/View-Orientations.md).
+Use ShowFront(), ShowBack(), ShowLeft(), ShowRight(), ShowPlan(), ShowBottom() or ShowIsometric() for a standard graphical direction; use RotateUp(angleDegrees) for incremental rotation about global X in finite signed degrees. These requests return named unacknowledged completion receipts; they do not change model coordinates, run analysis or save. See [the View guide](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/View-Orientations.md).
 
 ## Commands, Support and Design foundations
 
@@ -144,7 +144,7 @@ Load exposes **171 managed overloads**, including all 115 main-interface referen
 
 Output provides **96 managed overloads reaching 47 native names**, including parameter-block steel-design observations, model-wide failure ratios, member and physical-member actions, nodal and solid results, plate-center quantities, support-node observations, steel design, modal/buckling information and time histories. Named status/data results preserve native units and operation-specific failure distinctions. Inspect IsSuccessful before Data. See the [Output guide](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Output-Porting.md) and [extended-query contracts](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Output-Extended-Queries.md). Thirteen documented Output routes remain; live native qualification is pending. Support provides 27 common documented operations, with eight native contract gates pending; see the packaged Support foundation and Commands/Support guides.
 
-The approved wrapper surface is complete. This archive includes all 249 common Property overloads and five acquired catalog queries described above. Commands provides seventeen analysis-configuration methods and Design provides ten common brief/assignment/query methods. Table, View and IDEA StatiCa remain binding/contract placeholders.
+The approved wrapper surface is complete. This archive includes all 249 common Property overloads and five acquired catalog queries described above. Commands provides seventeen analysis-configuration methods and Design provides ten common brief/assignment/query methods. Table provides all 29 reviewed source overloads, View provides eight source methods, and IDEA StatiCa remains a binding/contract placeholder.
 
 ## Requirements
 
@@ -266,13 +266,13 @@ See the [root guide](https://github.com/StruXllence/StaadPro.Interop/blob/main/d
 
 ## IntelliSense and included documentation
 
-Expanded XML IntelliSense is included for **143 Geometry overloads, 171 Load overloads, 249 common Property overloads plus five optional catalog queries, 96 Output overloads, 27 Support operations, seventeen Commands methods, ten Design methods, twenty-nine Table methods, three View methods, 53 common Root operations and three optional Root operation interfaces**, on both interfaces and concrete adapters. Keep `StaadPro.Interop.xml` beside the library when distributing assemblies outside normal NuGet restore.
+Expanded XML IntelliSense is included for **143 Geometry overloads, 171 Load overloads, 249 common Property overloads plus five optional catalog queries, 96 Output overloads, 27 Support operations, seventeen Commands methods, ten Design methods, twenty-nine Table methods, eight View methods, 53 common Root operations and three optional Root operation interfaces**, on both interfaces and concrete adapters. Keep `StaadPro.Interop.xml` beside the library when distributing assemblies outside normal NuGet restore.
 
 The archive includes Property, Geometry, Load, Output and Root guides, installation and publishing instructions, and the release history.
 
 ## Preview validation and operating limits
 
-The current implementation passed **6,964 offline tests**. Installed-package verification checks **1,286 selected XML example blocks**, including six View and fifty-eight Table examples, compiles a fresh consumer and exercises managed native stand-ins; mutation and window-changing documentation examples are guarded off. These checks do not certify every native COM response, STAAD release or engineering-unit convention.
+The current implementation passed **7,021 offline tests**. Installed-package verification checks **1,296 selected XML example blocks**, including sixteen View and fifty-eight Table examples, compiles a fresh consumer and exercises managed native stand-ins; mutation and window-changing documentation examples are guarded off. These checks do not certify every native COM response, STAAD release or engineering-unit convention.
 
 Silent and hidden options do not guarantee unattended operation. Synchronous native calls can block beyond logical polling budgets, and mutations can leave partial effects when a later step fails. Validate native behavior against controlled models and the STAAD versions used by your application before production deployment.
 

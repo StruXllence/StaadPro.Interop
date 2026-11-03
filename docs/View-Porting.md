@@ -1,5 +1,7 @@
 # View implementation status and porting guide
 
+**Current implementation, 3 November 2026:** View exposes seven standard directions and RotateUp (8/70 main-source overloads; 8/67 native names). There are 62 View source overloads and 59 reviewed native names pending. The five new source ports are ShowRight, ShowPlan, ShowBottom, ShowIsometric and RotateUp. Shared captured-binding dispatch, finite signed-degree validation and complete comparative XML documentation are implemented. See [orientation contracts and examples](View-Orientations.md) and [the source-porting totals](reports/OpenSTAAD-Main-Source-Porting-Status.md). Live native COM/UI qualification remains separate.
+
 **Current implementation, 2 November 2026:** View exposes ShowFront, ShowBack and ShowLeft (3/70 main-source overloads; 3/67 native names). There are 67 source overloads and 64 reviewed native names pending. Common captured-binding dispatch, named void-completion receipts and complete XML documentation are shared. See [orientation contracts and examples](View-Orientations.md). Native-only expansion follows main-source porting; live COM/UI qualification is separate.
 
 **Current implementation, 28 October 2026:** All 29 main-project Table overloads are adapted and all 24 reviewed native Table names are dispatched. View now ports ShowFront (1/70 source overloads; 1/67 native names). Native-only expansion follows remaining main-source work. See [completion contracts and usage](Table-Completion-and-View-Foundations.md). This coverage is not live COM or report/UI qualification.

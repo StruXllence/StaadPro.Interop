@@ -13,7 +13,7 @@
     "mainPublicAdapterOverloads": 70,
     "mainPrivateAdapterMethods": 0,
     "mainDistinctNativeTargets": 66,
-    "currentTypedDomainMethods": 1,
+    "currentTypedDomainMethods": 8,
     "missingMainNativeTargets": [
       "SetModeSectionPage"
     ],
@@ -27,9 +27,9 @@
       "GetScaleCount"
     ],
     "exampleChanges2024To2025": 24,
-    "currentTypedNativeNames": 1,
-    "remainingMainInterfaceOverloads": 69,
-    "remainingNativeNames": 66
+    "currentTypedNativeNames": 8,
+    "remainingMainInterfaceOverloads": 62,
+    "remainingNativeNames": 59
   },
   "functions": [
     {
@@ -152,9 +152,9 @@
     {
       "name": "ShowRight",
       "phase": "V2",
-      "currentTyped": "pending",
+      "currentTyped": "implemented",
       "excludedFromNewApi": false,
-      "managedProposal": "ViewOperationResult ShowRight; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.",
+      "managedProposal": "ViewOperationResult ShowRight()",
       "versions": {
         "2024": {
           "page": "group___view.html",
@@ -205,7 +205,14 @@
           "receiver": "ComObject",
           "arguments": []
         }
-      ]
+      ],
+      "implementation": {
+        "date": "2026-11-03",
+        "service": "Services/View/ViewService.cs",
+        "returnType": "ViewOperationResult",
+        "nativeVoidCompletion": true,
+        "nativeRuntimeQualified": false
+      }
     },
     {
       "name": "ShowLeft",
@@ -268,9 +275,9 @@
     {
       "name": "ShowPlan",
       "phase": "V2",
-      "currentTyped": "pending",
+      "currentTyped": "implemented",
       "excludedFromNewApi": false,
-      "managedProposal": "ViewOperationResult ShowPlan; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.",
+      "managedProposal": "ViewOperationResult ShowPlan()",
       "versions": {
         "2024": {
           "page": "group___view.html",
@@ -321,14 +328,21 @@
           "receiver": "ComObject",
           "arguments": []
         }
-      ]
+      ],
+      "implementation": {
+        "date": "2026-11-03",
+        "service": "Services/View/ViewService.cs",
+        "returnType": "ViewOperationResult",
+        "nativeVoidCompletion": true,
+        "nativeRuntimeQualified": false
+      }
     },
     {
       "name": "ShowBottom",
       "phase": "V2",
-      "currentTyped": "pending",
+      "currentTyped": "implemented",
       "excludedFromNewApi": false,
-      "managedProposal": "ViewOperationResult ShowBottom; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.",
+      "managedProposal": "ViewOperationResult ShowBottom()",
       "versions": {
         "2024": {
           "page": "group___view.html",
@@ -379,14 +393,21 @@
           "receiver": "ComObject",
           "arguments": []
         }
-      ]
+      ],
+      "implementation": {
+        "date": "2026-11-03",
+        "service": "Services/View/ViewService.cs",
+        "returnType": "ViewOperationResult",
+        "nativeVoidCompletion": true,
+        "nativeRuntimeQualified": false
+      }
     },
     {
       "name": "ShowIsometric",
       "phase": "V2",
-      "currentTyped": "pending",
+      "currentTyped": "implemented",
       "excludedFromNewApi": false,
-      "managedProposal": "ViewOperationResult ShowIsometric; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.",
+      "managedProposal": "ViewOperationResult ShowIsometric()",
       "versions": {
         "2024": {
           "page": "group___view.html",
@@ -437,14 +458,21 @@
           "receiver": "ComObject",
           "arguments": []
         }
-      ]
+      ],
+      "implementation": {
+        "date": "2026-11-03",
+        "service": "Services/View/ViewService.cs",
+        "returnType": "ViewOperationResult",
+        "nativeVoidCompletion": true,
+        "nativeRuntimeQualified": false
+      }
     },
     {
       "name": "RotateUp",
       "phase": "V2",
-      "currentTyped": "pending",
+      "currentTyped": "implemented",
       "excludedFromNewApi": false,
-      "managedProposal": "ViewOperationResult RotateUp; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.",
+      "managedProposal": "ViewOperationResult RotateUp(double angleDegrees)",
       "versions": {
         "2024": {
           "page": "group___view.html",
@@ -548,7 +576,14 @@
             "angle"
           ]
         }
-      ]
+      ],
+      "implementation": {
+        "date": "2026-11-03",
+        "service": "Services/View/ViewService.cs",
+        "returnType": "ViewOperationResult",
+        "nativeVoidCompletion": true,
+        "nativeRuntimeQualified": false
+      }
     },
     {
       "name": "RotateDown",
@@ -17446,17 +17481,12 @@
     }
   ],
   "implementationUpdate": {
-    "date": "2026-11-02",
-    "managedMethods": 3,
-    "nativeMappings": 3,
-    "referenceOverloadsPorted": 3,
-    "pendingReferenceOverloads": 67,
+    "date": "2026-11-03",
+    "managedMethods": 8,
+    "nativeMappings": 8,
+    "referenceOverloadsPorted": 8,
+    "pendingReferenceOverloads": 62,
     "pendingNativeNames": [
-      "ShowRight",
-      "ShowPlan",
-      "ShowBottom",
-      "ShowIsometric",
-      "RotateUp",
       "RotateDown",
       "RotateLeft",
       "RotateRight",
@@ -17521,11 +17551,11 @@
     "guide": "docs/View-Orientations.md",
     "nativeRuntimeValidation": false,
     "validation": {
-      "offlineTestsPassed": 6964,
-      "viewTestsPassed": 28,
-      "newCases": 20,
-      "packagedXmlExamples": 1286,
-      "viewXmlExamples": 6,
+      "offlineTestsPassed": 7021,
+      "viewTestsPassed": 85,
+      "newCases": 57,
+      "packagedXmlExamplesSelected": 1296,
+      "viewXmlExamples": 16,
       "nativeRuntimeValidation": false
     }
   },
@@ -17614,6 +17644,90 @@
         "packagedXmlExamples": 1282,
         "tableXmlExamples": 58,
         "viewXmlExamples": 2,
+        "nativeRuntimeValidation": false
+      }
+    },
+    {
+      "date": "2026-11-02",
+      "managedMethods": 3,
+      "nativeMappings": 3,
+      "referenceOverloadsPorted": 3,
+      "pendingReferenceOverloads": 67,
+      "pendingNativeNames": [
+        "ShowRight",
+        "ShowPlan",
+        "ShowBottom",
+        "ShowIsometric",
+        "RotateUp",
+        "RotateDown",
+        "RotateLeft",
+        "RotateRight",
+        "SpinLeft",
+        "SpinRight",
+        "ZoomAll",
+        "CreateNewViewForSelections",
+        "SetLabel",
+        "SetSectionView",
+        "SetDiagramMode",
+        "RefreshView",
+        "SetNodeAnnotationMode",
+        "SetReactionAnnotationMode",
+        "GetInterfaceMode",
+        "SetInterfaceMode",
+        "SetModeSectionPage",
+        "SetBeamAnnotationMode",
+        "ShowAllMembers",
+        "HideAllMembers",
+        "SetUnits",
+        "ShowMembers",
+        "HideMembers",
+        "ShowMember",
+        "HideMember",
+        "HidePlate",
+        "HideSolid",
+        "HideSurface",
+        "HideEntity",
+        "ZoomExtentsMainView",
+        "SelectMembersParallelTo",
+        "SelectGroup",
+        "SelectInverse",
+        "SelectByItemList",
+        "SelectByMissingAttribute",
+        "SelectEntitiesConnectedToNode",
+        "SelectEntitiesConnectedToMember",
+        "SelectEntitiesConnectedToPlate",
+        "SelectEntitiesConnectedToSolid",
+        "GetNoOfBeamsInView",
+        "GetBeamsInView",
+        "CreateNewViewForSelectionsEx",
+        "ExportView",
+        "CopyPicture",
+        "SetWindowPosition",
+        "GetApplicationDesktopSize",
+        "GetScaleValues",
+        "SetScaleValues",
+        "GetScaleValueByType",
+        "SetScaleValueByType",
+        "GetScaleCount",
+        "DetachView",
+        "RenameView",
+        "OpenView",
+        "SaveView",
+        "GetWindowTitle",
+        "GetWindowCount",
+        "CloseActiveWindow",
+        "SetActiveWindow",
+        "SetDesignResults"
+      ],
+      "sourceMainReadOnly": true,
+      "guide": "docs/View-Orientations.md",
+      "nativeRuntimeValidation": false,
+      "validation": {
+        "offlineTestsPassed": 6964,
+        "viewTestsPassed": 28,
+        "newCases": 20,
+        "packagedXmlExamples": 1286,
+        "viewXmlExamples": 6,
         "nativeRuntimeValidation": false
       }
     }

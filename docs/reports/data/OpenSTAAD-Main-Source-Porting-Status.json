@@ -1,0 +1,1085 @@
+{
+  "date": "2026-11-03",
+  "scope": "Reviewed main domain interface overloads; constructors, properties, private helpers and optional native-only expansion are excluded. Existing semantic replacements count as covered. Counts are not binary signature parity.",
+  "sourceReadOnly": true,
+  "totalReferenceOverloads": 654,
+  "coveredBefore": 486,
+  "pendingBefore": 160,
+  "portedThisIncrement": 5,
+  "coveredAfter": 491,
+  "pendingAfter": 155,
+  "excludedObsoleteOrDeprecated": 8,
+  "domains": [
+    {
+      "domain": "Root",
+      "referenceOverloads": 23,
+      "coveredBefore": 23,
+      "pendingBefore": 0,
+      "pendingAfter": 0,
+      "excluded": 0
+    },
+    {
+      "domain": "Geometry",
+      "referenceOverloads": 143,
+      "coveredBefore": 143,
+      "pendingBefore": 0,
+      "pendingAfter": 0,
+      "excluded": 0
+    },
+    {
+      "domain": "Load",
+      "referenceOverloads": 115,
+      "coveredBefore": 115,
+      "pendingBefore": 0,
+      "pendingAfter": 0,
+      "excluded": 0
+    },
+    {
+      "domain": "Property",
+      "referenceOverloads": 103,
+      "coveredBefore": 98,
+      "pendingBefore": 0,
+      "pendingAfter": 0,
+      "excluded": 5
+    },
+    {
+      "domain": "Output",
+      "referenceOverloads": 86,
+      "coveredBefore": 48,
+      "pendingBefore": 38,
+      "pendingAfter": 38,
+      "excluded": 0
+    },
+    {
+      "domain": "Support",
+      "referenceOverloads": 33,
+      "coveredBefore": 3,
+      "pendingBefore": 28,
+      "pendingAfter": 28,
+      "excluded": 2
+    },
+    {
+      "domain": "Design",
+      "referenceOverloads": 7,
+      "coveredBefore": 7,
+      "pendingBefore": 0,
+      "pendingAfter": 0,
+      "excluded": 0
+    },
+    {
+      "domain": "Commands",
+      "referenceOverloads": 21,
+      "coveredBefore": 17,
+      "pendingBefore": 3,
+      "pendingAfter": 3,
+      "excluded": 1
+    },
+    {
+      "domain": "Table",
+      "referenceOverloads": 29,
+      "coveredBefore": 29,
+      "pendingBefore": 0,
+      "pendingAfter": 0,
+      "excluded": 0
+    },
+    {
+      "domain": "View",
+      "referenceOverloads": 70,
+      "coveredBefore": 3,
+      "pendingBefore": 67,
+      "pendingAfter": 62,
+      "excluded": 0
+    },
+    {
+      "domain": "IDEA StatiCa",
+      "referenceOverloads": 24,
+      "coveredBefore": 0,
+      "pendingBefore": 24,
+      "pendingAfter": 24,
+      "excluded": 0
+    }
+  ],
+  "pendingSourceMethods": {
+    "Output": [
+      {
+        "name": "GetBucklingFactor",
+        "signature": "double GetBucklingFactor(int bucklingMode)",
+        "sourceLine": 24,
+        "isAsync": false
+      },
+      {
+        "name": "GetBucklingModeDisplacement",
+        "signature": "double GetBucklingModeDisplacement(int bucklingMode, Node atNode)",
+        "sourceLine": 25,
+        "isAsync": false
+      },
+      {
+        "name": "GetMemberEndForcesAsync",
+        "signature": "Task<MemberForces> GetMemberEndForcesAsync(string lcTitle, int beamId, int loadCaseId, MemberEnd memberEnd)",
+        "sourceLine": 75,
+        "isAsync": true
+      },
+      {
+        "name": "GetMemberSteelUtilizationRatioAsync",
+        "signature": "Task<double> GetMemberSteelUtilizationRatioAsync(Beam b)",
+        "sourceLine": 76,
+        "isAsync": true
+      },
+      {
+        "name": "GetMemberSteelUtilizationRatioAsync",
+        "signature": "Task<double> GetMemberSteelUtilizationRatioAsync(int beamId)",
+        "sourceLine": 77,
+        "isAsync": true
+      },
+      {
+        "name": "GetMemberSteelUtilizationRatiosAsync",
+        "signature": "Task<Dictionary<Beam, double>> GetMemberSteelUtilizationRatiosAsync(HashSet<Beam> beams)",
+        "sourceLine": 80,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCornerForcesAsync",
+        "signature": "Task<PlateCornerForces> GetPlateCornerForcesAsync(ILoadCase loadCase, Plate plate, Node cornerNode)",
+        "sourceLine": 215,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCornerForcesAsync",
+        "signature": "Task<PlateCornerForces> GetPlateCornerForcesAsync(int loadCaseId, int plateId, int cornerNodeId)",
+        "sourceLine": 221,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCornerForcesAsync",
+        "signature": "Task<PlateCornerForces> GetPlateCornerForcesAsync(int loadCaseId, int plateId, int cornerNodeId, IOSGeometry geometry, IOSLoad load)",
+        "sourceLine": 225,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCornerForcesAsync",
+        "signature": "Task<PlateCornerForces> GetPlateCornerForcesAsync(int loadCaseId, int plateId, int cornerNodeId, LoadCaseType loadCaseType, IOSGeometry geometry, IOSLoad load)",
+        "sourceLine": 234,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCornerForcesAsync",
+        "signature": "Task<PlateCornerForcesResultSet> GetPlateCornerForcesAsync(IEnumerable<ILoadCase> loadCases, Plate plate, Node cornerNode)",
+        "sourceLine": 244,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCornerForcesAsync",
+        "signature": "Task<PlateCornerForcesResultSet> GetPlateCornerForcesAsync(ILoadCase loadCase, Plate plate)",
+        "sourceLine": 248,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCornerForcesAsync",
+        "signature": "Task<PlateCornerForcesResultSet> GetPlateCornerForcesAsync(IEnumerable<ILoadCase> loadCases, Plate plate)",
+        "sourceLine": 252,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCornerForcesAsync",
+        "signature": "Task<PlateCornerForcesResultSet> GetPlateCornerForcesAsync(ILoadCase loadCase, IEnumerable<Plate> plates)",
+        "sourceLine": 256,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCornerForcesAsync",
+        "signature": "Task<PlateCornerForcesResultSet> GetPlateCornerForcesAsync(IEnumerable<ILoadCase> loadCases, IEnumerable<Plate> plates)",
+        "sourceLine": 260,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCornerForcesAsync",
+        "signature": "Task<PlateCornerForcesResultSet> GetPlateCornerForcesAsync(IEnumerable<PlateCornerForcesRequest> requests)",
+        "sourceLine": 264,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCornerForcesAsync",
+        "signature": "Task<PlateCornerForcesResultSet> GetPlateCornerForcesAsync(IEnumerable<int> loadCaseIds, int plateId, int cornerNodeId, IOSGeometry geometry, IOSLoad load)",
+        "sourceLine": 268,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCornerForcesInGlobalCoordinatesAsync",
+        "signature": "Task<PlateCornerForces> GetPlateCornerForcesInGlobalCoordinatesAsync(ILoadCase loadCase, Plate plate, Node cornerNode)",
+        "sourceLine": 292,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCornerForcesAsync",
+        "signature": "Task<MemberForces> GetPlateCornerForcesAsync(ILoadCase loadCase, Plate plate, Node cornerNode, Node otherMemberNode)",
+        "sourceLine": 338,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCornerForcesAsync",
+        "signature": "Task<MemberForces> GetPlateCornerForcesAsync(ILoadCase loadCase, Plate plate, Node cornerNode, Beam member)",
+        "sourceLine": 344,
+        "isAsync": true
+      },
+      {
+        "name": "TransformPlateCornerForcesToMemberLocalAsync",
+        "signature": "Task<MemberForces> TransformPlateCornerForcesToMemberLocalAsync(PlateCornerForces plateCornerForces, Node otherMemberNode)",
+        "sourceLine": 387,
+        "isAsync": true
+      },
+      {
+        "name": "TransformPlateCornerForcesToMemberLocalAsync",
+        "signature": "Task<MemberForces> TransformPlateCornerForcesToMemberLocalAsync(PlateCornerForces plateCornerForces, Beam member)",
+        "sourceLine": 393,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCornerForcesInMemberLocalCoordinatesAsync",
+        "signature": "Task<PlateCornerForces> GetPlateCornerForcesInMemberLocalCoordinatesAsync(ILoadCase loadCase, Plate plate, Node cornerNode, Node otherMemberNode)",
+        "sourceLine": 411,
+        "isAsync": true
+      },
+      {
+        "name": "TransformPlateCornerForcesToMemberLocalPlateResultAsync",
+        "signature": "Task<PlateCornerForces> TransformPlateCornerForcesToMemberLocalPlateResultAsync(PlateCornerForces plateCornerForces, Node otherMemberNode)",
+        "sourceLine": 428,
+        "isAsync": true
+      },
+      {
+        "name": "GetResultantForceAlongLineForPlateList",
+        "signature": "bool GetResultantForceAlongLineForPlateList(IEnumerable<Plate> plateList, int loadCaseId, Point3D startPoint, Point3D endPoint, bool transformForceToGlobal, out Vector3D resultantForce, out Vector3D resultantMoment)",
+        "sourceLine": 448,
+        "isAsync": false
+      },
+      {
+        "name": "GetResultantForceAlongLineForPlateList",
+        "signature": "Forces GetResultantForceAlongLineForPlateList(IEnumerable<Plate> plateList, int loadCaseId, Point3D startPoint, Point3D endPoint, bool transformForceToGlobal)",
+        "sourceLine": 463,
+        "isAsync": false
+      },
+      {
+        "name": "GetResultantForceAlongLineForPlateListAsync",
+        "signature": "Task<Forces> GetResultantForceAlongLineForPlateListAsync(IEnumerable<Plate> plateList, int loadCaseId, Point3D startPoint, Point3D endPoint, bool transformForceToGlobal)",
+        "sourceLine": 474,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCenterForcesAsync",
+        "signature": "Task<PlateCenterForces> GetPlateCenterForcesAsync(ILoadCase loadCase, Plate plate)",
+        "sourceLine": 481,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCenterMomentsAsync",
+        "signature": "Task<PlateCenterMoments> GetPlateCenterMomentsAsync(ILoadCase loadCase, Plate plate)",
+        "sourceLine": 483,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCenterResultsAsync",
+        "signature": "Task<IEnumerable<PlateCenterResults>> GetPlateCenterResultsAsync(IEnumerable<ILoadCase> loadCases, IEnumerable<Plate> plates)",
+        "sourceLine": 487,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCenterResultsAsync",
+        "signature": "Task<PlateCenterResults> GetPlateCenterResultsAsync(ILoadCase loadCase, Plate plate)",
+        "sourceLine": 488,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateCenterVonMisesAsync",
+        "signature": "Task<PlateCenterVonMises> GetPlateCenterVonMisesAsync(ILoadCase loadCase, Plate plate)",
+        "sourceLine": 490,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlatePrincipalStressesAsync",
+        "signature": "Task<PlatePrincipalStresses> GetPlatePrincipalStressesAsync(ILoadCase loadCase, Plate plate)",
+        "sourceLine": 492,
+        "isAsync": true
+      },
+      {
+        "name": "GetStaticCheckResultAsync",
+        "signature": "Task<StaticCheckResult> GetStaticCheckResultAsync(int loadCaseId)",
+        "sourceLine": 493,
+        "isAsync": true
+      },
+      {
+        "name": "GetStaticCheckResultsAsync",
+        "signature": "Task<HashSet<StaticCheckResult>> GetStaticCheckResultsAsync(IEnumerable<int> loadCaseIds)",
+        "sourceLine": 496,
+        "isAsync": true
+      },
+      {
+        "name": "GetSupportForcesAsync",
+        "signature": "Task<LoadCaseForces> GetSupportForcesAsync(int supportId, int loadCaseId)",
+        "sourceLine": 498,
+        "isAsync": true
+      },
+      {
+        "name": "GetSupportReactionsAsync",
+        "signature": "Task<LoadCaseForces> GetSupportReactionsAsync(int supportId, int loadCaseId)",
+        "sourceLine": 500,
+        "isAsync": true
+      },
+      {
+        "name": "GetPlateStressAtPoint",
+        "signature": "PlateStressResult GetPlateStressAtPoint(int pId, int lcId, Node stressPoint, Node facingPoint)",
+        "sourceLine": 502,
+        "isAsync": false
+      }
+    ],
+    "Support": [
+      {
+        "name": "AssignSupportToNode",
+        "signature": "IOSSupport AssignSupportToNode(ISupport supportInstance, int nId)",
+        "sourceLine": 49,
+        "isAsync": false
+      },
+      {
+        "name": "AssignSupportToNode",
+        "signature": "IOSSupport AssignSupportToNode(ISupport supportInstance, Node node)",
+        "sourceLine": 54,
+        "isAsync": false
+      },
+      {
+        "name": "AssignSupportToNodes",
+        "signature": "IOSSupport AssignSupportToNodes(ISupport supportInstance, IEnumerable<int> nodeIds)",
+        "sourceLine": 59,
+        "isAsync": false
+      },
+      {
+        "name": "AssignSupportToNodes",
+        "signature": "IOSSupport AssignSupportToNodes(ISupport supportInstance, IEnumerable<Node> nodes)",
+        "sourceLine": 64,
+        "isAsync": false
+      },
+      {
+        "name": "CreateSupport",
+        "signature": "IOSSupport CreateSupport(ISupport supportInstance)",
+        "sourceLine": 73,
+        "isAsync": false
+      },
+      {
+        "name": "GetAllElasticMatSupports",
+        "signature": "HashSet<ISupport> GetAllElasticMatSupports(IEnumerable<Node> allNodes, IEnumerable<int> emSupportIds)",
+        "sourceLine": 87,
+        "isAsync": false
+      },
+      {
+        "name": "GetAllElasticMatSupports",
+        "signature": "HashSet<ISupport> GetAllElasticMatSupports(IOSGeometry geometry, IEnumerable<int> emSupportIds)",
+        "sourceLine": 97,
+        "isAsync": false
+      },
+      {
+        "name": "GetAllNodalSupports",
+        "signature": "IEnumerable<ISupport> GetAllNodalSupports(IEnumerable<Node> allNodesInModel)",
+        "sourceLine": 106,
+        "isAsync": false
+      },
+      {
+        "name": "GetAllNodalSupports",
+        "signature": "IEnumerable<ISupport> GetAllNodalSupports(IOSGeometry geometry)",
+        "sourceLine": 111,
+        "isAsync": false
+      },
+      {
+        "name": "GetAllPlateMatSupports",
+        "signature": "HashSet<ISupport> GetAllPlateMatSupports(IEnumerable<Plate> allPlates)",
+        "sourceLine": 120,
+        "isAsync": false
+      },
+      {
+        "name": "GetAllPlateMatSupports",
+        "signature": "HashSet<ISupport> GetAllPlateMatSupports(IOSGeometry geometry)",
+        "sourceLine": 125,
+        "isAsync": false
+      },
+      {
+        "name": "GetAllSupportNodes",
+        "signature": "HashSet<Node> GetAllSupportNodes(IOSGeometry geometry, int nThreads)",
+        "sourceLine": 134,
+        "isAsync": false
+      },
+      {
+        "name": "GetSupportedNodes",
+        "signature": "HashSet<Node> GetSupportedNodes(HashSet<Node> fromNodes, int nThreads)",
+        "sourceLine": 139,
+        "isAsync": false
+      },
+      {
+        "name": "GetAllSupports",
+        "signature": "IEnumerable<ISupport> GetAllSupports(IEnumerable<Node> forNodes, IEnumerable<Plate> forPlates, IEnumerable<Plate> allPlates)",
+        "sourceLine": 148,
+        "isAsync": false
+      },
+      {
+        "name": "GetDistinctSupports",
+        "signature": "Dictionary<int, Enums.SupportType> GetDistinctSupports()",
+        "sourceLine": 153,
+        "isAsync": false
+      },
+      {
+        "name": "GetElasticMatSupport",
+        "signature": "ElasticMatSupport GetElasticMatSupport(int emsId, Func<int, Node> getNodeById)",
+        "sourceLine": 158,
+        "isAsync": false
+      },
+      {
+        "name": "GetElasticMatSupports",
+        "signature": "HashSet<ISupport> GetElasticMatSupports(IEnumerable<int> emSupportIds, Func<int, Node> getNodeById)",
+        "sourceLine": 163,
+        "isAsync": false
+      },
+      {
+        "name": "GetNodalSupports",
+        "signature": "IEnumerable<ISupport> GetNodalSupports(IEnumerable<Node> forNodes)",
+        "sourceLine": 168,
+        "isAsync": false
+      },
+      {
+        "name": "GetPlateMatSupport",
+        "signature": "PlateMatSupport GetPlateMatSupport(int pmsId, Func<int, Plate> getPlateById)",
+        "sourceLine": 173,
+        "isAsync": false
+      },
+      {
+        "name": "GetPlateMatSupports",
+        "signature": "HashSet<ISupport> GetPlateMatSupports(Func<int, Plate> getPlateById)",
+        "sourceLine": 178,
+        "isAsync": false
+      },
+      {
+        "name": "GetPlateMatSupports",
+        "signature": "HashSet<ISupport> GetPlateMatSupports(IEnumerable<Plate> forPlates, IEnumerable<Plate> allPlates)",
+        "sourceLine": 183,
+        "isAsync": false
+      },
+      {
+        "name": "GetSupport",
+        "signature": "ISupport GetSupport(int nId)",
+        "sourceLine": 192,
+        "isAsync": false
+      },
+      {
+        "name": "GetSupport",
+        "signature": "ISupport GetSupport(int nId, IEnumerable<ISupport> allSupports)",
+        "sourceLine": 197,
+        "isAsync": false
+      },
+      {
+        "name": "GetSupportNodes",
+        "signature": "HashSet<Node> GetSupportNodes(HashSet<Node> allNodes)",
+        "sourceLine": 207,
+        "isAsync": false
+      },
+      {
+        "name": "GetSupportNodes",
+        "signature": "HashSet<Node> GetSupportNodes(IOSGeometry geometry)",
+        "sourceLine": 212,
+        "isAsync": false
+      },
+      {
+        "name": "GetSupportTypesOfNodes",
+        "signature": "Dictionary<int, Enums.SupportType> GetSupportTypesOfNodes(IEnumerable<int> nodeIds)",
+        "sourceLine": 227,
+        "isAsync": false
+      },
+      {
+        "name": "PopulateElasticMatSupport",
+        "signature": "ElasticMatSupport PopulateElasticMatSupport(ElasticMatSupport emSupport, Func<int, Node> getNodeById)",
+        "sourceLine": 236,
+        "isAsync": false
+      },
+      {
+        "name": "PopulatePlateMatSupport",
+        "signature": "PlateMatSupport PopulatePlateMatSupport(PlateMatSupport pmSupport, Func<int, Plate> getPlateById)",
+        "sourceLine": 241,
+        "isAsync": false
+      }
+    ],
+    "Commands": [
+      {
+        "name": "CreateSteelDesignCommand",
+        "signature": "void CreateSteelDesignCommand(SteelDesignCommandRequest request)",
+        "sourceLine": 54,
+        "isAsync": false
+      },
+      {
+        "name": "ValidateSteelDesignCommand",
+        "signature": "SteelDesignCommandValidationResult ValidateSteelDesignCommand(SteelDesignCommandRequest request)",
+        "sourceLine": 57,
+        "isAsync": false
+      },
+      {
+        "name": "GetSteelDesignCommands",
+        "signature": "IReadOnlyList<SteelDesignCommandDescriptor> GetSteelDesignCommands(StaadSteelDesignCode designCode)",
+        "sourceLine": 60,
+        "isAsync": false
+      }
+    ],
+    "View": [
+      {
+        "name": "CloseActiveWindow",
+        "signature": "bool CloseActiveWindow()",
+        "sourceLine": 42,
+        "isAsync": false
+      },
+      {
+        "name": "GetWindowCount",
+        "signature": "int GetWindowCount()",
+        "sourceLine": 50,
+        "isAsync": false
+      },
+      {
+        "name": "GetWindowTitle",
+        "signature": "string GetWindowTitle(int windowId)",
+        "sourceLine": 55,
+        "isAsync": false
+      },
+      {
+        "name": "SetActiveWindow",
+        "signature": "int SetActiveWindow(int windowId)",
+        "sourceLine": 62,
+        "isAsync": false
+      },
+      {
+        "name": "SetActiveWindowPositionAndSize",
+        "signature": "int SetActiveWindowPositionAndSize(int left, int top, int pxWidth, int pxHeight)",
+        "sourceLine": 72,
+        "isAsync": false
+      },
+      {
+        "name": "GetApplicationDesktopSize",
+        "signature": "(int pxWidth, int pxHeight) GetApplicationDesktopSize()",
+        "sourceLine": 77,
+        "isAsync": false
+      },
+      {
+        "name": "CreateNewViewForSelections",
+        "signature": "void CreateNewViewForSelections()",
+        "sourceLine": 86,
+        "isAsync": false
+      },
+      {
+        "name": "CreateNewViewForSelections",
+        "signature": "void CreateNewViewForSelections(ViewOptions viewOptions)",
+        "sourceLine": 94,
+        "isAsync": false
+      },
+      {
+        "name": "OpenView",
+        "signature": "int OpenView(string viewName, ViewOptions viewOptions = ViewOptions.ViewInNewWindow)",
+        "sourceLine": 102,
+        "isAsync": false
+      },
+      {
+        "name": "SaveView",
+        "signature": "int SaveView(string viewName, bool overwrite)",
+        "sourceLine": 110,
+        "isAsync": false
+      },
+      {
+        "name": "RenameActiveView",
+        "signature": "int RenameActiveView(string newName)",
+        "sourceLine": 119,
+        "isAsync": false
+      },
+      {
+        "name": "DetachActiveView",
+        "signature": "void DetachActiveView()",
+        "sourceLine": 125,
+        "isAsync": false
+      },
+      {
+        "name": "RefreshView",
+        "signature": "void RefreshView()",
+        "sourceLine": 130,
+        "isAsync": false
+      },
+      {
+        "name": "RotateDown",
+        "signature": "void RotateDown(double angle)",
+        "sourceLine": 171,
+        "isAsync": false
+      },
+      {
+        "name": "RotateLeft",
+        "signature": "void RotateLeft(double angle)",
+        "sourceLine": 179,
+        "isAsync": false
+      },
+      {
+        "name": "RotateRight",
+        "signature": "void RotateRight(double angle)",
+        "sourceLine": 187,
+        "isAsync": false
+      },
+      {
+        "name": "SpinLeft",
+        "signature": "void SpinLeft(double angle)",
+        "sourceLine": 195,
+        "isAsync": false
+      },
+      {
+        "name": "SpinRight",
+        "signature": "void SpinRight(double angle)",
+        "sourceLine": 203,
+        "isAsync": false
+      },
+      {
+        "name": "ZoomAll",
+        "signature": "void ZoomAll()",
+        "sourceLine": 206,
+        "isAsync": false
+      },
+      {
+        "name": "ZoomExtentsMainView",
+        "signature": "void ZoomExtentsMainView()",
+        "sourceLine": 209,
+        "isAsync": false
+      },
+      {
+        "name": "ShowAllMembers",
+        "signature": "void ShowAllMembers()",
+        "sourceLine": 218,
+        "isAsync": false
+      },
+      {
+        "name": "HideAllMembers",
+        "signature": "void HideAllMembers()",
+        "sourceLine": 223,
+        "isAsync": false
+      },
+      {
+        "name": "ShowMember",
+        "signature": "void ShowMember(Beam beam)",
+        "sourceLine": 228,
+        "isAsync": false
+      },
+      {
+        "name": "ShowMembers",
+        "signature": "void ShowMembers(IEnumerable<Beam> beams)",
+        "sourceLine": 233,
+        "isAsync": false
+      },
+      {
+        "name": "HideMember",
+        "signature": "void HideMember(Beam beam)",
+        "sourceLine": 238,
+        "isAsync": false
+      },
+      {
+        "name": "HideMembers",
+        "signature": "void HideMembers(IEnumerable<Beam> beams)",
+        "sourceLine": 243,
+        "isAsync": false
+      },
+      {
+        "name": "HidePlate",
+        "signature": "void HidePlate(Plate plate)",
+        "sourceLine": 248,
+        "isAsync": false
+      },
+      {
+        "name": "HidePlates",
+        "signature": "void HidePlates(IEnumerable<Plate> plates)",
+        "sourceLine": 253,
+        "isAsync": false
+      },
+      {
+        "name": "HideSolid",
+        "signature": "void HideSolid(int solidId)",
+        "sourceLine": 258,
+        "isAsync": false
+      },
+      {
+        "name": "HideSolids",
+        "signature": "void HideSolids(IEnumerable<int> solidIds)",
+        "sourceLine": 263,
+        "isAsync": false
+      },
+      {
+        "name": "HideSurface",
+        "signature": "void HideSurface(int surfaceId)",
+        "sourceLine": 268,
+        "isAsync": false
+      },
+      {
+        "name": "HideSurfaces",
+        "signature": "void HideSurfaces(IEnumerable<int> surfaceIds)",
+        "sourceLine": 273,
+        "isAsync": false
+      },
+      {
+        "name": "HideEntity",
+        "signature": "void HideEntity(IEntity entity)",
+        "sourceLine": 278,
+        "isAsync": false
+      },
+      {
+        "name": "SelectEntities",
+        "signature": "void SelectEntities(EntityType entityType, IEnumerable<IEntity> entities)",
+        "sourceLine": 287,
+        "isAsync": false
+      },
+      {
+        "name": "SelectGroup",
+        "signature": "void SelectGroup(string groupName)",
+        "sourceLine": 292,
+        "isAsync": false
+      },
+      {
+        "name": "SelectInverse",
+        "signature": "void SelectInverse(EntityType entityType)",
+        "sourceLine": 297,
+        "isAsync": false
+      },
+      {
+        "name": "SelectByMissingAttribute",
+        "signature": "void SelectByMissingAttribute(MissingAttribute missingAttribute)",
+        "sourceLine": 302,
+        "isAsync": false
+      },
+      {
+        "name": "SelectMembersParallelTo",
+        "signature": "void SelectMembersParallelTo(GlobalAxis globalAxis)",
+        "sourceLine": 307,
+        "isAsync": false
+      },
+      {
+        "name": "SelectEntitiesConnectedToMember",
+        "signature": "void SelectEntitiesConnectedToMember(EntityType entityType, Beam beam)",
+        "sourceLine": 312,
+        "isAsync": false
+      },
+      {
+        "name": "SelectEntitiesConnectedToNode",
+        "signature": "void SelectEntitiesConnectedToNode(EntityType entityType, Node node)",
+        "sourceLine": 317,
+        "isAsync": false
+      },
+      {
+        "name": "SelectEntitiesConnectedToPlate",
+        "signature": "void SelectEntitiesConnectedToPlate(EntityType entityType, Plate plate)",
+        "sourceLine": 322,
+        "isAsync": false
+      },
+      {
+        "name": "SelectEntitiesConnectedToSolid",
+        "signature": "void SelectEntitiesConnectedToSolid(EntityType entityType, int solidId)",
+        "sourceLine": 327,
+        "isAsync": false
+      },
+      {
+        "name": "SetBeamAnnotationMode",
+        "signature": "void SetBeamAnnotationMode(AnnotationType annotationType, DiagramValueDisplayMode displayMode, bool refreshView)",
+        "sourceLine": 339,
+        "isAsync": false
+      },
+      {
+        "name": "SetNodeAnnotationMode",
+        "signature": "void SetNodeAnnotationMode(NodeAnnotationType nodeAnnotationType, bool refresh)",
+        "sourceLine": 347,
+        "isAsync": false
+      },
+      {
+        "name": "SetReactionAnnotationMode",
+        "signature": "void SetReactionAnnotationMode(ReactionAnnotationType reactionAnnotationType, bool refresh)",
+        "sourceLine": 355,
+        "isAsync": false
+      },
+      {
+        "name": "SetDiagramMode",
+        "signature": "void SetDiagramMode(DiagramType diagramType, bool showLabel, bool refreshView)",
+        "sourceLine": 360,
+        "isAsync": false
+      },
+      {
+        "name": "SetDesignResults",
+        "signature": "int SetDesignResults(UtilizationRatioType urType, ColorMode colorMode, bool showValues)",
+        "sourceLine": 368,
+        "isAsync": false
+      },
+      {
+        "name": "SetLabel",
+        "signature": "void SetLabel(LabelType labelType, bool showLabel)",
+        "sourceLine": 373,
+        "isAsync": false
+      },
+      {
+        "name": "SetSectionView",
+        "signature": "void SetSectionView(Plane plane, double minValue, double maxValue)",
+        "sourceLine": 396,
+        "isAsync": false
+      },
+      {
+        "name": "GetScaleCount",
+        "signature": "int GetScaleCount()",
+        "sourceLine": 405,
+        "isAsync": false
+      },
+      {
+        "name": "GetScaleValueByType",
+        "signature": "double GetScaleValueByType(int scaleTypeId)",
+        "sourceLine": 410,
+        "isAsync": false
+      },
+      {
+        "name": "GetScaleValues",
+        "signature": "Scales GetScaleValues()",
+        "sourceLine": 415,
+        "isAsync": false
+      },
+      {
+        "name": "SetScaleValueByType",
+        "signature": "int SetScaleValueByType(int scaleTypeId, double scaleValue)",
+        "sourceLine": 420,
+        "isAsync": false
+      },
+      {
+        "name": "SetScaleValues",
+        "signature": "int SetScaleValues(Scales scales)",
+        "sourceLine": 425,
+        "isAsync": false
+      },
+      {
+        "name": "GetInterfaceMode",
+        "signature": "InterfaceMode GetInterfaceMode()",
+        "sourceLine": 434,
+        "isAsync": false
+      },
+      {
+        "name": "SetWorkflowMode",
+        "signature": "int SetWorkflowMode(WorkflowMode workflowMode)",
+        "sourceLine": 439,
+        "isAsync": false
+      },
+      {
+        "name": "SetUnitsForActiveView",
+        "signature": "void SetUnitsForActiveView(QuantityType quantityType, string unitString)",
+        "sourceLine": 444,
+        "isAsync": false
+      },
+      {
+        "name": "CopyPicture",
+        "signature": "(int pxWidth, int pxHeight) CopyPicture()",
+        "sourceLine": 457,
+        "isAsync": false
+      },
+      {
+        "name": "ExportActiveView",
+        "signature": "int ExportActiveView(string fileLocation, string fileName, ImageExportType imageExportType, bool overwrite = true)",
+        "sourceLine": 462,
+        "isAsync": false
+      },
+      {
+        "name": "ExportActiveView",
+        "signature": "int ExportActiveView(string filePath, ImageExportType imageExportType, bool overwrite = true)",
+        "sourceLine": 467,
+        "isAsync": false
+      },
+      {
+        "name": "GetNumberOfBeamsInView",
+        "signature": "int GetNumberOfBeamsInView()",
+        "sourceLine": 487,
+        "isAsync": false
+      },
+      {
+        "name": "GetBeamsInView",
+        "signature": "IEnumerable<int> GetBeamsInView()",
+        "sourceLine": 492,
+        "isAsync": false
+      }
+    ],
+    "IdeaStatiCa": [
+      {
+        "name": "GetPlatesConnectedToMember",
+        "signature": "IReadOnlyList<Plate> GetPlatesConnectedToMember(int memberNumber)",
+        "sourceLine": 18,
+        "isAsync": false
+      },
+      {
+        "name": "GetPlatesConnectedToMember",
+        "signature": "IReadOnlyList<Plate> GetPlatesConnectedToMember(Beam member)",
+        "sourceLine": 20,
+        "isAsync": false
+      },
+      {
+        "name": "GetMemberEndForces",
+        "signature": "IReadOnlyList<IdeaStatiCaMemberForcesResult> GetMemberEndForces(int memberNumber, int targetJointNumber, IEnumerable<int> loadCaseIds)",
+        "sourceLine": 22,
+        "isAsync": false
+      },
+      {
+        "name": "GetMemberEndForces",
+        "signature": "IReadOnlyList<IdeaStatiCaMemberForcesResult> GetMemberEndForces(Beam member, Node targetJoint, IEnumerable<ILoadCase> loadCases)",
+        "sourceLine": 27,
+        "isAsync": false
+      },
+      {
+        "name": "GetMemberEndForcesWithConnectedPlateForces",
+        "signature": "IReadOnlyList<IdeaStatiCaMemberForcesResult> GetMemberEndForcesWithConnectedPlateForces(int memberNumber, int targetJointNumber, IEnumerable<int> loadCaseIds)",
+        "sourceLine": 32,
+        "isAsync": false
+      },
+      {
+        "name": "GetMemberEndForcesWithConnectedPlateForces",
+        "signature": "IReadOnlyList<IdeaStatiCaMemberForcesResult> GetMemberEndForcesWithConnectedPlateForces(Beam member, Node targetJoint, IEnumerable<ILoadCase> loadCases)",
+        "sourceLine": 37,
+        "isAsync": false
+      },
+      {
+        "name": "GetJointForces",
+        "signature": "IReadOnlyList<IdeaStatiCaMemberForcesResult> GetJointForces(int jointNumber, IEnumerable<int> loadCaseIds)",
+        "sourceLine": 42,
+        "isAsync": false
+      },
+      {
+        "name": "GetJointForces",
+        "signature": "IReadOnlyList<IdeaStatiCaMemberForcesResult> GetJointForces(Node joint, IEnumerable<ILoadCase> loadCases)",
+        "sourceLine": 46,
+        "isAsync": false
+      },
+      {
+        "name": "GetJointEquilibrium",
+        "signature": "IReadOnlyList<IdeaStatiCaJointEquilibriumResult> GetJointEquilibrium(int jointNumber, IEnumerable<int> loadCaseIds)",
+        "sourceLine": 50,
+        "isAsync": false
+      },
+      {
+        "name": "GetJointEquilibrium",
+        "signature": "IReadOnlyList<IdeaStatiCaJointEquilibriumResult> GetJointEquilibrium(Node joint, IEnumerable<ILoadCase> loadCases)",
+        "sourceLine": 54,
+        "isAsync": false
+      },
+      {
+        "name": "GetMappedJointLoadPackage",
+        "signature": "IdeaConnectionJointLoadPackage GetMappedJointLoadPackage(int jointNumber, IEnumerable<int> loadCaseIds, IdeaConnectionJointMapping mapping)",
+        "sourceLine": 62,
+        "isAsync": false
+      },
+      {
+        "name": "ExportMappedJointForcesToExcel",
+        "signature": "string ExportMappedJointForcesToExcel(IdeaConnectionJointLoadPackage package, string outputFilePath, bool allowUnsafeExport = false)",
+        "sourceLine": 68,
+        "isAsync": false
+      },
+      {
+        "name": "ExportMappedJointForcesToExcel",
+        "signature": "string ExportMappedJointForcesToExcel(int jointNumber, IEnumerable<int> loadCaseIds, IdeaConnectionJointMapping mapping, string outputFilePath, bool allowUnsafeExport = false)",
+        "sourceLine": 74,
+        "isAsync": false
+      },
+      {
+        "name": "ExportMappedJointForcesToExcel",
+        "signature": "string ExportMappedJointForcesToExcel(int jointNumber, IEnumerable<int> loadCaseIds, IdeaConnectionJointMapping mapping, string outputFilePath, string staadModelPath, string ideaMappingSourcePath, bool allowUnsafeExport = false)",
+        "sourceLine": 82,
+        "isAsync": false
+      },
+      {
+        "name": "ExportJointForcesToExcel",
+        "signature": "string ExportJointForcesToExcel(int jointNumber, IEnumerable<int> loadCaseIds, string outputFilePath)",
+        "sourceLine": 91,
+        "isAsync": false
+      },
+      {
+        "name": "ExportJointForcesToExcel",
+        "signature": "string ExportJointForcesToExcel(int jointNumber, IEnumerable<int> loadCaseIds, string outputFilePath, string staadModelPath)",
+        "sourceLine": 97,
+        "isAsync": false
+      },
+      {
+        "name": "ExportJointEquilibriumVerificationToHtml",
+        "signature": "string ExportJointEquilibriumVerificationToHtml(int jointNumber, IEnumerable<int> loadCaseIds, string outputFilePath, string staadModelPath, string ideaCheckbotPath)",
+        "sourceLine": 103,
+        "isAsync": false
+      },
+      {
+        "name": "ExportMappedJointEquilibriumVerificationToHtml",
+        "signature": "string ExportMappedJointEquilibriumVerificationToHtml(int jointNumber, IEnumerable<int> loadCaseIds, IdeaConnectionJointMapping mapping, string outputFilePath, string staadModelPath, string ideaCheckbotPath)",
+        "sourceLine": 114,
+        "isAsync": false
+      },
+      {
+        "name": "GetJointTopologyDiagram",
+        "signature": "IdeaStatiCaJointTopologyDiagram GetJointTopologyDiagram(int jointNumber, IEnumerable<int> loadCaseIds, IdeaConnectionJointMapping mapping = null)",
+        "sourceLine": 126,
+        "isAsync": false
+      },
+      {
+        "name": "ExportJointBatch",
+        "signature": "IdeaStatiCaBatchExportResult ExportJointBatch(IdeaStatiCaBatchExportRequest request)",
+        "sourceLine": 135,
+        "isAsync": false
+      },
+      {
+        "name": "GetJointIdsFromNodeGroup",
+        "signature": "IReadOnlyList<int> GetJointIdsFromNodeGroup(string groupName)",
+        "sourceLine": 138,
+        "isAsync": false
+      },
+      {
+        "name": "DiscoverConnectionJoints",
+        "signature": "IReadOnlyList<int> DiscoverConnectionJoints(IdeaStatiCaJointDiscoveryOptions options)",
+        "sourceLine": 141,
+        "isAsync": false
+      },
+      {
+        "name": "PreviewJointBatch",
+        "signature": "IReadOnlyList<IdeaStatiCaJointBatchPreview> PreviewJointBatch(IEnumerable<int> jointIds)",
+        "sourceLine": 144,
+        "isAsync": false
+      },
+      {
+        "name": "ExportForcesToExcel",
+        "signature": "string ExportForcesToExcel(IEnumerable<IdeaStatiCaMemberForcesResult> results, string outputFilePath)",
+        "sourceLine": 146,
+        "isAsync": false
+      }
+    ]
+  },
+  "managedReplacementNotes": {
+    "Output": {
+      "AreBucklingAnalysisResultsAvailable": "GetBucklingResultAvailability()",
+      "GetNumberOfBucklingFactorsComputed": "GetBucklingFactorCount()",
+      "AreResultsAvailable": "GetAnalysisResultAvailability()",
+      "GetMemberSteelUtilizationRatio": "GetMemberSteelUtilizationRatio(int memberId)",
+      "GetSupportReactions": "GetSupportReactions(int nodeId, int loadCaseId)",
+      "TransformPlateCornerForcesToMemberLocalPlateResult": "TransformPlateCornerForcesToMemberLocal(PlateCornerForces, Node) returns an explicit PlateCornerMemberForces packet."
+    },
+    "OutputBucklingDisplacementAtNode": "GetBucklingModeDisplacements(int nativeBucklingModeNumber, int nodeId) returns all six reviewed components rather than the source scalar.",
+    "Support": {
+      "GetSupportNodeIds": "GetSupportedNodeIds()",
+      "GetSupportNodesCount": "GetSupportedNodeCount()",
+      "GetSupportTypeExt": "GetSupportType(int nodeId)"
+    },
+    "Property": "All 98 non-obsolete reference interface routes are covered, including namespace/native-binding adaptations and typed-return replacements. The four adapter-only material-assignment query conveniences are also already present."
+  },
+  "sourceFingerprints": {
+    "Adapters/Interfaces/IOSRoot.cs": "a124c1170bd9567564a81733633521c80c0aa1e26b277f5901898f8bf4843b75",
+    "Adapters/Models/OSRootAdapter.cs": "ab3afdae6613189e186f3c13cade52f1a4eedafbf9dba25862a55155c2447a31",
+    "Adapters/Interfaces/IOSGeometry.cs": "e791a6a325c34c19a5096c1522400917da579d66fedce15fd32bbeac0763ef27",
+    "Adapters/Models/OSGeometryAdapter.cs": "1cf29b4e51e40547a22439992ff3759a14bc6e7152adcf7f34d02cd7892046ea",
+    "Adapters/Interfaces/IOSLoad.cs": "cf95f9d0af217c347f386ad56acdf3d738ebf1e94205f75770b0941a3d44311e",
+    "Adapters/Models/OSLoadAdapter.cs": "19f2e328b669aafbf5ca336767f0d44f7b709af735d7887b0bc30e61bf7a7412",
+    "Adapters/Interfaces/IOSOutput.cs": "f29278e63847e802794e9008b23adba83f052312eb8b584af3a310edb790a882",
+    "Adapters/Models/OSOutputAdapter.cs": "f74bc58b86229cefa8761e0316f5b3b23666200b86834ae0b227ffc07061ab72",
+    "Adapters/Interfaces/IOSProperty.cs": "7b4184fb1e7f25982a1e3c5225affbad1678fb9b0f8af161aafa33a0140c0040",
+    "Adapters/Models/OSPropertyAdapter.cs": "cfd93f64c48bcc31256c7f0cfe88eff3a5cc354d3cb46cdb04d1542ffeaf7171",
+    "Adapters/Interfaces/IOSSupport.cs": "be21566bc6d36663bc54d55210f1541702dc394dc69c412d5c624d6dbbff78c7",
+    "Adapters/Models/OSSupportAdapter.cs": "80b5f2c3069cfaba32cb832423f2cc0f633c25434df5e29d14493d41df260a8b",
+    "Adapters/Interfaces/IOSDesign.cs": "ed4785496c2f2c446bf02ef87feab914fa007be9fccfc63a8c54e852320c7dca",
+    "Adapters/Models/OSDesignAdapter.cs": "9ea8c12b101252ca0d663833e0f1af25e689813448c5463de8be9249bc85fd82",
+    "Adapters/Interfaces/IOSCommands.cs": "35e1fd729e00608c01fef3605d92247f18f03168a57c6f9ef1980a84df8952fa",
+    "Adapters/Models/OSCommandsAdapter.cs": "52fd5691d4c44fa66869edf84fb0bdd4ee4403642341485d5f2d7aa7094d25ce",
+    "Adapters/Interfaces/IOSTable.cs": "51260f658904d33f79fa48be16cb68d884b1df8922a5e240c1bbd1a05ce380b9",
+    "Adapters/Models/OSTableAdapter.cs": "9f6e306969847d74543a767c3c8c40bfc0e19a413d2b86a80c12372ccd3ae7ff",
+    "Adapters/Interfaces/IOSView.cs": "f18ef805684c4f5e25b7385342e315a1fe90952db031756ebad44c197ba5c5f0",
+    "Adapters/Models/OSViewAdapter.cs": "3c2e69209344385210d6494f94937259f3bc5557736fd69652d9ca973f6447b2",
+    "Adapters/Interfaces/IOpenStaadIdeaStatiCaAdapter.cs": "8ffdaa44e8af444031a48245843cb252ae2c7aada16b34a1daaab235b604b360",
+    "Adapters/Models/OpenStaadIdeaStatiCaAdapter.cs": "d51f68efcc966ddecbc32240ad8b6a108849ac2a9763ec40789ec8c79e9b6a32"
+  }
+}

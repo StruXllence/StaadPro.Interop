@@ -1,5 +1,7 @@
 # OpenSTAAD View API coverage and native contract inventory
 
+**Current implementation, 3 November 2026:** View exposes seven standard directions and RotateUp (8/70 main-source overloads; 8/67 native names). There are 62 View source overloads and 59 reviewed native names pending. The five new source ports are ShowRight, ShowPlan, ShowBottom, ShowIsometric and RotateUp. Shared captured-binding dispatch, finite signed-degree validation and complete comparative XML documentation are implemented. See [orientation contracts and examples](../View-Orientations.md) and [the source-porting totals](OpenSTAAD-Main-Source-Porting-Status.md). Live native COM/UI qualification remains separate.
+
 **Current implementation, 2 November 2026:** View exposes ShowFront, ShowBack and ShowLeft (3/70 main-source overloads; 3/67 native names). There are 67 source overloads and 64 reviewed native names pending. Common captured-binding dispatch, named void-completion receipts and complete XML documentation are shared. See [orientation contracts and examples](../View-Orientations.md). Native-only expansion follows main-source porting; live COM/UI qualification is separate.
 
 **Current implementation, 28 October 2026:** All 29 main-project Table overloads are adapted and all 24 reviewed native Table names are dispatched. View now ports ShowFront (1/70 source overloads; 1/67 native names). Native-only expansion follows remaining main-source work. See [completion contracts and usage](../Table-Completion-and-View-Foundations.md). This coverage is not live COM or report/UI qualification.
@@ -157,9 +159,9 @@ No native parameters.
 
 ### 3. ShowRight
 
-**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#ga5634cef1697b606aebf92c1af151f8c7) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#ga5634cef1697b606aebf92c1af151f8c7) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#ga5634cef1697b606aebf92c1af151f8c7)<br>**Current:** Pending; V2.
+**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#ga5634cef1697b606aebf92c1af151f8c7) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#ga5634cef1697b606aebf92c1af151f8c7) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#ga5634cef1697b606aebf92c1af151f8c7)<br>**Current:** Implemented; common View service, 1.0.0-preview.20261103.
 
-**Managed proposal:** `ViewOperationResult ShowRight; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.`
+**Managed implementation:** `ViewOperationResult ShowRight()`
 
 #### 2024 contract
 
@@ -213,9 +215,9 @@ No native parameters.
 
 ### 5. ShowPlan
 
-**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#gab760ebfa8341bd98861d8baffa08a8a0) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#gab760ebfa8341bd98861d8baffa08a8a0) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#gab760ebfa8341bd98861d8baffa08a8a0)<br>**Current:** Pending; V2.
+**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#gab760ebfa8341bd98861d8baffa08a8a0) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#gab760ebfa8341bd98861d8baffa08a8a0) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#gab760ebfa8341bd98861d8baffa08a8a0)<br>**Current:** Implemented; common View service, 1.0.0-preview.20261103.
 
-**Managed proposal:** `ViewOperationResult ShowPlan; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.`
+**Managed implementation:** `ViewOperationResult ShowPlan()`
 
 #### 2024 contract
 
@@ -241,9 +243,9 @@ No native parameters.
 
 ### 6. ShowBottom
 
-**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#ga06545b0c45e4cc59554f19de294708da) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#ga06545b0c45e4cc59554f19de294708da) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#ga06545b0c45e4cc59554f19de294708da)<br>**Current:** Pending; V2.
+**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#ga06545b0c45e4cc59554f19de294708da) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#ga06545b0c45e4cc59554f19de294708da) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#ga06545b0c45e4cc59554f19de294708da)<br>**Current:** Implemented; common View service, 1.0.0-preview.20261103.
 
-**Managed proposal:** `ViewOperationResult ShowBottom; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.`
+**Managed implementation:** `ViewOperationResult ShowBottom()`
 
 #### 2024 contract
 
@@ -269,9 +271,9 @@ No native parameters.
 
 ### 7. ShowIsometric
 
-**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#ga94bb198780b6dce70eeb1168072494d1) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#ga94bb198780b6dce70eeb1168072494d1) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#ga94bb198780b6dce70eeb1168072494d1)<br>**Current:** Pending; V2.
+**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#ga94bb198780b6dce70eeb1168072494d1) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#ga94bb198780b6dce70eeb1168072494d1) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#ga94bb198780b6dce70eeb1168072494d1)<br>**Current:** Implemented; common View service, 1.0.0-preview.20261103.
 
-**Managed proposal:** `ViewOperationResult ShowIsometric; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.`
+**Managed implementation:** `ViewOperationResult ShowIsometric()`
 
 #### 2024 contract
 
@@ -297,9 +299,9 @@ No native parameters.
 
 ### 8. RotateUp
 
-**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#gabb888a130a1a16176f6cdd294c43b5da) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#gabb888a130a1a16176f6cdd294c43b5da) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#gabb888a130a1a16176f6cdd294c43b5da)<br>**Current:** Pending; V2.
+**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#gabb888a130a1a16176f6cdd294c43b5da) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#gabb888a130a1a16176f6cdd294c43b5da) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#gabb888a130a1a16176f6cdd294c43b5da)<br>**Current:** Implemented; common View service, 1.0.0-preview.20261103.
 
-**Managed proposal:** `ViewOperationResult RotateUp; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.`
+**Managed implementation:** `ViewOperationResult RotateUp(double angleDegrees)`
 
 #### 2024 contract
 

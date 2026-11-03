@@ -1,10 +1,20 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261103 - 3 November 2026 (prepared preview)
+
+Ported five main-source View functions: ShowRight, ShowPlan, ShowBottom, ShowIsometric and RotateUp. Both IOSView and the single non-partial OSViewAdapter include complete matching XML IntelliSense, comparative usage, exceptions and guarded examples. Existing named results and the common captured-binding service are reused.
+
+RotateUp accepts finite signed degrees, including zero and negative values, without normalization or conversion. NaN and infinity are rejected before native dispatch. All five requests execute once on the caller's established COM apartment and preserve lifetime checks and native errors. Native void completion remains explicitly unacknowledged; a receipt does not certify the visible orientation.
+
+View now implements **8/70 main-source overloads** and **8/67 reviewed native names**. The reconciled domain-interface inventory had **160 active source overloads pending before this increment** and **155 afterwards**; eight obsolete/deprecated source overloads are excluded. See [source-status details](reports/OpenSTAAD-Main-Source-Porting-Status.md) and [orientation and rotation contracts](View-Orientations.md).
+
+Passed **7,021 offline tests**, including **85 View cases**. Installed-package verification selects **1,296 XML examples**, including sixteen View examples, and checks metadata, packaged documentation and a fresh PackageReference consumer. Native COM/UI and engineering qualification remain separate. Prepared for manual upload; public availability of this new version is not confirmed.
+
 ## 1.0.0-preview.20261102.1 - 2 November 2026 (prepared preview)
 
 Updated the README and project documentation. This distribution uses Apache License 2.0, with NOTICE attribution and the retained MIT-origin notice included. Previously published packages retain their original license terms. The package identity, Windows/net481 target and runtime API behavior are unchanged.
 
-The current implementation passed 6,964 offline tests. Installed-package verification covers 1,286 selected XML examples. Prepared for manual upload; public availability of this version is not confirmed.
+The current implementation passed 6,964 offline tests. Installed-package verification covers 1,286 selected XML examples. Published on NuGet.org; the public package and archive metadata were verified on 2 November 2026.
 
 ## 1.0.0-preview.20261102 - 2 November 2026 (prepared preview)
 

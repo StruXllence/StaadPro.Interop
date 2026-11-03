@@ -350,10 +350,13 @@ try {
     if ($tableSnippets.Count -ne 58) { throw 'Expected fifty-eight Table XML examples.' }
     $viewSnippets = @()
     $viewGuide = Read-PackageEntry 'docs/View-Orientations.md'
+    $sourcePortingGuide = Read-PackageEntry 'docs/reports/OpenSTAAD-Main-Source-Porting-Status.md'
+    $sourcePortingStatus = (Read-PackageEntry 'docs/reports/data/OpenSTAAD-Main-Source-Porting-Status.json') | ConvertFrom-Json
+    if ($sourcePortingStatus.pendingBefore -ne 160 -or $sourcePortingStatus.pendingAfter -ne 155 -or $sourcePortingStatus.portedThisIncrement -ne 5 -or $sourcePortingGuide -notmatch '155') { throw 'Inconsistent packaged source-porting inventory.' }
     foreach ($owner in @('Adapters.Interfaces.IOSView', 'Adapters.Models.OSViewAdapter')) {
         $entries = @($xml.doc.members.member | Where-Object { $_.name.StartsWith("M:StaadPro.Interop.$owner.") -and $_.name -notmatch '\.#ctor' })
-        if ($entries.Count -ne 3) { throw 'Expected three documented View functions.' }
-        foreach ($function in @('ShowFront','ShowBack','ShowLeft')) {
+        if ($entries.Count -ne 8) { throw 'Expected eight documented View functions.' }
+        foreach ($function in @('ShowFront','ShowBack','ShowLeft','ShowRight','ShowPlan','ShowBottom','ShowIsometric','RotateUp')) {
             if ($viewGuide -notmatch $function) { throw "Missing View guidance for $function." }
         }
         foreach ($entry in $entries) {
@@ -364,7 +367,7 @@ try {
             $viewSnippets += 'using (var wrapper = new OpenStaadWrapper(new PackageVerification.ViewFoundationFixture.Root { View = new PackageVerification.ViewFoundationFixture.Native() })) {' + $newLine + $binding + $newLine + $entry.SelectSingleNode('example/code').InnerText + $newLine + '}'
         }
     }
-    if ($viewSnippets.Count -ne 6) { throw 'Expected six View XML examples.' }
+    if ($viewSnippets.Count -ne 16) { throw 'Expected sixteen View XML examples.' }
     $designGuide = Read-PackageEntry 'docs/Design-Porting.md'
     $designSnippets = @()
     foreach ($owner in @('Adapters.Interfaces.IOSDesign', 'Adapters.Models.OSDesignAdapter')) {
@@ -821,7 +824,21 @@ public static class Program
             var left = wrapper.View.ShowLeft();
             Check(back.NativeFunction == "ShowBack" && left.NativeFunction == "ShowLeft", "View orientation identities");
             Check(new[] { back, left }.All(result => result.Status == ViewOperationStatus.InvokedWithoutAcknowledgement && !result.IsSuccessful && result.NativeReturnCode == null), "View orientation void completions");
-            Check(viewNative.Calls.SequenceEqual(new[] { "ShowFront", "ShowBack", "ShowLeft" }), "Captured View orientation requests");
+            var right = wrapper.View.ShowRight();
+            var plan = wrapper.View.ShowPlan();
+            var bottom = wrapper.View.ShowBottom();
+            var isometric = wrapper.View.ShowIsometric();
+            var rotation = wrapper.View.RotateUp(-15.25);
+            var newReceipts = new[] { right, plan, bottom, isometric, rotation };
+            Check(newReceipts.Select(result => result.NativeFunction).SequenceEqual(new[] { "ShowRight", "ShowPlan", "ShowBottom", "ShowIsometric", "RotateUp" }), "New View request identities");
+            Check(newReceipts.All(result => result.Status == ViewOperationStatus.InvokedWithoutAcknowledgement && !result.IsSuccessful && result.NativeReturnCode == null), "New View void completions");
+            Check(viewNative.RotationAngles.SequenceEqual(new[] { -15.25 }), "Native signed Double degrees");
+            Check(viewNative.Threads.All(thread => thread == System.Threading.Thread.CurrentThread.ManagedThreadId), "View caller apartment dispatch");
+            Check(viewNative.Calls.SequenceEqual(new[] { "ShowFront", "ShowBack", "ShowLeft", "ShowRight", "ShowPlan", "ShowBottom", "ShowIsometric", "RotateUp" }), "Captured View requests");
+            int callsBeforeInvalidAngle = viewNative.Calls.Count;
+            try { wrapper.View.RotateUp(double.NaN); throw new Exception("Nonfinite angle was accepted."); }
+            catch (ArgumentOutOfRangeException error) { Check(error.ParamName == "angleDegrees", "Native angle argument name"); }
+            Check(viewNative.Calls.Count == callsBeforeInvalidAngle, "Invalid angle must not dispatch");
         }
         Console.WriteLine("PASS: __EXAMPLE_COUNT__ packaged XML examples and Geometry/Load/Root/Output/Property/Support/Commands/Design/Table/View IntelliSense.");
     }

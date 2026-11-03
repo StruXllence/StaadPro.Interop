@@ -17,6 +17,7 @@ namespace PackageVerification
         {
             public readonly List<string> Calls = new List<string>();
             public readonly List<int> Threads = new List<int>();
+            public readonly List<double> RotationAngles = new List<double>();
             public Action OnCall;
             public void ShowFront()
             { Record("ShowFront"); }
@@ -24,6 +25,21 @@ namespace PackageVerification
             { Record("ShowBack"); }
             public void ShowLeft()
             { Record("ShowLeft"); }
+            public void ShowRight()
+            { Record("ShowRight"); }
+            public void ShowPlan()
+            { Record("ShowPlan"); }
+            public void ShowBottom()
+            { Record("ShowBottom"); }
+            public void ShowIsometric()
+            { Record("ShowIsometric"); }
+            public void RotateUp(object angleDegrees)
+            {
+                if (!(angleDegrees is double))
+                    throw new ArgumentException("RotateUp must receive a boxed Double.", nameof(angleDegrees));
+                RotationAngles.Add((double)angleDegrees);
+                Record("RotateUp");
+            }
             private void Record(string nativeFunction)
             { Calls.Add(nativeFunction); Threads.Add(Thread.CurrentThread.ManagedThreadId); OnCall?.Invoke(); }
         }

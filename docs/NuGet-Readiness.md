@@ -1,5 +1,7 @@
 # NuGet readiness assessment
 
+**Current checkpoint, 3 November 2026:** prepared 1.0.0-preview.20261103 with five main-source View ports: ShowRight, ShowPlan, ShowBottom, ShowIsometric and RotateUp. View reaches 8/70 source overloads and 8/67 native names. Passed 7,021 offline tests, including 85 View cases; the package verifier checks 1,296 XML examples. The source-only inventory has 155 active overloads pending after this increment. See [source-status details](reports/OpenSTAAD-Main-Source-Porting-Status.md). Live native COM/UI qualification remains separate. This new archive is prepared for manual upload.
+
 **Current distribution, 2 November 2026:** prepared 1.0.0-preview.20261102.1 with Apache-2.0 metadata, full license/NOTICE and the retained MIT-origin notice. API behavior is unchanged. The current implementation passed 6,964 offline tests; installed-package verification covers 1,286 XML examples. Public availability is not confirmed.
 
 **Current checkpoint, 2 November 2026:** prepared 1.0.0-preview.20261102 with View ShowBack and ShowLeft, matching XML IntelliSense and common captured-binding dispatch. View now provides 3/70 source overloads over 3/67 native names. Author: Srinivasa Rao Masanam. Publisher: StruXllence. Copyright (c) 2026 StruXllence. Passed 6,964 offline tests and 1,286 installed-package XML examples. Public availability of this new preview is not confirmed; native COM/UI qualification remains separate.
