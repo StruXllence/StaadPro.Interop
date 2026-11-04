@@ -32,6 +32,19 @@ namespace StaadPro.Interop.Services.View
             return RequestOrientation("RotateUp", view => view.RotateUp(angleDegrees));
         }
 
+        internal ViewOperationResult RotateDown(double angle) => RequestRotation("RotateDown", angle, view => view.RotateDown(angle));
+        internal ViewOperationResult RotateLeft(double angle) => RequestRotation("RotateLeft", angle, view => view.RotateLeft(angle));
+        internal ViewOperationResult RotateRight(double angle) => RequestRotation("RotateRight", angle, view => view.RotateRight(angle));
+        internal ViewOperationResult SpinLeft(double angle) => RequestRotation("SpinLeft", angle, view => view.SpinLeft(angle));
+        internal ViewOperationResult SpinRight(double angle) => RequestRotation("SpinRight", angle, view => view.SpinRight(angle));
+
+        private ViewOperationResult RequestRotation(string nativeFunction, double angle, Action<dynamic> request)
+        {
+            if (double.IsNaN(angle) || double.IsInfinity(angle))
+                throw new ArgumentOutOfRangeException(nameof(angle), "The rotation angle must be finite degrees.");
+            return RequestOrientation(nativeFunction, request);
+        }
+
         private void CheckBinding()
         {
             if (wrapper.RawOpenStaad == null || !ReferenceEquals((object)wrapper.RawView, native))

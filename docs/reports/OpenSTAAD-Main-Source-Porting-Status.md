@@ -1,6 +1,6 @@
 # Main-source porting status
 
-**Reviewed: 3 November 2026.** There were **160 active main-source interface overloads pending** before the five View ports in this increment; **155 remain afterwards**. The main project was read-only.
+**Reviewed: 4 November 2026.** There were **155 active main-source interface overloads pending** before the five View ports in this increment; **150 remain afterwards**. The main project was read-only.
 
 ## Count by domain
 
@@ -15,18 +15,18 @@
 | Design | 7 | 7 | 0 | 0 | 0 |
 | Commands | 21 | 17 | 3 | 3 | 1 |
 | Table | 29 | 29 | 0 | 0 | 0 |
-| View | 70 | 3 | 67 | 62 | 0 |
+| View | 70 | 8 | 62 | 57 | 0 |
 | IDEA StatiCa | 24 | 0 | 24 | 24 | 0 |
-| **Total** | **654** | **486** | **160** | **155** | **8** |
+| **Total** | **654** | **491** | **155** | **150** | **8** |
 
-Covered after this increment: **491** reference overloads. One managed replacement can cover more than one source signature; this measures usable source workflows and their overloads, not identical binary contracts or a count of public managed methods. New enabling methods are not subtracted again from this inventory.
+Covered after this increment: **496** reference overloads. One managed replacement can cover more than one source signature; this measures usable source workflows and their overloads, not identical binary contracts or a count of public managed methods. New enabling methods are not subtracted again from this inventory.
 
 ## What is included
 
 - Output: 38 pending overloads, comprising 33 asynchronous wrappers and five synchronous functions/conveniences: GetBucklingFactor(int), GetBucklingModeDisplacement(int, Node), both GetResultantForceAlongLineForPlateList overloads, and GetPlateStressAtPoint. Pending asynchronous APIs require caller-apartment design; the reference Task.Run implementation will not be copied without review.
 - Support: 28 active source workflows remain, principally typed support-instance creation/assignment, entity population, grouped discovery and plate-mat compositions. The existing scalar count, supported-node ID and support-type observations cover their renamed source equivalents. Native primitives alone do not complete the higher-level workflows.
 - Commands: CreateSteelDesignCommand, ValidateSteelDesignCommand and GetSteelDesignCommands remain. The deprecated PerformPDeltaAnalysisConverge overload is excluded, not reported as a missing supported API.
-- View: 62 of 70 overloads remain after ShowRight, ShowPlan, ShowBottom, ShowIsometric and RotateUp.
+- View: 57 of 70 overloads remain after RotateDown, RotateLeft, RotateRight, SpinLeft and SpinRight.
 - IDEA StatiCa: all 24 domain-interface overloads remain. Prerequisite models, options, transformation and export helpers are dependencies, not extra domain functions added to this total.
 
 ## Existing replacements and exclusions

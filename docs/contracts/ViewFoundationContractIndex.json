@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "date": "2026-11-03",
+  "date": "2026-11-04",
   "mainProjectReadOnly": true,
   "sourceFiles": [
     {
@@ -183,6 +183,126 @@
         "2026": "void OSViewUI::RotateUp(const VARIANT FAR&dDegrees)"
       },
       "argumentPolicy": "A finite signed Double in degrees, passed unchanged. Zero, negative values and values outside one revolution are accepted. Nonfinite inputs throw before dispatch."
+    },
+    {
+      "managedName": "RotateDown",
+      "returnType": "ViewOperationResult",
+      "nativeName": "RotateDown",
+      "parameters": "double angle",
+      "source": [
+        {
+          "managedName": "RotateDown",
+          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
+          "line": 149,
+          "name": "RotateDown",
+          "receiver": "ComObject",
+          "arguments": [
+            "angle"
+          ]
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::RotateDown(const VARIANT FAR&dDegrees)",
+        "2025": "void OSViewUI::RotateDown(const VARIANT FAR&dDegrees)",
+        "2026": "void OSViewUI::RotateDown(const VARIANT FAR&dDegrees)"
+      },
+      "argumentPolicy": "The finite signed rotation angle in degrees, preserving the main-source parameter name. Zero, negative values, negative zero and values beyond one revolution are passed unchanged. No radians conversion, clamping, normalization or rounding is performed."
+    },
+    {
+      "managedName": "RotateLeft",
+      "returnType": "ViewOperationResult",
+      "nativeName": "RotateLeft",
+      "parameters": "double angle",
+      "source": [
+        {
+          "managedName": "RotateLeft",
+          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
+          "line": 154,
+          "name": "RotateLeft",
+          "receiver": "ComObject",
+          "arguments": [
+            "angle"
+          ]
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::RotateLeft(const VARIANT FAR&dDegrees)",
+        "2025": "void OSViewUI::RotateLeft(const VARIANT FAR&dDegrees)",
+        "2026": "void OSViewUI::RotateLeft(const VARIANT FAR&dDegrees)"
+      },
+      "argumentPolicy": "The finite signed rotation angle in degrees, preserving the main-source parameter name. Zero, negative values, negative zero and values beyond one revolution are passed unchanged. No radians conversion, clamping, normalization or rounding is performed."
+    },
+    {
+      "managedName": "RotateRight",
+      "returnType": "ViewOperationResult",
+      "nativeName": "RotateRight",
+      "parameters": "double angle",
+      "source": [
+        {
+          "managedName": "RotateRight",
+          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
+          "line": 159,
+          "name": "RotateRight",
+          "receiver": "ComObject",
+          "arguments": [
+            "angle"
+          ]
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::RotateRight(const VARIANT FAR&dDegrees)",
+        "2025": "void OSViewUI::RotateRight(const VARIANT FAR&dDegrees)",
+        "2026": "void OSViewUI::RotateRight(const VARIANT FAR&dDegrees)"
+      },
+      "argumentPolicy": "The finite signed rotation angle in degrees, preserving the main-source parameter name. Zero, negative values, negative zero and values beyond one revolution are passed unchanged. No radians conversion, clamping, normalization or rounding is performed."
+    },
+    {
+      "managedName": "SpinLeft",
+      "returnType": "ViewOperationResult",
+      "nativeName": "SpinLeft",
+      "parameters": "double angle",
+      "source": [
+        {
+          "managedName": "SpinLeft",
+          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
+          "line": 164,
+          "name": "SpinLeft",
+          "receiver": "ComObject",
+          "arguments": [
+            "angle"
+          ]
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::SpinLeft(const VARIANT FAR&dDegrees)",
+        "2025": "void OSViewUI::SpinLeft(const VARIANT FAR&dDegrees)",
+        "2026": "void OSViewUI::SpinLeft(const VARIANT FAR&dDegrees)"
+      },
+      "argumentPolicy": "The finite signed rotation angle in degrees, preserving the main-source parameter name. Zero, negative values, negative zero and values beyond one revolution are passed unchanged. No radians conversion, clamping, normalization or rounding is performed."
+    },
+    {
+      "managedName": "SpinRight",
+      "returnType": "ViewOperationResult",
+      "nativeName": "SpinRight",
+      "parameters": "double angle",
+      "source": [
+        {
+          "managedName": "SpinRight",
+          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
+          "line": 169,
+          "name": "SpinRight",
+          "receiver": "ComObject",
+          "arguments": [
+            "angle"
+          ]
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::SpinRight(const VARIANT FAR&dDegrees)",
+        "2025": "void OSViewUI::SpinRight(const VARIANT FAR&dDegrees)",
+        "2026": "void OSViewUI::SpinRight(const VARIANT FAR&dDegrees)"
+      },
+      "argumentPolicy": "The finite signed rotation angle in degrees, preserving the main-source parameter name. Zero, negative values, negative zero and values beyond one revolution are passed unchanged. No radians conversion, clamping, normalization or rounding is performed."
     }
   ],
   "nativeRuntimeQualified": false

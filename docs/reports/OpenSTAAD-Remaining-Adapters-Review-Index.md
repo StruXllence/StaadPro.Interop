@@ -1,5 +1,9 @@
 # Remaining OpenSTAAD adapter reviews and implementation sequence
 
+**4 November 2026 checkpoint:** Ported `RotateDown(double angle)`, `RotateLeft(double angle)`, `RotateRight(double angle)`, `SpinLeft(double angle)` and `SpinRight(double angle)` from the main source. Preserved the original `angle` parameter name, type and order on both interfaces and the concrete adapter. View now exposes **13 of 70 main-source overloads** and reaches **13 of 67 reviewed native names**; **57 source overloads** and **54 native names** remain pending. See [rotation contracts](../View-Incremental-Rotations.md).
+
+Passed **7,137 offline tests**, including **201 View cases** and **116 additional cases** in this increment. Installed-package verification compiles and executes **1,306 selected XML examples**, including all **26 View interface/adapter examples**, through a fresh PackageReference consumer. Live native COM/UI behavior remains separate qualification work.
+
 **Current checkpoint, 3 November 2026:** Ported ShowRight, ShowPlan, ShowBottom, ShowIsometric and RotateUp from the read-only main source. View now exposes 8/70 source overloads and 8/67 native names. Across all reviewed source interfaces, 160 active overloads were pending before this increment and 155 remain. See [the complete source-status count](OpenSTAAD-Main-Source-Porting-Status.md) and [View contracts](../View-Orientations.md).
 
 **Current checkpoint, 2 November 2026:** View provides ShowFront, ShowBack and ShowLeft (3/70 source overloads and 3/67 native names). See [orientation contracts](../View-Orientations.md); 67 source overloads remain.

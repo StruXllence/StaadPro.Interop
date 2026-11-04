@@ -147,5 +147,100 @@ namespace StaadPro.Interop.Adapters.Interfaces
         ///     System.Console.WriteLine(result.NativeFunction + ": " + result.Status);
         /// }</code></example>
         ViewOperationResult RotateUp(double angleDegrees);
+
+        /// <summary>Requests an incremental graphical rotation about global X through the native RotateDown direction.</summary>
+        /// <param name="angle">The finite signed rotation angle in degrees, preserving the main-source parameter name. Zero, negative values, negative zero and values beyond one revolution are passed unchanged. No radians conversion, clamping, normalization or rounding is performed.</param>
+        /// <returns>A ViewOperationResult identifying native RotateDown with InvokedWithoutAcknowledgement after normal native void completion and final binding checks. NativeReturnCode is null and IsSuccessful is false because the native method supplies no success flag; this does not report native failure.</returns>
+        /// <remarks>The main-source description identifies this as the opposite-direction counterpart of RotateUp; the native help identifies global X. STAAD determines the screen convention and effect. No guessed clockwise/counterclockwise signs, camera vectors or equivalence to negating RotateUp are asserted. Unlike ShowFront/ShowPlan and other fixed orientations, this is relative to the current graphical view; successive calls accumulate and zero is still dispatched. This is a graphical request, not a transformation of analytical coordinates, structural local axes or analysis results. It does not select a different graphical window or show the application. Reuses the single View adapter and its common captured-binding service. Shared reviewed 2024/2025/2026 declarations and passive 2025/2026 automation metadata agree on void return and one VARIANT angle input. Invokes captured RawView exactly once on the caller&#x27;s established COM apartment under the adapter&#x27;s serialization gate, with disposal/replacement checks before and after dispatch. This gate does not coordinate other adapters, raw COM callers or external UI edits. Reacquire wrapper.View after refresh. Nonfinite inputs fail before any native call. Native exceptions propagate unchanged; a post-call exception may follow an actual graphical change. No automatic retry, fallback instance, rollback, background-thread dispatch, analysis, model launch or implicit save occurs. A receipt proves invocation completion only; repaint, visible effect, readiness, licensing, persistence and live native servicing-build compatibility require separate qualification.</remarks>
+        /// <exception cref="ArgumentOutOfRangeException">angle is NaN or positive/negative infinity; rejected before native dispatch.</exception>
+        /// <exception cref="InvalidOperationException">The wrapper is disposed or its captured View binding is replaced before or during dispatch; reacquire the adapter.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native graphical request failed; UI effects may precede the error. The original exception propagates without retry.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured automation object lacks RotateDown with a compatible one-angle contract.</exception>
+        /// <example><code>
+        /// bool changeView = false; // Enable only when an incremental graphical change is intended.
+        /// if (changeView)
+        /// {
+        ///     double angle = 15.0; // Degrees; negative values are passed unchanged.
+        ///     var result = view.RotateDown(angle);
+        ///     System.Console.WriteLine(result.NativeFunction + ": " + result.Status);
+        /// }
+        /// </code></example>
+        ViewOperationResult RotateDown(double angle);
+
+        /// <summary>Requests an incremental graphical rotation about global Y through the native RotateLeft direction.</summary>
+        /// <param name="angle">The finite signed rotation angle in degrees, preserving the main-source parameter name. Zero, negative values, negative zero and values beyond one revolution are passed unchanged. No radians conversion, clamping, normalization or rounding is performed.</param>
+        /// <returns>A ViewOperationResult identifying native RotateLeft with InvokedWithoutAcknowledgement after normal native void completion and final binding checks. NativeReturnCode is null and IsSuccessful is false because the native method supplies no success flag; this does not report native failure.</returns>
+        /// <remarks>The main-source and native help identify global Y; use RotateRight for its opposite-direction counterpart. STAAD determines the screen convention and effect. No guessed clockwise/counterclockwise signs, camera vectors or equivalence to negating RotateRight are asserted. Unlike ShowFront/ShowPlan and other fixed orientations, this is relative to the current graphical view; successive calls accumulate and zero is still dispatched. This is a graphical request, not a transformation of analytical coordinates, structural local axes or analysis results. It does not select a different graphical window or show the application. Reuses the single View adapter and its common captured-binding service. Shared reviewed 2024/2025/2026 declarations and passive 2025/2026 automation metadata agree on void return and one VARIANT angle input. Invokes captured RawView exactly once on the caller&#x27;s established COM apartment under the adapter&#x27;s serialization gate, with disposal/replacement checks before and after dispatch. This gate does not coordinate other adapters, raw COM callers or external UI edits. Reacquire wrapper.View after refresh. Nonfinite inputs fail before any native call. Native exceptions propagate unchanged; a post-call exception may follow an actual graphical change. No automatic retry, fallback instance, rollback, background-thread dispatch, analysis, model launch or implicit save occurs. A receipt proves invocation completion only; repaint, visible effect, readiness, licensing, persistence and live native servicing-build compatibility require separate qualification.</remarks>
+        /// <exception cref="ArgumentOutOfRangeException">angle is NaN or positive/negative infinity; rejected before native dispatch.</exception>
+        /// <exception cref="InvalidOperationException">The wrapper is disposed or its captured View binding is replaced before or during dispatch; reacquire the adapter.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native graphical request failed; UI effects may precede the error. The original exception propagates without retry.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured automation object lacks RotateLeft with a compatible one-angle contract.</exception>
+        /// <example><code>
+        /// bool changeView = false; // Enable only when an incremental graphical change is intended.
+        /// if (changeView)
+        /// {
+        ///     double angle = 15.0; // Degrees; negative values are passed unchanged.
+        ///     var result = view.RotateLeft(angle);
+        ///     System.Console.WriteLine(result.NativeFunction + ": " + result.Status);
+        /// }
+        /// </code></example>
+        ViewOperationResult RotateLeft(double angle);
+
+        /// <summary>Requests an incremental graphical rotation about global Y through the native RotateRight direction.</summary>
+        /// <param name="angle">The finite signed rotation angle in degrees, preserving the main-source parameter name. Zero, negative values, negative zero and values beyond one revolution are passed unchanged. No radians conversion, clamping, normalization or rounding is performed.</param>
+        /// <returns>A ViewOperationResult identifying native RotateRight with InvokedWithoutAcknowledgement after normal native void completion and final binding checks. NativeReturnCode is null and IsSuccessful is false because the native method supplies no success flag; this does not report native failure.</returns>
+        /// <remarks>The main-source description identifies this as the opposite-direction counterpart of RotateLeft; the native help identifies global Y. STAAD determines the screen convention and effect. No guessed clockwise/counterclockwise signs, camera vectors or equivalence to negating RotateLeft are asserted. Unlike ShowFront/ShowPlan and other fixed orientations, this is relative to the current graphical view; successive calls accumulate and zero is still dispatched. This is a graphical request, not a transformation of analytical coordinates, structural local axes or analysis results. It does not select a different graphical window or show the application. Reuses the single View adapter and its common captured-binding service. Shared reviewed 2024/2025/2026 declarations and passive 2025/2026 automation metadata agree on void return and one VARIANT angle input. Invokes captured RawView exactly once on the caller&#x27;s established COM apartment under the adapter&#x27;s serialization gate, with disposal/replacement checks before and after dispatch. This gate does not coordinate other adapters, raw COM callers or external UI edits. Reacquire wrapper.View after refresh. Nonfinite inputs fail before any native call. Native exceptions propagate unchanged; a post-call exception may follow an actual graphical change. No automatic retry, fallback instance, rollback, background-thread dispatch, analysis, model launch or implicit save occurs. A receipt proves invocation completion only; repaint, visible effect, readiness, licensing, persistence and live native servicing-build compatibility require separate qualification.</remarks>
+        /// <exception cref="ArgumentOutOfRangeException">angle is NaN or positive/negative infinity; rejected before native dispatch.</exception>
+        /// <exception cref="InvalidOperationException">The wrapper is disposed or its captured View binding is replaced before or during dispatch; reacquire the adapter.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native graphical request failed; UI effects may precede the error. The original exception propagates without retry.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured automation object lacks RotateRight with a compatible one-angle contract.</exception>
+        /// <example><code>
+        /// bool changeView = false; // Enable only when an incremental graphical change is intended.
+        /// if (changeView)
+        /// {
+        ///     double angle = 15.0; // Degrees; negative values are passed unchanged.
+        ///     var result = view.RotateRight(angle);
+        ///     System.Console.WriteLine(result.NativeFunction + ": " + result.Status);
+        /// }
+        /// </code></example>
+        ViewOperationResult RotateRight(double angle);
+
+        /// <summary>Requests an incremental graphical rotation about global Z through the native SpinLeft direction.</summary>
+        /// <param name="angle">The finite signed rotation angle in degrees, preserving the main-source parameter name. Zero, negative values, negative zero and values beyond one revolution are passed unchanged. No radians conversion, clamping, normalization or rounding is performed.</param>
+        /// <returns>A ViewOperationResult identifying native SpinLeft with InvokedWithoutAcknowledgement after normal native void completion and final binding checks. NativeReturnCode is null and IsSuccessful is false because the native method supplies no success flag; this does not report native failure.</returns>
+        /// <remarks>The main-source and native help identify global Z; use SpinRight for its opposite-direction counterpart. STAAD determines the screen convention and effect. No guessed clockwise/counterclockwise signs, camera vectors or equivalence to negating SpinRight are asserted. Unlike ShowFront/ShowPlan and other fixed orientations, this is relative to the current graphical view; successive calls accumulate and zero is still dispatched. This is a graphical request, not a transformation of analytical coordinates, structural local axes or analysis results. It does not select a different graphical window or show the application. Reuses the single View adapter and its common captured-binding service. Shared reviewed 2024/2025/2026 declarations and passive 2025/2026 automation metadata agree on void return and one VARIANT angle input. Invokes captured RawView exactly once on the caller&#x27;s established COM apartment under the adapter&#x27;s serialization gate, with disposal/replacement checks before and after dispatch. This gate does not coordinate other adapters, raw COM callers or external UI edits. Reacquire wrapper.View after refresh. Nonfinite inputs fail before any native call. Native exceptions propagate unchanged; a post-call exception may follow an actual graphical change. No automatic retry, fallback instance, rollback, background-thread dispatch, analysis, model launch or implicit save occurs. A receipt proves invocation completion only; repaint, visible effect, readiness, licensing, persistence and live native servicing-build compatibility require separate qualification.</remarks>
+        /// <exception cref="ArgumentOutOfRangeException">angle is NaN or positive/negative infinity; rejected before native dispatch.</exception>
+        /// <exception cref="InvalidOperationException">The wrapper is disposed or its captured View binding is replaced before or during dispatch; reacquire the adapter.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native graphical request failed; UI effects may precede the error. The original exception propagates without retry.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured automation object lacks SpinLeft with a compatible one-angle contract.</exception>
+        /// <example><code>
+        /// bool changeView = false; // Enable only when an incremental graphical change is intended.
+        /// if (changeView)
+        /// {
+        ///     double angle = 15.0; // Degrees; negative values are passed unchanged.
+        ///     var result = view.SpinLeft(angle);
+        ///     System.Console.WriteLine(result.NativeFunction + ": " + result.Status);
+        /// }
+        /// </code></example>
+        ViewOperationResult SpinLeft(double angle);
+
+        /// <summary>Requests an incremental graphical rotation about global Z through the native SpinRight direction.</summary>
+        /// <param name="angle">The finite signed rotation angle in degrees, preserving the main-source parameter name. Zero, negative values, negative zero and values beyond one revolution are passed unchanged. No radians conversion, clamping, normalization or rounding is performed.</param>
+        /// <returns>A ViewOperationResult identifying native SpinRight with InvokedWithoutAcknowledgement after normal native void completion and final binding checks. NativeReturnCode is null and IsSuccessful is false because the native method supplies no success flag; this does not report native failure.</returns>
+        /// <remarks>The main-source description identifies this as the opposite-direction counterpart of SpinLeft; the native help identifies global Z. STAAD determines the screen convention and effect. No guessed clockwise/counterclockwise signs, camera vectors or equivalence to negating SpinLeft are asserted. Unlike ShowFront/ShowPlan and other fixed orientations, this is relative to the current graphical view; successive calls accumulate and zero is still dispatched. This is a graphical request, not a transformation of analytical coordinates, structural local axes or analysis results. It does not select a different graphical window or show the application. Reuses the single View adapter and its common captured-binding service. Shared reviewed 2024/2025/2026 declarations and passive 2025/2026 automation metadata agree on void return and one VARIANT angle input. Invokes captured RawView exactly once on the caller&#x27;s established COM apartment under the adapter&#x27;s serialization gate, with disposal/replacement checks before and after dispatch. This gate does not coordinate other adapters, raw COM callers or external UI edits. Reacquire wrapper.View after refresh. Nonfinite inputs fail before any native call. Native exceptions propagate unchanged; a post-call exception may follow an actual graphical change. No automatic retry, fallback instance, rollback, background-thread dispatch, analysis, model launch or implicit save occurs. A receipt proves invocation completion only; repaint, visible effect, readiness, licensing, persistence and live native servicing-build compatibility require separate qualification.</remarks>
+        /// <exception cref="ArgumentOutOfRangeException">angle is NaN or positive/negative infinity; rejected before native dispatch.</exception>
+        /// <exception cref="InvalidOperationException">The wrapper is disposed or its captured View binding is replaced before or during dispatch; reacquire the adapter.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native graphical request failed; UI effects may precede the error. The original exception propagates without retry.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured automation object lacks SpinRight with a compatible one-angle contract.</exception>
+        /// <example><code>
+        /// bool changeView = false; // Enable only when an incremental graphical change is intended.
+        /// if (changeView)
+        /// {
+        ///     double angle = 15.0; // Degrees; negative values are passed unchanged.
+        ///     var result = view.SpinRight(angle);
+        ///     System.Console.WriteLine(result.NativeFunction + ": " + result.Status);
+        /// }
+        /// </code></example>
+        ViewOperationResult SpinRight(double angle);
     }
 }

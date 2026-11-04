@@ -40,6 +40,18 @@ namespace PackageVerification
                 RotationAngles.Add((double)angleDegrees);
                 Record("RotateUp");
             }
+            public void RotateDown(object angle) => RecordAngle("RotateDown", angle);
+            public void RotateLeft(object angle) => RecordAngle("RotateLeft", angle);
+            public void RotateRight(object angle) => RecordAngle("RotateRight", angle);
+            public void SpinLeft(object angle) => RecordAngle("SpinLeft", angle);
+            public void SpinRight(object angle) => RecordAngle("SpinRight", angle);
+
+            private void RecordAngle(string operation, object angle)
+            {
+                if (!(angle is double)) throw new ArgumentException("Native rotation requires a boxed Double.", nameof(angle));
+                RotationAngles.Add((double)angle);
+                Record(operation);
+            }
             private void Record(string nativeFunction)
             { Calls.Add(nativeFunction); Threads.Add(Thread.CurrentThread.ManagedThreadId); OnCall?.Invoke(); }
         }

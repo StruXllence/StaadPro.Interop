@@ -1,5 +1,9 @@
 # NuGet readiness assessment
 
+**4 November 2026 checkpoint:** Ported `RotateDown(double angle)`, `RotateLeft(double angle)`, `RotateRight(double angle)`, `SpinLeft(double angle)` and `SpinRight(double angle)` from the main source. Preserved the original `angle` parameter name, type and order on both interfaces and the concrete adapter. View now exposes **13 of 70 main-source overloads** and reaches **13 of 67 reviewed native names**; **57 source overloads** and **54 native names** remain pending. See [rotation contracts](View-Incremental-Rotations.md).
+
+Passed **7,137 offline tests**, including **201 View cases** and **116 additional cases** in this increment. Installed-package verification compiles and executes **1,306 selected XML examples**, including all **26 View interface/adapter examples**, through a fresh PackageReference consumer. Live native COM/UI behavior remains separate qualification work.
+
 **Current checkpoint, 3 November 2026:** prepared 1.0.0-preview.20261103 with five main-source View ports: ShowRight, ShowPlan, ShowBottom, ShowIsometric and RotateUp. View reaches 8/70 source overloads and 8/67 native names. Passed 7,021 offline tests, including 85 View cases; the package verifier checks 1,296 XML examples. The source-only inventory has 155 active overloads pending after this increment. See [source-status details](reports/OpenSTAAD-Main-Source-Porting-Status.md). Live native COM/UI qualification remains separate. This new archive is prepared for manual upload.
 
 **Current distribution, 2 November 2026:** prepared 1.0.0-preview.20261102.1 with Apache-2.0 metadata, full license/NOTICE and the retained MIT-origin notice. API behavior is unchanged. The current implementation passed 6,964 offline tests; installed-package verification covers 1,286 XML examples. Public availability is not confirmed.
@@ -22,7 +26,7 @@ Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261027.2.nupkg` wit
 
 Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261027.1.nupkg` with the 35 Commands/Support/Design additions and adopted logo assets. This preview adds 35 managed methods: seventeen analysis-command methods, eight Support foundation/assignment operations and ten common Design brief/assignment/query methods. Commands reaches sixteen active native analysis routes, Support covers 27/35 documented native routes, and Design reaches five native names. The package retains 96 managed Output overloads covering 47/60 documented native names, the existing Root/Geometry/Load/Property APIs and the approved wrapper surface.
 
-The Release build passed with zero warnings/errors and 6,448 offline tests, including 412 new Commands/Support/Design cases. Exact-archive verification compiled and executed 1,222 selected XML examples through an isolated PackageReference consumer, including all 34 Commands, 54 Support and twenty Design examples. These checks validate managed behavior and packaging; live native COM and engineering qualification remain pending. Author: Srinivasa Rao Masanam. Company/publisher: TensorStruct. Copyright (c) 2026 TensorStruct.
+The Release build passed with zero warnings/errors and 6,448 offline tests, including 412 new Commands/Support/Design cases. Exact-archive verification compiled and executed 1,222 selected XML examples through an isolated PackageReference consumer, including all 34 Commands, 54 Support and twenty Design examples. These checks validate managed behavior and packaging; live native COM and engineering qualification remain pending. Author: Srinivasa Rao Masanam. Company/publisher: StruXllence. Copyright (c) 2026 StruXllence.
 
 Commands steel-catalog work, eight Support routes, extended GROUP/Chinese steel and thirteen Output routes remain pending. Parked Load work, nine Property gates and fifteen supplemental Property candidates retain their review/approval requirements. The separate API-usability branch is not merged.
 
@@ -41,7 +45,7 @@ Passed a Release build with zero warnings/errors and **6,036 offline tests**, in
 
 Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261026.4.nupkg` for the package owner's manual upload. This Windows/.NET Framework 4.8.1 preview includes **96 managed Output overloads reaching 47 native names**, **19 Support operations**, and the existing approved Root, Geometry, Load, Property and wrapper APIs. Thirteen documented Output routes and sixteen Support routes remain pending. The parked Load work, nine Property contract gates and fifteen supplemental Property candidates retain their separate review requirements.
 
-The Release build and **6,036 offline tests** passed. Verification of the exact release archive restored an isolated PackageReference consumer and compiled/executed **1,152 selected XML examples**, including all **192 Output examples**. Read-only native checks are limited to sampled 2026.0.0.340 corner results and hydration; broader COM/engineering qualification remains pending. Author is **Srinivasa Rao Masanam**, company is **TensorStruct**, and copyright is **Copyright (c) 2026 TensorStruct**.
+The Release build and **6,036 offline tests** passed. Verification of the exact release archive restored an isolated PackageReference consumer and compiled/executed **1,152 selected XML examples**, including all **192 Output examples**. Read-only native checks are limited to sampled 2026.0.0.340 corner results and hydration; broader COM/engineering qualification remains pending. Author is **Srinivasa Rao Masanam**, company is **StruXllence**, and copyright is **Copyright (c) 2026 StruXllence**.
 
 The package, source commit, SHA256 receipt and verification log are retained under `artifacts/release`. The user selected manual upload; this workspace has not submitted the package or verified public availability. Earlier archives are preserved.
 
@@ -49,7 +53,7 @@ The package, source commit, SHA256 receipt and verification log are retained und
 
 Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261026.3.nupkg` for Windows/.NET Framework 4.8.1. It includes all current source additions: **71 managed Output overloads reaching 46 documented native names** and **19 Support operations**, alongside the existing Root, Geometry, Load, Property and approved wrapper surface. Fourteen documented Output routes and sixteen Support routes remain pending; parked Property and Load work retains its separate approval requirements.
 
-The Release build passed with zero warnings/errors, and **5,788 offline tests** passed. Verification of this exact archive restored an isolated PackageReference consumer, compiled and executed **1,102 selected XML examples**, and checked package identity, publisher metadata, documentation and runtime dispatch against managed native-signature fixtures. These checks do not certify live COM or engineering accuracy. Author remains **Srinivasa Rao Masanam**, with company and copyright attributed to **TensorStruct**.
+The Release build passed with zero warnings/errors, and **5,788 offline tests** passed. Verification of this exact archive restored an isolated PackageReference consumer, compiled and executed **1,102 selected XML examples**, and checked package identity, publisher metadata, documentation and runtime dispatch against managed native-signature fixtures. These checks do not certify live COM or engineering accuracy. Author remains **Srinivasa Rao Masanam**, with company and copyright attributed to **StruXllence**.
 
 Build and verification evidence is recorded under `artifacts/release`. Earlier distribution archives remain unchanged. This preparation does not establish public availability of the new version.
 
@@ -66,7 +70,7 @@ Added **six common documented Output routes and 19 Support functions**, with ful
 
 Passed a Release build with zero warnings/errors and **5,523 offline tests**, including 170 new cases. A separate local CI archive verifies **1,052 selected XML examples** using managed native-signature fixtures. Live 2024–2026 COM and engineering qualification remain pending. The existing prepared distribution archive is unchanged.
 
-Only the local CI archive `1.0.0-preview.ci.2026102602` is built to validate this increment; it is not a distribution or publication. The latest prepared distribution remains 1.0.0-preview.20261026.1, recorded below. Custom IOSOutput/IOSSupport implementations must supply the new members. TensorStruct company/copyright and Srinivasa Rao Masanam authorship remain unchanged.
+Only the local CI archive `1.0.0-preview.ci.2026102602` is built to validate this increment; it is not a distribution or publication. The latest prepared distribution remains 1.0.0-preview.20261026.1, recorded below. Custom IOSOutput/IOSSupport implementations must supply the new members. StruXllence company/copyright and Srinivasa Rao Masanam authorship remain unchanged.
 
 ## Earlier prepared preview - 1.0.0-preview.20261026.1
 
@@ -80,7 +84,7 @@ See the [Property completion guide](Property-Profile-Names-and-Final-Cleanup.md)
 
 Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261026.1.nupkg` for manual upload. The release archive includes the current DLL/XML pair, README, release notes, updated installation/publishing instructions and domain usage guides. Its exact archive identity, installed company/copyright metadata and all 1,002 selected XML examples are verified through a fresh PackageReference-only consumer and package cache. The earlier CI archive remains a separate validation artifact. No public upload or registry ownership change is performed.
 
-Authors is **Srinivasa Rao Masanam**, assembly Company is **TensorStruct**, and package/assembly copyright is **Copyright (c) 2026 TensorStruct**. The metadata matches the 24 October release configuration and the preceding local validation archive. TensorStruct is the intended registry owner; actual NuGet.org ownership is managed separately from archive metadata. Previous release entries retain their historical attribution.
+Authors is **Srinivasa Rao Masanam**, assembly Company is **StruXllence**, and package/assembly copyright is **Copyright (c) 2026 StruXllence**. The metadata matches the 24 October release configuration and the preceding local validation archive. StruXllence is the intended registry owner; actual NuGet.org ownership is managed separately from archive metadata. Previous release entries retain their historical attribution.
 
 Before a public release, revisit the nine documented Property gates and fifteen supplemental candidates with the user, retain the separately parked Load approval boundary, and review native qualification claims. The new Output and Property interface members require custom interface implementations to be updated.
 

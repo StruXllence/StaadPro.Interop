@@ -1,5 +1,9 @@
 # StaadPro.Interop API Reference
 
+**4 November 2026 checkpoint:** Ported `RotateDown(double angle)`, `RotateLeft(double angle)`, `RotateRight(double angle)`, `SpinLeft(double angle)` and `SpinRight(double angle)` from the main source. Preserved the original `angle` parameter name, type and order on both interfaces and the concrete adapter. View now exposes **13 of 70 main-source overloads** and reaches **13 of 67 reviewed native names**; **57 source overloads** and **54 native names** remain pending. See [rotation contracts](View-Incremental-Rotations.md).
+
+Passed **7,137 offline tests**, including **201 View cases** and **116 additional cases** in this increment. Installed-package verification compiles and executes **1,306 selected XML examples**, including all **26 View interface/adapter examples**, through a fresh PackageReference consumer. Live native COM/UI behavior remains separate qualification work.
+
 **Design checkpoint, 27 October 2026:** ten common methods reach five native names. See [the complete Design contract guide](Design-Porting.md). Current source validation passed 6,448 offline tests and all 70 new Commands/Support/Design XML examples. These additions are included in preview 1.0.0-preview.20261027.1.
 
 **Commands/Support checkpoint:** IOSCommands now exposes 17 analysis-command methods and IOSSupport covers 27/35 native routes. See [the 25 new contracts](Commands-and-Support-Porting.md). These configure model commands or explicit support mutations; Commands calls do not execute the solver.

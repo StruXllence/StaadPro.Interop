@@ -13,7 +13,7 @@
     "mainPublicAdapterOverloads": 70,
     "mainPrivateAdapterMethods": 0,
     "mainDistinctNativeTargets": 66,
-    "currentTypedDomainMethods": 8,
+    "currentTypedDomainMethods": 13,
     "missingMainNativeTargets": [
       "SetModeSectionPage"
     ],
@@ -27,9 +27,9 @@
       "GetScaleCount"
     ],
     "exampleChanges2024To2025": 24,
-    "currentTypedNativeNames": 8,
-    "remainingMainInterfaceOverloads": 62,
-    "remainingNativeNames": 59
+    "currentTypedNativeNames": 13,
+    "remainingMainInterfaceOverloads": 57,
+    "remainingNativeNames": 54
   },
   "functions": [
     {
@@ -588,7 +588,7 @@
     {
       "name": "RotateDown",
       "phase": "V2",
-      "currentTyped": "pending",
+      "currentTyped": "implemented",
       "excludedFromNewApi": false,
       "managedProposal": "ViewOperationResult RotateDown; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.",
       "versions": {
@@ -694,12 +694,13 @@
             "angle"
           ]
         }
-      ]
+      ],
+      "managedSignature": "ViewOperationResult RotateDown(double angle)"
     },
     {
       "name": "RotateLeft",
       "phase": "V2",
-      "currentTyped": "pending",
+      "currentTyped": "implemented",
       "excludedFromNewApi": false,
       "managedProposal": "ViewOperationResult RotateLeft; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.",
       "versions": {
@@ -805,12 +806,13 @@
             "angle"
           ]
         }
-      ]
+      ],
+      "managedSignature": "ViewOperationResult RotateLeft(double angle)"
     },
     {
       "name": "RotateRight",
       "phase": "V2",
-      "currentTyped": "pending",
+      "currentTyped": "implemented",
       "excludedFromNewApi": false,
       "managedProposal": "ViewOperationResult RotateRight; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.",
       "versions": {
@@ -916,12 +918,13 @@
             "angle"
           ]
         }
-      ]
+      ],
+      "managedSignature": "ViewOperationResult RotateRight(double angle)"
     },
     {
       "name": "SpinLeft",
       "phase": "V2",
-      "currentTyped": "pending",
+      "currentTyped": "implemented",
       "excludedFromNewApi": false,
       "managedProposal": "ViewOperationResult SpinLeft; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.",
       "versions": {
@@ -1027,12 +1030,13 @@
             "angle"
           ]
         }
-      ]
+      ],
+      "managedSignature": "ViewOperationResult SpinLeft(double angle)"
     },
     {
       "name": "SpinRight",
       "phase": "V2",
-      "currentTyped": "pending",
+      "currentTyped": "implemented",
       "excludedFromNewApi": false,
       "managedProposal": "ViewOperationResult SpinRight; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.",
       "versions": {
@@ -1138,7 +1142,8 @@
             "angle"
           ]
         }
-      ]
+      ],
+      "managedSignature": "ViewOperationResult SpinRight(double angle)"
     },
     {
       "name": "ZoomAll",
@@ -17481,17 +17486,12 @@
     }
   ],
   "implementationUpdate": {
-    "date": "2026-11-03",
-    "managedMethods": 8,
-    "nativeMappings": 8,
-    "referenceOverloadsPorted": 8,
-    "pendingReferenceOverloads": 62,
+    "date": "2026-11-04",
+    "managedMethods": 13,
+    "nativeMappings": 13,
+    "referenceOverloadsPorted": 13,
+    "pendingReferenceOverloads": 57,
     "pendingNativeNames": [
-      "RotateDown",
-      "RotateLeft",
-      "RotateRight",
-      "SpinLeft",
-      "SpinRight",
       "ZoomAll",
       "CreateNewViewForSelections",
       "SetLabel",
@@ -17548,14 +17548,14 @@
       "SetDesignResults"
     ],
     "sourceMainReadOnly": true,
-    "guide": "docs/View-Orientations.md",
+    "guide": "docs/View-Incremental-Rotations.md",
     "nativeRuntimeValidation": false,
     "validation": {
-      "offlineTestsPassed": 7021,
-      "viewTestsPassed": 85,
-      "newCases": 57,
-      "packagedXmlExamplesSelected": 1296,
-      "viewXmlExamples": 16,
+      "offlineTestsPassed": 7137,
+      "viewTestsPassed": 201,
+      "newCases": 116,
+      "packagedXmlExamplesSelected": 1306,
+      "viewXmlExamples": 26,
       "nativeRuntimeValidation": false
     }
   },
@@ -17728,6 +17728,85 @@
         "newCases": 20,
         "packagedXmlExamples": 1286,
         "viewXmlExamples": 6,
+        "nativeRuntimeValidation": false
+      }
+    },
+    {
+      "date": "2026-11-03",
+      "managedMethods": 8,
+      "nativeMappings": 8,
+      "referenceOverloadsPorted": 8,
+      "pendingReferenceOverloads": 62,
+      "pendingNativeNames": [
+        "RotateDown",
+        "RotateLeft",
+        "RotateRight",
+        "SpinLeft",
+        "SpinRight",
+        "ZoomAll",
+        "CreateNewViewForSelections",
+        "SetLabel",
+        "SetSectionView",
+        "SetDiagramMode",
+        "RefreshView",
+        "SetNodeAnnotationMode",
+        "SetReactionAnnotationMode",
+        "GetInterfaceMode",
+        "SetInterfaceMode",
+        "SetModeSectionPage",
+        "SetBeamAnnotationMode",
+        "ShowAllMembers",
+        "HideAllMembers",
+        "SetUnits",
+        "ShowMembers",
+        "HideMembers",
+        "ShowMember",
+        "HideMember",
+        "HidePlate",
+        "HideSolid",
+        "HideSurface",
+        "HideEntity",
+        "ZoomExtentsMainView",
+        "SelectMembersParallelTo",
+        "SelectGroup",
+        "SelectInverse",
+        "SelectByItemList",
+        "SelectByMissingAttribute",
+        "SelectEntitiesConnectedToNode",
+        "SelectEntitiesConnectedToMember",
+        "SelectEntitiesConnectedToPlate",
+        "SelectEntitiesConnectedToSolid",
+        "GetNoOfBeamsInView",
+        "GetBeamsInView",
+        "CreateNewViewForSelectionsEx",
+        "ExportView",
+        "CopyPicture",
+        "SetWindowPosition",
+        "GetApplicationDesktopSize",
+        "GetScaleValues",
+        "SetScaleValues",
+        "GetScaleValueByType",
+        "SetScaleValueByType",
+        "GetScaleCount",
+        "DetachView",
+        "RenameView",
+        "OpenView",
+        "SaveView",
+        "GetWindowTitle",
+        "GetWindowCount",
+        "CloseActiveWindow",
+        "SetActiveWindow",
+        "SetDesignResults"
+      ],
+      "sourceMainReadOnly": true,
+      "guide": "docs/View-Orientations.md",
+      "nativeRuntimeValidation": false,
+      "validation": {
+        "offlineTestsPassed": 7021,
+        "viewTestsPassed": 85,
+        "newCases": 57,
+        "packagedXmlExamplesSelected": 1296,
+        "viewXmlExamples": 16,
         "nativeRuntimeValidation": false
       }
     }

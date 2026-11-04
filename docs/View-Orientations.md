@@ -1,6 +1,6 @@
 # View orientations and incremental rotation
 
-The View adapter exposes seven standard orientation requests and one incremental rotation adapted from the read-only main source: ShowFront, ShowBack, ShowLeft, ShowRight, ShowPlan, ShowBottom, ShowIsometric and RotateUp. Each targets the captured native View interface of the acquired OpenStaadWrapper. The common contract is the same in the reviewed STAAD.Pro 2024, 2025 and 2026 manuals; passive 2025/2026 automation metadata also declares void methods, with a by-value Object input for RotateUp. No separate per-year service is needed for these matching contracts.
+The View adapter exposes seven standard orientation requests and six incremental rotations/spins adapted from the read-only main source: ShowFront, ShowBack, ShowLeft, ShowRight, ShowPlan, ShowBottom, ShowIsometric, RotateUp, RotateDown, RotateLeft, RotateRight, SpinLeft and SpinRight. Each targets the captured native View interface of the acquired OpenStaadWrapper. The common contract is the same in the reviewed STAAD.Pro 2024, 2025 and 2026 manuals; passive 2025/2026 automation metadata also declares void methods, with a by-value Object angle input for the incremental requests. No separate per-year service is needed for these matching contracts.
 
 ## Choose the graphical direction
 
@@ -14,8 +14,13 @@ The View adapter exposes seven standard orientation requests and one incremental
 | ShowBottom() | ShowBottom() | Request the bottom view, rather than the top (plan) view. |
 | ShowIsometric() | ShowIsometric() | Request the native isometric view, rather than a plan view. |
 | RotateUp(angleDegrees) | RotateUp(angleDegrees) | Incrementally rotate the current graphical view about global X. |
+| RotateDown(angle) | RotateDown(angle) | Incrementally rotate about global X through the named native direction. |
+| RotateLeft(angle) | RotateLeft(angle) | Incrementally rotate about global Y through the named native direction. |
+| RotateRight(angle) | RotateRight(angle) | Incrementally rotate about global Y through the named native direction. |
+| SpinLeft(angle) | SpinLeft(angle) | Incrementally rotate about global Z through the named native direction. |
+| SpinRight(angle) | SpinRight(angle) | Incrementally rotate about global Z through the named native direction. |
 
-All eight return ViewOperationResult. STAAD defines these graphical directions; the wrapper does not assign a guessed global-axis sign. These functions do not rotate model coordinates, alter member or plate local axes, extract geometry, run analysis, save a model, open another model, select another window or show a hidden STAAD application. Use Root's application-window functions for the application window itself.
+All thirteen return ViewOperationResult. STAAD defines these graphical directions; the wrapper does not assign a guessed global-axis sign. These functions do not rotate model coordinates, alter member or plate local axes, extract geometry, run analysis, save a model, open another model, select another window or show a hidden STAAD application. Use Root's application-window functions for the application window itself.
 
 ## Understand the completion receipt
 
@@ -27,6 +32,10 @@ All eight return ViewOperationResult. STAAD defines these graphical directions; 
 | IsSuccessful | false because there is no native success acknowledgement. This is not a failure flag. |
 
 A normal receipt records dispatch completion. It does not verify the orientation on screen, native graphical readiness, repaint completion or persisted view settings. A native exception is propagated rather than converted into a successful result.
+
+## Further incremental rotations
+
+Ported `RotateDown(double angle)`, `RotateLeft(double angle)`, `RotateRight(double angle)`, `SpinLeft(double angle)` and `SpinRight(double angle)` from the main source. Preserved the original `angle` parameter name, type and order on both interfaces and the concrete adapter. View now exposes **13 of 70 main-source overloads** and reaches **13 of 67 reviewed native names**; **57 source overloads** and **54 native names** remain pending. See [the complete five-method contracts](View-Incremental-Rotations.md).
 
 ## Rotation input and behavior
 
@@ -75,9 +84,9 @@ Reacquire wrapper.View after wrapper refresh. Calls through a stale or disposed 
 
 ## Coverage and verification
 
-View provides **8 of 70 main-source overloads**, reaching **8 of 67 reviewed native names**. There are **62 main-source overloads** and **59 native names** still pending. Main-source ports precede native-only expansion. This increment does not authorize the parked Load or Property work.
+View provides **13 of 70 main-source overloads**, reaching **13 of 67 reviewed native names**. There are **57 main-source overloads** and **54 native names** still pending. Main-source ports precede native-only expansion. This increment does not authorize the parked Load or Property work.
 
-Regression coverage checks exact native names and captured targets, 2024/2025/2026 fixture profiles, caller-thread identity, unacknowledged receipts, stale/disposed/replaced bindings, post-call lifetime failures, unchanged native exceptions, missing methods and absence of retries. Rotation cases additionally verify finite signed Double transport, zero/negative-zero preservation, nonfinite rejection and repeated-request behavior. Interface and adapter XML entries match and all sixteen View XML examples are checked through an isolated installed-package consumer. No real native view or model is changed by these managed tests.
+Regression coverage checks exact native names and captured targets, 2024/2025/2026 fixture profiles, caller-thread identity, unacknowledged receipts, stale/disposed/replaced bindings, post-call lifetime failures, unchanged native exceptions, missing methods and absence of retries. Rotation cases additionally verify finite signed Double transport, zero/negative-zero preservation, nonfinite rejection and repeated-request behavior. Interface and adapter XML entries match and all twenty-six View XML examples are checked through an isolated installed-package consumer. No real native view or model is changed by these managed tests.
 
 The [source porting status](reports/OpenSTAAD-Main-Source-Porting-Status.md) records 160 active source overloads pending before this increment and 155 afterwards, across all reviewed domains. Native-only expansion and excluded obsolete signatures are counted separately.
 

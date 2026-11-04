@@ -24,7 +24,7 @@ A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD. Work wi
 
 Runtime requires **Windows, .NET Framework 4.8.1 (net481), and a licensed STAAD.Pro installation** exposing the APIs used by your application. The .NET SDK used to build the project is separate from the application's target framework.
 
-The latest locally prepared preview is **1.0.0-preview.20261103**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
+The latest locally prepared preview is **1.0.0-preview.20261104**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
 
 ## Quick start: read an open model
 
@@ -70,11 +70,11 @@ This attaches to an existing instance and reads primary load-case metadata. It d
 
 ## View orientations
 
-Use `wrapper.View.ShowFront()`, `ShowBack()`, `ShowLeft()`, `ShowRight()`, `ShowPlan()`, `ShowBottom()` or `ShowIsometric()` for a standard graphical direction. Use `RotateUp(angleDegrees)` for incremental rotation about global X in finite signed degrees. Each returns a named unacknowledged completion receipt; no model-coordinate change, analysis or implicit save occurs. See [the View guide](docs/View-Orientations.md). View currently exposes 8/70 main-source overloads. Across the reviewed domain interfaces, **155 active source overloads remain** after this increment; see [the reconciled count](docs/reports/OpenSTAAD-Main-Source-Porting-Status.md) and [roadmap](ROADMAP.md).
+Use `ShowFront()`, `ShowBack()`, `ShowLeft()`, `ShowRight()`, `ShowPlan()`, `ShowBottom()` or `ShowIsometric()` for a fixed direction. Use `RotateUp(angleDegrees)`, `RotateDown(angle)`, `RotateLeft(angle)`, `RotateRight(angle)`, `SpinLeft(angle)` or `SpinRight(angle)` for finite signed-degree increments about their documented global axes. Each returns a named unacknowledged completion receipt. See [orientation usage](docs/View-Orientations.md) and [incremental rotations](docs/View-Incremental-Rotations.md). View exposes 13/70 main-source overloads; **150 active source overloads remain** across the reviewed domains. See [the source inventory](docs/reports/OpenSTAAD-Main-Source-Porting-Status.md).
 
 ## Compatibility and preview status
 
-The current implementation passed **7,021 offline tests**; the installed-package verifier checks **1,296 XML examples**, including sixteen View examples. These checks validate managed behavior and distribution, not every native STAAD build, COM response or engineering-unit convention. Consult method-specific version, result-state, unit and side-effect contracts before using results in an engineering workflow.
+The current implementation passed **7,137 offline tests**; the installed-package verifier checks **1,306 XML examples**, including twenty-six View examples. These checks validate managed behavior and distribution, not every native STAAD build, COM response or engineering-unit convention. Consult method-specific version, result-state, unit and side-effect contracts before using results in an engineering workflow.
 
 The package remains a preview. [Release notes](docs/Release-Notes.md) identify the API scope, and [NuGet readiness](docs/NuGet-Readiness.md) records validation limits. Earlier public packages retain the license terms shipped with them.
 

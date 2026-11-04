@@ -15,15 +15,17 @@ function Read-PackageEntry([string] $name) {
 
 try {
     # Inspect text and both common assembly string encodings in every shipped entry.
-    $legacyPublisher = 'Ingene' + 'Structs'
+    $legacyPublishers = @(('Ingene' + 'Structs'), ('Tensor' + 'Struct'))
     foreach ($entry in $archive.Entries) {
         $stream = $entry.Open()
         $memory = [IO.MemoryStream]::new()
         try { $stream.CopyTo($memory); $bytes = $memory.ToArray() }
         finally { $stream.Dispose(); $memory.Dispose() }
         foreach ($encoding in @([Text.Encoding]::UTF8, [Text.Encoding]::Unicode, [Text.Encoding]::BigEndianUnicode)) {
-            if ($encoding.GetString($bytes).IndexOf($legacyPublisher, [StringComparison]::OrdinalIgnoreCase) -ge 0) {
-                throw "Legacy publisher branding remains in $($entry.FullName)."
+            foreach ($legacyPublisher in $legacyPublishers) {
+                if ($encoding.GetString($bytes).IndexOf($legacyPublisher, [StringComparison]::OrdinalIgnoreCase) -ge 0) {
+                    throw "Legacy publisher branding remains in $($entry.FullName)."
+                }
             }
         }
     }
@@ -350,13 +352,14 @@ try {
     if ($tableSnippets.Count -ne 58) { throw 'Expected fifty-eight Table XML examples.' }
     $viewSnippets = @()
     $viewGuide = Read-PackageEntry 'docs/View-Orientations.md'
+    $viewGuide += Read-PackageEntry 'docs/View-Incremental-Rotations.md'
     $sourcePortingGuide = Read-PackageEntry 'docs/reports/OpenSTAAD-Main-Source-Porting-Status.md'
     $sourcePortingStatus = (Read-PackageEntry 'docs/reports/data/OpenSTAAD-Main-Source-Porting-Status.json') | ConvertFrom-Json
-    if ($sourcePortingStatus.pendingBefore -ne 160 -or $sourcePortingStatus.pendingAfter -ne 155 -or $sourcePortingStatus.portedThisIncrement -ne 5 -or $sourcePortingGuide -notmatch '155') { throw 'Inconsistent packaged source-porting inventory.' }
+    if ($sourcePortingStatus.pendingBefore -ne 155 -or $sourcePortingStatus.pendingAfter -ne 150 -or $sourcePortingStatus.portedThisIncrement -ne 5 -or $sourcePortingGuide -notmatch '150') { throw 'Inconsistent packaged source-porting inventory.' }
     foreach ($owner in @('Adapters.Interfaces.IOSView', 'Adapters.Models.OSViewAdapter')) {
         $entries = @($xml.doc.members.member | Where-Object { $_.name.StartsWith("M:StaadPro.Interop.$owner.") -and $_.name -notmatch '\.#ctor' })
-        if ($entries.Count -ne 8) { throw 'Expected eight documented View functions.' }
-        foreach ($function in @('ShowFront','ShowBack','ShowLeft','ShowRight','ShowPlan','ShowBottom','ShowIsometric','RotateUp')) {
+        if ($entries.Count -ne 13) { throw 'Expected thirteen documented View functions.' }
+        foreach ($function in @('ShowFront','ShowBack','ShowLeft','ShowRight','ShowPlan','ShowBottom','ShowIsometric','RotateUp','RotateDown','RotateLeft','RotateRight','SpinLeft','SpinRight')) {
             if ($viewGuide -notmatch $function) { throw "Missing View guidance for $function." }
         }
         foreach ($entry in $entries) {
@@ -367,7 +370,7 @@ try {
             $viewSnippets += 'using (var wrapper = new OpenStaadWrapper(new PackageVerification.ViewFoundationFixture.Root { View = new PackageVerification.ViewFoundationFixture.Native() })) {' + $newLine + $binding + $newLine + $entry.SelectSingleNode('example/code').InnerText + $newLine + '}'
         }
     }
-    if ($viewSnippets.Count -ne 16) { throw 'Expected sixteen View XML examples.' }
+    if ($viewSnippets.Count -ne 26) { throw 'Expected twenty-six View XML examples.' }
     $designGuide = Read-PackageEntry 'docs/Design-Porting.md'
     $designSnippets = @()
     foreach ($owner in @('Adapters.Interfaces.IOSDesign', 'Adapters.Models.OSDesignAdapter')) {
@@ -835,6 +838,21 @@ public static class Program
             Check(viewNative.RotationAngles.SequenceEqual(new[] { -15.25 }), "Native signed Double degrees");
             Check(viewNative.Threads.All(thread => thread == System.Threading.Thread.CurrentThread.ManagedThreadId), "View caller apartment dispatch");
             Check(viewNative.Calls.SequenceEqual(new[] { "ShowFront", "ShowBack", "ShowLeft", "ShowRight", "ShowPlan", "ShowBottom", "ShowIsometric", "RotateUp" }), "Captured View requests");
+            var rotations = new[] {
+                wrapper.View.RotateDown(-15.25), wrapper.View.RotateLeft(0.0), wrapper.View.RotateRight(720.0),
+                wrapper.View.SpinLeft(-720.0), wrapper.View.SpinRight(-0.0) };
+            Check(rotations.Select(result => result.NativeFunction).SequenceEqual(new[] { "RotateDown", "RotateLeft", "RotateRight", "SpinLeft", "SpinRight" }), "Five incremental native routes");
+            Check(rotations.All(result => result.Status == ViewOperationStatus.InvokedWithoutAcknowledgement && !result.IsSuccessful && result.NativeReturnCode == null), "Incremental void receipts");
+            Check(viewNative.RotationAngles.SequenceEqual(new[] { -15.25, -15.25, 0.0, 720.0, -720.0, -0.0 }), "Unchanged angular degree transport");
+            Check(viewNative.Threads.All(thread => thread == System.Threading.Thread.CurrentThread.ManagedThreadId), "Incremental caller thread");
+            foreach (string name in new[] { "RotateDown", "RotateLeft", "RotateRight", "SpinLeft", "SpinRight" }) {
+                int before = viewNative.Calls.Count;
+                var method = typeof(IOSView).GetMethod(name);
+                Check(method.GetParameters()[0].Name == "angle", "Preserved main-source angle parameter");
+                try { method.Invoke(wrapper.View, new object[] { double.PositiveInfinity }); throw new Exception("Nonfinite rotation was accepted."); }
+                catch (System.Reflection.TargetInvocationException error) { Check(error.InnerException is ArgumentOutOfRangeException && ((ArgumentOutOfRangeException)error.InnerException).ParamName == "angle", "Nonfinite angle failure"); }
+                Check(viewNative.Calls.Count == before, "Nonfinite angle must not dispatch");
+            }
             int callsBeforeInvalidAngle = viewNative.Calls.Count;
             try { wrapper.View.RotateUp(double.NaN); throw new Exception("Nonfinite angle was accepted."); }
             catch (ArgumentOutOfRangeException error) { Check(error.ParamName == "angleDegrees", "Native angle argument name"); }

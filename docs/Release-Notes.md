@@ -1,5 +1,13 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261104 - 4 November 2026 (prepared preview)
+
+Ported `RotateDown(double angle)`, `RotateLeft(double angle)`, `RotateRight(double angle)`, `SpinLeft(double angle)` and `SpinRight(double angle)` from the main source. Preserved the original `angle` parameter name, type and order on both interfaces and the concrete adapter. View now exposes **13 of 70 main-source overloads** and reaches **13 of 67 reviewed native names**; **57 source overloads** and **54 native names** remain pending.
+
+All five accept finite signed degrees unchanged, including zero, negative zero and values beyond one revolution. Global X applies to RotateDown, global Y to RotateLeft/RotateRight and global Z to SpinLeft/SpinRight. STAAD defines the screen convention; no guessed clockwise sign or negative-angle equivalence is supplied. Every request uses the captured View receiver and existing adapter gate on the caller thread, preserves native exceptions and returns the established unacknowledged void-completion receipt.
+
+Passed **7,137 offline tests**, including **201 View cases** and **116 additional cases** in this increment. Installed-package verification compiles and executes **1,306 selected XML examples**, including all **26 View interface/adapter examples**, through a fresh PackageReference consumer. Live native COM/UI behavior remains separate qualification work. See [complete contracts](View-Incremental-Rotations.md) and [source-status details](reports/OpenSTAAD-Main-Source-Porting-Status.md).
+
 ## 1.0.0-preview.20261103 - 3 November 2026 (prepared preview)
 
 Ported five main-source View functions: ShowRight, ShowPlan, ShowBottom, ShowIsometric and RotateUp. Both IOSView and the single non-partial OSViewAdapter include complete matching XML IntelliSense, comparative usage, exceptions and guarded examples. Existing named results and the common captured-binding service are reused.
@@ -36,7 +44,7 @@ Ported nine remaining main-project Table overloads: five SetCellTextColor forms 
 
 Reused existing color types, Table result/status types and validation. Ported source alignment code maps as Table-prefixed enums, isolated pure color conversion and View dispatch internally, and added matching comprehensive XML documentation. Preserved ignored-alpha and finite HSL clamping semantics; restricted malformed-color black fallback to parsing so native exceptions never cause another write. Documented void completion, one-based coordinates, native context and qualification limits.
 
-Retained the compact Markdown banner, both original logos, independence/trademark notices, Srinivasa Rao Masanam author and TensorStruct publisher/copyright. The package targets .NET Framework 4.8.1 on Windows. No live COM, UI effect, storage or engineering certification is implied by managed tests.
+Retained the compact Markdown banner, both original logos, independence/trademark notices, Srinivasa Rao Masanam author and StruXllence publisher/copyright. The package targets .NET Framework 4.8.1 on Windows. No live COM, UI effect, storage or engineering certification is implied by managed tests.
 
 Passed **6,944 offline tests**, including **496 Table/View cases** (164 additional cases in this increment), and **1,282 installed-package XML examples**, including all 58 Table examples and two View examples. Managed fixture workflows cover the current Table routes and ShowFront; live native COM/UI/storage qualification remains separate.
 
@@ -48,7 +56,7 @@ Ported ten further existing main-project Table functions: DeleteReport, DeleteTa
 
 Reused the existing Table result/status types and common internal service. Added matching comparative XML documentation, positive identity/dimension checks, one-based cell coordinates, finite positive native font sizes, exact rename text, scoped save receipts and explicit unacknowledged void completion. Kept native exception and captured-binding behavior, with no implicit save, rollback or success claim. The documented resize contract supports growth; shrink behavior and storage persistence are not inferred.
 
-Retained the verified 400-pixel Markdown banner, original logos, independence/trademark notices, Srinivasa Rao Masanam author and TensorStruct publisher/copyright. The package targets .NET Framework 4.8.1 on Windows. Live COM, native report UI/storage and engineering qualification remain separate acceptance work.
+Retained the verified 400-pixel Markdown banner, original logos, independence/trademark notices, Srinivasa Rao Masanam author and StruXllence publisher/copyright. The package targets .NET Framework 4.8.1 on Windows. Live COM, native report UI/storage and engineering qualification remain separate acceptance work.
 
 Passed **6,780 offline tests**, including **332 Table cases** (145 additional cases in this increment). Compiled and executed **1,262 installed-package XML examples**, including **forty Table examples**, and exercised the lifecycle/formatting workflow against a managed native-signature fixture.
 
@@ -60,7 +68,7 @@ Corrected the NuGet README banner to use supported Markdown image syntax and a 4
 
 Ported ten existing main-project Table functions: CreateReport, AddTable, GetReportCount, GetTableCount, GetCellValue, SetCellValue, SetColumnHeader, SetColumnUnitString, SetRowHeader and SaveReport. Added matching interface/adapter XML documentation, named creation/mutation receipts and managed regression tests. Corrected the reference XML coordinate convention to the documented native one-based rows and columns. Kept counts and cell strings directly usable and distinguished explicit empty native cell text from untouched output.
 
-Added independence and trademark notices to the repository, NuGet README and packaged NOTICE.md. Preserved the TensorStruct publisher identity, Srinivasa Rao Masanam author, original branding assets and compact README banner. The common Table service reuses strict native readers and retains caller-thread, captured-binding and original-exception behavior. Live native COM and report-storage qualification remain pending.
+Added independence and trademark notices to the repository, NuGet README and packaged NOTICE.md. Preserved the StruXllence publisher identity, Srinivasa Rao Masanam author, original branding assets and compact README banner. The common Table service reuses strict native readers and retains caller-thread, captured-binding and original-exception behavior. Live native COM and report-storage qualification remain pending.
 
 Passed **6,635 offline tests**, including **187 Table cases**. Compiled and executed **1,242 installed-package XML examples**, including all twenty Table examples, plus an isolated Table write/read/save workflow against the exact archive. These checks do not certify live STAAD.Pro behavior or report storage.
 
@@ -70,7 +78,7 @@ Prepared the package for manual upload; NuGet.org publication is not confirmed. 
 
 Reduced the logo-with-text banner in the repository and NuGet READMEs to **400 pixels wide**, retaining its original aspect ratio and automatic height (approximately 133 pixels). Preserved both supplied PNG assets and the embedded symbol-only package icon. Updated branding guidance and package verification to retain the compact banner sizing.
 
-Retained the managed APIs and runtime contracts from 1.0.0-preview.20261027.1. Verified the new archive metadata, assets and **1,222 selected XML examples** through an isolated installed-package consumer. Reran and passed all **6,448 offline tests** for this build; live COM and engineering qualification remain pending. Author: Srinivasa Rao Masanam. Company/publisher: TensorStruct. Copyright (c) 2026 TensorStruct.
+Retained the managed APIs and runtime contracts from 1.0.0-preview.20261027.1. Verified the new archive metadata, assets and **1,222 selected XML examples** through an isolated installed-package consumer. Reran and passed all **6,448 offline tests** for this build; live COM and engineering qualification remain pending. Author: Srinivasa Rao Masanam. Company/publisher: StruXllence. Copyright (c) 2026 StruXllence.
 
 Prepared the archive for manual NuGet.org upload; public availability has not been confirmed. Earlier archives are preserved.
 
@@ -80,7 +88,7 @@ This preview adds 35 managed methods: seventeen analysis-command methods, eight 
 
 Added complete comparative XML documentation, source-compatible analysis options/design-code vocabulary, immutable Design requests and explicit native acknowledgements. Preserved stable assignment ordering, identified partial completion, caller-thread dispatch, binding checks and original native exceptions. Copied Design parameter rows from privately owned native holders using explicit indexed-property reads.
 
-Adopted the supplied symbol-only PNG as the embedded NuGet icon and the logo with text as the repository/NuGet README banner. Included both original assets and branding guidance. Author: Srinivasa Rao Masanam. Publisher/company: TensorStruct. Copyright (c) 2026 TensorStruct.
+Adopted the supplied symbol-only PNG as the embedded NuGet icon and the logo with text as the repository/NuGet README banner. Included both original assets and branding guidance. Author: Srinivasa Rao Masanam. Publisher/company: StruXllence. Copyright (c) 2026 StruXllence.
 
 The Release build passed with zero warnings/errors and 6,448 offline tests, including 412 new Commands/Support/Design cases. Exact-archive verification compiled and executed 1,222 selected XML examples through an isolated PackageReference consumer, including all 34 Commands, 54 Support and twenty Design examples. These checks validate managed behavior and packaging; live native COM and engineering qualification remain pending.
 
@@ -94,7 +102,7 @@ Added **25 Output overloads** for plate-corner extraction, indexed sparse/Cartes
 
 Added owned family-aware keys, request snapshots and indexed outcomes, with explicit failure data access and managed member-coordinate results. Ported the source Boolean/out-vector convenience as a named result. Kept global corner forces distinct from plate-center stresses and member-local projections.
 
-Passed a Release build with zero warnings/errors and **6,036 offline tests**, including **248 new corner cases**. Isolated package verification covers **1,152 selected XML examples**, including all 192 Output examples. Read-only native checks support the global force/moment contract on sampled STAAD.Pro 2026.0.0.340 observations; broader native/engineering qualification remains pending. Prepared the 1.0.0-preview.20261026.4 distribution archive for manual NuGet.org upload. Exact-archive verification covers its metadata, documentation and isolated installation/runtime. Earlier distribution archives remain unchanged; public availability of this version is not yet confirmed. Publisher metadata remains TensorStruct, with Srinivasa Rao Masanam as author.
+Passed a Release build with zero warnings/errors and **6,036 offline tests**, including **248 new corner cases**. Isolated package verification covers **1,152 selected XML examples**, including all 192 Output examples. Read-only native checks support the global force/moment contract on sampled STAAD.Pro 2026.0.0.340 observations; broader native/engineering qualification remains pending. Prepared the 1.0.0-preview.20261026.4 distribution archive for manual NuGet.org upload. Exact-archive verification covers its metadata, documentation and isolated installation/runtime. Earlier distribution archives remain unchanged; public availability of this version is not yet confirmed. Publisher metadata remains StruXllence, with Srinivasa Rao Masanam as author.
 
 ## 1.0.0-preview.20261026.3 - 26 October 2026 (prepared preview)
 
@@ -104,7 +112,7 @@ Added **25 managed Output overloads**: 23 synchronous main-project workflow adap
 
 Added governing-case resolution, per-item batch outcomes, staged caller utilization caches, native global offset-transfer audit packets, geometry bases, plate-center composites, ordered static checks and opposite support actions. All new APIs have matching XML documentation and examples; no public ref/out, tuples, partial adapters or thread-pool COM calls were introduced.
 
-Validation passed **5,788 offline tests** and an isolated package consumer compiling/executing **1,102 selected XML examples**, including all 142 Output examples. Live native COM and engineering qualification remain pending. Publisher metadata remains TensorStruct, with Srinivasa Rao Masanam as author. The earlier prepared distribution archive remains unchanged.
+Validation passed **5,788 offline tests** and an isolated package consumer compiling/executing **1,102 selected XML examples**, including all 142 Output examples. Live native COM and engineering qualification remain pending. Publisher metadata remains StruXllence, with Srinivasa Rao Masanam as author. The earlier prepared distribution archive remains unchanged.
 
 ## 1.0.0-preview.20261026.2 - 26 October 2026 (source preview)
 
