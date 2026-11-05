@@ -1,5 +1,7 @@
 # NuGet readiness assessment
 
+**Prepared distribution, 5 November 2026:** added five main-source View zoom/visibility functions, reaching 18/70 source overloads and 18/67 reviewed native names. Passed 7,192 offline tests, including 256 View cases; package verification selects 1,316 XML examples. Prepared 1.0.0-preview.20261105 with these functions and the live website badges. Earlier archives remain unchanged. The new package is ready for manual upload; public NuGet.org availability is not confirmed. See [new contracts](View-Zoom-and-Member-Visibility.md). Native COM/UI qualification remains separate.
+
 **4 November 2026 checkpoint:** Ported `RotateDown(double angle)`, `RotateLeft(double angle)`, `RotateRight(double angle)`, `SpinLeft(double angle)` and `SpinRight(double angle)` from the main source. Preserved the original `angle` parameter name, type and order on both interfaces and the concrete adapter. View now exposes **13 of 70 main-source overloads** and reaches **13 of 67 reviewed native names**; **57 source overloads** and **54 native names** remain pending. See [rotation contracts](View-Incremental-Rotations.md).
 
 Passed **7,137 offline tests**, including **201 View cases** and **116 additional cases** in this increment. Installed-package verification compiles and executes **1,306 selected XML examples**, including all **26 View interface/adapter examples**, through a fresh PackageReference consumer. Live native COM/UI behavior remains separate qualification work.

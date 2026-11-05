@@ -1,4 +1,5 @@
 using System;
+using StaadPro.Interop.Entities;
 using StaadPro.Interop.Models;
 using StaadPro.Interop.Models.View;
 
@@ -37,6 +38,23 @@ namespace StaadPro.Interop.Services.View
         internal ViewOperationResult RotateRight(double angle) => RequestRotation("RotateRight", angle, view => view.RotateRight(angle));
         internal ViewOperationResult SpinLeft(double angle) => RequestRotation("SpinLeft", angle, view => view.SpinLeft(angle));
         internal ViewOperationResult SpinRight(double angle) => RequestRotation("SpinRight", angle, view => view.SpinRight(angle));
+
+        internal ViewOperationResult ZoomAll() => RequestOrientation("ZoomAll", view => view.ZoomAll());
+        internal ViewOperationResult ZoomExtentsMainView() => RequestOrientation("ZoomExtentsMainView", view => view.ZoomExtentsMainView());
+        internal ViewOperationResult ShowAllMembers() => RequestOrientation("ShowAllMembers", view => view.ShowAllMembers());
+        internal ViewOperationResult HideAllMembers() => RequestOrientation("HideAllMembers", view => view.HideAllMembers());
+
+        internal ViewOperationResult ShowMember(Beam beam)
+        {
+            if (beam == null)
+                throw new ArgumentNullException(nameof(beam));
+
+            int memberId = beam.Id;
+            if (memberId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(beam), "The beam must identify a positive analytical member number in the acquired model.");
+
+            return RequestOrientation("ShowMember", view => view.ShowMember(memberId));
+        }
 
         private ViewOperationResult RequestRotation(string nativeFunction, double angle, Action<dynamic> request)
         {

@@ -18,6 +18,7 @@ namespace PackageVerification
             public readonly List<string> Calls = new List<string>();
             public readonly List<int> Threads = new List<int>();
             public readonly List<double> RotationAngles = new List<double>();
+            public readonly List<int> ShownMemberIds = new List<int>();
             public Action OnCall;
             public void ShowFront()
             { Record("ShowFront"); }
@@ -45,6 +46,17 @@ namespace PackageVerification
             public void RotateRight(object angle) => RecordAngle("RotateRight", angle);
             public void SpinLeft(object angle) => RecordAngle("SpinLeft", angle);
             public void SpinRight(object angle) => RecordAngle("SpinRight", angle);
+            public void ZoomAll() => Record("ZoomAll");
+            public void ZoomExtentsMainView() => Record("ZoomExtentsMainView");
+            public void ShowAllMembers() => Record("ShowAllMembers");
+            public void HideAllMembers() => Record("HideAllMembers");
+            public void ShowMember(object memberId)
+            {
+                if (!(memberId is int))
+                    throw new ArgumentException("ShowMember must receive a boxed Int32.", nameof(memberId));
+                ShownMemberIds.Add((int)memberId);
+                Record("ShowMember");
+            }
 
             private void RecordAngle(string operation, object angle)
             {

@@ -12,6 +12,8 @@ Our mission is to provide the structural engineering and computational design co
 
 ## Current implementation and next steps — 3 November 2026
 
+**Current source, 5 November 2026:** ported ZoomAll, ZoomExtentsMainView, ShowAllMembers, HideAllMembers and ShowMember(Beam). View reaches 18/70 source overloads over 18/67 native names; 52 View source overloads and 145 active source overloads across all reviewed domains remain. These additions await the next distribution archive. See [zoom and visibility](docs/View-Zoom-and-Member-Visibility.md) and [source totals](docs/reports/OpenSTAAD-Main-Source-Porting-Status.md).
+
 **Latest prepared preview:** 1.0.0-preview.20261103 ports ShowRight, ShowPlan, ShowBottom, ShowIsometric and RotateUp from the read-only main project. View now exposes 8/70 reference overloads over 8/67 native names, leaving 62 View source overloads. Across all reviewed source interfaces, 160 active overloads were pending before this increment and 155 remain afterwards; eight obsolete/deprecated overloads are excluded. See [source totals and counting rules](docs/reports/OpenSTAAD-Main-Source-Porting-Status.md) and [orientation/rotation usage](docs/View-Orientations.md).
 
 **Previous prepared preview:** 1.0.0-preview.20261102 adds View ShowBack and ShowLeft. View now provides 3/70 reference overloads over 3/67 reviewed native names; 67 reference overloads remain. See [orientation usage](docs/View-Orientations.md).

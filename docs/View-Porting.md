@@ -1,5 +1,7 @@
 # View implementation status and porting guide
 
+**Current source, 5 November 2026:** ported ZoomAll, ZoomExtentsMainView, ShowAllMembers, HideAllMembers and ShowMember(Beam) from the read-only main source. View now provides 18/70 source overloads over 18/67 reviewed native names, leaving 52 View source overloads and 49 native names pending. The reviewed source-interface total has 145 active overloads pending. See [zoom and visibility contracts](View-Zoom-and-Member-Visibility.md) and [source totals](reports/OpenSTAAD-Main-Source-Porting-Status.md). These additions are unreleased; native COM/UI qualification remains separate.
+
 **Current implementation, 4 November 2026:** Ported `RotateDown(double angle)`, `RotateLeft(double angle)`, `RotateRight(double angle)`, `SpinLeft(double angle)` and `SpinRight(double angle)` from the main source. Preserved the original `angle` parameter name, type and order on both interfaces and the concrete adapter. View now exposes **13 of 70 main-source overloads** and reaches **13 of 67 reviewed native names**; **57 source overloads** and **54 native names** remain pending. See [incremental rotation contracts](View-Incremental-Rotations.md) and [source-porting totals](reports/OpenSTAAD-Main-Source-Porting-Status.md). Native COM/UI qualification remains separate.
 
 

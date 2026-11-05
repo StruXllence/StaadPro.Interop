@@ -1,14 +1,16 @@
 # Installing and using StaadPro.Interop
 
+**Prepared preview, 5 November 2026:** 1.0.0-preview.20261105 adds ZoomAll, ZoomExtentsMainView, ShowAllMembers, HideAllMembers and ShowMember(Beam), reaching 18 View methods. The release archive is built and verified locally; use the local-feed installation below until this exact version is available from NuGet.org. See [zoom and visibility contracts](View-Zoom-and-Member-Visibility.md) and [publishing instructions](Publishing.md).
+
 ## Package and runtime
 
 This preview adds five main-source incremental View rotation/spin methods with complete matching interface and concrete-adapter XML IntelliSense.
 
-Preview `1.0.0-preview.20261104` adds `RotateDown(double angle)`, `RotateLeft(double angle)`, `RotateRight(double angle)`, `SpinLeft(double angle)` and `SpinRight(double angle)`, bringing View to thirteen methods. It retains the earlier Commands, Support and Design methods. Commands now reaches sixteen active native analysis routes, Support provides 27 operations and Design reaches five native names. Output retains 96 managed overloads reaching 47 documented native functions. Nine documented Property contract gates remain. It also retains the correction for `GetLoadCasesFromIds` and related primary/combination discovery throwing `invalid integer result` when native number retrieval returns Boolean success. Update the installed package and rebuild/restart the consuming application to use the corrected DLL. The [Load query guide](Load-Queries.md) explains the distinct Boolean and integer contracts.
+Preview `1.0.0-preview.20261105` adds `RotateDown(double angle)`, `RotateLeft(double angle)`, `RotateRight(double angle)`, `SpinLeft(double angle)` and `SpinRight(double angle)`, preceding the five new zoom/visibility methods in this preview. It retains the earlier Commands, Support and Design methods. Commands now reaches sixteen active native analysis routes, Support provides 27 operations and Design reaches five native names. Output retains 96 managed overloads reaching 47 documented native functions. Nine documented Property contract gates remain. It also retains the correction for `GetLoadCasesFromIds` and related primary/combination discovery throwing `invalid integer result` when native number retrieval returns Boolean success. Update the installed package and rebuild/restart the consuming application to use the corrected DLL. The [Load query guide](Load-Queries.md) explains the distinct Boolean and integer contracts.
 
-The locally prepared preview is `1.0.0-preview.20261104`, including the approved wrapper surface, all 143 reference Geometry overloads, 171 Load overloads, 249 common Property overloads plus five optional catalog queries, 96 managed Output overloads, 27 Support operations, seventeen Commands methods, ten Design methods, twenty-nine Table operations and thirteen View orientation/rotation requests, 53 common Root operations and three optional Root operations. Use this exact version with the local-feed instructions below. The package owner will upload this archive manually. Until NuGet.org validates and indexes this exact version, install it through a local feed. Public-feed commands for this preview are applicable only after that availability check; consult [release notes](Release-Notes.md), [Load contracts](Load-Porting.md), [Output usage](Output-Porting.md) and [Root capabilities](Root-Completion-and-Capabilities.md) for scope and limits.
+The locally prepared preview is `1.0.0-preview.20261105`, including the approved wrapper surface, all 143 reference Geometry overloads, 171 Load overloads, 249 common Property overloads plus five optional catalog queries, 96 managed Output overloads, 27 Support operations, seventeen Commands methods, ten Design methods, twenty-nine Table operations and eighteen View orientation/rotation/zoom/visibility requests, 53 common Root operations and three optional Root operations. Use this exact version with the local-feed instructions below. The package owner will upload this archive manually. Until NuGet.org validates and indexes this exact version, install it through a local feed. Public-feed commands for this preview are applicable only after that availability check; consult [release notes](Release-Notes.md), [Load contracts](Load-Porting.md), [Output usage](Output-Porting.md) and [Root capabilities](Root-Completion-and-Capabilities.md) for scope and limits.
 
-This guide uses preview version `1.0.0-preview.20261104` of package `StaadPro.Interop`. Public-feed commands apply after that exact version is accepted and available on NuGet.org; [Publishing.md](Publishing.md) explains upload and verification. The same verified archive can be installed immediately through a local feed.
+This guide uses preview version `1.0.0-preview.20261105` of package `StaadPro.Interop`. Public-feed commands apply after that exact version is accepted and available on NuGet.org; [Publishing.md](Publishing.md) explains upload and verification. The same verified archive can be installed immediately through a local feed.
 
 | Requirement | Purpose |
 | --- | --- |
@@ -31,12 +33,12 @@ See [incremental View rotations](View-Incremental-Rotations.md) for degree units
 For an existing SDK-style project targeting `net481`, run:
 
 ```powershell
-dotnet add ./YourApp.csproj package StaadPro.Interop --version 1.0.0-preview.20261104 --source https://api.nuget.org/v3/index.json
+dotnet add ./YourApp.csproj package StaadPro.Interop --version 1.0.0-preview.20261105 --source https://api.nuget.org/v3/index.json
 dotnet restore ./YourApp.csproj
 dotnet build ./YourApp.csproj -c Release
 ```
 
-For SDK 10's noun-first CLI, the equivalent command is `dotnet package add StaadPro.Interop --project ./YourApp.csproj --version 1.0.0-preview.20261104 --source https://api.nuget.org/v3/index.json`. The older verb-first command above matches the SDK used for this repository's verification. See Microsoft's [package add reference](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-package-add).
+For SDK 10's noun-first CLI, the equivalent command is `dotnet package add StaadPro.Interop --project ./YourApp.csproj --version 1.0.0-preview.20261105 --source https://api.nuget.org/v3/index.json`. The older verb-first command above matches the SDK used for this repository's verification. See Microsoft's [package add reference](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-package-add).
 
 The resulting project reference should pin the version:
 
@@ -45,7 +47,7 @@ The resulting project reference should pin the version:
   <TargetFramework>net481</TargetFramework>
 </PropertyGroup>
 <ItemGroup>
-  <PackageReference Include="StaadPro.Interop" Version="1.0.0-preview.20261104" />
+  <PackageReference Include="StaadPro.Interop" Version="1.0.0-preview.20261105" />
 </ItemGroup>
 ```
 
@@ -73,13 +75,13 @@ Then run `dotnet restore ./YourApp.csproj --configfile ./NuGet.Config --packages
 The NuGet Package Manager Console equivalent is:
 
 ```powershell
-Install-Package StaadPro.Interop -Version 1.0.0-preview.20261104 -Source https://api.nuget.org/v3/index.json
+Install-Package StaadPro.Interop -Version 1.0.0-preview.20261105 -Source https://api.nuget.org/v3/index.json
 ```
 
 For the legacy WPF test solution `NugetTestApp`, the project is at `NugetTest\NugetTest.csproj`, one directory below the solution. Use the Package Manager Console command with an explicit project:
 
 ```powershell
-Install-Package StaadPro.Interop -Version 1.0.0-preview.20261104 -ProjectName NugetTest -Source https://api.nuget.org/v3/index.json
+Install-Package StaadPro.Interop -Version 1.0.0-preview.20261105 -ProjectName NugetTest -Source https://api.nuget.org/v3/index.json
 ```
 
 `dotnet add package` searches its current directory for a project; Visual Studio's **Default project** selection does not change that directory for an external CLI command. Running it in the solution directory produces **Could not find any project**. Pointing it at this unconfigured legacy project produces **The project does not support adding package references through the add package command**. Use `Install-Package` or the Visual Studio NuGet UI. Alternatively, add a `PackageReference` to the legacy project and restore/build it with Visual Studio MSBuild; converting the entire WPF project to SDK style is unnecessary.
@@ -106,7 +108,7 @@ In the consumer directory, use a project-scoped `NuGet.Config`:
 NuGet.org remains configured for dependencies. Add the exact package reference with:
 
 ```powershell
-dotnet add ./YourApp.csproj package StaadPro.Interop --version 1.0.0-preview.20261104
+dotnet add ./YourApp.csproj package StaadPro.Interop --version 1.0.0-preview.20261105
 dotnet restore ./YourApp.csproj --configfile ./NuGet.Config --packages ./packages
 dotnet build ./YourApp.csproj -c Release --no-restore
 ```
@@ -126,7 +128,7 @@ For a small Windows console consumer, this SDK-style project is sufficient:
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <PackageReference Include="StaadPro.Interop" Version="1.0.0-preview.20261104" />
+    <PackageReference Include="StaadPro.Interop" Version="1.0.0-preview.20261105" />
   </ItemGroup>
 </Project>
 ```
@@ -169,11 +171,11 @@ Call `OpenStaadWrapperProvider.Get(fullPath)` on an STA thread (for example, the
 
 If the path does not exist, the provider retains its existing behavior of creating a blank model there. Connection failures/timeouts return null and emit `System.Diagnostics.Trace` messages. Check the result before using the adapters. `GetRunning()` attaches to a running session and never launches STAAD. Wrapper disposal releases managed references; it does not close the model or application.
 
-These connection fixes require a new package build; they are not present in published `1.0.0-preview.20261012`. Use a new version such as `1.0.0-preview.20261104` for the corrected archive.
+These connection fixes require a new package build; they are not present in published `1.0.0-preview.20261012`. Use a new version such as `1.0.0-preview.20261105` for the corrected archive.
 
 ## Check IntelliSense and package contents
 
-Under the installed package's `lib/net481` folder, check for both `StaadPro.Interop.dll` and `StaadPro.Interop.xml`. With the default cache, this is beneath `%USERPROFILE%\.nuget\packages\staadpro.interop\1.0.0-preview.20261104`. A custom cache uses the location you passed to restore.
+Under the installed package's `lib/net481` folder, check for both `StaadPro.Interop.dll` and `StaadPro.Interop.xml`. With the default cache, this is beneath `%USERPROFILE%\.nuget\packages\staadpro.interop\1.0.0-preview.20261105`. A custom cache uses the location you passed to restore.
 
 The XML supplies full method summaries, parameters, return/null semantics, mappings, side effects, exceptions and examples for the 21 ported query methods on both the interface and concrete adapter. The package's `docs` directory contains the load, installation and publishing guides. Editing a local package-cache copy is not a supported way to change the library; create a new source build/version instead.
 

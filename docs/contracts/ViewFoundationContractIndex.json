@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "date": "2026-11-04",
+  "date": "2026-11-05",
   "mainProjectReadOnly": true,
   "sourceFiles": [
     {
@@ -303,6 +303,114 @@
         "2026": "void OSViewUI::SpinRight(const VARIANT FAR&dDegrees)"
       },
       "argumentPolicy": "The finite signed rotation angle in degrees, preserving the main-source parameter name. Zero, negative values, negative zero and values beyond one revolution are passed unchanged. No radians conversion, clamping, normalization or rounding is performed."
+    },
+    {
+      "managedName": "ZoomAll",
+      "returnType": "ViewOperationResult",
+      "nativeName": "ZoomAll",
+      "parameters": "",
+      "source": [
+        {
+          "managedName": "ZoomAll",
+          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
+          "line": 174,
+          "name": "ZoomAll",
+          "receiver": "ComObject",
+          "arguments": []
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::ZoomAll()",
+        "2025": "void OSViewUI::ZoomAll()",
+        "2026": "void OSViewUI::ZoomAll()"
+      }
+    },
+    {
+      "managedName": "ZoomExtentsMainView",
+      "returnType": "ViewOperationResult",
+      "nativeName": "ZoomExtentsMainView",
+      "parameters": "",
+      "source": [
+        {
+          "managedName": "ZoomExtentsMainView",
+          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
+          "line": 179,
+          "name": "ZoomExtentsMainView",
+          "receiver": "ComObject",
+          "arguments": []
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::ZoomExtentsMainView()",
+        "2025": "void OSViewUI::ZoomExtentsMainView()",
+        "2026": "void OSViewUI::ZoomExtentsMainView()"
+      }
+    },
+    {
+      "managedName": "ShowAllMembers",
+      "returnType": "ViewOperationResult",
+      "nativeName": "ShowAllMembers",
+      "parameters": "",
+      "source": [
+        {
+          "managedName": "ShowAllMembers",
+          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
+          "line": 184,
+          "name": "ShowAllMembers",
+          "receiver": "ComObject",
+          "arguments": []
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::ShowAllMembers()",
+        "2025": "void OSViewUI::ShowAllMembers()",
+        "2026": "void OSViewUI::ShowAllMembers()"
+      }
+    },
+    {
+      "managedName": "HideAllMembers",
+      "returnType": "ViewOperationResult",
+      "nativeName": "HideAllMembers",
+      "parameters": "",
+      "source": [
+        {
+          "managedName": "HideAllMembers",
+          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
+          "line": 189,
+          "name": "HideAllMembers",
+          "receiver": "ComObject",
+          "arguments": []
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::HideAllMembers()",
+        "2025": "void OSViewUI::HideAllMembers()",
+        "2026": "void OSViewUI::HideAllMembers()"
+      }
+    },
+    {
+      "managedName": "ShowMember",
+      "returnType": "ViewOperationResult",
+      "nativeName": "ShowMember",
+      "parameters": "Beam beam",
+      "source": [
+        {
+          "managedName": "ShowMember",
+          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
+          "line": 194,
+          "name": "ShowMember",
+          "receiver": "ComObject",
+          "arguments": [
+            "beam.Id"
+          ]
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::ShowMember(const VARIANT FAR&nMember)",
+        "2025": "void OSViewUI::ShowMember(const VARIANT FAR&nMember)",
+        "2026": "void OSViewUI::ShowMember(const VARIANT FAR&nMember)"
+      },
+      "argumentPolicy": "Reuse Beam. Reject null and nonpositive Id before dispatch. Capture Id once and pass unchanged as boxed Int32; no node geometry or model-membership inference."
     }
   ],
   "nativeRuntimeQualified": false

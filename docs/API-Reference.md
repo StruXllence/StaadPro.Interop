@@ -36,7 +36,7 @@ All 30 main-source wrapper properties, both constructor forms, RefreshComObjects
 - `Support`: 27 typed operations for discovery, foundation readback and explicit mutations.
 - `Design`: ten common brief/assignment/query methods; `Commands`: seventeen analysis-configuration methods.
 - `Table`: all 29 main-project overloads and all 24 reviewed native names; [completion contracts](Table-Completion-and-View-Foundations.md).
-- `View`: seven standard directions and RotateUp request graphical orientation through named completion receipts; RotateUp accepts finite signed degrees. View has 62 main-source overloads remaining. See [orientation contracts](View-Orientations.md).
+- `View`: 18 methods for standard directions, incremental rotations, current/main-view zoom and initial member visibility; 52 source overloads remain. Reuses Beam for ShowMember. See [zoom and visibility contracts](View-Zoom-and-Member-Visibility.md), [orientations](View-Orientations.md) and [rotations](View-Incremental-Rotations.md).
 - `IdeaStatiCa`: integration placeholder when Geometry/Load/Output exist; no transformation, verification or export functions are available.
 - `StaadVersion`: cached native STAAD version; each access returns a copy, null when unavailable. This is the source for native version selection.
 - `ApplicationVersion`: entry/calling host assembly version; it is not the STAAD version.

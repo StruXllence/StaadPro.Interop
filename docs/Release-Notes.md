@@ -1,5 +1,13 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261105 - 5 November 2026 (prepared preview)
+
+Ported ZoomAll, ZoomExtentsMainView, ShowAllMembers, HideAllMembers and ShowMember(Beam) from the read-only main project. Reused the single View adapter, shared captured-binding service, named void-completion receipt and existing Beam class. ShowMember captures and validates the positive analytical member ID before native dispatch. No public reference outputs, tuples or new data types were added.
+
+Added complete matching XML IntelliSense with comparative zoom/visibility usage, identity requirements, lifetime and error behavior, plus guarded examples. View reaches **18/70 source overloads** and **18/67 native names**. **145 active source overloads remain** across the reviewed domains. Updated the website badge and navigation wording to reflect its live status.
+
+Passed **7,192 offline tests**, including **256 View cases** and **55 additional cases**. Installed-package verification selects **1,316 XML examples**, including all 36 View examples. Live native COM/UI qualification remains separate. Included these additions in this prepared distribution archive. The package is ready for manual upload; public availability of this exact version is not confirmed. See [zoom and visibility contracts](View-Zoom-and-Member-Visibility.md) and [source-status details](reports/OpenSTAAD-Main-Source-Porting-Status.md).
+
 ## 1.0.0-preview.20261104 - 4 November 2026 (prepared preview)
 
 Ported `RotateDown(double angle)`, `RotateLeft(double angle)`, `RotateRight(double angle)`, `SpinLeft(double angle)` and `SpinRight(double angle)` from the main source. Preserved the original `angle` parameter name, type and order on both interfaces and the concrete adapter. View now exposes **13 of 70 main-source overloads** and reaches **13 of 67 reviewed native names**; **57 source overloads** and **54 native names** remain pending.

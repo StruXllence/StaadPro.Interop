@@ -5,8 +5,8 @@ title: "StaadPro.Interop"
 authors:
   - family-names: "Masanam"
     given-names: "Srinivasa Rao"
-version: "1.0.0-preview.20261103"
-date-released: 2026-11-03
+version: "1.0.0-preview.20261105"
+date-released: 2026-11-05
 url: "https://github.com/StruXllence/StaadPro.Interop"
 repository-code: "https://github.com/StruXllence/StaadPro.Interop"
 license: Apache-2.0

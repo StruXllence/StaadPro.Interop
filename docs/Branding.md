@@ -23,4 +23,4 @@ The release verifier checks the embedded icon path, size, format and square dime
 
 ## Community navigation
 
-The project, package and profile READMEs use a compact row of ordinary Markdown link badges near the top: YouTube, the future main website, the primary forum and the revamp preview. Badge images use img.shields.io, an allowed NuGet host. Keep the website marked Coming soon until it serves a working landing page, and the revamp forum marked Preview while its role is provisional. Use direct HTTPS links and meaningful labels; do not add scripts or custom HTML to the NuGet README.
+The project, package and profile READMEs use a compact row of ordinary Markdown link badges near the top: YouTube, the live main website, the primary forum and the revamp preview. Badge images use img.shields.io, an allowed NuGet host. The primary website at https://struxllence.com is live; use the green Website–Live badge consistently. Retain the revamp forum's Preview label while its role is provisional. Use direct HTTPS links and meaningful labels; do not add scripts or custom HTML to the NuGet README.

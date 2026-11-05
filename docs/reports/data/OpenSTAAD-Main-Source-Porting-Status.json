@@ -1,13 +1,13 @@
 {
-  "date": "2026-11-04",
+  "date": "2026-11-05",
   "scope": "Reviewed main domain interface overloads; constructors, properties, private helpers and optional native-only expansion are excluded. Existing semantic replacements count as covered. Counts are not binary signature parity.",
   "sourceReadOnly": true,
   "totalReferenceOverloads": 654,
-  "coveredBefore": 491,
-  "pendingBefore": 155,
+  "coveredBefore": 496,
+  "pendingBefore": 150,
   "portedThisIncrement": 5,
-  "coveredAfter": 496,
-  "pendingAfter": 150,
+  "coveredAfter": 501,
+  "pendingAfter": 145,
   "excludedObsoleteOrDeprecated": 8,
   "domains": [
     {
@@ -85,9 +85,9 @@
     {
       "domain": "View",
       "referenceOverloads": 70,
-      "coveredBefore": 8,
-      "pendingBefore": 62,
-      "pendingAfter": 57,
+      "coveredBefore": 13,
+      "pendingBefore": 57,
+      "pendingAfter": 52,
       "excluded": 0
     },
     {
@@ -597,36 +597,6 @@
         "name": "RefreshView",
         "signature": "void RefreshView()",
         "sourceLine": 130,
-        "isAsync": false
-      },
-      {
-        "name": "ZoomAll",
-        "signature": "void ZoomAll()",
-        "sourceLine": 206,
-        "isAsync": false
-      },
-      {
-        "name": "ZoomExtentsMainView",
-        "signature": "void ZoomExtentsMainView()",
-        "sourceLine": 209,
-        "isAsync": false
-      },
-      {
-        "name": "ShowAllMembers",
-        "signature": "void ShowAllMembers()",
-        "sourceLine": 218,
-        "isAsync": false
-      },
-      {
-        "name": "HideAllMembers",
-        "signature": "void HideAllMembers()",
-        "sourceLine": 223,
-        "isAsync": false
-      },
-      {
-        "name": "ShowMember",
-        "signature": "void ShowMember(Beam beam)",
-        "sourceLine": 228,
         "isAsync": false
       },
       {

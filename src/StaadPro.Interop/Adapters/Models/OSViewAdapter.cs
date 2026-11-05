@@ -1,3 +1,4 @@
+using StaadPro.Interop.Entities;
 using StaadPro.Interop.Models.View;
 using StaadPro.Interop.Services.View;
 using System;
@@ -6,7 +7,7 @@ using StaadPro.Interop.Models;
 
 namespace StaadPro.Interop.Adapters.Models
 {
-    /// <summary>Implements standard orientations and incremental rotation on the captured native View object.</summary>
+    /// <summary>Implements orientations, rotations, zoom and member visibility on the captured native View object.</summary>
     /// <remarks>Orientation requests record unacknowledged native void completion. Remaining View functions are separate ports.</remarks>
     public sealed class OSViewAdapter : OSBaseAdapter, IOSView
     {
@@ -256,5 +257,94 @@ namespace StaadPro.Interop.Adapters.Models
         /// }
         /// </code></example>
         public ViewOperationResult SpinRight(double angle) => service.SpinRight(angle);
+
+        /// <summary>Requests a zoom of the current graphical view to display the whole structure.</summary>
+        /// <returns>A <see cref="ViewOperationResult"/> whose <see cref="ViewOperationResult.NativeFunction"/> is ZoomAll and whose status is <see cref="StaadPro.Interop.Enums.View.ViewOperationStatus.InvokedWithoutAcknowledgement"/> after native void completion and the final binding check. <see cref="ViewOperationResult.NativeReturnCode"/> is null and <see cref="ViewOperationResult.IsSuccessful"/> is false because native success was not acknowledged; false is not a native failure flag.</returns>
+        /// <remarks>
+        /// <para>Choose ZoomAll to fit the whole structure in the current view. Unlike ZoomExtentsMainView, it retains its distinct native current-view route rather than substituting a main-view extents request. It does not call ShowAllMembers or infer that hidden members become visible, and the result does not certify final extents, scale or repaint completion.</para>
+        /// <para>Shared reviewed STAAD.Pro 2024/2025/2026 help and inspected 2025/2026 automation metadata declare native void completion. Reuses the captured RawView and common internal View service on the caller's established COM apartment, under the same per-adapter gate as orientation and rotation requests. Binding identity is checked before and after exactly one dispatch. The gate does not coordinate other wrappers/adapters, raw clients or external UI changes. Reacquire wrapper.View after wrapper refresh. Native and binding errors propagate unchanged; a post-call error can follow an actual UI effect. These functions do not transform structural coordinates, execute analysis, open another model, show a hidden application or implicitly save. No automatic retry, fallback instance, rollback, background dispatch or effect read-back is attempted. Normal completion does not certify native readiness, the visible result or persistence; live native UI/COM qualification remains separate.</para>
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The captured View binding was disposed or replaced before or during dispatch.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native graphical request failed; an effect may precede the error.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured automation object does not expose ZoomAll with the reviewed contract.</exception>
+        /// <example><code>bool changeView = false; // Enable only when the graphical change is intended.
+        /// if (changeView)
+        /// {
+        ///     var result = view.ZoomAll();
+        ///     System.Console.WriteLine(result.NativeFunction + ": " + result.Status);
+        /// }</code></example>
+        public ViewOperationResult ZoomAll() => service.ZoomAll();
+
+        /// <summary>Requests the native main-view zoom-to-extents operation.</summary>
+        /// <returns>A <see cref="ViewOperationResult"/> whose <see cref="ViewOperationResult.NativeFunction"/> is ZoomExtentsMainView and whose status is <see cref="StaadPro.Interop.Enums.View.ViewOperationStatus.InvokedWithoutAcknowledgement"/> after native void completion and the final binding check. <see cref="ViewOperationResult.NativeReturnCode"/> is null and <see cref="ViewOperationResult.IsSuccessful"/> is false because native success was not acknowledged; false is not a native failure flag.</returns>
+        /// <remarks>
+        /// <para>Choose ZoomExtentsMainView for the native main-view extents operation. Unlike ZoomAll, it invokes the dedicated main-view route; the reviewed help describes adjusting the main viewing scale to extents in a new view. This wrapper does not synthesize a window, activate a window, substitute ZoomAll or guarantee the resulting window arrangement. It does not call ShowAllMembers or certify final extents, scale or repaint completion.</para>
+        /// <para>Shared reviewed STAAD.Pro 2024/2025/2026 help and inspected 2025/2026 automation metadata declare native void completion. Reuses the captured RawView and common internal View service on the caller's established COM apartment, under the same per-adapter gate as orientation and rotation requests. Binding identity is checked before and after exactly one dispatch. The gate does not coordinate other wrappers/adapters, raw clients or external UI changes. Reacquire wrapper.View after wrapper refresh. Native and binding errors propagate unchanged; a post-call error can follow an actual UI effect. These functions do not transform structural coordinates, execute analysis, open another model, show a hidden application or implicitly save. No automatic retry, fallback instance, rollback, background dispatch or effect read-back is attempted. Normal completion does not certify native readiness, the visible result or persistence; live native UI/COM qualification remains separate.</para>
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The captured View binding was disposed or replaced before or during dispatch.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native graphical request failed; an effect may precede the error.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured automation object does not expose ZoomExtentsMainView with the reviewed contract.</exception>
+        /// <example><code>bool changeView = false; // Enable only when the graphical change is intended.
+        /// if (changeView)
+        /// {
+        ///     var result = view.ZoomExtentsMainView();
+        ///     System.Console.WriteLine(result.NativeFunction + ": " + result.Status);
+        /// }</code></example>
+        public ViewOperationResult ZoomExtentsMainView() => service.ZoomExtentsMainView();
+
+        /// <summary>Requests display of all members in the current structure.</summary>
+        /// <returns>A <see cref="ViewOperationResult"/> whose <see cref="ViewOperationResult.NativeFunction"/> is ShowAllMembers and whose status is <see cref="StaadPro.Interop.Enums.View.ViewOperationStatus.InvokedWithoutAcknowledgement"/> after native void completion and the final binding check. <see cref="ViewOperationResult.NativeReturnCode"/> is null and <see cref="ViewOperationResult.IsSuccessful"/> is false because native success was not acknowledged; false is not a native failure flag.</returns>
+        /// <remarks>
+        /// <para>Choose ShowAllMembers to request member visibility for the whole current structure. Unlike ShowMember, this makes no per-member selection and takes no Beam. Unlike ZoomAll and ZoomExtentsMainView, it requests visibility rather than fitting the camera. It does not enumerate, create or select analytical members, restore a previous visibility snapshot, or certify plate, solid or surface visibility.</para>
+        /// <para>Shared reviewed STAAD.Pro 2024/2025/2026 help and inspected 2025/2026 automation metadata declare native void completion. Reuses the captured RawView and common internal View service on the caller's established COM apartment, under the same per-adapter gate as orientation and rotation requests. Binding identity is checked before and after exactly one dispatch. The gate does not coordinate other wrappers/adapters, raw clients or external UI changes. Reacquire wrapper.View after wrapper refresh. Native and binding errors propagate unchanged; a post-call error can follow an actual UI effect. These functions do not transform structural coordinates, execute analysis, open another model, show a hidden application or implicitly save. No automatic retry, fallback instance, rollback, background dispatch or effect read-back is attempted. Normal completion does not certify native readiness, the visible result or persistence; live native UI/COM qualification remains separate.</para>
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The captured View binding was disposed or replaced before or during dispatch.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native graphical request failed; an effect may precede the error.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured automation object does not expose ShowAllMembers with the reviewed contract.</exception>
+        /// <example><code>bool changeView = false; // Enable only when the graphical change is intended.
+        /// if (changeView)
+        /// {
+        ///     var result = view.ShowAllMembers();
+        ///     System.Console.WriteLine(result.NativeFunction + ": " + result.Status);
+        /// }</code></example>
+        public ViewOperationResult ShowAllMembers() => service.ShowAllMembers();
+
+        /// <summary>Requests hiding all members in the current structure.</summary>
+        /// <returns>A <see cref="ViewOperationResult"/> whose <see cref="ViewOperationResult.NativeFunction"/> is HideAllMembers and whose status is <see cref="StaadPro.Interop.Enums.View.ViewOperationStatus.InvokedWithoutAcknowledgement"/> after native void completion and the final binding check. <see cref="ViewOperationResult.NativeReturnCode"/> is null and <see cref="ViewOperationResult.IsSuccessful"/> is false because native success was not acknowledged; false is not a native failure flag.</returns>
+        /// <remarks>
+        /// <para>Choose HideAllMembers to request whole-structure member hiding. Unlike ShowAllMembers, this hides rather than displays members; unlike either zoom operation, it requests visibility rather than a camera fit. The analytical members remain in the model. It does not delete geometry, clear loads or analysis data, record a reversible visibility snapshot, or certify plate, solid or surface visibility.</para>
+        /// <para>Shared reviewed STAAD.Pro 2024/2025/2026 help and inspected 2025/2026 automation metadata declare native void completion. Reuses the captured RawView and common internal View service on the caller's established COM apartment, under the same per-adapter gate as orientation and rotation requests. Binding identity is checked before and after exactly one dispatch. The gate does not coordinate other wrappers/adapters, raw clients or external UI changes. Reacquire wrapper.View after wrapper refresh. Native and binding errors propagate unchanged; a post-call error can follow an actual UI effect. These functions do not transform structural coordinates, execute analysis, open another model, show a hidden application or implicitly save. No automatic retry, fallback instance, rollback, background dispatch or effect read-back is attempted. Normal completion does not certify native readiness, the visible result or persistence; live native UI/COM qualification remains separate.</para>
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The captured View binding was disposed or replaced before or during dispatch.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native graphical request failed; an effect may precede the error.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured automation object does not expose HideAllMembers with the reviewed contract.</exception>
+        /// <example><code>bool changeView = false; // Enable only when the graphical change is intended.
+        /// if (changeView)
+        /// {
+        ///     var result = view.HideAllMembers();
+        ///     System.Console.WriteLine(result.NativeFunction + ": " + result.Status);
+        /// }</code></example>
+        public ViewOperationResult HideAllMembers() => service.HideAllMembers();
+
+        /// <summary>Requests display of the analytical member identified by the supplied Beam.</summary>
+        /// <param name="beam">An existing Beam for an analytical member in the acquired model. Must be non-null and have a positive Id. The Id is captured once and passed unchanged as native Int32; no node coordinates are required. The caller must prevent concurrent identity changes and ensure model membership.</param>
+        /// <returns>A <see cref="ViewOperationResult"/> whose <see cref="ViewOperationResult.NativeFunction"/> is ShowMember and whose status is <see cref="StaadPro.Interop.Enums.View.ViewOperationStatus.InvokedWithoutAcknowledgement"/> after native void completion and the final binding check. <see cref="ViewOperationResult.NativeReturnCode"/> is null and <see cref="ViewOperationResult.IsSuccessful"/> is false because native success was not acknowledged; false is not a native failure flag.</returns>
+        /// <remarks>
+        /// <para>Choose ShowMember for one analytical beam already belonging to the acquired model. Unlike ShowAllMembers, it sends only this member number; unlike zoom operations, it requests visibility rather than changing the viewing scale. Only a snapshot of beam.Id is used. The original Beam reference is not sent to COM and is not modified, and node coordinates, connectivity and physical-member membership are not read. The method does not discover, create, select or isolate a member, hide other members or verify that the number exists. A positive ID cannot establish that a Beam belongs to this native model; the caller supplies that identity.</para>
+        /// <para>Shared reviewed STAAD.Pro 2024/2025/2026 help and inspected 2025/2026 automation metadata declare native void completion. Reuses the captured RawView and common internal View service on the caller's established COM apartment, under the same per-adapter gate as orientation and rotation requests. Binding identity is checked before and after exactly one dispatch. The gate does not coordinate other wrappers/adapters, raw clients or external UI changes. Reacquire wrapper.View after wrapper refresh. Native and binding errors propagate unchanged; a post-call error can follow an actual UI effect. These functions do not transform structural coordinates, execute analysis, open another model, show a hidden application or implicitly save. No automatic retry, fallback instance, rollback, background dispatch or effect read-back is attempted. Normal completion does not certify native readiness, the visible result or persistence; live native UI/COM qualification remains separate.</para>
+        /// </remarks>
+        /// <exception cref="ArgumentNullException">beam is null; no native call is made.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">beam.Id is zero or negative; the exception names beam and no native call is made.</exception>
+        /// <exception cref="InvalidOperationException">The captured View binding was disposed or replaced before or during dispatch.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native graphical request failed; an effect may precede the error.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured automation object does not expose ShowMember with the reviewed contract.</exception>
+        /// <example><code>bool changeView = false; // Enable only when the graphical change is intended.
+        /// if (changeView)
+        /// {
+        ///     var beam = new StaadPro.Interop.Entities.Beam { Id = 17 }; // Must identify a member in this model.
+        ///     var result = view.ShowMember(beam);
+        ///     System.Console.WriteLine(result.NativeFunction + ": " + result.Status);
+        /// }</code></example>
+        public ViewOperationResult ShowMember(Beam beam) => service.ShowMember(beam);
     }
 }

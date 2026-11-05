@@ -94,7 +94,7 @@ try {
     foreach ($destination in @('https://www.youtube.com/@StruXllence','https://struxllence.com','https://forum.struxllence.com','https://new-forum.struxllence.com')) {
         if (!$readme.Contains($destination)) { throw "Missing community destination: $destination" }
     }
-    if ($readme -notmatch 'Coming%20soon' -or $readme -notmatch 'Preview' -or $readme.IndexOf('YouTube-%40StruXllence') -gt $readme.IndexOf('## Version')) { throw 'Community navigation must appear near the top with clear destination status.' }
+    if ($readme -notmatch 'Website-Live-16A34A' -or $readme -match 'Coming%20soon|coming soon' -or $readme -notmatch 'Preview' -or $readme.IndexOf('YouTube-%40StruXllence') -gt $readme.IndexOf('## Version')) { throw 'Community navigation must appear near the top with clear destination status.' }
     $compactEntry = $archive.GetEntry('images/logo-with-text-400.png')
     if ($null -eq $compactEntry -or $compactEntry.Length -lt 1) { throw 'Missing compact README banner.' }
     $compactStream = $compactEntry.Open()
@@ -353,13 +353,14 @@ try {
     $viewSnippets = @()
     $viewGuide = Read-PackageEntry 'docs/View-Orientations.md'
     $viewGuide += Read-PackageEntry 'docs/View-Incremental-Rotations.md'
+    $viewGuide += Read-PackageEntry 'docs/View-Zoom-and-Member-Visibility.md'
     $sourcePortingGuide = Read-PackageEntry 'docs/reports/OpenSTAAD-Main-Source-Porting-Status.md'
     $sourcePortingStatus = (Read-PackageEntry 'docs/reports/data/OpenSTAAD-Main-Source-Porting-Status.json') | ConvertFrom-Json
-    if ($sourcePortingStatus.pendingBefore -ne 155 -or $sourcePortingStatus.pendingAfter -ne 150 -or $sourcePortingStatus.portedThisIncrement -ne 5 -or $sourcePortingGuide -notmatch '150') { throw 'Inconsistent packaged source-porting inventory.' }
+    if ($sourcePortingStatus.pendingBefore -ne 150 -or $sourcePortingStatus.pendingAfter -ne 145 -or $sourcePortingStatus.portedThisIncrement -ne 5 -or $sourcePortingGuide -notmatch '145') { throw 'Inconsistent packaged source-porting inventory.' }
     foreach ($owner in @('Adapters.Interfaces.IOSView', 'Adapters.Models.OSViewAdapter')) {
         $entries = @($xml.doc.members.member | Where-Object { $_.name.StartsWith("M:StaadPro.Interop.$owner.") -and $_.name -notmatch '\.#ctor' })
-        if ($entries.Count -ne 13) { throw 'Expected thirteen documented View functions.' }
-        foreach ($function in @('ShowFront','ShowBack','ShowLeft','ShowRight','ShowPlan','ShowBottom','ShowIsometric','RotateUp','RotateDown','RotateLeft','RotateRight','SpinLeft','SpinRight')) {
+        if ($entries.Count -ne 18) { throw 'Expected eighteen documented View functions.' }
+        foreach ($function in @('ShowFront','ShowBack','ShowLeft','ShowRight','ShowPlan','ShowBottom','ShowIsometric','RotateUp','RotateDown','RotateLeft','RotateRight','SpinLeft','SpinRight','ZoomAll','ZoomExtentsMainView','ShowAllMembers','HideAllMembers','ShowMember')) {
             if ($viewGuide -notmatch $function) { throw "Missing View guidance for $function." }
         }
         foreach ($entry in $entries) {
@@ -370,7 +371,7 @@ try {
             $viewSnippets += 'using (var wrapper = new OpenStaadWrapper(new PackageVerification.ViewFoundationFixture.Root { View = new PackageVerification.ViewFoundationFixture.Native() })) {' + $newLine + $binding + $newLine + $entry.SelectSingleNode('example/code').InnerText + $newLine + '}'
         }
     }
-    if ($viewSnippets.Count -ne 26) { throw 'Expected twenty-six View XML examples.' }
+    if ($viewSnippets.Count -ne 36) { throw 'Expected thirty-six View XML examples.' }
     $designGuide = Read-PackageEntry 'docs/Design-Porting.md'
     $designSnippets = @()
     foreach ($owner in @('Adapters.Interfaces.IOSDesign', 'Adapters.Models.OSDesignAdapter')) {
@@ -853,6 +854,22 @@ public static class Program
                 catch (System.Reflection.TargetInvocationException error) { Check(error.InnerException is ArgumentOutOfRangeException && ((ArgumentOutOfRangeException)error.InnerException).ParamName == "angle", "Nonfinite angle failure"); }
                 Check(viewNative.Calls.Count == before, "Nonfinite angle must not dispatch");
             }
+            int beforeZoom = viewNative.Calls.Count;
+            var visibility = new[] { wrapper.View.ZoomAll(), wrapper.View.ZoomExtentsMainView(),
+                wrapper.View.ShowAllMembers(), wrapper.View.HideAllMembers(),
+                wrapper.View.ShowMember(new Beam { Id = 17 }) };
+            var visibilityNames = new[] { "ZoomAll", "ZoomExtentsMainView", "ShowAllMembers", "HideAllMembers", "ShowMember" };
+            Check(visibility.Select(result => result.NativeFunction).SequenceEqual(visibilityNames), "Zoom and visibility identities");
+            Check(visibility.All(result => result.Status == ViewOperationStatus.InvokedWithoutAcknowledgement && !result.IsSuccessful && result.NativeReturnCode == null), "Zoom and visibility void receipts");
+            Check(viewNative.Calls.Skip(beforeZoom).SequenceEqual(visibilityNames), "Exact zoom and visibility routes");
+            Check(viewNative.ShownMemberIds.SequenceEqual(new[] { 17 }), "Native analytical member Int32");
+            Check(viewNative.Threads.All(thread => thread == System.Threading.Thread.CurrentThread.ManagedThreadId), "Zoom and visibility caller thread");
+            int beforeInvalidMember = viewNative.Calls.Count;
+            try { wrapper.View.ShowMember(null); throw new Exception("Null beam was accepted."); }
+            catch (ArgumentNullException error) { Check(error.ParamName == "beam", "Null beam argument name"); }
+            try { wrapper.View.ShowMember(new Beam()); throw new Exception("Nonpositive member was accepted."); }
+            catch (ArgumentOutOfRangeException error) { Check(error.ParamName == "beam", "Nonpositive beam argument name"); }
+            Check(viewNative.Calls.Count == beforeInvalidMember, "Invalid member must not dispatch");
             int callsBeforeInvalidAngle = viewNative.Calls.Count;
             try { wrapper.View.RotateUp(double.NaN); throw new Exception("Nonfinite angle was accepted."); }
             catch (ArgumentOutOfRangeException error) { Check(error.ParamName == "angleDegrees", "Native angle argument name"); }

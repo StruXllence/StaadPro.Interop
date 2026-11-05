@@ -4,9 +4,9 @@
 
 By **Srinivasa Rao Masanam**. Published by **StruXllence**.
 
-[![YouTube @StruXllence](https://img.shields.io/badge/YouTube-%40StruXllence-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@StruXllence) [![Website — coming soon](https://img.shields.io/badge/Website-Coming%20soon-64748B?style=flat-square)](https://struxllence.com) [![Community forum](https://img.shields.io/badge/Community-Forum-0866C6?style=flat-square)](https://forum.struxllence.com) [![Revamp forum — preview](https://img.shields.io/badge/Revamp%20forum-Preview-7657B5?style=flat-square)](https://new-forum.struxllence.com)
+[![YouTube @StruXllence](https://img.shields.io/badge/YouTube-%40StruXllence-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@StruXllence) [![Website — live](https://img.shields.io/badge/Website-Live-16A34A?style=flat-square)](https://struxllence.com) [![Community forum](https://img.shields.io/badge/Community-Forum-0866C6?style=flat-square)](https://forum.struxllence.com) [![Revamp forum — preview](https://img.shields.io/badge/Revamp%20forum-Preview-7657B5?style=flat-square)](https://new-forum.struxllence.com)
 
-The main website is coming soon. Join the community forum for structural-engineering discussions, explore the forum preview, or follow @StruXllence on YouTube. Report package defects through [GitHub Issues](https://github.com/StruXllence/StaadPro.Interop/issues).
+The [StruXllence website](https://struxllence.com) is live. Join the community forum for structural-engineering discussions, explore the forum preview, or follow @StruXllence on YouTube. Report package defects through [GitHub Issues](https://github.com/StruXllence/StaadPro.Interop/issues).
 
 **Automate STAAD.Pro from C# with strongly typed OpenSTAAD APIs.**
 
@@ -24,7 +24,11 @@ A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD. Work wi
 
 Runtime requires **Windows, .NET Framework 4.8.1 (net481), and a licensed STAAD.Pro installation** exposing the APIs used by your application. The .NET SDK used to build the project is separate from the application's target framework.
 
-The latest locally prepared preview is **1.0.0-preview.20261104**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
+The latest locally prepared preview is **1.0.0-preview.20261105**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
+
+## Latest preview — 1.0.0-preview.20261105
+
+Ported `ZoomAll()`, `ZoomExtentsMainView()`, `ShowAllMembers()`, `HideAllMembers()` and `ShowMember(Beam)` from the read-only main source. These additions are included in the new preview; earlier archives retain their original scope. See [zoom and visibility contracts](docs/View-Zoom-and-Member-Visibility.md).
 
 ## Quick start: read an open model
 
@@ -66,15 +70,15 @@ This attaches to an existing instance and reads primary load-case metadata. It d
 | Supports and analysis commands | [Support and Commands](docs/Commands-and-Support-Porting.md) |
 | Design briefs and assignments | [Design](docs/Design-Porting.md) |
 | Report tables and formatting | [Table](docs/Table-Porting.md) |
-| Graphical orientation | [View](docs/View-Orientations.md) |
+| Graphical orientation, zoom and member visibility | [View](docs/View-Zoom-and-Member-Visibility.md) |
 
 ## View orientations
 
-Use `ShowFront()`, `ShowBack()`, `ShowLeft()`, `ShowRight()`, `ShowPlan()`, `ShowBottom()` or `ShowIsometric()` for a fixed direction. Use `RotateUp(angleDegrees)`, `RotateDown(angle)`, `RotateLeft(angle)`, `RotateRight(angle)`, `SpinLeft(angle)` or `SpinRight(angle)` for finite signed-degree increments about their documented global axes. Each returns a named unacknowledged completion receipt. See [orientation usage](docs/View-Orientations.md) and [incremental rotations](docs/View-Incremental-Rotations.md). View exposes 13/70 main-source overloads; **150 active source overloads remain** across the reviewed domains. See [the source inventory](docs/reports/OpenSTAAD-Main-Source-Porting-Status.md).
+Use `ShowFront()`, `ShowBack()`, `ShowLeft()`, `ShowRight()`, `ShowPlan()`, `ShowBottom()` or `ShowIsometric()` for a fixed direction. Use `RotateUp(angleDegrees)`, `RotateDown(angle)`, `RotateLeft(angle)`, `RotateRight(angle)`, `SpinLeft(angle)` or `SpinRight(angle)` for finite signed-degree increments about their documented global axes. Each returns a named unacknowledged completion receipt. See [orientation usage](docs/View-Orientations.md) and [incremental rotations](docs/View-Incremental-Rotations.md). View exposes 18/70 main-source overloads; **145 active source overloads remain** across the reviewed domains. See [the source inventory](docs/reports/OpenSTAAD-Main-Source-Porting-Status.md).
 
 ## Compatibility and preview status
 
-The current implementation passed **7,137 offline tests**; the installed-package verifier checks **1,306 XML examples**, including twenty-six View examples. These checks validate managed behavior and distribution, not every native STAAD build, COM response or engineering-unit convention. Consult method-specific version, result-state, unit and side-effect contracts before using results in an engineering workflow.
+The current source passed **7,192 offline tests**; the installed-package verifier checks **1,316 XML examples**, including thirty-six View examples. These checks validate managed behavior and distribution, not every native STAAD build, COM response or engineering-unit convention. Consult method-specific version, result-state, unit and side-effect contracts before using results in an engineering workflow.
 
 The package remains a preview. [Release notes](docs/Release-Notes.md) identify the API scope, and [NuGet readiness](docs/NuGet-Readiness.md) records validation limits. Earlier public packages retain the license terms shipped with them.
 

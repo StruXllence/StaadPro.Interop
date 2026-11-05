@@ -1,6 +1,6 @@
 # Main-source porting status
 
-**Reviewed: 4 November 2026.** There were **155 active main-source interface overloads pending** before the five View ports in this increment; **150 remain afterwards**. The main project was read-only.
+**Reviewed: 5 November 2026.** There were **150 active main-source interface overloads pending** before the five View ports in this increment; **145 remain afterwards**. The main project was read-only.
 
 ## Count by domain
 
@@ -15,18 +15,18 @@
 | Design | 7 | 7 | 0 | 0 | 0 |
 | Commands | 21 | 17 | 3 | 3 | 1 |
 | Table | 29 | 29 | 0 | 0 | 0 |
-| View | 70 | 8 | 62 | 57 | 0 |
+| View | 70 | 13 | 57 | 52 | 0 |
 | IDEA StatiCa | 24 | 0 | 24 | 24 | 0 |
-| **Total** | **654** | **491** | **155** | **150** | **8** |
+| **Total** | **654** | **496** | **150** | **145** | **8** |
 
-Covered after this increment: **496** reference overloads. One managed replacement can cover more than one source signature; this measures usable source workflows and their overloads, not identical binary contracts or a count of public managed methods. New enabling methods are not subtracted again from this inventory.
+Covered after this increment: **501** reference overloads. One managed replacement can cover more than one source signature; this measures usable source workflows and their overloads, not identical binary contracts or a count of public managed methods. New enabling methods are not subtracted again from this inventory.
 
 ## What is included
 
 - Output: 38 pending overloads, comprising 33 asynchronous wrappers and five synchronous functions/conveniences: GetBucklingFactor(int), GetBucklingModeDisplacement(int, Node), both GetResultantForceAlongLineForPlateList overloads, and GetPlateStressAtPoint. Pending asynchronous APIs require caller-apartment design; the reference Task.Run implementation will not be copied without review.
 - Support: 28 active source workflows remain, principally typed support-instance creation/assignment, entity population, grouped discovery and plate-mat compositions. The existing scalar count, supported-node ID and support-type observations cover their renamed source equivalents. Native primitives alone do not complete the higher-level workflows.
 - Commands: CreateSteelDesignCommand, ValidateSteelDesignCommand and GetSteelDesignCommands remain. The deprecated PerformPDeltaAnalysisConverge overload is excluded, not reported as a missing supported API.
-- View: 57 of 70 overloads remain after RotateDown, RotateLeft, RotateRight, SpinLeft and SpinRight.
+- View: 52 of 70 overloads remain after ZoomAll, ZoomExtentsMainView, ShowAllMembers, HideAllMembers and ShowMember.
 - IDEA StatiCa: all 24 domain-interface overloads remain. Prerequisite models, options, transformation and export helpers are dependencies, not extra domain functions added to this total.
 
 ## Existing replacements and exclusions
@@ -39,6 +39,6 @@ Property has all 98 active interface routes represented, including the explicit 
 
 This is a count of reviewed main **domain-interface overloads**. It excludes constructors, wrapper/provider members already handled by their own parity review, properties, private helpers, implementation-service methods, future dependency APIs and native-only functions. It does not claim every public method in every private implementation class has been ported. Main-source porting has priority over native-only expansion.
 
-The nine documented Property gates and fifteen supplemental Property candidates remain separate review work. Parked Load additions and qualification-driven changes still require explicit approval. The eight Support, thirteen Output and forty Design native gates overlap some source workflows and must not simply be added to the 155 count. Native COM, UI, marshaling and engineering qualification are separate from managed implementation coverage.
+The nine documented Property gates and fifteen supplemental Property candidates remain separate review work. Parked Load additions and qualification-driven changes still require explicit approval. The eight Support, thirteen Output and forty Design native gates overlap some source workflows and must not simply be added to the 145 count. Native COM, UI, marshaling and engineering qualification are separate from managed implementation coverage.
 
 [Machine-readable method inventory and source fingerprints](data/OpenSTAAD-Main-Source-Porting-Status.json) · [Remaining-domain sequence](OpenSTAAD-Remaining-Adapters-Review-Index.md) · [View implementation](../View-Orientations.md)

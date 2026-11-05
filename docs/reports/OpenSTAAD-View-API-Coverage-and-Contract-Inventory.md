@@ -1,5 +1,7 @@
 # OpenSTAAD View API coverage and native contract inventory
 
+**Current source, 5 November 2026:** ported ZoomAll, ZoomExtentsMainView, ShowAllMembers, HideAllMembers and ShowMember(Beam) from the read-only main source. View now provides 18/70 source overloads over 18/67 reviewed native names, leaving 52 View source overloads and 49 native names pending. The reviewed source-interface total has 145 active overloads pending. See [zoom and visibility contracts](../View-Zoom-and-Member-Visibility.md) and [source totals](OpenSTAAD-Main-Source-Porting-Status.md). These additions are unreleased; native COM/UI qualification remains separate.
+
 **Current implementation, 4 November 2026:** Ported `RotateDown(double angle)`, `RotateLeft(double angle)`, `RotateRight(double angle)`, `SpinLeft(double angle)` and `SpinRight(double angle)` from the main source. Preserved the original `angle` parameter name, type and order on both interfaces and the concrete adapter. View now exposes **13 of 70 main-source overloads** and reaches **13 of 67 reviewed native names**; **57 source overloads** and **54 native names** remain pending. See [incremental rotation contracts](../View-Incremental-Rotations.md) and [source-porting totals](OpenSTAAD-Main-Source-Porting-Status.md). Native COM/UI qualification remains separate.
 
 
@@ -482,9 +484,9 @@ void OSViewUI::SpinRight(const VARIANT FAR&dDegrees)
 
 ### 14. ZoomAll
 
-**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#gac216528ad6c739a0dce373b7d4249e82) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#gac216528ad6c739a0dce373b7d4249e82) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#gac216528ad6c739a0dce373b7d4249e82)<br>**Current:** Pending; V2.
+**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#gac216528ad6c739a0dce373b7d4249e82) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#gac216528ad6c739a0dce373b7d4249e82) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#gac216528ad6c739a0dce373b7d4249e82)<br>**Current:** Implemented in unreleased source; common View service, 5 November 2026.
 
-**Managed proposal:** `ViewOperationResult ZoomAll; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.`
+**Managed implementation:** `ViewOperationResult ZoomAll()`
 
 #### 2024 contract
 
@@ -1017,9 +1019,9 @@ void OSViewUI::SetBeamAnnotationMode(const VARIANT FAR&Type,const VARIANT FAR&DW
 
 ### 26. ShowAllMembers
 
-**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#ga8867d1f819358edb9cbf5e8b17e4e3f5) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#ga8867d1f819358edb9cbf5e8b17e4e3f5) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#ga8867d1f819358edb9cbf5e8b17e4e3f5)<br>**Current:** Pending; V2.
+**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#ga8867d1f819358edb9cbf5e8b17e4e3f5) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#ga8867d1f819358edb9cbf5e8b17e4e3f5) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#ga8867d1f819358edb9cbf5e8b17e4e3f5)<br>**Current:** Implemented in unreleased source; common View service, 5 November 2026.
 
-**Managed proposal:** `ViewOperationResult ShowAllMembers; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.`
+**Managed implementation:** `ViewOperationResult ShowAllMembers()`
 
 #### 2024 contract
 
@@ -1045,9 +1047,9 @@ No native parameters.
 
 ### 27. HideAllMembers
 
-**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#ga21f15888dcd089e830a3112e69c07f47) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#ga21f15888dcd089e830a3112e69c07f47) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#ga21f15888dcd089e830a3112e69c07f47)<br>**Current:** Pending; V2.
+**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#ga21f15888dcd089e830a3112e69c07f47) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#ga21f15888dcd089e830a3112e69c07f47) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#ga21f15888dcd089e830a3112e69c07f47)<br>**Current:** Implemented in unreleased source; common View service, 5 November 2026.
 
-**Managed proposal:** `ViewOperationResult HideAllMembers; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.`
+**Managed implementation:** `ViewOperationResult HideAllMembers()`
 
 #### 2024 contract
 
@@ -1193,9 +1195,9 @@ void OSViewUI::HideMembers(const VARIANT FAR&nMembers,const VARIANT FAR&naMember
 
 ### 31. ShowMember
 
-**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#ga99421be7751d97a3ec9e2351335c6b2b) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#ga99421be7751d97a3ec9e2351335c6b2b) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#ga99421be7751d97a3ec9e2351335c6b2b)<br>**Current:** Pending; V2.
+**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#ga99421be7751d97a3ec9e2351335c6b2b) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#ga99421be7751d97a3ec9e2351335c6b2b) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#ga99421be7751d97a3ec9e2351335c6b2b)<br>**Current:** Implemented in unreleased source; common View service, 5 November 2026.
 
-**Managed proposal:** `ViewOperationResult ShowMember; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.`
+**Managed implementation:** `ViewOperationResult ShowMember(Beam beam)`
 
 #### 2024 contract
 
@@ -1373,9 +1375,9 @@ void OSViewUI::HideEntity(const VARIANT FAR&nEntity)
 
 ### 37. ZoomExtentsMainView
 
-**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#gaeaaeff4b965bcbbb6db04074e40dc808) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#gaeaaeff4b965bcbbb6db04074e40dc808) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#gaeaaeff4b965bcbbb6db04074e40dc808)<br>**Current:** Pending; V4.
+**Native references:** [2024](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___view.html#gaeaaeff4b965bcbbb6db04074e40dc808) / [2025](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___view.html#gaeaaeff4b965bcbbb6db04074e40dc808) / [2026](../../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___view.html#gaeaaeff4b965bcbbb6db04074e40dc808)<br>**Current:** Implemented in unreleased source; common View service, 5 November 2026.
 
-**Managed proposal:** `ViewOperationResult ZoomExtentsMainView; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.`
+**Managed implementation:** `ViewOperationResult ZoomExtentsMainView()`
 
 #### 2024 contract
 

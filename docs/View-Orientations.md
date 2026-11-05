@@ -1,5 +1,7 @@
 # View orientations and incremental rotation
 
+**Current source, 5 November 2026:** View also includes [zoom and member visibility requests](View-Zoom-and-Member-Visibility.md), reaching 18/70 source overloads and 18/67 native names. There are 52 View source overloads and 145 active source overloads across all reviewed domains pending. The orientation/rotation contracts below remain applicable.
+
 The View adapter exposes seven standard orientation requests and six incremental rotations/spins adapted from the read-only main source: ShowFront, ShowBack, ShowLeft, ShowRight, ShowPlan, ShowBottom, ShowIsometric, RotateUp, RotateDown, RotateLeft, RotateRight, SpinLeft and SpinRight. Each targets the captured native View interface of the acquired OpenStaadWrapper. The common contract is the same in the reviewed STAAD.Pro 2024, 2025 and 2026 manuals; passive 2025/2026 automation metadata also declares void methods, with a by-value Object angle input for the incremental requests. No separate per-year service is needed for these matching contracts.
 
 ## Choose the graphical direction
