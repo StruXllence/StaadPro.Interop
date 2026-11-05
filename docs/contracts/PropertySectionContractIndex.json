@@ -15,7 +15,7 @@
       ],
       "returns": "The same Property adapter for fluent chaining after the requested operations complete.",
       "remarks": "When to use: Use with GetAllSections/GetSectionBy results when section definitions already exist. Copies candidate IDs before dispatch and calls AssignBeamProperty once per section with an Int32 array, requiring integral zero success. Does not create sections, hydrate geometry, change managed beam section references, save or roll back earlier writes.",
-      "example": "var section = property.GetSectionBy(37);\nsection.AssignedBeams.Add(new Beam { Id = 17 });\nproperty.AssignSectionProperties(new System.Collections.Generic.HashSet<StaadPro.Interop.Interfaces.IGenericSection> { section });",
+      "example": "var section = property.GetSectionBy(37);\nsection.AssignedBeams.Add(new Beam { Id = 17 });\nproperty.AssignSectionProperties(new System.Collections.Generic.HashSet<StaadPro.Interop.Core.Interfaces.IGenericSection> { section });",
       "native": [
         "AssignBeamProperty"
       ],
@@ -34,7 +34,7 @@
       ],
       "returns": "The same Property adapter for fluent chaining after the requested operations complete.",
       "remarks": "When to use: Use after resolving or creating positive native IDs. All target IDs are validated and copied before the first native write. Calls AssignBeamProperty with each packet's member-ID array. Integral zero is success; nonzero codes throw and may describe partial assignment. Does not create definitions, infer materials, populate beam references, save, retry or roll back earlier writes.",
-      "example": "var definition = new StaadPro.Interop.Models.Sections.SectionDefinition();\ndefinition.SectionProfile.SelectedSection = new StaadPro.Interop.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = \"ISMB300\", Designation = \"ISMB300\" };\nvar section = new SectionProperty { Id = 37, SectionDefinition = definition };\nsection.Beams.Add(new Beam { Id = 17 });\nproperty.AssignSectionProperties(new System.Collections.Generic.HashSet<SectionProperty> { section });",
+      "example": "var definition = new StaadPro.Interop.Core.Models.Sections.SectionDefinition();\ndefinition.SectionProfile.SelectedSection = new StaadPro.Interop.Core.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = \"ISMB300\", Designation = \"ISMB300\" };\nvar section = new SectionProperty { Id = 37, SectionDefinition = definition };\nsection.Beams.Add(new Beam { Id = 17 });\nproperty.AssignSectionProperties(new System.Collections.Generic.HashSet<SectionProperty> { section });",
       "native": [
         "AssignBeamProperty"
       ],
@@ -57,7 +57,7 @@
       ],
       "returns": "The same Property adapter for fluent chaining after the requested operations complete.",
       "remarks": "When to use: Use after resolving or creating positive native IDs. All target IDs are validated and copied before the first native write. Calls AssignBeamProperty for each individual member, preserving the source scalar route. Integral zero is success; nonzero codes throw and may describe partial assignment. Does not create definitions, infer materials, populate beam references, save, retry or roll back earlier writes.",
-      "example": "var definition = new StaadPro.Interop.Models.Sections.SectionDefinition();\ndefinition.SectionProfile.SelectedSection = new StaadPro.Interop.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = \"ISMB300\", Designation = \"ISMB300\" };\nvar section = new SectionProperty { Id = 37, SectionDefinition = definition };\nsection.Beams.Add(new Beam { Id = 17 });\nproperty.AssignSectionProperties(new System.Collections.Generic.HashSet<SectionProperty> { section }, 2);",
+      "example": "var definition = new StaadPro.Interop.Core.Models.Sections.SectionDefinition();\ndefinition.SectionProfile.SelectedSection = new StaadPro.Interop.Core.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = \"ISMB300\", Designation = \"ISMB300\" };\nvar section = new SectionProperty { Id = 37, SectionDefinition = definition };\nsection.Beams.Add(new Beam { Id = 17 });\nproperty.AssignSectionProperties(new System.Collections.Generic.HashSet<SectionProperty> { section }, 2);",
       "native": [
         "AssignBeamProperty"
       ],
@@ -76,7 +76,7 @@
       ],
       "returns": "The same Property adapter for fluent chaining after the requested operations complete.",
       "remarks": "When to use: Use after resolving or creating positive native IDs. All target IDs are validated and copied before the first native write. Calls AssignBeamProperty with each packet's member-ID array. Integral zero is success; nonzero codes throw and may describe partial assignment. Does not create definitions, infer materials, populate beam references, save, retry or roll back earlier writes.",
-      "example": "var definition = new StaadPro.Interop.Models.Sections.SectionDefinition();\ndefinition.SectionProfile.SelectedSection = new StaadPro.Interop.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = \"ISMB300\", Designation = \"ISMB300\" };\nvar section = new SectionProperty { Id = 37, SectionDefinition = definition };\nsection.Beams.Add(new Beam { Id = 17 });\nproperty.AssignSectionProperty(section);",
+      "example": "var definition = new StaadPro.Interop.Core.Models.Sections.SectionDefinition();\ndefinition.SectionProfile.SelectedSection = new StaadPro.Interop.Core.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = \"ISMB300\", Designation = \"ISMB300\" };\nvar section = new SectionProperty { Id = 37, SectionDefinition = definition };\nsection.Beams.Add(new Beam { Id = 17 });\nproperty.AssignSectionProperty(section);",
       "native": [
         "AssignBeamProperty"
       ],
@@ -99,7 +99,7 @@
       ],
       "returns": "The same Property adapter for fluent chaining after the requested operations complete.",
       "remarks": "When to use: Use after resolving or creating positive native IDs. All target IDs are validated and copied before the first native write. Calls AssignBeamProperty for each individual member, preserving the source scalar route. Integral zero is success; nonzero codes throw and may describe partial assignment. Does not create definitions, infer materials, populate beam references, save, retry or roll back earlier writes.",
-      "example": "var definition = new StaadPro.Interop.Models.Sections.SectionDefinition();\ndefinition.SectionProfile.SelectedSection = new StaadPro.Interop.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = \"ISMB300\", Designation = \"ISMB300\" };\nvar section = new SectionProperty { Id = 37, SectionDefinition = definition };\nsection.Beams.Add(new Beam { Id = 17 });\nproperty.AssignSectionProperty(section, 2);",
+      "example": "var definition = new StaadPro.Interop.Core.Models.Sections.SectionDefinition();\ndefinition.SectionProfile.SelectedSection = new StaadPro.Interop.Core.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = \"ISMB300\", Designation = \"ISMB300\" };\nvar section = new SectionProperty { Id = 37, SectionDefinition = definition };\nsection.Beams.Add(new Beam { Id = 17 });\nproperty.AssignSectionProperty(section, 2);",
       "native": [
         "AssignBeamProperty"
       ],
@@ -118,7 +118,7 @@
       ],
       "returns": "The same Property adapter for fluent chaining after the requested operations complete.",
       "remarks": "When to use: Use to apply managed SectionProperty definitions in one ordered workflow. Groups equal selected profile identities, modifiers and additional values; retains canonical existing Beams and adds supplied beam references. Validates/snapshots all requests and target IDs first, creates every grouped definition, propagates each positive native ID to all equal source packets, then assigns grouped member-ID arrays. Set the intended existing current material beforehand. A later creation/assignment failure leaves earlier native changes and successful IDs applied; no transaction, cleanup, save, implicit material selection or conversion occurs. Empty input/no definitions is a no-op. Private catalog/UI services are not imported.",
-      "example": "var definition = new StaadPro.Interop.Models.Sections.SectionDefinition();\ndefinition.SectionProfile.SelectedSection = new StaadPro.Interop.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = \"ISMB300\", Designation = \"ISMB300\" };\nvar section = new SectionProperty { Id = 37, SectionDefinition = definition };\nsection.Beams.Add(new Beam { Id = 17 });\nproperty.SetMaterialName(\"STEEL\");\nvar beam = new Beam { Id = 17, SectionProperty = section };\nproperty.CreateAndAssignSectionProperties(new System.Collections.Generic.HashSet<Beam> { beam });",
+      "example": "var definition = new StaadPro.Interop.Core.Models.Sections.SectionDefinition();\ndefinition.SectionProfile.SelectedSection = new StaadPro.Interop.Core.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = \"ISMB300\", Designation = \"ISMB300\" };\nvar section = new SectionProperty { Id = 37, SectionDefinition = definition };\nsection.Beams.Add(new Beam { Id = 17 });\nproperty.SetMaterialName(\"STEEL\");\nvar beam = new Beam { Id = 17, SectionProperty = section };\nproperty.CreateAndAssignSectionProperties(new System.Collections.Generic.HashSet<Beam> { beam });",
       "native": [
         "CreateBeamPropertyFromTable",
         "CreateTeePropertyFromTable",
@@ -149,7 +149,7 @@
       ],
       "returns": "The same Property adapter for fluent chaining after the requested operations complete.",
       "remarks": "When to use: Use to apply managed SectionProperty definitions in one ordered workflow. Groups equal selected profile identities, modifiers and additional values; retains canonical existing Beams and adds supplied beam references. Validates/snapshots all requests and target IDs first, creates every grouped definition, propagates each positive native ID to all equal source packets, then assigns individual member IDs. Set the intended existing current material beforehand. A later creation/assignment failure leaves earlier native changes and successful IDs applied; no transaction, cleanup, save, implicit material selection or conversion occurs. Empty input/no definitions is a no-op. Private catalog/UI services are not imported.",
-      "example": "var definition = new StaadPro.Interop.Models.Sections.SectionDefinition();\ndefinition.SectionProfile.SelectedSection = new StaadPro.Interop.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = \"ISMB300\", Designation = \"ISMB300\" };\nvar section = new SectionProperty { Id = 37, SectionDefinition = definition };\nsection.Beams.Add(new Beam { Id = 17 });\nproperty.SetMaterialName(\"STEEL\");\nvar beam = new Beam { Id = 17, SectionProperty = section };\nproperty.CreateAndAssignSectionProperties(new System.Collections.Generic.HashSet<Beam> { beam }, 2);",
+      "example": "var definition = new StaadPro.Interop.Core.Models.Sections.SectionDefinition();\ndefinition.SectionProfile.SelectedSection = new StaadPro.Interop.Core.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = \"ISMB300\", Designation = \"ISMB300\" };\nvar section = new SectionProperty { Id = 37, SectionDefinition = definition };\nsection.Beams.Add(new Beam { Id = 17 });\nproperty.SetMaterialName(\"STEEL\");\nvar beam = new Beam { Id = 17, SectionProperty = section };\nproperty.CreateAndAssignSectionProperties(new System.Collections.Generic.HashSet<Beam> { beam }, 2);",
       "native": [
         "CreateBeamPropertyFromTable",
         "CreateTeePropertyFromTable",
@@ -180,7 +180,7 @@
       ],
       "returns": "The same Property adapter for fluent chaining after the requested operations complete.",
       "remarks": "When to use: Use when caller constants need explicit conversion to the acquired native creation convention. Multiplies E, derived G and weight density by the copied corresponding factors, matching the source overload's dimensions; Poisson, alpha and damping pass unchanged. Does not apply the legacy E/G x1000 scale, alter the source packet or change native input units. Uses repository double-precision unit constants rather than the private decimal units library. Native 0=Created and 1=Updated are recorded in LastCreationStatus; Id remains unchanged. Strength fields are not sent. Earlier successes survive later failure; no assignment, save or rollback occurs.",
-      "example": "var material = new MaterialProperty(\"STEEL\") { E = 200000000.0, Poisson = 0.3, Density = 77.0 };\nvar converter = new StaadPro.Interop.Common.Units.UnitsConverter(LengthInputUnit.Meter, ForceInputUnit.KiloNewton, LengthInputUnit.MilliMeter, ForceInputUnit.Newton);\nproperty.CreateMaterialProperties(new System.Collections.Generic.HashSet<MaterialProperty> { material }, converter);",
+      "example": "var material = new MaterialProperty(\"STEEL\") { E = 200000000.0, Poisson = 0.3, Density = 77.0 };\nvar converter = new StaadPro.Interop.Core.Common.Units.UnitsConverter(LengthInputUnit.Meter, ForceInputUnit.KiloNewton, LengthInputUnit.MilliMeter, ForceInputUnit.Newton);\nproperty.CreateMaterialProperties(new System.Collections.Generic.HashSet<MaterialProperty> { material }, converter);",
       "native": [
         "CreateIsotropicMaterialProperties"
       ],
@@ -203,7 +203,7 @@
       ],
       "returns": "The same Property adapter for fluent chaining after the requested operations complete.",
       "remarks": "When to use: Use when caller constants need explicit conversion to the acquired native creation convention. Multiplies E, derived G and weight density by the copied corresponding factors, matching the source overload's dimensions; Poisson, alpha and damping pass unchanged. Does not apply the legacy E/G x1000 scale, alter the source packet or change native input units. Uses repository double-precision unit constants rather than the private decimal units library. Native 0=Created and 1=Updated are recorded in LastCreationStatus; Id remains unchanged. Strength fields are not sent. Earlier successes survive later failure; no assignment, save or rollback occurs.",
-      "example": "var material = new MaterialProperty(\"STEEL\") { E = 200000000.0, Poisson = 0.3, Density = 77.0 };\nvar converter = new StaadPro.Interop.Common.Units.UnitsConverter(LengthInputUnit.Meter, ForceInputUnit.KiloNewton, LengthInputUnit.MilliMeter, ForceInputUnit.Newton);\nproperty.CreateMaterialProperty(material, converter);",
+      "example": "var material = new MaterialProperty(\"STEEL\") { E = 200000000.0, Poisson = 0.3, Density = 77.0 };\nvar converter = new StaadPro.Interop.Core.Common.Units.UnitsConverter(LengthInputUnit.Meter, ForceInputUnit.KiloNewton, LengthInputUnit.MilliMeter, ForceInputUnit.Newton);\nproperty.CreateMaterialProperty(material, converter);",
       "native": [
         "CreateIsotropicMaterialProperties"
       ],
@@ -245,7 +245,7 @@
       ],
       "returns": "The same Property adapter for fluent chaining after the requested operations complete.",
       "remarks": "When to use: Use for the main table-selection creation graph. H supports ST/T/D/TC/BC/TB/CM, C supports ST/D/FR/BA, L supports ST/RA/SA/LD/SD, and pipe/tube support ST/UserDefined. Uses the corresponding native table routine and actual BC code with Bottom dimensions. Composite creation forwards source CT/FC/CW/CD values unchanged; acquired-build support requires qualification. Unsupported families/modifiers throw before native writes instead of silently doing nothing. Set the intended existing material first. Only positive native results replace packet IDs; earlier successful creations remain on later failure. No assignment, private catalog lookup, conversion, implicit save or rollback.",
-      "example": "var definition = new StaadPro.Interop.Models.Sections.SectionDefinition();\ndefinition.SectionProfile.SelectedSection = new StaadPro.Interop.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = \"ISMB300\", Designation = \"ISMB300\" };\nvar section = new SectionProperty { Id = 37, SectionDefinition = definition };\nsection.Beams.Add(new Beam { Id = 17 });\nproperty.SetMaterialName(\"STEEL\");\nproperty.CreateSectionProperties(new System.Collections.Generic.HashSet<SectionProperty> { section });\nSystem.Console.WriteLine(section.Id);",
+      "example": "var definition = new StaadPro.Interop.Core.Models.Sections.SectionDefinition();\ndefinition.SectionProfile.SelectedSection = new StaadPro.Interop.Core.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = \"ISMB300\", Designation = \"ISMB300\" };\nvar section = new SectionProperty { Id = 37, SectionDefinition = definition };\nsection.Beams.Add(new Beam { Id = 17 });\nproperty.SetMaterialName(\"STEEL\");\nproperty.CreateSectionProperties(new System.Collections.Generic.HashSet<SectionProperty> { section });\nSystem.Console.WriteLine(section.Id);",
       "native": [
         "CreateBeamPropertyFromTable",
         "CreateTeePropertyFromTable",
@@ -271,7 +271,7 @@
       ],
       "returns": "The same Property adapter for fluent chaining after the requested operations complete.",
       "remarks": "When to use: Use for the main table-selection creation graph. H supports ST/T/D/TC/BC/TB/CM, C supports ST/D/FR/BA, L supports ST/RA/SA/LD/SD, and pipe/tube support ST/UserDefined. Uses the corresponding native table routine and actual BC code with Bottom dimensions. Composite creation forwards source CT/FC/CW/CD values unchanged; acquired-build support requires qualification. Unsupported families/modifiers throw before native writes instead of silently doing nothing. Set the intended existing material first. Only positive native results replace packet IDs; earlier successful creations remain on later failure. No assignment, private catalog lookup, conversion, implicit save or rollback.",
-      "example": "var definition = new StaadPro.Interop.Models.Sections.SectionDefinition();\ndefinition.SectionProfile.SelectedSection = new StaadPro.Interop.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = \"ISMB300\", Designation = \"ISMB300\" };\nvar section = new SectionProperty { Id = 37, SectionDefinition = definition };\nsection.Beams.Add(new Beam { Id = 17 });\nproperty.SetMaterialName(\"STEEL\");\nproperty.CreateSectionProperty(section);\nSystem.Console.WriteLine(section.Id);",
+      "example": "var definition = new StaadPro.Interop.Core.Models.Sections.SectionDefinition();\ndefinition.SectionProfile.SelectedSection = new StaadPro.Interop.Core.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = \"ISMB300\", Designation = \"ISMB300\" };\nvar section = new SectionProperty { Id = 37, SectionDefinition = definition };\nsection.Beams.Add(new Beam { Id = 17 });\nproperty.SetMaterialName(\"STEEL\");\nproperty.CreateSectionProperty(section);\nSystem.Console.WriteLine(section.Id);",
       "native": [
         "CreateBeamPropertyFromTable",
         "CreateTeePropertyFromTable",

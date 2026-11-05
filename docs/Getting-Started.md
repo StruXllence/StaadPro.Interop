@@ -1,10 +1,10 @@
-# Getting Started with StaadPro.Interop
+# Getting Started with StaadPro.Interop.Core
 
 ## Overview & Prerequisites
 
 The latest port adds self-weight, envelope creation and load-list selection through `wrapper.Load`, plus current-model path/filename and derived analysis-file path through `wrapper.Root`. See [Load-Porting.md](Load-Porting.md) and [Root-Porting.md](Root-Porting.md) for signatures, examples and native success/state-change contracts. All new functions include expanded interface/concrete IntelliSense in installed packages.
 
-StaadPro.Interop provides a modern, strongly-typed .NET interface for Bentley STAAD.Pro.
+StaadPro.Interop.Core provides a modern, strongly-typed .NET interface for Bentley STAAD.Pro.
 
 - **Target Framework**: .NET Framework 4.8.1 (`net481`) on Windows. There is currently no .NET 8 target.
 - **Runtime**: A licensed STAAD.Pro installation exposing the OpenSTAAD signatures used by your application.
@@ -16,13 +16,13 @@ StaadPro.Interop provides a modern, strongly-typed .NET interface for Bentley ST
 
 ## 1. Standard (Default) Usage: Dynamic Decoupled Interop
 
-By default, `StaadPro.Interop` uses runtime COM dynamic dispatch via `OpenStaadWrapperProvider`. This provides major benefits:
+By default, `StaadPro.Interop.Core` uses runtime COM dynamic dispatch via `OpenStaadWrapperProvider`. This provides major benefits:
 - **Zero build-time dependencies**: You do not need Bentley DLLs (`StaadPro.dll`, `OpenSTAADUI.dll`) or registered TypeLibs to compile your projects or run automated CI/CD pipelines.
 - **Runtime dispatch**: The binary resolves methods on the installed OpenSTAAD interface. Missing signatures propagate as runtime errors; test each version you intend to support.
 
 ```csharp
-using StaadPro.Interop.Services;
-using StaadPro.Interop.Models;
+using StaadPro.Interop.Core.Services;
+using StaadPro.Interop.Core.Models;
 
 // Attach to active STAAD instance or open specified model
 using (OpenStaadWrapper wrapper = OpenStaadWrapperProvider.Get(@"C:\Models\Structure.std"))
@@ -96,7 +96,7 @@ Open your client `.csproj` file and add the `COMFileReference` pointing to your 
 
 When building a standalone client executable (WPF, WinForms, or Console App) connecting out-of-process to STAAD.Pro without administrator elevation, Windows Side-by-Side (SxS) requires COM interface external proxy/stub declarations.
 
-1. Copy [`app.manifest`](../src/StaadPro.Interop/app.manifest) into your client project folder.
+1. Copy [`app.manifest`](../src/StaadPro.Interop.Core/app.manifest) into your client project folder.
 2. Ensure the `<comInterfaceExternalProxyStub>` elements are included for OpenSTAAD interfaces (`IOpenSTAADUI`, `IOSGeometryUI`, `IOSLoadUI`, etc.).
 3. In your client project properties under **Build Events** (Post-build event), add:
    ```cmd
@@ -119,9 +119,9 @@ Read distinct combinations with `load.GetLoadCombinationCasesFromIds(new[] { 201
 
 Filter an inclusive range with `load.GetLoadCases(1, 50, LoadCaseType.PrimaryLoad)`, filter requested IDs with `load.GetLoadCasesFromIds(new[] { 17, 41, 17 }, LoadCaseType.PrimaryLoad)`, or request a concrete list with `load.GetLoadCasesOfType(LoadCaseType.ReferenceLoad)`. Filters return distinct existing cases in unspecified family order and validate unmatched metadata too. See [Installation.md](Installation.md) for package installation and [Publishing.md](Publishing.md) for public release steps.
 
-- `StaadPro.Interop.Services`: `OpenStaadWrapperProvider` factory for acquiring model sessions across ROT, active instances, and file launch.
-- `StaadPro.Interop.Models`: `OpenStaadWrapper` model session container exposing `Geometry` (`IOSGeometry`), `Load` (`IOSLoad`), and unit system metadata.
-- `StaadPro.Interop.Adapters.Interfaces`: `IOSGeometry`, `IOSLoad`, `IOSBase` adapter contracts.
-- `StaadPro.Interop.Adapters.Models`: `OSGeometryAdapter`, `OSLoadAdapter`, `OSBaseAdapter` implementations.
-- `StaadPro.Interop.Entities`: `Node`, `Beam`, `Plate`, `Member`, `LoadCase`, `EntityGroup<T>`.
-- `StaadPro.Interop.Enums`: `LoadType`, `LoadCaseType`, `BaseUnitSystem`, `ForceInputUnit`, `LengthInputUnit`, `BeamAxis`, `BeamRelation`, `SurfaceType`, `GroupType`.
+- `StaadPro.Interop.Core.Services`: `OpenStaadWrapperProvider` factory for acquiring model sessions across ROT, active instances, and file launch.
+- `StaadPro.Interop.Core.Models`: `OpenStaadWrapper` model session container exposing `Geometry` (`IOSGeometry`), `Load` (`IOSLoad`), and unit system metadata.
+- `StaadPro.Interop.Core.Adapters.Interfaces`: `IOSGeometry`, `IOSLoad`, `IOSBase` adapter contracts.
+- `StaadPro.Interop.Core.Adapters.Models`: `OSGeometryAdapter`, `OSLoadAdapter`, `OSBaseAdapter` implementations.
+- `StaadPro.Interop.Core.Entities`: `Node`, `Beam`, `Plate`, `Member`, `LoadCase`, `EntityGroup<T>`.
+- `StaadPro.Interop.Core.Enums`: `LoadType`, `LoadCaseType`, `BaseUnitSystem`, `ForceInputUnit`, `LengthInputUnit`, `BeamAxis`, `BeamRelation`, `SurfaceType`, `GroupType`.

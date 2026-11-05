@@ -29,7 +29,7 @@
       "sourceSignature": "PlateCornerForces GetPlateCornerForces(ILoadCase loadCase, Plate plate, Node cornerNode)",
       "signature": "OutputQueryResult<PlateCornerForces> GetPlateCornerForces(ILoadCase loadCase, Plate plate, Node cornerNode)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar result = wrapper.Output.GetPlateCornerForces(loadCase, plate, cornerNode);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
-      "xmlSignature": "GetPlateCornerForces(StaadPro.Interop.Entities.ILoadCase,StaadPro.Interop.Entities.Plate,StaadPro.Interop.Entities.Node)"
+      "xmlSignature": "GetPlateCornerForces(StaadPro.Interop.Core.Entities.ILoadCase,StaadPro.Interop.Core.Entities.Plate,StaadPro.Interop.Core.Entities.Node)"
     },
     {
       "returnType": "OutputQueryResult<PlateCornerForces>",
@@ -89,7 +89,7 @@
       "sourceSignature": "PlateCornerForces GetPlateCornerForces(int loadCaseId, int plateId, int cornerNodeId, IOSGeometry geometry, IOSLoad load)",
       "signature": "OutputQueryResult<PlateCornerForces> GetPlateCornerForces(int loadCaseId, int plateId, int cornerNodeId, IOSGeometry geometry, IOSLoad load)",
       "example": "var result = wrapper.Output.GetPlateCornerForces(1, 17, 1, wrapper.Geometry, wrapper.Load);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
-      "xmlSignature": "GetPlateCornerForces(System.Int32,System.Int32,System.Int32,StaadPro.Interop.Adapters.Interfaces.IOSGeometry,StaadPro.Interop.Adapters.Interfaces.IOSLoad)"
+      "xmlSignature": "GetPlateCornerForces(System.Int32,System.Int32,System.Int32,StaadPro.Interop.Core.Adapters.Interfaces.IOSGeometry,StaadPro.Interop.Core.Adapters.Interfaces.IOSLoad)"
     },
     {
       "returnType": "OutputQueryResult<PlateCornerForces>",
@@ -127,7 +127,7 @@
       "sourceSignature": "PlateCornerForces GetPlateCornerForces(int loadCaseId, int plateId, int cornerNodeId, LoadCaseType loadCaseType, IOSGeometry geometry, IOSLoad load)",
       "signature": "OutputQueryResult<PlateCornerForces> GetPlateCornerForces(int loadCaseId, int plateId, int cornerNodeId, LoadCaseType loadCaseType, IOSGeometry geometry, IOSLoad load)",
       "example": "var result = wrapper.Output.GetPlateCornerForces(1, 17, 1, LoadCaseType.PrimaryLoad, wrapper.Geometry, wrapper.Load);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
-      "xmlSignature": "GetPlateCornerForces(System.Int32,System.Int32,System.Int32,StaadPro.Interop.Enums.LoadCaseType,StaadPro.Interop.Adapters.Interfaces.IOSGeometry,StaadPro.Interop.Adapters.Interfaces.IOSLoad)"
+      "xmlSignature": "GetPlateCornerForces(System.Int32,System.Int32,System.Int32,StaadPro.Interop.Core.Enums.LoadCaseType,StaadPro.Interop.Core.Adapters.Interfaces.IOSGeometry,StaadPro.Interop.Core.Adapters.Interfaces.IOSLoad)"
     },
     {
       "returnType": "PlateCornerForcesResultSet",
@@ -153,7 +153,7 @@
       "sourceSignature": "PlateCornerForcesResultSet GetPlateCornerForces(IEnumerable<ILoadCase> loadCases, Plate plate, Node cornerNode)",
       "signature": "PlateCornerForcesResultSet GetPlateCornerForces(IEnumerable<ILoadCase> loadCases, Plate plate, Node cornerNode)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar result = wrapper.Output.GetPlateCornerForces(new[] { loadCase }, plate, cornerNode);\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);\n    else System.Console.WriteLine(item.Status);",
-      "xmlSignature": "GetPlateCornerForces(System.Collections.Generic.IEnumerable{StaadPro.Interop.Entities.ILoadCase},StaadPro.Interop.Entities.Plate,StaadPro.Interop.Entities.Node)"
+      "xmlSignature": "GetPlateCornerForces(System.Collections.Generic.IEnumerable{StaadPro.Interop.Core.Entities.ILoadCase},StaadPro.Interop.Core.Entities.Plate,StaadPro.Interop.Core.Entities.Node)"
     },
     {
       "returnType": "PlateCornerForcesResultSet",
@@ -175,7 +175,7 @@
       "sourceSignature": "PlateCornerForcesResultSet GetPlateCornerForces(ILoadCase loadCase, Plate plate)",
       "signature": "PlateCornerForcesResultSet GetPlateCornerForces(ILoadCase loadCase, Plate plate)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar result = wrapper.Output.GetPlateCornerForces(loadCase, plate);\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);\n    else System.Console.WriteLine(item.Status);",
-      "xmlSignature": "GetPlateCornerForces(StaadPro.Interop.Entities.ILoadCase,StaadPro.Interop.Entities.Plate)"
+      "xmlSignature": "GetPlateCornerForces(StaadPro.Interop.Core.Entities.ILoadCase,StaadPro.Interop.Core.Entities.Plate)"
     },
     {
       "returnType": "PlateCornerForcesResultSet",
@@ -197,7 +197,7 @@
       "sourceSignature": "PlateCornerForcesResultSet GetPlateCornerForces(IEnumerable<ILoadCase> loadCases, Plate plate)",
       "signature": "PlateCornerForcesResultSet GetPlateCornerForces(IEnumerable<ILoadCase> loadCases, Plate plate)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar result = wrapper.Output.GetPlateCornerForces(new[] { loadCase }, plate);\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);\n    else System.Console.WriteLine(item.Status);",
-      "xmlSignature": "GetPlateCornerForces(System.Collections.Generic.IEnumerable{StaadPro.Interop.Entities.ILoadCase},StaadPro.Interop.Entities.Plate)"
+      "xmlSignature": "GetPlateCornerForces(System.Collections.Generic.IEnumerable{StaadPro.Interop.Core.Entities.ILoadCase},StaadPro.Interop.Core.Entities.Plate)"
     },
     {
       "returnType": "PlateCornerForcesResultSet",
@@ -219,7 +219,7 @@
       "sourceSignature": "PlateCornerForcesResultSet GetPlateCornerForces(ILoadCase loadCase, IEnumerable<Plate> plates)",
       "signature": "PlateCornerForcesResultSet GetPlateCornerForces(ILoadCase loadCase, IEnumerable<Plate> plates)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar result = wrapper.Output.GetPlateCornerForces(loadCase, new[] { plate });\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);\n    else System.Console.WriteLine(item.Status);",
-      "xmlSignature": "GetPlateCornerForces(StaadPro.Interop.Entities.ILoadCase,System.Collections.Generic.IEnumerable{StaadPro.Interop.Entities.Plate})"
+      "xmlSignature": "GetPlateCornerForces(StaadPro.Interop.Core.Entities.ILoadCase,System.Collections.Generic.IEnumerable{StaadPro.Interop.Core.Entities.Plate})"
     },
     {
       "returnType": "PlateCornerForcesResultSet",
@@ -241,7 +241,7 @@
       "sourceSignature": "PlateCornerForcesResultSet GetPlateCornerForces(IEnumerable<ILoadCase> loadCases, IEnumerable<Plate> plates)",
       "signature": "PlateCornerForcesResultSet GetPlateCornerForces(IEnumerable<ILoadCase> loadCases, IEnumerable<Plate> plates)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar result = wrapper.Output.GetPlateCornerForces(new[] { loadCase }, new[] { plate });\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);\n    else System.Console.WriteLine(item.Status);",
-      "xmlSignature": "GetPlateCornerForces(System.Collections.Generic.IEnumerable{StaadPro.Interop.Entities.ILoadCase},System.Collections.Generic.IEnumerable{StaadPro.Interop.Entities.Plate})"
+      "xmlSignature": "GetPlateCornerForces(System.Collections.Generic.IEnumerable{StaadPro.Interop.Core.Entities.ILoadCase},System.Collections.Generic.IEnumerable{StaadPro.Interop.Core.Entities.Plate})"
     },
     {
       "returnType": "PlateCornerForcesResultSet",
@@ -259,7 +259,7 @@
       "sourceSignature": "PlateCornerForcesResultSet GetPlateCornerForces(IEnumerable<PlateCornerForcesRequest> requests)",
       "signature": "PlateCornerForcesResultSet GetPlateCornerForces(IEnumerable<PlateCornerForcesRequest> requests)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar result = wrapper.Output.GetPlateCornerForces(new[] { new PlateCornerForcesRequest(loadCase, plate, cornerNode) });\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);\n    else System.Console.WriteLine(item.Status);",
-      "xmlSignature": "GetPlateCornerForces(System.Collections.Generic.IEnumerable{StaadPro.Interop.Models.Output.PlateCornerForcesRequest})"
+      "xmlSignature": "GetPlateCornerForces(System.Collections.Generic.IEnumerable{StaadPro.Interop.Core.Models.Output.PlateCornerForcesRequest})"
     },
     {
       "returnType": "PlateCornerForcesResultSet",
@@ -293,7 +293,7 @@
       "sourceSignature": "PlateCornerForcesResultSet GetPlateCornerForces(IEnumerable<int> loadCaseIds, int plateId, int cornerNodeId, IOSGeometry geometry, IOSLoad load)",
       "signature": "PlateCornerForcesResultSet GetPlateCornerForces(IEnumerable<int> loadCaseIds, int plateId, int cornerNodeId, IOSGeometry geometry, IOSLoad load)",
       "example": "var result = wrapper.Output.GetPlateCornerForces(new[] { 1 }, 17, 1, wrapper.Geometry, wrapper.Load);\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);\n    else System.Console.WriteLine(item.Status);",
-      "xmlSignature": "GetPlateCornerForces(System.Collections.Generic.IEnumerable{System.Int32},System.Int32,System.Int32,StaadPro.Interop.Adapters.Interfaces.IOSGeometry,StaadPro.Interop.Adapters.Interfaces.IOSLoad)"
+      "xmlSignature": "GetPlateCornerForces(System.Collections.Generic.IEnumerable{System.Int32},System.Int32,System.Int32,StaadPro.Interop.Core.Adapters.Interfaces.IOSGeometry,StaadPro.Interop.Core.Adapters.Interfaces.IOSLoad)"
     },
     {
       "returnType": "OutputQueryResult<PlateCornerForces>",
@@ -319,7 +319,7 @@
       "sourceSignature": "PlateCornerForces GetPlateCornerForcesInGlobalCoordinates(ILoadCase loadCase, Plate plate, Node cornerNode)",
       "signature": "OutputQueryResult<PlateCornerForces> GetPlateCornerForcesInGlobalCoordinates(ILoadCase loadCase, Plate plate, Node cornerNode)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar result = wrapper.Output.GetPlateCornerForcesInGlobalCoordinates(loadCase, plate, cornerNode);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
-      "xmlSignature": "GetPlateCornerForcesInGlobalCoordinates(StaadPro.Interop.Entities.ILoadCase,StaadPro.Interop.Entities.Plate,StaadPro.Interop.Entities.Node)"
+      "xmlSignature": "GetPlateCornerForcesInGlobalCoordinates(StaadPro.Interop.Core.Entities.ILoadCase,StaadPro.Interop.Core.Entities.Plate,StaadPro.Interop.Core.Entities.Node)"
     },
     {
       "returnType": "OutputQueryResult<PlateCornerForces>",
@@ -345,7 +345,7 @@
       "sourceSignature": "bool GetPlateCornerForcesGlobal(Plate plate, Node cornerNode, int loadCaseId, out Vector3D globalForce, out Vector3D globalMoment)",
       "signature": "OutputQueryResult<PlateCornerForces> GetPlateCornerForcesGlobal(Plate plate, Node cornerNode, int loadCaseId)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar result = wrapper.Output.GetPlateCornerForcesGlobal(plate, cornerNode, 1);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
-      "xmlSignature": "GetPlateCornerForcesGlobal(StaadPro.Interop.Entities.Plate,StaadPro.Interop.Entities.Node,System.Int32)"
+      "xmlSignature": "GetPlateCornerForcesGlobal(StaadPro.Interop.Core.Entities.Plate,StaadPro.Interop.Core.Entities.Node,System.Int32)"
     },
     {
       "returnType": "OutputQueryResult<PlateCornerMemberForces>",
@@ -375,7 +375,7 @@
       "sourceSignature": "MemberForces GetPlateCornerForces(ILoadCase loadCase, Plate plate, Node cornerNode, Node otherMemberNode)",
       "signature": "OutputQueryResult<PlateCornerMemberForces> GetPlateCornerForces(ILoadCase loadCase, Plate plate, Node cornerNode, Node otherMemberNode)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar otherMemberNode = plate.B;\nvar result = wrapper.Output.GetPlateCornerForces(loadCase, plate, cornerNode, otherMemberNode);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
-      "xmlSignature": "GetPlateCornerForces(StaadPro.Interop.Entities.ILoadCase,StaadPro.Interop.Entities.Plate,StaadPro.Interop.Entities.Node,StaadPro.Interop.Entities.Node)"
+      "xmlSignature": "GetPlateCornerForces(StaadPro.Interop.Core.Entities.ILoadCase,StaadPro.Interop.Core.Entities.Plate,StaadPro.Interop.Core.Entities.Node,StaadPro.Interop.Core.Entities.Node)"
     },
     {
       "returnType": "OutputQueryResult<PlateCornerMemberForces>",
@@ -405,7 +405,7 @@
       "sourceSignature": "MemberForces GetPlateCornerForces(ILoadCase loadCase, Plate plate, Node cornerNode, Beam member)",
       "signature": "OutputQueryResult<PlateCornerMemberForces> GetPlateCornerForces(ILoadCase loadCase, Plate plate, Node cornerNode, Beam member)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar member = new Beam(18, cornerNode, plate.B) { BetaAngle = 30 };\nvar otherMemberNode = plate.B;\nvar result = wrapper.Output.GetPlateCornerForces(loadCase, plate, cornerNode, member);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
-      "xmlSignature": "GetPlateCornerForces(StaadPro.Interop.Entities.ILoadCase,StaadPro.Interop.Entities.Plate,StaadPro.Interop.Entities.Node,StaadPro.Interop.Entities.Beam)"
+      "xmlSignature": "GetPlateCornerForces(StaadPro.Interop.Core.Entities.ILoadCase,StaadPro.Interop.Core.Entities.Plate,StaadPro.Interop.Core.Entities.Node,StaadPro.Interop.Core.Entities.Beam)"
     },
     {
       "returnType": "OutputQueryResult<PlateCornerMemberForces>",
@@ -427,7 +427,7 @@
       "sourceSignature": "MemberForces TransformPlateCornerForcesToMemberLocal(PlateCornerForces plateCornerForces, Node otherMemberNode)",
       "signature": "OutputQueryResult<PlateCornerMemberForces> TransformPlateCornerForcesToMemberLocal(PlateCornerForces plateCornerForces, Node otherMemberNode)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar member = new Beam(18, cornerNode, plate.B) { BetaAngle = 30 };\nvar otherMemberNode = plate.B;\nvar source = wrapper.Output.GetPlateCornerForces(loadCase, plate, cornerNode);\nif (!source.IsSuccessful) return;\nvar result = wrapper.Output.TransformPlateCornerForcesToMemberLocal(source.Data, otherMemberNode);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
-      "xmlSignature": "TransformPlateCornerForcesToMemberLocal(StaadPro.Interop.Models.Output.PlateCornerForces,StaadPro.Interop.Entities.Node)"
+      "xmlSignature": "TransformPlateCornerForcesToMemberLocal(StaadPro.Interop.Core.Models.Output.PlateCornerForces,StaadPro.Interop.Core.Entities.Node)"
     },
     {
       "returnType": "OutputQueryResult<PlateCornerMemberForces>",
@@ -449,7 +449,7 @@
       "sourceSignature": "MemberForces TransformPlateCornerForcesToMemberLocal(PlateCornerForces plateCornerForces, Beam member)",
       "signature": "OutputQueryResult<PlateCornerMemberForces> TransformPlateCornerForcesToMemberLocal(PlateCornerForces plateCornerForces, Beam member)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar member = new Beam(18, cornerNode, plate.B) { BetaAngle = 30 };\nvar otherMemberNode = plate.B;\nvar source = wrapper.Output.GetPlateCornerForces(loadCase, plate, cornerNode);\nif (!source.IsSuccessful) return;\nvar result = wrapper.Output.TransformPlateCornerForcesToMemberLocal(source.Data, member);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
-      "xmlSignature": "TransformPlateCornerForcesToMemberLocal(StaadPro.Interop.Models.Output.PlateCornerForces,StaadPro.Interop.Entities.Beam)"
+      "xmlSignature": "TransformPlateCornerForcesToMemberLocal(StaadPro.Interop.Core.Models.Output.PlateCornerForces,StaadPro.Interop.Core.Entities.Beam)"
     },
     {
       "returnType": "OutputQueryResult<PlateCornerMemberForces>",
@@ -479,7 +479,7 @@
       "sourceSignature": "PlateCornerForces GetPlateCornerForcesInMemberLocalCoordinates(ILoadCase loadCase, Plate plate, Node cornerNode, Node otherMemberNode)",
       "signature": "OutputQueryResult<PlateCornerMemberForces> GetPlateCornerForcesInMemberLocalCoordinates(ILoadCase loadCase, Plate plate, Node cornerNode, Node otherMemberNode)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar otherMemberNode = plate.B;\nvar result = wrapper.Output.GetPlateCornerForcesInMemberLocalCoordinates(loadCase, plate, cornerNode, otherMemberNode);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
-      "xmlSignature": "GetPlateCornerForcesInMemberLocalCoordinates(StaadPro.Interop.Entities.ILoadCase,StaadPro.Interop.Entities.Plate,StaadPro.Interop.Entities.Node,StaadPro.Interop.Entities.Node)"
+      "xmlSignature": "GetPlateCornerForcesInMemberLocalCoordinates(StaadPro.Interop.Core.Entities.ILoadCase,StaadPro.Interop.Core.Entities.Plate,StaadPro.Interop.Core.Entities.Node,StaadPro.Interop.Core.Entities.Node)"
     },
     {
       "returnType": "OutputQueryResult<PlateCornerForces>",
@@ -497,7 +497,7 @@
       "sourceSignature": null,
       "signature": "OutputQueryResult<PlateCornerForces> GetPlateCornerForces(PlateCornerForcesRequest request)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar result = wrapper.Output.GetPlateCornerForces(new PlateCornerForcesRequest(loadCase, plate, cornerNode));\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
-      "xmlSignature": "GetPlateCornerForces(StaadPro.Interop.Models.Output.PlateCornerForcesRequest)"
+      "xmlSignature": "GetPlateCornerForces(StaadPro.Interop.Core.Models.Output.PlateCornerForcesRequest)"
     },
     {
       "returnType": "PlateCornerForcesResultSet",
@@ -535,7 +535,7 @@
       "sourceSignature": null,
       "signature": "PlateCornerForcesResultSet GetPlateCornerForces(IEnumerable<int> loadCaseIds, int plateId, int cornerNodeId, LoadCaseType loadCaseType, IOSGeometry geometry, IOSLoad load)",
       "example": "var result = wrapper.Output.GetPlateCornerForces(new[] { 1 }, 17, 1, LoadCaseType.PrimaryLoad, wrapper.Geometry, wrapper.Load);\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);\n    else System.Console.WriteLine(item.Status);",
-      "xmlSignature": "GetPlateCornerForces(System.Collections.Generic.IEnumerable{System.Int32},System.Int32,System.Int32,StaadPro.Interop.Enums.LoadCaseType,StaadPro.Interop.Adapters.Interfaces.IOSGeometry,StaadPro.Interop.Adapters.Interfaces.IOSLoad)"
+      "xmlSignature": "GetPlateCornerForces(System.Collections.Generic.IEnumerable{System.Int32},System.Int32,System.Int32,StaadPro.Interop.Core.Enums.LoadCaseType,StaadPro.Interop.Core.Adapters.Interfaces.IOSGeometry,StaadPro.Interop.Core.Adapters.Interfaces.IOSLoad)"
     },
     {
       "returnType": "OutputQueryResult<PlateCornerMemberForces>",
@@ -565,7 +565,7 @@
       "sourceSignature": null,
       "signature": "OutputQueryResult<PlateCornerMemberForces> GetPlateCornerForcesInMemberLocalCoordinates(ILoadCase loadCase, Plate plate, Node cornerNode, Beam member)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar member = new Beam(18, cornerNode, plate.B) { BetaAngle = 30 };\nvar result = wrapper.Output.GetPlateCornerForcesInMemberLocalCoordinates(loadCase, plate, cornerNode, member);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
-      "xmlSignature": "GetPlateCornerForcesInMemberLocalCoordinates(StaadPro.Interop.Entities.ILoadCase,StaadPro.Interop.Entities.Plate,StaadPro.Interop.Entities.Node,StaadPro.Interop.Entities.Beam)"
+      "xmlSignature": "GetPlateCornerForcesInMemberLocalCoordinates(StaadPro.Interop.Core.Entities.ILoadCase,StaadPro.Interop.Core.Entities.Plate,StaadPro.Interop.Core.Entities.Node,StaadPro.Interop.Core.Entities.Beam)"
     },
     {
       "returnType": "OutputBatchResult<PlateCornerMemberForces>",
@@ -587,7 +587,7 @@
       "sourceSignature": null,
       "signature": "OutputBatchResult<PlateCornerMemberForces> GetPlateCornerForcesInMemberLocalCoordinates(IEnumerable<PlateCornerForcesRequest> requests, Beam member)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar member = new Beam(18, cornerNode, plate.B) { BetaAngle = 30 };\nvar result = wrapper.Output.GetPlateCornerForcesInMemberLocalCoordinates(new[] { new PlateCornerForcesRequest(loadCase, plate, cornerNode) }, member);\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);\n    else System.Console.WriteLine(item.Status);",
-      "xmlSignature": "GetPlateCornerForcesInMemberLocalCoordinates(System.Collections.Generic.IEnumerable{StaadPro.Interop.Models.Output.PlateCornerForcesRequest},StaadPro.Interop.Entities.Beam)"
+      "xmlSignature": "GetPlateCornerForcesInMemberLocalCoordinates(System.Collections.Generic.IEnumerable{StaadPro.Interop.Core.Models.Output.PlateCornerForcesRequest},StaadPro.Interop.Core.Entities.Beam)"
     },
     {
       "returnType": "OutputBatchResult<PlateCornerMemberForces>",
@@ -609,7 +609,7 @@
       "sourceSignature": null,
       "signature": "OutputBatchResult<PlateCornerMemberForces> TransformPlateCornerForcesToMemberLocal(IEnumerable<PlateCornerForces> plateCornerForces, Beam member)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar member = new Beam(18, cornerNode, plate.B) { BetaAngle = 30 };\nvar source = wrapper.Output.GetPlateCornerForces(loadCase, plate, cornerNode);\nif (!source.IsSuccessful) return;\nvar result = wrapper.Output.TransformPlateCornerForcesToMemberLocal(new[] { source.Data }, member);\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);\n    else System.Console.WriteLine(item.Status);",
-      "xmlSignature": "TransformPlateCornerForcesToMemberLocal(System.Collections.Generic.IEnumerable{StaadPro.Interop.Models.Output.PlateCornerForces},StaadPro.Interop.Entities.Beam)"
+      "xmlSignature": "TransformPlateCornerForcesToMemberLocal(System.Collections.Generic.IEnumerable{StaadPro.Interop.Core.Models.Output.PlateCornerForces},StaadPro.Interop.Core.Entities.Beam)"
     },
     {
       "returnType": "PlateCornerForcesResultSet",
@@ -635,7 +635,7 @@
       "sourceSignature": null,
       "signature": "PlateCornerForcesResultSet GetPlateCornerForces(IEnumerable<PlateCornerForcesKey> keys, IOSGeometry geometry, IOSLoad load)",
       "example": "var result = wrapper.Output.GetPlateCornerForces(new[] { new PlateCornerForcesKey(1, 17, 1) }, wrapper.Geometry, wrapper.Load);\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);\n    else System.Console.WriteLine(item.Status);",
-      "xmlSignature": "GetPlateCornerForces(System.Collections.Generic.IEnumerable{StaadPro.Interop.Models.Output.PlateCornerForcesKey},StaadPro.Interop.Adapters.Interfaces.IOSGeometry,StaadPro.Interop.Adapters.Interfaces.IOSLoad)"
+      "xmlSignature": "GetPlateCornerForces(System.Collections.Generic.IEnumerable{StaadPro.Interop.Core.Models.Output.PlateCornerForcesKey},StaadPro.Interop.Core.Adapters.Interfaces.IOSGeometry,StaadPro.Interop.Core.Adapters.Interfaces.IOSLoad)"
     },
     {
       "returnType": "PlateCornerForcesResultSet",
@@ -665,7 +665,7 @@
       "sourceSignature": null,
       "signature": "PlateCornerForcesResultSet GetPlateCornerForces(IEnumerable<PlateCornerForcesKey> keys, LoadCaseType loadCaseType, IOSGeometry geometry, IOSLoad load)",
       "example": "var result = wrapper.Output.GetPlateCornerForces(new[] { new PlateCornerForcesKey(1, 17, 1) }, LoadCaseType.PrimaryLoad, wrapper.Geometry, wrapper.Load);\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);\n    else System.Console.WriteLine(item.Status);",
-      "xmlSignature": "GetPlateCornerForces(System.Collections.Generic.IEnumerable{StaadPro.Interop.Models.Output.PlateCornerForcesKey},StaadPro.Interop.Enums.LoadCaseType,StaadPro.Interop.Adapters.Interfaces.IOSGeometry,StaadPro.Interop.Adapters.Interfaces.IOSLoad)"
+      "xmlSignature": "GetPlateCornerForces(System.Collections.Generic.IEnumerable{StaadPro.Interop.Core.Models.Output.PlateCornerForcesKey},StaadPro.Interop.Core.Enums.LoadCaseType,StaadPro.Interop.Core.Adapters.Interfaces.IOSGeometry,StaadPro.Interop.Core.Adapters.Interfaces.IOSLoad)"
     }
   ]
 }

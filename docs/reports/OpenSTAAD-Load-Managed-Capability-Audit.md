@@ -28,15 +28,15 @@ Thus **54 native contracts have outstanding scope**, comprising 50 absent operat
 
 ## 2. Confirmed alternatives and compositions
 
-[CreateNewLoadCase](../../src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs#L2769) routes by `CaseType`: reference cases call [CreateNewReferenceLoad](../../src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs#L2727), primary cases call [CreateNewPrimaryLoad](../../src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs#L2695) and its explicit-ID overload. These dispatch `CreateNewReferenceLoad`, `CreateNewPrimaryLoadEx` and `CreateNewPrimaryLoadEx2`. Primary creation is already available; a second title-only native binding is optional. The convenience returns the adapter, while the direct creation overloads return the native numeric result. This audit does not certify their existing status/validation behavior or equate unspecified native defaults with an explicit managed classification.
+[CreateNewLoadCase](../../src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs#L2769) routes by `CaseType`: reference cases call [CreateNewReferenceLoad](../../src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs#L2727), primary cases call [CreateNewPrimaryLoad](../../src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs#L2695) and its explicit-ID overload. These dispatch `CreateNewReferenceLoad`, `CreateNewPrimaryLoadEx` and `CreateNewPrimaryLoadEx2`. Primary creation is already available; a second title-only native binding is optional. The convenience returns the adapter, while the direct creation overloads return the native numeric result. This audit does not certify their existing status/validation behavior or equate unspecified native defaults with an explicit managed classification.
 
 `CreateNewReferenceLoad` was never one of the 56 undispatched names: it is already called directly and through the combined router.
 
-[GetAllLoadCombinationCases](../../src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs#L2320) reads fresh native combination IDs and metadata. [GetLoadCase](../../src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs#L2494) can select the combination family. Membership is therefore already expressible without calling `IsCombinationCase`:
+[GetAllLoadCombinationCases](../../src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs#L2320) reads fresh native combination IDs and metadata. [GetLoadCase](../../src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs#L2494) can select the combination family. Membership is therefore already expressible without calling `IsCombinationCase`:
 
 ~~~csharp
 using System.Linq;
-using StaadPro.Interop.Enums;
+using StaadPro.Interop.Core.Enums;
 
 // load is a connected IOSLoad; targetId is a positive case ID.
 bool isCombination = load.GetAllLoadCombinationCases()
@@ -54,9 +54,9 @@ The four scopes in this historical comparison are now implemented by AddSelfWeig
 
 | Native operation | Existing managed path | Remaining distinction |
 | --- | --- | --- |
-| AddSelfWeightInXYZ | [AddSelfweightInXYZTo](../../src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs#L1617); Geometry inventories can enumerate current beams, plates and solids | Explicit IDs are supported. There is no integrated whole-model assignment, and no evidence here that an explicit snapshot has identical whole-model command semantics. |
-| GetNodalLoadInfo | [GetNodalLoads](../../src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs#L1693) and [GetNodalLoadsGroupedByLoadCase](../../src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs#L1572) | Force/moment data is available per node, but native command-index identity is not preserved. |
-| GetMemberLoadInfo | Six per-member typed readers and [GetMemberLoadsGroupedByLoadCase](../../src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs#L1560) | Supported numeric definitions can be read; original generic command-index lookup and broader command families are not covered. |
+| AddSelfWeightInXYZ | [AddSelfweightInXYZTo](../../src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs#L1617); Geometry inventories can enumerate current beams, plates and solids | Explicit IDs are supported. There is no integrated whole-model assignment, and no evidence here that an explicit snapshot has identical whole-model command semantics. |
+| GetNodalLoadInfo | [GetNodalLoads](../../src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs#L1693) and [GetNodalLoadsGroupedByLoadCase](../../src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs#L1572) | Force/moment data is available per node, but native command-index identity is not preserved. |
+| GetMemberLoadInfo | Six per-member typed readers and [GetMemberLoadsGroupedByLoadCase](../../src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs#L1560) | Supported numeric definitions can be read; original generic command-index lookup and broader command families are not covered. |
 | GetAssignmentListForLoadType | Existing nodal/member grouping helpers | Buckets reconstructed for supplied entities are not the original native command-kind/index assignments. |
 
 Grouping by equal numeric definitions can join independently entered commands. Duplicate bucketing preserves assignment multiplicity but cannot recover original command indices/order. The caller-supplied entity set can also omit assignments. These helpers must not be presented as full native command inventory readers.
@@ -126,11 +126,11 @@ Each native-name link opens its detailed declaration, parameter and return contr
 
 ## 5. Similar names that do not establish equivalence
 
-- [ClearPrimaryLoadCases](../../src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs#L2626) and [ClearReferenceLoadCases](../../src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs#L2672) clear load items. The installed native help distinguishes this from deleting the case definitions.
-- [CreateLoadCombinations](../../src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs#L1633) consumes supplied combinations/factors. It does not generate combinations automatically from a design code/category.
-- [CreateLoadEnvelopExt](../../src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs#L1625) creates an envelope. It does not prove safe append/removal/deletion of an existing envelope.
-- [AddWindDefinition](../../src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs#L1273) and [AddSeismicDefinition](../../src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs#L1128) create definitions, not wind/seismic commands applied to a case.
-- [AddPlateUniformPressure](../../src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs#L2954) writes uniform pressure. It does not read plate loads or implement general trapezoidal/hydrostatic pressures.
+- [ClearPrimaryLoadCases](../../src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs#L2626) and [ClearReferenceLoadCases](../../src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs#L2672) clear load items. The installed native help distinguishes this from deleting the case definitions.
+- [CreateLoadCombinations](../../src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs#L1633) consumes supplied combinations/factors. It does not generate combinations automatically from a design code/category.
+- [CreateLoadEnvelopExt](../../src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs#L1625) creates an envelope. It does not prove safe append/removal/deletion of an existing envelope.
+- [AddWindDefinition](../../src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs#L1273) and [AddSeismicDefinition](../../src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs#L1128) create definitions, not wind/seismic commands applied to a case.
+- [AddPlateUniformPressure](../../src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs#L2954) writes uniform pressure. It does not read plate loads or implement general trapezoidal/hydrostatic pressures.
 - `LoadCase.Type` and `LoadItemType` are managed metadata/classifications, not native reclassification or native command-index queries.
 - `AddAxialThermalGradientTo` uses temperature loading, not strain loading.
 - `GetRepeatLoadCases` discovers cases with repeat commands, not their indexed case/factor contribution definitions. Reference-definition counts similarly differ from reference-command counts.

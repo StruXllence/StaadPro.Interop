@@ -23,8 +23,8 @@ The 1.0.0-preview.20261024.11 preview renames the following public UPT methods t
 | `RemovePropertyFromUPTTable` | `RemovePropertyFromUptTable` |
 
 ```csharp
-var primary = new StaadPro.Interop.Models.Property.UptWideFlangeDefinition(0.01, 0.3, 0.006, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003);
-var definition = new StaadPro.Interop.Models.Property.UptChannelDefinition(primary, 0.04);
+var primary = new StaadPro.Interop.Core.Models.Property.UptWideFlangeDefinition(0.01, 0.3, 0.006, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003);
+var definition = new StaadPro.Interop.Core.Models.Property.UptChannelDefinition(primary, 0.04);
 bool applyChanges = false;
 if (applyChanges)
 {

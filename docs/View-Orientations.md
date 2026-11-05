@@ -54,8 +54,8 @@ Choose a Show method for a standard direction. Choose RotateUp to incrementally 
 This example requires an already connected wrapper, an available graphical view and the correct caller COM apartment. The explicit guard avoids an accidental UI change when adapting the example.
 
 ~~~csharp
-using StaadPro.Interop.Adapters.Interfaces;
-using StaadPro.Interop.Models.View;
+using StaadPro.Interop.Core.Adapters.Interfaces;
+using StaadPro.Interop.Core.Models.View;
 
 IOSView view = wrapper.View;
 if (view == null)

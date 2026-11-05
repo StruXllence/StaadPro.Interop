@@ -41,8 +41,8 @@ The method captures Id once. It does not read StartNode, EndNode, axes, offsets 
 Use an already connected wrapper on its established COM apartment. The guard prevents examples from accidentally changing a real graphical view. Run only the requests needed by your application; this sequence illustrates distinctions and does not restore an earlier view state.
 
 ~~~csharp
-using StaadPro.Interop.Adapters.Interfaces;
-using StaadPro.Interop.Entities;
+using StaadPro.Interop.Core.Adapters.Interfaces;
+using StaadPro.Interop.Core.Entities;
 
 IOSView view = wrapper.View;
 if (view == null)

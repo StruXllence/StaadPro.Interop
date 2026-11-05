@@ -261,7 +261,7 @@ Vendor metadata and its two time-history enums match between 2025/2026. Both ass
 
 - OpenStaadWrapper captures RawOutput, constructs OSOutputAdapter and supplies native version/unit snapshots. Refresh replaces bindings; disposal clears them.
 - IOSOutput / OSOutputAdapter now expose 71 managed overloads reaching 46 documented native names, plus ComObject and inherited Wrapper. OutputWorkflowService composes the established native readers and participating domain adapters.
-- [RootMemberForcesService](../../src/StaadPro.Interop/Services/Root/Analysis/RootMemberForcesService.cs#L14) obtains root.Output, checks availability, reads local member-end forces and validates status plus six finite Double values, including nonzero array lower bounds.
+- [RootMemberForcesService](../../src/StaadPro.Interop.Core/Services/Root/Analysis/RootMemberForcesService.cs#L14) obtains root.Output, checks availability, reads local member-end forces and validates status plus six finite Double values, including nonzero array lower bounds.
 - Forces, MemberForces, IForces and unit/property-store primitives already exist. Root result classes provide ordered, identified status/data outcomes.
 
 Reuse those primitives. Extract a minimal shared internal reader if it prevents actual duplication, preserving published Root returns and behavior. Do not create a second public force-vector class solely for Output.

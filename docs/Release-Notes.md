@@ -1,4 +1,16 @@
-# StaadPro.Interop release notes
+# StaadPro.Interop.Core release notes
+
+## 1.0.0-preview.20261105 - 5 November 2026 (Core preview)
+
+Established StaadPro.Interop.Core as a distinct Windows .NET 8 solution, project, assembly, package and public namespace. Based the Core branch on current main (20821c5) and retained the previous OpenStaadSessionProvider, immutable acquisition packets, process identity checks, native OLE discovery and coordinated non-overwriting target-file preparation. The existing adapters and complete wrapper surface from main remain available under Core namespaces.
+
+Configured net8.0-windows only with Windows Desktop/WPF, independent tests and Core-only CI/package-consumer verification. Updated native session documentation, examples and installation/publishing instructions. The two Framework path-validation assertions now follow the already reviewed modern runtime lexical behavior. No live native mutation is implied by managed verification.
+
+Passed a Windows .NET 8 Release build with zero warnings/errors, all 7,263 offline tests and 1,317 installed-package XML examples through a fresh consumer. Native runtime/engineering qualification remains separate.
+
+This is a separate Core package; earlier entries below are inherited Framework source history, not previously published Core releases. The old Core.Testing package remains historical and uses its earlier assembly/namespace.
+
+## Framework source history
 
 ## 1.0.0-preview.20261105 - 5 November 2026 (prepared preview)
 
@@ -184,7 +196,7 @@ See [all 17 API renames](Property-API-Naming.md).
 - Incorporated `GetStandardSectionTableName`: Get the table name from the standard section database for the specified standard section property reference number.
 - Incorporated `GetStandardSectionName`: Get the section name from the standard section database and table for the specified standard section property reference number.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261024.11.nupkg` for manual upload.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261024.11.nupkg` for manual upload.
 
 ## 1.0.0-preview.20261024.10 - 24 October 2026 (prepared preview)
 
@@ -220,7 +232,7 @@ Added immutable explicit UPT profile inputs, owned table inventories and named s
 - Incorporated `SetStandardProfileDBFolder`: Requests a standard-profile database folder change under an exact native return-policy profile.
 - Incorporated `GetStandardProfileDBFolder`: Reads the exact native standard-profile database folder path.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261024.10.nupkg` for manual upload.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261024.10.nupkg` for manual upload.
 
 ## 1.0.0-preview.20261024.8 - 24 October 2026 (prepared preview)
 
@@ -236,7 +248,7 @@ Added immutable exact attribute pairs, pair/domain/ID snapshots, fireproofing co
 - Kept four P7 contracts pending: inactive list, alpha angle, centroid and assigned-attribute indexed reads. No guessed success or native index context was exposed.
 - Updated coverage, native evidence mappings, shipped guides and installed XML verification; retained exact author metadata.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261024.8.nupkg` for manual upload; no NuGet.org upload or registry ownership change is performed.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261024.8.nupkg` for manual upload; no NuGet.org upload or registry ownership change is performed.
 
 ## 1.0.0-preview.20261024.7 - 24 October 2026 (prepared preview)
 
@@ -252,7 +264,7 @@ Added explicit immutable wide-flange, general-prismatic, six-DOF and partial-fac
 - Added immutable named input packets/selectors, separate result identities and complete interface/adapter XML with guarded mutations.
 - Updated coverage, roadmap, shipped guides and package metadata safeguards.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261024.7.nupkg` for manual upload; no NuGet.org upload or registry owner change is performed.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261024.7.nupkg` for manual upload; no NuGet.org upload or registry owner change is performed.
 
 ## 1.0.0-preview.20261024.6 - 24 October 2026 (prepared preview)
 
@@ -268,7 +280,7 @@ Added immutable explicit material definitions/strengths, orthotropic constants, 
 - Added immutable named inputs/results, guarded examples, owned bounded snapshots and shared binding checks; preserved all earlier signatures.
 - Updated the native inventory/roadmap, shipped usage guide, installation/publishing instructions and installed XML verification.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261024.6.nupkg` for manual upload.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261024.6.nupkg` for manual upload.
 
 ## 1.0.0-preview.20261024.5 - 24 October 2026 (prepared preview)
 
@@ -284,7 +296,7 @@ Selected 47 reviewed section layouts per acquired STAAD 24/25/26 profile, readin
 - Strengthened inventory dispatch lifetime checks and preserved caller-apartment writes, prevalidated input snapshots and nontransactional failure behavior.
 - Updated shipped guides, coverage, package metadata and all interface/adapter XML examples.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261024.5.nupkg` for manual upload; no NuGet.org upload or registry ownership change is performed.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261024.5.nupkg` for manual upload; no NuGet.org upload or registry ownership change is performed.
 
 ## 1.0.0-preview.20261024.4 - 24 October 2026 (prepared preview)
 
@@ -299,7 +311,7 @@ Material creation records native Created/Updated outcomes separately from list I
 - Added MaterialProperty, PlateThickness, MemberReleases, Releases, Springs, MpFactors, ReleaseType and MaterialCreationStatus with XML documentation. Preserved WPF change notifications and documented private catalog/unit-converter omissions.
 - Updated package metadata/version, shipped workflow/installation/publishing guides, coverage and installed XML verification. Retained prior Boolean load enumeration fixes and existing qualified observation signatures.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261024.4.nupkg` for manual upload. No public upload, registry owner change or live model mutation is performed by this task.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261024.4.nupkg` for manual upload. No public upload, registry owner change or live model mutation is performed by this task.
 
 ## 1.0.0-preview.20261024.3 - 24 October 2026 (prepared preview)
 
@@ -312,7 +324,7 @@ Passed a Release solution build with zero warnings/errors and **3,763 offline te
 - Added bounded material count/list retrieval, four-slot buffer validation, staged managed population and independent zero-offset packets retaining their end/frame. Corrected the bulk offset null guard.
 - Added the packaged Property-Management-Ports.md guide and updated coverage, installation, publishing and expanded XML verification.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261024.3.nupkg` for manual upload; this task does not publish it to NuGet.org or change registry owners.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261024.3.nupkg` for manual upload; this task does not publish it to NuGet.org or change registry owners.
 
 ## 1.0.0-preview.20261024 - 24 October 2026 (prepared preview)
 
@@ -554,7 +566,7 @@ This corrected version supersedes `1.0.0-preview.20261012`. Already-published `1
 
 ## 1.0.0-preview.20261012 — 12 October 2026
 
-This preview targets Windows and **.NET Framework 4.8.1 (`net481`)**. It contains the existing geometry/load wrapper and twenty-one load-query functions ported from the main application's interop project. The package ID is `StaadPro.Interop`; its version is `1.0.0-preview.20261012`. Public availability requires NuGet.org submission, acceptance and public-feed verification, tracked in the [readiness assessment](https://github.com/structuraldeveloper/StaadPro.Interop/blob/main/docs/NuGet-Readiness.md).
+This preview targets Windows and **.NET Framework 4.8.1 (`net481`)**. It contains the existing geometry/load wrapper and twenty-one load-query functions ported from the main application's interop project. The package ID is `StaadPro.Interop.Core`; its version is `1.0.0-preview.20261012`. Public availability requires NuGet.org submission, acceptance and public-feed verification, tracked in the [readiness assessment](https://github.com/StruXllence/StaadPro.Interop/blob/staadpro-interop-core/docs/NuGet-Readiness.md).
 
 ### Latest additions
 
@@ -583,7 +595,7 @@ Eleven other metadata queries provide family discovery, direct lookup, batch loo
 - `GetPrimaryLoadCasesFromIds`, `GetReferenceLoadCasesFromIds`, `GetLoadCombinationCasesFromIds`
 - `GetAllLoadCasesOfType`, `GetLoadCase`
 
-Primary/reference batches preserve requested order and duplicates as separate objects; combination batches collapse duplicates and validate all memberships before reading titles. Generic lookup returns null for a missing positive ID after successfully reading the selected family. Assignment readers activate the supplied case and preserve native signs, order and raw units. Family metadata readers leave active-case state unchanged. See [Load-Queries.md](Load-Queries.md) and the [API reference](https://github.com/structuraldeveloper/StaadPro.Interop/blob/main/docs/API-Reference.md) for complete signatures, contracts and examples.
+Primary/reference batches preserve requested order and duplicates as separate objects; combination batches collapse duplicates and validate all memberships before reading titles. Generic lookup returns null for a missing positive ID after successfully reading the selected family. Assignment readers activate the supplied case and preserve native signs, order and raw units. Family metadata readers leave active-case state unchanged. See [Load-Queries.md](Load-Queries.md) and the [API reference](https://github.com/StruXllence/StaadPro.Interop/blob/staadpro-interop-core/docs/API-Reference.md) for complete signatures, contracts and examples.
 
 ### Validation and documentation
 
@@ -604,7 +616,7 @@ Live COM dispatch/marshaling, engineering unit read-back and STAAD version/archi
 After this exact version becomes publicly available:
 
 ```powershell
-dotnet add ./YourApp.csproj package StaadPro.Interop --version 1.0.0-preview.20261012 --source https://api.nuget.org/v3/index.json
+dotnet add ./YourApp.csproj package StaadPro.Interop.Core --version 1.0.0-preview.20261012 --source https://api.nuget.org/v3/index.json
 ```
 
 Enable prerelease packages in Visual Studio's NuGet UI. The verified archive can also be installed through a local feed before publication; see [Installation.md](Installation.md).

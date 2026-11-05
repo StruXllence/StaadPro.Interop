@@ -47,7 +47,7 @@ Native void return means dispatch completed. It does not verify storage, date ac
 ## Analysis entry points
 
 ```csharp
-using StaadPro.Interop.Enums.Root;
+using StaadPro.Interop.Core.Enums.Root;
 
 // Request only the entry point needed by the caller's workflow:
 wrapper.Root.AnalyzeModel(AnalysisEngine.StaadPro);

@@ -103,7 +103,7 @@ The [contract inventory](OpenSTAAD-Load-API-Coverage-and-Contract-Inventory.md) 
 
 The installed 2025 and 2026 vendor assemblies each declare **132 distinct OpenSTAADUI.IOSLoadUI methods**. Names, return types, parameter types, by-reference shapes and recorded in/out/optional flags match. The **13 enum types used by these signatures also have matching names and numeric values** in both assemblies. All 129 documented names appear in both interfaces. The additional three names are AddSeismicDefElementWeight, AddSeismicDefFloorWeight and MergeLoadsOnBeam.
 
-Both assemblies identify as StaadPro.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b4d201f8319cef86. Their fingerprints differ:
+Both assemblies identify as StaadPro.Interop.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b4d201f8319cef86. Their fingerprints differ:
 
 | Product | SHA-256 |
 | --- | --- |
@@ -406,7 +406,7 @@ The public entry remains IOSLoad implemented by the existing single, non-partial
 Recommended organization, creating only services needed by the approved work:
 
 ```text
-src/StaadPro.Interop/
+src/StaadPro.Interop.Core/
   Adapters/Interfaces/IOSLoad.cs
   Adapters/Models/OSLoadAdapter.cs
   Services/Load/
@@ -416,7 +416,7 @@ src/StaadPro.Interop/
     Capabilities/ acquired member evidence and supported request choices
   Models/Loads/   public named requests/results, Wind and Seismic subfolders
   Enums/          only reusable public semantic classifications
-tests/StaadPro.Interop.Tests/Load/   focused offline and contract tests
+tests/StaadPro.Interop.Core.Tests/Load/   focused offline and contract tests
 ```
 
 ### 6.1 Profile selection and evidence

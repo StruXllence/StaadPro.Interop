@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for StaadPro.Interop
+about: Suggest an idea for StaadPro.Interop.Core
 title: '[FEATURE] '
 labels: 'enhancement'
 assignees: ''

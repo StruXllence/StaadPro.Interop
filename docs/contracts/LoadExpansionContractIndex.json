@@ -1137,123 +1137,123 @@
   "supportingTypes": [
     {
       "name": "LoadCaseSelection",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/AutomaticLoadGeneration.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/AutomaticLoadGeneration.cs"
     },
     {
       "name": "AutomaticCombinationRequest",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/AutomaticLoadGeneration.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/AutomaticLoadGeneration.cs"
     },
     {
       "name": "AutomaticNotionalOptions",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/AutomaticLoadGeneration.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/AutomaticLoadGeneration.cs"
     },
     {
       "name": "AutomaticRepeatLoadRequest",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/AutomaticLoadGeneration.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/AutomaticLoadGeneration.cs"
     },
     {
       "name": "AutomaticLoadGenerationData",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/AutomaticLoadGeneration.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/AutomaticLoadGeneration.cs"
     },
     {
       "name": "GlobalLoadRegion",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadRegions.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadRegions.cs"
     },
     {
       "name": "FloorRegion",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadRegions.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadRegions.cs"
     },
     {
       "name": "FixedEndLoadDefinition",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadAssignmentDefinitions.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadAssignmentDefinitions.cs"
     },
     {
       "name": "HydrostaticPressureDefinition",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadAssignmentDefinitions.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadAssignmentDefinitions.cs"
     },
     {
       "name": "TrapezoidalPressureDefinition",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadAssignmentDefinitions.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadAssignmentDefinitions.cs"
     },
     {
       "name": "FloorLoadDefinition",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadAssignmentDefinitions.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadAssignmentDefinitions.cs"
     },
     {
       "name": "WindLoadDefinition",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadAssignmentDefinitions.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadAssignmentDefinitions.cs"
     },
     {
       "name": "LoadOperationResult",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadOperationResult.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadOperationResult.cs"
     },
     {
       "name": "LoadOperationResult<T>",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadOperationResult.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadOperationResult.cs"
     },
     {
       "name": "LoadOperationStep",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadOperationResult.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadOperationResult.cs"
     },
     {
       "name": "MemberLoadCommandInfo",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadInspectionData.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadInspectionData.cs"
     },
     {
       "name": "PlatePressureLoad",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadInspectionData.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadInspectionData.cs"
     },
     {
       "name": "PlateConcentratedLoad",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadInspectionData.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadInspectionData.cs"
     },
     {
       "name": "PlateLoadCommandInfo",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadInspectionData.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadInspectionData.cs"
     },
     {
       "name": "BeamInfluenceArea",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadInspectionData.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadInspectionData.cs"
     },
     {
       "name": "ReferenceLoadContribution",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadInspectionData.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadInspectionData.cs"
     },
     {
       "name": "LoadAttributeObservation",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadInspectionData.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadInspectionData.cs"
     },
     {
       "name": "NodalLoadCommandInfo",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/NodalLoadCommandInfo.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/NodalLoadCommandInfo.cs"
     },
     {
       "name": "BeamLoadMergeRequest",
-      "file": "src/StaadPro.Interop/Models/Loads/Contracts/BeamLoadMergeRequest.cs"
+      "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/BeamLoadMergeRequest.cs"
     },
     {
       "name": "GlobalAxis",
-      "file": "src/StaadPro.Interop/Enums/GlobalAxis.cs"
+      "file": "src/StaadPro.Interop.Core/Enums/GlobalAxis.cs"
     },
     {
       "name": "LoadStrengthType",
-      "file": "src/StaadPro.Interop/Enums/Loads/LoadContractOptions.cs"
+      "file": "src/StaadPro.Interop.Core/Enums/Loads/LoadContractOptions.cs"
     },
     {
       "name": "PlatePressureVariation",
-      "file": "src/StaadPro.Interop/Enums/Loads/LoadContractOptions.cs"
+      "file": "src/StaadPro.Interop.Core/Enums/Loads/LoadContractOptions.cs"
     },
     {
       "name": "WindLoadDirection",
-      "file": "src/StaadPro.Interop/Enums/Loads/LoadContractOptions.cs"
+      "file": "src/StaadPro.Interop.Core/Enums/Loads/LoadContractOptions.cs"
     },
     {
       "name": "AutomaticNotionalDirections",
-      "file": "src/StaadPro.Interop/Enums/Loads/LoadContractOptions.cs"
+      "file": "src/StaadPro.Interop.Core/Enums/Loads/LoadContractOptions.cs"
     },
     {
       "name": "LoadOperationStatus",
-      "file": "src/StaadPro.Interop/Enums/Loads/LoadContractOptions.cs"
+      "file": "src/StaadPro.Interop.Core/Enums/Loads/LoadContractOptions.cs"
     }
   ],
   "mainSourceEvidence": {

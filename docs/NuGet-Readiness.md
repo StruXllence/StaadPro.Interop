@@ -22,11 +22,11 @@ Passed **7,137 offline tests**, including **201 View cases** and **116 additiona
 
 ## Earlier prepared preview - 1.0.0-preview.20261027.2
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261027.2.nupkg` with a compact 400-pixel README banner. The source logo files, embedded symbol icon, managed APIs and runtime contracts are unchanged from the preceding preview. Exact-archive verification passed all **1,222 selected XML examples** and checked metadata, installed IntelliSense and image assets. Reran and passed all **6,448 offline tests** for this build. Public NuGet.org availability has not been confirmed; the archive is prepared for manual upload. See [branding](Branding.md) and [release notes](Release-Notes.md).
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261027.2.nupkg` with a compact 400-pixel README banner. The source logo files, embedded symbol icon, managed APIs and runtime contracts are unchanged from the preceding preview. Exact-archive verification passed all **1,222 selected XML examples** and checked metadata, installed IntelliSense and image assets. Reran and passed all **6,448 offline tests** for this build. Public NuGet.org availability has not been confirmed; the archive is prepared for manual upload. See [branding](Branding.md) and [release notes](Release-Notes.md).
 
 ## Earlier prepared preview - 1.0.0-preview.20261027.1
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261027.1.nupkg` with the 35 Commands/Support/Design additions and adopted logo assets. This preview adds 35 managed methods: seventeen analysis-command methods, eight Support foundation/assignment operations and ten common Design brief/assignment/query methods. Commands reaches sixteen active native analysis routes, Support covers 27/35 documented native routes, and Design reaches five native names. The package retains 96 managed Output overloads covering 47/60 documented native names, the existing Root/Geometry/Load/Property APIs and the approved wrapper surface.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261027.1.nupkg` with the 35 Commands/Support/Design additions and adopted logo assets. This preview adds 35 managed methods: seventeen analysis-command methods, eight Support foundation/assignment operations and ten common Design brief/assignment/query methods. Commands reaches sixteen active native analysis routes, Support covers 27/35 documented native routes, and Design reaches five native names. The package retains 96 managed Output overloads covering 47/60 documented native names, the existing Root/Geometry/Load/Property APIs and the approved wrapper surface.
 
 The Release build passed with zero warnings/errors and 6,448 offline tests, including 412 new Commands/Support/Design cases. Exact-archive verification compiled and executed 1,222 selected XML examples through an isolated PackageReference consumer, including all 34 Commands, 54 Support and twenty Design examples. These checks validate managed behavior and packaging; live native COM and engineering qualification remain pending. Author: Srinivasa Rao Masanam. Company/publisher: StruXllence. Copyright (c) 2026 StruXllence.
 
@@ -45,7 +45,7 @@ Passed a Release build with zero warnings/errors and **6,036 offline tests**, in
 
 ## Earlier prepared preview - 1.0.0-preview.20261026.4
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261026.4.nupkg` for the package owner's manual upload. This Windows/.NET Framework 4.8.1 preview includes **96 managed Output overloads reaching 47 native names**, **19 Support operations**, and the existing approved Root, Geometry, Load, Property and wrapper APIs. Thirteen documented Output routes and sixteen Support routes remain pending. The parked Load work, nine Property contract gates and fifteen supplemental Property candidates retain their separate review requirements.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261026.4.nupkg` for the package owner's manual upload. This Windows/.NET Framework 4.8.1 preview includes **96 managed Output overloads reaching 47 native names**, **19 Support operations**, and the existing approved Root, Geometry, Load, Property and wrapper APIs. Thirteen documented Output routes and sixteen Support routes remain pending. The parked Load work, nine Property contract gates and fifteen supplemental Property candidates retain their separate review requirements.
 
 The Release build and **6,036 offline tests** passed. Verification of the exact release archive restored an isolated PackageReference consumer and compiled/executed **1,152 selected XML examples**, including all **192 Output examples**. Read-only native checks are limited to sampled 2026.0.0.340 corner results and hydration; broader COM/engineering qualification remains pending. Author is **Srinivasa Rao Masanam**, company is **StruXllence**, and copyright is **Copyright (c) 2026 StruXllence**.
 
@@ -53,7 +53,7 @@ The package, source commit, SHA256 receipt and verification log are retained und
 
 ## Earlier prepared preview - 1.0.0-preview.20261026.3
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261026.3.nupkg` for Windows/.NET Framework 4.8.1. It includes all current source additions: **71 managed Output overloads reaching 46 documented native names** and **19 Support operations**, alongside the existing Root, Geometry, Load, Property and approved wrapper surface. Fourteen documented Output routes and sixteen Support routes remain pending; parked Property and Load work retains its separate approval requirements.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261026.3.nupkg` for Windows/.NET Framework 4.8.1. It includes all current source additions: **71 managed Output overloads reaching 46 documented native names** and **19 Support operations**, alongside the existing Root, Geometry, Load, Property and approved wrapper surface. Fourteen documented Output routes and sixteen Support routes remain pending; parked Property and Load work retains its separate approval requirements.
 
 The Release build passed with zero warnings/errors, and **5,788 offline tests** passed. Verification of this exact archive restored an isolated PackageReference consumer, compiled and executed **1,102 selected XML examples**, and checked package identity, publisher metadata, documentation and runtime dispatch against managed native-signature fixtures. These checks do not certify live COM or engineering accuracy. Author remains **Srinivasa Rao Masanam**, with company and copyright attributed to **StruXllence**.
 
@@ -84,7 +84,7 @@ All new APIs include matching interface/adapter XML documentation and usage exam
 
 See the [Property completion guide](Property-Profile-Names-and-Final-Cleanup.md) and [extended Output guide](Output-Extended-Queries.md) for contracts, examples and limitations.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261026.1.nupkg` for manual upload. The release archive includes the current DLL/XML pair, README, release notes, updated installation/publishing instructions and domain usage guides. Its exact archive identity, installed company/copyright metadata and all 1,002 selected XML examples are verified through a fresh PackageReference-only consumer and package cache. The earlier CI archive remains a separate validation artifact. No public upload or registry ownership change is performed.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261026.1.nupkg` for manual upload. The release archive includes the current DLL/XML pair, README, release notes, updated installation/publishing instructions and domain usage guides. Its exact archive identity, installed company/copyright metadata and all 1,002 selected XML examples are verified through a fresh PackageReference-only consumer and package cache. The earlier CI archive remains a separate validation artifact. No public upload or registry ownership change is performed.
 
 Authors is **Srinivasa Rao Masanam**, assembly Company is **StruXllence**, and package/assembly copyright is **Copyright (c) 2026 StruXllence**. The metadata matches the 24 October release configuration and the preceding local validation archive. StruXllence is the intended registry owner; actual NuGet.org ownership is managed separately from archive metadata. Previous release entries retain their historical attribution.
 
@@ -94,7 +94,7 @@ Before a public release, revisit the nine documented Property gates and fifteen 
 
 Retains the preceding preview's API surface and compiled XML IntelliSense. Release package verification covers all 944 selected examples through a fresh PackageReference consumer. The preceding implementation regression suite passed 5,156 offline tests; this release changes packaged documentation only.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261024.12.nupkg` for manual upload.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261024.12.nupkg` for manual upload.
 
 ## Earlier prepared preview - 1.0.0-preview.20261024.11
 
@@ -106,7 +106,7 @@ Added a passive version/signature acquisition boundary for the newer catalog gro
 
 Renamed **17 public UPT methods** to PascalCase, including **AddUptPropertyChannel**, **AddUptPropertyWideFlange** and **CreateUptTable**. This preview requires callers to update those method names. Parameter names, types, ordering, defaults and return types are preserved. Bentley native dispatch names and recorded contract evidence retain their original spelling.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261024.11.nupkg` for manual upload.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261024.11.nupkg` for manual upload.
 
 ## Earlier prepared preview - 1.0.0-preview.20261024.10
 
@@ -116,7 +116,7 @@ Passed a Release build with zero warnings/errors and **4,959 offline tests**, in
 
 Added immutable explicit UPT profile inputs, owned table inventories and named section observations. Kept operation-specific creation, insertion and removal outcomes separate. Qualified ten UPT read-back layouts and the database-folder setter against exact acquired native profiles 24.00.02.354, 25.00.01.424 and 26.00.00.340, retaining their different folder return conventions. Unreviewed builds cannot select those policies. Table numbers, native indices and property references retain separate identities.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261024.10.nupkg` for manual upload.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261024.10.nupkg` for manual upload.
 
 ## Earlier prepared preview - 1.0.0-preview.20261024.8
 
@@ -126,7 +126,7 @@ Passed a Release build with zero warnings/errors and **4,746 offline tests**, in
 
 Added immutable exact attribute pairs, pair/domain/ID snapshots, fireproofing correspondence and explicit UPT value packets. Bounded count/list/count reads validate written outputs and preserve order/duplicates. By-reference native attribute-value rewriting returns StateChanged rather than data for the wrong pair. UPT table IDs, insertion acknowledgements and duplicate outcomes remain separate; scalar and unequal wide-flange routes retain their different return conventions.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261024.8.nupkg` for manual upload. Verified exact author/copyright, installed DLL/XML, shipped fireproofing/attribute/UPT guide and restored archive identity. Four P7 contract qualifications and live native validation remain pending.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261024.8.nupkg` for manual upload. Verified exact author/copyright, installed DLL/XML, shipped fireproofing/attribute/UPT guide and restored archive identity. Four P7 contract qualifications and live native validation remain pending.
 
 ## Earlier prepared preview - 1.0.0-preview.20261024.7
 
@@ -136,7 +136,7 @@ Passed a Release build with zero warnings/errors and **4,551 offline tests**, in
 
 Added explicit immutable wide-flange, general-prismatic, six-DOF and partial-factor inputs. Retained separate created section IDs, created specification IDs, zero-based fireproofing indices and zero-success status-only results. The void unique-ID setter returns InvokedWithoutAcknowledgement with no fabricated native code and IsSuccessful false; its exact requested property/text identity is retained. Existing signatures, current-material context and native units remain explicit.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261024.7.nupkg` for manual upload. Verified exact author/copyright, installed DLL/XML, shipped creation guide and restored archive identity. Registry search attribution depends on the NuGet client and registry owner metadata.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261024.7.nupkg` for manual upload. Verified exact author/copyright, installed DLL/XML, shipped creation guide and restored archive identity. Registry search attribution depends on the NuGet client and registry owner metadata.
 
 ## Earlier prepared preview - 1.0.0-preview.20261024.6
 
@@ -146,7 +146,7 @@ Passed a Release build with zero warnings/errors and **4,346 offline tests**, in
 
 Added immutable explicit material definitions/strengths, orthotropic constants, member-section snapshots and named mutation acknowledgements retaining actual native evidence and requested identity. Kept Steel Fu/Fy/Rt/Ry order distinct from extended Fy/Fu/Ry/Rt/Fcu order. Added bounded owned solid-ID snapshots, strict written-output checks, operation-specific absence/error handling and native-version section layouts. A successful mutation acknowledgement does not prove design-strength persistence, save the model or provide rollback.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261024.6.nupkg` for manual upload. Verified metadata, installed DLL/XML, shipped material/member-section guide and exact restored archive identity. No public upload or live native mutation is performed.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261024.6.nupkg` for manual upload. Verified metadata, installed DLL/XML, shipped material/member-section guide and exact restored archive identity. No public upload or live native mutation is performed.
 
 ## Earlier prepared preview — 1.0.0-preview.20261024.5
 
@@ -156,7 +156,7 @@ Passed a Release build with zero warnings/errors and **4,156 offline tests**, in
 
 Selected 47 reviewed section layouts per acquired STAAD 24/25/26 profile, reading native version metadata after wrapper initialization and rechecking it before returning packets. Corrected the source assignment query filtering an unfilled array. Preserved native identity/field labels, explicit missing-area results, operation-specific statuses and partial-write behavior. Added small section selection/data models without importing private catalog/UI services; reused the repository UnitsConverter for explicit modulus/weight-density conversion. Existing typed-return collisions (eight) and obsolete source overloads (five) remain documented exceptions.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261024.5.nupkg` for manual upload. Verified exact author/copyright and installed company metadata, net481 DLL/XML, the new section guide, version consistency and restored archive identity. Registry ownership remains independently managed by the owner. Earlier package and scoped live Load verification records remain below.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261024.5.nupkg` for manual upload. Verified exact author/copyright and installed company metadata, net481 DLL/XML, the new section guide, version consistency and restored archive identity. Registry ownership remains independently managed by the owner. Earlier package and scoped live Load verification records remain below.
 
 ## Earlier prepared preview — 1.0.0-preview.20261024.4
 
@@ -166,7 +166,7 @@ Passed a Release build with zero warnings/errors and **3,931 offline tests**, in
 
 Material creation records native Created/Updated outcomes separately from list IDs; legacy creation retains its explicitly documented E/G x1000 scale. Indexed material collections retain native names and consistent name equality/hash behavior. Release read-back preserves mixed native modes and partial-mode provenance; basic creation refuses unsupported partial-moment packets. Populations stage native reads before changing caller packets, degree overloads retain caller-apartment dispatch, and multi-step writes recheck binding lifetime around each native write.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261024.4.nupkg` for manual upload. Verified exact author/copyright and installed company metadata, net481 DLL/XML, the new workflow guide, version consistency and restored archive identity. Registry ownership remains independently managed by the owner. Historical package and scoped live Load verification records remain below.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261024.4.nupkg` for manual upload. Verified exact author/copyright and installed company metadata, net481 DLL/XML, the new workflow guide, version consistency and restored archive identity. Registry ownership remains independently managed by the owner. Historical package and scoped live Load verification records remain below.
 
 ## Earlier prepared preview — 1.0.0-preview.20261024.3
 
@@ -174,7 +174,7 @@ Incorporated 25 further Property overloads for table/composite/built-up section 
 
 Passed a Release solution build with zero warnings/errors and **3,763 offline tests**, including **189 new Property management cases**. The isolated installed-package verifier compiles and runs **592 selected XML examples**, including all **150 Property interface/adapter examples**, through a fresh PackageReference-only consumer and cache. Managed stand-ins exercise the examples without changing a native STAAD model. Live creation/assignment and engineering qualification for this increment remain pending.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261024.3.nupkg` for manual upload. Verified exact author/copyright metadata, installed assembly branding, matching net481 DLL/XML, the new shipped management guide, version consistency and restored archive identity. Native mutation/engineering qualification remains pending. Registry ownership is managed separately by the package owner. Earlier verification and live Load diagnosis records remain below.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261024.3.nupkg` for manual upload. Verified exact author/copyright metadata, installed assembly branding, matching net481 DLL/XML, the new shipped management guide, version consistency and restored archive identity. Native mutation/engineering qualification remains pending. Registry ownership is managed separately by the package owner. Earlier verification and live Load diagnosis records remain below.
 
 ## Earlier prepared preview — 1.0.0-preview.20261024
 
@@ -182,11 +182,11 @@ Fixed primary and combination discovery rejecting the Boolean `true` returned by
 
 Passed a Release build with zero warnings/errors and **3,574 offline tests**, including **43 new case-number return regressions**. Isolated PackageReference verification compiles and executes **542 selected XML examples**; the packaged primary and combination stand-ins now return Boolean success. Native return shapes were observed read-only during diagnosis; wider native/version and engineering qualification remains pending.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261024.nupkg` for manual upload. Verification checks the net481 DLL/XML pair, expanded interface/adapter contracts, guide/version consistency and exact restored package identity in a fresh consumer/cache. Includes the earlier Property and Load expansion increments. Public API counts are unchanged. The consumer application must install this new version and rebuild; an older loaded DLL retains the exception. No public upload is performed by this task.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261024.nupkg` for manual upload. Verification checks the net481 DLL/XML pair, expanded interface/adapter contracts, guide/version consistency and exact restored package identity in a fresh consumer/cache. Includes the earlier Property and Load expansion increments. Public API counts are unchanged. The consumer application must install this new version and rebuild; an older loaded DLL retains the exception. No public upload is performed by this task.
 
 ### Post-package live verification
 
-On 24 October 2026, verified the exact DLL extracted from `StaadPro.Interop.1.0.0-preview.20261024.nupkg` against a connected named model in **STAAD.Pro 25.00.00.539**. `GetLoadCasesFromIds` and `GetPrimaryLoadCasesFromIds` both returned the requested cases 1, 2 and 3. Full primary, reference and combination discovery returned the observed inventory counts of 74, 25 and 230; primary family/list queries also returned 74. Native primary/combination number retrieval returned Boolean true, and reference number retrieval returned its integer count.
+On 24 October 2026, verified the exact DLL extracted from `StaadPro.Interop.Core.1.0.0-preview.20261024.nupkg` against a connected named model in **STAAD.Pro 25.00.00.539**. `GetLoadCasesFromIds` and `GetPrimaryLoadCasesFromIds` both returned the requested cases 1, 2 and 3. Full primary, reference and combination discovery returned the observed inventory counts of 74, 25 and 230; primary family/list queries also returned 74. Native primary/combination number retrieval returned Boolean true, and reference number retrieval returned its integer count.
 
 The probe invoked only attachment and read APIs. Model path, active case, node count and all three case-inventory counts were unchanged afterward. This confirms the reported Boolean-return correction on this build/model; it does not qualify other builds, concurrent edits, native mutation APIs or engineering results. This verification record was added after the archive was built; the existing archive and its repository commit remain unchanged.
 
@@ -196,7 +196,7 @@ Added 25 main-project Property overloads for section/thickness inventories, assi
 
 The package includes 50 Property overloads, all 171 current Load overloads, 143 reference Geometry overloads, 15 typed Output queries and the reviewed Root/wrapper surface. It ships expanded interface/adapter XML and the new [Property guide](Property-Main-Ports.md). All 25 new main-project signatures were compared with the read-only reference. The reference projects remain unchanged.
 
-Prepared `artifacts/release/StaadPro.Interop.1.0.0-preview.20261023.1.nupkg` for manual upload. Isolated verification checks metadata, guide/version consistency, the net481 DLL/XML pair, exact restored archive identity and 542 executable examples. No native STAAD model is modified by verification, and no package is uploaded to NuGet.org by this task. Native and engineering qualification remains a release gate.
+Prepared `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261023.1.nupkg` for manual upload. Isolated verification checks metadata, guide/version consistency, the net481 DLL/XML pair, exact restored archive identity and 542 executable examples. No native STAAD model is modified by verification, and no package is uploaded to NuGet.org by this task. Native and engineering qualification remains a release gate.
 
 ## Earlier foundation validation — Property
 
@@ -242,7 +242,7 @@ The 1.0.0-preview.20261015 preview is now listed in the public NuGet feed (check
 
 The current source includes envelope queries and self-weight, envelope creation and load-list mutations. Load coverage is **66 overloads**, including 61 matching reference signatures; **54 reference overloads remain pending**. Root coverage is **9 of 23 methods implemented, 14 pending**, including filenames/identity, job metadata and input-unit selection. See [Load-Porting.md](Load-Porting.md), [Root-Porting.md](Root-Porting.md) and the [envelope query guide](Load-Queries.md#load-envelope-queries).
 
-Verification passed: **694 offline tests** (90 added for job/unit/model/documentation cases), Release build with zero warnings/errors, and an isolated package consumer executing **99 XML examples**, all 24 load queries, eight root queries, root unit selection and retained mutations. One explicit environment-dependent provider test is outside the offline run. Evidence is `artifacts/root-job-units/tests/root-job-units.trx`; the release package is `artifacts/release/StaadPro.Interop.1.0.0-preview.20261013.4.nupkg`. The matching source commit and SHA256 are recorded in its adjacent receipt.
+Verification passed: **694 offline tests** (90 added for job/unit/model/documentation cases), Release build with zero warnings/errors, and an isolated package consumer executing **99 XML examples**, all 24 load queries, eight root queries, root unit selection and retained mutations. One explicit environment-dependent provider test is outside the offline run. Evidence is `artifacts/root-job-units/tests/root-job-units.trx`; the release package is `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261013.4.nupkg`. The matching source commit and SHA256 are recorded in its adjacent receipt.
 
 This verifies an installable preview with expanded IntelliSense. The prior six filename/identity methods passed read-only checks on STAAD.Pro Advanced 2026's unnamed session. Both new job getters rejected unwritten outputs from that same session as documented; native named-model metadata/date conventions and live unit selection remain pending. Named/UNC path reads, broader versions and load/engineering behavior also retain their native validation gates. No new public package upload occurred. Follow [Publishing.md](Publishing.md) to publish the exact verified archive after reviewing its receipt.
 
@@ -254,7 +254,7 @@ Assessment date: 12 October 2026. Current release: `1.0.0-preview.20261012.1`, i
 
 **The corrected preview is publicly available on NuGet.org. A stable public release is not yet verified.** Local build, offline tests, package archive checks, isolated installation, compilation, execution, and live model connection checks on STAAD.Pro 2025 have passed. Public `1.0.0-preview.20261012` was downloaded and successfully restored/built in a copy of the user's legacy WPF project. Corrected `1.0.0-preview.20261012.1` was subsequently confirmed in the public index, downloaded, and restored/built/run through a fresh public-feed-only consumer with HTTP caching disabled. Its DLL, XML and README match the verified local archive; the original published author and copyright metadata were verified.
 
-The corrected release artifact is `artifacts/release/StaadPro.Interop.1.0.0-preview.20261012.1.nupkg`. The public package is [StaadPro.Interop 1.0.0-preview.20261012.1](https://www.nuget.org/packages/StaadPro.Interop/1.0.0-preview.20261012.1). NuGet records its publication at 2026-10-12 16:37:20 UTC (22:07:20 India time). The project's default version remains `1.0.0`; use an explicit preview version while engineering-unit and broader compatibility gates remain open. Public-feed availability and installation are verified. See [Publishing.md](Publishing.md) and [Installation.md](Installation.md) for the exact steps.
+The corrected release artifact is `artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261012.1.nupkg`. The public package is [StaadPro.Interop.Core 1.0.0-preview.20261012.1](https://www.nuget.org/packages/StaadPro.Interop/1.0.0-preview.20261012.1). NuGet records its publication at 2026-10-12 16:37:20 UTC (22:07:20 India time). The project's default version remains `1.0.0`; use an explicit preview version while engineering-unit and broader compatibility gates remain open. Public-feed availability and installation are verified. See [Publishing.md](Publishing.md) and [Installation.md](Installation.md) for the exact steps.
 
 ## Completed implementation
 
@@ -305,12 +305,12 @@ Every new method has comprehensive, expanded XML documentation on both the inter
 | Release build | Passed, zero warnings/errors | Library and test project, .NET SDK 10.0.401 / .NET Framework 4.8.1 |
 | Automated test suite | **361 executed, 361 passed, 0 failed** | Original 342 offline cases plus 19 attachment/ROT regression cases |
 | Environment-dependent provider test | One explicit live test not executed | Asserts no running STAAD session; excluded from ordinary offline runs |
-| Package creation | Passed | Preview package with `lib/net481/StaadPro.Interop.dll` and XML |
+| Package creation | Passed | Preview package with `lib/net481/StaadPro.Interop.Core.dll` and XML |
 | Archive/metadata checks | Passed | Package identity, MIT metadata, repository URL, README, load/installation/publishing guides, forty-two complete XML query entries, four documented models, no connectivity API leakage |
 | Isolated package restore | Passed | Fresh temporary consumer/cache; PackageReference only, no repository ProjectReference |
 | Installed-package compilation/runtime | Passed, zero build warnings/errors | All forty-two XML examples, compiled installation example, twenty-one ported APIs including inclusive range/ID filters and concrete family lists, unchanged activation and four models' assignment dispatch using a managed stand-in; restored archive SHA256 matches the supplied package |
 | NuGet dependency vulnerability query | No vulnerable dependencies reported | `dotnet list ... package --vulnerable --include-transitive`, configured NuGet sources, assessment date |
-| CI verification | Passed for implementation commit `991f7ae` | [Windows CI run](https://github.com/structuraldeveloper/StaadPro.Interop/actions/runs/38230643566) built, tested, packed and verified the implemented queries; subsequent release metadata changes are verified locally before upload |
+| CI verification | Passed for implementation commit `991f7ae` | [Windows CI run](https://github.com/StruXllence/StaadPro.Interop/actions/runs/38230643566) built, tested, packed and verified the implemented queries; subsequent release metadata changes are verified locally before upload |
 | Real OpenSTAAD query execution | **Pending** | Native COM dispatch/marshaling, unit conventions, version compatibility |
 | Live model connection | Passed on STAAD.Pro 2025 | Supplied model opened in approximately 41.8 seconds, exposing Geometry/Load with 6,444 nodes and 74 primary load cases. Repeated calls reused the same process without launching another session. Does not certify engineering units or every query. |
 | NuGet.org publication | **Corrected preview publicly available and verified** | `.1` appears in the public index; public download matches verified DLL/XML/README. Fresh nuget.org-only restore with a unique package cache and `--no-http-cache`, build and assembly-load/copyright checks passed. Original author and copyright metadata were confirmed in the published nuspec. |
@@ -357,11 +357,11 @@ Confirm the intended NuGet ID/owner and available preview/stable versions. Verif
 ## Reproduce local checks
 
 ```powershell
-dotnet build StaadPro.Interop.sln -c Release
-dotnet test tests/StaadPro.Interop.Tests/StaadPro.Interop.Tests.csproj -c Release --logger "trx;LogFileName=load-port.trx" --results-directory artifacts/load-port/tests
-dotnet list src/StaadPro.Interop/StaadPro.Interop.csproj package --vulnerable --include-transitive
-dotnet pack src/StaadPro.Interop/StaadPro.Interop.csproj -c Release -p:PackageVersion=1.0.0-preview.20261012 -o artifacts/release
-./eng/Verify-LoadPackage.ps1 -PackagePath artifacts/release/StaadPro.Interop.1.0.0-preview.20261012.nupkg
+dotnet build StaadPro.Interop.Core.sln -c Release
+dotnet test tests/StaadPro.Interop.Core.Tests/StaadPro.Interop.Core.Tests.csproj -c Release --logger "trx;LogFileName=load-port.trx" --results-directory artifacts/load-port/tests
+dotnet list src/StaadPro.Interop.Core/StaadPro.Interop.Core.csproj package --vulnerable --include-transitive
+dotnet pack src/StaadPro.Interop.Core/StaadPro.Interop.Core.csproj -c Release -p:PackageVersion=1.0.0-preview.20261012 -o artifacts/release
+./eng/Verify-CorePackage.ps1 -PackagePath artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261012.nupkg
 ```
 
 The verifier leaves its uniquely named temporary consumer directory in the user's temporary folder so the restored package and executable can be inspected. It makes no changes to a STAAD model and does not publish anything.

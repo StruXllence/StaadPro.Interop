@@ -4,7 +4,7 @@
 
 Added 25 documented Output routes to IOSOutput and the single non-partial OSOutputAdapter, bringing typed native coverage to **40 of 60**. The twenty remaining documented routes and thirteen supplemental unit candidates retain separate contract and qualification work. The wrapper and providers are unchanged.
 
-Import `StaadPro.Interop.Enums.Output` for the new coordinate, response and design enums, and `StaadPro.Interop.Models.Output` for named results. Examples assume an already acquired `wrapper` and `output = wrapper.Output`, running on the established COM apartment.
+Import `StaadPro.Interop.Core.Enums.Output` for the new coordinate, response and design enums, and `StaadPro.Interop.Core.Models.Output` for named results. Examples assume an already acquired `wrapper` and `output = wrapper.Output`, running on the established COM apartment.
 
 **Current source checkpoint:** six later steel-design routes bring Output to 46/60, with fourteen remaining. See [the steel-block guide](Output-Steel-Design-Blocks.md). The 40/60 and twenty-pending figures above describe the preceding increment.
 

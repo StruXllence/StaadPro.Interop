@@ -147,7 +147,7 @@
       ],
       "returns": "Succeeded for integral zero and NativeFailure for -1; retains actual code, immutable pair and explicit native member scope. No attribute ID or Created/Updated distinction is fabricated.",
       "remarks": "When to use: request an exact name/value definition without assuming that zero means a newly allocated ID or distinguishing creation from update. Does not implicitly assign entities, trim text or convert strings. Input snapshots are validated before native writes. Native acknowledgement is not persistence read-back; partial changes may remain after failure or a stale-binding/transport exception. No hidden save, retry, transaction, unit conversion or rollback occurs.",
-      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\n    var result = property.CreateMemberAttribute(attribute);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
+      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\n    var result = property.CreateMemberAttribute(attribute);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
       "mutation": true
     },
     {
@@ -164,7 +164,7 @@
       ],
       "returns": "Succeeded for integral zero and NativeFailure for -1; retains actual code, immutable pair and explicit native element scope. No attribute ID or Created/Updated distinction is fabricated.",
       "remarks": "When to use: request an exact name/value definition without assuming that zero means a newly allocated ID or distinguishing creation from update. Does not implicitly assign entities, trim text or convert strings. Input snapshots are validated before native writes. Native acknowledgement is not persistence read-back; partial changes may remain after failure or a stale-binding/transport exception. No hidden save, retry, transaction, unit conversion or rollback occurs.",
-      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\n    var result = property.CreateElementAttribute(attribute);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
+      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\n    var result = property.CreateElementAttribute(attribute);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
       "mutation": true
     },
     {
@@ -181,7 +181,7 @@
       ],
       "returns": "Succeeded for integral zero and NativeFailure for -1; retains actual code, immutable pair and explicit native member scope. No attribute ID or Created/Updated distinction is fabricated.",
       "remarks": "When to use: deliberately remove the exact definition; existing native assignments/effects are subject to STAAD and no recreation/rollback is attempted. Does not implicitly assign entities, trim text or convert strings. Input snapshots are validated before native writes. Native acknowledgement is not persistence read-back; partial changes may remain after failure or a stale-binding/transport exception. No hidden save, retry, transaction, unit conversion or rollback occurs.",
-      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\n    var result = property.DeleteMemberAttribute(attribute);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
+      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\n    var result = property.DeleteMemberAttribute(attribute);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
       "mutation": true
     },
     {
@@ -198,7 +198,7 @@
       ],
       "returns": "Succeeded for integral zero and NativeFailure for -1; retains actual code, immutable pair and explicit native element scope. No attribute ID or Created/Updated distinction is fabricated.",
       "remarks": "When to use: deliberately remove the exact definition; existing native assignments/effects are subject to STAAD and no recreation/rollback is attempted. Does not implicitly assign entities, trim text or convert strings. Input snapshots are validated before native writes. Native acknowledgement is not persistence read-back; partial changes may remain after failure or a stale-binding/transport exception. No hidden save, retry, transaction, unit conversion or rollback occurs.",
-      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\n    var result = property.DeleteElementAttribute(attribute);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
+      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\n    var result = property.DeleteElementAttribute(attribute);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
       "mutation": true
     },
     {
@@ -215,7 +215,7 @@
       ],
       "returns": "Success with an immutable requested pair/domain and nonnegative count, including zero. Native -1 gives NativeFailure. A rewritten by-reference input value gives StateChanged with no Data.",
       "remarks": "When to use: inspect an attribute subset in the explicit member domain. Vendor metadata passes the value string by reference although the help describes it as input; a local copy is sent and compared ordinally afterward. No data is attributed to the original pair if native rewrites it. Zero does not prove a definition exists. All native calls use the shared captured-binding gate with before/after lifetime checks. No native model mutation, geometry hydration, unit conversion, save or engineering certification occurs.",
-      "example": "var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\nvar result = property.GetMemberCountByAttribute(attribute);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Count);\nelse System.Console.WriteLine(result.Status);",
+      "example": "var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\nvar result = property.GetMemberCountByAttribute(attribute);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Count);\nelse System.Console.WriteLine(result.Status);",
       "mutation": false
     },
     {
@@ -236,7 +236,7 @@
       ],
       "returns": "Success with immutable pair/domain correspondence and read-only positive EntityIds in native order, retaining duplicates. Native -1 gives NativeFailure, oversize count LimitExceeded, and count/input-value changes StateChanged. Zero inventory is successful empty data without list retrieval.",
       "remarks": "When to use: enumerate matching member IDs without geometry hydration. Uses the matching native count/list/count sequence within the shared gate; the list's integral zero is success, not a returned count. Native metadata requires ref string and ref Object outputs; local copies keep caller text immutable. Exact Int32 rank/length and every written positive ID are validated. Count equality cannot exclude same-count external edits. All native calls use the shared captured-binding gate with before/after lifetime checks. No native model mutation, geometry hydration, unit conversion, save or engineering certification occurs.",
-      "example": "var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\nvar result = property.GetMemberListByAttribute(attribute);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.EntityIds.Count);\nelse System.Console.WriteLine(result.Status);",
+      "example": "var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\nvar result = property.GetMemberListByAttribute(attribute);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.EntityIds.Count);\nelse System.Console.WriteLine(result.Status);",
       "mutation": false
     },
     {
@@ -253,7 +253,7 @@
       ],
       "returns": "Success with an immutable requested pair/domain and nonnegative count, including zero. Native -1 gives NativeFailure. A rewritten by-reference input value gives StateChanged with no Data.",
       "remarks": "When to use: inspect an attribute subset in the explicit element domain. Vendor metadata passes the value string by reference although the help describes it as input; a local copy is sent and compared ordinally afterward. No data is attributed to the original pair if native rewrites it. Zero does not prove a definition exists. All native calls use the shared captured-binding gate with before/after lifetime checks. No native model mutation, geometry hydration, unit conversion, save or engineering certification occurs.",
-      "example": "var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\nvar result = property.GetElementCountByAttribute(attribute);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Count);\nelse System.Console.WriteLine(result.Status);",
+      "example": "var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\nvar result = property.GetElementCountByAttribute(attribute);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Count);\nelse System.Console.WriteLine(result.Status);",
       "mutation": false
     },
     {
@@ -274,7 +274,7 @@
       ],
       "returns": "Success with immutable pair/domain correspondence and read-only positive EntityIds in native order, retaining duplicates. Native -1 gives NativeFailure, oversize count LimitExceeded, and count/input-value changes StateChanged. Zero inventory is successful empty data without list retrieval.",
       "remarks": "When to use: enumerate matching element IDs without geometry hydration. Uses the matching native count/list/count sequence within the shared gate; the list's integral zero is success, not a returned count. Native metadata requires ref string and ref Object outputs; local copies keep caller text immutable. Exact Int32 rank/length and every written positive ID are validated. Count equality cannot exclude same-count external edits. All native calls use the shared captured-binding gate with before/after lifetime checks. No native model mutation, geometry hydration, unit conversion, save or engineering certification occurs.",
-      "example": "var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\nvar result = property.GetElementListByAttribute(attribute);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.EntityIds.Count);\nelse System.Console.WriteLine(result.Status);",
+      "example": "var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\nvar result = property.GetElementListByAttribute(attribute);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.EntityIds.Count);\nelse System.Console.WriteLine(result.Status);",
       "mutation": false
     },
     {
@@ -341,7 +341,7 @@
       ],
       "returns": "Succeeded for integral zero and NativeFailure for -1; retains actual code, immutable requested pair/domain and owned requested TargetIds. No per-entity completion result or created identity is inferred.",
       "remarks": "When to use: deliberately remove the pair from supplied native identities. The help calls these member IDs while vendor metadata names a member/plate list; the result preserves this ambiguity and does not claim a resolved entity kind. Native failure may leave a partially applied change. Input snapshots are validated before native writes. Native acknowledgement is not persistence read-back; partial changes may remain after failure or a stale-binding/transport exception. No hidden save, retry, transaction, unit conversion or rollback occurs.",
-      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\n    var result = property.RemoveAttribute(attribute, new[] { 17, 41 });\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
+      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\n    var result = property.RemoveAttribute(attribute, new[] { 17, 41 });\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
       "mutation": true
     },
     {
@@ -362,7 +362,7 @@
       ],
       "returns": "Succeeded for integral zero and NativeFailure for -1; retains actual code, immutable requested pair/domain and owned requested TargetIds. No per-entity completion result or created identity is inferred.",
       "remarks": "When to use: deliberately assign the existing pair in the explicitly named native member domain without creating a definition or hydrating entities. Native failure may leave a partially applied change. Input snapshots are validated before native writes. Native acknowledgement is not persistence read-back; partial changes may remain after failure or a stale-binding/transport exception. No hidden save, retry, transaction, unit conversion or rollback occurs.",
-      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\n    var result = property.AssignMemberAttribute(attribute, new[] { 17, 41 });\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
+      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\n    var result = property.AssignMemberAttribute(attribute, new[] { 17, 41 });\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
       "mutation": true
     },
     {
@@ -383,7 +383,7 @@
       ],
       "returns": "Succeeded for integral zero and NativeFailure for -1; retains actual code, immutable requested pair/domain and owned requested TargetIds. No per-entity completion result or created identity is inferred.",
       "remarks": "When to use: deliberately assign the existing pair in the explicitly named native element domain without creating a definition or hydrating entities. Native failure may leave a partially applied change. Input snapshots are validated before native writes. Native acknowledgement is not persistence read-back; partial changes may remain after failure or a stale-binding/transport exception. No hidden save, retry, transaction, unit conversion or rollback occurs.",
-      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\n    var result = property.AssignElementAttribute(attribute, new[] { 17, 41 });\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
+      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\n    var result = property.AssignElementAttribute(attribute, new[] { 17, 41 });\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
       "mutation": true
     },
     {
@@ -400,7 +400,7 @@
       ],
       "returns": "Created with a separate positive CreatedTableId for a positive integral native result. -6031 gives InvalidInput; zero/other undocumented responses throw. No section property/specification ID is populated.",
       "remarks": "When to use: create an empty UPT table independently from adding a named section or assigning members. Requests run on the captured native receiver using the reviewed metadata's by-value input, despite C++ VARIANT-reference spelling. No staged workflow/cleanup or table-type lookup is hidden. Input snapshots are validated before native writes. Native acknowledgement is not persistence read-back; partial changes may remain after failure or a stale-binding/transport exception. No hidden save, retry, transaction, unit conversion or rollback occurs.",
-      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var result = property.CreateUptTable(StaadPro.Interop.Enums.Property.UserProvidedTableType.WideFlange);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
+      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var result = property.CreateUptTable(StaadPro.Interop.Core.Enums.Property.UserProvidedTableType.WideFlange);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
       "mutation": true
     },
     {
@@ -425,7 +425,7 @@
       ],
       "returns": "Succeeded for integral zero, NativeFailure for -6032 and AlreadyExists for -6045. Retains actual response and requested TableId/SectionName. No created section property reference or table ID is fabricated.",
       "remarks": "When to use: insert explicit scalar UPT values without silently changing a duplicate named section. Table creation and insertion are separate model mutations; an insertion failure does not remove the table. Vendor metadata accepts inputs by value. Native success does not prove a new definition rather than an accepted insertion and does not assign members. Input snapshots are validated before native writes. Native acknowledgement is not persistence read-back; partial changes may remain after failure or a stale-binding/transport exception. No hidden save, retry, transaction, unit conversion or rollback occurs.",
-      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var definition = new StaadPro.Interop.Models.Property.UptWideFlangeDefinition(0.01, 0.3, 0.006, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003);\n    var result = property.AddUptPropertyWideFlange(7, \"EXPLICIT_WF\", definition);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
+      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var definition = new StaadPro.Interop.Core.Models.Property.UptWideFlangeDefinition(0.01, 0.3, 0.006, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003);\n    var result = property.AddUptPropertyWideFlange(7, \"EXPLICIT_WF\", definition);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
       "mutation": true
     },
     {
@@ -450,7 +450,7 @@
       ],
       "returns": "Succeeded for true/integral one and NativeFailure for false/integral zero. Actual Boolean/integral evidence is retained separately with requested TableId/SectionName; no duplicate-specific status or created section ID is inferred.",
       "remarks": "When to use: insert the unequal shape using its distinct Boolean-returning native route; zero is failure here, unlike the scalar wide-flange route. Input values remain immutable even if a native buffer is altered. Does not create a table, replace a duplicate by fallback, create an assigned property or assign members. Input snapshots are validated before native writes. Native acknowledgement is not persistence read-back; partial changes may remain after failure or a stale-binding/transport exception. No hidden save, retry, transaction, unit conversion or rollback occurs.",
-      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var definition = new StaadPro.Interop.Models.Property.UptWideFlangeDefinition(0.01, 0.3, 0.006, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003);\n    var unequal = new StaadPro.Interop.Models.Property.UptUnequalWideFlangeDefinition(definition, 0.2, 0.015);\n    var result = property.AddUptPropertyWideFlangeUnequal(7, \"EXPLICIT_UNEQUAL\", unequal);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
+      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.\nif (applyChanges)\n{\n    var definition = new StaadPro.Interop.Core.Models.Property.UptWideFlangeDefinition(0.01, 0.3, 0.006, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003);\n    var unequal = new StaadPro.Interop.Core.Models.Property.UptUnequalWideFlangeDefinition(definition, 0.2, 0.015);\n    var result = property.AddUptPropertyWideFlangeUnequal(7, \"EXPLICIT_UNEQUAL\", unequal);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
       "mutation": true
     }
   ]

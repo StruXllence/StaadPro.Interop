@@ -121,7 +121,7 @@ void OSGeometryUI::CreateNode(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `CreateNode(Node)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L213)); `CreateMultipleNodes(HashSet<Node>, int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L856)).
+**Current callers:** `CreateNode(Node)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L213)); `CreateMultipleNodes(HashSet<Node>, int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L856)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -146,7 +146,7 @@ VARIANT OSGeometryUI::AddNode(
 
 **Return labels:** `<Val>`, `0`, `-2004`.
 
-**Current callers:** `AddNode(Node)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L633)).
+**Current callers:** `AddNode(Node)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L633)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -167,7 +167,7 @@ void OSGeometryUI::DeleteNode(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `DeleteAllNodes(int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L908)).
+**Current callers:** `DeleteAllNodes(int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L908)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -185,7 +185,7 @@ VARIANT OSGeometryUI::GetLastNodeNo();
 
 **Return labels:** `<Val>`, `-1`.
 
-**Current callers:** `GetLastNodeNo()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L498)).
+**Current callers:** `GetLastNodeNo()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L498)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -203,7 +203,7 @@ VARIANT OSGeometryUI::GetNoOfSelectedNodes();
 
 **Return labels:** `The`.
 
-**Current callers:** `AnyItemsSelected()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L505)); `GetSelectedNodesIds()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L575)); `GetSelectedNodesListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1177)).
+**Current callers:** `AnyItemsSelected()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L505)); `GetSelectedNodesIds()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L575)); `GetSelectedNodesListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1177)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G2: selection contracts and entity support.
 
@@ -226,7 +226,7 @@ void OSGeometryUI::GetSelectedNodes(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `GetSelectedNodesIds()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L575)); `GetSelectedNodesListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1177)).
+**Current callers:** `GetSelectedNodesIds()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L575)); `GetSelectedNodesListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1177)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G2: selection contracts and entity support.
 
@@ -253,7 +253,7 @@ void OSGeometryUI::GetNodeCoordinates(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `GetNode(int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L737)).
+**Current callers:** `GetNode(int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L737)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -280,7 +280,7 @@ void OSGeometryUI::SetNodeCoordinate(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `SetNodeCoordinate(int, double, double, double)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L495)).
+**Current callers:** `SetNodeCoordinate(int, double, double, double)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L495)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -345,7 +345,7 @@ VARIANT OSGeometryUI::SelectMultipleNodes(
 
 **Return labels:** `0`, `1`.
 
-**Current callers:** `SelectMultipleNodes(IEnumerable<int>)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L484)).
+**Current callers:** `SelectMultipleNodes(IEnumerable<int>)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L484)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G2: selection contracts and entity support.
 
@@ -406,7 +406,7 @@ void OSGeometryUI::CreateMultipleNodes(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `CreateMultipleNodesExtended(IOSRoot, IEnumerable<Node>)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L83)).
+**Current callers:** `CreateMultipleNodesExtended(IOSRoot, IEnumerable<Node>)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L83)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -424,7 +424,7 @@ VARIANT OSGeometryUI::GetNodeCount();
 
 **Return labels:** `<Val>`.
 
-**Current callers:** `GetAllNodesList()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L788)); `GetAllNodesListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1150)).
+**Current callers:** `GetAllNodesList()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L788)); `GetAllNodesListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1150)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -445,7 +445,7 @@ void OSGeometryUI::GetNodeList(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `GetAllNodesList()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L788)); `GetAllNodesListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1150)).
+**Current callers:** `GetAllNodesList()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L788)); `GetAllNodesListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1150)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -486,7 +486,7 @@ VARIANT OSGeometryUI::GetNodeIncidence(
 
 **Return labels:** 2024 — No return table provided; 2025/2026 — `0`, `-1`, `-2005`.
 
-**Current callers:** `ClearNodeSelection()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L462)).
+**Current callers:** `ClearNodeSelection()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L462)).
 
 **Review disposition:** Apply the version-sensitive contract workstream before claiming qualified native success. G2: selection contracts and entity support.
 
@@ -595,7 +595,7 @@ VARIANT OSGeometryUI::MergeNodes(
 
 **Return labels:** `1`, `0`.
 
-**Current callers:** `MergeNodesExtended(IOSRoot, Node, IEnumerable<Node>)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L111)).
+**Current callers:** `MergeNodesExtended(IOSRoot, Node, IEnumerable<Node>)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L111)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -622,7 +622,7 @@ void OSGeometryUI::CreateBeam(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `CreateMultipleBeamsExtended(IOSRoot, IEnumerable<Beam>)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L51)); `CreateBeam(Beam)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L220)); `CreateMultipleBeams(HashSet<Beam>, int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L863)).
+**Current callers:** `CreateMultipleBeamsExtended(IOSRoot, IEnumerable<Beam>)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L51)); `CreateBeam(Beam)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L220)); `CreateMultipleBeams(HashSet<Beam>, int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L863)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -664,7 +664,7 @@ void OSGeometryUI::DeleteBeam(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `DeleteAllBeams(int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L901)).
+**Current callers:** `DeleteAllBeams(int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L901)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -726,7 +726,7 @@ VARIANT OSGeometryUI::GetLastBeamNo();
 
 **Return labels:** `<Val>`, `-1`.
 
-**Current callers:** `GetLastBeamNo()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L500)).
+**Current callers:** `GetLastBeamNo()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L500)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -744,7 +744,7 @@ VARIANT OSGeometryUI::GetNoOfSelectedBeams();
 
 **Return labels:** `The`.
 
-**Current callers:** `AnyItemsSelected()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L505)); `GetSelectedBeamsIds()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L539)); `GetSelectedBeamsListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1168)).
+**Current callers:** `AnyItemsSelected()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L505)); `GetSelectedBeamsIds()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L539)); `GetSelectedBeamsListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1168)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G2: selection contracts and entity support.
 
@@ -767,7 +767,7 @@ void OSGeometryUI::GetSelectedBeams(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `GetSelectedBeamsIds()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L539)); `GetSelectedBeamsListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1168)).
+**Current callers:** `GetSelectedBeamsIds()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L539)); `GetSelectedBeamsListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1168)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G2: selection contracts and entity support.
 
@@ -807,7 +807,7 @@ VARIANT OSGeometryUI::SelectMultipleBeams(
 
 **Return labels:** `0`, `1`.
 
-**Current callers:** `SelectMultipleBeams(IEnumerable<int>)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L486)).
+**Current callers:** `SelectMultipleBeams(IEnumerable<int>)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L486)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G2: selection contracts and entity support.
 
@@ -905,7 +905,7 @@ VARIANT OSGeometryUI::GetMemberCount();
 
 **Return labels:** `<Val>`.
 
-**Current callers:** `GetAllBeamsList()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L779)); `GetAllBeamsListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1141)).
+**Current callers:** `GetAllBeamsList()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L779)); `GetAllBeamsListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1141)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -926,7 +926,7 @@ void OSGeometryUI::GetBeamList(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `GetAllBeamsList()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L779)); `GetAllBeamsListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1141)).
+**Current callers:** `GetAllBeamsList()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L779)); `GetAllBeamsListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1141)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -951,7 +951,7 @@ VARIANT OSGeometryUI::GetMemberIncidence(
 
 **Return labels:** `0`, `-1`, `-3001`.
 
-**Current callers:** `GetBeam(int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L709)); `GetBeam(int, IEnumerable<Node>)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L720)).
+**Current callers:** `GetBeam(int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L709)); `GetBeam(int, IEnumerable<Node>)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L720)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -967,7 +967,7 @@ VARIANT OSGeometryUI::GetMemberIncidence(
 
 **Return labels:** 2024 — No return table provided; 2025/2026 — `0`, `-1`, `-3005`.
 
-**Current callers:** `ClearMemberSelection()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L464)).
+**Current callers:** `ClearMemberSelection()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L464)).
 
 **Review disposition:** Apply the version-sensitive contract workstream before claiming qualified native success. G2: selection contracts and entity support.
 
@@ -1050,7 +1050,7 @@ VARIANT OSGeometryUI::IsZUp();
 
 **Return labels:** `1`, `0`.
 
-**Current callers:** `IsZUp()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L179)).
+**Current callers:** `IsZUp()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L179)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -1113,7 +1113,7 @@ VARIANT OSGeometryUI::GetNoOfBeamsConnectedAtNode(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `GetBeamsConnectedAtNode(Node, int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1072)).
+**Current callers:** `GetBeamsConnectedAtNode(Node, int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1072)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -1136,7 +1136,7 @@ VARIANT OSGeometryUI::GetBeamsConnectedAtNode(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `GetBeamsConnectedAtNode(Node, int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1072)).
+**Current callers:** `GetBeamsConnectedAtNode(Node, int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1072)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -1432,7 +1432,7 @@ VARIANT OSGeometryUI::GetNoOfSelectedPhysicalMembers();
 
 **Return labels:** `<Val>`, `-1`.
 
-**Current callers:** `AnyItemsSelected()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L505)).
+**Current callers:** `AnyItemsSelected()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L505)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G2: selection contracts and entity support.
 
@@ -1493,7 +1493,7 @@ void OSGeometryUI::SelectMultiplePhysicalMembers(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `SelectMultiplePhysicalMembers(IEnumerable<int>)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L492)).
+**Current callers:** `SelectMultiplePhysicalMembers(IEnumerable<int>)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L492)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G2: selection contracts and entity support.
 
@@ -1598,7 +1598,7 @@ void OSGeometryUI::CreatePlate(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `CreatePlate(Plate)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L227)); `CreateMultiplePlates(HashSet<Plate>, int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L870)).
+**Current callers:** `CreatePlate(Plate)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L227)); `CreateMultiplePlates(HashSet<Plate>, int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L870)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -1644,7 +1644,7 @@ void OSGeometryUI::DeletePlate(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `DeleteAllPlates(int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L894)).
+**Current callers:** `DeleteAllPlates(int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L894)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -1662,7 +1662,7 @@ VARIANT OSGeometryUI::GetLastPlateNo();
 
 **Return labels:** `<Val>`, `-1`.
 
-**Current callers:** `GetLastPlateNo()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L502)).
+**Current callers:** `GetLastPlateNo()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L502)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -1680,7 +1680,7 @@ VARIANT OSGeometryUI::GetNoOfSelectedPlates();
 
 **Return labels:** No return table provided.
 
-**Current callers:** `AnyItemsSelected()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L505)); `GetSelectedPlatesIds()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L512)); `GetSelectedPlatesListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1159)).
+**Current callers:** `AnyItemsSelected()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L505)); `GetSelectedPlatesIds()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L512)); `GetSelectedPlatesListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1159)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G2: selection contracts and entity support.
 
@@ -1703,7 +1703,7 @@ void OSGeometryUI::GetSelectedPlates(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `GetSelectedPlatesIds()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L512)); `GetSelectedPlatesListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1159)).
+**Current callers:** `GetSelectedPlatesIds()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L512)); `GetSelectedPlatesListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1159)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G2: selection contracts and entity support.
 
@@ -1724,7 +1724,7 @@ VARIANT OSGeometryUI::SelectMultiplePlates(
 
 **Return labels:** `0`, `1`.
 
-**Current callers:** `SelectMultiplePlates(IEnumerable<int>)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L488)).
+**Current callers:** `SelectMultiplePlates(IEnumerable<int>)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L488)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G2: selection contracts and entity support.
 
@@ -1801,7 +1801,7 @@ VARIANT OSGeometryUI::GetPlateCount();
 
 **Return labels:** `<Val>`.
 
-**Current callers:** `GetAllPlatesList()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L770)); `GetAllPlatesListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1102)); `GetAllPlateIdsFromCom()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1306)).
+**Current callers:** `GetAllPlatesList()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L770)); `GetAllPlatesListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1102)); `GetAllPlateIdsFromCom()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1306)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -1822,7 +1822,7 @@ void OSGeometryUI::GetPlateList(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `GetAllPlatesList()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L770)); `GetAllPlatesListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1102)); `GetAllPlateIdsFromCom()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1306)).
+**Current callers:** `GetAllPlatesList()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L770)); `GetAllPlatesListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1102)); `GetAllPlateIdsFromCom()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1306)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -1851,7 +1851,7 @@ VARIANT OSGeometryUI::GetPlateIncidence(
 
 **Return labels:** `0`, `-1`, `-4001`.
 
-**Current callers:** `GetPlateIncidence(int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L664)); `GetPlate(int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L679)); `GetPlate(int, IEnumerable<Node>)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L694)); `GetPlateIncidenceIdsFromCom(int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1334)).
+**Current callers:** `GetPlateIncidence(int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L664)); `GetPlate(int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L679)); `GetPlate(int, IEnumerable<Node>)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L694)); `GetPlateIncidenceIdsFromCom(int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1334)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -1867,7 +1867,7 @@ VARIANT OSGeometryUI::GetPlateIncidence(
 
 **Return labels:** 2024 — No return table provided; 2025/2026 — `0`, `-1`, `-4005`.
 
-**Current callers:** `ClearPlateSelection()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L468)).
+**Current callers:** `ClearPlateSelection()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L468)).
 
 **Review disposition:** Apply the version-sensitive contract workstream before claiming qualified native success. G2: selection contracts and entity support.
 
@@ -2067,7 +2067,7 @@ void OSGeometryUI::DeleteSolid(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `DeleteAllSolids(int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L887)).
+**Current callers:** `DeleteAllSolids(int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L887)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -2101,7 +2101,7 @@ VARIANT OSGeometryUI::GetNoOfSelectedSolids();
 
 **Return labels:** No return table provided.
 
-**Current callers:** `AnyItemsSelected()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L505)).
+**Current callers:** `AnyItemsSelected()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L505)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G2: selection contracts and entity support.
 
@@ -2143,7 +2143,7 @@ VARIANT OSGeometryUI::SelectMultipleSolids(
 
 **Return labels:** `0`, `1`.
 
-**Current callers:** `SelectMultipleSolids(IEnumerable<int>)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L490)).
+**Current callers:** `SelectMultipleSolids(IEnumerable<int>)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L490)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G2: selection contracts and entity support.
 
@@ -2199,7 +2199,7 @@ VARIANT OSGeometryUI::GetSolidCount();
 
 **Return labels:** `<Val>`.
 
-**Current callers:** `GetAllSolidsList()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L761)); `GetAllSolidsListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1093)).
+**Current callers:** `GetAllSolidsList()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L761)); `GetAllSolidsListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1093)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -2220,7 +2220,7 @@ void OSGeometryUI::GetSolidList(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `GetAllSolidsList()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L761)); `GetAllSolidsListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1093)).
+**Current callers:** `GetAllSolidsList()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L761)); `GetAllSolidsListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1093)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -2271,7 +2271,7 @@ VARIANT OSGeometryUI::GetSolidIncidence(
 
 **Return labels:** 2024 — `0`; 2025/2026 — `0`, `-1`, `-5005`.
 
-**Current callers:** `ClearSolidSelection()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L470)).
+**Current callers:** `ClearSolidSelection()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L470)).
 
 **Review disposition:** Apply the version-sensitive contract workstream before claiming qualified native success. G2: selection contracts and entity support.
 
@@ -2408,7 +2408,7 @@ VARIANT OSGeometryUI::GetGroupCount(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `GetGroupNames(GroupType)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L636)); `GetEntityGroups(HashSet<T>, int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L997)); `GetEntityGroupsAsync(HashSet<T>, int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1280)).
+**Current callers:** `GetGroupNames(GroupType)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L636)); `GetEntityGroups(HashSet<T>, int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L997)); `GetEntityGroupsAsync(HashSet<T>, int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1280)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -2431,7 +2431,7 @@ VARIANT OSGeometryUI::GetGroupNames(
 
 **Return labels:** `0`, `-107`.
 
-**Current callers:** `GetGroupNames(GroupType)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L636)); `GetEntityGroups(HashSet<T>, int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L997)); `GetEntityGroupsAsync(HashSet<T>, int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1280)).
+**Current callers:** `GetGroupNames(GroupType)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L636)); `GetEntityGroups(HashSet<T>, int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L997)); `GetEntityGroupsAsync(HashSet<T>, int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1280)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -2452,7 +2452,7 @@ VARIANT OSGeometryUI::GetGroupEntityCount(
 
 **Return labels:** No return table provided.
 
-**Current callers:** `GetIdsOfEntitiesInGroup(string)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L655)); `GetEntitiesInGroup(string, HashSet<T>, int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1033)); `GetEntitiesInGroupAsync(string, HashSet<T>, int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1255)).
+**Current callers:** `GetIdsOfEntitiesInGroup(string)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L655)); `GetEntitiesInGroup(string, HashSet<T>, int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1033)); `GetEntitiesInGroupAsync(string, HashSet<T>, int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1255)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -2475,7 +2475,7 @@ VARIANT OSGeometryUI::GetGroupEntities(
 
 **Return labels:** `-1`, `-107`.
 
-**Current callers:** `GetIdsOfEntitiesInGroup(string)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L655)); `GetEntitiesInGroup(string, HashSet<T>, int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1033)); `GetEntitiesInGroupAsync(string, HashSet<T>, int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L1255)).
+**Current callers:** `GetIdsOfEntitiesInGroup(string)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L655)); `GetEntitiesInGroup(string, HashSet<T>, int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1033)); `GetEntitiesInGroupAsync(string, HashSet<T>, int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L1255)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G3: qualified native queries.
 
@@ -2502,7 +2502,7 @@ VARIANT OSGeometryUI::CreateGroupEx(
 
 **Return labels:** `0`, `-1`, `-100`, `-110`, `-2005`, `-3005`, `-4005`, `-5005`, `-7001`.
 
-**Current callers:** `CreateGroupFrom(EntityGroup)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L249)).
+**Current callers:** `CreateGroupFrom(EntityGroup)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L249)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -2583,7 +2583,7 @@ VARIANT OSGeometryUI::DefineParametricSurface(
 
 **Return labels:** `<nId>`, `-1`.
 
-**Current callers:** `DefineParametricSurface(string, SurfaceType, int, int, int, int, int[], int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L439)).
+**Current callers:** `DefineParametricSurface(string, SurfaceType, int, int, int, int, int[], int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L439)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -2604,7 +2604,7 @@ VARIANT OSGeometryUI::AddParametricSurfaceToModel(
 
 **Return labels:** `1`, `0`.
 
-**Current callers:** `AddParametricSurfaceToModel(int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L453)).
+**Current callers:** `AddParametricSurfaceToModel(int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L453)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -2625,7 +2625,7 @@ VARIANT OSGeometryUI::CommitParametricSurfaceMesh(
 
 **Return labels:** `1`, `0`.
 
-**Current callers:** `CommitParametricSurfaceMesh(int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L455)).
+**Current callers:** `CommitParametricSurfaceMesh(int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L455)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -2646,7 +2646,7 @@ VARIANT OSGeometryUI::RemoveParametricSurfaceMesh(
 
 **Return labels:** `1`, `0`.
 
-**Current callers:** `RemoveParametricSurfaceMesh(int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L279)).
+**Current callers:** `RemoveParametricSurfaceMesh(int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L279)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -2675,7 +2675,7 @@ VARIANT OSGeometryUI::AddDensityPointToSurface(
 
 **Return labels:** `<val>`, `-1`.
 
-**Current callers:** `AddDensityPointToSurface(int, double, double, double, int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L356)).
+**Current callers:** `AddDensityPointToSurface(int, double, double, double, int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L356)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -2714,7 +2714,7 @@ VARIANT OSGeometryUI::AddDensityLineToSurface(
 
 **Return labels:** `<val>`, `-1`.
 
-**Current callers:** `AddDensityLineToSurface(int, Node, Node, int, int, int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L362)); `AddDensityLineToSurface(int, double, double, double, int, double, double, double, int, int)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L369)).
+**Current callers:** `AddDensityLineToSurface(int, Node, Node, int, int, int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L362)); `AddDensityLineToSurface(int, double, double, double, int, double, double, double, int, int)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L369)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -2749,7 +2749,7 @@ VARIANT OSGeometryUI::AddCircularRegionToSurface(
 
 **Return labels:** `<val>`, `-1`.
 
-**Current callers:** `AddCircularRegionToSurface(int, double, double, double, double, int, int, RegionType)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L416)).
+**Current callers:** `AddCircularRegionToSurface(int, double, double, double, double, int, int, RegionType)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L416)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -2784,7 +2784,7 @@ VARIANT OSGeometryUI::AddPolygonalRegionToSurface(
 
 **Return labels:** `<val>`, `-1`.
 
-**Current callers:** `AddPolygonalRegionToSurface(int, int, double[], double[], double[], int[], int[], RegionType)` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L396)).
+**Current callers:** `AddPolygonalRegionToSurface(int, int, double[], double[], double[], int[], int[], RegionType)` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L396)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G6: controlled native mutations.
 
@@ -2802,7 +2802,7 @@ VARIANT OSGeometryUI::GetParametricSurfaceCount();
 
 **Return labels:** No return table provided.
 
-**Current callers:** `GetParametricSurfaceCount()` ([source](../../src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs#L273)).
+**Current callers:** `GetParametricSurfaceCount()` ([source](../../src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs#L273)).
 
 **Review disposition:** Use shared native behavior where confirmed; call presence is not evidence of complete result validation. G5: native surface and generated-mesh read-back.
 
@@ -3077,149 +3077,149 @@ The following 143 overloads are the current public IOSGeometry surface, with mat
 
 | Managed declaration | Direct native targets in this body |
 | --- | --- |
-| `PhysicalMemberIdentificationResult IdentifyPhysicalMembers(IEnumerable<Beam> beams, double angularToleranceDegrees = 0.005)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L17)) | Delegation / managed logic; see implementation |
-| `IEnumerable<PhysicalMemberPlanAngleGroup> GroupPhysicalMembersByPlanAngle(IEnumerable<Member> members, double angularToleranceDegrees = 1e-3)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L20)) | Delegation / managed logic; see implementation |
-| `PolygonMeshResult GeneratePolygonMesh(IReadOnlyList<Node> boundaryNodes, int startingNodeId, int startingPlateId, double minimumAngleDegrees = 20.0, double maximumEdgeLength = 0.0)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L23)) | Delegation / managed logic; see implementation |
-| `IOSGeometry CreateMultipleBeamsExtended(IOSRoot openStaad, IEnumerable<Beam> beamCollection)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L33)) | `CreateBeam` |
-| `IOSGeometry CreateMultipleNodesExtended(IOSRoot openStaad, IEnumerable<Node> nodeCollection)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L36)) | `CreateMultipleNodes` |
-| `IOSGeometry MergeNodesExtended(IOSRoot openStaad, Node retain, IEnumerable<Node> nodesToMerge)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L39)) | `MergeNodes` |
-| `IEnumerable<IEnumerable<Beam>> SegregateBeamsByConnectivity(IEnumerable<Beam> beams)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L42)) | Delegation / managed logic; see implementation |
-| `IEnumerable<IEnumerable<Member>> SegregateMembersByConnectivity(IEnumerable<Member> members, MemberConnectivityScope scope = MemberConnectivityScope.EndpointsOnly)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L45)) | Delegation / managed logic; see implementation |
-| `IEnumerable<IEnumerable<Plate>> SegregatePlatesByConnectivity(IEnumerable<Plate> plates, PlateConnectivityScope scope = PlateConnectivityScope.SharedEdge)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L48)) | Delegation / managed logic; see implementation |
-| `bool IsZUp()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L51)) | `IsZUp` |
-| `GlobalVerticalAxis GetGlobalVerticalAxis()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L54)) | Delegation / managed logic; see implementation |
-| `int GetParametricSurfaceCount()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L61)) | `GetParametricSurfaceCount` |
-| `bool RemoveParametricSurfaceMesh(int surfaceId)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L64)) | `RemoveParametricSurfaceMesh` |
-| `IOSGeometry AddAndCommitParametricSurfaceToModel(int surfaceId)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L67)) | Delegation / managed logic; see implementation |
-| `int AddParametricSurfaceToModel(int surfaceId)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L70)) | `AddParametricSurfaceToModel` |
-| `int CommitParametricSurfaceMesh(int surfaceId)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L73)) | `CommitParametricSurfaceMesh` |
-| `(int SurfaceId, IEnumerable<Node> PeripheralNodes, IEnumerable<Node> OpeningNodes) CreateAnnularParametricSurface(string surfaceName, Node center, double rOuter, int divOuter, double rInner, int divInner, int idLastUsedNode = 0, AutoGenerate autoGenerate = AutoGenerate.No)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L76)) | Delegation / managed logic; see implementation |
-| `(int SurfaceId, IEnumerable<Node> OpeningNodes) CreateAnnularParametricSurface(string surfaceName, Node center, IEnumerable<Node> peripheralNodes, double rInner, int divInner, int idLastUsedNode = 0, AutoGenerate autoGenerate = AutoGenerate.No)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L80)) | Delegation / managed logic; see implementation |
-| `(int SurfaceId, IEnumerable<Node> PeripheralNodes) CreateAnnularParametricSurface(string surfaceName, Node center, double rOuter, int divOuter, IEnumerable<Node> openingNodes, int idLastUsedNode = 0, AutoGenerate autoGenerate = AutoGenerate.No)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L84)) | Delegation / managed logic; see implementation |
-| `int CreateAnnularParametricSurface(string surfaceName, IEnumerable<Node> outerVertices, IEnumerable<Node> innerVertices, SurfaceType type = SurfaceType.None, AutoGenerate autoGenerate = AutoGenerate.No)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L88)) | Delegation / managed logic; see implementation |
-| `int CreateSolidCircularParametricSurface(string surfaceName, Node center, IEnumerable<Node> vertices, AutoGenerate autoGenerate = AutoGenerate.No)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L91)) | Delegation / managed logic; see implementation |
-| `(int SurfaceId, IEnumerable<Node> GeneratedNodes) CreateSolidCircularParametricSurface(string surfaceName, Node center, double radius, int divisions, int idLastUsedNode = 0, AutoGenerate autoGenerate = AutoGenerate.No)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L94)) | Delegation / managed logic; see implementation |
-| `int AddDensityPointToSurface(int surfaceId, Node densityPoint, int density)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L97)) | Delegation / managed logic; see implementation |
-| `int AddDensityPointToSurface(int surfaceId, double xDensityPoint, double yDensityPoint, double zDensityPoint, int density)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L100)) | `AddDensityPointToSurface` |
-| `int AddDensityLineToSurface(int surfaceId, Node sNodeDensityLine, Node eNodeDensityLine, int sDensity, int eDensity, int nDivisions)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L103)) | `AddDensityLineToSurface` |
-| `int AddDensityLineToSurface(int surfaceId, double xDensityLineSNode, double yDensityLineSNode, double zDensityLineSNode, int sDensity, double xDensityLineENode, double yDensityLineENode, double zDensityLineENode, int eDensity, int nDivisions)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L106)) | `AddDensityLineToSurface` |
-| `int AddPolygonalRegionToSurface(int surfaceId, IEnumerable<Node> polygonNodes, RegionType regionType)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L110)) | Delegation / managed logic; see implementation |
-| `int AddPolygonalRegionToSurface(int surfaceId, IEnumerable<Node> polygonNodes, int[] densities, int[] edgeDivs, RegionType regionType)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L113)) | Delegation / managed logic; see implementation |
-| `int AddPolygonalRegionToSurface(int surfaceId, int countVertices, double[] xArrayRegion, double[] yArrayRegion, double[] zArrayRegion, int[] densities, int[] edgeDivs, RegionType regionType)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L116)) | `AddPolygonalRegionToSurface` |
-| `(int RegionId, int IdLastUsedNode) AddCircularRegionToSurface(int surfaceId, Node center, double radius, int divisions, RegionType regionType, int idLastUsedNode = 0)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L119)) | Delegation / managed logic; see implementation |
-| `int AddCircularRegionToSurface(int surfaceId, IEnumerable<Node> regionNodes, RegionType regionType)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L122)) | Delegation / managed logic; see implementation |
-| `int AddCircularRegionToSurface(int surfaceId, double xCenter, double yCenter, double zCenter, double rRegion, int nDivisions, int density, RegionType regionType)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L125)) | `AddCircularRegionToSurface` |
-| `int DefineParametricSurface(string surfaceName, IEnumerable<Node> vertices, SurfaceType type = SurfaceType.None, AutoGenerate autoGenerate = AutoGenerate.No)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L128)) | Delegation / managed logic; see implementation |
-| `int DefineParametricSurface(string surfaceName, Node originNode, Node localXVertex, Node localYVertex, IEnumerable<Node> vertices, SurfaceType type = SurfaceType.None, AutoGenerate autoGenerate = AutoGenerate.No)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L131)) | Delegation / managed logic; see implementation |
-| `int DefineParametricSurface(string surfaceName, SurfaceType type, int idOriginNode, int idLocalXVertex, int idLocalYVertex, int nVertices, int[] idsVertices, int autoGenerate)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L134)) | `DefineParametricSurface` |
-| `IOSGeometry ClearNodeSelection()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L141)) | `ClearNodeSelection` |
-| `IOSGeometry ClearMemberSelection()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L143)) | `ClearMemberSelection` |
-| `IOSGeometry ClearPhysicalMemberSelection()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L145)) | `ClearPhysicalMemberSelection` |
-| `IOSGeometry ClearPlateSelection()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L147)) | `ClearPlateSelection` |
-| `IOSGeometry ClearSolidSelection()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L149)) | `ClearSolidSelection` |
-| `IOSGeometry ClearSurfaceSelection()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L151)) | `ClearSurfaceSelection` |
-| `IOSGeometry SetNodeCoordinate(int id, double x, double y, double z)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L153)) | `SetNodeCoordinate` |
-| `bool SelectMultipleNodes(IEnumerable<Node> nodes)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L156)) | Delegation / managed logic; see implementation |
-| `bool SelectMultipleBeams(IEnumerable<Beam> beams)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L158)) | Delegation / managed logic; see implementation |
-| `IOSGeometry SelectMultiplePhysicalMembers(IEnumerable<Member> members)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L160)) | Delegation / managed logic; see implementation |
-| `bool SelectMultiplePlates(IEnumerable<Plate> plates)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L162)) | Delegation / managed logic; see implementation |
-| `bool SelectMultipleNodes(IEnumerable<int> nodeIds)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L165)) | `SelectMultipleNodes` |
-| `bool SelectMultipleBeams(IEnumerable<int> beamIds)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L167)) | `SelectMultipleBeams` |
-| `bool SelectMultiplePlates(IEnumerable<int> plateIds)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L169)) | `SelectMultiplePlates` |
-| `int SelectMultipleSolids(IEnumerable<int> solidIds)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L171)) | `SelectMultipleSolids` |
-| `IOSGeometry SelectMultiplePhysicalMembers(IEnumerable<int> memberIds)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L173)) | `SelectMultiplePhysicalMembers` |
-| `int GetLastNodeNo()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L176)) | `GetLastNodeNo` |
-| `int GetLastBeamNo()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L178)) | `GetLastBeamNo` |
-| `int GetLastPlateNo()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L180)) | `GetLastPlateNo` |
-| `int AddNode(Node node)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L183)) | `AddNode` |
-| `bool AnyItemsSelected()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L185)) | `GetNoOfSelectedNodes`, `GetNoOfSelectedBeams`, `GetNoOfSelectedPlates`, `GetNoOfSelectedSolids`, `GetNoOfSelectedSurfaces`, `GetNoOfSelectedPhysicalMembers` |
-| `IOSGeometry CreateBeam(Beam beam)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L188)) | `CreateBeam` |
-| `IOSGeometry CreateGroupFrom(EntityGroup entityGroup)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L190)) | `CreateGroupEx` |
-| `IOSGeometry CreateGroupFrom(IEnumerable<EntityGroup> entityGroups)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L192)) | Delegation / managed logic; see implementation |
-| `IOSGeometry CreateMultiplePlates(HashSet<Plate> plates, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L195)) | `CreatePlate` |
-| `IOSGeometry CreateNode(Node node)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L197)) | `CreateNode` |
-| `IOSGeometry CreatePlate(Plate plate)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L199)) | `CreatePlate` |
-| `IEnumerable<int> GetAllBeamsList()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L202)) | `GetMemberCount`, `GetBeamList` |
-| `IEnumerable<int> GetAllNodesList()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L204)) | `GetNodeCount`, `GetNodeList` |
-| `IEnumerable<int> GetAllPlatesList()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L206)) | `GetPlateCount`, `GetPlateList` |
-| `IEnumerable<int> GetAllSolidsList()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L208)) | `GetSolidCount`, `GetSolidList` |
-| `Beam GetBeam(int beamNumber)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L211)) | `GetMemberIncidence` |
-| `Beam GetBeam(int bId, IEnumerable<Beam> fromModelNodes)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L213)) | Delegation / managed logic; see implementation |
-| `Beam GetBeam(int bId, IEnumerable<Node> fromModelNodes)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L215)) | `GetMemberIncidence` |
-| `IEnumerable<Beam> GetBeamsConnectedAtNode(Node node)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L217)) | Delegation / managed logic; see implementation |
-| `IEnumerable<Plate> GetPlatesConnectedAtNode(int nodeId)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L220)) | Delegation / managed logic; see implementation |
-| `IEnumerable<Plate> GetPlatesConnectedAtNode(Node node)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L222)) | Delegation / managed logic; see implementation |
-| `IEnumerable<Plate> GetPlatesConnectedAtNode(int nodeId, IEnumerable<Plate> allPlates)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L224)) | Delegation / managed logic; see implementation |
-| `IEnumerable<Plate> GetPlatesConnectedAtNode(Node node, IEnumerable<Plate> allPlates)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L226)) | Delegation / managed logic; see implementation |
-| `HashSet<T> GetAllEntities<T>(int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L229)) | Delegation / managed logic; see implementation |
-| `HashSet<int> GetAllEntitiesIds<T>()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L231)) | Delegation / managed logic; see implementation |
-| `IEnumerable<string> GetAllGroupNames()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L233)) | Delegation / managed logic; see implementation |
-| `HashSet<T> GetEntities<T>(IEnumerable<int> entitiesIds, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L236)) | Delegation / managed logic; see implementation |
-| `HashSet<T> GetEntitiesInGroup<T>(string groupName, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L238)) | Delegation / managed logic; see implementation |
-| `HashSet<T> GetEntitiesInGroups<T>(IEnumerable<string> groupNames, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L240)) | Delegation / managed logic; see implementation |
-| `HashSet<EntityGroup<T>> GetEntityGroups<T>(int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L243)) | Delegation / managed logic; see implementation |
-| `HashSet<EntityGroup> GetEntityGroups<T>(string groupNameContaining, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L245)) | Delegation / managed logic; see implementation |
-| `HashSet<EntityGroup<T>> GetEntityGroupsStartingWith<T>(string groupNameStartsWith, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L247)) | Delegation / managed logic; see implementation |
-| `IEnumerable<string> GetGroupNames(GroupType groupType)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L250)) | `GetGroupCount`, `GetGroupNames` |
-| `IEnumerable<int> GetIdsOfEntitiesInGroup(string groupName)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L252)) | `GetGroupEntityCount`, `GetGroupEntities` |
-| `Node GetNode(int nId)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L255)) | `GetNodeCoordinates` |
-| `Node GetNode(int nId, IEnumerable<Node> fromModelNodes)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L257)) | Delegation / managed logic; see implementation |
-| `Plate GetPlate(int pId)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L260)) | `GetPlateIncidence` |
-| `Plate GetPlate(int pId, IEnumerable<Node> fromModelNodes)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L262)) | `GetPlateIncidence` |
-| `IEnumerable<Node> GetPlateIncidence(int pId)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L264)) | `GetPlateIncidence` |
-| `HashSet<Beam> GetSelectedBeamsExt()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L267)) | Delegation / managed logic; see implementation |
-| `HashSet<Beam> GetSelectedBeamsExt(IEnumerable<Beam> fromModelBeams)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L269)) | Delegation / managed logic; see implementation |
-| `HashSet<Beam> GetSelectedBeamsExt(IEnumerable<Node> fromModelNodes)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L271)) | Delegation / managed logic; see implementation |
-| `HashSet<int> GetSelectedBeamsIds()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L273)) | `GetNoOfSelectedBeams`, `GetSelectedBeams` |
-| `HashSet<T> GetSelectedEntities<T>()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L276)) | Delegation / managed logic; see implementation |
-| `HashSet<T> GetSelectedEntities<T>(IEnumerable<Node> fromModelNodes)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L278)) | Delegation / managed logic; see implementation |
-| `HashSet<int> GetSelectedEntitiesIds<T>()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L280)) | Delegation / managed logic; see implementation |
-| `HashSet<Node> GetSelectedNodesExt()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L283)) | Delegation / managed logic; see implementation |
-| `HashSet<Node> GetSelectedNodesExt(IEnumerable<Node> fromModelNodes)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L285)) | Delegation / managed logic; see implementation |
-| `HashSet<int> GetSelectedNodesIds()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L287)) | `GetNoOfSelectedNodes`, `GetSelectedNodes` |
-| `HashSet<Plate> GetSelectedPlatesExt()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L290)) | Delegation / managed logic; see implementation |
-| `HashSet<Plate> GetSelectedPlatesExt(IEnumerable<Node> fromModelNodes)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L292)) | Delegation / managed logic; see implementation |
-| `HashSet<int> GetSelectedPlatesIds()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L294)) | `GetNoOfSelectedPlates`, `GetSelectedPlates` |
-| `IEnumerable<Node> GetUniqueNodesFromPlateGroup(string platesGroupName, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L297)) | Delegation / managed logic; see implementation |
-| `IOSGeometry CreateMultipleBeams(HashSet<Beam> beams, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L304)) | `CreateBeam` |
-| `IOSGeometry CreateMultipleNodes(HashSet<Node> nodes, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L306)) | `CreateNode` |
-| `IOSGeometry DeleteAllBeams(int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L308)) | `DeleteBeam` |
-| `IOSGeometry DeleteAllNodes(int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L310)) | `DeleteNode` |
-| `IOSGeometry DeleteAllPlates(int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L312)) | `DeletePlate` |
-| `IOSGeometry DeleteAllSolids(int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L314)) | `DeleteSolid` |
-| `IOSGeometry DeleteExistingGeometry(int nThreads = 1)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L316)) | Delegation / managed logic; see implementation |
-| `List<(int NodeId, double Fx, double Fz)> DistributeTorque(string nodeGroupName, double torqueToBeDistributed, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L319)) | Delegation / managed logic; see implementation |
-| `HashSet<T> GetAllEntities<T>(IEnumerable<Node> allNodes, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L322)) | Delegation / managed logic; see implementation |
-| `HashSet<T> GetEntities<T>(IEnumerable<int> entitiesIds, IEnumerable<Node> allNodes, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L324)) | Delegation / managed logic; see implementation |
-| `HashSet<T> GetEntitiesInGroup<T>(string groupName, HashSet<T> allEntities, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L326)) | `GetGroupEntityCount`, `GetGroupEntities` |
-| `HashSet<EntityGroup<T>> GetEntityGroups<T>(HashSet<T> allEntities, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L328)) | `GetGroupCount`, `GetGroupNames` |
-| `IEnumerable<int> GetIdsOfEntitiesInGroups(IEnumerable<string> groupNames, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L331)) | Delegation / managed logic; see implementation |
-| `IEnumerable<Beam> GetBeamsConnectedAtNode(Node node, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L333)) | `GetNoOfBeamsConnectedAtNode`, `GetBeamsConnectedAtNode` |
-| `IEnumerable<Beam> GetBeamsWithNoGroupAssignment(int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L335)) | Delegation / managed logic; see implementation |
-| `IEnumerable<Plate> GetPlatesWithNoGroupAssignment(int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L337)) | Delegation / managed logic; see implementation |
-| `Task<List<(int NodeId, double Fx, double Fz)>> DistributeTorqueAsync(string nodeGroupName, double torqueToBeDistributed, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L344)) | Delegation / managed logic; see implementation |
-| `Task<int[]> GetAllBeamsListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L346)) | `GetMemberCount`, `GetBeamList` |
-| `Task<HashSet<T>> GetAllEntitiesAsync<T>(int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L348)) | Delegation / managed logic; see implementation |
-| `Task<HashSet<int>> GetAllEntitiesIdsAsync<T>()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L350)) | Delegation / managed logic; see implementation |
-| `Task<int[]> GetAllNodesListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L352)) | `GetNodeCount`, `GetNodeList` |
-| `Task<int[]> GetAllPlatesListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L354)) | `GetPlateCount`, `GetPlateList` |
-| `Task<IEnumerable<Plate>> GetPlatesConnectedAtNodeAsync(int nodeId)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L357)) | Delegation / managed logic; see implementation |
-| `Task<IEnumerable<Plate>> GetPlatesConnectedAtNodeAsync(Node node)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L359)) | Delegation / managed logic; see implementation |
-| `Task<IEnumerable<Plate>> GetPlatesConnectedAtNodeAsync(int nodeId, IEnumerable<Plate> allPlates)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L361)) | Delegation / managed logic; see implementation |
-| `Task<IEnumerable<Plate>> GetPlatesConnectedAtNodeAsync(Node node, IEnumerable<Plate> allPlates)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L363)) | Delegation / managed logic; see implementation |
-| `Task<int[]> GetAllSolidsListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L366)) | `GetSolidCount`, `GetSolidList` |
-| `Task<HashSet<T>> GetEntitiesAsync<T>(IEnumerable<int> entitiesIds, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L368)) | Delegation / managed logic; see implementation |
-| `Task<HashSet<T>> GetEntitiesInGroupAsync<T>(string groupName, HashSet<T> allEntities, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L370)) | `GetGroupEntityCount`, `GetGroupEntities` |
-| `Task<HashSet<T>> GetEntitiesInGroupAsync<T>(string groupName, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L372)) | Delegation / managed logic; see implementation |
-| `Task<HashSet<T>> GetEntitiesInGroupsAsync<T>(IEnumerable<string> groupNames, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L374)) | Delegation / managed logic; see implementation |
-| `Task<HashSet<EntityGroup<T>>> GetEntityGroupsAsync<T>(HashSet<T> allEntities, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L376)) | `GetGroupCount`, `GetGroupNames` |
-| `Task<HashSet<EntityGroup<T>>> GetEntityGroupsAsync<T>(int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L378)) | Delegation / managed logic; see implementation |
-| `Task<HashSet<EntityGroup>> GetEntityGroupsAsync<T>(string groupNameContaining, int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L380)) | Delegation / managed logic; see implementation |
-| `Task<int[]> GetSelectedBeamsListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L383)) | `GetNoOfSelectedBeams`, `GetSelectedBeams` |
-| `Task<HashSet<T>> GetSelectedEntitiesAsync<T>(int nThreads)` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L385)) | Delegation / managed logic; see implementation |
-| `Task<HashSet<int>> GetSelectedEntitiesIdsAsync<T>()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L387)) | Delegation / managed logic; see implementation |
-| `Task<int[]> GetSelectedNodesListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L389)) | `GetNoOfSelectedNodes`, `GetSelectedNodes` |
-| `Task<int[]> GetSelectedPlatesListAsync()` ([source](../../src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs#L391)) | `GetNoOfSelectedPlates`, `GetSelectedPlates` |
+| `PhysicalMemberIdentificationResult IdentifyPhysicalMembers(IEnumerable<Beam> beams, double angularToleranceDegrees = 0.005)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L17)) | Delegation / managed logic; see implementation |
+| `IEnumerable<PhysicalMemberPlanAngleGroup> GroupPhysicalMembersByPlanAngle(IEnumerable<Member> members, double angularToleranceDegrees = 1e-3)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L20)) | Delegation / managed logic; see implementation |
+| `PolygonMeshResult GeneratePolygonMesh(IReadOnlyList<Node> boundaryNodes, int startingNodeId, int startingPlateId, double minimumAngleDegrees = 20.0, double maximumEdgeLength = 0.0)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L23)) | Delegation / managed logic; see implementation |
+| `IOSGeometry CreateMultipleBeamsExtended(IOSRoot openStaad, IEnumerable<Beam> beamCollection)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L33)) | `CreateBeam` |
+| `IOSGeometry CreateMultipleNodesExtended(IOSRoot openStaad, IEnumerable<Node> nodeCollection)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L36)) | `CreateMultipleNodes` |
+| `IOSGeometry MergeNodesExtended(IOSRoot openStaad, Node retain, IEnumerable<Node> nodesToMerge)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L39)) | `MergeNodes` |
+| `IEnumerable<IEnumerable<Beam>> SegregateBeamsByConnectivity(IEnumerable<Beam> beams)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L42)) | Delegation / managed logic; see implementation |
+| `IEnumerable<IEnumerable<Member>> SegregateMembersByConnectivity(IEnumerable<Member> members, MemberConnectivityScope scope = MemberConnectivityScope.EndpointsOnly)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L45)) | Delegation / managed logic; see implementation |
+| `IEnumerable<IEnumerable<Plate>> SegregatePlatesByConnectivity(IEnumerable<Plate> plates, PlateConnectivityScope scope = PlateConnectivityScope.SharedEdge)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L48)) | Delegation / managed logic; see implementation |
+| `bool IsZUp()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L51)) | `IsZUp` |
+| `GlobalVerticalAxis GetGlobalVerticalAxis()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L54)) | Delegation / managed logic; see implementation |
+| `int GetParametricSurfaceCount()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L61)) | `GetParametricSurfaceCount` |
+| `bool RemoveParametricSurfaceMesh(int surfaceId)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L64)) | `RemoveParametricSurfaceMesh` |
+| `IOSGeometry AddAndCommitParametricSurfaceToModel(int surfaceId)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L67)) | Delegation / managed logic; see implementation |
+| `int AddParametricSurfaceToModel(int surfaceId)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L70)) | `AddParametricSurfaceToModel` |
+| `int CommitParametricSurfaceMesh(int surfaceId)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L73)) | `CommitParametricSurfaceMesh` |
+| `(int SurfaceId, IEnumerable<Node> PeripheralNodes, IEnumerable<Node> OpeningNodes) CreateAnnularParametricSurface(string surfaceName, Node center, double rOuter, int divOuter, double rInner, int divInner, int idLastUsedNode = 0, AutoGenerate autoGenerate = AutoGenerate.No)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L76)) | Delegation / managed logic; see implementation |
+| `(int SurfaceId, IEnumerable<Node> OpeningNodes) CreateAnnularParametricSurface(string surfaceName, Node center, IEnumerable<Node> peripheralNodes, double rInner, int divInner, int idLastUsedNode = 0, AutoGenerate autoGenerate = AutoGenerate.No)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L80)) | Delegation / managed logic; see implementation |
+| `(int SurfaceId, IEnumerable<Node> PeripheralNodes) CreateAnnularParametricSurface(string surfaceName, Node center, double rOuter, int divOuter, IEnumerable<Node> openingNodes, int idLastUsedNode = 0, AutoGenerate autoGenerate = AutoGenerate.No)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L84)) | Delegation / managed logic; see implementation |
+| `int CreateAnnularParametricSurface(string surfaceName, IEnumerable<Node> outerVertices, IEnumerable<Node> innerVertices, SurfaceType type = SurfaceType.None, AutoGenerate autoGenerate = AutoGenerate.No)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L88)) | Delegation / managed logic; see implementation |
+| `int CreateSolidCircularParametricSurface(string surfaceName, Node center, IEnumerable<Node> vertices, AutoGenerate autoGenerate = AutoGenerate.No)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L91)) | Delegation / managed logic; see implementation |
+| `(int SurfaceId, IEnumerable<Node> GeneratedNodes) CreateSolidCircularParametricSurface(string surfaceName, Node center, double radius, int divisions, int idLastUsedNode = 0, AutoGenerate autoGenerate = AutoGenerate.No)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L94)) | Delegation / managed logic; see implementation |
+| `int AddDensityPointToSurface(int surfaceId, Node densityPoint, int density)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L97)) | Delegation / managed logic; see implementation |
+| `int AddDensityPointToSurface(int surfaceId, double xDensityPoint, double yDensityPoint, double zDensityPoint, int density)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L100)) | `AddDensityPointToSurface` |
+| `int AddDensityLineToSurface(int surfaceId, Node sNodeDensityLine, Node eNodeDensityLine, int sDensity, int eDensity, int nDivisions)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L103)) | `AddDensityLineToSurface` |
+| `int AddDensityLineToSurface(int surfaceId, double xDensityLineSNode, double yDensityLineSNode, double zDensityLineSNode, int sDensity, double xDensityLineENode, double yDensityLineENode, double zDensityLineENode, int eDensity, int nDivisions)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L106)) | `AddDensityLineToSurface` |
+| `int AddPolygonalRegionToSurface(int surfaceId, IEnumerable<Node> polygonNodes, RegionType regionType)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L110)) | Delegation / managed logic; see implementation |
+| `int AddPolygonalRegionToSurface(int surfaceId, IEnumerable<Node> polygonNodes, int[] densities, int[] edgeDivs, RegionType regionType)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L113)) | Delegation / managed logic; see implementation |
+| `int AddPolygonalRegionToSurface(int surfaceId, int countVertices, double[] xArrayRegion, double[] yArrayRegion, double[] zArrayRegion, int[] densities, int[] edgeDivs, RegionType regionType)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L116)) | `AddPolygonalRegionToSurface` |
+| `(int RegionId, int IdLastUsedNode) AddCircularRegionToSurface(int surfaceId, Node center, double radius, int divisions, RegionType regionType, int idLastUsedNode = 0)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L119)) | Delegation / managed logic; see implementation |
+| `int AddCircularRegionToSurface(int surfaceId, IEnumerable<Node> regionNodes, RegionType regionType)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L122)) | Delegation / managed logic; see implementation |
+| `int AddCircularRegionToSurface(int surfaceId, double xCenter, double yCenter, double zCenter, double rRegion, int nDivisions, int density, RegionType regionType)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L125)) | `AddCircularRegionToSurface` |
+| `int DefineParametricSurface(string surfaceName, IEnumerable<Node> vertices, SurfaceType type = SurfaceType.None, AutoGenerate autoGenerate = AutoGenerate.No)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L128)) | Delegation / managed logic; see implementation |
+| `int DefineParametricSurface(string surfaceName, Node originNode, Node localXVertex, Node localYVertex, IEnumerable<Node> vertices, SurfaceType type = SurfaceType.None, AutoGenerate autoGenerate = AutoGenerate.No)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L131)) | Delegation / managed logic; see implementation |
+| `int DefineParametricSurface(string surfaceName, SurfaceType type, int idOriginNode, int idLocalXVertex, int idLocalYVertex, int nVertices, int[] idsVertices, int autoGenerate)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L134)) | `DefineParametricSurface` |
+| `IOSGeometry ClearNodeSelection()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L141)) | `ClearNodeSelection` |
+| `IOSGeometry ClearMemberSelection()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L143)) | `ClearMemberSelection` |
+| `IOSGeometry ClearPhysicalMemberSelection()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L145)) | `ClearPhysicalMemberSelection` |
+| `IOSGeometry ClearPlateSelection()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L147)) | `ClearPlateSelection` |
+| `IOSGeometry ClearSolidSelection()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L149)) | `ClearSolidSelection` |
+| `IOSGeometry ClearSurfaceSelection()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L151)) | `ClearSurfaceSelection` |
+| `IOSGeometry SetNodeCoordinate(int id, double x, double y, double z)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L153)) | `SetNodeCoordinate` |
+| `bool SelectMultipleNodes(IEnumerable<Node> nodes)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L156)) | Delegation / managed logic; see implementation |
+| `bool SelectMultipleBeams(IEnumerable<Beam> beams)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L158)) | Delegation / managed logic; see implementation |
+| `IOSGeometry SelectMultiplePhysicalMembers(IEnumerable<Member> members)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L160)) | Delegation / managed logic; see implementation |
+| `bool SelectMultiplePlates(IEnumerable<Plate> plates)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L162)) | Delegation / managed logic; see implementation |
+| `bool SelectMultipleNodes(IEnumerable<int> nodeIds)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L165)) | `SelectMultipleNodes` |
+| `bool SelectMultipleBeams(IEnumerable<int> beamIds)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L167)) | `SelectMultipleBeams` |
+| `bool SelectMultiplePlates(IEnumerable<int> plateIds)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L169)) | `SelectMultiplePlates` |
+| `int SelectMultipleSolids(IEnumerable<int> solidIds)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L171)) | `SelectMultipleSolids` |
+| `IOSGeometry SelectMultiplePhysicalMembers(IEnumerable<int> memberIds)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L173)) | `SelectMultiplePhysicalMembers` |
+| `int GetLastNodeNo()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L176)) | `GetLastNodeNo` |
+| `int GetLastBeamNo()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L178)) | `GetLastBeamNo` |
+| `int GetLastPlateNo()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L180)) | `GetLastPlateNo` |
+| `int AddNode(Node node)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L183)) | `AddNode` |
+| `bool AnyItemsSelected()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L185)) | `GetNoOfSelectedNodes`, `GetNoOfSelectedBeams`, `GetNoOfSelectedPlates`, `GetNoOfSelectedSolids`, `GetNoOfSelectedSurfaces`, `GetNoOfSelectedPhysicalMembers` |
+| `IOSGeometry CreateBeam(Beam beam)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L188)) | `CreateBeam` |
+| `IOSGeometry CreateGroupFrom(EntityGroup entityGroup)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L190)) | `CreateGroupEx` |
+| `IOSGeometry CreateGroupFrom(IEnumerable<EntityGroup> entityGroups)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L192)) | Delegation / managed logic; see implementation |
+| `IOSGeometry CreateMultiplePlates(HashSet<Plate> plates, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L195)) | `CreatePlate` |
+| `IOSGeometry CreateNode(Node node)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L197)) | `CreateNode` |
+| `IOSGeometry CreatePlate(Plate plate)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L199)) | `CreatePlate` |
+| `IEnumerable<int> GetAllBeamsList()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L202)) | `GetMemberCount`, `GetBeamList` |
+| `IEnumerable<int> GetAllNodesList()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L204)) | `GetNodeCount`, `GetNodeList` |
+| `IEnumerable<int> GetAllPlatesList()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L206)) | `GetPlateCount`, `GetPlateList` |
+| `IEnumerable<int> GetAllSolidsList()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L208)) | `GetSolidCount`, `GetSolidList` |
+| `Beam GetBeam(int beamNumber)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L211)) | `GetMemberIncidence` |
+| `Beam GetBeam(int bId, IEnumerable<Beam> fromModelNodes)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L213)) | Delegation / managed logic; see implementation |
+| `Beam GetBeam(int bId, IEnumerable<Node> fromModelNodes)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L215)) | `GetMemberIncidence` |
+| `IEnumerable<Beam> GetBeamsConnectedAtNode(Node node)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L217)) | Delegation / managed logic; see implementation |
+| `IEnumerable<Plate> GetPlatesConnectedAtNode(int nodeId)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L220)) | Delegation / managed logic; see implementation |
+| `IEnumerable<Plate> GetPlatesConnectedAtNode(Node node)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L222)) | Delegation / managed logic; see implementation |
+| `IEnumerable<Plate> GetPlatesConnectedAtNode(int nodeId, IEnumerable<Plate> allPlates)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L224)) | Delegation / managed logic; see implementation |
+| `IEnumerable<Plate> GetPlatesConnectedAtNode(Node node, IEnumerable<Plate> allPlates)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L226)) | Delegation / managed logic; see implementation |
+| `HashSet<T> GetAllEntities<T>(int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L229)) | Delegation / managed logic; see implementation |
+| `HashSet<int> GetAllEntitiesIds<T>()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L231)) | Delegation / managed logic; see implementation |
+| `IEnumerable<string> GetAllGroupNames()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L233)) | Delegation / managed logic; see implementation |
+| `HashSet<T> GetEntities<T>(IEnumerable<int> entitiesIds, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L236)) | Delegation / managed logic; see implementation |
+| `HashSet<T> GetEntitiesInGroup<T>(string groupName, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L238)) | Delegation / managed logic; see implementation |
+| `HashSet<T> GetEntitiesInGroups<T>(IEnumerable<string> groupNames, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L240)) | Delegation / managed logic; see implementation |
+| `HashSet<EntityGroup<T>> GetEntityGroups<T>(int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L243)) | Delegation / managed logic; see implementation |
+| `HashSet<EntityGroup> GetEntityGroups<T>(string groupNameContaining, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L245)) | Delegation / managed logic; see implementation |
+| `HashSet<EntityGroup<T>> GetEntityGroupsStartingWith<T>(string groupNameStartsWith, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L247)) | Delegation / managed logic; see implementation |
+| `IEnumerable<string> GetGroupNames(GroupType groupType)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L250)) | `GetGroupCount`, `GetGroupNames` |
+| `IEnumerable<int> GetIdsOfEntitiesInGroup(string groupName)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L252)) | `GetGroupEntityCount`, `GetGroupEntities` |
+| `Node GetNode(int nId)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L255)) | `GetNodeCoordinates` |
+| `Node GetNode(int nId, IEnumerable<Node> fromModelNodes)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L257)) | Delegation / managed logic; see implementation |
+| `Plate GetPlate(int pId)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L260)) | `GetPlateIncidence` |
+| `Plate GetPlate(int pId, IEnumerable<Node> fromModelNodes)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L262)) | `GetPlateIncidence` |
+| `IEnumerable<Node> GetPlateIncidence(int pId)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L264)) | `GetPlateIncidence` |
+| `HashSet<Beam> GetSelectedBeamsExt()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L267)) | Delegation / managed logic; see implementation |
+| `HashSet<Beam> GetSelectedBeamsExt(IEnumerable<Beam> fromModelBeams)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L269)) | Delegation / managed logic; see implementation |
+| `HashSet<Beam> GetSelectedBeamsExt(IEnumerable<Node> fromModelNodes)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L271)) | Delegation / managed logic; see implementation |
+| `HashSet<int> GetSelectedBeamsIds()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L273)) | `GetNoOfSelectedBeams`, `GetSelectedBeams` |
+| `HashSet<T> GetSelectedEntities<T>()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L276)) | Delegation / managed logic; see implementation |
+| `HashSet<T> GetSelectedEntities<T>(IEnumerable<Node> fromModelNodes)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L278)) | Delegation / managed logic; see implementation |
+| `HashSet<int> GetSelectedEntitiesIds<T>()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L280)) | Delegation / managed logic; see implementation |
+| `HashSet<Node> GetSelectedNodesExt()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L283)) | Delegation / managed logic; see implementation |
+| `HashSet<Node> GetSelectedNodesExt(IEnumerable<Node> fromModelNodes)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L285)) | Delegation / managed logic; see implementation |
+| `HashSet<int> GetSelectedNodesIds()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L287)) | `GetNoOfSelectedNodes`, `GetSelectedNodes` |
+| `HashSet<Plate> GetSelectedPlatesExt()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L290)) | Delegation / managed logic; see implementation |
+| `HashSet<Plate> GetSelectedPlatesExt(IEnumerable<Node> fromModelNodes)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L292)) | Delegation / managed logic; see implementation |
+| `HashSet<int> GetSelectedPlatesIds()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L294)) | `GetNoOfSelectedPlates`, `GetSelectedPlates` |
+| `IEnumerable<Node> GetUniqueNodesFromPlateGroup(string platesGroupName, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L297)) | Delegation / managed logic; see implementation |
+| `IOSGeometry CreateMultipleBeams(HashSet<Beam> beams, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L304)) | `CreateBeam` |
+| `IOSGeometry CreateMultipleNodes(HashSet<Node> nodes, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L306)) | `CreateNode` |
+| `IOSGeometry DeleteAllBeams(int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L308)) | `DeleteBeam` |
+| `IOSGeometry DeleteAllNodes(int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L310)) | `DeleteNode` |
+| `IOSGeometry DeleteAllPlates(int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L312)) | `DeletePlate` |
+| `IOSGeometry DeleteAllSolids(int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L314)) | `DeleteSolid` |
+| `IOSGeometry DeleteExistingGeometry(int nThreads = 1)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L316)) | Delegation / managed logic; see implementation |
+| `List<(int NodeId, double Fx, double Fz)> DistributeTorque(string nodeGroupName, double torqueToBeDistributed, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L319)) | Delegation / managed logic; see implementation |
+| `HashSet<T> GetAllEntities<T>(IEnumerable<Node> allNodes, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L322)) | Delegation / managed logic; see implementation |
+| `HashSet<T> GetEntities<T>(IEnumerable<int> entitiesIds, IEnumerable<Node> allNodes, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L324)) | Delegation / managed logic; see implementation |
+| `HashSet<T> GetEntitiesInGroup<T>(string groupName, HashSet<T> allEntities, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L326)) | `GetGroupEntityCount`, `GetGroupEntities` |
+| `HashSet<EntityGroup<T>> GetEntityGroups<T>(HashSet<T> allEntities, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L328)) | `GetGroupCount`, `GetGroupNames` |
+| `IEnumerable<int> GetIdsOfEntitiesInGroups(IEnumerable<string> groupNames, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L331)) | Delegation / managed logic; see implementation |
+| `IEnumerable<Beam> GetBeamsConnectedAtNode(Node node, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L333)) | `GetNoOfBeamsConnectedAtNode`, `GetBeamsConnectedAtNode` |
+| `IEnumerable<Beam> GetBeamsWithNoGroupAssignment(int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L335)) | Delegation / managed logic; see implementation |
+| `IEnumerable<Plate> GetPlatesWithNoGroupAssignment(int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L337)) | Delegation / managed logic; see implementation |
+| `Task<List<(int NodeId, double Fx, double Fz)>> DistributeTorqueAsync(string nodeGroupName, double torqueToBeDistributed, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L344)) | Delegation / managed logic; see implementation |
+| `Task<int[]> GetAllBeamsListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L346)) | `GetMemberCount`, `GetBeamList` |
+| `Task<HashSet<T>> GetAllEntitiesAsync<T>(int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L348)) | Delegation / managed logic; see implementation |
+| `Task<HashSet<int>> GetAllEntitiesIdsAsync<T>()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L350)) | Delegation / managed logic; see implementation |
+| `Task<int[]> GetAllNodesListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L352)) | `GetNodeCount`, `GetNodeList` |
+| `Task<int[]> GetAllPlatesListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L354)) | `GetPlateCount`, `GetPlateList` |
+| `Task<IEnumerable<Plate>> GetPlatesConnectedAtNodeAsync(int nodeId)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L357)) | Delegation / managed logic; see implementation |
+| `Task<IEnumerable<Plate>> GetPlatesConnectedAtNodeAsync(Node node)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L359)) | Delegation / managed logic; see implementation |
+| `Task<IEnumerable<Plate>> GetPlatesConnectedAtNodeAsync(int nodeId, IEnumerable<Plate> allPlates)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L361)) | Delegation / managed logic; see implementation |
+| `Task<IEnumerable<Plate>> GetPlatesConnectedAtNodeAsync(Node node, IEnumerable<Plate> allPlates)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L363)) | Delegation / managed logic; see implementation |
+| `Task<int[]> GetAllSolidsListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L366)) | `GetSolidCount`, `GetSolidList` |
+| `Task<HashSet<T>> GetEntitiesAsync<T>(IEnumerable<int> entitiesIds, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L368)) | Delegation / managed logic; see implementation |
+| `Task<HashSet<T>> GetEntitiesInGroupAsync<T>(string groupName, HashSet<T> allEntities, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L370)) | `GetGroupEntityCount`, `GetGroupEntities` |
+| `Task<HashSet<T>> GetEntitiesInGroupAsync<T>(string groupName, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L372)) | Delegation / managed logic; see implementation |
+| `Task<HashSet<T>> GetEntitiesInGroupsAsync<T>(IEnumerable<string> groupNames, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L374)) | Delegation / managed logic; see implementation |
+| `Task<HashSet<EntityGroup<T>>> GetEntityGroupsAsync<T>(HashSet<T> allEntities, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L376)) | `GetGroupCount`, `GetGroupNames` |
+| `Task<HashSet<EntityGroup<T>>> GetEntityGroupsAsync<T>(int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L378)) | Delegation / managed logic; see implementation |
+| `Task<HashSet<EntityGroup>> GetEntityGroupsAsync<T>(string groupNameContaining, int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L380)) | Delegation / managed logic; see implementation |
+| `Task<int[]> GetSelectedBeamsListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L383)) | `GetNoOfSelectedBeams`, `GetSelectedBeams` |
+| `Task<HashSet<T>> GetSelectedEntitiesAsync<T>(int nThreads)` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L385)) | Delegation / managed logic; see implementation |
+| `Task<HashSet<int>> GetSelectedEntitiesIdsAsync<T>()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L387)) | Delegation / managed logic; see implementation |
+| `Task<int[]> GetSelectedNodesListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L389)) | `GetNoOfSelectedNodes`, `GetSelectedNodes` |
+| `Task<int[]> GetSelectedPlatesListAsync()` ([source](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs#L391)) | `GetNoOfSelectedPlates`, `GetSelectedPlates` |
 
 ## 4. Fingerprints and validation boundaries
 

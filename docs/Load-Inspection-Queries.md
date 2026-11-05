@@ -61,8 +61,8 @@ The service checks the captured RawLoad/root binding before and after each reque
 
 ~~~csharp
 using System;
-using StaadPro.Interop.Adapters.Interfaces;
-using StaadPro.Interop.Enums.Loads;
+using StaadPro.Interop.Core.Adapters.Interfaces;
+using StaadPro.Interop.Core.Enums.Loads;
 
 // load is an acquired IOSLoad on its owning COM thread.
 var commandCount = load.GetLoadCommandCount(17, LoadCommandKind.Nodal);

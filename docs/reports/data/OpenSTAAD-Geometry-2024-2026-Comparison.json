@@ -311,10 +311,10 @@
     }
   },
   "implementationFingerprints": {
-    "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs": "a19e1dafa6c92994883e263e0c6efad487dcfab2cc4fe06dace5d355b4034afb",
-    "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs": "13ae8a659107bb11cd6dd71131fe94d0c73566d8258127e0c32d62023858342c",
-    "src/StaadPro.Interop/Models/OpenStaadWrapper.cs": "1c0b69fe545a379262ad70cb1d1f9c45de872aba92e6eb4df218441455628692",
-    "src/StaadPro.Interop/StaadPro.Interop.csproj": "035570ef3e35b52a2772e2ec96b9bf886ce3d08d6e555c3d51ffd870de9f1a59"
+    "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs": "a19e1dafa6c92994883e263e0c6efad487dcfab2cc4fe06dace5d355b4034afb",
+    "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs": "13ae8a659107bb11cd6dd71131fe94d0c73566d8258127e0c32d62023858342c",
+    "src/StaadPro.Interop.Core/Models/OpenStaadWrapper.cs": "1c0b69fe545a379262ad70cb1d1f9c45de872aba92e6eb4df218441455628692",
+    "src/StaadPro.Interop.Core/StaadPro.Interop.Core.csproj": "035570ef3e35b52a2772e2ec96b9bf886ce3d08d6e555c3d51ffd870de9f1a59"
   },
   "functions": [
     {
@@ -450,7 +450,7 @@
         {
           "method": "AddCircularRegionToSurface",
           "signature": "AddCircularRegionToSurface(int, double, double, double, double, int, int, RegionType)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 418
         }
       ],
@@ -734,13 +734,13 @@
         {
           "method": "AddDensityLineToSurface",
           "signature": "AddDensityLineToSurface(int, Node, Node, int, int, int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 364
         },
         {
           "method": "AddDensityLineToSurface",
           "signature": "AddDensityLineToSurface(int, double, double, double, int, double, double, double, int, int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 372
         }
       ],
@@ -1076,7 +1076,7 @@
         {
           "method": "AddDensityPointToSurface",
           "signature": "AddDensityPointToSurface(int, double, double, double, int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 358
         }
       ],
@@ -1626,7 +1626,7 @@
         {
           "method": "AddNode",
           "signature": "AddNode(Node)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 633
         }
       ],
@@ -1783,7 +1783,7 @@
         {
           "method": "AddParametricSurfaceToModel",
           "signature": "AddParametricSurfaceToModel(int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 453
         }
       ],
@@ -2064,7 +2064,7 @@
         {
           "method": "AddPolygonalRegionToSurface",
           "signature": "AddPolygonalRegionToSurface(int, int, double[], double[], double[], int[], int[], RegionType)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 399
         }
       ],
@@ -2778,7 +2778,7 @@
         {
           "method": "ClearMemberSelection",
           "signature": "ClearMemberSelection()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 464
         }
       ],
@@ -2848,7 +2848,7 @@
         {
           "method": "ClearNodeSelection",
           "signature": "ClearNodeSelection()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 462
         }
       ],
@@ -2918,7 +2918,7 @@
         {
           "method": "ClearPlateSelection",
           "signature": "ClearPlateSelection()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 468
         }
       ],
@@ -2988,7 +2988,7 @@
         {
           "method": "ClearSolidSelection",
           "signature": "ClearSolidSelection()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 470
         }
       ],
@@ -3060,7 +3060,7 @@
         {
           "method": "CommitParametricSurfaceMesh",
           "signature": "CommitParametricSurfaceMesh(int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 455
         }
       ],
@@ -3162,19 +3162,19 @@
         {
           "method": "CreateMultipleBeamsExtended",
           "signature": "CreateMultipleBeamsExtended(IOSRoot, IEnumerable<Beam>)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 78
         },
         {
           "method": "CreateBeam",
           "signature": "CreateBeam(Beam)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 222
         },
         {
           "method": "CreateMultipleBeams",
           "signature": "CreateMultipleBeams(HashSet<Beam>, int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 865
         }
       ],
@@ -3461,7 +3461,7 @@
         {
           "method": "CreateGroupFrom",
           "signature": "CreateGroupFrom(EntityGroup)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 251
         }
       ],
@@ -3750,7 +3750,7 @@
         {
           "method": "CreateMultipleNodesExtended",
           "signature": "CreateMultipleNodesExtended(IOSRoot, IEnumerable<Node>)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 106
         }
       ],
@@ -3981,13 +3981,13 @@
         {
           "method": "CreateNode",
           "signature": "CreateNode(Node)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 215
         },
         {
           "method": "CreateMultipleNodes",
           "signature": "CreateMultipleNodes(HashSet<Node>, int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 858
         }
       ],
@@ -4404,19 +4404,19 @@
         {
           "method": "CreatePlate",
           "signature": "CreatePlate(Plate)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 231
         },
         {
           "method": "CreatePlate",
           "signature": "CreatePlate(Plate)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 235
         },
         {
           "method": "CreateMultiplePlates",
           "signature": "CreateMultiplePlates(HashSet<Plate>, int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 872
         }
       ],
@@ -4907,7 +4907,7 @@
         {
           "method": "DefineParametricSurface",
           "signature": "DefineParametricSurface(string, SurfaceType, int, int, int, int, int[], int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 441
         }
       ],
@@ -5191,7 +5191,7 @@
         {
           "method": "DeleteAllBeams",
           "signature": "DeleteAllBeams(int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 903
         }
       ],
@@ -5379,7 +5379,7 @@
         {
           "method": "DeleteAllNodes",
           "signature": "DeleteAllNodes(int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 910
         }
       ],
@@ -5567,7 +5567,7 @@
         {
           "method": "DeleteAllPlates",
           "signature": "DeleteAllPlates(int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 896
         }
       ],
@@ -5660,7 +5660,7 @@
         {
           "method": "DeleteAllSolids",
           "signature": "DeleteAllSolids(int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 889
         }
       ],
@@ -6482,13 +6482,13 @@
         {
           "method": "GetAllBeamsList",
           "signature": "GetAllBeamsList()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 783
         },
         {
           "method": "GetAllBeamsListAsync",
           "signature": "GetAllBeamsListAsync()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1145
         }
       ],
@@ -6581,7 +6581,7 @@
         {
           "method": "GetBeamsConnectedAtNode",
           "signature": "GetBeamsConnectedAtNode(Node, int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1076
         }
       ],
@@ -6853,19 +6853,19 @@
         {
           "method": "GetGroupNames",
           "signature": "GetGroupNames(GroupType)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 638
         },
         {
           "method": "GetEntityGroups",
           "signature": "GetEntityGroups(HashSet<T>, int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1002
         },
         {
           "method": "GetEntityGroupsAsync",
           "signature": "GetEntityGroupsAsync(HashSet<T>, int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1285
         }
       ],
@@ -7013,19 +7013,19 @@
         {
           "method": "GetIdsOfEntitiesInGroup",
           "signature": "GetIdsOfEntitiesInGroup(string)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 659
         },
         {
           "method": "GetEntitiesInGroup",
           "signature": "GetEntitiesInGroup(string, HashSet<T>, int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1037
         },
         {
           "method": "GetEntitiesInGroupAsync",
           "signature": "GetEntitiesInGroupAsync(string, HashSet<T>, int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1259
         }
       ],
@@ -7153,19 +7153,19 @@
         {
           "method": "GetIdsOfEntitiesInGroup",
           "signature": "GetIdsOfEntitiesInGroup(string)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 657
         },
         {
           "method": "GetEntitiesInGroup",
           "signature": "GetEntitiesInGroup(string, HashSet<T>, int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1035
         },
         {
           "method": "GetEntitiesInGroupAsync",
           "signature": "GetEntitiesInGroupAsync(string, HashSet<T>, int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1257
         }
       ],
@@ -7258,19 +7258,19 @@
         {
           "method": "GetGroupNames",
           "signature": "GetGroupNames(GroupType)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 640
         },
         {
           "method": "GetEntityGroups",
           "signature": "GetEntityGroups(HashSet<T>, int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1004
         },
         {
           "method": "GetEntityGroupsAsync",
           "signature": "GetEntityGroupsAsync(HashSet<T>, int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1287
         }
       ],
@@ -7516,7 +7516,7 @@
         {
           "method": "GetLastBeamNo",
           "signature": "GetLastBeamNo()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 500
         }
       ],
@@ -7587,7 +7587,7 @@
         {
           "method": "GetLastNodeNo",
           "signature": "GetLastNodeNo()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 498
         }
       ],
@@ -7722,7 +7722,7 @@
         {
           "method": "GetLastPlateNo",
           "signature": "GetLastPlateNo()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 502
         }
       ],
@@ -7857,13 +7857,13 @@
         {
           "method": "GetAllBeamsList",
           "signature": "GetAllBeamsList()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 781
         },
         {
           "method": "GetAllBeamsListAsync",
           "signature": "GetAllBeamsListAsync()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1143
         }
       ],
@@ -7931,13 +7931,13 @@
         {
           "method": "GetBeam",
           "signature": "GetBeam(int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 713
         },
         {
           "method": "GetBeam",
           "signature": "GetBeam(int, IEnumerable<Node>)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 724
         }
       ],
@@ -8362,7 +8362,7 @@
         {
           "method": "GetBeamsConnectedAtNode",
           "signature": "GetBeamsConnectedAtNode(Node, int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1074
         }
       ],
@@ -8455,19 +8455,19 @@
         {
           "method": "AnyItemsSelected",
           "signature": "AnyItemsSelected()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 507
         },
         {
           "method": "GetSelectedBeamsIds",
           "signature": "GetSelectedBeamsIds()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 541
         },
         {
           "method": "GetSelectedBeamsListAsync",
           "signature": "GetSelectedBeamsListAsync()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1170
         }
       ],
@@ -8535,19 +8535,19 @@
         {
           "method": "AnyItemsSelected",
           "signature": "AnyItemsSelected()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 507
         },
         {
           "method": "GetSelectedNodesIds",
           "signature": "GetSelectedNodesIds()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 577
         },
         {
           "method": "GetSelectedNodesListAsync",
           "signature": "GetSelectedNodesListAsync()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1179
         }
       ],
@@ -8615,7 +8615,7 @@
         {
           "method": "AnyItemsSelected",
           "signature": "AnyItemsSelected()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 508
         }
       ],
@@ -8686,19 +8686,19 @@
         {
           "method": "AnyItemsSelected",
           "signature": "AnyItemsSelected()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 507
         },
         {
           "method": "GetSelectedPlatesIds",
           "signature": "GetSelectedPlatesIds()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 514
         },
         {
           "method": "GetSelectedPlatesListAsync",
           "signature": "GetSelectedPlatesListAsync()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1161
         }
       ],
@@ -8760,7 +8760,7 @@
         {
           "method": "AnyItemsSelected",
           "signature": "AnyItemsSelected()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 508
         }
       ],
@@ -8822,7 +8822,7 @@
         {
           "method": "GetNode",
           "signature": "GetNode(int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 741
         }
       ],
@@ -8993,13 +8993,13 @@
         {
           "method": "GetAllNodesList",
           "signature": "GetAllNodesList()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 790
         },
         {
           "method": "GetAllNodesListAsync",
           "signature": "GetAllNodesListAsync()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1152
         }
       ],
@@ -9568,13 +9568,13 @@
         {
           "method": "GetAllNodesList",
           "signature": "GetAllNodesList()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 792
         },
         {
           "method": "GetAllNodesListAsync",
           "signature": "GetAllNodesListAsync()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1154
         }
       ],
@@ -9963,7 +9963,7 @@
         {
           "method": "GetParametricSurfaceCount",
           "signature": "GetParametricSurfaceCount()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 275
         }
       ],
@@ -11565,19 +11565,19 @@
         {
           "method": "GetAllPlatesList",
           "signature": "GetAllPlatesList()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 772
         },
         {
           "method": "GetAllPlatesListAsync",
           "signature": "GetAllPlatesListAsync()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1104
         },
         {
           "method": "GetAllPlateIdsFromCom",
           "signature": "GetAllPlateIdsFromCom()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1308
         }
       ],
@@ -11645,25 +11645,25 @@
         {
           "method": "GetPlateIncidence",
           "signature": "GetPlateIncidence(int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 668
         },
         {
           "method": "GetPlate",
           "signature": "GetPlate(int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 683
         },
         {
           "method": "GetPlate",
           "signature": "GetPlate(int, IEnumerable<Node>)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 698
         },
         {
           "method": "GetPlateIncidenceIdsFromCom",
           "signature": "GetPlateIncidenceIdsFromCom(int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1337
         }
       ],
@@ -12100,19 +12100,19 @@
         {
           "method": "GetAllPlatesList",
           "signature": "GetAllPlatesList()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 774
         },
         {
           "method": "GetAllPlatesListAsync",
           "signature": "GetAllPlatesListAsync()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1106
         },
         {
           "method": "GetAllPlateIdsFromCom",
           "signature": "GetAllPlateIdsFromCom()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1313
         }
       ],
@@ -12368,13 +12368,13 @@
         {
           "method": "GetSelectedBeamsIds",
           "signature": "GetSelectedBeamsIds()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 543
         },
         {
           "method": "GetSelectedBeamsListAsync",
           "signature": "GetSelectedBeamsListAsync()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1172
         }
       ],
@@ -12493,13 +12493,13 @@
         {
           "method": "GetSelectedNodesIds",
           "signature": "GetSelectedNodesIds()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 579
         },
         {
           "method": "GetSelectedNodesListAsync",
           "signature": "GetSelectedNodesListAsync()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1181
         }
       ],
@@ -12730,13 +12730,13 @@
         {
           "method": "GetSelectedPlatesIds",
           "signature": "GetSelectedPlatesIds()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 516
         },
         {
           "method": "GetSelectedPlatesListAsync",
           "signature": "GetSelectedPlatesListAsync()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1163
         }
       ],
@@ -12967,13 +12967,13 @@
         {
           "method": "GetAllSolidsList",
           "signature": "GetAllSolidsList()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 763
         },
         {
           "method": "GetAllSolidsListAsync",
           "signature": "GetAllSolidsListAsync()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1095
         }
       ],
@@ -13663,13 +13663,13 @@
         {
           "method": "GetAllSolidsList",
           "signature": "GetAllSolidsList()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 765
         },
         {
           "method": "GetAllSolidsListAsync",
           "signature": "GetAllSolidsListAsync()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 1097
         }
       ],
@@ -14436,7 +14436,7 @@
         {
           "method": "IsZUp",
           "signature": "IsZUp()",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 181
         }
       ],
@@ -14706,7 +14706,7 @@
         {
           "method": "MergeNodesExtended",
           "signature": "MergeNodesExtended(IOSRoot, Node, IEnumerable<Node>)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 128
         }
       ],
@@ -14834,7 +14834,7 @@
         {
           "method": "RemoveParametricSurfaceMesh",
           "signature": "RemoveParametricSurfaceMesh(int)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 281
         }
       ],
@@ -15143,7 +15143,7 @@
         {
           "method": "SelectMultipleBeams",
           "signature": "SelectMultipleBeams(IEnumerable<int>)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 486
         }
       ],
@@ -15245,7 +15245,7 @@
         {
           "method": "SelectMultipleNodes",
           "signature": "SelectMultipleNodes(IEnumerable<int>)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 484
         }
       ],
@@ -15347,7 +15347,7 @@
         {
           "method": "SelectMultiplePhysicalMembers",
           "signature": "SelectMultiplePhysicalMembers(IEnumerable<int>)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 492
         }
       ],
@@ -15440,7 +15440,7 @@
         {
           "method": "SelectMultiplePlates",
           "signature": "SelectMultiplePlates(IEnumerable<int>)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 488
         }
       ],
@@ -15542,7 +15542,7 @@
         {
           "method": "SelectMultipleSolids",
           "signature": "SelectMultipleSolids(IEnumerable<int>)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 490
         }
       ],
@@ -16304,7 +16304,7 @@
         {
           "method": "SetNodeCoordinate",
           "signature": "SetNodeCoordinate(int, double, double, double)",
-          "file": "src/StaadPro.Interop/Adapters/Models/OSGeometryAdapter.cs",
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSGeometryAdapter.cs",
           "line": 495
         }
       ],
@@ -18504,7 +18504,7 @@
         }
       ],
       "line": 17,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GroupPhysicalMembersByPlanAngle",
@@ -18525,7 +18525,7 @@
         }
       ],
       "line": 20,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GeneratePolygonMesh",
@@ -18564,7 +18564,7 @@
         }
       ],
       "line": 23,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "CreateMultipleBeamsExtended",
@@ -18585,7 +18585,7 @@
         }
       ],
       "line": 33,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "CreateMultipleNodesExtended",
@@ -18606,7 +18606,7 @@
         }
       ],
       "line": 36,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "MergeNodesExtended",
@@ -18633,7 +18633,7 @@
         }
       ],
       "line": 39,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "SegregateBeamsByConnectivity",
@@ -18648,7 +18648,7 @@
         }
       ],
       "line": 42,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "SegregateMembersByConnectivity",
@@ -18669,7 +18669,7 @@
         }
       ],
       "line": 45,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "SegregatePlatesByConnectivity",
@@ -18690,7 +18690,7 @@
         }
       ],
       "line": 48,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "IsZUp",
@@ -18698,7 +18698,7 @@
       "returnType": "bool",
       "parameters": [],
       "line": 51,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetGlobalVerticalAxis",
@@ -18706,7 +18706,7 @@
       "returnType": "GlobalVerticalAxis",
       "parameters": [],
       "line": 54,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetParametricSurfaceCount",
@@ -18714,7 +18714,7 @@
       "returnType": "int",
       "parameters": [],
       "line": 61,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "RemoveParametricSurfaceMesh",
@@ -18729,7 +18729,7 @@
         }
       ],
       "line": 64,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "AddAndCommitParametricSurfaceToModel",
@@ -18744,7 +18744,7 @@
         }
       ],
       "line": 67,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "AddParametricSurfaceToModel",
@@ -18759,7 +18759,7 @@
         }
       ],
       "line": 70,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "CommitParametricSurfaceMesh",
@@ -18774,7 +18774,7 @@
         }
       ],
       "line": 73,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "CreateAnnularParametricSurface",
@@ -18831,7 +18831,7 @@
         }
       ],
       "line": 76,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "CreateAnnularParametricSurface",
@@ -18882,7 +18882,7 @@
         }
       ],
       "line": 80,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "CreateAnnularParametricSurface",
@@ -18933,7 +18933,7 @@
         }
       ],
       "line": 84,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "CreateAnnularParametricSurface",
@@ -18972,7 +18972,7 @@
         }
       ],
       "line": 88,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "CreateSolidCircularParametricSurface",
@@ -19005,7 +19005,7 @@
         }
       ],
       "line": 91,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "CreateSolidCircularParametricSurface",
@@ -19050,7 +19050,7 @@
         }
       ],
       "line": 94,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "AddDensityPointToSurface",
@@ -19077,7 +19077,7 @@
         }
       ],
       "line": 97,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "AddDensityPointToSurface",
@@ -19116,7 +19116,7 @@
         }
       ],
       "line": 100,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "AddDensityLineToSurface",
@@ -19161,7 +19161,7 @@
         }
       ],
       "line": 103,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "AddDensityLineToSurface",
@@ -19230,7 +19230,7 @@
         }
       ],
       "line": 106,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "AddPolygonalRegionToSurface",
@@ -19257,7 +19257,7 @@
         }
       ],
       "line": 110,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "AddPolygonalRegionToSurface",
@@ -19296,7 +19296,7 @@
         }
       ],
       "line": 113,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "AddPolygonalRegionToSurface",
@@ -19353,7 +19353,7 @@
         }
       ],
       "line": 116,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "AddCircularRegionToSurface",
@@ -19398,7 +19398,7 @@
         }
       ],
       "line": 119,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "AddCircularRegionToSurface",
@@ -19425,7 +19425,7 @@
         }
       ],
       "line": 122,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "AddCircularRegionToSurface",
@@ -19482,7 +19482,7 @@
         }
       ],
       "line": 125,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "DefineParametricSurface",
@@ -19515,7 +19515,7 @@
         }
       ],
       "line": 128,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "DefineParametricSurface",
@@ -19566,7 +19566,7 @@
         }
       ],
       "line": 131,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "DefineParametricSurface",
@@ -19623,7 +19623,7 @@
         }
       ],
       "line": 134,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "ClearNodeSelection",
@@ -19631,7 +19631,7 @@
       "returnType": "IOSGeometry",
       "parameters": [],
       "line": 141,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "ClearMemberSelection",
@@ -19639,7 +19639,7 @@
       "returnType": "IOSGeometry",
       "parameters": [],
       "line": 143,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "ClearPhysicalMemberSelection",
@@ -19647,7 +19647,7 @@
       "returnType": "IOSGeometry",
       "parameters": [],
       "line": 145,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "ClearPlateSelection",
@@ -19655,7 +19655,7 @@
       "returnType": "IOSGeometry",
       "parameters": [],
       "line": 147,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "ClearSolidSelection",
@@ -19663,7 +19663,7 @@
       "returnType": "IOSGeometry",
       "parameters": [],
       "line": 149,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "ClearSurfaceSelection",
@@ -19671,7 +19671,7 @@
       "returnType": "IOSGeometry",
       "parameters": [],
       "line": 151,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "SetNodeCoordinate",
@@ -19704,7 +19704,7 @@
         }
       ],
       "line": 153,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "SelectMultipleNodes",
@@ -19719,7 +19719,7 @@
         }
       ],
       "line": 156,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "SelectMultipleBeams",
@@ -19734,7 +19734,7 @@
         }
       ],
       "line": 158,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "SelectMultiplePhysicalMembers",
@@ -19749,7 +19749,7 @@
         }
       ],
       "line": 160,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "SelectMultiplePlates",
@@ -19764,7 +19764,7 @@
         }
       ],
       "line": 162,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "SelectMultipleNodes",
@@ -19779,7 +19779,7 @@
         }
       ],
       "line": 165,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "SelectMultipleBeams",
@@ -19794,7 +19794,7 @@
         }
       ],
       "line": 167,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "SelectMultiplePlates",
@@ -19809,7 +19809,7 @@
         }
       ],
       "line": 169,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "SelectMultipleSolids",
@@ -19824,7 +19824,7 @@
         }
       ],
       "line": 171,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "SelectMultiplePhysicalMembers",
@@ -19839,7 +19839,7 @@
         }
       ],
       "line": 173,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetLastNodeNo",
@@ -19847,7 +19847,7 @@
       "returnType": "int",
       "parameters": [],
       "line": 176,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetLastBeamNo",
@@ -19855,7 +19855,7 @@
       "returnType": "int",
       "parameters": [],
       "line": 178,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetLastPlateNo",
@@ -19863,7 +19863,7 @@
       "returnType": "int",
       "parameters": [],
       "line": 180,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "AddNode",
@@ -19878,7 +19878,7 @@
         }
       ],
       "line": 183,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "AnyItemsSelected",
@@ -19886,7 +19886,7 @@
       "returnType": "bool",
       "parameters": [],
       "line": 185,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "CreateBeam",
@@ -19901,7 +19901,7 @@
         }
       ],
       "line": 188,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "CreateGroupFrom",
@@ -19916,7 +19916,7 @@
         }
       ],
       "line": 190,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "CreateGroupFrom",
@@ -19931,7 +19931,7 @@
         }
       ],
       "line": 192,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "CreateMultiplePlates",
@@ -19952,7 +19952,7 @@
         }
       ],
       "line": 195,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "CreateNode",
@@ -19967,7 +19967,7 @@
         }
       ],
       "line": 197,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "CreatePlate",
@@ -19982,7 +19982,7 @@
         }
       ],
       "line": 199,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetAllBeamsList",
@@ -19990,7 +19990,7 @@
       "returnType": "IEnumerable<int>",
       "parameters": [],
       "line": 202,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetAllNodesList",
@@ -19998,7 +19998,7 @@
       "returnType": "IEnumerable<int>",
       "parameters": [],
       "line": 204,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetAllPlatesList",
@@ -20006,7 +20006,7 @@
       "returnType": "IEnumerable<int>",
       "parameters": [],
       "line": 206,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetAllSolidsList",
@@ -20014,7 +20014,7 @@
       "returnType": "IEnumerable<int>",
       "parameters": [],
       "line": 208,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetBeam",
@@ -20029,7 +20029,7 @@
         }
       ],
       "line": 211,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetBeam",
@@ -20050,7 +20050,7 @@
         }
       ],
       "line": 213,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetBeam",
@@ -20071,7 +20071,7 @@
         }
       ],
       "line": 215,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetBeamsConnectedAtNode",
@@ -20086,7 +20086,7 @@
         }
       ],
       "line": 217,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetPlatesConnectedAtNode",
@@ -20101,7 +20101,7 @@
         }
       ],
       "line": 220,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetPlatesConnectedAtNode",
@@ -20116,7 +20116,7 @@
         }
       ],
       "line": 222,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetPlatesConnectedAtNode",
@@ -20137,7 +20137,7 @@
         }
       ],
       "line": 224,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetPlatesConnectedAtNode",
@@ -20158,7 +20158,7 @@
         }
       ],
       "line": 226,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetAllEntities",
@@ -20173,7 +20173,7 @@
         }
       ],
       "line": 229,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetAllEntitiesIds",
@@ -20181,7 +20181,7 @@
       "returnType": "HashSet<int>",
       "parameters": [],
       "line": 231,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetAllGroupNames",
@@ -20189,7 +20189,7 @@
       "returnType": "IEnumerable<string>",
       "parameters": [],
       "line": 233,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetEntities",
@@ -20210,7 +20210,7 @@
         }
       ],
       "line": 236,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetEntitiesInGroup",
@@ -20231,7 +20231,7 @@
         }
       ],
       "line": 238,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetEntitiesInGroups",
@@ -20252,7 +20252,7 @@
         }
       ],
       "line": 240,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetEntityGroups",
@@ -20267,7 +20267,7 @@
         }
       ],
       "line": 243,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetEntityGroups",
@@ -20288,7 +20288,7 @@
         }
       ],
       "line": 245,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetEntityGroupsStartingWith",
@@ -20309,7 +20309,7 @@
         }
       ],
       "line": 247,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetGroupNames",
@@ -20324,7 +20324,7 @@
         }
       ],
       "line": 250,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetIdsOfEntitiesInGroup",
@@ -20339,7 +20339,7 @@
         }
       ],
       "line": 252,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetNode",
@@ -20354,7 +20354,7 @@
         }
       ],
       "line": 255,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetNode",
@@ -20375,7 +20375,7 @@
         }
       ],
       "line": 257,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetPlate",
@@ -20390,7 +20390,7 @@
         }
       ],
       "line": 260,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetPlate",
@@ -20411,7 +20411,7 @@
         }
       ],
       "line": 262,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetPlateIncidence",
@@ -20426,7 +20426,7 @@
         }
       ],
       "line": 264,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetSelectedBeamsExt",
@@ -20434,7 +20434,7 @@
       "returnType": "HashSet<Beam>",
       "parameters": [],
       "line": 267,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetSelectedBeamsExt",
@@ -20449,7 +20449,7 @@
         }
       ],
       "line": 269,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetSelectedBeamsExt",
@@ -20464,7 +20464,7 @@
         }
       ],
       "line": 271,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetSelectedBeamsIds",
@@ -20472,7 +20472,7 @@
       "returnType": "HashSet<int>",
       "parameters": [],
       "line": 273,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetSelectedEntities",
@@ -20480,7 +20480,7 @@
       "returnType": "HashSet<T>",
       "parameters": [],
       "line": 276,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetSelectedEntities",
@@ -20495,7 +20495,7 @@
         }
       ],
       "line": 278,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetSelectedEntitiesIds",
@@ -20503,7 +20503,7 @@
       "returnType": "HashSet<int>",
       "parameters": [],
       "line": 280,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetSelectedNodesExt",
@@ -20511,7 +20511,7 @@
       "returnType": "HashSet<Node>",
       "parameters": [],
       "line": 283,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetSelectedNodesExt",
@@ -20526,7 +20526,7 @@
         }
       ],
       "line": 285,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetSelectedNodesIds",
@@ -20534,7 +20534,7 @@
       "returnType": "HashSet<int>",
       "parameters": [],
       "line": 287,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetSelectedPlatesExt",
@@ -20542,7 +20542,7 @@
       "returnType": "HashSet<Plate>",
       "parameters": [],
       "line": 290,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetSelectedPlatesExt",
@@ -20557,7 +20557,7 @@
         }
       ],
       "line": 292,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetSelectedPlatesIds",
@@ -20565,7 +20565,7 @@
       "returnType": "HashSet<int>",
       "parameters": [],
       "line": 294,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetUniqueNodesFromPlateGroup",
@@ -20586,7 +20586,7 @@
         }
       ],
       "line": 297,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "CreateMultipleBeams",
@@ -20607,7 +20607,7 @@
         }
       ],
       "line": 304,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "CreateMultipleNodes",
@@ -20628,7 +20628,7 @@
         }
       ],
       "line": 306,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "DeleteAllBeams",
@@ -20643,7 +20643,7 @@
         }
       ],
       "line": 308,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "DeleteAllNodes",
@@ -20658,7 +20658,7 @@
         }
       ],
       "line": 310,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "DeleteAllPlates",
@@ -20673,7 +20673,7 @@
         }
       ],
       "line": 312,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "DeleteAllSolids",
@@ -20688,7 +20688,7 @@
         }
       ],
       "line": 314,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "DeleteExistingGeometry",
@@ -20703,7 +20703,7 @@
         }
       ],
       "line": 316,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "DistributeTorque",
@@ -20730,7 +20730,7 @@
         }
       ],
       "line": 319,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetAllEntities",
@@ -20751,7 +20751,7 @@
         }
       ],
       "line": 322,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetEntities",
@@ -20778,7 +20778,7 @@
         }
       ],
       "line": 324,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetEntitiesInGroup",
@@ -20805,7 +20805,7 @@
         }
       ],
       "line": 326,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetEntityGroups",
@@ -20826,7 +20826,7 @@
         }
       ],
       "line": 328,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetIdsOfEntitiesInGroups",
@@ -20847,7 +20847,7 @@
         }
       ],
       "line": 331,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetBeamsConnectedAtNode",
@@ -20868,7 +20868,7 @@
         }
       ],
       "line": 333,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetBeamsWithNoGroupAssignment",
@@ -20883,7 +20883,7 @@
         }
       ],
       "line": 335,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetPlatesWithNoGroupAssignment",
@@ -20898,7 +20898,7 @@
         }
       ],
       "line": 337,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "DistributeTorqueAsync",
@@ -20925,7 +20925,7 @@
         }
       ],
       "line": 344,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetAllBeamsListAsync",
@@ -20933,7 +20933,7 @@
       "returnType": "Task<int[]>",
       "parameters": [],
       "line": 346,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetAllEntitiesAsync",
@@ -20948,7 +20948,7 @@
         }
       ],
       "line": 348,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetAllEntitiesIdsAsync",
@@ -20956,7 +20956,7 @@
       "returnType": "Task<HashSet<int>>",
       "parameters": [],
       "line": 350,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetAllNodesListAsync",
@@ -20964,7 +20964,7 @@
       "returnType": "Task<int[]>",
       "parameters": [],
       "line": 352,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetAllPlatesListAsync",
@@ -20972,7 +20972,7 @@
       "returnType": "Task<int[]>",
       "parameters": [],
       "line": 354,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetPlatesConnectedAtNodeAsync",
@@ -20987,7 +20987,7 @@
         }
       ],
       "line": 357,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetPlatesConnectedAtNodeAsync",
@@ -21002,7 +21002,7 @@
         }
       ],
       "line": 359,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetPlatesConnectedAtNodeAsync",
@@ -21023,7 +21023,7 @@
         }
       ],
       "line": 361,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetPlatesConnectedAtNodeAsync",
@@ -21044,7 +21044,7 @@
         }
       ],
       "line": 363,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetAllSolidsListAsync",
@@ -21052,7 +21052,7 @@
       "returnType": "Task<int[]>",
       "parameters": [],
       "line": 366,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetEntitiesAsync",
@@ -21073,7 +21073,7 @@
         }
       ],
       "line": 368,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetEntitiesInGroupAsync",
@@ -21100,7 +21100,7 @@
         }
       ],
       "line": 370,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetEntitiesInGroupAsync",
@@ -21121,7 +21121,7 @@
         }
       ],
       "line": 372,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetEntitiesInGroupsAsync",
@@ -21142,7 +21142,7 @@
         }
       ],
       "line": 374,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetEntityGroupsAsync",
@@ -21163,7 +21163,7 @@
         }
       ],
       "line": 376,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetEntityGroupsAsync",
@@ -21178,7 +21178,7 @@
         }
       ],
       "line": 378,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetEntityGroupsAsync",
@@ -21199,7 +21199,7 @@
         }
       ],
       "line": 380,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetSelectedBeamsListAsync",
@@ -21207,7 +21207,7 @@
       "returnType": "Task<int[]>",
       "parameters": [],
       "line": 383,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetSelectedEntitiesAsync",
@@ -21222,7 +21222,7 @@
         }
       ],
       "line": 385,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetSelectedEntitiesIdsAsync",
@@ -21230,7 +21230,7 @@
       "returnType": "Task<HashSet<int>>",
       "parameters": [],
       "line": 387,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetSelectedNodesListAsync",
@@ -21238,7 +21238,7 @@
       "returnType": "Task<int[]>",
       "parameters": [],
       "line": 389,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     },
     {
       "name": "GetSelectedPlatesListAsync",
@@ -21246,7 +21246,7 @@
       "returnType": "Task<int[]>",
       "parameters": [],
       "line": 391,
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs"
     }
   ],
   "sourceCallShapeIssues": [],

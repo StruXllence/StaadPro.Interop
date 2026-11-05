@@ -1,6 +1,6 @@
 # Licensing and attribution
 
-The current StaadPro.Interop distribution is licensed under **Apache License 2.0**, identified by **Apache-2.0** in NuGet metadata. Copyright (c) 2026 StruXllence. Original author: Srinivasa Rao Masanam.
+The current StaadPro.Interop.Core distribution is licensed under **Apache License 2.0**, identified by **Apache-2.0** in NuGet metadata. Copyright (c) 2026 StruXllence. Original author: Srinivasa Rao Masanam.
 
 ## Installation and ordinary use
 

@@ -1,0 +1,8 @@
+namespace StaadPro.Interop.Core.Enums
+{
+    public enum RegionType
+    {
+        Opening = 0,
+        Density = 1
+    }
+}

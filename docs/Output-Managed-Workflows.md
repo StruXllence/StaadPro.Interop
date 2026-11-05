@@ -60,7 +60,7 @@ The reused native contracts are common across the installed 2024–2026 help. No
 
 ## Exact public overloads
 
-Namespaces: StaadPro.Interop.Adapters.Interfaces; StaadPro.Interop.Entities; StaadPro.Interop.Enums; StaadPro.Interop.Enums.Output; StaadPro.Interop.Models.Output. No public reference outputs or tuples are introduced.
+Namespaces: StaadPro.Interop.Core.Adapters.Interfaces; StaadPro.Interop.Core.Entities; StaadPro.Interop.Core.Enums; StaadPro.Interop.Core.Enums.Output; StaadPro.Interop.Core.Models.Output. No public reference outputs or tuples are introduced.
 
 ### 1. GetSteelDesignResultsForBeam
 

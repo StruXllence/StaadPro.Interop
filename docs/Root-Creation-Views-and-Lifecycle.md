@@ -78,7 +78,7 @@ var value = wrapper.Root.GetProcessHandle();
 Console.WriteLine(value.RawValue); // diagnostic data only
 ```
 
-NativeProcessHandleValue is a sealed immutable class in StaadPro.Interop.Models.Root. RawValue is UInt64. Integral CLR values and IntPtr/UIntPtr representations are accepted. Unsigned values are preserved; signed negatives are sign-extended to a 64-bit unsigned bit pattern. Zero/all-one values are retained without assigning validity or pseudo-handle meanings. Null, Boolean, enum, text and fractional responses are rejected.
+NativeProcessHandleValue is a sealed immutable class in StaadPro.Interop.Core.Models.Root. RawValue is UInt64. Integral CLR values and IntPtr/UIntPtr representations are accepted. Unsigned values are preserved; signed negatives are sign-extended to a 64-bit unsigned bit pattern. Zero/all-one values are retained without assigning validity or pseudo-handle meanings. Null, Boolean, enum, text and fractional responses are rejected.
 
 This representation establishes no server pointer width, handle ownership, lifetime, access rights or caller-process usability. It exposes no SafeHandle, IDisposable, conversion operator or native pointer property. Do not pass RawValue to Windows APIs or close it. No process is opened, duplicated, enumerated or terminated by the getter. Use GetProcessId when a process identifier is required; a number is not proof of connection liveness.
 

@@ -1,104 +1,69 @@
-<img src="logo-with-text.png" alt="StaadPro.Interop" width="400" />
+![StaadPro.Interop.Core](https://raw.githubusercontent.com/StruXllence/StaadPro.Interop/staadpro-interop-core/docs/images/logo-with-text-400.png)
 
-# StaadPro.Interop
+# StaadPro.Interop.Core
 
-By **Srinivasa Rao Masanam**. Published by **StruXllence**.
+A strongly-typed Windows .NET wrapper for Bentley STAAD.Pro OpenSTAAD.
+
+By **Srinivasa Rao Masanam**. Published by **StruXllence**. **Copyright (c) 2026 StruXllence**.
 
 [![YouTube @StruXllence](https://img.shields.io/badge/YouTube-%40StruXllence-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@StruXllence) [![Website — live](https://img.shields.io/badge/Website-Live-16A34A?style=flat-square)](https://struxllence.com) [![Community forum](https://img.shields.io/badge/Community-Forum-0866C6?style=flat-square)](https://forum.struxllence.com) [![Revamp forum — preview](https://img.shields.io/badge/Revamp%20forum-Preview-7657B5?style=flat-square)](https://new-forum.struxllence.com)
 
-The [StruXllence website](https://struxllence.com) is live. Join the community forum for structural-engineering discussions, explore the forum preview, or follow @StruXllence on YouTube. Report package defects through [GitHub Issues](https://github.com/StruXllence/StaadPro.Interop/issues).
+The [StruXllence website](https://struxllence.com) is live. The revamp forum remains a preview.
 
-**Automate STAAD.Pro from C# with strongly typed OpenSTAAD APIs.**
+## Version 1.0.0-preview.20261105
 
-[![Build and Test](https://github.com/StruXllence/StaadPro.Interop/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/StruXllence/StaadPro.Interop/actions/workflows/build-and-test.yml) [![NuGet preview](https://img.shields.io/nuget/vpre/StaadPro.Interop?style=flat-square)](https://www.nuget.org/packages/StaadPro.Interop) [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue?style=flat-square)](LICENSE) [![Runtime: .NET Framework 4.8.1](https://img.shields.io/badge/.NET_Framework-4.8.1-512BD4?style=flat-square)](docs/Installation.md)
+StaadPro.Interop.Core is a distinct **Windows .NET 8** project. It has its own solution, assembly, package ID and `StaadPro.Interop.Core` namespaces, and targets only `net8.0-windows`. The Framework project remains on main and is developed separately. This preview is prepared locally; public availability of this Core package is not confirmed.
 
-A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD. Work with geometry, loads, properties, supports, commands, design queries, report tables and analysis results through managed interfaces and structural entities.
+The branch starts from main commit 20821c5 and preserves the existing OpenStaadSessionProvider, immutable acquisition options/results, process identity checks, target-file coordination and modern OLE discovery. It also retains the current managed adapters from main; source coverage does not certify every native release or engineering convention.
 
-- **Build engineering tools in C#:** use typed nodes, beams, plates, load cases and result models.
-- **Start from documented workflows:** explore the API guides and packaged XML IntelliSense examples.
-- **Contribute without STAAD.Pro:** build the library and run offline unit tests without Bentley binaries or a STAAD license.
+## Build and requirements
 
-[Install](docs/Installation.md) · [API reference](docs/API-Reference.md) · [Contribute](CONTRIBUTING.md) · [Roadmap](ROADMAP.md) · [Report an issue](https://github.com/StruXllence/StaadPro.Interop/issues/new/choose)
+~~~powershell
+dotnet build StaadPro.Interop.Core.sln -c Release
+dotnet test tests/StaadPro.Interop.Core.Tests/StaadPro.Interop.Core.Tests.csproj -c Release --no-build --filter "TestCategory!=LiveIntegration"
+~~~
 
-## Installation and runtime
+Runtime use requires Windows, the .NET 8 Windows Desktop/WPF runtime and a separately installed, licensed STAAD.Pro application exposing the requested OpenSTAAD members. WPF is required by the current geometry types even for console consumers. There is no net481 asset in this package. The NuGet asset suffix net8.0-windows7.0 is a framework identifier, not a claim of Windows 7 runtime support.
 
-Runtime requires **Windows, .NET Framework 4.8.1 (net481), and a licensed STAAD.Pro installation** exposing the APIs used by your application. The .NET SDK used to build the project is separate from the application's target framework.
-
-The latest locally prepared preview is **1.0.0-preview.20261105**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
-
-## Latest preview — 1.0.0-preview.20261105
-
-Ported `ZoomAll()`, `ZoomExtentsMainView()`, `ShowAllMembers()`, `HideAllMembers()` and `ShowMember(Beam)` from the read-only main source. These additions are included in the new preview; earlier archives retain their original scope. See [zoom and visibility contracts](docs/View-Zoom-and-Member-Visibility.md).
-
-## Quick start: read an open model
-
-Open a licensed STAAD.Pro model first. In a Windows application targeting net481 and referencing StaadPro.Interop:
+## Attach to an existing session
 
 ~~~csharp
 using System;
-using StaadPro.Interop.Enums;
-using StaadPro.Interop.Services;
+using StaadPro.Interop.Core.Services;
 
 internal static class Program
 {
     [STAThread]
     private static void Main()
     {
-        using (var wrapper = OpenStaadWrapperProvider.GetRunning())
+        using (var provider = new OpenStaadSessionProvider())
+        using (var wrapper = provider.Get())
         {
-            if (wrapper?.Load == null)
-                throw new InvalidOperationException("Open a STAAD model exposing OpenSTAAD first.");
-
-            foreach (var loadCase in wrapper.Load.GetLoadCasesOfType(LoadCaseType.PrimaryLoad))
-                Console.WriteLine(loadCase.Id + ": " + loadCase.Title);
+            if (wrapper == null)
+            {
+                Console.WriteLine("No usable running STAAD session was acquired.");
+                return;
+            }
+            Console.WriteLine(wrapper.Root.GetStaadFileFullPath());
         }
     }
 }
 ~~~
 
-This attaches to an existing instance and reads primary load-case metadata. It does not create or activate a load case. Wrapper disposal releases managed references without closing STAAD.Pro. Serialize COM access on the application's established apartment; see [connection and lifecycle guidance](docs/Installation.md#acquire-a-specific-model).
+Create, use and dispose the provider on the same Windows STA thread. The default call attaches without launching. Acquire() provides the returned wrapper plus named outcome and diagnostics. Disposing the provider does not close STAAD or dispose wrappers already returned. Keep subsequent COM calls on the session's appropriate apartment.
 
-## API guides
+## API scope and documentation
 
-| Area | Explore |
-| --- | --- |
-| Connect and manage models | [Wrapper](docs/Wrapper-Porting.md) · [Root](docs/Root-Porting.md) |
-| Nodes, beams, plates and groups | [Geometry](docs/Geometry-Porting.md) |
-| Load cases and assignments | [Load](docs/Load-Porting.md) · [query contracts](docs/Load-Queries.md) |
-| Materials, sections and specifications | [Property](docs/Property-Porting.md) |
-| Analysis results and steel-design observations | [Output](docs/Output-Porting.md) |
-| Supports and analysis commands | [Support and Commands](docs/Commands-and-Support-Porting.md) |
-| Design briefs and assignments | [Design](docs/Design-Porting.md) |
-| Report tables and formatting | [Table](docs/Table-Porting.md) |
-| Graphical orientation, zoom and member visibility | [View](docs/View-Zoom-and-Member-Visibility.md) |
+The inherited implementation includes 143 Geometry overloads, 171 Load overloads, 249 common Property operations plus five optional catalog queries, 96 managed Output overloads, 27 Support operations, seventeen Commands methods, ten Design methods, twenty-nine Table methods, eighteen View methods and the reviewed Root/wrapper APIs. Examples and XML IntelliSense now use the independent Core namespaces. Native version/capability and operation-specific result contracts remain applicable.
 
-## View orientations
+[Core development and separation](docs/Core-Development.md) · [Installation](docs/Installation.md) · [Session provider](docs/OpenStaad-Session-Provider.md) · [API reference](docs/API-Reference.md) · [Publishing](docs/Publishing.md)
 
-Use `ShowFront()`, `ShowBack()`, `ShowLeft()`, `ShowRight()`, `ShowPlan()`, `ShowBottom()` or `ShowIsometric()` for a fixed direction. Use `RotateUp(angleDegrees)`, `RotateDown(angle)`, `RotateLeft(angle)`, `RotateRight(angle)`, `SpinLeft(angle)` or `SpinRight(angle)` for finite signed-degree increments about their documented global axes. Each returns a named unacknowledged completion receipt. See [orientation usage](docs/View-Orientations.md) and [incremental rotations](docs/View-Incremental-Rotations.md). View exposes 18/70 main-source overloads; **145 active source overloads remain** across the reviewed domains. See [the source inventory](docs/reports/OpenSTAAD-Main-Source-Porting-Status.md).
+Native-only gaps, parked Load/Property work and engineering qualification remain explicit. Earlier Framework coverage/release reports are retained as source provenance; they are not evidence that every route is natively qualified on modern .NET. The old StaadPro.Interop.Core.Testing package used the previous assembly/namespace and is historical, not this package.
 
-## Compatibility and preview status
+## Verification
 
-The current source passed **7,192 offline tests**; the installed-package verifier checks **1,316 XML examples**, including thirty-six View examples. These checks validate managed behavior and distribution, not every native STAAD build, COM response or engineering-unit convention. Consult method-specific version, result-state, unit and side-effect contracts before using results in an engineering workflow.
+Passed **7,263 offline tests** and **1,317 installed-package XML examples** on Windows .NET 8. The Release build and fresh consumer build reported zero warnings/errors. Native STAAD UI, COM servicing builds and engineering qualification remain separate.
 
-The package remains a preview. [Release notes](docs/Release-Notes.md) identify the API scope, and [NuGet readiness](docs/NuGet-Readiness.md) records validation limits. Earlier public packages retain the license terms shipped with them.
+## Contribute and licensing
 
-## Contribute and get help
-
-Documentation improvements, offline regression tests, examples and reproducible bug reports are welcome. Read [CONTRIBUTING](CONTRIBUTING.md), fork the repository for your change, or [propose a focused issue](https://github.com/StruXllence/StaadPro.Interop/issues/new/choose). A STAAD license is needed only for live integration work.
-
-~~~powershell
-git clone https://github.com/StruXllence/StaadPro.Interop.git
-cd StaadPro.Interop
-dotnet build StaadPro.Interop.sln -c Release
-dotnet test tests/StaadPro.Interop.Tests/StaadPro.Interop.Tests.csproj -c Release --no-build
-~~~
-
-Use the [primary forum](https://forum.struxllence.com) for engineering discussions and [GitHub Issues](https://github.com/StruXllence/StaadPro.Interop/issues) for package defects. Read the [code of conduct](CODE_OF_CONDUCT.md). If this library helps your workflow, star the repository to follow future work; useful examples and contributions help it grow.
-
-## License and attribution
-
-[Apache License 2.0](LICENSE). **Copyright (c) 2026 StruXllence**. Original author: **Srinivasa Rao Masanam**. Keep applicable license and attribution notices and mark modified files as required. The retained [MIT-origin notice](LICENSES/MIT-legacy.txt) applies where relevant. See [licensing guidance](docs/Licensing.md), [NOTICE](NOTICE.md), [citation](CITATION.cff) and [name/logo guidance](TRADEMARKS.md).
-
-## Independence and trademarks
-
-StaadPro.Interop is independent and is not affiliated with, sponsored by, endorsed by or officially supported by Bentley Systems, Incorporated or its subsidiaries or affiliates. Bentley, STAAD, STAAD.Pro and OpenSTAAD are trademarks or registered trademarks of their respective owners. Names identify interoperability and do not imply endorsement. A separately licensed STAAD.Pro installation is required; see [NOTICE](NOTICE.md).
+Use [GitHub Issues](https://github.com/StruXllence/StaadPro.Interop/issues) for reproducible defects and the community forums for engineering discussions. Source, offline tests and documentation improvements are welcome. The project uses Apache-2.0 with applicable inherited notices; see [licensing](docs/Licensing.md). This independent project is neither affiliated with, sponsored by nor endorsed by Bentley Systems. Bentley, STAAD and STAAD.Pro names and marks belong to their respective owners. See [NOTICE](NOTICE.md) and [trademark guidance](TRADEMARKS.md).

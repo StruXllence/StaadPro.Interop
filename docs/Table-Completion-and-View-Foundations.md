@@ -91,7 +91,7 @@ The text overload deliberately preserves the main-source malformed-format fallba
 With an acquired wrapper and real report/table IDs, on the established COM apartment:
 
 ```csharp
-using StaadPro.Interop.Enums.Table;
+using StaadPro.Interop.Core.Enums.Table;
 
 var table = wrapper.Table;
 int reportId = 11; // replace with an acquired report identity

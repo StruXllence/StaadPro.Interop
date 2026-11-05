@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <IsPackable>false</IsPackable>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+<ItemGroup>
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\eng\Fixtures\TableFoundationFixture.cs" Link="Fixtures\TableFoundationFixture.cs" />
+    <Compile Include="..\..\eng\Fixtures\ViewFoundationFixture.cs" Link="Fixtures\ViewFoundationFixture.cs" />
+    <None Include="..\..\docs\contracts\ViewFoundationContractIndex.json" Link="ContractReview\ViewFoundationContractIndex.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\docs\contracts\TableFoundationContractIndex.json" Link="ContractReview\TableFoundationContractIndex.json" CopyToOutputDirectory="PreserveNewest" />
+    <Compile Include="..\..\eng\Fixtures\CommandsSupportFixture.cs" Link="Fixtures\CommandsSupportFixture.cs" />
+    <None Include="..\..\docs\contracts\CommandsAndSupportPortContractIndex.json" Link="ContractReview\CommandsAndSupportPortContractIndex.json" CopyToOutputDirectory="PreserveNewest" />
+    <Compile Include="..\..\eng\Fixtures\DesignFoundationFixture.cs" Link="Fixtures\DesignFoundationFixture.cs" />
+    <None Include="..\..\docs\contracts\DesignFoundationContractIndex.json" Link="ContractReview\DesignFoundationContractIndex.json" CopyToOutputDirectory="PreserveNewest" />
+    <ProjectReference Include="..\..\src\StaadPro.Interop.Core\StaadPro.Interop.Core.csproj" />
+    <Compile Include="..\..\docs\contracts\IOSLoadExpansionContract.cs" Link="ContractReview\IOSLoadExpansionContract.cs" />
+    <Compile Include="..\..\eng\Fixtures\PropertyPortFixture.cs" Link="Fixtures\PropertyPortFixture.cs" />
+    <Compile Include="..\..\eng\Fixtures\PropertySectionFixture.cs" Link="Fixtures\PropertySectionFixture.cs" />
+    <Compile Include="..\..\eng\Fixtures\PropertyRoadmapFixture.cs" Link="Fixtures\PropertyRoadmapFixture.cs" />
+    <Compile Include="..\..\eng\Fixtures\PropertyCreationFixture.cs" Link="Fixtures\PropertyCreationFixture.cs" />
+    <Compile Include="..\..\eng\Fixtures\PropertyAttributeFixture.cs" Link="Fixtures\PropertyAttributeFixture.cs" />
+    <Compile Include="..\..\eng\Fixtures\PropertyUptFixture.cs" Link="Fixtures\PropertyUptFixture.cs" />
+    <Compile Include="..\..\eng\Fixtures\PropertyCleanupFixture.cs" Link="Fixtures\PropertyCleanupFixture.cs" />
+    <Compile Include="..\..\eng\Fixtures\PropertyCompletionFixture.cs" Link="Fixtures\PropertyCompletionFixture.cs" />
+    <Compile Include="..\..\eng\Fixtures\OutputPlateCornerFixture.cs" Link="Fixtures\OutputPlateCornerFixture.cs" />
+    <Compile Include="..\..\eng\Fixtures\OutputWorkflowFixture.cs" Link="Fixtures\OutputWorkflowFixture.cs" />
+    <Compile Include="..\..\eng\Fixtures\OutputAdvancedFixture.cs" Link="Fixtures\OutputAdvancedFixture.cs" />
+    <Compile Include="..\..\eng\Fixtures\OutputSteelBlockFixture.cs" Link="Fixtures\OutputSteelBlockFixture.cs" />
+    <Compile Include="..\..\eng\Fixtures\SupportFoundationFixture.cs" Link="Fixtures\SupportFoundationFixture.cs" />
+    <None Include="..\..\docs\contracts\LoadExpansionContractIndex.json" Link="ContractReview\LoadExpansionContractIndex.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

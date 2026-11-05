@@ -84,13 +84,13 @@ namespace PackageVerification
             public object AssignMaterialToSolid(string name, int[] ids) => R(nameof(AssignMaterialToSolid), 1, name, ids);
         }
         // These checks execute mutations only against this managed receiver in the installed consumer.
-        public static void VerifyMutationCalls(StaadPro.Interop.Adapters.Interfaces.IOSProperty property, Native native)
+        public static void VerifyMutationCalls(StaadPro.Interop.Core.Adapters.Interfaces.IOSProperty property, Native native)
         {
-            var m = new StaadPro.Interop.Models.Property.IsotropicMaterialDefinition("EXPLICIT", 101, .2, 37, 71, -.001, .02);
-            var extended = new StaadPro.Interop.Models.Property.IsotropicMaterialStrengths(11, 22, 1.1, 1.2, 33);
-            var steel = new StaadPro.Interop.Models.Property.SteelMaterialStrengths(22, 11, 1.2, 1.1);
-            if (!property.RemoveMaterialFromBeam(17).IsSuccessful || !property.SetTypeToIsotropicMaterial("EXPLICIT", StaadPro.Interop.Enums.Property.IsotropicMaterialType.Steel).IsSuccessful ||
-                property.CreateAssignProfileProperty(StaadPro.Interop.Enums.Property.AssignedSectionProfile.Beam).CreatedPropertyId != 901 ||
+            var m = new StaadPro.Interop.Core.Models.Property.IsotropicMaterialDefinition("EXPLICIT", 101, .2, 37, 71, -.001, .02);
+            var extended = new StaadPro.Interop.Core.Models.Property.IsotropicMaterialStrengths(11, 22, 1.1, 1.2, 33);
+            var steel = new StaadPro.Interop.Core.Models.Property.SteelMaterialStrengths(22, 11, 1.2, 1.1);
+            if (!property.RemoveMaterialFromBeam(17).IsSuccessful || !property.SetTypeToIsotropicMaterial("EXPLICIT", StaadPro.Interop.Core.Enums.Property.IsotropicMaterialType.Steel).IsSuccessful ||
+                property.CreateAssignProfileProperty(StaadPro.Interop.Core.Enums.Property.AssignedSectionProfile.Beam).CreatedPropertyId != 901 ||
                 !property.AssignElementSpecToPlate(new[] { 31, 47 }, 9).IsSuccessful || !property.UpdatePropertiesToDesignSection().IsSuccessful ||
                 !property.CreateIsotropicMaterialPropertiesEx(m, extended).IsSuccessful || !property.CreateIsotropicMaterialSteel(m, steel, true).IsSuccessful ||
                 !property.CreateIsotropicMaterialConcrete(m, 33, false).IsSuccessful || !property.CreateIsotropicMaterialAluminum(m, false).IsSuccessful ||

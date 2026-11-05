@@ -1,10 +1,10 @@
-# StaadPro.Interop — Strategic Product Roadmap
+# StaadPro.Interop.Core — Strategic Product Roadmap
 
 **4 November 2026 checkpoint:** Ported `RotateDown(double angle)`, `RotateLeft(double angle)`, `RotateRight(double angle)`, `SpinLeft(double angle)` and `SpinRight(double angle)` from the main source. Preserved the original `angle` parameter name, type and order on both interfaces and the concrete adapter. View now exposes **13 of 70 main-source overloads** and reaches **13 of 67 reviewed native names**; **57 source overloads** and **54 native names** remain pending. See [rotation contracts](docs/View-Incremental-Rotations.md).
 
 Passed **7,137 offline tests**, including **201 View cases** and **116 additional cases** in this increment. Installed-package verification compiles and executes **1,306 selected XML examples**, including all **26 View interface/adapter examples**, through a fresh PackageReference consumer. Live native COM/UI behavior remains separate qualification work.
 
-This document outlines the architectural roadmap and upcoming milestone releases for the **StaadPro.Interop** open-source ecosystem.
+This document outlines the architectural roadmap and upcoming milestone releases for the **StaadPro.Interop.Core** open-source ecosystem.
 
 Our mission is to provide the structural engineering and computational design community with a modern, high-performance, strongly-typed .NET suite covering the entire Bentley STAAD.Pro automation lifecycle.
 
@@ -60,7 +60,7 @@ At the user's request, further Load implementation is parked. The completed 36-m
 
 ```mermaid
 gantt
-    title StaadPro.Interop Strategic Product Roadmap (2026 - 2027)
+    title StaadPro.Interop.Core Strategic Product Roadmap (2026 - 2027)
     dateFormat YYYY-MM-DD
     axisFormat %b %Y
     section Core Foundation
@@ -77,7 +77,7 @@ gantt
 
 ---
 
-## Phase 1: StaadPro.Interop Geometry (v1.0 — Current Release)
+## Phase 1: StaadPro.Interop.Core Geometry (v1.0 — Current Release)
 
 *Status: **Released & Active (Q3 2026)***
 
@@ -100,7 +100,7 @@ gantt
 
 ---
 
-## Phase 2: StaadPro.Interop.Loads & Combinations (v1.1 — Active Milestone)
+## Phase 2: StaadPro.Interop.Core.Loads & Combinations (v1.1 — Active Milestone)
 
 *Status: **Target: Q4 2026***
 
@@ -136,7 +136,7 @@ Expands the suite with strongly-typed load generation, combination building, and
 
 ---
 
-## Phase 3: StaadPro.Interop.Properties & Materials (v1.2)
+## Phase 3: StaadPro.Interop.Core.Properties & Materials (v1.2)
 
 *Status: **Target: Q4 2026***
 
@@ -165,7 +165,7 @@ Provides structural section catalogs, material models, and element specification
 
 ---
 
-## Phase 4: StaadPro.Interop.Supports & Boundaries (v1.3)
+## Phase 4: StaadPro.Interop.Core.Supports & Boundaries (v1.3)
 
 *Status: **Target: Q1 2027***
 
@@ -185,7 +185,7 @@ Comprehensive boundary condition, support constraint, and foundation spring mana
 
 ---
 
-## Phase 5: StaadPro.Interop.Results & Analysis Engine (v1.4)
+## Phase 5: StaadPro.Interop.Core.Results & Analysis Engine (v1.4)
 
 *Status: **Target: Q1 2027***
 
@@ -210,7 +210,7 @@ High-throughput post-processing, solver invocation, and analytical result extrac
 
 ---
 
-## Phase 6: StaadPro.Interop.Design & Code Optimization (v1.5)
+## Phase 6: StaadPro.Interop.Core.Design & Code Optimization (v1.5)
 
 *Status: **Target: Q2 2027***
 
@@ -227,7 +227,7 @@ Design code automation, parameter assignment, and code compliance evaluation (`I
 
 ---
 
-## Phase 7: StaadPro.Interop.Visualization & Scripting Automation (v1.6)
+## Phase 7: StaadPro.Interop.Core.Visualization & Scripting Automation (v1.6)
 
 *Status: **Target: Q2 2027***
 
@@ -244,10 +244,10 @@ Viewport graphical automation, diagnostic visualizers, and direct command stream
 
 ## How to Contribute to the Roadmap
 
-We encourage structural engineers, software developers, and research institutions to participate in shaping the future of StaadPro.Interop:
+We encourage structural engineers, software developers, and research institutions to participate in shaping the future of StaadPro.Interop.Core:
 
 1. **Vote on Features**: Check out our [GitHub Discussions](https://github.com/StruXllence/StaadPro.Interop/discussions) and upvote proposals.
 2. **Submit RFCs**: Propose new design code support or engineering workflows via [Feature Requests](.github/ISSUE_TEMPLATE/feature_request.md).
 ---
 
-*StaadPro.Interop is an independent open-source project and is not officially affiliated with or endorsed by Bentley Systems, Incorporated.*
+*StaadPro.Interop.Core is an independent open-source project and is not officially affiliated with or endorsed by Bentley Systems, Incorporated.*

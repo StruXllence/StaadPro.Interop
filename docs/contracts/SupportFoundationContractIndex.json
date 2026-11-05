@@ -177,7 +177,7 @@
       "args": "definition",
       "summary": "Creates a native fixed-but support from an owned explicit release/stiffness definition.",
       "remarks": "When to use: Use when creation flags and springs must be specified explicitly rather than using the dedicated fixed/pinned calls. FixedButSupportDefinition snapshots the existing Releases/Springs packets. Native input flags are six Double 0/1 values, not the read-back Spring=-1 state or member partial-release modes. Native arrays are fresh copies; the caller’s packets are not changed. Stiffness units and release/spring interaction remain native semantics without scaling or inferred modes. Native -1 fails; a positive integral support ID is required.",
-      "example": "bool allowNativeMutation = false;\nif (allowNativeMutation)\n{\n    var definition = new FixedButSupportDefinition(new StaadPro.Interop.Entities.Releases { My = true, Mz = true }, new StaadPro.Interop.Entities.Springs());\n    var result = support.CreateFixedButSupport(definition);\n    System.Console.WriteLine(result.Status);\n}",
+      "example": "bool allowNativeMutation = false;\nif (allowNativeMutation)\n{\n    var definition = new FixedButSupportDefinition(new StaadPro.Interop.Core.Entities.Releases { My = true, Mz = true }, new StaadPro.Interop.Core.Entities.Springs());\n    var result = support.CreateFixedButSupport(definition);\n    System.Console.WriteLine(result.Status);\n}",
       "mutation": true,
       "signature": "SupportMutationResult CreateFixedButSupport(FixedButSupportDefinition definition)"
     },

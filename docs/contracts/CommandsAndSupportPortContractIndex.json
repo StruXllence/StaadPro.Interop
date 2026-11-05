@@ -42,7 +42,7 @@
       "args": "options",
       "summary": "Configures P-Delta instructions from the main-project typed options.",
       "detail": "This convenience delegates once to PerformPDeltaAnalysisEx and reports that exact native function. It does not call both P-Delta variants or execute analysis. Native void gives no acknowledgement.",
-      "example": "new StaadPro.Interop.Models.Commands.PDeltaAnalysisOptions()",
+      "example": "new StaadPro.Interop.Core.Models.Commands.PDeltaAnalysisOptions()",
       "domain": "Commands",
       "returnType": "CommandSubmissionResult",
       "native": "PerformPDeltaAnalysisEx"
@@ -64,7 +64,7 @@
       "args": "options",
       "summary": "Configures basic or advanced cable analysis using typed settings.",
       "detail": "Basic sends seven Double parameters and null advanced flags; Advanced sends three Double parameters and two Int16 flags. Source defaults and validation are retained. PrintModeShapes=4 is unavailable. Native 1/true acknowledges configuration, 0/false reports failure; neither proves license availability or convergence.",
-      "example": "new StaadPro.Interop.Models.Commands.CableAnalysisOptions()",
+      "example": "new StaadPro.Interop.Core.Models.Commands.CableAnalysisOptions()",
       "domain": "Commands",
       "returnType": "CommandSubmissionResult",
       "native": "PerformCableAnalysisEx"
@@ -97,7 +97,7 @@
       "args": "options",
       "summary": "Configures AISC Direct Analysis instructions.",
       "detail": "Uses LRFD=1 or ASD=2, four Double parameters and two Int16 flags in the documented order. P-Delta iterations above 15 are rejected rather than silently reset. Translation/rotation displacement tolerance retains the native mixed convention; no unit conversion occurs. Native 1/true acknowledges and 0/false fails.",
-      "example": "new StaadPro.Interop.Models.Commands.DirectAnalysisOptions()",
+      "example": "new StaadPro.Interop.Core.Models.Commands.DirectAnalysisOptions()",
       "domain": "Commands",
       "returnType": "CommandSubmissionResult",
       "native": "PerformDirectAnalysis"
@@ -108,7 +108,7 @@
       "args": "options",
       "summary": "Configures nonlinear-analysis and optional displacement-control instructions.",
       "detail": "ArcLength zero disables displacement control. Null target sends native null; an explicit target sends joint ID, global DOF and signed target value as three Doubles. Rebuild and geometric stiffness remain independent selectors. Native 1/true acknowledges and 0/false fails. No result or convergence is inferred.",
-      "example": "new StaadPro.Interop.Models.Commands.NonlinearAnalysisOptions()",
+      "example": "new StaadPro.Interop.Core.Models.Commands.NonlinearAnalysisOptions()",
       "domain": "Commands",
       "returnType": "CommandSubmissionResult",
       "native": "PerformNonlinearAnalysisEx"
@@ -273,7 +273,7 @@
       "args": "supportId, entityKind, entityIds, maximumResults",
       "summary": "Assigns a support through the native entity-list route with an explicit requested entity family.",
       "detail": "Calls AssignSupportToEntityList(supportId, Int32[]), preserving order/duplicates in an owned packet. Plates are required for plate-mat definitions; nodes for other types. entityKind records caller intent and is not a native selector or proof of the definition type. The caller must choose the matching family. Unlike AssignSupportToNodes, native TRUE/FALSE uses actual Boolean or integral 1/0 rather than integral zero-success. Empty input is NoOperation without native invocation. Receipts preserve EntityIds/EntityKind; NodeIds is empty for plates.",
-      "example": "7, StaadPro.Interop.Enums.Support.SupportEntityKind.Nodes, new[] { 17, 41 }",
+      "example": "7, StaadPro.Interop.Core.Enums.Support.SupportEntityKind.Nodes, new[] { 17, 41 }",
       "domain": "Support",
       "returnType": "SupportMutationResult",
       "native": "AssignSupportToEntityList"
@@ -311,7 +311,7 @@
   "packageRelease": {
     "version": "1.0.0-preview.20261027.1",
     "date": "2026-10-27",
-    "artifact": "artifacts/release/StaadPro.Interop.1.0.0-preview.20261027.1.nupkg",
+    "artifact": "artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261027.1.nupkg",
     "offlineTestsPassed": 6448,
     "installedXmlExamples": 1222,
     "icon": "images/symbol-only-logo.png",

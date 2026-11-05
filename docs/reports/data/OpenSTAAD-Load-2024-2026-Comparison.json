@@ -22,11 +22,11 @@
     "repositoryNativeExpansions": 51
   },
   "sourceFingerprints": {
-    "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs": "9656aa914c45a91c70362013d7b9ce2f65c72a6ebc02b130c65597ef898faf0b",
-    "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs": "35dc611b7e7a124691753c64c49f2a62b022779144beca8e4949029e7180e5c2",
-    "src/StaadPro.Interop/Models/OpenStaadWrapper.cs": "1c0b69fe545a379262ad70cb1d1f9c45de872aba92e6eb4df218441455628692",
-    "src/StaadPro.Interop/StaadPro.Interop.csproj": "92bc90c47356ccb5f9e0b3fc36dcf984362fadf9ef2e885a1796d655a82050aa",
-    "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs": "a46a451efdc605c41497ea74897401d22e5c5a188546b3cec9ae55a34122929e"
+    "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs": "9656aa914c45a91c70362013d7b9ce2f65c72a6ebc02b130c65597ef898faf0b",
+    "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs": "35dc611b7e7a124691753c64c49f2a62b022779144beca8e4949029e7180e5c2",
+    "src/StaadPro.Interop.Core/Models/OpenStaadWrapper.cs": "1c0b69fe545a379262ad70cb1d1f9c45de872aba92e6eb4df218441455628692",
+    "src/StaadPro.Interop.Core/StaadPro.Interop.Core.csproj": "92bc90c47356ccb5f9e0b3fc36dcf984362fadf9ef2e885a1796d655a82050aa",
+    "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs": "a46a451efdc605c41497ea74897401d22e5c5a188546b3cec9ae55a34122929e"
   },
   "versions": {
     "2024": {
@@ -20019,7 +20019,7 @@
         }
       ],
       "AssemblyPath": "C:/Program Files/Bentley/Engineering/STAAD.Pro 2025/STAAD/StaadPro.Interop.dll",
-      "Identity": "StaadPro.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b4d201f8319cef86",
+      "Identity": "StaadPro.Interop.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b4d201f8319cef86",
       "Sha256": "CC724993AC9119138B7323E8C684997257E2851DE62E1551BA5D6D67A9DADC19",
       "Interface": "OpenSTAADUI.IOSLoadUI",
       "Methods": [
@@ -24174,7 +24174,7 @@
         }
       ],
       "AssemblyPath": "C:/Program Files/Bentley/Engineering/STAAD.Pro 2026/STAAD/StaadPro.Interop.dll",
-      "Identity": "StaadPro.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b4d201f8319cef86",
+      "Identity": "StaadPro.Interop.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b4d201f8319cef86",
       "Sha256": "6D153E80ED356A1B167ABB2EF19227FCFF510707A578AD304154652CC6C1F6D4",
       "Interface": "OpenSTAADUI.IOSLoadUI",
       "Methods": [
@@ -29421,7 +29421,7 @@
       "Line": 76,
       "Caller": "ApplyTo",
       "MethodLine": 73,
-      "File": "src/StaadPro.Interop/Entities/MemberConcentratedLoad.cs"
+      "File": "src/StaadPro.Interop.Core/Entities/MemberConcentratedLoad.cs"
     },
     {
       "Target": "load.AddMemberConcMoment",
@@ -29438,7 +29438,7 @@
       "Line": 67,
       "Caller": "ApplyTo",
       "MethodLine": 64,
-      "File": "src/StaadPro.Interop/Entities/MemberConcentratedMoment.cs"
+      "File": "src/StaadPro.Interop.Core/Entities/MemberConcentratedMoment.cs"
     },
     {
       "Target": "load.AddMemberLinearVari",
@@ -29455,7 +29455,7 @@
       "Line": 68,
       "Caller": "ApplyTo",
       "MethodLine": 65,
-      "File": "src/StaadPro.Interop/Entities/MemberLinearVaryingLoad.cs"
+      "File": "src/StaadPro.Interop.Core/Entities/MemberLinearVaryingLoad.cs"
     },
     {
       "Target": "load.AddMemberTrapezoidal",
@@ -29473,7 +29473,7 @@
       "Line": 73,
       "Caller": "ApplyTo",
       "MethodLine": 70,
-      "File": "src/StaadPro.Interop/Entities/MemberTrapezoidalLoad.cs"
+      "File": "src/StaadPro.Interop.Core/Entities/MemberTrapezoidalLoad.cs"
     },
     {
       "Target": "load.AddMemberUniformForce",
@@ -29491,7 +29491,7 @@
       "Line": 84,
       "Caller": "ApplyTo",
       "MethodLine": 81,
-      "File": "src/StaadPro.Interop/Entities/MemberUniformlyDistributedLoad.cs"
+      "File": "src/StaadPro.Interop.Core/Entities/MemberUniformlyDistributedLoad.cs"
     },
     {
       "Target": "load.AddMemberUniformMoment",
@@ -29509,7 +29509,7 @@
       "Line": 75,
       "Caller": "ApplyTo",
       "MethodLine": 72,
-      "File": "src/StaadPro.Interop/Entities/MemberUniformMoment.cs"
+      "File": "src/StaadPro.Interop.Core/Entities/MemberUniformMoment.cs"
     },
     {
       "Target": "ComObject.AddSeismicDefWallArea",
@@ -29524,7 +29524,7 @@
       "Line": 979,
       "Caller": "AddSeismicDefWallArea",
       "MethodLine": 964,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddResponseSpectrumLoadEx",
@@ -29543,7 +29543,7 @@
       "Line": 1016,
       "Caller": "SubmitExtendedSpectrum",
       "MethodLine": 1015,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddDirectAnalysisDefinitionParameter",
@@ -29558,7 +29558,7 @@
       "Line": 1029,
       "Caller": "AddDirectAnalysisDefinitionParameter",
       "MethodLine": 1021,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.DeleteDirectAnalysisDefinitionParameter",
@@ -29571,7 +29571,7 @@
       "Line": 1063,
       "Caller": "DeleteDirectAnalysisDefinitionParameter",
       "MethodLine": 1060,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.DeleteDirectAnalysisDefinition",
@@ -29582,7 +29582,7 @@
       "Line": 1069,
       "Caller": "DeleteDirectAnalysisDefinition",
       "MethodLine": 1068,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddRSLoad",
@@ -29613,7 +29613,7 @@
       "Line": 1076,
       "Caller": "AddRSLoad",
       "MethodLine": 1072,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddWindDefinitionASCE7Parameters",
@@ -29640,7 +29640,7 @@
       "Line": 1094,
       "Caller": "AddWindDefinitionASCE7Parameters",
       "MethodLine": 1087,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.ComputeWallWindPressureProfile",
@@ -29662,7 +29662,7 @@
       "Line": 1108,
       "Caller": "ComputeWallWindPressureProfile",
       "MethodLine": 1102,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.ComputeWallWindPressureProfileASCE72016",
@@ -29684,7 +29684,7 @@
       "Line": 1121,
       "Caller": "ComputeWallWindPressureProfileASCE72016",
       "MethodLine": 1115,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddSeismicDefinition",
@@ -29698,7 +29698,7 @@
       "Line": 1142,
       "Caller": "AddSeismicDefinition",
       "MethodLine": 1132,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.ModifySeismicDefinitionParams",
@@ -29712,7 +29712,7 @@
       "Line": 1150,
       "Caller": "ModifySeismicDefinitionParam",
       "MethodLine": 1146,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddSeismicDefSelfWeight",
@@ -29725,7 +29725,7 @@
       "Line": 1196,
       "Caller": "AddSeismicDefSelfWeight",
       "MethodLine": 1193,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddSeismicDefJointWeight",
@@ -29739,7 +29739,7 @@
       "Line": 1205,
       "Caller": "AddSeismicDefJointWeight",
       "MethodLine": 1200,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddSeismicDefMemberWeight",
@@ -29757,7 +29757,7 @@
       "Line": 1234,
       "Caller": "AddSeismicDefMemberWeight",
       "MethodLine": 1221,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddWindDefinition",
@@ -29771,7 +29771,7 @@
       "Line": 1279,
       "Caller": "AddWindDefinition",
       "MethodLine": 1273,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddWindExposure",
@@ -29786,7 +29786,7 @@
       "Line": 1291,
       "Caller": "AddWindExposure",
       "MethodLine": 1283,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddWindIntensity",
@@ -29801,7 +29801,7 @@
       "Line": 1322,
       "Caller": "AddWindIntensity",
       "MethodLine": 1317,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddWindIntensity",
@@ -29816,7 +29816,7 @@
       "Line": 1337,
       "Caller": "AddWindIntensity",
       "MethodLine": 1326,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.DeleteWindDefinition",
@@ -29829,7 +29829,7 @@
       "Line": 1353,
       "Caller": "DeleteWindDefinition",
       "MethodLine": 1350,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddReferenceLoad",
@@ -29843,7 +29843,7 @@
       "Line": 1386,
       "Caller": "AddReferenceLoadsTo",
       "MethodLine": 1381,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddRepeatLoad",
@@ -29857,7 +29857,7 @@
       "Line": 1396,
       "Caller": "AddRepeatLoadsTo",
       "MethodLine": 1391,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddTemperatureLoad",
@@ -29873,7 +29873,7 @@
       "Line": 1411,
       "Caller": "AddAxialThermalGradientTo",
       "MethodLine": 1401,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddTemperatureLoad",
@@ -29889,7 +29889,7 @@
       "Line": 1429,
       "Caller": "AddAxialThermalGradientTo",
       "MethodLine": 1416,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetRepeatLoadCount",
@@ -29900,7 +29900,7 @@
       "Line": 1509,
       "Caller": "GetRepeatLoadCases",
       "MethodLine": 1503,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetNoOfLoadAndFactorPairsForCombination",
@@ -29913,7 +29913,7 @@
       "Line": 1531,
       "Caller": "GetLoadCombination",
       "MethodLine": 1528,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetLoadCaseTitle",
@@ -29926,7 +29926,7 @@
       "Line": 1534,
       "Caller": "GetLoadCombination",
       "MethodLine": 1528,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetLoadAndFactorForCombination",
@@ -29941,7 +29941,7 @@
       "Line": 1537,
       "Caller": "GetLoadCombination",
       "MethodLine": 1528,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.CreateNewLoadCombination",
@@ -29955,7 +29955,7 @@
       "Line": 1647,
       "Caller": "CreateLoadCombinations",
       "MethodLine": 1633,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddLoadAndFactorToCombination",
@@ -29970,7 +29970,7 @@
       "Line": 1649,
       "Caller": "CreateLoadCombinations",
       "MethodLine": 1633,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetNodalLoadCount",
@@ -29983,7 +29983,7 @@
       "Line": 1697,
       "Caller": "GetNodalLoads",
       "MethodLine": 1693,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetNodalLoads",
@@ -30002,7 +30002,7 @@
       "Line": 1703,
       "Caller": "GetNodalLoads",
       "MethodLine": 1693,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetUDLLoadCount",
@@ -30015,7 +30015,7 @@
       "Line": 1755,
       "Caller": "GetMemberUniformlyDistributedLoads",
       "MethodLine": 1751,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetUDLLoads",
@@ -30033,7 +30033,7 @@
       "Line": 1761,
       "Caller": "GetMemberUniformlyDistributedLoads",
       "MethodLine": 1751,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetConcForceCount",
@@ -30046,7 +30046,7 @@
       "Line": 1814,
       "Caller": "GetMemberConcentratedLoads",
       "MethodLine": 1810,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetConcForces",
@@ -30063,7 +30063,7 @@
       "Line": 1820,
       "Caller": "GetMemberConcentratedLoads",
       "MethodLine": 1810,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetConcMomentCount",
@@ -30076,7 +30076,7 @@
       "Line": 1877,
       "Caller": "GetMemberConcentratedMoments",
       "MethodLine": 1873,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetConcMoments",
@@ -30093,7 +30093,7 @@
       "Line": 1883,
       "Caller": "GetMemberConcentratedMoments",
       "MethodLine": 1873,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetLinearVaryingLoadCount",
@@ -30106,7 +30106,7 @@
       "Line": 1936,
       "Caller": "GetMemberLinearVaryingLoads",
       "MethodLine": 1932,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetLinearVaryingLoads",
@@ -30123,7 +30123,7 @@
       "Line": 1943,
       "Caller": "GetMemberLinearVaryingLoads",
       "MethodLine": 1932,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetTrapLoadCount",
@@ -30136,7 +30136,7 @@
       "Line": 1996,
       "Caller": "GetMemberTrapezoidalLoads",
       "MethodLine": 1992,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetTrapLoads",
@@ -30154,7 +30154,7 @@
       "Line": 2002,
       "Caller": "GetMemberTrapezoidalLoads",
       "MethodLine": 1992,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetUNIMomentCount",
@@ -30167,7 +30167,7 @@
       "Line": 2057,
       "Caller": "GetMemberUniformMoments",
       "MethodLine": 2053,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetUNIMoments",
@@ -30185,7 +30185,7 @@
       "Line": 2063,
       "Caller": "GetMemberUniformMoments",
       "MethodLine": 2053,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.ClearPrimaryLoadCase",
@@ -30199,7 +30199,7 @@
       "Line": 2640,
       "Caller": "ClearPrimaryLoadCases",
       "MethodLine": 2634,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.ClearPrimaryLoadCase",
@@ -30213,7 +30213,7 @@
       "Line": 2663,
       "Caller": "ClearPrimaryLoadCases",
       "MethodLine": 2657,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.ClearReferenceLoadCase",
@@ -30226,7 +30226,7 @@
       "Line": 2686,
       "Caller": "ClearReferenceLoadCases",
       "MethodLine": 2680,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.CreateNewPrimaryLoadEx",
@@ -30240,7 +30240,7 @@
       "Line": 2699,
       "Caller": "CreateNewPrimaryLoad",
       "MethodLine": 2695,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.CreateNewPrimaryLoadEx2",
@@ -30255,7 +30255,7 @@
       "Line": 2708,
       "Caller": "CreateNewPrimaryLoad",
       "MethodLine": 2704,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.CreateNewReferenceLoad",
@@ -30270,7 +30270,7 @@
       "Line": 2731,
       "Caller": "CreateNewReferenceLoad",
       "MethodLine": 2727,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetLoadCaseTitle",
@@ -30283,7 +30283,7 @@
       "Line": 2746,
       "Caller": "GetLoadCaseTitle",
       "MethodLine": 2743,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.SetReferenceLoadActive",
@@ -30296,7 +30296,7 @@
       "Line": 2758,
       "Caller": "SetLoadCaseActive",
       "MethodLine": 2751,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.SetLoadActive",
@@ -30309,7 +30309,7 @@
       "Line": 2762,
       "Caller": "SetLoadCaseActive",
       "MethodLine": 2751,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddSupportDisplacement",
@@ -30324,7 +30324,7 @@
       "Line": 2831,
       "Caller": "AddSupportSettlement",
       "MethodLine": 2822,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddNodalLoad",
@@ -30343,7 +30343,7 @@
       "Line": 2914,
       "Caller": "AddNodalLoad",
       "MethodLine": 2903,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddElementPressure",
@@ -30358,7 +30358,7 @@
       "Line": 2970,
       "Caller": "AddPlateUniformPressure",
       "MethodLine": 2960,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetEnvelopeCount",
@@ -30369,7 +30369,7 @@
       "Line": 3009,
       "Caller": "GetEnvelopeIds",
       "MethodLine": 3007,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetEnvelopeIDs",
@@ -30382,7 +30382,7 @@
       "Line": 3013,
       "Caller": "GetEnvelopeIds",
       "MethodLine": 3007,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetLoadEnvelopeDetails",
@@ -30397,7 +30397,7 @@
       "Line": 3053,
       "Caller": "GetLoadEnvelopeDetail",
       "MethodLine": 3048,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetLoadListfromLoadEnvelope",
@@ -30411,7 +30411,7 @@
       "Line": 3061,
       "Caller": "GetLoadEnvelopeDetail",
       "MethodLine": 3048,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.AddSelfWeightInXYZToGeometry",
@@ -30426,7 +30426,7 @@
       "Line": 3139,
       "Caller": "AddSelfweightInXYZTo",
       "MethodLine": 3129,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.CreateLoadEnvelop",
@@ -30441,7 +30441,7 @@
       "Line": 3174,
       "Caller": "CreateLoadEnvelopExt",
       "MethodLine": 3169,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.CreateLoadList",
@@ -30455,7 +30455,7 @@
       "Line": 3209,
       "Caller": "CreateLoadList",
       "MethodLine": 3205,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetPrimaryLoadCaseCount",
@@ -30466,7 +30466,7 @@
       "Line": 3258,
       "Caller": "ReadAllLoadCases",
       "MethodLine": 3254,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetReferenceLoadCaseCount",
@@ -30477,7 +30477,7 @@
       "Line": 3258,
       "Caller": "ReadAllLoadCases",
       "MethodLine": 3254,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetPrimaryLoadCaseNumbers",
@@ -30490,7 +30490,7 @@
       "Line": 3265,
       "Caller": "ReadAllLoadCases",
       "MethodLine": 3254,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetReferenceLoadCaseNumbers",
@@ -30503,7 +30503,7 @@
       "Line": 3266,
       "Caller": "ReadAllLoadCases",
       "MethodLine": 3254,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetLoadCaseTitle",
@@ -30516,7 +30516,7 @@
       "Line": 3282,
       "Caller": "ReadLoadCaseMetadata",
       "MethodLine": 3279,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetReferenceLoadCaseTitle",
@@ -30529,7 +30529,7 @@
       "Line": 3282,
       "Caller": "ReadLoadCaseMetadata",
       "MethodLine": 3279,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetLoadType",
@@ -30542,7 +30542,7 @@
       "Line": 3285,
       "Caller": "ReadLoadCaseMetadata",
       "MethodLine": 3279,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetReferenceLoadType",
@@ -30555,7 +30555,7 @@
       "Line": 3285,
       "Caller": "ReadLoadCaseMetadata",
       "MethodLine": 3279,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetLoadCombinationCaseCount",
@@ -30566,7 +30566,7 @@
       "Line": 3294,
       "Caller": "ReadCombinationCaseIds",
       "MethodLine": 3292,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetLoadCombinationCaseNumbers",
@@ -30579,7 +30579,7 @@
       "Line": 3297,
       "Caller": "ReadCombinationCaseIds",
       "MethodLine": 3292,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.GetLoadCaseTitle",
@@ -30592,7 +30592,7 @@
       "Line": 3310,
       "Caller": "ReadCombinationCaseMetadata",
       "MethodLine": 3308,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.SetReferenceLoadActive",
@@ -30605,7 +30605,7 @@
       "Line": 3336,
       "Caller": "ActivateQueryCase",
       "MethodLine": 3331,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "ComObject.SetLoadActive",
@@ -30618,7 +30618,7 @@
       "Line": 3342,
       "Caller": "ActivateQueryCase",
       "MethodLine": 3331,
-      "File": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs"
+      "File": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs"
     },
     {
       "Target": "context.Binding().GetLoadItemsCount",
@@ -30631,7 +30631,7 @@
       "Line": 23,
       "Caller": "Item",
       "MethodLine": 18,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentQueryService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentQueryService.cs"
     },
     {
       "Target": "context.Binding().GetLoadItemType",
@@ -30645,7 +30645,7 @@
       "Line": 26,
       "Caller": "Item",
       "MethodLine": 18,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentQueryService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentQueryService.cs"
     },
     {
       "Target": "context.Binding().GetLoadItemsCount",
@@ -30658,7 +30658,7 @@
       "Line": 31,
       "Caller": "Item",
       "MethodLine": 18,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentQueryService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentQueryService.cs"
     },
     {
       "Target": "context.Binding().GetLoadItemType",
@@ -30672,7 +30672,7 @@
       "Line": 33,
       "Caller": "Item",
       "MethodLine": 18,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentQueryService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentQueryService.cs"
     },
     {
       "Target": "context.Binding().GetNodalLoadInfo",
@@ -30686,7 +30686,7 @@
       "Line": 41,
       "Caller": "GetNodalLoadCommand",
       "MethodLine": 37,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentQueryService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentQueryService.cs"
     },
     {
       "Target": "context.Binding().GetMemberLoadInfo",
@@ -30702,7 +30702,7 @@
       "Line": 51,
       "Caller": "GetMemberLoadCommand",
       "MethodLine": 46,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentQueryService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentQueryService.cs"
     },
     {
       "Target": "context.Binding().GetElementLoadInfo",
@@ -30718,7 +30718,7 @@
       "Line": 61,
       "Caller": "GetPlateLoadCommand",
       "MethodLine": 57,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentQueryService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentQueryService.cs"
     },
     {
       "Target": "context.Binding().GetElementPressureLoadCount",
@@ -30731,7 +30731,7 @@
       "Line": 70,
       "Caller": "PlateCount",
       "MethodLine": 69,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentQueryService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentQueryService.cs"
     },
     {
       "Target": "context.Binding().GetElementConcLoadCount",
@@ -30744,7 +30744,7 @@
       "Line": 71,
       "Caller": "PlateCount",
       "MethodLine": 69,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentQueryService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentQueryService.cs"
     },
     {
       "Target": "context.Binding().GetElementPressureLoads",
@@ -30763,7 +30763,7 @@
       "Line": 101,
       "Caller": "ReadPlate",
       "MethodLine": 88,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentQueryService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentQueryService.cs"
     },
     {
       "Target": "context.Binding().GetElementConcLoads",
@@ -30780,7 +30780,7 @@
       "Line": 102,
       "Caller": "ReadPlate",
       "MethodLine": 88,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentQueryService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentQueryService.cs"
     },
     {
       "Target": "context.Binding().GetBeamCountAtFloor",
@@ -30799,7 +30799,7 @@
       "Line": 125,
       "Caller": "FloorCount",
       "MethodLine": 125,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentQueryService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentQueryService.cs"
     },
     {
       "Target": "context.Binding().GetInfluenceArea",
@@ -30820,7 +30820,7 @@
       "Line": 143,
       "Caller": "GetFloorInfluenceAreas",
       "MethodLine": 131,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentQueryService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentQueryService.cs"
     },
     {
       "Target": "context.Binding().AddSelfWeightInXYZ",
@@ -30834,7 +30834,7 @@
       "Line": 20,
       "Caller": "AddSelfWeight",
       "MethodLine": 17,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentService.cs"
     },
     {
       "Target": "context.Binding().AddMemberAreaLoad",
@@ -30848,7 +30848,7 @@
       "Line": 25,
       "Caller": "AddMemberAreaLoad",
       "MethodLine": 22,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentService.cs"
     },
     {
       "Target": "context.Binding().AddMemberFixedEnd",
@@ -30863,7 +30863,7 @@
       "Line": 32,
       "Caller": "AddMemberFixedEndLoad",
       "MethodLine": 27,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentService.cs"
     },
     {
       "Target": "context.Binding().AddElementHydrostaticPressure",
@@ -30880,7 +30880,7 @@
       "Line": 39,
       "Caller": "AddHydrostaticPressure",
       "MethodLine": 35,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentService.cs"
     },
     {
       "Target": "context.Binding().AddElementTrapPressureEx",
@@ -30899,7 +30899,7 @@
       "Line": 46,
       "Caller": "AddTrapezoidalPressure",
       "MethodLine": 42,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentService.cs"
     },
     {
       "Target": "context.Binding().AddMemberFloorLoadEx",
@@ -30921,7 +30921,7 @@
       "Line": 57,
       "Caller": "AddFloorLoad",
       "MethodLine": 49,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentService.cs"
     },
     {
       "Target": "context.Binding().AddStrainLoad",
@@ -30935,7 +30935,7 @@
       "Line": 64,
       "Caller": "AddStrainLoad",
       "MethodLine": 61,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentService.cs"
     },
     {
       "Target": "context.Binding().AddSeismicLoad",
@@ -30949,7 +30949,7 @@
       "Line": 69,
       "Caller": "AddSeismicLoad",
       "MethodLine": 66,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentService.cs"
     },
     {
       "Target": "context.Binding().AddWindLoad",
@@ -30971,7 +30971,7 @@
       "Line": 80,
       "Caller": "AddWindLoad",
       "MethodLine": 71,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentService.cs"
     },
     {
       "Target": "context.Binding().AddNotionalLoad",
@@ -30989,7 +30989,7 @@
       "Line": 92,
       "Caller": "AddNotionalLoad",
       "MethodLine": 84,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAssignmentService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentService.cs"
     },
     {
       "Target": "context.Binding().AddAutoLoadCombinations",
@@ -31005,7 +31005,7 @@
       "Line": 19,
       "Caller": "CreateAutomaticCombinations",
       "MethodLine": 11,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAutomaticGenerationService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAutomaticGenerationService.cs"
     },
     {
       "Target": "context.Binding().AddAutoCombinationRepeat",
@@ -31031,7 +31031,7 @@
       "Line": 51,
       "Caller": "CreateAutomaticRepeatLoads",
       "MethodLine": 41,
-      "File": "src/StaadPro.Interop/Services/Load/LoadAutomaticGenerationService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadAutomaticGenerationService.cs"
     },
     {
       "Target": "context.Binding().SplitLoadsOnBeam",
@@ -31045,7 +31045,7 @@
       "Line": 18,
       "Caller": "SplitLoadsOnBeam",
       "MethodLine": 14,
-      "File": "src/StaadPro.Interop/Services/Load/LoadBeamTransferService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadBeamTransferService.cs"
     },
     {
       "Target": "context.Binding().BeginLoadMerging",
@@ -31056,7 +31056,7 @@
       "Line": 30,
       "Caller": "MergeBeamLoads",
       "MethodLine": 20,
-      "File": "src/StaadPro.Interop/Services/Load/LoadBeamTransferService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadBeamTransferService.cs"
     },
     {
       "Target": "context.Binding().MergeLoadsOnBeam",
@@ -31070,7 +31070,7 @@
       "Line": 37,
       "Caller": "MergeBeamLoads",
       "MethodLine": 20,
-      "File": "src/StaadPro.Interop/Services/Load/LoadBeamTransferService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadBeamTransferService.cs"
     },
     {
       "Target": "context.Binding().EndLoadMerging",
@@ -31081,7 +31081,7 @@
       "Line": 48,
       "Caller": "MergeBeamLoads",
       "MethodLine": 20,
-      "File": "src/StaadPro.Interop/Services/Load/LoadBeamTransferService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadBeamTransferService.cs"
     },
     {
       "Target": "context.Binding().AddLoadCasesToEnvelop",
@@ -31095,7 +31095,7 @@
       "Line": 17,
       "Caller": "AddCasesToEnvelope",
       "MethodLine": 14,
-      "File": "src/StaadPro.Interop/Services/Load/LoadCaseManagementService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadCaseManagementService.cs"
     },
     {
       "Target": "context.Binding().RemoveLoadCasesFromEnvelop",
@@ -31109,7 +31109,7 @@
       "Line": 22,
       "Caller": "RemoveCasesFromEnvelope",
       "MethodLine": 19,
-      "File": "src/StaadPro.Interop/Services/Load/LoadCaseManagementService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadCaseManagementService.cs"
     },
     {
       "Target": "context.Binding().DeleteLoadEnvelop",
@@ -31122,7 +31122,7 @@
       "Line": 27,
       "Caller": "DeleteEnvelope",
       "MethodLine": 24,
-      "File": "src/StaadPro.Interop/Services/Load/LoadCaseManagementService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadCaseManagementService.cs"
     },
     {
       "Target": "context.Binding().SetLoadType",
@@ -31136,7 +31136,7 @@
       "Line": 32,
       "Caller": "SetLoadType",
       "MethodLine": 29,
-      "File": "src/StaadPro.Interop/Services/Load/LoadCaseManagementService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadCaseManagementService.cs"
     },
     {
       "Target": "context.Binding().DeleteLoadList",
@@ -31149,7 +31149,7 @@
       "Line": 37,
       "Caller": "DeleteLoadList",
       "MethodLine": 34,
-      "File": "src/StaadPro.Interop/Services/Load/LoadCaseManagementService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadCaseManagementService.cs"
     },
     {
       "Target": "context.Binding().SetASDLoadAttribute",
@@ -31164,7 +31164,7 @@
       "Line": 42,
       "Caller": "SetAllowableStressAttribute",
       "MethodLine": 39,
-      "File": "src/StaadPro.Interop/Services/Load/LoadCaseManagementService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadCaseManagementService.cs"
     },
     {
       "Target": "context.Binding().SetLSDLoadAttribute",
@@ -31177,7 +31177,7 @@
       "Line": 47,
       "Caller": "SetLimitStateAttribute",
       "MethodLine": 44,
-      "File": "src/StaadPro.Interop/Services/Load/LoadCaseManagementService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadCaseManagementService.cs"
     },
     {
       "Target": "context.Binding().RemoveAttribute",
@@ -31190,7 +31190,7 @@
       "Line": 52,
       "Caller": "RemoveLoadAttribute",
       "MethodLine": 49,
-      "File": "src/StaadPro.Interop/Services/Load/LoadCaseManagementService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadCaseManagementService.cs"
     },
     {
       "Target": "context.Binding().GetAttribute",
@@ -31203,7 +31203,7 @@
       "Line": 59,
       "Caller": "GetLoadAttribute",
       "MethodLine": 54,
-      "File": "src/StaadPro.Interop/Services/Load/LoadCaseManagementService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadCaseManagementService.cs"
     },
     {
       "Target": "context.Binding().DeletePrimaryLoadCases",
@@ -31217,7 +31217,7 @@
       "Line": 71,
       "Caller": "DeleteLoadCases",
       "MethodLine": 66,
-      "File": "src/StaadPro.Interop/Services/Load/LoadCaseManagementService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadCaseManagementService.cs"
     },
     {
       "Target": "context.Binding().DeleteReferenceLoadCases",
@@ -31230,7 +31230,7 @@
       "Line": 72,
       "Caller": "DeleteLoadCases",
       "MethodLine": 66,
-      "File": "src/StaadPro.Interop/Services/Load/LoadCaseManagementService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadCaseManagementService.cs"
     },
     {
       "Target": "Binding().GetActiveLoad",
@@ -31241,7 +31241,7 @@
       "Line": 49,
       "Caller": "CheckActive",
       "MethodLine": 47,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().SetLoadActive",
@@ -31254,7 +31254,7 @@
       "Line": 60,
       "Caller": "Active",
       "MethodLine": 55,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetActiveLoad",
@@ -31265,7 +31265,7 @@
       "Line": 76,
       "Caller": "GetActiveLoadCaseNumber",
       "MethodLine": 73,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetLoadListCount",
@@ -31276,7 +31276,7 @@
       "Line": 82,
       "Caller": "GetLoadListCount",
       "MethodLine": 81,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetLoadListCount",
@@ -31287,7 +31287,7 @@
       "Line": 85,
       "Caller": "CheckList",
       "MethodLine": 83,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetLoadCountInLoadList",
@@ -31300,7 +31300,7 @@
       "Line": 90,
       "Caller": "ListCaseCount",
       "MethodLine": 90,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetLoadListCount",
@@ -31311,7 +31311,7 @@
       "Line": 100,
       "Caller": "GetLoadListCaseCount",
       "MethodLine": 91,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetLoadsInLoadList",
@@ -31325,7 +31325,7 @@
       "Line": 120,
       "Caller": "GetLoadListCases",
       "MethodLine": 105,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetLoadListCount",
@@ -31336,7 +31336,7 @@
       "Line": 129,
       "Caller": "GetLoadListCases",
       "MethodLine": 105,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetLoadTypeCount",
@@ -31349,7 +31349,7 @@
       "Line": 139,
       "Caller": "CommandCount",
       "MethodLine": 139,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetListSizeForLoadType",
@@ -31363,7 +31363,7 @@
       "Line": 160,
       "Caller": "GetAssignedEntityCount",
       "MethodLine": 151,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetLoadItemsCount",
@@ -31376,7 +31376,7 @@
       "Line": 169,
       "Caller": "GetLoadItemCount",
       "MethodLine": 166,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetLoadItemType",
@@ -31390,7 +31390,7 @@
       "Line": 177,
       "Caller": "GetLoadItemKind",
       "MethodLine": 171,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().IsDynamicLoadIncluded",
@@ -31403,7 +31403,7 @@
       "Line": 189,
       "Caller": "ContainsDynamicLoad",
       "MethodLine": 183,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetNotionalLoadCount",
@@ -31414,7 +31414,7 @@
       "Line": 215,
       "Caller": "GetNotionalItemCount",
       "MethodLine": 213,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetReferenceLoadCount",
@@ -31425,7 +31425,7 @@
       "Line": 218,
       "Caller": "GetReferenceItemCount",
       "MethodLine": 216,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetNoLoadFactorDirectionInNotionalLoad",
@@ -31438,7 +31438,7 @@
       "Line": 220,
       "Caller": "ContributionCount",
       "MethodLine": 219,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetNoLoadFactorInRepeatLoad",
@@ -31451,7 +31451,7 @@
       "Line": 221,
       "Caller": "ContributionCount",
       "MethodLine": 219,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetNotionalLoadByIndex",
@@ -31467,7 +31467,7 @@
       "Line": 247,
       "Caller": "ReadContributions",
       "MethodLine": 234,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetRepeatLoadByIndex",
@@ -31482,7 +31482,7 @@
       "Line": 248,
       "Caller": "ReadContributions",
       "MethodLine": 234,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetListSizeForLoadType",
@@ -31496,7 +31496,7 @@
       "Line": 281,
       "Caller": "GetAssignedEntityIds",
       "MethodLine": 272,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetAssignmentListForLoadType",
@@ -31511,7 +31511,7 @@
       "Line": 285,
       "Caller": "GetAssignedEntityIds",
       "MethodLine": 272,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetListSizeForLoadType",
@@ -31525,7 +31525,7 @@
       "Line": 292,
       "Caller": "GetAssignedEntityIds",
       "MethodLine": 272,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetNoOfSetsInReferenceLoad",
@@ -31538,7 +31538,7 @@
       "Line": 301,
       "Caller": "GetReferenceContributionCount",
       "MethodLine": 297,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetNoOfSetsInReferenceLoad",
@@ -31551,7 +31551,7 @@
       "Line": 309,
       "Caller": "GetReferenceContributions",
       "MethodLine": 303,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetReferenceLoadByIndex",
@@ -31566,7 +31566,7 @@
       "Line": 316,
       "Caller": "GetReferenceContributions",
       "MethodLine": 303,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().GetNoOfSetsInReferenceLoad",
@@ -31579,7 +31579,7 @@
       "Line": 324,
       "Caller": "GetReferenceContributions",
       "MethodLine": 303,
-      "File": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs"
     },
     {
       "Target": "Binding().SetReferenceLoadActive",
@@ -31592,7 +31592,7 @@
       "Line": 58,
       "Caller": "Activate",
       "MethodLine": 53,
-      "File": "src/StaadPro.Interop/Services/Load/LoadServiceContext.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadServiceContext.cs"
     },
     {
       "Target": "Binding().SetLoadActive",
@@ -31605,7 +31605,7 @@
       "Line": 63,
       "Caller": "Activate",
       "MethodLine": 53,
-      "File": "src/StaadPro.Interop/Services/Load/LoadServiceContext.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadServiceContext.cs"
     },
     {
       "Target": "Binding().GetActiveLoad",
@@ -31616,7 +31616,7 @@
       "Line": 71,
       "Caller": "ActiveId",
       "MethodLine": 71,
-      "File": "src/StaadPro.Interop/Services/Load/LoadServiceContext.cs"
+      "File": "src/StaadPro.Interop.Core/Services/Load/LoadServiceContext.cs"
     }
   ],
   "callShapeReview": {
@@ -31654,7 +31654,7 @@
   },
   "managedInterface": [
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "SplitLoadsOnBeam",
       "ReturnType": "LoadOperationResult",
@@ -31677,7 +31677,7 @@
       "Line": 36
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddCasesToEnvelope",
       "ReturnType": "LoadOperationResult",
@@ -31700,7 +31700,7 @@
       "Line": 53
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "RemoveCasesFromEnvelope",
       "ReturnType": "LoadOperationResult",
@@ -31723,7 +31723,7 @@
       "Line": 70
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "DeleteEnvelope",
       "ReturnType": "LoadOperationResult",
@@ -31740,7 +31740,7 @@
       "Line": 86
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "CreateAutomaticCombinations",
       "ReturnType": "LoadOperationResult<AutomaticLoadGenerationData>",
@@ -31757,7 +31757,7 @@
       "Line": 103
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "CreateAutomaticRepeatLoads",
       "ReturnType": "LoadOperationResult<AutomaticLoadGenerationData>",
@@ -31774,7 +31774,7 @@
       "Line": 120
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "SetLoadType",
       "ReturnType": "LoadOperationResult",
@@ -31797,7 +31797,7 @@
       "Line": 137
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "DeleteLoadList",
       "ReturnType": "LoadOperationResult",
@@ -31814,7 +31814,7 @@
       "Line": 153
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "SetAllowableStressAttribute",
       "ReturnType": "LoadOperationResult",
@@ -31843,7 +31843,7 @@
       "Line": 171
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "SetLimitStateAttribute",
       "ReturnType": "LoadOperationResult",
@@ -31860,7 +31860,7 @@
       "Line": 187
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "RemoveLoadAttribute",
       "ReturnType": "LoadOperationResult",
@@ -31877,7 +31877,7 @@
       "Line": 203
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetLoadAttribute",
       "ReturnType": "LoadQueryResult<LoadAttributeObservation>",
@@ -31894,7 +31894,7 @@
       "Line": 220
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetAssignedEntityIds",
       "ReturnType": "LoadQueryResult<IEnumerable<int>>",
@@ -31929,7 +31929,7 @@
       "Line": 240
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "DeleteLoadCases",
       "ReturnType": "LoadOperationResult",
@@ -31952,7 +31952,7 @@
       "Line": 257
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSelfWeight",
       "ReturnType": "LoadOperationResult",
@@ -31981,7 +31981,7 @@
       "Line": 275
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetNodalLoadCommand",
       "ReturnType": "LoadQueryResult<NodalLoadCommandInfo>",
@@ -32004,7 +32004,7 @@
       "Line": 293
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddMemberAreaLoad",
       "ReturnType": "LoadOperationResult",
@@ -32033,7 +32033,7 @@
       "Line": 311
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddMemberFixedEndLoad",
       "ReturnType": "LoadOperationResult",
@@ -32062,7 +32062,7 @@
       "Line": 329
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetMemberLoadCommand",
       "ReturnType": "LoadQueryResult<MemberLoadCommandInfo>",
@@ -32085,7 +32085,7 @@
       "Line": 347
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddHydrostaticPressure",
       "ReturnType": "LoadOperationResult",
@@ -32114,7 +32114,7 @@
       "Line": 365
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddTrapezoidalPressure",
       "ReturnType": "LoadOperationResult",
@@ -32143,7 +32143,7 @@
       "Line": 383
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetPlatePressureLoadCount",
       "ReturnType": "LoadQueryResult<int>",
@@ -32166,7 +32166,7 @@
       "Line": 401
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetPlatePressureLoads",
       "ReturnType": "LoadQueryResult<IEnumerable<PlatePressureLoad>>",
@@ -32195,7 +32195,7 @@
       "Line": 420
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetPlateConcentratedLoadCount",
       "ReturnType": "LoadQueryResult<int>",
@@ -32218,7 +32218,7 @@
       "Line": 438
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetPlateConcentratedLoads",
       "ReturnType": "LoadQueryResult<IEnumerable<PlateConcentratedLoad>>",
@@ -32247,7 +32247,7 @@
       "Line": 457
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetPlateLoadCommand",
       "ReturnType": "LoadQueryResult<PlateLoadCommandInfo>",
@@ -32270,7 +32270,7 @@
       "Line": 475
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddFloorLoad",
       "ReturnType": "LoadOperationResult",
@@ -32293,7 +32293,7 @@
       "Line": 492
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetFloorBeamCount",
       "ReturnType": "LoadQueryResult<int>",
@@ -32310,7 +32310,7 @@
       "Line": 509
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetFloorInfluenceAreas",
       "ReturnType": "LoadQueryResult<IEnumerable<BeamInfluenceArea>>",
@@ -32333,7 +32333,7 @@
       "Line": 527
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddStrainLoad",
       "ReturnType": "LoadOperationResult",
@@ -32362,7 +32362,7 @@
       "Line": 545
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSeismicLoad",
       "ReturnType": "LoadOperationResult",
@@ -32391,7 +32391,7 @@
       "Line": 563
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddWindLoad",
       "ReturnType": "LoadOperationResult",
@@ -32414,7 +32414,7 @@
       "Line": 580
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddNotionalLoad",
       "ReturnType": "LoadOperationResult",
@@ -32437,7 +32437,7 @@
       "Line": 597
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetReferenceContributionCount",
       "ReturnType": "LoadQueryResult<int>",
@@ -32460,7 +32460,7 @@
       "Line": 615
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetReferenceContributions",
       "ReturnType": "LoadQueryResult<IEnumerable<ReferenceLoadContribution>>",
@@ -32489,7 +32489,7 @@
       "Line": 634
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "MergeBeamLoads",
       "ReturnType": "LoadOperationResult",
@@ -32506,7 +32506,7 @@
       "Line": 651
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetActiveLoadCaseNumber",
       "ReturnType": "LoadQueryResult<int>",
@@ -32516,7 +32516,7 @@
       "Line": 666
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetLoadListCount",
       "ReturnType": "LoadQueryResult<int>",
@@ -32526,7 +32526,7 @@
       "Line": 677
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetLoadListCaseCount",
       "ReturnType": "LoadQueryResult<int>",
@@ -32543,7 +32543,7 @@
       "Line": 690
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetLoadListCases",
       "ReturnType": "LoadQueryResult<IEnumerable<int>>",
@@ -32566,7 +32566,7 @@
       "Line": 704
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetLoadCommandCount",
       "ReturnType": "LoadQueryResult<int>",
@@ -32589,7 +32589,7 @@
       "Line": 718
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetAssignedEntityCount",
       "ReturnType": "LoadQueryResult<int>",
@@ -32618,7 +32618,7 @@
       "Line": 733
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetLoadItemCount",
       "ReturnType": "LoadQueryResult<int>",
@@ -32635,7 +32635,7 @@
       "Line": 746
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetLoadItemKind",
       "ReturnType": "LoadQueryResult<LoadItemKind>",
@@ -32658,7 +32658,7 @@
       "Line": 760
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "ContainsDynamicLoad",
       "ReturnType": "LoadQueryResult<bool>",
@@ -32675,7 +32675,7 @@
       "Line": 773
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetRepeatContributionCount",
       "ReturnType": "LoadQueryResult<int>",
@@ -32698,7 +32698,7 @@
       "Line": 787
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetRepeatContributions",
       "ReturnType": "LoadQueryResult<IEnumerable<LoadFactorContribution>>",
@@ -32727,7 +32727,7 @@
       "Line": 802
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetNotionalItemCount",
       "ReturnType": "LoadQueryResult<int>",
@@ -32744,7 +32744,7 @@
       "Line": 815
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetNotionalContributionCount",
       "ReturnType": "LoadQueryResult<int>",
@@ -32767,7 +32767,7 @@
       "Line": 829
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetNotionalContributions",
       "ReturnType": "LoadQueryResult<IEnumerable<NotionalLoadContribution>>",
@@ -32796,7 +32796,7 @@
       "Line": 844
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetReferenceItemCount",
       "ReturnType": "LoadQueryResult<int>",
@@ -32813,7 +32813,7 @@
       "Line": 857
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSeismicDefMemberWeight",
       "ReturnType": "bool",
@@ -32860,7 +32860,7 @@
       "Line": 862
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSeismicDefMemberUniformWeight",
       "ReturnType": "bool",
@@ -32901,7 +32901,7 @@
       "Line": 865
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSeismicDefMemberConcentratedWeight",
       "ReturnType": "bool",
@@ -32936,7 +32936,7 @@
       "Line": 868
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSeismicDefWallArea",
       "ReturnType": "int",
@@ -32965,7 +32965,7 @@
       "Line": 871
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSeismicDefWallArea",
       "ReturnType": "int",
@@ -32994,7 +32994,7 @@
       "Line": 874
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddResponseSpectrumLoadEx",
       "ReturnType": "bool",
@@ -33011,7 +33011,7 @@
       "Line": 877
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddResponseSpectrumLoadEx",
       "ReturnType": "bool",
@@ -33064,7 +33064,7 @@
       "Line": 880
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddDirectAnalysisDefinitionParameter",
       "ReturnType": "bool",
@@ -33093,7 +33093,7 @@
       "Line": 883
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddDirectAnalysisDefinitionParameter",
       "ReturnType": "bool",
@@ -33122,7 +33122,7 @@
       "Line": 886
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddDirectAnalysisFlexParameter",
       "ReturnType": "bool",
@@ -33145,7 +33145,7 @@
       "Line": 889
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddDirectAnalysisAxialParameter",
       "ReturnType": "bool",
@@ -33162,7 +33162,7 @@
       "Line": 892
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddDirectAnalysisDefinitionParameter",
       "ReturnType": "bool",
@@ -33179,7 +33179,7 @@
       "Line": 895
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "DeleteDirectAnalysisDefinitionParameter",
       "ReturnType": "bool",
@@ -33196,7 +33196,7 @@
       "Line": 898
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "DeleteDirectAnalysisDefinition",
       "ReturnType": "bool",
@@ -33206,7 +33206,7 @@
       "Line": 901
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddRSLoad",
       "ReturnType": "bool",
@@ -33223,7 +33223,7 @@
       "Line": 904
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddWindDefinitionASCE7Parameters",
       "ReturnType": "int",
@@ -33240,7 +33240,7 @@
       "Line": 907
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "ComputeWallWindPressureProfile",
       "ReturnType": "int",
@@ -33257,7 +33257,7 @@
       "Line": 910
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "ComputeWallWindPressureProfileASCE72016",
       "ReturnType": "int",
@@ -33274,7 +33274,7 @@
       "Line": 913
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSeismicDefinition",
       "ReturnType": "bool",
@@ -33297,7 +33297,7 @@
       "Line": 916
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSeismicDefinition",
       "ReturnType": "bool",
@@ -33320,7 +33320,7 @@
       "Line": 919
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "ModifySeismicDefinitionParam",
       "ReturnType": "int",
@@ -33343,7 +33343,7 @@
       "Line": 922
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "ModifySeismicDefinitionParams",
       "ReturnType": "int",
@@ -33360,7 +33360,7 @@
       "Line": 925
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "ModifySeismicDefinitionParams",
       "ReturnType": "int",
@@ -33377,7 +33377,7 @@
       "Line": 928
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "ModifySeismicDefinitionParams",
       "ReturnType": "int",
@@ -33394,7 +33394,7 @@
       "Line": 931
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "ModifySeismicDefinitionParams",
       "ReturnType": "int",
@@ -33411,7 +33411,7 @@
       "Line": 934
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSeismicDefSelfWeight",
       "ReturnType": "bool",
@@ -33428,7 +33428,7 @@
       "Line": 937
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSeismicDefJointWeight",
       "ReturnType": "int",
@@ -33451,7 +33451,7 @@
       "Line": 940
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSeismicDefJointWeight",
       "ReturnType": "int",
@@ -33474,7 +33474,7 @@
       "Line": 943
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSeismicDefJointWeight",
       "ReturnType": "int",
@@ -33497,7 +33497,7 @@
       "Line": 946
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSeismicDefMemberWeight",
       "ReturnType": "bool",
@@ -33544,7 +33544,7 @@
       "Line": 949
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "PopulateMemberUniformlyDistributedLoads",
       "ReturnType": "void",
@@ -33567,7 +33567,7 @@
       "Line": 952
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "PopulateMemberUniformMoments",
       "ReturnType": "void",
@@ -33590,7 +33590,7 @@
       "Line": 955
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "PopulateNodalLoads",
       "ReturnType": "IEnumerable<Node>",
@@ -33613,7 +33613,7 @@
       "Line": 958
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddWindDefinition",
       "ReturnType": "int",
@@ -33636,7 +33636,7 @@
       "Line": 961
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddWindExposure",
       "ReturnType": "int",
@@ -33665,7 +33665,7 @@
       "Line": 964
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddWindExposure",
       "ReturnType": "int",
@@ -33694,7 +33694,7 @@
       "Line": 967
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddWindExposure",
       "ReturnType": "int",
@@ -33723,7 +33723,7 @@
       "Line": 970
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddWindIntensity",
       "ReturnType": "int",
@@ -33752,7 +33752,7 @@
       "Line": 973
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddWindIntensity",
       "ReturnType": "int",
@@ -33781,7 +33781,7 @@
       "Line": 976
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddWindIntensity",
       "ReturnType": "int",
@@ -33804,7 +33804,7 @@
       "Line": 979
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "DeleteWindDefinition",
       "ReturnType": "int",
@@ -33821,7 +33821,7 @@
       "Line": 982
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "DeleteAllWindDefinitions",
       "ReturnType": "int",
@@ -33831,7 +33831,7 @@
       "Line": 985
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddReferenceLoadsTo",
       "ReturnType": "IOSLoad",
@@ -33854,7 +33854,7 @@
       "Line": 988
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddRepeatLoadsTo",
       "ReturnType": "IOSLoad",
@@ -33877,7 +33877,7 @@
       "Line": 991
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddAxialThermalGradientTo",
       "ReturnType": "IOSLoad",
@@ -33906,7 +33906,7 @@
       "Line": 994
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddAxialThermalGradientTo",
       "ReturnType": "IOSLoad",
@@ -33941,7 +33941,7 @@
       "Line": 997
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddMemberLoadsFromGroupsByLoadCase",
       "ReturnType": "IOSLoad",
@@ -33958,7 +33958,7 @@
       "Line": 1000
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddNodalLoadsFromGroupsByLoadCase",
       "ReturnType": "IOSLoad",
@@ -33975,7 +33975,7 @@
       "Line": 1003
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "PopulateMemberLinearVaryingLoads",
       "ReturnType": "void",
@@ -33998,7 +33998,7 @@
       "Line": 1008
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "PopulateMemberLoads",
       "ReturnType": "IEnumerable<Beam>",
@@ -34021,7 +34021,7 @@
       "Line": 1010
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "PopulateMemberTrapezoidalLoads",
       "ReturnType": "void",
@@ -34044,7 +34044,7 @@
       "Line": 1012
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetRepeatLoadCases",
       "ReturnType": "HashSet<ILoadCase>",
@@ -34054,7 +34054,7 @@
       "Line": 1015
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "PopulateMemberConcentratedLoads",
       "ReturnType": "void",
@@ -34077,7 +34077,7 @@
       "Line": 1017
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "PopulateMemberConcentratedMoments",
       "ReturnType": "void",
@@ -34100,7 +34100,7 @@
       "Line": 1019
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetLoadCombination",
       "ReturnType": "StaadLoadCombination",
@@ -34117,7 +34117,7 @@
       "Line": 1022
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetMemberLoadsGroupedByLoadCase",
       "ReturnType": "Dictionary<ILoadCase, List<(MemberLoad Load, List<Beam> Beams)>>",
@@ -34140,7 +34140,7 @@
       "Line": 1024
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetNodalLoadsGroupedByLoadCase",
       "ReturnType": "Dictionary<ILoadCase, List<(NodalLoad Load, List<Node> Nodes)>>",
@@ -34163,7 +34163,7 @@
       "Line": 1026
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSelfweightInXYZTo",
       "ReturnType": "IOSLoad",
@@ -34204,7 +34204,7 @@
       "Line": 1029
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "CreateLoadEnvelopExt",
       "ReturnType": "IOSLoad",
@@ -34233,7 +34233,7 @@
       "Line": 1031
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "CreateLoadCombinations",
       "ReturnType": "IOSLoad",
@@ -34250,7 +34250,7 @@
       "Line": 1033
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetNodalLoads",
       "ReturnType": "List<NodalLoad>",
@@ -34273,7 +34273,7 @@
       "Line": 1074
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetMemberUniformlyDistributedLoads",
       "ReturnType": "List<MemberUniformlyDistributedLoad>",
@@ -34296,7 +34296,7 @@
       "Line": 1115
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetMemberConcentratedLoads",
       "ReturnType": "List<MemberConcentratedLoad>",
@@ -34319,7 +34319,7 @@
       "Line": 1156
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetMemberConcentratedMoments",
       "ReturnType": "List<MemberConcentratedMoment>",
@@ -34342,7 +34342,7 @@
       "Line": 1197
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetMemberLinearVaryingLoads",
       "ReturnType": "List<MemberLinearVaryingLoad>",
@@ -34365,7 +34365,7 @@
       "Line": 1238
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetMemberTrapezoidalLoads",
       "ReturnType": "List<MemberTrapezoidalLoad>",
@@ -34388,7 +34388,7 @@
       "Line": 1279
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "ClearPrimaryLoadCase",
       "ReturnType": "bool",
@@ -34411,7 +34411,7 @@
       "Line": 1286
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "ClearPrimaryLoadCases",
       "ReturnType": "bool",
@@ -34434,7 +34434,7 @@
       "Line": 1289
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "ClearPrimaryLoadCases",
       "ReturnType": "bool",
@@ -34457,7 +34457,7 @@
       "Line": 1292
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "ClearPrimaryLoadCase",
       "ReturnType": "bool",
@@ -34474,7 +34474,7 @@
       "Line": 1295
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "ClearPrimaryLoadCases",
       "ReturnType": "bool",
@@ -34491,7 +34491,7 @@
       "Line": 1298
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "ClearPrimaryLoadCases",
       "ReturnType": "bool",
@@ -34508,7 +34508,7 @@
       "Line": 1301
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "ClearReferenceLoadCase",
       "ReturnType": "bool",
@@ -34525,7 +34525,7 @@
       "Line": 1304
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "ClearReferenceLoadCases",
       "ReturnType": "bool",
@@ -34542,7 +34542,7 @@
       "Line": 1307
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "ClearReferenceLoadCases",
       "ReturnType": "bool",
@@ -34559,7 +34559,7 @@
       "Line": 1310
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "CreateNewPrimaryLoad",
       "ReturnType": "int",
@@ -34582,7 +34582,7 @@
       "Line": 1317
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "CreateNewPrimaryLoad",
       "ReturnType": "int",
@@ -34611,7 +34611,7 @@
       "Line": 1320
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "CreateNewPrimaryLoadEx",
       "ReturnType": "int",
@@ -34628,7 +34628,7 @@
       "Line": 1323
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "CreateNewPrimaryLoadEx2",
       "ReturnType": "int",
@@ -34645,7 +34645,7 @@
       "Line": 1326
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "CreateNewReferenceLoad",
       "ReturnType": "int",
@@ -34674,7 +34674,7 @@
       "Line": 1329
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "CreateNewReferenceLoad",
       "ReturnType": "int",
@@ -34691,7 +34691,7 @@
       "Line": 1332
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetLoadCaseTitle",
       "ReturnType": "string",
@@ -34708,7 +34708,7 @@
       "Line": 1335
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "SetLoadCaseActive",
       "ReturnType": "IOSLoad",
@@ -34725,7 +34725,7 @@
       "Line": 1338
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "CreateNewLoadCase",
       "ReturnType": "IOSLoad",
@@ -34742,7 +34742,7 @@
       "Line": 1341
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSupportSettlement",
       "ReturnType": "IOSLoad",
@@ -34777,7 +34777,7 @@
       "Line": 1348
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSupportSettlement",
       "ReturnType": "IOSLoad",
@@ -34812,7 +34812,7 @@
       "Line": 1351
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSupportSettlement",
       "ReturnType": "IOSLoad",
@@ -34847,7 +34847,7 @@
       "Line": 1354
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSupportSettlement",
       "ReturnType": "IOSLoad",
@@ -34882,7 +34882,7 @@
       "Line": 1357
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "CreatePrimaryLoadCases",
       "ReturnType": "IOSLoad",
@@ -34899,7 +34899,7 @@
       "Line": 1364
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "CreatePrimaryLoadCases",
       "ReturnType": "IOSLoad",
@@ -34916,7 +34916,7 @@
       "Line": 1367
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "CreateReferenceLoadCases",
       "ReturnType": "IOSLoad",
@@ -34933,7 +34933,7 @@
       "Line": 1370
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "CreateReferenceLoadCases",
       "ReturnType": "IOSLoad",
@@ -34950,7 +34950,7 @@
       "Line": 1373
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddNodalLoad",
       "ReturnType": "IOSLoad",
@@ -34979,7 +34979,7 @@
       "Line": 1380
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddNodalLoad",
       "ReturnType": "IOSLoad",
@@ -35008,7 +35008,7 @@
       "Line": 1383
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddMemberLoad",
       "ReturnType": "IOSLoad",
@@ -35037,7 +35037,7 @@
       "Line": 1390
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddMemberLoad",
       "ReturnType": "IOSLoad",
@@ -35066,7 +35066,7 @@
       "Line": 1393
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddPlateUniformPressure",
       "ReturnType": "IOSLoad",
@@ -35101,7 +35101,7 @@
       "Line": 1400
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddPlateUniformPressure",
       "ReturnType": "IOSLoad",
@@ -35136,7 +35136,7 @@
       "Line": 1403
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddPlateUniformPressure",
       "ReturnType": "IOSLoad",
@@ -35171,7 +35171,7 @@
       "Line": 1406
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetMemberUniformMoments",
       "ReturnType": "List<MemberUniformMoment>",
@@ -35194,7 +35194,7 @@
       "Line": 1448
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetAllPrimaryLoadCases",
       "ReturnType": "HashSet<ILoadCase>",
@@ -35204,7 +35204,7 @@
       "Line": 1480
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetAllReferenceLoadCases",
       "ReturnType": "HashSet<ILoadCase>",
@@ -35214,7 +35214,7 @@
       "Line": 1512
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetPrimaryLoadCaseFromId",
       "ReturnType": "ILoadCase",
@@ -35231,7 +35231,7 @@
       "Line": 1544
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetReferenceLoadCaseFromId",
       "ReturnType": "ILoadCase",
@@ -35248,7 +35248,7 @@
       "Line": 1576
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetPrimaryLoadCasesFromIds",
       "ReturnType": "List<ILoadCase>",
@@ -35265,7 +35265,7 @@
       "Line": 1609
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetReferenceLoadCasesFromIds",
       "ReturnType": "List<ILoadCase>",
@@ -35282,7 +35282,7 @@
       "Line": 1642
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetAllLoadCombinationCases",
       "ReturnType": "HashSet<ILoadCase>",
@@ -35292,7 +35292,7 @@
       "Line": 1673
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetLoadCombinationCaseFromId",
       "ReturnType": "ILoadCase",
@@ -35309,7 +35309,7 @@
       "Line": 1707
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetLoadCombinationCasesFromIds",
       "ReturnType": "IEnumerable<ILoadCase>",
@@ -35326,7 +35326,7 @@
       "Line": 1744
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetAllLoadCasesOfType",
       "ReturnType": "IEnumerable<ILoadCase>",
@@ -35343,7 +35343,7 @@
       "Line": 1779
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetLoadCase",
       "ReturnType": "ILoadCase",
@@ -35366,7 +35366,7 @@
       "Line": 1815
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetLoadCases",
       "ReturnType": "IEnumerable<ILoadCase>",
@@ -35395,7 +35395,7 @@
       "Line": 1851
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetLoadCasesFromIds",
       "ReturnType": "IEnumerable<ILoadCase>",
@@ -35418,7 +35418,7 @@
       "Line": 1889
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetLoadCasesOfType",
       "ReturnType": "List<ILoadCase>",
@@ -35435,7 +35435,7 @@
       "Line": 1919
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetEnvelopeIds",
       "ReturnType": "HashSet<int>",
@@ -35445,7 +35445,7 @@
       "Line": 1943
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetLoadEnvelopeDetail",
       "ReturnType": "ILoadEnvelopeDetail",
@@ -35462,7 +35462,7 @@
       "Line": 1975
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "GetAllLoadEnvelopeDetails",
       "ReturnType": "HashSet<ILoadEnvelopeDetail>",
@@ -35472,7 +35472,7 @@
       "Line": 2000
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "AddSelfweightInXYZTo",
       "ReturnType": "IOSLoad",
@@ -35513,7 +35513,7 @@
       "Line": 2032
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "CreateLoadEnvelopExt",
       "ReturnType": "IOSLoad",
@@ -35542,7 +35542,7 @@
       "Line": 2060
     },
     {
-      "File": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
+      "File": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
       "Owner": "IOSLoad",
       "Name": "CreateLoadList",
       "ReturnType": "dynamic",
@@ -36051,10 +36051,10 @@
       "repositoryConveniences": 5
     },
     "sourceFingerprints": {
-      "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs": "cb2227d2305cc17ad392f1c5bd52d332652d6c0c2252e0fc5467dd181b4a92db",
-      "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs": "ab3cfa1a49bd255a809e439c550adfb62808e48b245e54651adeb7a48031c3b6",
-      "src/StaadPro.Interop/Models/OpenStaadWrapper.cs": "1c0b69fe545a379262ad70cb1d1f9c45de872aba92e6eb4df218441455628692",
-      "src/StaadPro.Interop/StaadPro.Interop.csproj": "035570ef3e35b52a2772e2ec96b9bf886ce3d08d6e555c3d51ffd870de9f1a59"
+      "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs": "cb2227d2305cc17ad392f1c5bd52d332652d6c0c2252e0fc5467dd181b4a92db",
+      "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs": "ab3cfa1a49bd255a809e439c550adfb62808e48b245e54651adeb7a48031c3b6",
+      "src/StaadPro.Interop.Core/Models/OpenStaadWrapper.cs": "1c0b69fe545a379262ad70cb1d1f9c45de872aba92e6eb4df218441455628692",
+      "src/StaadPro.Interop.Core/StaadPro.Interop.Core.csproj": "035570ef3e35b52a2772e2ec96b9bf886ce3d08d6e555c3d51ffd870de9f1a59"
     },
     "managedOverloads": 90,
     "pendingReferenceOverloads": 30,
@@ -36125,32 +36125,32 @@
     "report": "docs/reports/OpenSTAAD-Load-Managed-Capability-Audit.md",
     "sourceFingerprints": [
       {
-        "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
-        "sha256": "e9ce0ec5fbd256760233633e9579a19f8d7a1d027728612e3868ce7973eda4e4"
+        "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
+        "sha256": "3f997138f4c21ac8ad970dcc87d81150d196137f69f6464a5e7edea8b040b0c6"
       },
       {
-        "file": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs",
-        "sha256": "d6f50b88bc7cf306cc9be7fd67d157d59cca574e9d007b909be87f0b132a23a9"
+        "file": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs",
+        "sha256": "3b3782d4a0b83effab4cc1b69713371af9db2e571da169b6a068ca1e52425960"
       },
       {
-        "file": "src/StaadPro.Interop/Models/OpenStaadWrapper.cs",
-        "sha256": "1c0b69fe545a379262ad70cb1d1f9c45de872aba92e6eb4df218441455628692"
+        "file": "src/StaadPro.Interop.Core/Models/OpenStaadWrapper.cs",
+        "sha256": "699fa1d30e680dfd9194b93e752d435d351a064981bcbd8a82c22b4cf11ce90e"
       },
       {
-        "file": "src/StaadPro.Interop/Extensions/MemberLoadExtensions.cs",
-        "sha256": "f4ffc025550a48dbb324fa662d4133d3a3538b5f7973d91e7cae3a8f1afb1c15"
+        "file": "src/StaadPro.Interop.Core/Extensions/MemberLoadExtensions.cs",
+        "sha256": "d7ec5ad585fa344d076163375b528ef662c3dae57743472adb5862234e861050"
       },
       {
-        "file": "src/StaadPro.Interop/Extensions/NodalLoadExtensions.cs",
-        "sha256": "0a6c90c45da09f1bea9ddb6d0b38f4131b3087219d1922a1e68f7b4399107dea"
+        "file": "src/StaadPro.Interop.Core/Extensions/NodalLoadExtensions.cs",
+        "sha256": "5a7bd08c8ec9eadad93b7656cdbf85260d3b634d7769094333dac6da814fced2"
       },
       {
-        "file": "src/StaadPro.Interop/Entities/MemberLoad.cs",
-        "sha256": "db38da1f76ebe7ff9b770cf79647a2c8abb394c000648978fd6ab2c851a5ebf0"
+        "file": "src/StaadPro.Interop.Core/Entities/MemberLoad.cs",
+        "sha256": "8b2d06a513024165c5f775405247b33253bd5371e8a38258057b8ef57edbab30"
       },
       {
-        "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSGeometry.cs",
-        "sha256": "a19e1dafa6c92994883e263e0c6efad487dcfab2cc4fe06dace5d355b4034afb"
+        "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSGeometry.cs",
+        "sha256": "9bb148078c814512e317d68b7b26e8eb1960771e58ba81617a712236631f8006"
       }
     ],
     "functions": [
@@ -37149,48 +37149,48 @@
     },
     "typeFingerprints": [
       {
-        "file": "src/StaadPro.Interop/Models/Loads/Contracts/AutomaticLoadGeneration.cs",
-        "sha256": "25b056c39c6dca62761977d38a76315d74d409c90250ff3cf3c0203423f077be"
+        "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/AutomaticLoadGeneration.cs",
+        "sha256": "befbf42bd1265834dbaae486a97991530485cbf9ac3a96c41399448c5e6bc0be"
       },
       {
-        "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadRegions.cs",
-        "sha256": "e5c0acad906ea6f1d5d6ea31ca80b2da686a77ca9429d8476f2f46eaf574ed13"
+        "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadRegions.cs",
+        "sha256": "2093238302fbea1a7dd7b6c3c2108f25fed1698b69779fa947abbf8808b1ede4"
       },
       {
-        "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadAssignmentDefinitions.cs",
-        "sha256": "7fc071b4bb6b33362626dbdcc0fc0d5ab7e32572f7d0a9a465ed3d52b44fd762"
+        "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadAssignmentDefinitions.cs",
+        "sha256": "28af5f552f077e22635ce417b31aaf62c14facbfa2c0041522676edc85d4f974"
       },
       {
-        "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadOperationResult.cs",
-        "sha256": "2487905af151c5953069059d14ddb792314988849e8a16595602414fc087bd66"
+        "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadOperationResult.cs",
+        "sha256": "aa94cbef7c681195b88de8f4ad97e0a2c0b475502861166ed6cd0a96577c6c25"
       },
       {
-        "file": "src/StaadPro.Interop/Models/Loads/Contracts/LoadInspectionData.cs",
-        "sha256": "65f8453f10ecfaca1cc4192dab37cf46ed1c9a29cc565e5cb82c71c05fef0a3f"
+        "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/LoadInspectionData.cs",
+        "sha256": "f4e72dd301d1988db913f240d7f6088a050386ec2b8558bdcfdd0fbc7fbb8427"
       },
       {
-        "file": "src/StaadPro.Interop/Models/Loads/Contracts/NodalLoadCommandInfo.cs",
-        "sha256": "0d2a9eeb4f98fbddadc4d0bf7fbcb4fae5870c1e929ecabdf51235ac25737cfc"
+        "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/NodalLoadCommandInfo.cs",
+        "sha256": "dc73041d722fa48c9fa97ef32288b04fed23bfb49dd61ca172515dca52aa6312"
       },
       {
-        "file": "src/StaadPro.Interop/Models/Loads/Contracts/BeamLoadMergeRequest.cs",
-        "sha256": "5e1251ed03596728e81990eb4e0c86e7e7815a0b4314b51af4e3e60acd9b5dff"
+        "file": "src/StaadPro.Interop.Core/Models/Loads/Contracts/BeamLoadMergeRequest.cs",
+        "sha256": "391cacc1784b45c14c5e09f9771d1d04606607383bb31eb868b283d9c7a6ae28"
       },
       {
-        "file": "src/StaadPro.Interop/Enums/GlobalAxis.cs",
-        "sha256": "eb3928712371ae0a4ed5b8a32144e4d0f7cf49fbaa21db10ecdca1d5a9196c99"
+        "file": "src/StaadPro.Interop.Core/Enums/GlobalAxis.cs",
+        "sha256": "a66ba104f7e888306ae9cd5570514010511bb4a413d17f4aeb57d6ff7e55bc83"
       },
       {
-        "file": "src/StaadPro.Interop/Enums/Loads/LoadContractOptions.cs",
-        "sha256": "419f57dd4b8ff9e2b3756459a2c93559ae7b3ded8939650106ebf3a44a117aa2"
+        "file": "src/StaadPro.Interop.Core/Enums/Loads/LoadContractOptions.cs",
+        "sha256": "266f1863be4decb78c1822bdc61b4108a43e5adb9f700627a822c6527ee78604"
       },
       {
-        "file": "src/StaadPro.Interop/Models/Loads/Queries/NotionalLoadContribution.cs",
-        "sha256": "98bff5b91f4be9f6c0e7eb57b2ce2c27b910e23a2738f192fbf8ccf325522dc6"
+        "file": "src/StaadPro.Interop.Core/Models/Loads/Queries/NotionalLoadContribution.cs",
+        "sha256": "f7e972956020aaade36373cb04adbe69bbd1a42d49d5a0c34c5436b16c51c8c1"
       },
       {
-        "file": "src/StaadPro.Interop/Services/Load/LoadContractArguments.cs",
-        "sha256": "d2d4455f5cb2c23528d9d38f151d1c8a4176c2676d1817570030ec6655b2c82b"
+        "file": "src/StaadPro.Interop.Core/Services/Load/LoadContractArguments.cs",
+        "sha256": "c65a9dba4b63942c4328943f7363df6f18f614c9f09b1ed7fa897e200062de00"
       }
     ],
     "approvedImplementation": "All 36 signatures promoted to IOSLoad and implemented through internal services."
@@ -37562,49 +37562,49 @@
     },
     "sourceFingerprints": [
       {
-        "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSLoad.cs",
-        "sha256": "c55bf626a493ff05187931561899f2fb03cedbcc5bc546bd0c569ad5a3643267",
-        "bytes": 244721
+        "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSLoad.cs",
+        "sha256": "3f997138f4c21ac8ad970dcc87d81150d196137f69f6464a5e7edea8b040b0c6",
+        "bytes": 247425
       },
       {
-        "file": "src/StaadPro.Interop/Adapters/Models/OSLoadAdapter.cs",
-        "sha256": "7fa5691fbbaaa724504f033d475c60047ed2e7b90b117615bb096a162c454048",
-        "bytes": 322102
+        "file": "src/StaadPro.Interop.Core/Adapters/Models/OSLoadAdapter.cs",
+        "sha256": "3b3782d4a0b83effab4cc1b69713371af9db2e571da169b6a068ca1e52425960",
+        "bytes": 327483
       },
       {
-        "file": "src/StaadPro.Interop/Services/Load/LoadAssignmentQueryService.cs",
-        "sha256": "8de60e7380a26e5500e047c1448e08eaa83cc935eb75f93f93e78beabce9c09f",
-        "bytes": 14784
+        "file": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentQueryService.cs",
+        "sha256": "ac1e273fc774f50e3ec7436ada6ec7d487b6ab8455b141665cfdf16c5bba9b4f",
+        "bytes": 14977
       },
       {
-        "file": "src/StaadPro.Interop/Services/Load/LoadAssignmentService.cs",
-        "sha256": "ede422b80d0a7d4c7ca1acd2d177db7ea305c9fd6c85650128adb5806a1f763b",
-        "bytes": 7788
+        "file": "src/StaadPro.Interop.Core/Services/Load/LoadAssignmentService.cs",
+        "sha256": "d9c59999725a3ad5792711666bc2f1265a6f933ce6894c283485f4f22f91c99b",
+        "bytes": 7920
       },
       {
-        "file": "src/StaadPro.Interop/Services/Load/LoadAutomaticGenerationService.cs",
-        "sha256": "088d93c7095a62554439acb837943b6520be789e81a67269fa570e58b9e7ba77",
-        "bytes": 4698
+        "file": "src/StaadPro.Interop.Core/Services/Load/LoadAutomaticGenerationService.cs",
+        "sha256": "a5554cdf3daa93f71ff1b886db5642bda17792bbc120a6344073c993cdef4d6a",
+        "bytes": 4778
       },
       {
-        "file": "src/StaadPro.Interop/Services/Load/LoadBeamTransferService.cs",
-        "sha256": "c84f567cab17a6558e779386da0a5dcbd821f11b57936a94a602ad259054958c",
-        "bytes": 4061
+        "file": "src/StaadPro.Interop.Core/Services/Load/LoadBeamTransferService.cs",
+        "sha256": "bb91507c65ab4c5b615c26c5b5ba0dec3df9bd14b982ec8e46201af9ed3e50eb",
+        "bytes": 4143
       },
       {
-        "file": "src/StaadPro.Interop/Services/Load/LoadCaseManagementService.cs",
-        "sha256": "fd735f59a6895f177a0cba754a64c5b33b0a9a98bd0805195cc67bfd145efa35",
-        "bytes": 4950
+        "file": "src/StaadPro.Interop.Core/Services/Load/LoadCaseManagementService.cs",
+        "sha256": "21cccf4ef9ba22fcc4ae1659862bfc7d6cf3f6fbb0fd095897c5d9722222b380",
+        "bytes": 5050
       },
       {
-        "file": "src/StaadPro.Interop/Services/Load/LoadInspectionService.cs",
-        "sha256": "3e9ec6723703dcdf1dfca5de4d8e6f7b90d36bd9323eca0e1b09603bc0f747c4",
-        "bytes": 24880
+        "file": "src/StaadPro.Interop.Core/Services/Load/LoadInspectionService.cs",
+        "sha256": "04e5e45aa54a4e76042567d6db7544fd55dd91f48359949185e67a61435a7918",
+        "bytes": 25251
       },
       {
-        "file": "src/StaadPro.Interop/Services/Load/LoadServiceContext.cs",
-        "sha256": "5426092d1a6cfd7dc85a883e91a225d782aaad6be795430264d1e7775c358b1f",
-        "bytes": 9735
+        "file": "src/StaadPro.Interop.Core/Services/Load/LoadServiceContext.cs",
+        "sha256": "f7b599ff45b93b817a7352f39905c3ccd5143c0e7209d37b45120a14a7a473d8",
+        "bytes": 9927
       }
     ]
   }

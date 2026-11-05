@@ -12,7 +12,7 @@ Queries return SupportQueryResult<T>; inspect IsSuccessful before Data. Native -
 
 Node IDs, support item/definition IDs and discovery indices are separate. The current creation/definition APIs support positive support references; a native zero is not assumed to be a created ID. Counts never enumerate an ID range. Only GetSupportedNodeIds discovers supported analytical nodes.
 
-Import `StaadPro.Interop.Models.Support` and `StaadPro.Interop.Enums.Support` for results/requests; the ported main-project SupportType, FoundationSupportDirection and FoundationSpringType remain under `StaadPro.Interop.Enums`. Examples assume `support = wrapper.Support` on the established COM apartment. Mutation examples are deliberately guarded.
+Import `StaadPro.Interop.Core.Models.Support` and `StaadPro.Interop.Core.Enums.Support` for results/requests; the ported main-project SupportType, FoundationSupportDirection and FoundationSpringType remain under `StaadPro.Interop.Core.Enums`. Examples assume `support = wrapper.Support` on the established COM apartment. Mutation examples are deliberately guarded.
 
 ## Implemented contracts
 
@@ -286,7 +286,7 @@ When to use: Use when creation flags and springs must be specified explicitly ra
 bool allowNativeMutation = false;
 if (allowNativeMutation)
 {
-    var definition = new FixedButSupportDefinition(new StaadPro.Interop.Entities.Releases { My = true, Mz = true }, new StaadPro.Interop.Entities.Springs());
+    var definition = new FixedButSupportDefinition(new StaadPro.Interop.Core.Entities.Releases { My = true, Mz = true }, new StaadPro.Interop.Core.Entities.Springs());
     var result = support.CreateFixedButSupport(definition);
     System.Console.WriteLine(result.Status);
 }

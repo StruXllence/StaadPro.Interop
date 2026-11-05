@@ -5067,29 +5067,29 @@
   ],
   "currentSourceEvidence": [
     {
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSProperty.cs",
-      "bytes": 611,
-      "sha256": "c4f3bfa21bd3bd60ef9b37833dec199408f9345bf18bfbf240c1acd80795d4ec"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSProperty.cs",
+      "bytes": 632802,
+      "sha256": "20814747ab8b9ab02ab79caa92eba2f7e5d3c7f353e1ab326ae0ac4891587ce2"
     },
     {
-      "file": "src/StaadPro.Interop/Adapters/Models/OSPropertyAdapter.cs",
-      "bytes": 1269,
-      "sha256": "d3075faa6b92777a8d95868229f37b60898fca596cb4b400cdfe09332960562c"
+      "file": "src/StaadPro.Interop.Core/Adapters/Models/OSPropertyAdapter.cs",
+      "bytes": 652097,
+      "sha256": "ca29657aa8b27adc689ccc12b254269e1521ee7da857ff0784d27b393f14dfe7"
     },
     {
-      "file": "src/StaadPro.Interop/Models/OpenStaadWrapper.cs",
-      "bytes": 21039,
-      "sha256": "1c0b69fe545a379262ad70cb1d1f9c45de872aba92e6eb4df218441455628692"
+      "file": "src/StaadPro.Interop.Core/Models/OpenStaadWrapper.cs",
+      "bytes": 21523,
+      "sha256": "699fa1d30e680dfd9194b93e752d435d351a064981bcbd8a82c22b4cf11ce90e"
     },
     {
-      "file": "src/StaadPro.Interop/Entities/Beam.cs",
-      "bytes": 9145,
-      "sha256": "6bb4f962f01b843672ae3284490c0ec05a91db9b8484c6913190d9de35822e19"
+      "file": "src/StaadPro.Interop.Core/Entities/Beam.cs",
+      "bytes": 11578,
+      "sha256": "c48d83e357c9eeac7b76b620e281f872e2c77591286364d7687f7566fdd196e7"
     },
     {
-      "file": "src/StaadPro.Interop/StaadPro.Interop.csproj",
-      "bytes": 5056,
-      "sha256": "035570ef3e35b52a2772e2ec96b9bf886ce3d08d6e555c3d51ffd870de9f1a59"
+      "file": "src/StaadPro.Interop.Core/StaadPro.Interop.Core.csproj",
+      "bytes": 11927,
+      "sha256": "5dd193498be7b52b8bf5e13729c946f9c0705a1a8b9a70e3c13f4a803168c7bf"
     }
   ],
   "readOnlyReferenceEvidence": [
@@ -5468,7 +5468,7 @@
     "2025": {
       "Enums": [],
       "AssemblyPath": "C:/Program Files/Bentley/Engineering/STAAD.Pro 2025/STAAD/StaadPro.Interop.dll",
-      "Identity": "StaadPro.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b4d201f8319cef86",
+      "Identity": "StaadPro.Interop.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b4d201f8319cef86",
       "Sha256": "CC724993AC9119138B7323E8C684997257E2851DE62E1551BA5D6D67A9DADC19",
       "Interface": "OpenSTAADUI.IOSPropertyUI",
       "Methods": [
@@ -11374,7 +11374,7 @@
     "2026": {
       "Enums": [],
       "AssemblyPath": "C:/Program Files/Bentley/Engineering/STAAD.Pro 2026/STAAD/StaadPro.Interop.dll",
-      "Identity": "StaadPro.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b4d201f8319cef86",
+      "Identity": "StaadPro.Interop.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b4d201f8319cef86",
       "Sha256": "6D153E80ED356A1B167ABB2EF19227FCFF510707A578AD304154652CC6C1F6D4",
       "Interface": "OpenSTAADUI.IOSPropertyUI",
       "Methods": [
@@ -74371,24 +74371,24 @@
     "guide": "docs/Property-Profile-Names-and-Final-Cleanup.md",
     "sourceEvidence": [
       {
-        "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSProperty.cs",
-        "bytes": 628409,
-        "sha256": "2c8fae7e4cbd4ce0c3fa862558d72b1e4190b9b118d0b165b08718a086afc702"
+        "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSProperty.cs",
+        "bytes": 632802,
+        "sha256": "20814747ab8b9ab02ab79caa92eba2f7e5d3c7f353e1ab326ae0ac4891587ce2"
       },
       {
-        "file": "src/StaadPro.Interop/Adapters/Models/OSPropertyAdapter.cs",
-        "bytes": 647591,
-        "sha256": "09397e3bfdd746e2e1a176962eda08e029d5f52bda24eb5a19e74e661d9f39a9"
+        "file": "src/StaadPro.Interop.Core/Adapters/Models/OSPropertyAdapter.cs",
+        "bytes": 652097,
+        "sha256": "ca29657aa8b27adc689ccc12b254269e1521ee7da857ff0784d27b393f14dfe7"
       },
       {
-        "file": "src/StaadPro.Interop/Services/Property/PropertyCleanupReader.cs",
-        "bytes": 14640,
-        "sha256": "7722e2914259c50bfaa4dc16acdb281b81dd43c4c8b0872cfaedf8592250d13a"
+        "file": "src/StaadPro.Interop.Core/Services/Property/PropertyCleanupReader.cs",
+        "bytes": 14853,
+        "sha256": "a2ea38c54e6e1806226b24cd5f474477f63ef924e167b7b830a8f6ccdfd9038b"
       },
       {
-        "file": "tests/StaadPro.Interop.Tests/Adapter/OSPropertyCompletionTests.cs",
-        "bytes": 9847,
-        "sha256": "01200b594505a9b20275e513525e39156762390e6aecf4bd0ce50e374a586f37"
+        "file": "tests/StaadPro.Interop.Core.Tests/Adapter/OSPropertyCompletionTests.cs",
+        "bytes": 10020,
+        "sha256": "0e704fc96a9b385ed49079e9adb00f9f5bcc8ed4b234d2f343dbc80d5405fadf"
       }
     ]
   },
@@ -74567,7 +74567,7 @@
             "memberId"
           ],
           "Line": 46,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "GetBetaAngle",
           "methodLine": 41
         },
@@ -74578,7 +74578,7 @@
           "GenericArity": 0,
           "Arguments": [],
           "Line": 53,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "GetElementOffsetSpecificationCount",
           "methodLine": 51
         },
@@ -74595,7 +74595,7 @@
             "ref z"
           ],
           "Line": 80,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "MemberOffset",
           "methodLine": 74
         },
@@ -74612,7 +74612,7 @@
             "ref z"
           ],
           "Line": 81,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "MemberOffset",
           "methodLine": 74
         },
@@ -74629,7 +74629,7 @@
             "ref z"
           ],
           "Line": 93,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "PlateOffset",
           "methodLine": 87
         },
@@ -74646,7 +74646,7 @@
             "ref z"
           ],
           "Line": 94,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "PlateOffset",
           "methodLine": 87
         },
@@ -74664,7 +74664,7 @@
             "ref z"
           ],
           "Line": 104,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "GetPlateOffsetSpecification",
           "methodLine": 98
         },
@@ -74677,7 +74677,7 @@
             "plateId"
           ],
           "Line": 121,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "GetPlateSectionPropertyId",
           "methodLine": 112
         },
@@ -74695,7 +74695,7 @@
             "ref factors"
           ],
           "Line": 141,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "Release",
           "methodLine": 134
         },
@@ -74711,7 +74711,7 @@
             "ref parameters"
           ],
           "Line": 142,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "Release",
           "methodLine": 134
         },
@@ -74734,7 +74734,7 @@
             "ref web"
           ],
           "Line": 176,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "Section",
           "methodLine": 168
         },
@@ -74755,7 +74755,7 @@
             "ref iz"
           ],
           "Line": 177,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "Section",
           "methodLine": 168
         },
@@ -74773,7 +74773,7 @@
             "ref damping"
           ],
           "Line": 191,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "GetMemberMaterialConstants",
           "methodLine": 185
         },
@@ -74786,7 +74786,7 @@
             "entityId"
           ],
           "Line": 208,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "EntityMaterialName",
           "methodLine": 202
         },
@@ -74799,7 +74799,7 @@
             "entityId"
           ],
           "Line": 208,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "EntityMaterialName",
           "methodLine": 202
         },
@@ -74810,7 +74810,7 @@
           "GenericArity": 0,
           "Arguments": [],
           "Line": 217,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "GetIsotropicMaterialCount",
           "methodLine": 215
         },
@@ -74821,7 +74821,7 @@
           "GenericArity": 0,
           "Arguments": [],
           "Line": 222,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "GetOrthotropic2DMaterialCount",
           "methodLine": 220
         },
@@ -74834,7 +74834,7 @@
             "materialName"
           ],
           "Line": 225,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "AssignedCount",
           "methodLine": 225
         },
@@ -74848,7 +74848,7 @@
             "ref ids"
           ],
           "Line": 251,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "GetIsotropicMaterialAssignedMemberIds",
           "methodLine": 238
         },
@@ -74871,7 +74871,7 @@
             "ref fcu"
           ],
           "Line": 272,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "NamedMaterial",
           "methodLine": 264
         },
@@ -74889,7 +74889,7 @@
             "ref damping"
           ],
           "Line": 273,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "NamedMaterial",
           "methodLine": 264
         },
@@ -74900,7 +74900,7 @@
           "GenericArity": 0,
           "Arguments": [],
           "Line": 293,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "IndexedMaterial",
           "methodLine": 287
         },
@@ -74924,7 +74924,7 @@
             "ref fcu"
           ],
           "Line": 297,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "IndexedMaterial",
           "methodLine": 287
         },
@@ -74943,7 +74943,7 @@
             "ref damping"
           ],
           "Line": 298,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "IndexedMaterial",
           "methodLine": 287
         },
@@ -74954,7 +74954,7 @@
           "GenericArity": 0,
           "Arguments": [],
           "Line": 303,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "IndexedMaterial",
           "methodLine": 287
         },
@@ -74974,7 +74974,7 @@
             "ref assigned"
           ],
           "Line": 315,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "GetIsotropicMaterialPropertiesAssigned",
           "methodLine": 308
         },
@@ -74993,7 +74993,7 @@
             "ref damping"
           ],
           "Line": 331,
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
           "caller": "GetOrthotropic2DMaterialProperties",
           "methodLine": 324
         }
@@ -75046,59 +75046,59 @@
       "baselineSourceEvidenceNote": "The top-level currentSourceEvidence retains the original comparison snapshot at baselineCommit. Implementation source evidence below describes the current increment.",
       "sourceEvidence": [
         {
-          "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSProperty.cs",
-          "bytes": 70466,
-          "sha256": "47cd4e81b3bd577fc81b6dfb1fa83670f133eb2c12e23323107250ec1d729924"
+          "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSProperty.cs",
+          "bytes": 632802,
+          "sha256": "20814747ab8b9ab02ab79caa92eba2f7e5d3c7f353e1ab326ae0ac4891587ce2"
         },
         {
-          "file": "src/StaadPro.Interop/Adapters/Models/OSPropertyAdapter.cs",
-          "bytes": 73096,
-          "sha256": "d48f038286f5183ccec8d70f5107d4278778959f7c576d229a5a1b7938628000"
+          "file": "src/StaadPro.Interop.Core/Adapters/Models/OSPropertyAdapter.cs",
+          "bytes": 652097,
+          "sha256": "ca29657aa8b27adc689ccc12b254269e1521ee7da857ff0784d27b393f14dfe7"
         },
         {
-          "file": "src/StaadPro.Interop/Services/Property/PropertyQueryReader.cs",
-          "bytes": 26863,
-          "sha256": "66f0332b39b0225ff91888d4a7757622e3a5ad9aa12536acec34be3e0efce1ed"
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyQueryReader.cs",
+          "bytes": 27419,
+          "sha256": "fcc552cc98f3913d406912afcfcc4c09e0da3b3e1392751084808b955f942458"
         },
         {
-          "file": "src/StaadPro.Interop/Services/Property/PropertyValueReader.cs",
-          "bytes": 3495,
-          "sha256": "b681570c8a2ce8666a4afba5d4edab07405934dfc029cf3eacdffb844cad5663"
+          "file": "src/StaadPro.Interop.Core/Services/Property/PropertyValueReader.cs",
+          "bytes": 3570,
+          "sha256": "9461245c50e0274d5425da81cb2215cf8aef8f430b0d4cdf1fc943b813e995a2"
         },
         {
-          "file": "src/StaadPro.Interop/Models/Property/BeamSectionProperties.cs",
-          "bytes": 2373,
-          "sha256": "faf6bb011bbebdcbe525a0686f63daf777b582a32bcede50b9cefe681dc94d3f"
+          "file": "src/StaadPro.Interop.Core/Models/Property/BeamSectionProperties.cs",
+          "bytes": 2410,
+          "sha256": "f1ae9e23103faa1fb9d33dd8948b6a49a4c94f59efe57221e8bd4baca91f7e27"
         },
         {
-          "file": "src/StaadPro.Interop/Models/Property/ElementOffsetSpecification.cs",
-          "bytes": 945,
-          "sha256": "d783392e11eacc8027bd8e17b5dc3e0448addc7eee24d5ef3468629ed7317983"
+          "file": "src/StaadPro.Interop.Core/Models/Property/ElementOffsetSpecification.cs",
+          "bytes": 972,
+          "sha256": "8abedea0657e4c1e11e2d5b6d7ae061da64b85d2fedb4031414da989e38f5d3e"
         },
         {
-          "file": "src/StaadPro.Interop/Models/Property/MaterialProperties.cs",
-          "bytes": 3973,
-          "sha256": "65b83d80d34dde43ce6f6e9b8fa54b0926cb99a3ac2c8aaf060eaaa77319d833"
+          "file": "src/StaadPro.Interop.Core/Models/Property/MaterialProperties.cs",
+          "bytes": 4043,
+          "sha256": "f0fb44cb88f8ee152e6cd7116c21fa879ce120eb79dfe4a189cfc44c50be1023"
         },
         {
-          "file": "src/StaadPro.Interop/Models/Property/MemberReleaseSpecification.cs",
-          "bytes": 4144,
-          "sha256": "55c1490995936a3dc8e4719827ef422db7904abcfe54cc49b659cdc2d68a9130"
+          "file": "src/StaadPro.Interop.Core/Models/Property/MemberReleaseSpecification.cs",
+          "bytes": 4213,
+          "sha256": "dacc2460d1bbb6c1c13ba95d908373f9d437a85afd7d3266973aa6e4cfc0faac"
         },
         {
-          "file": "src/StaadPro.Interop/Models/Property/Orthotropic2DMaterialProperties.cs",
-          "bytes": 3616,
-          "sha256": "4ea05162004158af409e0ba4cfdafaffd9ef5c7aed743dbce18997faf9ca7023"
+          "file": "src/StaadPro.Interop.Core/Models/Property/Orthotropic2DMaterialProperties.cs",
+          "bytes": 3661,
+          "sha256": "574a0aec3ab3db98737817981ad2021291485de0dbce17751ff45feb907e3a26"
         },
         {
-          "file": "src/StaadPro.Interop/Models/Property/PropertyQueryResult.cs",
-          "bytes": 2545,
-          "sha256": "21975e7155c6630a125bd888715f800e1812f6abedb22e6cd056a3a4c123d961"
+          "file": "src/StaadPro.Interop.Core/Models/Property/PropertyQueryResult.cs",
+          "bytes": 2588,
+          "sha256": "35e4c38ceaac3f505626f41e0c72bf267f84a80579c237ee388d32b86f837f6b"
         },
         {
-          "file": "src/StaadPro.Interop/Enums/Property/PropertyQueryStatus.cs",
-          "bytes": 3318,
-          "sha256": "906ecaf401514d3c1bb1f72f6e45f5bdc27fc41887a81d198068585494c5b9a2"
+          "file": "src/StaadPro.Interop.Core/Enums/Property/PropertyQueryStatus.cs",
+          "bytes": 3389,
+          "sha256": "42e2b5604671b9add6b8920f3395f86d1e6ef883673fc4285705433cbe308480"
         }
       ]
     },

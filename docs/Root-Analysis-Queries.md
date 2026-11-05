@@ -16,8 +16,8 @@ With an existing connected wrapper:
 
 ```csharp
 using System;
-using StaadPro.Interop.Enums.Root;
-using StaadPro.Interop.Models.Root;
+using StaadPro.Interop.Core.Enums.Root;
+using StaadPro.Interop.Core.Models.Root;
 
 var root = wrapper.Root;
 Console.WriteLine(root.IsAnalyzing());
@@ -102,9 +102,9 @@ No Bentley assembly reference or binary was added to this project. Inspection do
 <details>
 <summary>Inspected Bentley assembly fingerprints, 15 October 2026</summary>
 
-Both inspected files have assembly identity `StaadPro.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b4d201f8319cef86` and are located under each product installation's `STAAD` directory.
+Both inspected files have assembly identity `StaadPro.Interop.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b4d201f8319cef86` and are located under each product installation's `STAAD` directory.
 
-| Product | SHA-256 of installed `StaadPro.Interop.dll` |
+| Product | SHA-256 of installed `StaadPro.Interop.Core.dll` |
 | --- | --- |
 | 2025 | `CC724993AC9119138B7323E8C684997257E2851DE62E1551BA5D6D67A9DADC19` |
 | 2026 | `6D153E80ED356A1B167ABB2EF19227FCFF510707A578AD304154652CC6C1F6D4` |

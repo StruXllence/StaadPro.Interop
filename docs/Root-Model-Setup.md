@@ -39,7 +39,7 @@ The new length setter sends documented alias code 1 unchanged. The existing name
 Wrapper metadata is cached. Explicitly refresh when a fresh snapshot is needed:
 
 ```csharp
-using StaadPro.Interop.Enums;
+using StaadPro.Interop.Core.Enums;
 
 uint processId = wrapper.Root.GetProcessId();
 wrapper.Root.SetInputUnitForLength(LengthInputUnit.Meter);
@@ -56,7 +56,7 @@ All three job strings must be non-null. Empty strings, whitespace, Unicode and l
 The object overload reads Name, Client and Originator once into local string snapshots. It rejects a null object or any null short field before native access. Coordinate concurrent edits when a coherent snapshot is needed; three property reads are not an atomic transaction. A FullJobInfo can be passed through its inherited short fields, but dates and other full-job properties are not submitted.
 
 ```csharp
-using StaadPro.Interop.Models;
+using StaadPro.Interop.Core.Models;
 
 var jobInfo = ShortJobInfo.From("Frame study", "Client", "Engineer");
 wrapper.Root.SetShortJobInfo(jobInfo);

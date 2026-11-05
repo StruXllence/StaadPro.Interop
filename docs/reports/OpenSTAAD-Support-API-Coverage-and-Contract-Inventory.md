@@ -1475,17 +1475,17 @@ Every one of the 33 interface overloads has a corresponding public adapter metho
 | 2025 | [Installed interop](file:///C:/Program%20Files/Bentley/Engineering/STAAD.Pro%202025/STAAD/StaadPro.Interop.dll) | 35 | `CC724993AC9119138B7323E8C684997257E2851DE62E1551BA5D6D67A9DADC19` |
 | 2026 | [Installed interop](file:///C:/Program%20Files/Bentley/Engineering/STAAD.Pro%202026/STAAD/StaadPro.Interop.dll) | 35 | `6D153E80ED356A1B167ABB2EF19227FCFF510707A578AD304154652CC6C1F6D4` |
 
-Both identities are `StaadPro.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b4d201f8319cef86`. Method names, CLR returns/parameters and metadata match across 2025/2026. No enum parameter types appear in this interface metadata. No 2024 interop DLL was found at the corresponding expected installed path; this is not proof of native COM absence.
+Both identities are `StaadPro.Interop.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b4d201f8319cef86`. Method names, CLR returns/parameters and metadata match across 2025/2026. No enum parameter types appear in this interface metadata. No 2024 interop DLL was found at the corresponding expected installed path; this is not proof of native COM absence.
 
 ### Current source fingerprints
 
 | Source | SHA-256 |
 | --- | --- |
-| [IOSSupport.cs](../../src/StaadPro.Interop/Adapters/Interfaces/IOSSupport.cs) | `4a3f0f9fa4f7f4ff33838a254c87b16d19f8885c9b1e18c80fbc129b658dff75` |
-| [OSSupportAdapter.cs](../../src/StaadPro.Interop/Adapters/Models/OSSupportAdapter.cs) | `9838a58497367cd308ecd152001dbc0e197567eceb49172f3bf154de1ea69f46` |
-| [OpenStaadWrapper.cs](../../src/StaadPro.Interop/Models/OpenStaadWrapper.cs) | `1c0b69fe545a379262ad70cb1d1f9c45de872aba92e6eb4df218441455628692` |
-| [UnitsConverter.cs](../../src/StaadPro.Interop/Common/Units/UnitsConverter.cs) | `ada5c77a1b653d1b2ffde985978bfbe59149a426481276e0504ef0877c5eea8d` |
-| [StaadPro.Interop.csproj](../../src/StaadPro.Interop/StaadPro.Interop.csproj) | `035570ef3e35b52a2772e2ec96b9bf886ce3d08d6e555c3d51ffd870de9f1a59` |
+| [IOSSupport.cs](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSSupport.cs) | `4a3f0f9fa4f7f4ff33838a254c87b16d19f8885c9b1e18c80fbc129b658dff75` |
+| [OSSupportAdapter.cs](../../src/StaadPro.Interop.Core/Adapters/Models/OSSupportAdapter.cs) | `9838a58497367cd308ecd152001dbc0e197567eceb49172f3bf154de1ea69f46` |
+| [OpenStaadWrapper.cs](../../src/StaadPro.Interop.Core/Models/OpenStaadWrapper.cs) | `1c0b69fe545a379262ad70cb1d1f9c45de872aba92e6eb4df218441455628692` |
+| [UnitsConverter.cs](../../src/StaadPro.Interop.Core/Common/Units/UnitsConverter.cs) | `ada5c77a1b653d1b2ffde985978bfbe59149a426481276e0504ef0877c5eea8d` |
+| [StaadPro.Interop.Core.csproj](../../src/StaadPro.Interop.Core/StaadPro.Interop.Core.csproj) | `035570ef3e35b52a2772e2ec96b9bf886ce3d08d6e555c3d51ffd870de9f1a59` |
 
 ### Strictly read-only main-source fingerprints
 

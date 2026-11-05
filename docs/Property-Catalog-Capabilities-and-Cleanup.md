@@ -152,7 +152,7 @@ Invalid inputs fail before native dispatch. Stale/disposed bindings, malformed n
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed targets.
 if (applyChanges)
 {
-    var result = property.DeleteMemberReleaseSpec(101, StaadPro.Interop.Enums.MemberEnd.Start);
+    var result = property.DeleteMemberReleaseSpec(101, StaadPro.Interop.Core.Enums.MemberEnd.Start);
     System.Console.WriteLine(result.Status);
 }
 ```
@@ -315,7 +315,7 @@ Invalid inputs fail before native dispatch. Stale/disposed bindings, malformed n
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed targets.
 if (applyChanges)
 {
-    var result = property.RemoveMemberReleaseSpecFromBeam(101, StaadPro.Interop.Enums.MemberEnd.Start);
+    var result = property.RemoveMemberReleaseSpecFromBeam(101, StaadPro.Interop.Core.Enums.MemberEnd.Start);
     System.Console.WriteLine(result.Status);
 }
 ```
@@ -343,7 +343,7 @@ Invalid inputs fail before native dispatch. Stale/disposed bindings, malformed n
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed targets.
 if (applyChanges)
 {
-    var result = property.RemoveMemberOffsetSpecFromBeam(101, StaadPro.Interop.Enums.MemberEnd.Start);
+    var result = property.RemoveMemberOffsetSpecFromBeam(101, StaadPro.Interop.Core.Enums.MemberEnd.Start);
     System.Console.WriteLine(result.Status);
 }
 ```
@@ -506,7 +506,7 @@ Invalid inputs fail before native dispatch. Stale/disposed bindings, malformed n
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed targets.
 if (applyChanges)
 {
-    var result = property.RemoveMemberCableSpecFromBeam(101, StaadPro.Interop.Enums.Property.CableDefinitionKind.InitialTension);
+    var result = property.RemoveMemberCableSpecFromBeam(101, StaadPro.Interop.Core.Enums.Property.CableDefinitionKind.InitialTension);
     System.Console.WriteLine(result.Status);
 }
 ```

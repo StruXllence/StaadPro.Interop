@@ -1,14 +1,14 @@
 // APPROVED CONTRACT SNAPSHOT: compiled into the test assembly, never the production/NuGet assembly.
 using System;
 using System.Collections.Generic;
-using StaadPro.Interop.Adapters.Interfaces;
-using StaadPro.Interop.Entities;
-using StaadPro.Interop.Enums;
-using StaadPro.Interop.Enums.Loads;
-using StaadPro.Interop.Models.Loads.Contracts;
-using StaadPro.Interop.Models.Loads.Queries;
+using StaadPro.Interop.Core.Adapters.Interfaces;
+using StaadPro.Interop.Core.Entities;
+using StaadPro.Interop.Core.Enums;
+using StaadPro.Interop.Core.Enums.Loads;
+using StaadPro.Interop.Core.Models.Loads.Contracts;
+using StaadPro.Interop.Core.Models.Loads.Queries;
 
-namespace StaadPro.Interop.ContractReview
+namespace StaadPro.Interop.Core.ContractReview
 {
     /// <summary>Compile-checked approved signature snapshot; implementations are exposed by IOSLoad.</summary>
     /// <remarks>All 15 existing inspection operations are inherited without signature changes. Covered

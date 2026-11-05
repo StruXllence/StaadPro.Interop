@@ -23,7 +23,7 @@ Public contracts live in Adapters/Interfaces, including Capabilities. OSRootAdap
 ## Acquiring optional operations
 
 ```csharp
-using StaadPro.Interop.Enums.Root;
+using StaadPro.Interop.Core.Enums.Root;
 
 var grant = wrapper.Root.Capabilities.GetAdinaExport();
 if (!grant.IsAvailable)

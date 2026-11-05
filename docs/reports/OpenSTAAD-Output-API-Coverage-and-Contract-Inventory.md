@@ -2578,18 +2578,18 @@ File fingerprints identify the exact reviewed installed documentation and source
 | 2025 | [Installed interop assembly](file:///C:/Program%20Files/Bentley/Engineering/STAAD.Pro%202025/STAAD/StaadPro.Interop.dll) | 72 | `CC724993AC9119138B7323E8C684997257E2851DE62E1551BA5D6D67A9DADC19` |
 | 2026 | [Installed interop assembly](file:///C:/Program%20Files/Bentley/Engineering/STAAD.Pro%202026/STAAD/StaadPro.Interop.dll) | 72 | `6D153E80ED356A1B167ABB2EF19227FCFF510707A578AD304154652CC6C1F6D4` |
 
-Both assembly identities are `StaadPro.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b4d201f8319cef86`. The passive inspection ran in separate Windows PowerShell processes to avoid assembly-identity unification; no COM activation occurred. No corresponding 2024 vendor interop assembly was found at the expected STAAD subfolder.
+Both assembly identities are `StaadPro.Interop.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b4d201f8319cef86`. The passive inspection ran in separate Windows PowerShell processes to avoid assembly-identity unification; no COM activation occurred. No corresponding 2024 vendor interop assembly was found at the expected STAAD subfolder.
 
 ### Current source fingerprints
 
 | Source | Bytes | SHA-256 |
 | --- | --- | --- |
-| [IOSOutput.cs](../../src/StaadPro.Interop/Adapters/Interfaces/IOSOutput.cs) | 605 | `bf16e384858875ab718bd58daa5bc8a6b69f84a26dd78ba19776beda7d6e8366` |
-| [OSOutputAdapter.cs](../../src/StaadPro.Interop/Adapters/Models/OSOutputAdapter.cs) | 1245 | `9871341acede230cbd4197e1b0a2f551578beaad8432c9cfce0b0da05393fd3d` |
-| [OpenStaadWrapper.cs](../../src/StaadPro.Interop/Models/OpenStaadWrapper.cs) | 21039 | `1c0b69fe545a379262ad70cb1d1f9c45de872aba92e6eb4df218441455628692` |
-| [RootMemberForcesService.cs](../../src/StaadPro.Interop/Services/Root/Analysis/RootMemberForcesService.cs) | 4436 | `53f374a6b497f66d49d8d1ae59d61505274f5c3c582b55ecf6f9022e50beec92` |
-| [MemberForcesResult.cs](../../src/StaadPro.Interop/Models/Root/MemberForcesResult.cs) | 2208 | `ad876d0290a43337013b1347a44268a70c95cbd6068db1f02cf626157b6ba33e` |
-| [StaadPro.Interop.csproj](../../src/StaadPro.Interop/StaadPro.Interop.csproj) | 5056 | `035570ef3e35b52a2772e2ec96b9bf886ce3d08d6e555c3d51ffd870de9f1a59` |
+| [IOSOutput.cs](../../src/StaadPro.Interop.Core/Adapters/Interfaces/IOSOutput.cs) | 605 | `bf16e384858875ab718bd58daa5bc8a6b69f84a26dd78ba19776beda7d6e8366` |
+| [OSOutputAdapter.cs](../../src/StaadPro.Interop.Core/Adapters/Models/OSOutputAdapter.cs) | 1245 | `9871341acede230cbd4197e1b0a2f551578beaad8432c9cfce0b0da05393fd3d` |
+| [OpenStaadWrapper.cs](../../src/StaadPro.Interop.Core/Models/OpenStaadWrapper.cs) | 21039 | `1c0b69fe545a379262ad70cb1d1f9c45de872aba92e6eb4df218441455628692` |
+| [RootMemberForcesService.cs](../../src/StaadPro.Interop.Core/Services/Root/Analysis/RootMemberForcesService.cs) | 4436 | `53f374a6b497f66d49d8d1ae59d61505274f5c3c582b55ecf6f9022e50beec92` |
+| [MemberForcesResult.cs](../../src/StaadPro.Interop.Core/Models/Root/MemberForcesResult.cs) | 2208 | `ad876d0290a43337013b1347a44268a70c95cbd6068db1f02cf626157b6ba33e` |
+| [StaadPro.Interop.Core.csproj](../../src/StaadPro.Interop.Core/StaadPro.Interop.Core.csproj) | 5056 | `035570ef3e35b52a2772e2ec96b9bf886ce3d08d6e555c3d51ffd870de9f1a59` |
 
 ### Read-only main-source fingerprints
 

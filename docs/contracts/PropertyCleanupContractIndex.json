@@ -105,7 +105,7 @@
       "summary": "Delete MEMBER RELEASE specification.",
       "returns": "Succeeded for actual Boolean true or integral one; NativeFailure for Boolean false or integral zero. Other scalar shapes/codes are rejected. The actual native Boolean/integer response and requested target identity are retained separately.",
       "remarks": "When to use: Removes the specified assignment/specification using the named native route; it does not imply deletion of a shared section/material/specification definition. Uses the captured Property receiver and shared serialization gate on the caller thread. Invalid input is rejected before native mutation. No save, analysis, retry, implicit assignment or rollback is added. Failure or a transport/stale-binding exception can leave partial native changes. A successful acknowledgement does not establish persistence, definition deletion, model-wide atomicity or engineering adequacy.",
-      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed targets.\nif (applyChanges)\n{\n    var result = property.DeleteMemberReleaseSpec(101, StaadPro.Interop.Enums.MemberEnd.Start);\n    System.Console.WriteLine(result.Status);\n}",
+      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed targets.\nif (applyChanges)\n{\n    var result = property.DeleteMemberReleaseSpec(101, StaadPro.Interop.Core.Enums.MemberEnd.Start);\n    System.Console.WriteLine(result.Status);\n}",
       "mutation": true,
       "policy": "flag",
       "typedParameters": [
@@ -257,7 +257,7 @@
       "summary": "Removes the member specification from a particular member at the provided location (Start or End)..",
       "returns": "Succeeded for actual Boolean true or integral one; NativeFailure for Boolean false or integral zero. Other scalar shapes/codes are rejected. The actual native Boolean/integer response and requested target identity are retained separately.",
       "remarks": "When to use: Removes the specified assignment/specification using the named native route; it does not imply deletion of a shared section/material/specification definition. Uses the captured Property receiver and shared serialization gate on the caller thread. Invalid input is rejected before native mutation. No save, analysis, retry, implicit assignment or rollback is added. Failure or a transport/stale-binding exception can leave partial native changes. A successful acknowledgement does not establish persistence, definition deletion, model-wide atomicity or engineering adequacy.",
-      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed targets.\nif (applyChanges)\n{\n    var result = property.RemoveMemberReleaseSpecFromBeam(101, StaadPro.Interop.Enums.MemberEnd.Start);\n    System.Console.WriteLine(result.Status);\n}",
+      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed targets.\nif (applyChanges)\n{\n    var result = property.RemoveMemberReleaseSpecFromBeam(101, StaadPro.Interop.Core.Enums.MemberEnd.Start);\n    System.Console.WriteLine(result.Status);\n}",
       "mutation": true,
       "policy": "flag",
       "typedParameters": [
@@ -295,7 +295,7 @@
       "summary": "Removes the member offset specification from a particular member at the provided location (Start or End).",
       "returns": "Succeeded for actual Boolean true or integral one; NativeFailure for Boolean false or integral zero. Other scalar shapes/codes are rejected. The actual native Boolean/integer response and requested target identity are retained separately.",
       "remarks": "When to use: Removes the specified assignment/specification using the named native route; it does not imply deletion of a shared section/material/specification definition. Uses the captured Property receiver and shared serialization gate on the caller thread. Invalid input is rejected before native mutation. No save, analysis, retry, implicit assignment or rollback is added. Failure or a transport/stale-binding exception can leave partial native changes. A successful acknowledgement does not establish persistence, definition deletion, model-wide atomicity or engineering adequacy.",
-      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed targets.\nif (applyChanges)\n{\n    var result = property.RemoveMemberOffsetSpecFromBeam(101, StaadPro.Interop.Enums.MemberEnd.Start);\n    System.Console.WriteLine(result.Status);\n}",
+      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed targets.\nif (applyChanges)\n{\n    var result = property.RemoveMemberOffsetSpecFromBeam(101, StaadPro.Interop.Core.Enums.MemberEnd.Start);\n    System.Console.WriteLine(result.Status);\n}",
       "mutation": true,
       "policy": "flag",
       "typedParameters": [
@@ -473,7 +473,7 @@
       "summary": "Removes the member cable specification from a particular member at the provided location type (Tension or Length).",
       "returns": "Succeeded for actual Boolean true or integral one; NativeFailure for Boolean false or integral zero. Other scalar shapes/codes are rejected. The actual native Boolean/integer response and requested target identity are retained separately.",
       "remarks": "When to use: Removes the specified assignment/specification using the named native route; it does not imply deletion of a shared section/material/specification definition. Uses the captured Property receiver and shared serialization gate on the caller thread. Invalid input is rejected before native mutation. No save, analysis, retry, implicit assignment or rollback is added. Failure or a transport/stale-binding exception can leave partial native changes. A successful acknowledgement does not establish persistence, definition deletion, model-wide atomicity or engineering adequacy.",
-      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed targets.\nif (applyChanges)\n{\n    var result = property.RemoveMemberCableSpecFromBeam(101, StaadPro.Interop.Enums.Property.CableDefinitionKind.InitialTension);\n    System.Console.WriteLine(result.Status);\n}",
+      "example": "bool applyChanges = false; // Enable only for the intended/disposable model and reviewed targets.\nif (applyChanges)\n{\n    var result = property.RemoveMemberCableSpecFromBeam(101, StaadPro.Interop.Core.Enums.Property.CableDefinitionKind.InitialTension);\n    System.Console.WriteLine(result.Status);\n}",
       "mutation": true,
       "policy": "flag",
       "typedParameters": [

@@ -24,7 +24,7 @@
       "example": "var beam = new Beam(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0));\nvar loadCases = new ILoadCase[] { new LoadCase(1, \"Dead\") };\nvar result = wrapper.Output.GetSteelDesignResultsForBeam(beam, loadCases);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",
       "signature": "OutputQueryResult<BeamSteelDesignResults> GetSteelDesignResultsForBeam(Beam beam, IEnumerable<ILoadCase> loadCases)",
       "sourceSignature": "MemberSteelDesignResults GetSteelDesignResultsForBeam(Beam beam, IEnumerable<ILoadCase> allLoadCases)",
-      "xmlSignature": "GetSteelDesignResultsForBeam(StaadPro.Interop.Entities.Beam,System.Collections.Generic.IEnumerable{StaadPro.Interop.Entities.ILoadCase})"
+      "xmlSignature": "GetSteelDesignResultsForBeam(StaadPro.Interop.Core.Entities.Beam,System.Collections.Generic.IEnumerable{StaadPro.Interop.Core.Entities.ILoadCase})"
     },
     {
       "returnType": "OutputQueryResult<BeamSteelDesignResults>",
@@ -46,7 +46,7 @@
       "example": "var beam = new Beam(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0));\nvar loadCases = new ILoadCase[] { new LoadCase(1, \"Dead\") };\nvar result = wrapper.Output.GetSteelDesignResultsForBeam(wrapper.Load, beam);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",
       "signature": "OutputQueryResult<BeamSteelDesignResults> GetSteelDesignResultsForBeam(IOSLoad load, Beam beam)",
       "sourceSignature": "MemberSteelDesignResults GetSteelDesignResultsForBeam(IOSLoad load, Beam beam)",
-      "xmlSignature": "GetSteelDesignResultsForBeam(StaadPro.Interop.Adapters.Interfaces.IOSLoad,StaadPro.Interop.Entities.Beam)"
+      "xmlSignature": "GetSteelDesignResultsForBeam(StaadPro.Interop.Core.Adapters.Interfaces.IOSLoad,StaadPro.Interop.Core.Entities.Beam)"
     },
     {
       "returnType": "OutputBatchResult<BeamSteelDesignResults>",
@@ -68,7 +68,7 @@
       "example": "var beam = new Beam(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0));\nvar loadCases = new ILoadCase[] { new LoadCase(1, \"Dead\") };\nvar result = wrapper.Output.GetSteelDesignResultsForBeams(new[] { beam }, loadCases);\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data);\n    else System.Console.WriteLine(item.Status);",
       "signature": "OutputBatchResult<BeamSteelDesignResults> GetSteelDesignResultsForBeams(IEnumerable<Beam> beams, IEnumerable<ILoadCase> loadCases)",
       "sourceSignature": "IEnumerable<MemberSteelDesignResults> GetSteelDesignResultsForBeams(IEnumerable<Beam> beams, IEnumerable<ILoadCase> allLoadCases)",
-      "xmlSignature": "GetSteelDesignResultsForBeams(System.Collections.Generic.IEnumerable{StaadPro.Interop.Entities.Beam},System.Collections.Generic.IEnumerable{StaadPro.Interop.Entities.ILoadCase})"
+      "xmlSignature": "GetSteelDesignResultsForBeams(System.Collections.Generic.IEnumerable{StaadPro.Interop.Core.Entities.Beam},System.Collections.Generic.IEnumerable{StaadPro.Interop.Core.Entities.ILoadCase})"
     },
     {
       "returnType": "OutputBatchResult<BeamSteelDesignResults>",
@@ -90,7 +90,7 @@
       "example": "var beam = new Beam(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0));\nvar loadCases = new ILoadCase[] { new LoadCase(1, \"Dead\") };\nvar result = wrapper.Output.GetSteelDesignResultsForBeams(wrapper.Load, new[] { beam });\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data);\n    else System.Console.WriteLine(item.Status);",
       "signature": "OutputBatchResult<BeamSteelDesignResults> GetSteelDesignResultsForBeams(IOSLoad load, IEnumerable<Beam> beams)",
       "sourceSignature": "IEnumerable<MemberSteelDesignResults> GetSteelDesignResultsForBeams(IOSLoad load, IEnumerable<Beam> beams)",
-      "xmlSignature": "GetSteelDesignResultsForBeams(StaadPro.Interop.Adapters.Interfaces.IOSLoad,System.Collections.Generic.IEnumerable{StaadPro.Interop.Entities.Beam})"
+      "xmlSignature": "GetSteelDesignResultsForBeams(StaadPro.Interop.Core.Adapters.Interfaces.IOSLoad,System.Collections.Generic.IEnumerable{StaadPro.Interop.Core.Entities.Beam})"
     },
     {
       "returnType": "OutputBatchResult<double>",
@@ -108,7 +108,7 @@
       "example": "var beam = new Beam(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0));\nvar loadCases = new ILoadCase[] { new LoadCase(1, \"Dead\") };\nvar result = wrapper.Output.GetMemberSteelUtilizationRatios(new HashSet<Beam> { beam });\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data);\n    else System.Console.WriteLine(item.Status);",
       "signature": "OutputBatchResult<double> GetMemberSteelUtilizationRatios(HashSet<Beam> beams)",
       "sourceSignature": "Dictionary<Beam, double> GetMemberSteelUtilizationRatios(HashSet<Beam> beams)",
-      "xmlSignature": "GetMemberSteelUtilizationRatios(System.Collections.Generic.HashSet{StaadPro.Interop.Entities.Beam})"
+      "xmlSignature": "GetMemberSteelUtilizationRatios(System.Collections.Generic.HashSet{StaadPro.Interop.Core.Entities.Beam})"
     },
     {
       "returnType": "OutputPopulationResult",
@@ -126,7 +126,7 @@
       "example": "var beam = new Beam(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0));\nvar loadCases = new ILoadCase[] { new LoadCase(1, \"Dead\") };\nvar result = wrapper.Output.PopulateMemberSteelUtilizationRatios(new HashSet<Beam> { beam });\nSystem.Console.WriteLine(result.IsSuccessful);\nSystem.Console.WriteLine(result.WasApplied);",
       "signature": "OutputPopulationResult PopulateMemberSteelUtilizationRatios(HashSet<Beam> beams)",
       "sourceSignature": "void PopulateMemberSteelUtilizationRatios(HashSet<Beam> forBeams)",
-      "xmlSignature": "PopulateMemberSteelUtilizationRatios(System.Collections.Generic.HashSet{StaadPro.Interop.Entities.Beam})"
+      "xmlSignature": "PopulateMemberSteelUtilizationRatios(System.Collections.Generic.HashSet{StaadPro.Interop.Core.Entities.Beam})"
     },
     {
       "returnType": "OutputQueryResult<IdentifiedMemberForces>",
@@ -156,7 +156,7 @@
       "example": "var result = wrapper.Output.GetMemberEndForces(\"Dead\", 17, 1, MemberEnd.Start);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",
       "signature": "OutputQueryResult<IdentifiedMemberForces> GetMemberEndForces(string loadCaseTitle, int memberId, int loadCaseId, MemberEnd memberEnd)",
       "sourceSignature": "MemberForces GetMemberEndForces(string lcTitle, int beamId, int loadCaseId, MemberEnd memberEnd)",
-      "xmlSignature": "GetMemberEndForces(System.String,System.Int32,System.Int32,StaadPro.Interop.Enums.MemberEnd)"
+      "xmlSignature": "GetMemberEndForces(System.String,System.Int32,System.Int32,StaadPro.Interop.Core.Enums.MemberEnd)"
     },
     {
       "returnType": "OutputQueryResult<IdentifiedMemberForces>",
@@ -190,7 +190,7 @@
       "example": "var result = wrapper.Output.GetMemberEndForces(\"Dead\", 17, 1, MemberEnd.Start, ResultCoordinateSystem.Global);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",
       "signature": "OutputQueryResult<IdentifiedMemberForces> GetMemberEndForces(string loadCaseTitle, int memberId, int loadCaseId, MemberEnd memberEnd, ResultCoordinateSystem coordinateSystem)",
       "sourceSignature": "MemberForces GetMemberEndForces(string lcTitle, int beamId, int loadCaseId, MemberEnd memberEnd, LocalOrGlobal coordinateSystem)",
-      "xmlSignature": "GetMemberEndForces(System.String,System.Int32,System.Int32,StaadPro.Interop.Enums.MemberEnd,StaadPro.Interop.Enums.Output.ResultCoordinateSystem)"
+      "xmlSignature": "GetMemberEndForces(System.String,System.Int32,System.Int32,StaadPro.Interop.Core.Enums.MemberEnd,StaadPro.Interop.Core.Enums.Output.ResultCoordinateSystem)"
     },
     {
       "returnType": "OutputQueryResult<OffsetAwareMemberEndForces>",
@@ -220,7 +220,7 @@
       "example": "var beam = new Beam(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0));\nvar result = wrapper.Output.GetMemberEndForcesConsideringOffsets(\"Dead\", beam, 1, MemberEnd.Start);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",
       "signature": "OutputQueryResult<OffsetAwareMemberEndForces> GetMemberEndForcesConsideringOffsets(string loadCaseTitle, Beam beam, int loadCaseId, MemberEnd memberEnd)",
       "sourceSignature": "OffsetAwareMemberEndForces GetMemberEndForcesConsideringOffsets(string loadCaseTitle, Beam beam, int loadCaseId, MemberEnd memberEnd)",
-      "xmlSignature": "GetMemberEndForcesConsideringOffsets(System.String,StaadPro.Interop.Entities.Beam,System.Int32,StaadPro.Interop.Enums.MemberEnd)"
+      "xmlSignature": "GetMemberEndForcesConsideringOffsets(System.String,StaadPro.Interop.Core.Entities.Beam,System.Int32,StaadPro.Interop.Core.Enums.MemberEnd)"
     },
     {
       "returnType": "OutputQueryResult<IdentifiedMemberForces>",
@@ -250,7 +250,7 @@
       "example": "var beam = new Beam(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0));\nvar result = wrapper.Output.GetMemberEndForcesAtPhysicalJoint(\"Dead\", beam, 1, MemberEnd.Start);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",
       "signature": "OutputQueryResult<IdentifiedMemberForces> GetMemberEndForcesAtPhysicalJoint(string loadCaseTitle, Beam beam, int loadCaseId, MemberEnd memberEnd)",
       "sourceSignature": "MemberForces GetMemberEndForcesAtPhysicalJoint(string loadCaseTitle, Beam beam, int loadCaseId, MemberEnd memberEnd)",
-      "xmlSignature": "GetMemberEndForcesAtPhysicalJoint(System.String,StaadPro.Interop.Entities.Beam,System.Int32,StaadPro.Interop.Enums.MemberEnd)"
+      "xmlSignature": "GetMemberEndForcesAtPhysicalJoint(System.String,StaadPro.Interop.Core.Entities.Beam,System.Int32,StaadPro.Interop.Core.Enums.MemberEnd)"
     },
     {
       "returnType": "OutputQueryResult<OffsetAwareMemberEndForces>",
@@ -280,7 +280,7 @@
       "example": "var result = wrapper.Output.GetMemberEndForcesConsideringOffsets(\"Dead\", 17, 1, MemberEnd.Start);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",
       "signature": "OutputQueryResult<OffsetAwareMemberEndForces> GetMemberEndForcesConsideringOffsets(string loadCaseTitle, int memberId, int loadCaseId, MemberEnd memberEnd)",
       "sourceSignature": "OffsetAwareMemberEndForces GetMemberEndForcesConsideringOffsets(string loadCaseTitle, int beamId, int loadCaseId, MemberEnd memberEnd)",
-      "xmlSignature": "GetMemberEndForcesConsideringOffsets(System.String,System.Int32,System.Int32,StaadPro.Interop.Enums.MemberEnd)"
+      "xmlSignature": "GetMemberEndForcesConsideringOffsets(System.String,System.Int32,System.Int32,StaadPro.Interop.Core.Enums.MemberEnd)"
     },
     {
       "returnType": "OutputQueryResult<IdentifiedMemberForces>",
@@ -310,7 +310,7 @@
       "example": "var result = wrapper.Output.GetMemberEndForcesAtPhysicalJoint(\"Dead\", 17, 1, MemberEnd.Start);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",
       "signature": "OutputQueryResult<IdentifiedMemberForces> GetMemberEndForcesAtPhysicalJoint(string loadCaseTitle, int memberId, int loadCaseId, MemberEnd memberEnd)",
       "sourceSignature": "MemberForces GetMemberEndForcesAtPhysicalJoint(string loadCaseTitle, int beamId, int loadCaseId, MemberEnd memberEnd)",
-      "xmlSignature": "GetMemberEndForcesAtPhysicalJoint(System.String,System.Int32,System.Int32,StaadPro.Interop.Enums.MemberEnd)"
+      "xmlSignature": "GetMemberEndForcesAtPhysicalJoint(System.String,System.Int32,System.Int32,StaadPro.Interop.Core.Enums.MemberEnd)"
     },
     {
       "returnType": "MemberCoordinateSystem",
@@ -329,7 +329,7 @@
       "example": "var beam = new Beam(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0));\nvar result = wrapper.Output.GetMemberLocalCoordinateSystem(beam);\nSystem.Console.WriteLine(result.XAxis);",
       "signature": "MemberCoordinateSystem GetMemberLocalCoordinateSystem(Beam member)",
       "sourceSignature": "LocalCS GetMemberLocalCoordinateSystem(Beam member)",
-      "xmlSignature": "GetMemberLocalCoordinateSystem(StaadPro.Interop.Entities.Beam)"
+      "xmlSignature": "GetMemberLocalCoordinateSystem(StaadPro.Interop.Core.Entities.Beam)"
     },
     {
       "returnType": "OutputQueryResult<PlateCenterForces>",
@@ -351,7 +351,7 @@
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar plate = new Plate { Id = 17 };\nvar result = wrapper.Output.GetPlateCenterForces(loadCase, plate);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",
       "signature": "OutputQueryResult<PlateCenterForces> GetPlateCenterForces(ILoadCase loadCase, Plate plate)",
       "sourceSignature": "PlateCenterForces GetPlateCenterForces(ILoadCase loadCase, Plate plate)",
-      "xmlSignature": "GetPlateCenterForces(StaadPro.Interop.Entities.ILoadCase,StaadPro.Interop.Entities.Plate)"
+      "xmlSignature": "GetPlateCenterForces(StaadPro.Interop.Core.Entities.ILoadCase,StaadPro.Interop.Core.Entities.Plate)"
     },
     {
       "returnType": "OutputQueryResult<PlateCenterMoments>",
@@ -373,7 +373,7 @@
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar plate = new Plate { Id = 17 };\nvar result = wrapper.Output.GetPlateCenterMoments(loadCase, plate);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",
       "signature": "OutputQueryResult<PlateCenterMoments> GetPlateCenterMoments(ILoadCase loadCase, Plate plate)",
       "sourceSignature": "PlateCenterMoments GetPlateCenterMoments(ILoadCase loadCase, Plate plate)",
-      "xmlSignature": "GetPlateCenterMoments(StaadPro.Interop.Entities.ILoadCase,StaadPro.Interop.Entities.Plate)"
+      "xmlSignature": "GetPlateCenterMoments(StaadPro.Interop.Core.Entities.ILoadCase,StaadPro.Interop.Core.Entities.Plate)"
     },
     {
       "returnType": "OutputQueryResult<PlateCenterVonMises>",
@@ -395,7 +395,7 @@
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar plate = new Plate { Id = 17 };\nvar result = wrapper.Output.GetPlateCenterVonMises(loadCase, plate);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",
       "signature": "OutputQueryResult<PlateCenterVonMises> GetPlateCenterVonMises(ILoadCase loadCase, Plate plate)",
       "sourceSignature": "PlateCenterVonMises GetPlateCenterVonMises(ILoadCase loadCase, Plate plate)",
-      "xmlSignature": "GetPlateCenterVonMises(StaadPro.Interop.Entities.ILoadCase,StaadPro.Interop.Entities.Plate)"
+      "xmlSignature": "GetPlateCenterVonMises(StaadPro.Interop.Core.Entities.ILoadCase,StaadPro.Interop.Core.Entities.Plate)"
     },
     {
       "returnType": "OutputQueryResult<PlatePrincipalStresses>",
@@ -417,7 +417,7 @@
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar plate = new Plate { Id = 17 };\nvar result = wrapper.Output.GetPlatePrincipalStresses(loadCase, plate);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",
       "signature": "OutputQueryResult<PlatePrincipalStresses> GetPlatePrincipalStresses(ILoadCase loadCase, Plate plate)",
       "sourceSignature": "PlatePrincipalStresses GetPlatePrincipalStresses(ILoadCase loadCase, Plate plate)",
-      "xmlSignature": "GetPlatePrincipalStresses(StaadPro.Interop.Entities.ILoadCase,StaadPro.Interop.Entities.Plate)"
+      "xmlSignature": "GetPlatePrincipalStresses(StaadPro.Interop.Core.Entities.ILoadCase,StaadPro.Interop.Core.Entities.Plate)"
     },
     {
       "returnType": "OutputQueryResult<PlateCenterResults>",
@@ -439,7 +439,7 @@
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar plate = new Plate { Id = 17 };\nvar result = wrapper.Output.GetPlateCenterResults(loadCase, plate);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",
       "signature": "OutputQueryResult<PlateCenterResults> GetPlateCenterResults(ILoadCase loadCase, Plate plate)",
       "sourceSignature": "PlateCenterResults GetPlateCenterResults(ILoadCase loadCase, Plate plate)",
-      "xmlSignature": "GetPlateCenterResults(StaadPro.Interop.Entities.ILoadCase,StaadPro.Interop.Entities.Plate)"
+      "xmlSignature": "GetPlateCenterResults(StaadPro.Interop.Core.Entities.ILoadCase,StaadPro.Interop.Core.Entities.Plate)"
     },
     {
       "returnType": "OutputBatchResult<PlateCenterResults>",
@@ -461,7 +461,7 @@
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar plate = new Plate { Id = 17 };\nvar result = wrapper.Output.GetPlateCenterResults(new[] { loadCase }, new[] { plate });\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data);\n    else System.Console.WriteLine(item.Status);",
       "signature": "OutputBatchResult<PlateCenterResults> GetPlateCenterResults(IEnumerable<ILoadCase> loadCases, IEnumerable<Plate> plates)",
       "sourceSignature": "IEnumerable<PlateCenterResults> GetPlateCenterResults(IEnumerable<ILoadCase> loadCases, IEnumerable<Plate> plates)",
-      "xmlSignature": "GetPlateCenterResults(System.Collections.Generic.IEnumerable{StaadPro.Interop.Entities.ILoadCase},System.Collections.Generic.IEnumerable{StaadPro.Interop.Entities.Plate})"
+      "xmlSignature": "GetPlateCenterResults(System.Collections.Generic.IEnumerable{StaadPro.Interop.Core.Entities.ILoadCase},System.Collections.Generic.IEnumerable{StaadPro.Interop.Core.Entities.Plate})"
     },
     {
       "returnType": "OutputBatchResult<PlateCenterResults>",
@@ -487,7 +487,7 @@
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar plate = new Plate { Id = 17 };\nvar result = wrapper.Output.GetPlateCenterResults(new[] { loadCase }, new[] { plate }, 2);\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data);\n    else System.Console.WriteLine(item.Status);",
       "signature": "OutputBatchResult<PlateCenterResults> GetPlateCenterResults(IEnumerable<ILoadCase> loadCases, IEnumerable<Plate> plates, int degreeOfParallelism)",
       "sourceSignature": "IEnumerable<PlateCenterResults> GetPlateCenterResults(IEnumerable<ILoadCase> loadCases, IEnumerable<Plate> plates, int nThreads)",
-      "xmlSignature": "GetPlateCenterResults(System.Collections.Generic.IEnumerable{StaadPro.Interop.Entities.ILoadCase},System.Collections.Generic.IEnumerable{StaadPro.Interop.Entities.Plate},System.Int32)"
+      "xmlSignature": "GetPlateCenterResults(System.Collections.Generic.IEnumerable{StaadPro.Interop.Core.Entities.ILoadCase},System.Collections.Generic.IEnumerable{StaadPro.Interop.Core.Entities.Plate},System.Int32)"
     },
     {
       "returnType": "OutputBatchResult<StaticCheckResult>",
@@ -580,7 +580,7 @@
       "example": "var result = wrapper.Output.GetMemberEndForces(17, MemberEnd.Start, 1, ResultCoordinateSystem.Global);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",
       "signature": "OutputQueryResult<ForceComponents> GetMemberEndForces(int memberId, MemberEnd memberEnd, int loadCaseId, ResultCoordinateSystem coordinateSystem)",
       "sourceSignature": null,
-      "xmlSignature": "GetMemberEndForces(System.Int32,StaadPro.Interop.Enums.MemberEnd,System.Int32,StaadPro.Interop.Enums.Output.ResultCoordinateSystem)"
+      "xmlSignature": "GetMemberEndForces(System.Int32,StaadPro.Interop.Core.Enums.MemberEnd,System.Int32,StaadPro.Interop.Core.Enums.Output.ResultCoordinateSystem)"
     },
     {
       "returnType": "OutputQueryResult<double>",
@@ -599,7 +599,7 @@
       "example": "var beam = new Beam(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0));\nvar result = wrapper.Output.GetMemberSteelUtilizationRatio(beam);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",
       "signature": "OutputQueryResult<double> GetMemberSteelUtilizationRatio(Beam beam)",
       "sourceSignature": null,
-      "xmlSignature": "GetMemberSteelUtilizationRatio(StaadPro.Interop.Entities.Beam)"
+      "xmlSignature": "GetMemberSteelUtilizationRatio(StaadPro.Interop.Core.Entities.Beam)"
     }
   ]
 }

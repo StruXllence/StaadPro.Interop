@@ -43,7 +43,7 @@ Native routes: `AssignBeamProperty`.
 ```csharp
 var section = property.GetSectionBy(37);
 section.AssignedBeams.Add(new Beam { Id = 17 });
-property.AssignSectionProperties(new System.Collections.Generic.HashSet<StaadPro.Interop.Interfaces.IGenericSection> { section });
+property.AssignSectionProperties(new System.Collections.Generic.HashSet<StaadPro.Interop.Core.Interfaces.IGenericSection> { section });
 ```
 
 ## 2. AssignSectionProperties
@@ -65,8 +65,8 @@ Origin: main-interface method with the documented supporting-type adaptation.
 Native routes: `AssignBeamProperty`.
 
 ```csharp
-var definition = new StaadPro.Interop.Models.Sections.SectionDefinition();
-definition.SectionProfile.SelectedSection = new StaadPro.Interop.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = "ISMB300", Designation = "ISMB300" };
+var definition = new StaadPro.Interop.Core.Models.Sections.SectionDefinition();
+definition.SectionProfile.SelectedSection = new StaadPro.Interop.Core.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = "ISMB300", Designation = "ISMB300" };
 var section = new SectionProperty { Id = 37, SectionDefinition = definition };
 section.Beams.Add(new Beam { Id = 17 });
 property.AssignSectionProperties(new System.Collections.Generic.HashSet<SectionProperty> { section });
@@ -92,8 +92,8 @@ Origin: main-interface method with the documented supporting-type adaptation.
 Native routes: `AssignBeamProperty`.
 
 ```csharp
-var definition = new StaadPro.Interop.Models.Sections.SectionDefinition();
-definition.SectionProfile.SelectedSection = new StaadPro.Interop.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = "ISMB300", Designation = "ISMB300" };
+var definition = new StaadPro.Interop.Core.Models.Sections.SectionDefinition();
+definition.SectionProfile.SelectedSection = new StaadPro.Interop.Core.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = "ISMB300", Designation = "ISMB300" };
 var section = new SectionProperty { Id = 37, SectionDefinition = definition };
 section.Beams.Add(new Beam { Id = 17 });
 property.AssignSectionProperties(new System.Collections.Generic.HashSet<SectionProperty> { section }, 2);
@@ -118,8 +118,8 @@ Origin: main-interface method with the documented supporting-type adaptation.
 Native routes: `AssignBeamProperty`.
 
 ```csharp
-var definition = new StaadPro.Interop.Models.Sections.SectionDefinition();
-definition.SectionProfile.SelectedSection = new StaadPro.Interop.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = "ISMB300", Designation = "ISMB300" };
+var definition = new StaadPro.Interop.Core.Models.Sections.SectionDefinition();
+definition.SectionProfile.SelectedSection = new StaadPro.Interop.Core.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = "ISMB300", Designation = "ISMB300" };
 var section = new SectionProperty { Id = 37, SectionDefinition = definition };
 section.Beams.Add(new Beam { Id = 17 });
 property.AssignSectionProperty(section);
@@ -145,8 +145,8 @@ Origin: main-interface method with the documented supporting-type adaptation.
 Native routes: `AssignBeamProperty`.
 
 ```csharp
-var definition = new StaadPro.Interop.Models.Sections.SectionDefinition();
-definition.SectionProfile.SelectedSection = new StaadPro.Interop.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = "ISMB300", Designation = "ISMB300" };
+var definition = new StaadPro.Interop.Core.Models.Sections.SectionDefinition();
+definition.SectionProfile.SelectedSection = new StaadPro.Interop.Core.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = "ISMB300", Designation = "ISMB300" };
 var section = new SectionProperty { Id = 37, SectionDefinition = definition };
 section.Beams.Add(new Beam { Id = 17 });
 property.AssignSectionProperty(section, 2);
@@ -171,8 +171,8 @@ Origin: main-interface method with the documented supporting-type adaptation.
 Native routes: `CreateBeamPropertyFromTable`, `CreateTeePropertyFromTable`, `CreateBeamPropertyFromTableWithCoverPlates`, `CreateBeamPropertyFromTableComposite`, `CreateChannelPropertyFromTable`, `CreateAnglePropertyFromTable`, `CreatePipePropertyFromTable`, `CreateTubePropertyFromTable`, `AssignBeamProperty`.
 
 ```csharp
-var definition = new StaadPro.Interop.Models.Sections.SectionDefinition();
-definition.SectionProfile.SelectedSection = new StaadPro.Interop.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = "ISMB300", Designation = "ISMB300" };
+var definition = new StaadPro.Interop.Core.Models.Sections.SectionDefinition();
+definition.SectionProfile.SelectedSection = new StaadPro.Interop.Core.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = "ISMB300", Designation = "ISMB300" };
 var section = new SectionProperty { Id = 37, SectionDefinition = definition };
 section.Beams.Add(new Beam { Id = 17 });
 property.SetMaterialName("STEEL");
@@ -200,8 +200,8 @@ Origin: main-interface method with the documented supporting-type adaptation.
 Native routes: `CreateBeamPropertyFromTable`, `CreateTeePropertyFromTable`, `CreateBeamPropertyFromTableWithCoverPlates`, `CreateBeamPropertyFromTableComposite`, `CreateChannelPropertyFromTable`, `CreateAnglePropertyFromTable`, `CreatePipePropertyFromTable`, `CreateTubePropertyFromTable`, `AssignBeamProperty`.
 
 ```csharp
-var definition = new StaadPro.Interop.Models.Sections.SectionDefinition();
-definition.SectionProfile.SelectedSection = new StaadPro.Interop.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = "ISMB300", Designation = "ISMB300" };
+var definition = new StaadPro.Interop.Core.Models.Sections.SectionDefinition();
+definition.SectionProfile.SelectedSection = new StaadPro.Interop.Core.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = "ISMB300", Designation = "ISMB300" };
 var section = new SectionProperty { Id = 37, SectionDefinition = definition };
 section.Beams.Add(new Beam { Id = 17 });
 property.SetMaterialName("STEEL");
@@ -230,7 +230,7 @@ Native routes: `CreateIsotropicMaterialProperties`.
 
 ```csharp
 var material = new MaterialProperty("STEEL") { E = 200000000.0, Poisson = 0.3, Density = 77.0 };
-var converter = new StaadPro.Interop.Common.Units.UnitsConverter(LengthInputUnit.Meter, ForceInputUnit.KiloNewton, LengthInputUnit.MilliMeter, ForceInputUnit.Newton);
+var converter = new StaadPro.Interop.Core.Common.Units.UnitsConverter(LengthInputUnit.Meter, ForceInputUnit.KiloNewton, LengthInputUnit.MilliMeter, ForceInputUnit.Newton);
 property.CreateMaterialProperties(new System.Collections.Generic.HashSet<MaterialProperty> { material }, converter);
 ```
 
@@ -255,7 +255,7 @@ Native routes: `CreateIsotropicMaterialProperties`.
 
 ```csharp
 var material = new MaterialProperty("STEEL") { E = 200000000.0, Poisson = 0.3, Density = 77.0 };
-var converter = new StaadPro.Interop.Common.Units.UnitsConverter(LengthInputUnit.Meter, ForceInputUnit.KiloNewton, LengthInputUnit.MilliMeter, ForceInputUnit.Newton);
+var converter = new StaadPro.Interop.Core.Common.Units.UnitsConverter(LengthInputUnit.Meter, ForceInputUnit.KiloNewton, LengthInputUnit.MilliMeter, ForceInputUnit.Newton);
 property.CreateMaterialProperty(material, converter);
 ```
 
@@ -303,8 +303,8 @@ Origin: main-interface method with the documented supporting-type adaptation.
 Native routes: `CreateBeamPropertyFromTable`, `CreateTeePropertyFromTable`, `CreateBeamPropertyFromTableWithCoverPlates`, `CreateBeamPropertyFromTableComposite`, `CreateChannelPropertyFromTable`, `CreateAnglePropertyFromTable`, `CreatePipePropertyFromTable`, `CreateTubePropertyFromTable`.
 
 ```csharp
-var definition = new StaadPro.Interop.Models.Sections.SectionDefinition();
-definition.SectionProfile.SelectedSection = new StaadPro.Interop.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = "ISMB300", Designation = "ISMB300" };
+var definition = new StaadPro.Interop.Core.Models.Sections.SectionDefinition();
+definition.SectionProfile.SelectedSection = new StaadPro.Interop.Core.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = "ISMB300", Designation = "ISMB300" };
 var section = new SectionProperty { Id = 37, SectionDefinition = definition };
 section.Beams.Add(new Beam { Id = 17 });
 property.SetMaterialName("STEEL");
@@ -331,8 +331,8 @@ Origin: main-interface method with the documented supporting-type adaptation.
 Native routes: `CreateBeamPropertyFromTable`, `CreateTeePropertyFromTable`, `CreateBeamPropertyFromTableWithCoverPlates`, `CreateBeamPropertyFromTableComposite`, `CreateChannelPropertyFromTable`, `CreateAnglePropertyFromTable`, `CreatePipePropertyFromTable`, `CreateTubePropertyFromTable`.
 
 ```csharp
-var definition = new StaadPro.Interop.Models.Sections.SectionDefinition();
-definition.SectionProfile.SelectedSection = new StaadPro.Interop.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = "ISMB300", Designation = "ISMB300" };
+var definition = new StaadPro.Interop.Core.Models.Sections.SectionDefinition();
+definition.SectionProfile.SelectedSection = new StaadPro.Interop.Core.Models.Sections.RolledSectionHShape { Country = Country.Indian, StaadName = "ISMB300", Designation = "ISMB300" };
 var section = new SectionProperty { Id = 37, SectionDefinition = definition };
 section.Beams.Add(new Beam { Id = 17 });
 property.SetMaterialName("STEEL");

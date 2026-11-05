@@ -106,7 +106,7 @@ Disposed or replaced captured bindings are rejected. Reacquire wrapper.Output af
 ## Usage
 
 ~~~csharp
-using StaadPro.Interop.Enums;
+using StaadPro.Interop.Core.Enums;
 
 // wrapper is already acquired; execute on its established COM apartment.
 var output = wrapper.Output;

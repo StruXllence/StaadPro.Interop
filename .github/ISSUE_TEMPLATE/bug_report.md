@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve StaadPro.Interop
+about: Create a report to help us improve StaadPro.Interop.Core
 title: '[BUG] '
 labels: 'bug'
 assignees: ''

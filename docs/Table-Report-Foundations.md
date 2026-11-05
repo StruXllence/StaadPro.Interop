@@ -32,8 +32,8 @@ Creation and mutation methods return the shared immutable `TableOperationResult`
 The following changes a report in the acquired model. Run on the established STAAD COM apartment with the required native report context. Report/table creation may leave native state even if a later call fails.
 
 ```csharp
-using StaadPro.Interop.Models;
-using StaadPro.Interop.Enums.Table;
+using StaadPro.Interop.Core.Models;
+using StaadPro.Interop.Core.Enums.Table;
 
 // With an already acquired OpenStaadWrapper named wrapper:
 var table = wrapper.Table;

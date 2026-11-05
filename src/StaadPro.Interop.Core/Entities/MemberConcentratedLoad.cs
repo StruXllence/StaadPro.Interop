@@ -1,0 +1,81 @@
+using StaadPro.Interop.Core.Attributes;
+using StaadPro.Interop.Core.Common.Units;
+using StaadPro.Interop.Core.Enums;
+
+namespace StaadPro.Interop.Core.Entities
+{
+    /// <summary>
+    /// Represents a concentrated point load applied at a specific location along a member.
+    /// </summary>
+    public sealed class MemberConcentratedLoad : MemberLoad
+    {
+        #region Constructors
+
+        /// <include file="../Documentation/ApiMembers.xml" path="doc/members/member[@name='MemberConcentratedLoad..ctor()']/*" />
+        public MemberConcentratedLoad() : base()
+        {
+        }
+
+        /// <include file="../Documentation/ApiMembers.xml" path="doc/members/member[@name='MemberConcentratedLoad..ctor(LoadDirection,double,double,double)']/*" />
+        public MemberConcentratedLoad(LoadDirection direction, double magnitude, double position, double eccentricity = 0.0) : this()
+        {
+            Direction = direction;
+            Magnitude = magnitude;
+            Position = position;
+            Eccentricity = eccentricity;
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Force magnitude of the concentrated load (e.g. kN).
+        /// </summary>
+        [LoadDefiningProperty]
+        public double Magnitude { get; set; }
+
+        /// <summary>
+        /// Distance from the member start node along the member length.
+        /// </summary>
+        [LoadDefiningProperty]
+        public double Position { get; set; }
+
+        /// <summary>
+        /// Perpendicular offset from the member's shear center.
+        /// </summary>
+        [LoadDefiningProperty]
+        public double Eccentricity { get; set; }
+
+        #endregion
+
+        #region Method Overrides
+
+        /// <include file="../Documentation/ApiMembers.xml" path="doc/members/member[@name='MemberConcentratedLoad.DeepCopy`0()']/*" />
+        public override MemberLoad DeepCopy()
+        {
+            return new MemberConcentratedLoad(Direction, Magnitude, Position, Eccentricity)
+            {
+                LoadCase = this.LoadCase
+            };
+        }
+
+        /// <include file="../Documentation/ApiMembers.xml" path="doc/members/member[@name='MemberConcentratedLoad.ConvertUsing`0(UnitsConverter)']/*" />
+        public override void ConvertUsing(UnitsConverter uc)
+        {
+            if (uc == null) return;
+            Magnitude *= uc.ForceConversionFactor;
+            Position *= uc.LengthConversionFactor;
+            Eccentricity *= uc.LengthConversionFactor;
+        }
+
+        /// <include file="../Documentation/ApiMembers.xml" path="doc/members/member[@name='MemberConcentratedLoad.ApplyTo`0(dynamic,int[])']/*" />
+        public override void ApplyTo(dynamic load, int[] beamIds)
+        {
+            if (load == null || beamIds == null || beamIds.Length == 0) return;
+            load.AddMemberConcForce(beamIds, (int)Direction, Magnitude, Position, Eccentricity);
+        }
+
+        #endregion
+    }
+}

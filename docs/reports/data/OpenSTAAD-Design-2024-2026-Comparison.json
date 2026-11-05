@@ -18082,7 +18082,7 @@
   "packageRelease": {
     "version": "1.0.0-preview.20261027.1",
     "date": "2026-10-27",
-    "artifact": "artifacts/release/StaadPro.Interop.1.0.0-preview.20261027.1.nupkg",
+    "artifact": "artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261027.1.nupkg",
     "offlineTestsPassed": 6448,
     "installedXmlExamples": 1222,
     "icon": "images/symbol-only-logo.png",

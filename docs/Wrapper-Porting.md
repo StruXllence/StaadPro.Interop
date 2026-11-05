@@ -116,8 +116,8 @@ Wrapper-bound projections now reuse the internal metadata accessor without nativ
 
 ```csharp
 using System;
-using StaadPro.Interop.Models;
-using StaadPro.Interop.Services;
+using StaadPro.Interop.Core.Models;
+using StaadPro.Interop.Core.Services;
 
 // Run on the session's appropriate COM thread.
 using (OpenStaadWrapper wrapper = OpenStaadWrapperProvider.GetRunning())

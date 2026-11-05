@@ -1,6 +1,6 @@
-# Contributing to StaadPro.Interop
+# Contributing to StaadPro.Interop.Core
 
-Thank you for your interest in contributing to **StaadPro.Interop**! We welcome bug fixes, documentation improvements, unit tests, and feature enhancements.
+Thank you for your interest in contributing to **StaadPro.Interop.Core**! We welcome bug fixes, documentation improvements, unit tests, and feature enhancements.
 
 Start with [good first issues](https://github.com/StruXllence/StaadPro.Interop/labels/good%20first%20issue) or [help wanted](https://github.com/StruXllence/StaadPro.Interop/labels/help%20wanted), or propose a focused documentation/example improvement. A STAAD.Pro installation is not required for offline contributions.
 
@@ -14,13 +14,13 @@ Start with [good first issues](https://github.com/StruXllence/StaadPro.Interop/l
 2. **Clone and Build**:
    ```powershell
    git clone https://github.com/StruXllence/StaadPro.Interop.git
-   cd StaadPro.Interop
-   dotnet build StaadPro.Interop.sln -c Release
+   cd StaadPro.Interop.Core
+   dotnet build StaadPro.Interop.Core.sln -c Release
    ```
 
 3. **Run Unit Tests**:
    ```powershell
-   dotnet test tests/StaadPro.Interop.Tests/StaadPro.Interop.Tests.csproj -c Release
+   dotnet test tests/StaadPro.Interop.Core.Tests/StaadPro.Interop.Core.Tests.csproj -c Release
    ```
 
 ## Contribution Workflow

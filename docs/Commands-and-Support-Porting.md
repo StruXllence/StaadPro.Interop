@@ -232,7 +232,7 @@ Reused FoundationSupportDirection, FoundationSpringType, SupportMutationResult, 
 
 ~~~csharp
 IOSCommands commands = wrapper.Commands;
-var options = new StaadPro.Interop.Models.Commands.PDeltaAnalysisOptions();
+var options = new StaadPro.Interop.Core.Models.Commands.PDeltaAnalysisOptions();
 bool applyChanges = false;
 if (applyChanges)
 {
@@ -251,13 +251,13 @@ if (applyChanges)
     if (creation.IsSuccessful)
     {
         var assignment = support.AssignSupportToEntities(creation.SupportId.Value,
-            StaadPro.Interop.Enums.Support.SupportEntityKind.Nodes, new[] { 17, 41 });
+            StaadPro.Interop.Core.Enums.Support.SupportEntityKind.Nodes, new[] { 17, 41 });
         Console.WriteLine(assignment.Status);
     }
 }
 ~~~
 
-Use the existing StaadPro.Interop.Adapters.Interfaces and StaadPro.Interop.Enums namespaces. Calls run synchronously on the caller’s established COM apartment. Each domain gate serializes its typed calls and checks captured binding identity before and after dispatch. External model edits, raw calls, other adapters and other wrappers are not locked out. Reacquire an adapter after wrapper refresh. A post-call error may occur after native mutation.
+Use the existing StaadPro.Interop.Core.Adapters.Interfaces and StaadPro.Interop.Core.Enums namespaces. Calls run synchronously on the caller’s established COM apartment. Each domain gate serializes its typed calls and checks captured binding identity before and after dispatch. External model edits, raw calls, other adapters and other wrappers are not locked out. Reacquire an adapter after wrapper refresh. A post-call error may occur after native mutation.
 
 ## Remaining work
 

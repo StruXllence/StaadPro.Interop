@@ -66,7 +66,7 @@ When to use: create through the four-slot wide-flange native route while retaini
 bool applyChanges = false; // Enable only for a disposable/intended model and reviewed inputs.
 if (applyChanges)
 {
-    var definition = StaadPro.Interop.Models.Property.WideFlangeTableDefinition.WithBottomPlate(Country.Indian, "ISMB300", 0.2, 0.01);
+    var definition = StaadPro.Interop.Core.Models.Property.WideFlangeTableDefinition.WithBottomPlate(Country.Indian, "ISMB300", 0.2, 0.01);
     var result = property.CreateWideFlangePropertyFromTable(definition);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -95,7 +95,7 @@ When to use: use the native solid-shape table route, whose TypeSpec declaration 
 bool applyChanges = false; // Enable only for a disposable/intended model and reviewed inputs.
 if (applyChanges)
 {
-    var result = property.CreateBeamPropertyFromTableEx(Country.Indian, "ISMB300", StaadPro.Interop.Enums.Property.TableSolidShape.SolidRectangle);
+    var result = property.CreateBeamPropertyFromTableEx(Country.Indian, "ISMB300", StaadPro.Interop.Core.Enums.Property.TableSolidShape.SolidRectangle);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
@@ -231,7 +231,7 @@ When to use: supply complete general-section constants independently from any ca
 bool applyChanges = false; // Enable only for a disposable/intended model and reviewed inputs.
 if (applyChanges)
 {
-    var definition = new StaadPro.Interop.Models.Property.GeneralPrismaticSectionDefinition(0.01, 0.002, 0.003, 0.000001, 0.00001, 0.0001, 0.3, 0.2, 0.25, 0.02);
+    var definition = new StaadPro.Interop.Core.Models.Property.GeneralPrismaticSectionDefinition(0.01, 0.002, 0.003, 0.000001, 0.00001, 0.0001, 0.3, 0.2, 0.25, 0.02);
     var result = property.CreatePrismaticGeneralProperty(definition);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -261,7 +261,7 @@ When to use: create a tapered tube while preserving native start/end ordering an
 bool applyChanges = false; // Enable only for a disposable/intended model and reviewed inputs.
 if (applyChanges)
 {
-    var result = property.CreateTaperedTubeProperty(StaadPro.Interop.Enums.Property.TaperedTubeShape.Round, 0.4, 0.2, 0.01);
+    var result = property.CreateTaperedTubeProperty(StaadPro.Interop.Core.Enums.Property.TaperedTubeShape.Round, 0.4, 0.2, 0.01);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
@@ -289,8 +289,8 @@ When to use: request this distinct native partial-release route. Nearby specific
 bool applyChanges = false; // Enable only for a disposable/intended model and reviewed inputs.
 if (applyChanges)
 {
-    var dofs = new StaadPro.Interop.Models.Property.DegreeOfFreedomSelection(false, false, false, true, true, true);
-    var factors = new StaadPro.Interop.Models.Property.PartialReleaseFactors(0, 0, 0, 0.1, 0.2, 0.3);
+    var dofs = new StaadPro.Interop.Core.Models.Property.DegreeOfFreedomSelection(false, false, false, true, true, true);
+    var factors = new StaadPro.Interop.Core.Models.Property.PartialReleaseFactors(0, 0, 0, 0.1, 0.2, 0.3);
     var result = property.CreateMemberPartialReleaseSpec(MemberEnd.End, dofs, factors);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -428,7 +428,7 @@ When to use: create the basic cable definition without advanced tension-end/self
 bool applyChanges = false; // Enable only for a disposable/intended model and reviewed inputs.
 if (applyChanges)
 {
-    var result = property.CreateMemberCableSpec(StaadPro.Interop.Enums.Property.CableDefinitionKind.InitialTension, 25.0);
+    var result = property.CreateMemberCableSpec(StaadPro.Interop.Core.Enums.Property.CableDefinitionKind.InitialTension, 25.0);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
@@ -459,7 +459,7 @@ When to use: create the advanced cable definition without changing global vertic
 bool applyChanges = false; // Enable only for a disposable/intended model and reviewed inputs.
 if (applyChanges)
 {
-    var result = property.CreateMemberCableSpecEx(StaadPro.Interop.Enums.Property.CableDefinitionKind.InitialTension, 25.0, StaadPro.Interop.Enums.Property.CableTensionEnd.Start, 0.0, -1.0, 0.0);
+    var result = property.CreateMemberCableSpecEx(StaadPro.Interop.Core.Enums.Property.CableDefinitionKind.InitialTension, 25.0, StaadPro.Interop.Core.Enums.Property.CableTensionEnd.Start, 0.0, -1.0, 0.0);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
@@ -486,7 +486,7 @@ When to use: request the native node release definition without borrowing anothe
 bool applyChanges = false; // Enable only for a disposable/intended model and reviewed inputs.
 if (applyChanges)
 {
-    var dofs = new StaadPro.Interop.Models.Property.DegreeOfFreedomSelection(false, false, false, true, true, true);
+    var dofs = new StaadPro.Interop.Core.Models.Property.DegreeOfFreedomSelection(false, false, false, true, true, true);
     var result = property.CreateElementNodeReleaseSpec(11, dofs);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -560,8 +560,8 @@ When to use: deliberately add the native relation to the acquired model, rather 
 bool applyChanges = false; // Enable only for a disposable/intended model and reviewed inputs.
 if (applyChanges)
 {
-    var dofs = new StaadPro.Interop.Models.Property.DegreeOfFreedomSelection(true, true, true, false, false, false);
-    var result = property.AddControlDependentRelation(11, StaadPro.Interop.Enums.Property.ControlDependencyMode.SpecifiedDegreesOfFreedom, dofs, new[] { 12, 13 });
+    var dofs = new StaadPro.Interop.Core.Models.Property.DegreeOfFreedomSelection(true, true, true, false, false, false);
+    var result = property.AddControlDependentRelation(11, StaadPro.Interop.Core.Enums.Property.ControlDependencyMode.SpecifiedDegreesOfFreedom, dofs, new[] { 12, 13 });
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
@@ -591,7 +591,7 @@ When to use: create the per-corner local/global offset definition without transf
 bool applyChanges = false; // Enable only for a disposable/intended model and reviewed inputs.
 if (applyChanges)
 {
-    var result = property.CreateElementOffsetSpec(StaadPro.Interop.Enums.Property.ElementNodeOffsetAxis.Local, 2, 0.0, -0.1, 0.2);
+    var result = property.CreateElementOffsetSpec(StaadPro.Interop.Core.Enums.Property.ElementNodeOffsetAxis.Local, 2, 0.0, -0.1, 0.2);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
@@ -648,7 +648,7 @@ When to use: create a fireproofing definition without assuming its creation inde
 bool applyChanges = false; // Enable only for a disposable/intended model and reviewed inputs.
 if (applyChanges)
 {
-    var result = property.CreateMemberFireProofingSpec(StaadPro.Interop.Enums.Property.FireProofingType.Block, 0.03, 12.0);
+    var result = property.CreateMemberFireProofingSpec(StaadPro.Interop.Core.Enums.Property.FireProofingType.Block, 0.03, 12.0);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }

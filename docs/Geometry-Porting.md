@@ -30,9 +30,9 @@ Null input sequences throw `ArgumentNullException`. Empty input returns no group
 
 ```csharp
 using System.Linq;
-using StaadPro.Interop.Entities;
-using StaadPro.Interop.Enums;
-using StaadPro.Interop.Services;
+using StaadPro.Interop.Core.Entities;
+using StaadPro.Interop.Core.Enums;
+using StaadPro.Interop.Core.Services;
 
 var a = new Node(1, 0, 0, 0);
 var b = new Node(2, 1, 0, 0);
@@ -71,7 +71,7 @@ wrapper.Geometry.CreateMultipleBeamsExtended(wrapper.Root,
 
 The earlier package contained an XML file but no method documentation for its 134 geometry overloads; 33 load-adapter methods also lacked expanded comments. The current source provides complete documentation on all 143 geometry and all 78 load overloads, on both interfaces and concrete adapters. Previously undocumented exported managed functions now have summaries, parameter descriptions and return documentation as well.
 
-`Documentation/ApiMembers.xml` holds shared XML comments adapted from the reference interfaces and reviewed against the current implementation. Compiler `<include>` directives expand those comments into `StaadPro.Interop.xml`; consumers need neither this source file nor the private reference project. The package includes the generated XML alongside the DLL in `lib/net481`. Existing detailed load-query examples and contracts remain intact.
+`Documentation/ApiMembers.xml` holds shared XML comments adapted from the reference interfaces and reviewed against the current implementation. Compiler `<include>` directives expand those comments into `StaadPro.Interop.Core.xml`; consumers need neither this source file nor the private reference project. The package includes the generated XML alongside the DLL in `lib/net481`. Existing detailed load-query examples and contracts remain intact.
 
 Malformed or unresolved documentation warnings fail the build. Regression checks inspect the compiled XML for exported functions and adapter overloads, missing summaries, parameter-name coverage, generic parameters, returns, usage remarks, and unresolved include/inheritance/reference elements. Package verification installs an isolated NuGet consumer and checks the existing examples and the final nine Geometry examples; the updated verifier expects 250 selected XML blocks in the next package.
 
@@ -122,8 +122,8 @@ Targets are a finite angle strictly between zero and 60 degrees and an optional 
 
 ```csharp
 using System;
-using StaadPro.Interop.Entities;
-using StaadPro.Interop.Services;
+using StaadPro.Interop.Core.Entities;
+using StaadPro.Interop.Core.Services;
 
 var boundary = new[] {
     new Node(1, 0, 0, 0),

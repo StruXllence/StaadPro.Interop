@@ -120,7 +120,7 @@
       ],
       "returns": "Succeeded for true/integral one, NativeFailure for false/integral zero, with exact name and actual return representation.",
       "remarks": "When to use: change material classification without creating a material or supplying elastic/design constants. Acknowledgement does not mean that E, G, density or strengths were changed. Native success is an acknowledgement only, not persistence read-back or engineering certification. Changes may remain after a native failure, stale-binding exception or transport error. No analysis, implicit save, retry, transaction or rollback occurs.",
-      "example": "bool applyChanges = false; // Set true only for the intended model and reviewed inputs.\nif (applyChanges)\n{\n    var result = property.SetTypeToIsotropicMaterial(\"STEEL\", StaadPro.Interop.Enums.Property.IsotropicMaterialType.Steel);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
+      "example": "bool applyChanges = false; // Set true only for the intended model and reviewed inputs.\nif (applyChanges)\n{\n    var result = property.SetTypeToIsotropicMaterial(\"STEEL\", StaadPro.Interop.Core.Enums.Property.IsotropicMaterialType.Steel);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
       "mutation": true
     },
     {
@@ -154,7 +154,7 @@
       ],
       "returns": "Success for native zero with width/depth, Ax/Ay/Az, native Ix/Iy/Iz and flange/web thickness. -3001 gives NotFound and -6022 NotAssigned; failures have no Data.",
       "remarks": "When to use: query GetSectionPropertyValues using its documented profile selector, rather than a member or property ID. The older GetSectionPropertyValues(int propId) compatibility method calls the different native GetSectionPropertyValuesEx property-ID route and remains unchanged. All ten scalar outputs must be explicitly written finite floating-point values. Length, area and inertia slots retain native units and names; no physical-axis reinterpretation is inferred. Inspect IsSuccessful and Status before reading Data. Known absence/failure states do not expose default data; malformed values, undocumented status codes and transport failures throw. No conversion, hydration, model write, save or catalog lookup occurs.",
-      "example": "var result = property.GetSectionPropertiesForProfile(StaadPro.Interop.Enums.Property.AssignedSectionProfile.Beam);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.AxialArea);\nelse System.Console.WriteLine(result.Status);",
+      "example": "var result = property.GetSectionPropertiesForProfile(StaadPro.Interop.Core.Enums.Property.AssignedSectionProfile.Beam);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.AxialArea);\nelse System.Console.WriteLine(result.Status);",
       "mutation": false
     },
     {
@@ -290,7 +290,7 @@
       ],
       "returns": "Created with a separate positive CreatedPropertyId on success; zero is NativeFailure and -6008 InvalidInput. The actual native code and requested profile are retained.",
       "remarks": "When to use: create one of the five ASSIGN profile definitions. Does not assign members or fabricate section dimensions. Native success is an acknowledgement only, not persistence read-back or engineering certification. Changes may remain after a native failure, stale-binding exception or transport error. No analysis, implicit save, retry, transaction or rollback occurs.",
-      "example": "bool applyChanges = false; // Set true only for the intended model and reviewed inputs.\nif (applyChanges)\n{\n    var result = property.CreateAssignProfileProperty(StaadPro.Interop.Enums.Property.AssignedSectionProfile.Beam);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
+      "example": "bool applyChanges = false; // Set true only for the intended model and reviewed inputs.\nif (applyChanges)\n{\n    var result = property.CreateAssignProfileProperty(StaadPro.Interop.Core.Enums.Property.AssignedSectionProfile.Beam);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
       "mutation": true
     },
     {
@@ -344,7 +344,7 @@
       ],
       "returns": "Created for integral zero, Updated for one, NativeFailure for -1. Retains exact material name and actual code; no material ID is inferred.",
       "remarks": "When to use: explicitly request all five extended strength fields through the native route. Native acknowledgement does not prove strength persistence; the older obsolete compatibility creator was excluded because persistence was not verified. This method exposes only the native acknowledgement, without a read-back guarantee. Native success is an acknowledgement only, not persistence read-back or engineering certification. Changes may remain after a native failure, stale-binding exception or transport error. No analysis, implicit save, retry, transaction or rollback occurs.",
-      "example": "bool applyChanges = false; // Set true only for the intended model and reviewed inputs.\nif (applyChanges)\n{\n    var material = new StaadPro.Interop.Models.Property.IsotropicMaterialDefinition(\"EXPLICIT_MATERIAL\", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);\n    var result = property.CreateIsotropicMaterialPropertiesEx(material, new StaadPro.Interop.Models.Property.IsotropicMaterialStrengths(250000.0, 400000.0, 1.1, 1.2, 30000.0));\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
+      "example": "bool applyChanges = false; // Set true only for the intended model and reviewed inputs.\nif (applyChanges)\n{\n    var material = new StaadPro.Interop.Core.Models.Property.IsotropicMaterialDefinition(\"EXPLICIT_MATERIAL\", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);\n    var result = property.CreateIsotropicMaterialPropertiesEx(material, new StaadPro.Interop.Core.Models.Property.IsotropicMaterialStrengths(250000.0, 400000.0, 1.1, 1.2, 30000.0));\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
       "mutation": true
     },
     {
@@ -369,7 +369,7 @@
       ],
       "returns": "Created for integral zero, Updated for one, NativeFailure for -1, with exact name and actual code; statuses are not material IDs.",
       "remarks": "When to use: explicitly request Steel creation/classification and strength fields. Does not derive strengths, convert units or certify that all design fields persisted. Native success is an acknowledgement only, not persistence read-back or engineering certification. Changes may remain after a native failure, stale-binding exception or transport error. No analysis, implicit save, retry, transaction or rollback occurs.",
-      "example": "bool applyChanges = false; // Set true only for the intended model and reviewed inputs.\nif (applyChanges)\n{\n    var material = new StaadPro.Interop.Models.Property.IsotropicMaterialDefinition(\"EXPLICIT_MATERIAL\", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);\n    var result = property.CreateIsotropicMaterialSteel(material, new StaadPro.Interop.Models.Property.SteelMaterialStrengths(400000.0, 250000.0, 1.2, 1.1), false);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
+      "example": "bool applyChanges = false; // Set true only for the intended model and reviewed inputs.\nif (applyChanges)\n{\n    var material = new StaadPro.Interop.Core.Models.Property.IsotropicMaterialDefinition(\"EXPLICIT_MATERIAL\", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);\n    var result = property.CreateIsotropicMaterialSteel(material, new StaadPro.Interop.Core.Models.Property.SteelMaterialStrengths(400000.0, 250000.0, 1.2, 1.1), false);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
       "mutation": true
     },
     {
@@ -394,7 +394,7 @@
       ],
       "returns": "Created for integral zero, Updated for one, NativeFailure for -1; exact name and native code retained without a fabricated material ID.",
       "remarks": "When to use: explicitly request Concrete creation and its compressive strength field. No default strength, conversion or strength-persistence guarantee is supplied. Native success is an acknowledgement only, not persistence read-back or engineering certification. Changes may remain after a native failure, stale-binding exception or transport error. No analysis, implicit save, retry, transaction or rollback occurs.",
-      "example": "bool applyChanges = false; // Set true only for the intended model and reviewed inputs.\nif (applyChanges)\n{\n    var material = new StaadPro.Interop.Models.Property.IsotropicMaterialDefinition(\"EXPLICIT_MATERIAL\", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);\n    var result = property.CreateIsotropicMaterialConcrete(material, 30000.0, false);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
+      "example": "bool applyChanges = false; // Set true only for the intended model and reviewed inputs.\nif (applyChanges)\n{\n    var material = new StaadPro.Interop.Core.Models.Property.IsotropicMaterialDefinition(\"EXPLICIT_MATERIAL\", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);\n    var result = property.CreateIsotropicMaterialConcrete(material, 30000.0, false);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
       "mutation": true
     },
     {
@@ -415,7 +415,7 @@
       ],
       "returns": "Created for integral zero, Updated for one, NativeFailure for -1. Retains exact material name/native code; no material ID is fabricated.",
       "remarks": "When to use: explicitly request the native Aluminum creator without assuming built-in material defaults or deriving shear modulus. No design strength packet is accepted by this native function. Native success is an acknowledgement only, not persistence read-back or engineering certification. Changes may remain after a native failure, stale-binding exception or transport error. No analysis, implicit save, retry, transaction or rollback occurs.",
-      "example": "bool applyChanges = false; // Set true only for the intended model and reviewed inputs.\nif (applyChanges)\n{\n    var material = new StaadPro.Interop.Models.Property.IsotropicMaterialDefinition(\"EXPLICIT_MATERIAL\", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);\n    var result = property.CreateIsotropicMaterialAluminum(material, false);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
+      "example": "bool applyChanges = false; // Set true only for the intended model and reviewed inputs.\nif (applyChanges)\n{\n    var material = new StaadPro.Interop.Core.Models.Property.IsotropicMaterialDefinition(\"EXPLICIT_MATERIAL\", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);\n    var result = property.CreateIsotropicMaterialAluminum(material, false);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
       "mutation": true
     },
     {
@@ -436,7 +436,7 @@
       ],
       "returns": "Created for integral zero, Updated for one, NativeFailure for -1. Retains exact material name/native code; no material ID is fabricated.",
       "remarks": "When to use: explicitly request the native Timber creator without assuming built-in material defaults or deriving shear modulus. No design strength packet is accepted by this native function. Native success is an acknowledgement only, not persistence read-back or engineering certification. Changes may remain after a native failure, stale-binding exception or transport error. No analysis, implicit save, retry, transaction or rollback occurs.",
-      "example": "bool applyChanges = false; // Set true only for the intended model and reviewed inputs.\nif (applyChanges)\n{\n    var material = new StaadPro.Interop.Models.Property.IsotropicMaterialDefinition(\"EXPLICIT_MATERIAL\", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);\n    var result = property.CreateIsotropicMaterialTimber(material, false);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
+      "example": "bool applyChanges = false; // Set true only for the intended model and reviewed inputs.\nif (applyChanges)\n{\n    var material = new StaadPro.Interop.Core.Models.Property.IsotropicMaterialDefinition(\"EXPLICIT_MATERIAL\", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);\n    var result = property.CreateIsotropicMaterialTimber(material, false);\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
       "mutation": true
     },
     {

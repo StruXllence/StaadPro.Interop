@@ -1,6 +1,6 @@
 # Project name and logo guidance
 
-StaadPro.Interop is created by Srinivasa Rao Masanam and published under the StruXllence brand. The official source is [StruXllence/StaadPro.Interop](https://github.com/StruXllence/StaadPro.Interop) and the official NuGet package ID is [StaadPro.Interop](https://www.nuget.org/packages/StaadPro.Interop).
+StaadPro.Interop.Core is created by Srinivasa Rao Masanam and published under the StruXllence brand. The official source is [StruXllence/StaadPro.Interop.Core](https://github.com/StruXllence/StaadPro.Interop) and the official NuGet package ID is [StaadPro.Interop.Core](https://www.nuget.org/packages/StaadPro.Interop).
 
 Use the project and brand names truthfully to identify their origin, link to the original work, or explain interoperability. A fork or extension should clearly identify its own maintainer and distinguish its changes; do not present a separately maintained distribution as an official release or imply endorsement that has not been granted.
 

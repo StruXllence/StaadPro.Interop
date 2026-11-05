@@ -4,7 +4,7 @@
 
 Added six common documented Output native routes, bringing typed Output coverage to **46 of 60**. The 14 remaining documented routes retain their own transport, layout or optional-capability work. These are source additions after prepared preview 1.0.0-preview.20261026.1.
 
-Import `StaadPro.Interop.Enums.Output` and `StaadPro.Interop.Models.Output` as needed. Examples assume `output = wrapper.Output` on its established COM apartment.
+Import `StaadPro.Interop.Core.Enums.Output` and `StaadPro.Interop.Core.Models.Output` as needed. Examples assume `output = wrapper.Output` on its established COM apartment.
 
 ## Implemented contracts
 

@@ -187,7 +187,7 @@ When to use: change material classification without creating a material or suppl
 bool applyChanges = false; // Set true only for the intended model and reviewed inputs.
 if (applyChanges)
 {
-    var result = property.SetTypeToIsotropicMaterial("STEEL", StaadPro.Interop.Enums.Property.IsotropicMaterialType.Steel);
+    var result = property.SetTypeToIsotropicMaterial("STEEL", StaadPro.Interop.Core.Enums.Property.IsotropicMaterialType.Steel);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
@@ -232,7 +232,7 @@ Returns: Success for native zero with width/depth, Ax/Ay/Az, native Ix/Iy/Iz and
 When to use: query GetSectionPropertyValues using its documented profile selector, rather than a member or property ID. The older GetSectionPropertyValues(int propId) compatibility method calls the different native GetSectionPropertyValuesEx property-ID route and remains unchanged. All ten scalar outputs must be explicitly written finite floating-point values. Length, area and inertia slots retain native units and names; no physical-axis reinterpretation is inferred. Inspect IsSuccessful and Status before reading Data. Known absence/failure states do not expose default data; malformed values, undocumented status codes and transport failures throw. No conversion, hydration, model write, save or catalog lookup occurs.
 
 ```csharp
-var result = property.GetSectionPropertiesForProfile(StaadPro.Interop.Enums.Property.AssignedSectionProfile.Beam);
+var result = property.GetSectionPropertiesForProfile(StaadPro.Interop.Core.Enums.Property.AssignedSectionProfile.Beam);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.AxialArea);
 else System.Console.WriteLine(result.Status);
 ```
@@ -411,7 +411,7 @@ When to use: create one of the five ASSIGN profile definitions. Does not assign 
 bool applyChanges = false; // Set true only for the intended model and reviewed inputs.
 if (applyChanges)
 {
-    var result = property.CreateAssignProfileProperty(StaadPro.Interop.Enums.Property.AssignedSectionProfile.Beam);
+    var result = property.CreateAssignProfileProperty(StaadPro.Interop.Core.Enums.Property.AssignedSectionProfile.Beam);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
@@ -487,8 +487,8 @@ When to use: explicitly request all five extended strength fields through the na
 bool applyChanges = false; // Set true only for the intended model and reviewed inputs.
 if (applyChanges)
 {
-    var material = new StaadPro.Interop.Models.Property.IsotropicMaterialDefinition("EXPLICIT_MATERIAL", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);
-    var result = property.CreateIsotropicMaterialPropertiesEx(material, new StaadPro.Interop.Models.Property.IsotropicMaterialStrengths(250000.0, 400000.0, 1.1, 1.2, 30000.0));
+    var material = new StaadPro.Interop.Core.Models.Property.IsotropicMaterialDefinition("EXPLICIT_MATERIAL", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);
+    var result = property.CreateIsotropicMaterialPropertiesEx(material, new StaadPro.Interop.Core.Models.Property.IsotropicMaterialStrengths(250000.0, 400000.0, 1.1, 1.2, 30000.0));
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
@@ -516,8 +516,8 @@ When to use: explicitly request Steel creation/classification and strength field
 bool applyChanges = false; // Set true only for the intended model and reviewed inputs.
 if (applyChanges)
 {
-    var material = new StaadPro.Interop.Models.Property.IsotropicMaterialDefinition("EXPLICIT_MATERIAL", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);
-    var result = property.CreateIsotropicMaterialSteel(material, new StaadPro.Interop.Models.Property.SteelMaterialStrengths(400000.0, 250000.0, 1.2, 1.1), false);
+    var material = new StaadPro.Interop.Core.Models.Property.IsotropicMaterialDefinition("EXPLICIT_MATERIAL", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);
+    var result = property.CreateIsotropicMaterialSteel(material, new StaadPro.Interop.Core.Models.Property.SteelMaterialStrengths(400000.0, 250000.0, 1.2, 1.1), false);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
@@ -545,7 +545,7 @@ When to use: explicitly request Concrete creation and its compressive strength f
 bool applyChanges = false; // Set true only for the intended model and reviewed inputs.
 if (applyChanges)
 {
-    var material = new StaadPro.Interop.Models.Property.IsotropicMaterialDefinition("EXPLICIT_MATERIAL", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);
+    var material = new StaadPro.Interop.Core.Models.Property.IsotropicMaterialDefinition("EXPLICIT_MATERIAL", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);
     var result = property.CreateIsotropicMaterialConcrete(material, 30000.0, false);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -573,7 +573,7 @@ When to use: explicitly request the native Aluminum creator without assuming bui
 bool applyChanges = false; // Set true only for the intended model and reviewed inputs.
 if (applyChanges)
 {
-    var material = new StaadPro.Interop.Models.Property.IsotropicMaterialDefinition("EXPLICIT_MATERIAL", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);
+    var material = new StaadPro.Interop.Core.Models.Property.IsotropicMaterialDefinition("EXPLICIT_MATERIAL", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);
     var result = property.CreateIsotropicMaterialAluminum(material, false);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -601,7 +601,7 @@ When to use: explicitly request the native Timber creator without assuming built
 bool applyChanges = false; // Set true only for the intended model and reviewed inputs.
 if (applyChanges)
 {
-    var material = new StaadPro.Interop.Models.Property.IsotropicMaterialDefinition("EXPLICIT_MATERIAL", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);
+    var material = new StaadPro.Interop.Core.Models.Property.IsotropicMaterialDefinition("EXPLICIT_MATERIAL", 200000000.0, 0.3, 76923076.9, 77.0, 0.000012, 0.02);
     var result = property.CreateIsotropicMaterialTimber(material, false);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);

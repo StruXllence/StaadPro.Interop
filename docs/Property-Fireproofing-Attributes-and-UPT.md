@@ -235,7 +235,7 @@ When to use: request an exact name/value definition without assuming that zero m
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
+    var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
     var result = property.CreateMemberAttribute(attribute);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -262,7 +262,7 @@ When to use: request an exact name/value definition without assuming that zero m
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
+    var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
     var result = property.CreateElementAttribute(attribute);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -289,7 +289,7 @@ When to use: deliberately remove the exact definition; existing native assignmen
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
+    var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
     var result = property.DeleteMemberAttribute(attribute);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -316,7 +316,7 @@ When to use: deliberately remove the exact definition; existing native assignmen
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
+    var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
     var result = property.DeleteElementAttribute(attribute);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -340,7 +340,7 @@ Returns: Success with an immutable requested pair/domain and nonnegative count, 
 When to use: inspect an attribute subset in the explicit member domain. Vendor metadata passes the value string by reference although the help describes it as input; a local copy is sent and compared ordinally afterward. No data is attributed to the original pair if native rewrites it. Zero does not prove a definition exists. All native calls use the shared captured-binding gate with before/after lifetime checks. No native model mutation, geometry hydration, unit conversion, save or engineering certification occurs.
 
 ```csharp
-var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
+var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
 var result = property.GetMemberCountByAttribute(attribute);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.Count);
 else System.Console.WriteLine(result.Status);
@@ -364,7 +364,7 @@ Returns: Success with immutable pair/domain correspondence and read-only positiv
 When to use: enumerate matching member IDs without geometry hydration. Uses the matching native count/list/count sequence within the shared gate; the list's integral zero is success, not a returned count. Native metadata requires ref string and ref Object outputs; local copies keep caller text immutable. Exact Int32 rank/length and every written positive ID are validated. Count equality cannot exclude same-count external edits. All native calls use the shared captured-binding gate with before/after lifetime checks. No native model mutation, geometry hydration, unit conversion, save or engineering certification occurs.
 
 ```csharp
-var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
+var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
 var result = property.GetMemberListByAttribute(attribute);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.EntityIds.Count);
 else System.Console.WriteLine(result.Status);
@@ -387,7 +387,7 @@ Returns: Success with an immutable requested pair/domain and nonnegative count, 
 When to use: inspect an attribute subset in the explicit element domain. Vendor metadata passes the value string by reference although the help describes it as input; a local copy is sent and compared ordinally afterward. No data is attributed to the original pair if native rewrites it. Zero does not prove a definition exists. All native calls use the shared captured-binding gate with before/after lifetime checks. No native model mutation, geometry hydration, unit conversion, save or engineering certification occurs.
 
 ```csharp
-var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
+var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
 var result = property.GetElementCountByAttribute(attribute);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.Count);
 else System.Console.WriteLine(result.Status);
@@ -411,7 +411,7 @@ Returns: Success with immutable pair/domain correspondence and read-only positiv
 When to use: enumerate matching element IDs without geometry hydration. Uses the matching native count/list/count sequence within the shared gate; the list's integral zero is success, not a returned count. Native metadata requires ref string and ref Object outputs; local copies keep caller text immutable. Exact Int32 rank/length and every written positive ID are validated. Count equality cannot exclude same-count external edits. All native calls use the shared captured-binding gate with before/after lifetime checks. No native model mutation, geometry hydration, unit conversion, save or engineering certification occurs.
 
 ```csharp
-var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
+var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
 var result = property.GetElementListByAttribute(attribute);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.EntityIds.Count);
 else System.Console.WriteLine(result.Status);
@@ -500,7 +500,7 @@ When to use: deliberately remove the pair from supplied native identities. The h
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
+    var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
     var result = property.RemoveAttribute(attribute, new[] { 17, 41 });
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -528,7 +528,7 @@ When to use: deliberately assign the existing pair in the explicitly named nativ
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
+    var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
     var result = property.AssignMemberAttribute(attribute, new[] { 17, 41 });
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -556,7 +556,7 @@ When to use: deliberately assign the existing pair in the explicitly named nativ
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
+    var attribute = new StaadPro.Interop.Core.Models.Property.PropertyAttribute("Purpose", " REVIEWED ");
     var result = property.AssignElementAttribute(attribute, new[] { 17, 41 });
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -583,7 +583,7 @@ When to use: create an empty UPT table independently from adding a named section
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var result = property.CreateUptTable(StaadPro.Interop.Enums.Property.UserProvidedTableType.WideFlange);
+    var result = property.CreateUptTable(StaadPro.Interop.Core.Enums.Property.UserProvidedTableType.WideFlange);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
@@ -611,7 +611,7 @@ When to use: insert explicit scalar UPT values without silently changing a dupli
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var definition = new StaadPro.Interop.Models.Property.UptWideFlangeDefinition(0.01, 0.3, 0.006, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003);
+    var definition = new StaadPro.Interop.Core.Models.Property.UptWideFlangeDefinition(0.01, 0.3, 0.006, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003);
     var result = property.AddUptPropertyWideFlange(7, "EXPLICIT_WF", definition);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -640,8 +640,8 @@ When to use: insert the unequal shape using its distinct Boolean-returning nativ
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var definition = new StaadPro.Interop.Models.Property.UptWideFlangeDefinition(0.01, 0.3, 0.006, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003);
-    var unequal = new StaadPro.Interop.Models.Property.UptUnequalWideFlangeDefinition(definition, 0.2, 0.015);
+    var definition = new StaadPro.Interop.Core.Models.Property.UptWideFlangeDefinition(0.01, 0.3, 0.006, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003);
+    var unequal = new StaadPro.Interop.Core.Models.Property.UptUnequalWideFlangeDefinition(definition, 0.2, 0.015);
     var result = property.AddUptPropertyWideFlangeUnequal(7, "EXPLICIT_UNEQUAL", unequal);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);

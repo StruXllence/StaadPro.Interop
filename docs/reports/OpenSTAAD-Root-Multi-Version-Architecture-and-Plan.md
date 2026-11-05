@@ -266,7 +266,7 @@ Keep signatures in interfaces, implementations in non-partial adapters, and sele
 | Verified unit interpretation strategies | Internal under Wrapper metadata, only if evidence requires; proposed | Resolve actual build differences where native data is captured. Root does not repeat unit interpretation over a second native call. |
 
 ```text
-src/StaadPro.Interop/
+src/StaadPro.Interop.Core/
   Adapters/Interfaces/IOSRoot.cs             common contract and gateway
   Adapters/Interfaces/Capabilities/          gateway + three optional contracts
   Adapters/Models/OSRootAdapter.cs           single non-partial common adapter

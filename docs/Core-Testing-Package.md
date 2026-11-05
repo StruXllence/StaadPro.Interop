@@ -1,0 +1,7 @@
+# Historical Windows .NET testing package
+
+StaadPro.Interop.Core.Testing was the earlier temporary Windows .NET 8 package used to exercise the independent session provider. Its package versions 1.0.0-preview.20261013.1 and 1.0.0-preview.20261013.2 used the original StaadPro.Interop assembly and namespaces. The first used PreferExistingOpenStaadWrapperProvider; the second used OpenStaadSessionProvider. Those archives remain historical and are not rebuilt or overwritten by the new project.
+
+The current independent product is **StaadPro.Interop.Core**, with its own solution, assembly, namespaces and package ID on the staadpro-interop-core branch. Follow [Core installation](Installation.md), [development](Core-Development.md) and [publishing](Publishing.md) rather than the old testing-package build instructions. Remove the old testing-package reference and update namespace imports when migrating.
+
+The earlier implementation remains on [main-wrapper-redesign](https://github.com/StruXllence/StaadPro.Interop/tree/main-wrapper-redesign). Its [765-case dual-target test and controlled native evidence](https://github.com/StruXllence/StaadPro.Interop/blob/main-wrapper-redesign/docs/reports/evidence/Prefer-Existing-Provider-Validation-20261013.json) is historical evidence for that implementation. It does not establish fresh native qualification of the combined Core project. See [the preserved acquisition guide](OpenStaad-Session-Provider.md) for lifetime, process, blank-state and cancellation limits.

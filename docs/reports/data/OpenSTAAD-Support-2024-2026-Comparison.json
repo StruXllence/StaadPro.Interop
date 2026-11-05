@@ -2492,19 +2492,19 @@
   },
   "currentSourceEvidence": [
     {
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSSupport.cs",
-      "bytes": 75230,
-      "sha256": "b577d8c27696d4c7b940eaa16ff6582161d98ab90f0c17626c710062f1eaa98f"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSSupport.cs",
+      "bytes": 75671,
+      "sha256": "1d99b684019a6a8d53cd09524e3a220a208c03cfdba32690b102b3c1804d2d12"
     },
     {
-      "file": "src/StaadPro.Interop/Adapters/Models/OSSupportAdapter.cs",
-      "bytes": 77698,
-      "sha256": "98467c84b7cc472aaf49b51061af545448e92123187711818ce24ee67171843d"
+      "file": "src/StaadPro.Interop.Core/Adapters/Models/OSSupportAdapter.cs",
+      "bytes": 78187,
+      "sha256": "e83ca5d5e387501af2ba35d1c4946d20ef4de59482dd13941192c7dfb49a4669"
     },
     {
-      "file": "src/StaadPro.Interop/Services/Support/SupportService.cs",
-      "bytes": 20388,
-      "sha256": "ccef9ad2dd83a1b536cafd6e1fdae3198653c08c1d86421b87cc766a1ff1a8ec"
+      "file": "src/StaadPro.Interop.Core/Services/Support/SupportService.cs",
+      "bytes": 20609,
+      "sha256": "dd964075a32438165d02cb4e81049be433826f1fe406755a34f4863dca850832"
     }
   ],
   "readOnlyReferenceEvidence": [
@@ -10901,35 +10901,35 @@
   },
   "comparisonBaselineSourceEvidence": [
     {
-      "file": "src/StaadPro.Interop/Adapters/Interfaces/IOSSupport.cs",
-      "bytes": 608,
-      "sha256": "4a3f0f9fa4f7f4ff33838a254c87b16d19f8885c9b1e18c80fbc129b658dff75"
+      "file": "src/StaadPro.Interop.Core/Adapters/Interfaces/IOSSupport.cs",
+      "bytes": 75671,
+      "sha256": "1d99b684019a6a8d53cd09524e3a220a208c03cfdba32690b102b3c1804d2d12"
     },
     {
-      "file": "src/StaadPro.Interop/Adapters/Models/OSSupportAdapter.cs",
-      "bytes": 1257,
-      "sha256": "9838a58497367cd308ecd152001dbc0e197567eceb49172f3bf154de1ea69f46"
+      "file": "src/StaadPro.Interop.Core/Adapters/Models/OSSupportAdapter.cs",
+      "bytes": 78187,
+      "sha256": "e83ca5d5e387501af2ba35d1c4946d20ef4de59482dd13941192c7dfb49a4669"
     },
     {
-      "file": "src/StaadPro.Interop/Models/OpenStaadWrapper.cs",
-      "bytes": 21039,
-      "sha256": "1c0b69fe545a379262ad70cb1d1f9c45de872aba92e6eb4df218441455628692"
+      "file": "src/StaadPro.Interop.Core/Models/OpenStaadWrapper.cs",
+      "bytes": 21523,
+      "sha256": "699fa1d30e680dfd9194b93e752d435d351a064981bcbd8a82c22b4cf11ce90e"
     },
     {
-      "file": "src/StaadPro.Interop/Common/Units/UnitsConverter.cs",
-      "bytes": 4918,
-      "sha256": "ada5c77a1b653d1b2ffde985978bfbe59149a426481276e0504ef0877c5eea8d"
+      "file": "src/StaadPro.Interop.Core/Common/Units/UnitsConverter.cs",
+      "bytes": 5917,
+      "sha256": "b03536ca6978ea08d328261b55960261966d8d76c69d53624b0961b6fbb36cc7"
     },
     {
-      "file": "src/StaadPro.Interop/StaadPro.Interop.csproj",
-      "bytes": 5056,
-      "sha256": "035570ef3e35b52a2772e2ec96b9bf886ce3d08d6e555c3d51ffd870de9f1a59"
+      "file": "src/StaadPro.Interop.Core/StaadPro.Interop.Core.csproj",
+      "bytes": 11927,
+      "sha256": "5dd193498be7b52b8bf5e13729c946f9c0705a1a8b9a70e3c13f4a803168c7bf"
     }
   ],
   "packageRelease": {
     "version": "1.0.0-preview.20261027.1",
     "date": "2026-10-27",
-    "artifact": "artifacts/release/StaadPro.Interop.1.0.0-preview.20261027.1.nupkg",
+    "artifact": "artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261027.1.nupkg",
     "offlineTestsPassed": 6448,
     "installedXmlExamples": 1222,
     "icon": "images/symbol-only-logo.png",

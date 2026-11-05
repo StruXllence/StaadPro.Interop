@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using StaadPro.Interop.Adapters.Interfaces;
-using StaadPro.Interop.Enums;
-using StaadPro.Interop.Enums.Property;
-using StaadPro.Interop.Models.Property;
+using StaadPro.Interop.Core.Adapters.Interfaces;
+using StaadPro.Interop.Core.Enums;
+using StaadPro.Interop.Core.Enums.Property;
+using StaadPro.Interop.Core.Models.Property;
 
 namespace PackageVerification
 {

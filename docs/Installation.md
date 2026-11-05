@@ -1,199 +1,56 @@
-# Installing and using StaadPro.Interop
+# Installing StaadPro.Interop.Core
 
-**Prepared preview, 5 November 2026:** 1.0.0-preview.20261105 adds ZoomAll, ZoomExtentsMainView, ShowAllMembers, HideAllMembers and ShowMember(Beam), reaching 18 View methods. The release archive is built and verified locally; use the local-feed installation below until this exact version is available from NuGet.org. See [zoom and visibility contracts](View-Zoom-and-Member-Visibility.md) and [publishing instructions](Publishing.md).
+This independent package targets **net8.0-windows only** and requires Windows Desktop/WPF, including for console applications. It has its own StaadPro.Interop.dll and StaadPro.Interop.Core namespaces. Bentley binaries are not bundled; live use requires a separately licensed STAAD.Pro installation. The .NET Framework package StaadPro.Interop is a different project.
 
-## Package and runtime
+## Project reference
 
-This preview adds five main-source incremental View rotation/spin methods with complete matching interface and concrete-adapter XML IntelliSense.
-
-Preview `1.0.0-preview.20261105` adds `RotateDown(double angle)`, `RotateLeft(double angle)`, `RotateRight(double angle)`, `SpinLeft(double angle)` and `SpinRight(double angle)`, preceding the five new zoom/visibility methods in this preview. It retains the earlier Commands, Support and Design methods. Commands now reaches sixteen active native analysis routes, Support provides 27 operations and Design reaches five native names. Output retains 96 managed overloads reaching 47 documented native functions. Nine documented Property contract gates remain. It also retains the correction for `GetLoadCasesFromIds` and related primary/combination discovery throwing `invalid integer result` when native number retrieval returns Boolean success. Update the installed package and rebuild/restart the consuming application to use the corrected DLL. The [Load query guide](Load-Queries.md) explains the distinct Boolean and integer contracts.
-
-The locally prepared preview is `1.0.0-preview.20261105`, including the approved wrapper surface, all 143 reference Geometry overloads, 171 Load overloads, 249 common Property overloads plus five optional catalog queries, 96 managed Output overloads, 27 Support operations, seventeen Commands methods, ten Design methods, twenty-nine Table operations and eighteen View orientation/rotation/zoom/visibility requests, 53 common Root operations and three optional Root operations. Use this exact version with the local-feed instructions below. The package owner will upload this archive manually. Until NuGet.org validates and indexes this exact version, install it through a local feed. Public-feed commands for this preview are applicable only after that availability check; consult [release notes](Release-Notes.md), [Load contracts](Load-Porting.md), [Output usage](Output-Porting.md) and [Root capabilities](Root-Completion-and-Capabilities.md) for scope and limits.
-
-This guide uses preview version `1.0.0-preview.20261105` of package `StaadPro.Interop`. Public-feed commands apply after that exact version is accepted and available on NuGet.org; [Publishing.md](Publishing.md) explains upload and verification. The same verified archive can be installed immediately through a local feed.
-
-| Requirement | Purpose |
-| --- | --- |
-| Windows with .NET Framework 4.8.1 | Runs the library's `net481` assembly |
-| .NET Framework 4.8.1 targeting tools and suitable SDK/Visual Studio | Builds a consumer targeting `net481` |
-| Licensed STAAD.Pro exposing the needed OpenSTAAD APIs | Required for actual STAAD operations |
-| A connected, open model | Required for model metadata and assignment queries |
-| Serialized COM access on the appropriate thread | Coordinates the shared STAAD session |
-
-Installation and managed package checks do not require a STAAD license. Native STAAD operations do. Bentley software/binaries are separately installed and licensed. The package targets `net481`; this release does not advertise .NET 8/9/10 application compatibility. SDK version and the consuming application's target framework are different things.
-
-Newtonsoft.Json is restored as a package dependency. Expanded XML documentation is included beside the DLL for IntelliSense on interfaces and concrete adapters, including all 249 common IOSProperty/OSPropertyAdapter overloads, five acquired catalog queries and 96 Output overloads. The [Property completion guide](Property-Profile-Names-and-Final-Cleanup.md), [plate-corner guide](Output-Plate-Corners.md) and [Support guide](Support-Foundations.md) describe the current APIs. The [Property guide](Property-Porting.md) links the preceding increments. IntelliSense describes native flags, units, inputs and failure behavior. No Bentley binaries are bundled.
-
-The newer catalog group requires `property.Capabilities.GetStandardCatalog()` acquisition. Update the 17 renamed public UPT methods using [the migration table](Property-API-Naming.md); see [all new contracts](Property-Catalog-Capabilities-and-Cleanup.md).
-
-See [incremental View rotations](View-Incremental-Rotations.md) for degree units, source-compatible parameters, completion receipts and native UI limits.
-
-## Install from the public feed
-
-For an existing SDK-style project targeting `net481`, run:
-
-```powershell
-dotnet add ./YourApp.csproj package StaadPro.Interop --version 1.0.0-preview.20261105 --source https://api.nuget.org/v3/index.json
-dotnet restore ./YourApp.csproj
-dotnet build ./YourApp.csproj -c Release
-```
-
-For SDK 10's noun-first CLI, the equivalent command is `dotnet package add StaadPro.Interop --project ./YourApp.csproj --version 1.0.0-preview.20261105 --source https://api.nuget.org/v3/index.json`. The older verb-first command above matches the SDK used for this repository's verification. See Microsoft's [package add reference](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-package-add).
-
-The resulting project reference should pin the version:
-
-```xml
+~~~xml
 <PropertyGroup>
-  <TargetFramework>net481</TargetFramework>
+  <TargetFramework>net8.0-windows</TargetFramework>
+  <UseWPF>true</UseWPF>
 </PropertyGroup>
 <ItemGroup>
-  <PackageReference Include="StaadPro.Interop" Version="1.0.0-preview.20261105" />
+  <PackageReference Include="StaadPro.Interop.Core" Version="1.0.0-preview.20261105" />
 </ItemGroup>
-```
+~~~
 
-For a fresh-cache public restore check, create a new consumer directory and this `NuGet.Config`:
+The source is prepared for a Core preview; public NuGet.org availability of this exact package is not confirmed. Until manual upload and public restore are verified, install the archive from a local feed.
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-  <packageSources>
-    <clear />
-    <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
-  </packageSources>
-</configuration>
-```
+~~~powershell
+dotnet add package StaadPro.Interop.Core --version 1.0.0-preview.20261105 --source "C:/Path/To/Local/Feed"
+~~~
 
-Then run `dotnet restore ./YourApp.csproj --configfile ./NuGet.Config --packages ./packages`. A new `packages` directory avoids treating a previously cached/local installation as proof of public availability. When public publication is pending, use the local-feed procedure below rather than claiming this restore succeeded.
+After publication, use https://api.nuget.org/v3/index.json as the public feed. Include prerelease versions when searching in Visual Studio. A package restore/build can be verified without a STAAD installation; native operations need the installed Windows COM application.
 
-## Install in Visual Studio
-
-1. Create or open a Windows project targeting **.NET Framework 4.8.1**.
-2. Open **Manage NuGet Packages** for the project and choose **nuget.org** as the source.
-3. Enable **Include prerelease**, search for **StaadPro.Interop**, select the exact preview version, and install it.
-4. Build the project and use the sample below with a licensed open STAAD model.
-
-The NuGet Package Manager Console equivalent is:
-
-```powershell
-Install-Package StaadPro.Interop -Version 1.0.0-preview.20261105 -Source https://api.nuget.org/v3/index.json
-```
-
-For the legacy WPF test solution `NugetTestApp`, the project is at `NugetTest\NugetTest.csproj`, one directory below the solution. Use the Package Manager Console command with an explicit project:
-
-```powershell
-Install-Package StaadPro.Interop -Version 1.0.0-preview.20261105 -ProjectName NugetTest -Source https://api.nuget.org/v3/index.json
-```
-
-`dotnet add package` searches its current directory for a project; Visual Studio's **Default project** selection does not change that directory for an external CLI command. Running it in the solution directory produces **Could not find any project**. Pointing it at this unconfigured legacy project produces **The project does not support adding package references through the add package command**. Use `Install-Package` or the Visual Studio NuGet UI. Alternatively, add a `PackageReference` to the legacy project and restore/build it with Visual Studio MSBuild; converting the entire WPF project to SDK style is unnecessary.
-
-Visual Studio source/version selection is described in the official [NuGet Package Manager guide](https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-visual-studio).
-
-## Install the prepared archive through a local feed
-
-Copy the verified `.nupkg` to a dedicated folder, for example `C:\NuGetFeeds\StaadProInterop`. A local feed is a folder containing package archives; do not extract the DLL and add it as an assembly reference, because that bypasses dependency/version/documentation handling.
-
-In the consumer directory, use a project-scoped `NuGet.Config`:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-  <packageSources>
-    <clear />
-    <add key="StaadInteropLocal" value="C:\NuGetFeeds\StaadProInterop" />
-    <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
-  </packageSources>
-</configuration>
-```
-
-NuGet.org remains configured for dependencies. Add the exact package reference with:
-
-```powershell
-dotnet add ./YourApp.csproj package StaadPro.Interop --version 1.0.0-preview.20261105
-dotnet restore ./YourApp.csproj --configfile ./NuGet.Config --packages ./packages
-dotnet build ./YourApp.csproj -c Release --no-restore
-```
-
-Alternatively, configure the folder as a Visual Studio package source and select it when installing the preview. Source configuration is covered by Microsoft's [NuGet.Config reference](https://learn.microsoft.com/en-us/nuget/reference/nuget-config-file).
-
-## Minimal consumer project and first metadata read
-
-For a small Windows console consumer, this SDK-style project is sufficient:
-
-```xml
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net481</TargetFramework>
-    <OutputType>Exe</OutputType>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <PackageReference Include="StaadPro.Interop" Version="1.0.0-preview.20261105" />
-  </ItemGroup>
-</Project>
-```
-
-Save this as `Program.cs`. Open STAAD.Pro with a licensed model first:
+## Acquire a running session
 
 ```csharp
 using System;
-using StaadPro.Interop.Enums;
-using StaadPro.Interop.Services;
+using StaadPro.Interop.Core.Services;
 
 internal static class Program
 {
+    [STAThread]
     private static void Main()
     {
-        using (var wrapper = OpenStaadWrapperProvider.GetRunning())
+        using (var provider = new OpenStaadSessionProvider())
+        using (var wrapper = provider.Get())
         {
-            if (wrapper?.Load == null)
-                throw new InvalidOperationException("Open a STAAD model exposing OpenSTAAD first.");
-
-            var load = wrapper.Load;
-            foreach (var lc in load.GetLoadCasesOfType(LoadCaseType.PrimaryLoad))
-                Console.WriteLine(lc.Id + ": " + lc.Title + " (" + lc.Type + ")");
-
-            // Filters return metadata only and leave the active case unchanged.
-            foreach (var lc in load.GetLoadCases(1, 50, LoadCaseType.PrimaryLoad))
-                Console.WriteLine("In range: " + lc.Id);
+            if (wrapper == null)
+            {
+                Console.WriteLine("No usable running STAAD session was acquired.");
+                return;
+            }
+            Console.WriteLine(wrapper.Root.GetStaadFileFullPath());
         }
     }
 }
 ```
 
-These functions read existing case metadata. They do not create or activate a case. The new range includes both endpoints, ID filters omit missing IDs and collapse duplicates, and family lists have unspecified ordering. See [Load-Queries.md](Load-Queries.md) for the complete behavior and exceptions.
+This default call attaches without launching. Keep provider creation, use/disposal and subsequent native operations on the established Windows STA thread. The provider does not close STAAD when disposed and does not own wrappers already returned. See [session acquisition](OpenStaad-Session-Provider.md) for target paths, blank states, cancellation and configured launch fallback.
 
-Assignment queries such as `GetNodalLoads` activate the supplied primary/reference case and leave it active. They preserve raw native values; validate read-back units before applying conversions. Combination metadata is not an assignment-query case, and repeat-load discovery remains unsupported.
+## Migrating the earlier testing package
 
-## Acquire a specific model
+Remove the old StaadPro.Interop.Core.Testing package and update assembly/namespace imports to StaadPro.Interop.Core. The old testing package used the previous StaadPro.Interop assembly and namespace. Preserve your application's native STA ownership and do not treat a target-framework suffix as certification for every Windows/STAAD servicing build. WPF/dynamic COM trimming and Native AOT are not qualified.
 
-Call `OpenStaadWrapperProvider.Get(fullPath)` on an STA thread (for example, the WPF UI thread). The provider queries the full filename using OpenSTAAD's output-VARIANT signature, compares normalized paths without case sensitivity, and reuses a matching model. If no matching model is registered, it opens the requested file once. It polls every 250 ms for up to two minutes until the requested filename, Geometry and Load interfaces, and read-only node/load-case count calls are available. Another model registered under the global ProgID is never accepted as a match.
-
-If the path does not exist, the provider retains its existing behavior of creating a blank model there. Connection failures/timeouts return null and emit `System.Diagnostics.Trace` messages. Check the result before using the adapters. `GetRunning()` attaches to a running session and never launches STAAD. Wrapper disposal releases managed references; it does not close the model or application.
-
-These connection fixes require a new package build; they are not present in published `1.0.0-preview.20261012`. Use a new version such as `1.0.0-preview.20261105` for the corrected archive.
-
-## Check IntelliSense and package contents
-
-Under the installed package's `lib/net481` folder, check for both `StaadPro.Interop.dll` and `StaadPro.Interop.xml`. With the default cache, this is beneath `%USERPROFILE%\.nuget\packages\staadpro.interop\1.0.0-preview.20261105`. A custom cache uses the location you passed to restore.
-
-The XML supplies full method summaries, parameters, return/null semantics, mappings, side effects, exceptions and examples for the 21 ported query methods on both the interface and concrete adapter. The package's `docs` directory contains the load, installation and publishing guides. Editing a local package-cache copy is not a supported way to change the library; create a new source build/version instead.
-
-## Upgrading and diagnostics
-
-Pin the desired preview version explicitly, restore, then build and validate against a known model. Avoid relying on unspecified/floating preview selection for reproducible engineering tools. Retest native API availability, COM marshaling and unit conventions when changing either the package or STAAD version.
-
-| Symptom | Check |
-| --- | --- |
-| Package/version not found | Exact public availability, selected source, preview checkbox, and pinned spelling/version |
-| Target compatibility error | Consumer must target `net481`; installing a newer SDK alone does not retarget the app |
-| Framework reference/runtime missing | Install the Windows .NET Framework 4.8.1 targeting tools/runtime needed by the consumer |
-| Dependency restore fails | Include nuget.org for Newtonsoft.Json and any required framework reference dependencies |
-| IntelliSense missing | Restore through PackageReference, inspect XML beside the DLL, and refresh the IDE/project |
-| Wrapper or Load is null | Confirm a licensed running STAAD model, connection/provider behavior and process compatibility |
-| RuntimeBinderException | Installed STAAD Load interface may lack the called native signature |
-| InvalidOperationException | Inspect validated native counts/statuses/arrays/metadata; do not treat an error as an empty result |
-| Missing generic lookup returns null | Valid absence; `GetLoadCase` preserves nullable lookup behavior |
-| Results change after another operation | Coordinate shared-session edits and active-case changes on the appropriate COM thread |
-
-Report the package version, target framework, STAAD build/architecture, invoked method, units, expected/observed behavior and exception details when filing an issue. Use a small known model for reproduction and avoid attaching proprietary project data unnecessarily.
+Read [Core development](Core-Development.md), [API reference](API-Reference.md), [release notes](Release-Notes.md) and [publishing](Publishing.md) for scope and operating limits.

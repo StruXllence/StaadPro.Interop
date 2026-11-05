@@ -70,8 +70,8 @@ When to use: insert the channel using its specific scalar native route. Channel 
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var primary = new StaadPro.Interop.Models.Property.UptWideFlangeDefinition(0.01, 0.3, 0.006, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003);
-    var definition = new StaadPro.Interop.Models.Property.UptChannelDefinition(primary, 0.04);
+    var primary = new StaadPro.Interop.Core.Models.Property.UptWideFlangeDefinition(0.01, 0.3, 0.006, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003);
+    var definition = new StaadPro.Interop.Core.Models.Property.UptChannelDefinition(primary, 0.04);
     var result = property.AddUptPropertyChannel(7, "EXPLICIT_CHANNEL", definition);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -102,7 +102,7 @@ When to use: insert the angle using its specific scalar native route. Native IZ/
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var definition = new StaadPro.Interop.Models.Property.UptAngleDefinition(0.2, 0.15, 0.01, 0.03, 0.002, 0.003);
+    var definition = new StaadPro.Interop.Core.Models.Property.UptAngleDefinition(0.2, 0.15, 0.01, 0.03, 0.002, 0.003);
     var result = property.AddUptPropertyAngle(7, "EXPLICIT_ANGLE", definition);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -133,7 +133,7 @@ When to use: insert the double angle using its specific scalar native route. Nat
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var definition = new StaadPro.Interop.Models.Property.UptDoubleAngleDefinition(0.2, 0.15, 0.01, 0.02, 0.000001, 0.00001, 0.0001, 0.04, 0.002, 0.003);
+    var definition = new StaadPro.Interop.Core.Models.Property.UptDoubleAngleDefinition(0.2, 0.15, 0.01, 0.02, 0.000001, 0.00001, 0.0001, 0.04, 0.002, 0.003);
     var result = property.AddUptPropertyDoubleAngle(7, "EXPLICIT_DOUBLEANGLE", definition);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -164,8 +164,8 @@ When to use: insert the tee using its specific scalar native route. The tee nati
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var primary = new StaadPro.Interop.Models.Property.UptWideFlangeDefinition(0.01, 0.3, 0.006, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003);
-    var definition = new StaadPro.Interop.Models.Property.UptTeeDefinition(primary, 0.04);
+    var primary = new StaadPro.Interop.Core.Models.Property.UptWideFlangeDefinition(0.01, 0.3, 0.006, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003);
+    var definition = new StaadPro.Interop.Core.Models.Property.UptTeeDefinition(primary, 0.04);
     var result = property.AddUptPropertyTee(7, "EXPLICIT_TEE", definition);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -196,7 +196,7 @@ When to use: insert the pipe using its specific scalar native route. Native IZ/I
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var definition = new StaadPro.Interop.Models.Property.UptPipeDefinition(0.2, 0.18, 0.002, 0.003);
+    var definition = new StaadPro.Interop.Core.Models.Property.UptPipeDefinition(0.2, 0.18, 0.002, 0.003);
     var result = property.AddUptPropertyPipe(7, "EXPLICIT_PIPE", definition);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -227,7 +227,7 @@ When to use: insert the tube using its specific scalar native route. Native IZ/I
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var definition = new StaadPro.Interop.Models.Property.UptTubeDefinition(0.01, 0.3, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003);
+    var definition = new StaadPro.Interop.Core.Models.Property.UptTubeDefinition(0.01, 0.3, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003);
     var result = property.AddUptPropertyTube(7, "EXPLICIT_TUBE", definition);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -258,7 +258,7 @@ When to use: insert the general profile using its specific scalar native route. 
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var definition = new StaadPro.Interop.Models.Property.UptGeneralDefinition(0.01, 0.3, 0.006, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.0002, 0.0003, 0.002, 0.003, 0.0004, 0.0005, 0.00000001, 0.28);
+    var definition = new StaadPro.Interop.Core.Models.Property.UptGeneralDefinition(0.01, 0.3, 0.006, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.0002, 0.0003, 0.002, 0.003, 0.0004, 0.0005, 0.00000001, 0.28);
     var result = property.AddUptPropertyGeneral(7, "EXPLICIT_GENERAL", definition);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -289,7 +289,7 @@ When to use: insert the I-section using its specific scalar native route. Native
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var definition = new StaadPro.Interop.Models.Property.UptISectionDefinition(0.4, 0.006, 0.3, 0.2, 0.01, 0.15, 0.01, 0.002, 0.003, 0.000001);
+    var definition = new StaadPro.Interop.Core.Models.Property.UptISectionDefinition(0.4, 0.006, 0.3, 0.2, 0.01, 0.15, 0.01, 0.002, 0.003, 0.000001);
     var result = property.AddUptPropertyISection(7, "EXPLICIT_ISECTION", definition);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -320,7 +320,7 @@ When to use: insert the prismatic profile using its specific scalar native route
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var definition = new StaadPro.Interop.Models.Property.UptPrismaticDefinition(0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003, 0.3, 0.15);
+    var definition = new StaadPro.Interop.Core.Models.Property.UptPrismaticDefinition(0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003, 0.3, 0.15);
     var result = property.AddUptPropertyPrismatic(7, "EXPLICIT_PRISMATIC", definition);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -351,11 +351,11 @@ When to use: insert a supported composite layout without guessing optional-buffe
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var primary = new StaadPro.Interop.Models.Property.UptWideFlangeDefinition(0.01, 0.3, 0.006, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003);
-    var steel = new StaadPro.Interop.Models.Property.UptUnequalWideFlangeDefinition(primary, 0.2, 0.015);
-    var slab = new StaadPro.Interop.Models.Property.UptCompositeSlab(0.5, 0.6, 0.12, 8.0);
-    var plate = new StaadPro.Interop.Models.Property.UptCompositeBottomPlate(0.1, 0.11, 0.01);
-    var definition = new StaadPro.Interop.Models.Property.UptCompositeWideFlangeDefinition(steel, slab, plate);
+    var primary = new StaadPro.Interop.Core.Models.Property.UptWideFlangeDefinition(0.01, 0.3, 0.006, 0.15, 0.01, 0.000001, 0.00001, 0.0001, 0.002, 0.003);
+    var steel = new StaadPro.Interop.Core.Models.Property.UptUnequalWideFlangeDefinition(primary, 0.2, 0.015);
+    var slab = new StaadPro.Interop.Core.Models.Property.UptCompositeSlab(0.5, 0.6, 0.12, 8.0);
+    var plate = new StaadPro.Interop.Core.Models.Property.UptCompositeBottomPlate(0.1, 0.11, 0.01);
+    var definition = new StaadPro.Interop.Core.Models.Property.UptCompositeWideFlangeDefinition(steel, slab, plate);
     var result = property.AddUptPropertyWideFlangeComposite(7, "EXPLICIT_COMPOSITE", definition);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
@@ -443,7 +443,7 @@ When to use: request a specific table number without hiding native renumbering, 
 bool applyChanges = false; // Enable only for the intended/disposable model and reviewed inputs.
 if (applyChanges)
 {
-    var result = property.CreateUptTableEx(7, StaadPro.Interop.Enums.Property.UserProvidedTableType.WideFlange);
+    var result = property.CreateUptTableEx(7, StaadPro.Interop.Core.Enums.Property.UserProvidedTableType.WideFlange);
     System.Console.WriteLine(result.Status);
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }

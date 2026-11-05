@@ -206,8 +206,8 @@ int status = wrapper.Load.AddWindDefinition(1, "North wind");
 if (status == 0)
 {
     status = wrapper.Load.AddWindIntensity(1, new[] {
-        new StaadPro.Interop.Models.Loads.Wind.WindIntensityPair(1.24, 10),
-        new StaadPro.Interop.Models.Loads.Wind.WindIntensityPair(1.41, 15)
+        new StaadPro.Interop.Core.Models.Loads.Wind.WindIntensityPair(1.24, 10),
+        new StaadPro.Interop.Core.Models.Loads.Wind.WindIntensityPair(1.41, 15)
     });
     if (status == 0)
         status = wrapper.Load.AddWindExposure(1, 1.0, new[] { 101, 102 });
@@ -276,12 +276,12 @@ Passed 2,024 offline tests (263 new cases), a Release build and all 280 selected
 // With a connected wrapper on its COM thread, and an appropriate existing definition:
 var load = wrapper.Load;
 bool definitionCreated = load.AddSeismicDefinition(
-    StaadPro.Interop.Models.Loads.Seismic.SeismicCode.IS1893_2016,
+    StaadPro.Interop.Core.Models.Loads.Seismic.SeismicCode.IS1893_2016,
     considerAccidentalTorsion: true);
 if (definitionCreated)
 {
     int status = load.ModifySeismicDefinitionParams(
-        new StaadPro.Interop.Models.Loads.Seismic.IS1893_2016SeismicParameters
+        new StaadPro.Interop.Core.Models.Loads.Seismic.IS1893_2016SeismicParameters
         { Zone = 0.16, ImportanceFactor = 1.0 });
     if (status == 0)
         status = load.AddSeismicDefJointWeight(2.5, new[] { 101, 102 });
@@ -354,14 +354,14 @@ These are source additions after the published 1.0.0-preview.20261015 archive. N
 
 ```csharp
 // On the connected session's COM thread, with the intended case active:
-var spectrum = new StaadPro.Interop.Models.Loads.Seismic.ResponseSpectrumLoadExParameters()
+var spectrum = new StaadPro.Interop.Core.Models.Loads.Seismic.ResponseSpectrumLoadExParameters()
     .WithDirection(x: 1)
     .WithDamping(0.05)
     .WithScale(9.80665);
 spectrum.CustomSpectrumData.Add(
-    new StaadPro.Interop.Models.Loads.Seismic.SpectrumCurvePoint(0.1, 0.2));
+    new StaadPro.Interop.Core.Models.Loads.Seismic.SpectrumCurvePoint(0.1, 0.2));
 spectrum.CustomSpectrumData.Add(
-    new StaadPro.Interop.Models.Loads.Seismic.SpectrumCurvePoint(1.0, 0.5));
+    new StaadPro.Interop.Core.Models.Loads.Seismic.SpectrumCurvePoint(1.0, 0.5));
 bool added = wrapper.Load.AddResponseSpectrumLoadEx(spectrum);
 Console.WriteLine(added);
 // Native engineering/units validation and saving remain the caller's responsibility.

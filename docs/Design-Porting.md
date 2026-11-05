@@ -132,9 +132,9 @@ All typed operations run synchronously under a per-adapter gate and check captur
 ## Usage
 
 ~~~csharp
-using StaadPro.Interop.Enums;
-using StaadPro.Interop.Enums.Design;
-using StaadPro.Interop.Models.Design;
+using StaadPro.Interop.Core.Enums;
+using StaadPro.Interop.Core.Enums.Design;
+using StaadPro.Interop.Core.Models.Design;
 
 bool applyChanges = false;
 if (applyChanges)

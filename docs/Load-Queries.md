@@ -311,10 +311,10 @@ Lists and records are new on every query. Modifying a returned list, load, or `F
 
 ```csharp
 using System;
-using StaadPro.Interop.Adapters.Interfaces;
-using StaadPro.Interop.Entities;
-using StaadPro.Interop.Enums;
-using StaadPro.Interop.Services;
+using StaadPro.Interop.Core.Adapters.Interfaces;
+using StaadPro.Interop.Core.Entities;
+using StaadPro.Interop.Core.Enums;
+using StaadPro.Interop.Core.Services;
 
 using (var wrapper = OpenStaadWrapperProvider.GetRunning())
 {
@@ -377,16 +377,16 @@ These safeguards extend the main project's implementation, which casts arrays di
 
 ## IntelliSense and automated verification
 
-Both interface and concrete methods contain expanded XML comments: summaries, every parameter, returns, field mappings, unit behavior, ownership, active-case effects, COM threading constraints, six exception categories for assignment reads (three for case discovery, four for focused lookup/family selection, five for batch/generic lookup), and examples. The build emits `StaadPro.Interop.xml`, and NuGet places it beside `StaadPro.Interop.dll` under `lib/net481/`.
+Both interface and concrete methods contain expanded XML comments: summaries, every parameter, returns, field mappings, unit behavior, ownership, active-case effects, COM threading constraints, six exception categories for assignment reads (three for case discovery, four for focused lookup/family selection, five for batch/generic lookup), and examples. The build emits `StaadPro.Interop.Core.xml`, and NuGet places it beside `StaadPro.Interop.Core.dll` under `lib/net481/`.
 
 `OSLoadQueryTests` verifies all seven assignment queries' component mapping, record order, signs, case identity, both activation paths, fresh object ownership, replacement/in-place output buffers, zero counts, invalid arguments, count/status failures, every malformed component, unwritten buffers, all supported directions, zero sentinels, nonzero SAFEARRAY bounds, COM exception propagation, and missing signatures. It includes the linear start/end/middle regression. `MemberLoadDefinitionTests` verifies constructors/copies, independent definitions, dimensional conversions, assignment dispatch under both case types, native argument order, missing-input handling, and exception propagation. `OSLoadQueryDocumentationTests` validates all forty-two compiled method entries, matches interface/concrete text, and checks documentation for all four ported models.
 
-`eng/Verify-LoadPackage.ps1` checks the actual NuGet archive, creates an isolated `net481` consumer with a fresh package cache and no project reference, verifies the restored archive hash, compiles and executes all forty-two packaged XML examples, and exercises all seven installed assignment APIs for primary/reference/empty cases, primary/reference/combination discovery and lookup, ordered duplicate/empty primary/reference batches, distinct combination batches with one membership fetch, generic family/default selection, missing/empty nullable lookups, inclusive range/ID filters, concrete family lists, missing combination rejection and unchanged activation, plus all four ported models' assignment dispatch. This consumer uses a managed stand-in; it is not a live COM compatibility test.
+`eng/Verify-CorePackage.ps1` checks the actual NuGet archive, creates an isolated `net481` consumer with a fresh package cache and no project reference, verifies the restored archive hash, compiles and executes all forty-two packaged XML examples, and exercises all seven installed assignment APIs for primary/reference/empty cases, primary/reference/combination discovery and lookup, ordered duplicate/empty primary/reference batches, distinct combination batches with one membership fetch, generic family/default selection, missing/empty nullable lookups, inclusive range/ID filters, concrete family lists, missing combination rejection and unchanged activation, plus all four ported models' assignment dispatch. This consumer uses a managed stand-in; it is not a live COM compatibility test.
 
 ```powershell
-dotnet test tests/StaadPro.Interop.Tests/StaadPro.Interop.Tests.csproj -c Release
-dotnet pack src/StaadPro.Interop/StaadPro.Interop.csproj -c Release -p:PackageVersion=1.0.0-preview.20261013.4 -o artifacts/release
-./eng/Verify-LoadPackage.ps1 -PackagePath artifacts/release/StaadPro.Interop.1.0.0-preview.20261013.4.nupkg
+dotnet test tests/StaadPro.Interop.Core.Tests/StaadPro.Interop.Core.Tests.csproj -c Release
+dotnet pack src/StaadPro.Interop.Core/StaadPro.Interop.Core.csproj -c Release -p:PackageVersion=1.0.0-preview.20261013.4 -o artifacts/release
+./eng/Verify-CorePackage.ps1 -PackagePath artifacts/release/StaadPro.Interop.Core.1.0.0-preview.20261013.4.nupkg
 ```
 
 The existing `OpenStaadWrapperProvider_DefaultGetRunning_ReturnsNullWhenNoStaad` test is explicitly marked `LiveIntegration`: it asserts an environmental precondition, namely that no STAAD session is running. Ordinary offline runs leave it unexecuted. It does not verify the load queries.
@@ -431,7 +431,7 @@ Invalid counts, unknown classifications, inconsistent arrays, duplicate IDs and 
 
 ### Returned model and classifications
 
-`LoadEnvelopeDetail` and `ILoadEnvelopeDetail` live in `StaadPro.Interop.Entities`; `LoadEnvelopType` lives in `StaadPro.Interop.Enums`. These standalone types retain the main API's `Envelop` spelling and property names. They use the repository's `IEntity` and property store, with no dependency on the private main application's shared libraries.
+`LoadEnvelopeDetail` and `ILoadEnvelopeDetail` live in `StaadPro.Interop.Core.Entities`; `LoadEnvelopType` lives in `StaadPro.Interop.Core.Enums`. These standalone types retain the main API's `Envelop` spelling and property names. They use the repository's `IEntity` and property store, with no dependency on the private main application's shared libraries.
 
 | Property | Meaning |
 | --- | --- |
