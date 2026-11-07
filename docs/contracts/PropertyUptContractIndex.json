@@ -1,6 +1,6 @@
 {
   "date": "2026-10-24",
-  "description": "Twenty-two reviewed UPT operations and next three catalog/database-folder operations; unverified newer coordinate and indexed-string-list contracts remain pending.",
+  "description": "UPT section, catalog and database-folder operation contracts.",
   "reviewedNativeProfiles": [
     "24.00.02.354",
     "25.00.01.424",

@@ -436,8 +436,8 @@ foreach (var envelope in load.GetAllLoadEnvelopeDetails())
 ```
 The interface and concrete adapter both ship complete XML summaries, parameters, returns, remarks, exception contracts and examples beside the installed DLL. Envelope examples are compiled and executed in the isolated installed-package consumer alongside the existing query, geometry and mutation examples.
 
-### Main-project differences and live validation
+### Query results and validation limits
 
-The main reference is commit `3f930d742f972c27d961f0e8eff9f1e11c520ff2`. Public function signatures and classification codes are preserved. This port deliberately replaces nullable empty results and unchecked native calls with non-null empty sets, positive-ID validation, checked statuses and strict metadata checks. Model constructors initialize/copy membership sets to prevent accidental sharing; mutable property semantics remain available.
+Queries provide non-null empty sets, positive-ID validation, checked native statuses and strict metadata checks. Model constructors initialize and copy membership sets to avoid accidental sharing; mutable property semantics remain available.
 
-Before claiming live support for these queries, compare an empty model, a zero-member envelope if the installed STAAD version permits it, sparse/multiple envelope IDs and every supported classification against the STAAD UI/input file. Check exact members/counts, missing-ID failures, native success/failure conventions, marshaled Int32 arrays, and unchanged active case/load-list state on each advertised STAAD version/architecture. Offline stand-ins verify managed contracts; live envelope execution remains pending.
+Managed stand-ins verify the managed contracts. They do not establish live envelope behavior, native Int32 array marshaling or compatibility across STAAD versions and architectures.
