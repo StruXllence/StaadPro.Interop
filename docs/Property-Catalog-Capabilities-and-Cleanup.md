@@ -1,7 +1,5 @@
 # Property catalog capabilities and cleanup
 
-Incorporated **25 Property operations**: all five remaining P9 catalog queries and twenty P10 removal/deletion functions. The current surface has **245 common overloads plus five separately acquired catalog queries**, covering **191 of 204 active native routes**, with **13 remaining**. P9 is complete; P10 has twenty of twenty-four routes. The nine earlier P7/P8 contract gaps remain pending. See [all 25 catalog/cleanup contracts](Property-Catalog-Capabilities-and-Cleanup.md).
-
 Passed a Release build with zero warnings/errors and **5,156 offline tests**, including **197 new cases**. The isolated PackageReference-only consumer verifies **944 selected XML examples**: 490 common Property examples plus twelve optional catalog/acquisition examples, alongside the existing groups. Separate managed checks exercise all twenty new mutations and five catalog queries through both public surfaces. Live native mutation and engineering qualification remain pending.
 
 Added a passive version/signature acquisition boundary for the newer catalog group on exact native profiles **25.00.01.424** and **26.00.00.340**. Retained operation-specific zero-success, Boolean-success and explicit no-specification removal outcomes, owned bounded bulk targets, and separate member-end, cable-definition and analytical-node selectors. No native model is modified by verification.
@@ -23,7 +21,6 @@ if (grant.IsAvailable)
     Console.WriteLine(origin.Data.IsStandardDatabase);
 }
 ```
-
 Each acquired call rechecks version and captured receiver under the same Property gate as common operations, on the caller thread. Disposal/replacement invalidates old grants. A false origin flag is successful nonstandard-source data; empty catalog text is absence, with no Data. Native strings retain whitespace/case and are not parsed or normalized. Undocumented null text is rejected for section names; default-folder null is explicitly unavailable. No filesystem check or path creation occurs.
 
 ## Removal identities and native outcomes
@@ -38,12 +35,6 @@ Bulk plate/solid material removal accepts 1..100000 positive IDs, enumerated onc
 
 Release/offset location is MemberEnd Start=0 or End=1. Cable removal instead takes CableDefinitionKind InitialTension=0 or UnstressedLength=1, despite the native parameter being called a location. Plate-node release removal takes an analytical node ID, not a corner index. PropertyMutationResult retains these requested identities in separate immutable fields, without invented created IDs. Acknowledgement does not prove save/persistence, engineering validity or atomicity; partial changes may remain after failure. No retry, analysis, hidden save or rollback is added.
 
-## Remaining work and verification limits
-
-P10 still has RemoveAllElementNodeReleaseSpec, RemoveMemberFireProofingSpecFromBeam, GetPublishedProfileName and GetSTAADProfileName pending. Four P7 and five P8 transport/status/index contracts remain gated as recorded in the [roadmap](reports/OpenSTAAD-Property-Multi-Version-Architecture-and-Plan.md). None is counted as implemented. The next pending roadmap allocation is P10 RemoveAllElementNodeReleaseSpec.
-
-The [contract index](contracts/PropertyCleanupContractIndex.json) records every managed contract. The [three-version native comparison](reports/data/OpenSTAAD-Property-2024-2026-Comparison.json) retains original evidence, native declarations, vendor metadata and fingerprints. Managed regressions cover operation-specific responses, bounded ownership, stale binding, calling threads, capability refusal, synthetic ITypeInfo descriptors and native/managed naming separation. Installed-consumer verification checks the expanded XML beside the restored DLL.
-
 ## The 25 contracts
 
 Examples assume IOSProperty property = wrapper.Property. Mutation examples default to disabled.
@@ -55,7 +46,6 @@ Remove Thickness Property From the specific Plate.
 ```csharp
 PropertyMutationResult RemovePropertyFromPlate(int plateId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `plateId` | Positive existing native analytical plate ID. |
@@ -74,7 +64,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 2. RemoveMaterialFromPlate
 
 Remove Material From the specific Plates.
@@ -82,7 +71,6 @@ Remove Material From the specific Plates.
 ```csharp
 PropertyMutationResult RemoveMaterialFromPlate(IEnumerable<int> plateIds);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `plateIds` | Non-null sequence of 1..100000 positive analytical IDs, enumerated once; input order and duplicates are preserved in an owned copy. No inferred member/plate/solid conversion or deduplication. |
@@ -101,7 +89,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 3. RemoveMaterialFromSolid
 
 Remove Material From the specific Solids.
@@ -109,7 +96,6 @@ Remove Material From the specific Solids.
 ```csharp
 PropertyMutationResult RemoveMaterialFromSolid(IEnumerable<int> solidIds);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `solidIds` | Non-null sequence of 1..100000 positive analytical IDs, enumerated once; input order and duplicates are preserved in an owned copy. No inferred member/plate/solid conversion or deduplication. |
@@ -128,7 +114,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 4. DeleteMemberReleaseSpec
 
 Delete MEMBER RELEASE specification.
@@ -136,7 +121,6 @@ Delete MEMBER RELEASE specification.
 ```csharp
 PropertyMutationResult DeleteMemberReleaseSpec(int memberId, MemberEnd memberEnd);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `memberId` | Positive existing native analytical member ID. |
@@ -156,7 +140,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 5. DeleteAllControlDependentRelations
 
 Delete all control/dependent joint specifications from model.
@@ -164,7 +147,6 @@ Delete all control/dependent joint specifications from model.
 ```csharp
 PropertyMutationResult DeleteAllControlDependentRelations();
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | None | Uses the captured receiver. |
@@ -183,7 +165,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 6. RemoveAllElementOffsetSpec
 
 Remove all element node offset specification from the model.
@@ -191,7 +172,6 @@ Remove all element node offset specification from the model.
 ```csharp
 PropertyMutationResult RemoveAllElementOffsetSpec();
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | None | Uses the captured receiver. |
@@ -210,7 +190,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 7. RemovePropertyFromBeam
 
 Remove property from beam.
@@ -218,7 +197,6 @@ Remove property from beam.
 ```csharp
 PropertyMutationResult RemovePropertyFromBeam(int memberId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `memberId` | Positive existing native analytical member ID. |
@@ -237,7 +215,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 8. DeleteProperty
 
 Delete property based the on the property ID passed.
@@ -245,7 +222,6 @@ Delete property based the on the property ID passed.
 ```csharp
 PropertyMutationResult DeleteProperty(int propertyId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `propertyId` | Positive existing native section property reference, distinct from analytical entity IDs. |
@@ -264,7 +240,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 9. DeleteMemberSpec
 
 Delete specification based on the specification number passed.
@@ -272,7 +247,6 @@ Delete specification based on the specification number passed.
 ```csharp
 PropertyMutationResult DeleteMemberSpec(int specificationId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `specificationId` | Positive existing native specification definition ID, distinct from assigned analytical member IDs. |
@@ -291,7 +265,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 10. RemoveMemberReleaseSpecFromBeam
 
 Removes the member specification from a particular member at the provided location (Start or End)..
@@ -299,7 +272,6 @@ Removes the member specification from a particular member at the provided locati
 ```csharp
 PropertyMutationResult RemoveMemberReleaseSpecFromBeam(int memberId, MemberEnd memberEnd);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `memberId` | Positive existing native analytical member ID. |
@@ -319,7 +291,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 11. RemoveMemberOffsetSpecFromBeam
 
 Removes the member offset specification from a particular member at the provided location (Start or End).
@@ -327,7 +298,6 @@ Removes the member offset specification from a particular member at the provided
 ```csharp
 PropertyMutationResult RemoveMemberOffsetSpecFromBeam(int memberId, MemberEnd memberEnd);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `memberId` | Positive existing native analytical member ID. |
@@ -347,7 +317,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 12. RemoveMemberTrussSpecFromBeam
 
 Remove member truss specification from beam.
@@ -355,7 +324,6 @@ Remove member truss specification from beam.
 ```csharp
 PropertyMutationResult RemoveMemberTrussSpecFromBeam(int memberId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `memberId` | Positive existing native analytical member ID. |
@@ -374,7 +342,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 13. RemoveMemberInactiveSpecFromBeam
 
 Remove member inactive specification from beam.
@@ -382,7 +349,6 @@ Remove member inactive specification from beam.
 ```csharp
 PropertyMutationResult RemoveMemberInactiveSpecFromBeam(int memberId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `memberId` | Positive existing native analytical member ID. |
@@ -401,7 +367,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 14. RemoveMemberTensionSpecFromBeam
 
 Remove member tension specification from beam.
@@ -409,7 +374,6 @@ Remove member tension specification from beam.
 ```csharp
 PropertyMutationResult RemoveMemberTensionSpecFromBeam(int memberId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `memberId` | Positive existing native analytical member ID. |
@@ -428,7 +392,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 15. RemoveMemberCompressionSpecFromBeam
 
 Remove member compression specification from beam.
@@ -436,7 +399,6 @@ Remove member compression specification from beam.
 ```csharp
 PropertyMutationResult RemoveMemberCompressionSpecFromBeam(int memberId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `memberId` | Positive existing native analytical member ID. |
@@ -455,7 +417,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 16. RemoveMemberIgnoreStiffSpecFromBeam
 
 Remove member ignore stiff specification from beam.
@@ -463,7 +424,6 @@ Remove member ignore stiff specification from beam.
 ```csharp
 PropertyMutationResult RemoveMemberIgnoreStiffSpecFromBeam(int memberId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `memberId` | Positive existing native analytical member ID. |
@@ -482,7 +442,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 17. RemoveMemberCableSpecFromBeam
 
 Removes the member cable specification from a particular member at the provided location type (Tension or Length).
@@ -490,7 +449,6 @@ Removes the member cable specification from a particular member at the provided 
 ```csharp
 PropertyMutationResult RemoveMemberCableSpecFromBeam(int memberId, CableDefinitionKind definitionKind);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `memberId` | Positive existing native analytical member ID. |
@@ -510,7 +468,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 18. RemoveElementPlaneStressSpecFromPlate
 
 Remove element plane stress specification from plate.
@@ -518,7 +475,6 @@ Remove element plane stress specification from plate.
 ```csharp
 PropertyMutationResult RemoveElementPlaneStressSpecFromPlate(int plateId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `plateId` | Positive existing native analytical plate ID. |
@@ -537,7 +493,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 19. RemoveElementIgnoreInplaneRotnSpecFromPlate
 
 Remove element ignore in plane rotation specification from plate.
@@ -545,7 +500,6 @@ Remove element ignore in plane rotation specification from plate.
 ```csharp
 PropertyMutationResult RemoveElementIgnoreInplaneRotnSpecFromPlate(int plateId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `plateId` | Positive existing native analytical plate ID. |
@@ -564,7 +518,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 20. RemoveElementNodeReleaseSpecFromPlate
 
 Remove element node release specification from plate.
@@ -572,7 +525,6 @@ Remove element node release specification from plate.
 ```csharp
 PropertyMutationResult RemoveElementNodeReleaseSpecFromPlate(int plateId, int nodeId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `plateId` | Positive existing native analytical plate ID. |
@@ -592,7 +544,6 @@ if (applyChanges)
     System.Console.WriteLine(result.Status);
 }
 ```
-
 ### 21. GetDefaultStandardProfileDBFolder
 
 Gets standard profile default database folder path.
@@ -600,7 +551,6 @@ Gets standard profile default database folder path.
 ```csharp
 PropertyQueryResult<string> GetDefaultStandardProfileDBFolder();
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | None | Uses the captured receiver. |
@@ -620,7 +570,6 @@ if (grant.IsAvailable)
     if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 }
 ```
-
 ### 22. IsStandardDatabaseSection
 
 Checks if the specified section property reference number is from standard section database source or not.
@@ -628,7 +577,6 @@ Checks if the specified section property reference number is from standard secti
 ```csharp
 PropertyQueryResult<StandardSectionSource> IsStandardDatabaseSection(int propertyId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `propertyId` | Positive native section property reference ID, distinct from analytical member IDs, table IDs and native indices. |
@@ -648,7 +596,6 @@ if (grant.IsAvailable)
     if (result.IsSuccessful) System.Console.WriteLine(result.Data.IsStandardDatabase);
 }
 ```
-
 ### 23. GetStandardSectionDatabaseName
 
 Gets standard section database name for the specified section property reference number.
@@ -656,7 +603,6 @@ Gets standard section database name for the specified section property reference
 ```csharp
 PropertyQueryResult<StandardSectionText> GetStandardSectionDatabaseName(int propertyId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `propertyId` | Positive native section property reference ID, distinct from analytical member IDs, table IDs and native indices. |
@@ -676,7 +622,6 @@ if (grant.IsAvailable)
     if (result.IsSuccessful) System.Console.WriteLine(result.Data.Text);
 }
 ```
-
 ### 24. GetStandardSectionTableName
 
 Get the table name from the standard section database for the specified standard section property reference number.
@@ -684,7 +629,6 @@ Get the table name from the standard section database for the specified standard
 ```csharp
 PropertyQueryResult<StandardSectionText> GetStandardSectionTableName(int propertyId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `propertyId` | Positive native section property reference ID, distinct from analytical member IDs, table IDs and native indices. |
@@ -704,7 +648,6 @@ if (grant.IsAvailable)
     if (result.IsSuccessful) System.Console.WriteLine(result.Data.Text);
 }
 ```
-
 ### 25. GetStandardSectionName
 
 Get the section name from the standard section database and table for the specified standard section property reference number.
@@ -712,7 +655,6 @@ Get the section name from the standard section database and table for the specif
 ```csharp
 PropertyQueryResult<StandardSectionText> GetStandardSectionName(int propertyId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `propertyId` | Positive native section property reference ID, distinct from analytical member IDs, table IDs and native indices. |

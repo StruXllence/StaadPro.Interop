@@ -1,33 +1,12 @@
 {
   "schemaVersion": 1,
   "date": "2026-11-07",
-  "mainProjectReadOnly": true,
-  "sourceFiles": [
-    {
-      "file": "Adapters/Interfaces/IOSView.cs",
-      "sha256": "f18ef805684c4f5e25b7385342e315a1fe90952db031756ebad44c197ba5c5f0"
-    },
-    {
-      "file": "Adapters/Models/OSViewAdapter.cs",
-      "sha256": "3c2e69209344385210d6494f94937259f3bc5557736fd69652d9ca973f6447b2"
-    }
-  ],
   "functions": [
     {
       "managedName": "ShowFront",
       "returnType": "ViewOperationResult",
       "nativeName": "ShowFront",
       "parameters": "",
-      "source": [
-        {
-          "managedName": "ShowFront",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
-          "line": 109,
-          "name": "ShowFront",
-          "receiver": "ComObject",
-          "arguments": []
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::ShowFront()",
         "2025": "void OSViewUI::ShowFront()",
@@ -39,16 +18,6 @@
       "returnType": "ViewOperationResult",
       "nativeName": "ShowBack",
       "parameters": "",
-      "source": [
-        {
-          "managedName": "ShowBack",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
-          "line": 114,
-          "name": "ShowBack",
-          "receiver": "ComObject",
-          "arguments": []
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::ShowBack()",
         "2025": "void OSViewUI::ShowBack()",
@@ -60,16 +29,6 @@
       "returnType": "ViewOperationResult",
       "nativeName": "ShowLeft",
       "parameters": "",
-      "source": [
-        {
-          "managedName": "ShowLeft",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
-          "line": 119,
-          "name": "ShowLeft",
-          "receiver": "ComObject",
-          "arguments": []
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::ShowLeft()",
         "2025": "void OSViewUI::ShowLeft()",
@@ -81,16 +40,6 @@
       "returnType": "ViewOperationResult",
       "nativeName": "ShowRight",
       "parameters": "",
-      "source": [
-        {
-          "managedName": "ShowRight",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
-          "line": 124,
-          "name": "ShowRight",
-          "receiver": "ComObject",
-          "arguments": []
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::ShowRight()",
         "2025": "void OSViewUI::ShowRight()",
@@ -102,16 +51,6 @@
       "returnType": "ViewOperationResult",
       "nativeName": "ShowPlan",
       "parameters": "",
-      "source": [
-        {
-          "managedName": "ShowPlan",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
-          "line": 129,
-          "name": "ShowPlan",
-          "receiver": "ComObject",
-          "arguments": []
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::ShowPlan()",
         "2025": "void OSViewUI::ShowPlan()",
@@ -123,16 +62,6 @@
       "returnType": "ViewOperationResult",
       "nativeName": "ShowBottom",
       "parameters": "",
-      "source": [
-        {
-          "managedName": "ShowBottom",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
-          "line": 134,
-          "name": "ShowBottom",
-          "receiver": "ComObject",
-          "arguments": []
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::ShowBottom()",
         "2025": "void OSViewUI::ShowBottom()",
@@ -144,16 +73,6 @@
       "returnType": "ViewOperationResult",
       "nativeName": "ShowIsometric",
       "parameters": "",
-      "source": [
-        {
-          "managedName": "ShowIsometric",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
-          "line": 139,
-          "name": "ShowIsometric",
-          "receiver": "ComObject",
-          "arguments": []
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::ShowIsometric()",
         "2025": "void OSViewUI::ShowIsometric()",
@@ -165,18 +84,6 @@
       "returnType": "ViewOperationResult",
       "nativeName": "RotateUp",
       "parameters": "double angleDegrees",
-      "source": [
-        {
-          "managedName": "RotateUp",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
-          "line": 144,
-          "name": "RotateUp",
-          "receiver": "ComObject",
-          "arguments": [
-            "angle"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::RotateUp(const VARIANT FAR&dDegrees)",
         "2025": "void OSViewUI::RotateUp(const VARIANT FAR&dDegrees)",
@@ -189,136 +96,61 @@
       "returnType": "ViewOperationResult",
       "nativeName": "RotateDown",
       "parameters": "double angle",
-      "source": [
-        {
-          "managedName": "RotateDown",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
-          "line": 149,
-          "name": "RotateDown",
-          "receiver": "ComObject",
-          "arguments": [
-            "angle"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::RotateDown(const VARIANT FAR&dDegrees)",
         "2025": "void OSViewUI::RotateDown(const VARIANT FAR&dDegrees)",
         "2026": "void OSViewUI::RotateDown(const VARIANT FAR&dDegrees)"
-      },
-      "argumentPolicy": "The finite signed rotation angle in degrees, preserving the main-source parameter name. Zero, negative values, negative zero and values beyond one revolution are passed unchanged. No radians conversion, clamping, normalization or rounding is performed."
+      }
     },
     {
       "managedName": "RotateLeft",
       "returnType": "ViewOperationResult",
       "nativeName": "RotateLeft",
       "parameters": "double angle",
-      "source": [
-        {
-          "managedName": "RotateLeft",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
-          "line": 154,
-          "name": "RotateLeft",
-          "receiver": "ComObject",
-          "arguments": [
-            "angle"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::RotateLeft(const VARIANT FAR&dDegrees)",
         "2025": "void OSViewUI::RotateLeft(const VARIANT FAR&dDegrees)",
         "2026": "void OSViewUI::RotateLeft(const VARIANT FAR&dDegrees)"
-      },
-      "argumentPolicy": "The finite signed rotation angle in degrees, preserving the main-source parameter name. Zero, negative values, negative zero and values beyond one revolution are passed unchanged. No radians conversion, clamping, normalization or rounding is performed."
+      }
     },
     {
       "managedName": "RotateRight",
       "returnType": "ViewOperationResult",
       "nativeName": "RotateRight",
       "parameters": "double angle",
-      "source": [
-        {
-          "managedName": "RotateRight",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
-          "line": 159,
-          "name": "RotateRight",
-          "receiver": "ComObject",
-          "arguments": [
-            "angle"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::RotateRight(const VARIANT FAR&dDegrees)",
         "2025": "void OSViewUI::RotateRight(const VARIANT FAR&dDegrees)",
         "2026": "void OSViewUI::RotateRight(const VARIANT FAR&dDegrees)"
-      },
-      "argumentPolicy": "The finite signed rotation angle in degrees, preserving the main-source parameter name. Zero, negative values, negative zero and values beyond one revolution are passed unchanged. No radians conversion, clamping, normalization or rounding is performed."
+      }
     },
     {
       "managedName": "SpinLeft",
       "returnType": "ViewOperationResult",
       "nativeName": "SpinLeft",
       "parameters": "double angle",
-      "source": [
-        {
-          "managedName": "SpinLeft",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
-          "line": 164,
-          "name": "SpinLeft",
-          "receiver": "ComObject",
-          "arguments": [
-            "angle"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::SpinLeft(const VARIANT FAR&dDegrees)",
         "2025": "void OSViewUI::SpinLeft(const VARIANT FAR&dDegrees)",
         "2026": "void OSViewUI::SpinLeft(const VARIANT FAR&dDegrees)"
-      },
-      "argumentPolicy": "The finite signed rotation angle in degrees, preserving the main-source parameter name. Zero, negative values, negative zero and values beyond one revolution are passed unchanged. No radians conversion, clamping, normalization or rounding is performed."
+      }
     },
     {
       "managedName": "SpinRight",
       "returnType": "ViewOperationResult",
       "nativeName": "SpinRight",
       "parameters": "double angle",
-      "source": [
-        {
-          "managedName": "SpinRight",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
-          "line": 169,
-          "name": "SpinRight",
-          "receiver": "ComObject",
-          "arguments": [
-            "angle"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::SpinRight(const VARIANT FAR&dDegrees)",
         "2025": "void OSViewUI::SpinRight(const VARIANT FAR&dDegrees)",
         "2026": "void OSViewUI::SpinRight(const VARIANT FAR&dDegrees)"
-      },
-      "argumentPolicy": "The finite signed rotation angle in degrees, preserving the main-source parameter name. Zero, negative values, negative zero and values beyond one revolution are passed unchanged. No radians conversion, clamping, normalization or rounding is performed."
+      }
     },
     {
       "managedName": "ZoomAll",
       "returnType": "ViewOperationResult",
       "nativeName": "ZoomAll",
       "parameters": "",
-      "source": [
-        {
-          "managedName": "ZoomAll",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
-          "line": 174,
-          "name": "ZoomAll",
-          "receiver": "ComObject",
-          "arguments": []
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::ZoomAll()",
         "2025": "void OSViewUI::ZoomAll()",
@@ -330,16 +162,6 @@
       "returnType": "ViewOperationResult",
       "nativeName": "ZoomExtentsMainView",
       "parameters": "",
-      "source": [
-        {
-          "managedName": "ZoomExtentsMainView",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
-          "line": 179,
-          "name": "ZoomExtentsMainView",
-          "receiver": "ComObject",
-          "arguments": []
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::ZoomExtentsMainView()",
         "2025": "void OSViewUI::ZoomExtentsMainView()",
@@ -351,16 +173,6 @@
       "returnType": "ViewOperationResult",
       "nativeName": "ShowAllMembers",
       "parameters": "",
-      "source": [
-        {
-          "managedName": "ShowAllMembers",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
-          "line": 184,
-          "name": "ShowAllMembers",
-          "receiver": "ComObject",
-          "arguments": []
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::ShowAllMembers()",
         "2025": "void OSViewUI::ShowAllMembers()",
@@ -372,16 +184,6 @@
       "returnType": "ViewOperationResult",
       "nativeName": "HideAllMembers",
       "parameters": "",
-      "source": [
-        {
-          "managedName": "HideAllMembers",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
-          "line": 189,
-          "name": "HideAllMembers",
-          "receiver": "ComObject",
-          "arguments": []
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::HideAllMembers()",
         "2025": "void OSViewUI::HideAllMembers()",
@@ -393,18 +195,6 @@
       "returnType": "ViewOperationResult",
       "nativeName": "ShowMember",
       "parameters": "Beam beam",
-      "source": [
-        {
-          "managedName": "ShowMember",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSViewAdapter.cs",
-          "line": 194,
-          "name": "ShowMember",
-          "receiver": "ComObject",
-          "arguments": [
-            "beam.Id"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::ShowMember(const VARIANT FAR&nMember)",
         "2025": "void OSViewUI::ShowMember(const VARIANT FAR&nMember)",
@@ -417,19 +207,6 @@
       "returnType": "ViewOperationResult",
       "nativeName": "ShowMembers",
       "parameters": "IEnumerable<Beam> beams",
-      "source": [
-        {
-          "managedName": "ShowMembers",
-          "file": "Adapters/Models/OSViewAdapter.cs",
-          "line": 201,
-          "name": "ShowMembers",
-          "receiver": "ComObject",
-          "arguments": [
-            "beamIds.Count()",
-            "beamIds"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::ShowMembers(const VARIANT FAR&nMembers,const VARIANT FAR&naMemberNos)",
         "2025": "void OSViewUI::ShowMembers(const VARIANT FAR&nMembers,const VARIANT FAR&naMemberNos)",
@@ -443,18 +220,6 @@
       "returnType": "ViewOperationResult",
       "nativeName": "HideMember",
       "parameters": "Beam beam",
-      "source": [
-        {
-          "managedName": "HideMember",
-          "file": "Adapters/Models/OSViewAdapter.cs",
-          "line": 206,
-          "name": "HideMember",
-          "receiver": "ComObject",
-          "arguments": [
-            "beam.Id"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::HideMember(const VARIANT FAR&nMember)",
         "2025": "void OSViewUI::HideMember(const VARIANT FAR&nMember)",
@@ -468,19 +233,6 @@
       "returnType": "ViewOperationResult",
       "nativeName": "HideMembers",
       "parameters": "IEnumerable<Beam> beams",
-      "source": [
-        {
-          "managedName": "HideMembers",
-          "file": "Adapters/Models/OSViewAdapter.cs",
-          "line": 212,
-          "name": "HideMembers",
-          "receiver": "ComObject",
-          "arguments": [
-            "beamIds.Count()",
-            "beamIds"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": "void OSViewUI::HideMembers(const VARIANT FAR&nMembers,const VARIANT FAR&naMemberNos)",
         "2025": "void OSViewUI::HideMembers(const VARIANT FAR&nMembers,const VARIANT FAR&naMemberNos)",

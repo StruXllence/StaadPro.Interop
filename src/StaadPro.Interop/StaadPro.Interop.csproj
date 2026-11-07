@@ -59,23 +59,19 @@
     <None Include="..\..\docs\View-Orientations.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\View-Incremental-Rotations.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\View-Zoom-and-Member-Visibility.md" Pack="true" PackagePath="docs\" />
-    <None Include="..\..\docs\reports\OpenSTAAD-Main-Source-Porting-Status.md" Pack="true" PackagePath="docs\reports\" />
-    <None Include="..\..\docs\reports\data\OpenSTAAD-Main-Source-Porting-Status.json" Pack="true" PackagePath="docs\reports\data\" />
     <None Include="..\..\docs\Table-Report-Foundations.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Table-Lifecycle-and-Formatting.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Table-Completion-and-View-Foundations.md" Pack="true" PackagePath="docs\" />
-    <None Include="..\..\docs\View-Porting.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\contracts\ViewFoundationContractIndex.json" Pack="true" PackagePath="docs\contracts\" />
-    <None Include="..\..\docs\Table-Porting.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\contracts\TableFoundationContractIndex.json" Pack="true" PackagePath="docs\contracts\" />
     <None Include="..\..\docs\Branding.md" Pack="true" PackagePath="docs\" />
     <None Include="$(BaseIntermediateOutputPath)package-docs\README.md" Pack="true" PackagePath="README.md" />
     <None Include="..\..\docs\Load-Queries.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Load-Expansion.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Load-Inspection-Queries.md" Pack="true" PackagePath="docs\" />
-    <None Include="..\..\docs\Geometry-Porting.md" Pack="true" PackagePath="docs\" />
-    <None Include="..\..\docs\Load-Porting.md" Pack="true" PackagePath="docs\" />
-    <None Include="..\..\docs\Property-Porting.md" Pack="true" PackagePath="docs\" />
+    <None Include="..\..\docs\Geometry.md" Pack="true" PackagePath="docs\" />
+    <None Include="..\..\docs\Load.md" Pack="true" PackagePath="docs\" />
+    <None Include="..\..\docs\Property.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Property-Main-Ports.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Property-Management-Ports.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Property-Workflows.md" Pack="true" PackagePath="docs\" />
@@ -98,23 +94,22 @@
     <None Include="..\..\docs\Output-Managed-Workflows.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\contracts\OutputManagedWorkflowContractIndex.json" Pack="true" PackagePath="docs\contracts\" />
     <None Include="..\..\docs\Output-Steel-Design-Blocks.md" Pack="true" PackagePath="docs\" />
-    <None Include="..\..\docs\Design-Porting.md" Pack="true" PackagePath="docs\" />
+    <None Include="..\..\docs\Design.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\contracts\DesignFoundationContractIndex.json" Pack="true" PackagePath="docs\contracts\" />
-    <None Include="..\..\docs\Commands-and-Support-Porting.md" Pack="true" PackagePath="docs\" />
+    <None Include="..\..\docs\Commands-and-Support.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\contracts\CommandsAndSupportPortContractIndex.json" Pack="true" PackagePath="docs\contracts\" />
-    <None Include="..\..\docs\Support-Porting.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Support-Foundations.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\contracts\OutputSteelBlockContractIndex.json" Pack="true" PackagePath="docs\contracts\" />
     <None Include="..\..\docs\contracts\SupportFoundationContractIndex.json" Pack="true" PackagePath="docs\contracts\" />
-    <None Include="..\..\docs\Output-Porting.md" Pack="true" PackagePath="docs\" />
-    <None Include="..\..\docs\Root-Porting.md" Pack="true" PackagePath="docs\" />
+    <None Include="..\..\docs\Output.md" Pack="true" PackagePath="docs\" />
+    <None Include="..\..\docs\Root.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Root-Analysis-Queries.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Root-Common-Queries.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Root-Model-Setup.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Root-Job-Analysis-Projects.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Root-Creation-Views-and-Lifecycle.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Root-Completion-and-Capabilities.md" Pack="true" PackagePath="docs\" />
-    <None Include="..\..\docs\Wrapper-Porting.md" Pack="true" PackagePath="docs\" />
+    <None Include="..\..\docs\Wrapper.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Installation.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\Publishing.md" Pack="true" PackagePath="docs\" />
     <None Include="$(BaseIntermediateOutputPath)package-docs\Release-Notes.md" Pack="true" PackagePath="docs\" />

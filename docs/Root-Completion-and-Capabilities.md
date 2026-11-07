@@ -1,22 +1,8 @@
 # Completed Root APIs and version-aware capabilities
 
-The Root implementation now covers **all 39 functions in the reviewed Bentley reference** and **all 23 methods in the private source Root interface**. It exposes 53 common IOSRoot methods plus three optional operation methods on separately acquired interfaces. The three capability-acquisition methods and the Capabilities property are infrastructure, not additional native Root functions.
-
 Implementation coverage means the managed mapping exists. It does not certify every STAAD version/build, native flag, file effect or analysis result. These Root additions are included in the published 1.0.0-preview.20261015 archive. Later source additions require their own package release.
 
 ## Final public surface
-
-| API | Location and return |
-| --- | --- |
-| `RemoveNamedView(string viewName)` | IOSRoot; void native removal request. |
-| `ModifyNamedView(string viewName, IEnumerable<int> entityIds, NamedViewEntityType entityType, int modificationFlag)` | IOSRoot; void native four-input request. |
-| `GetAdinaExport()` | IOSRoot.Capabilities; RootCapabilityResult&lt;IOSRootAdinaExport&gt;. |
-| `GetAnalysisErrorMessages()` | IOSRoot.Capabilities; independently acquired error-message interface. |
-| `GetAnalysisWarningMessages()` | IOSRoot.Capabilities; independently acquired warning-message interface. |
-| `ExportModelToAdina(AdinaAxisSystem axisSystem, AdinaLoadCaseHandling loadCaseHandling)` | IOSRootAdinaExport; AdinaExportResult. |
-| `GetAnalysisErrorMessages(string modelFilePath)` | IOSRootAnalysisErrorMessages; AnalysisMessagesResult. |
-| `GetAnalysisWarningMessages(string modelFilePath)` | IOSRootAnalysisWarningMessages; AnalysisMessagesResult. |
-| `RetrieveMemberForces(IEnumerable<int> beamIds, IEnumerable<int> loadCaseIds)` | IOSRoot; MemberForcesResult, completing the additional private-source helper. |
 
 Public contracts live in Adapters/Interfaces, including Capabilities. OSRootAdapter remains a single non-partial class and does not implement the optional operation interfaces. Their concrete adapters and constructors are internal under Adapters/Models/Capabilities. Results/options live in Models/Root and Enums/Root; the source-compatible MemberForces and MemberEnd retain their Entities/Enums homes. Native services and selection remain internal.
 
@@ -39,7 +25,6 @@ else
     Console.WriteLine(result.HasWarnings);
 }
 ```
-
 A runtime version cannot remove C# interface declarations from assembly metadata. The implemented boundary therefore returns an operation interface only after acquisition checks; an unsupported common adapter cannot be cast to an optional interface. Deliberate raw ComObject access remains available.
 
 Capabilities property access captures the existing root/accessor without native inspection. Each acquisition reads the owning wrapper's native StaadVersion snapshot, or the same supplied raw root for standalone adapters. It never uses host ApplicationVersion, a registry entry, installed-folder names, a PID or a global active object.
@@ -76,7 +61,6 @@ if (grant.IsAvailable)
     foreach (string text in result.Messages) Console.WriteLine(text);
 }
 ```
-
 The warning interface is acquired and inspected separately. It uses the ANL file; the error interface uses the analysis log. Neither parses files itself or starts analysis.
 
 The managed implementation validates/normalizes the model path before native access, reads GetAnalysisStatus for the selected count and allocates a BSTR string array internally. No public ref/out parameters or caller-owned buffers are exposed. An unavailable count is not silently treated as zero. Allocation is limited to **100,000 messages** per attempt. A count of zero still makes the actual native retrieval call, preserving its real successful-absence response.
@@ -96,8 +80,6 @@ Only an explicit -108 permits **one** fresh count and one additional retrieval. 
 
 AnalysisMessagesResult distinguishes Outcome from NativeStatus. Outcome may be Retrieved, NoMessages, NativeFailure, AnalysisCountUnavailable or MessageLimitExceeded. NativeStatus is null only when retrieval was not invoked. Status is the recognized nullable native enum. AnalysisState preserves the last count-query result/path, RetrievalAttempts is zero through two, and IsSuccessful means retrieval success rather than successful analysis.
 
-Native success requires a one-dimensional BSTR array with all returned entries written as strings and at most 100,000 elements. Replacement arrays and nonzero lower bounds are accepted. Native false/error or successful absence exposes no partial buffer content. Malformed successful shapes, null entries or unwritten sentinels remain exceptions. Messages are copied into a read-only collection; ordering, empty strings, whitespace, Unicode and line breaks are retained.
-
 Counts and retrieval are sequential observations, not a transaction. The count/source may change between calls; inconsistent successful outputs fail rather than being presented as qualified data. The allocation bound governs managed preallocation and accepted output size; it cannot prevent a native server/marshaler from allocating an oversized response before validation.
 
 ## ADINA export
@@ -108,48 +90,6 @@ The operation makes one ExportModelToADINA call using the two Int32 codes. Adina
 
 Native export writes an ADINA input file and a companion .ADINA.log. The signature returns no path and provides no destination/overwrite option. The library does not infer an output path, save or analyse the model, promise atomic no-overwrite, retry the export or roll back files. Use a disposable controlled model/destination and inspect files/logs separately. Runtime destination, overwrite, prompt and licensing behavior still require validation.
 
-## Remaining named-view operations
-
-Inspected 2025/2026 declarations are:
-
-```text
-Void RemoveNamedView(Object name, Object nError)
-Void ModifyNamedView(Object name, Object entityArray, Object qualifier, Object modificationFlag)
-```
-
-These conflict with the help's reference error outputs and, for modification, separate count argument. The implemented signatures follow the inspected declarations and do not retry alternative mutations.
-
-RemoveNamedView validates the literal name and supplies Int32 zero to initialize the required by-value nError slot, consistent with the help example's initially zero numeric variable. Zero is not interpreted as success; no output/error result is observable through this declaration. The managed return is void.
-
-ModifyNamedView snapshots its identifier sequence once into a private zero-based Int32 array, validates positive IDs and a documented entity qualifier, and makes one four-input native request. NamedViewEntityType defines Node=0, Beam=1, Plate=2, Solid=3 and Surface=4. Order and duplicates are preserved. Empty arrays are forwarded as explicit native requests, not converted into guessed no-ops. A caller count cannot disagree with the array length because no public count is accepted.
-
-The required modificationFlag remains Int32 because authoritative meanings/defaults are unavailable. Every Int32 is forwarded unchanged; callers must establish the mode and empty-array behavior for the actual build. Void return proves dispatch completion only. Native existence, membership, persistence, flags, 2024 signatures and marshaling still require controlled validation. No geometry deletion, selection edit, SaveModel, rollback or mutation retry is added.
-
-## Completed private-source helper
-
-```csharp
-var batch = wrapper.Root.RetrieveMemberForces(new[] { 1, 2 }, new[] { 3 });
-if (!batch.IsSuccessful) Console.WriteLine("Inspect availability and per-end outcomes.");
-foreach (var query in batch.Queries)
-{
-    if (query.IsSuccessful) Console.WriteLine(query.Forces.ToString());
-}
-```
-
-RetrieveMemberForces completes the additional private Root interface method, which is not one of Bentley's 39 Root functions. Its public return is refined from the source HashSet to MemberForcesResult under the approved managed API rules. No public Output methods are added.
-
-Both input sequences are captured once, validated as positive IDs and deduplicated in first-seen order. At most 100,000 end queries may be requested. An empty Cartesian request performs no native access, succeeds as empty work and reports null AreResultsAvailable. Otherwise, the bound raw Output availability is queried once. Native false returns an unsuccessful empty result without fetching load titles or forces.
-
-For available results, each distinct case title is read once through the same root's raw Load object. Each member is queried at start/end using local coordinate flag zero and an internal six-Double buffer. Native true requires six written finite values; native false retains the failed beam/case/end identity and null data, while other requested queries continue. Unknown/malformed flags or successful buffers throw without returning a partial batch.
-
-MemberForces and MemberEnd were ported from the main source and reuse the existing Forces model. Records retain native local result units without conversion, coordinate reconstruction or offset transfer. Their managed properties remain editable. The read-only collections preserve distinct physical identities even when their six component values match; inherited component-based Forces equality must not collapse them through a HashSet. Queries carries all per-end outcomes, Forces contains only qualified records, and IsSuccessful requires availability plus success of all requested end queries.
-
-No case activation, analysis, model save, GUI warning, task dispatch or provider acquisition is introduced. Native unit conventions, actual results availability and force accuracy remain subject to runtime validation.
-
 ## Verification and release boundary
-
-The Release suite currently passes **1,547 tests**. The main source remains strictly read-only. All new public operations, results, options and statuses have XML documentation; interfaces and concrete common adapters have matching contracts. Metadata inspection is tested with allocated ITypeInfo descriptor stand-ins and a harmless empty Windows automation object; no STAAD mutation was used for validation.
-
-The Release build passes with zero warnings/errors. All 60 public Root interface/gateway XML examples compile with warnings treated as errors. The 217-example source consumer harness also compiles/runs; this is source validation, not a rebuilt NuGet archive check. Both 39-row coverage matrices, the 53-row common API table and built private-source name parity (23 of 23) are verified.
 
 Complete native API coverage does not remove release gates. Actual 2024/2025/2026 runtime behavior, unverified servicing builds, named-view flags, result units/accuracy, native array marshaling, export file effects, model creation races and shutdown prompts still need controlled STAAD validation. The existing package/archive is unchanged; a new NuGet release needs fresh package metadata, release notes and isolated archive verification.

@@ -17,7 +17,6 @@ Every signature below returns OutputQueryResult<T>: inspect IsSuccessful before 
 ~~~csharp
 OutputQueryResult<MemberSteelDesignResults> GetMemberSteelDesignResults(int memberId);
 ~~~
-
 Native: `GetMemberSteelDesignResults`. Workstream: O5.
 
 Reads the complete single-block steel-design result packet for one analytical member.
@@ -32,13 +31,11 @@ Prefer this query when code, decision, governing case/station/clause/section, al
 var result = output.GetMemberSteelDesignResults(17);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.DesignStatus);
 ~~~
-
 ### GetBucklingFactorCount
 
 ~~~csharp
 OutputQueryResult<int> GetBucklingFactorCount();
 ~~~
-
 Native: `GetNoOfBucklingFactors`. Workstream: O5.
 
 Counts the native eigen-buckling factors already extracted.
@@ -49,13 +46,11 @@ This returns an actual integral count, not a success flag or a factor value. Zer
 var result = output.GetBucklingFactorCount();
 if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 ~~~
-
 ### GetBucklingModeDisplacements
 
 ~~~csharp
 OutputQueryResult<ModeDisplacements> GetBucklingModeDisplacements(int nativeBucklingModeNumber, int nodeId);
 ~~~
-
 Native: `GetBucklingModeDisplacementAtNode`. Workstream: O5.
 
 Reads all six native eigen-buckling mode-shape components at one node.
@@ -71,13 +66,11 @@ Use for a buckling mode shape, not static displacement or a scalar buckling fact
 var result = output.GetBucklingModeDisplacements(1, 11);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.Translation);
 ~~~
-
 ### GetRelativeMemberDisplacement
 
 ~~~csharp
 OutputQueryResult<Vector3D> GetRelativeMemberDisplacement(int memberId, double distanceFromStart, int loadCaseId);
 ~~~
-
 Native: `GetIntermediateMemberTransDisplacements`. Workstream: O6.
 
 Reads the relative native X/Y/Z member translation at a specified station.
@@ -94,13 +87,11 @@ Use for the native relative translations described in local X/Y/Z order. GetAbso
 var result = output.GetRelativeMemberDisplacement(17, 0.5, 1);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 ~~~
-
 ### GetAbsoluteMemberDisplacement
 
 ~~~csharp
 OutputQueryResult<Vector3D> GetAbsoluteMemberDisplacement(int memberId, double distanceFromStart, int loadCaseId);
 ~~~
-
 Native: `GetIntermediateMemberAbsTransDisplacements`. Workstream: O6.
 
 Reads the absolute-labelled native X/Y/Z member translation at a specified station.
@@ -117,13 +108,11 @@ Calls the native AbsTrans operation, separately from GetRelativeMemberDisplaceme
 var result = output.GetAbsoluteMemberDisplacement(17, 0.5, 1);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 ~~~
-
 ### GetPhysicalMemberEndForces
 
 ~~~csharp
 OutputQueryResult<ForceComponents> GetPhysicalMemberEndForces(int physicalMemberId, MemberEnd memberEnd, int loadCaseId, ResultCoordinateSystem coordinateSystem = ResultCoordinateSystem.Local);
 ~~~
-
 Native: `GetPMemberEndForces`. Workstream: O6.
 
 Reads six physical-member end actions in explicitly selected native local/global axes.
@@ -141,13 +130,11 @@ Use for physical-member IDs and native physical start/end incidence. GetMemberEn
 var result = output.GetPhysicalMemberEndForces(7, MemberEnd.Start, 1, ResultCoordinateSystem.Local);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.Fx);
 ~~~
-
 ### GetMemberAxialForceExtrema
 
 ~~~csharp
 OutputQueryResult<MemberForceExtrema> GetMemberAxialForceExtrema(int memberId, int loadCaseId);
 ~~~
-
 Native: `GetMinMaxAxialForce`. Workstream: O6.
 
 Reads signed axial-force minimum/maximum values and both native stations.
@@ -163,13 +150,11 @@ Unlike GetMemberForcesAtDistance, this requests native extrema over the member. 
 var result = output.GetMemberAxialForceExtrema(17, 1);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.MinimumValue);
 ~~~
-
 ### GetMemberForcesAtDistance
 
 ~~~csharp
 OutputQueryResult<ForceComponents> GetMemberForcesAtDistance(int memberId, double distanceFromStart, int loadCaseId);
 ~~~
-
 Native: `GetIntermediateMemberForcesAtDistance`. Workstream: O6.
 
 Reads six local section actions at a specified analytical member station.
@@ -186,13 +171,11 @@ This returns FX/FY/FZ/MX/MY/MZ at a native distance from the analytical start. G
 var result = output.GetMemberForcesAtDistance(17, 0.5, 1);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.Fx);
 ~~~
-
 ### GetPhysicalMemberForcesAtDistance
 
 ~~~csharp
 OutputQueryResult<ForceComponents> GetPhysicalMemberForcesAtDistance(int physicalMemberId, double distanceFromStart, int loadCaseId);
 ~~~
-
 Native: `GetPMemberIntermediateForcesAtDistance`. Workstream: O6.
 
 Reads six local section actions at a specified physical member station.
@@ -209,13 +192,11 @@ This returns FX/FY/FZ/MX/MY/MZ at a native distance from the physical start. Get
 var result = output.GetPhysicalMemberForcesAtDistance(17, 0.5, 1);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.Fx);
 ~~~
-
 ### GetMemberDeflectionAtDistance
 
 ~~~csharp
 OutputQueryResult<MemberDeflection> GetMemberDeflectionAtDistance(int memberId, double distanceFromStart, int loadCaseId);
 ~~~
-
 Native: `GetIntermediateDeflectionAtDistance`. Workstream: O6.
 
 Reads the two native Y/Z deflection outputs at one analytical member station.
@@ -232,13 +213,11 @@ Choose this for the two-output native deflection operation; GetRelativeMemberDis
 var result = output.GetMemberDeflectionAtDistance(17, 0.5, 1);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.NativeY);
 ~~~
-
 ### GetMatInfluenceAreas
 
 ~~~csharp
 OutputQueryResult<IReadOnlyList<MatInfluenceArea>> GetMatInfluenceAreas(IEnumerable<int> supportNodeIds, int maximumResults = 100000);
 ~~~
-
 Native: `GetMatInfluenceAreas`. Workstream: O7.
 
 Reads native ELASTIC MAT influence areas corresponding to an explicit support-node selection.
@@ -254,13 +233,11 @@ Use for YZ/ZX/XY influence areas, not base pressures or Load floor influence are
 var result = output.GetMatInfluenceAreas(new[] { 11, 12, 11 });
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.Count);
 ~~~
-
 ### GetBasePressures
 
 ~~~csharp
 OutputQueryResult<IReadOnlyList<NodeBasePressure>> GetBasePressures(int loadCaseId, IEnumerable<int> supportNodeIds, int maximumResults = 100000);
 ~~~
-
 Native: `GetBasePressures`. Workstream: O7.
 
 Reads signed base pressures for explicitly ordered support nodes and one result case.
@@ -277,13 +254,11 @@ Requires native BASE PRESSURE results; it does not calculate contact pressure fr
 var result = output.GetBasePressures(1, new[] { 11, 12 });
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.Count);
 ~~~
-
 ### GetSolidNormalStresses
 
 ~~~csharp
 OutputQueryResult<SolidNormalStresses> GetSolidNormalStresses(int solidId, int nativeCornerIndex, int loadCaseId);
 ~~~
-
 Native: `GetAllSolidNormalStresses`. Workstream: O7.
 
 Reads SXX/SYY/SZZ normal stresses at an explicitly identified native solid corner.
@@ -300,13 +275,11 @@ Use for solid elements, not plate-center stresses. The nonnegative native corner
 var result = output.GetSolidNormalStresses(101, 1, 1);
 if (result.IsSuccessful) System.Console.WriteLine(result.Status);
 ~~~
-
 ### GetSolidShearStresses
 
 ~~~csharp
 OutputQueryResult<SolidShearStresses> GetSolidShearStresses(int solidId, int nativeCornerIndex, int loadCaseId);
 ~~~
-
 Native: `GetAllSolidShearStresses`. Workstream: O7.
 
 Reads SXY/SYZ/SZX shear stresses at an explicitly identified native solid corner.
@@ -323,13 +296,11 @@ Use for solid elements, not plate-center stresses. The nonnegative native corner
 var result = output.GetSolidShearStresses(101, 1, 1);
 if (result.IsSuccessful) System.Console.WriteLine(result.Status);
 ~~~
-
 ### GetSolidPrincipalStresses
 
 ~~~csharp
 OutputQueryResult<SolidPrincipalStresses> GetSolidPrincipalStresses(int solidId, int nativeCornerIndex, int loadCaseId);
 ~~~
-
 Native: `GetAllSolidPrincipalStresses`. Workstream: O7.
 
 Reads three native principal-stress slots at an explicitly identified native solid corner.
@@ -346,13 +317,11 @@ Use for solid elements, not plate-center stresses. The nonnegative native corner
 var result = output.GetSolidPrincipalStresses(101, 1, 1);
 if (result.IsSuccessful) System.Console.WriteLine(result.Status);
 ~~~
-
 ### GetNonlinearLoadStep
 
 ~~~csharp
 OutputQueryResult<double> GetNonlinearLoadStep(int loadCaseId);
 ~~~
-
 Native: `GetNLLoadStep`. Workstream: O8.
 
 Reads the native nonlinear load-step value for one result load case.
@@ -367,13 +336,11 @@ The return is numeric data, not a Boolean flag or a certified step count/index r
 var result = output.GetNonlinearLoadStep(1);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 ~~~
-
 ### GetSteelDesignParameterBlockCount
 
 ~~~csharp
 OutputQueryResult<int> GetSteelDesignParameterBlockCount();
 ~~~
-
 Native: `GetSteelDesignParameterBlockCount`. Workstream: O10.
 
 Counts the native steel-design parameter blocks in the applicable result context.
@@ -384,13 +351,11 @@ The reviewed help limits multiple-block extraction to AISC 360-16. GetMultipleSt
 var result = output.GetSteelDesignParameterBlockCount();
 if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 ~~~
-
 ### GetExtractedModeCount
 
 ~~~csharp
 OutputQueryResult<int> GetExtractedModeCount();
 ~~~
-
 Native: `GetNoOfModesExtracted`. Workstream: O8.
 
 Counts modes already extracted by native dynamic analysis.
@@ -401,13 +366,11 @@ This is an integral mode count, not buckling-factor count or a success flag. Zer
 var result = output.GetExtractedModeCount();
 if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 ~~~
-
 ### GetModeFrequency
 
 ~~~csharp
 OutputQueryResult<double> GetModeFrequency(int nativeModeNumber);
 ~~~
-
 Native: `GetModeFrequency`. Workstream: O8.
 
 Reads the native frequency in Hz for an explicitly identified dynamic mode.
@@ -422,13 +385,11 @@ Use for modal frequency, not a buckling eigenvalue or time-history interval. The
 var result = output.GetModeFrequency(1);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 ~~~
-
 ### GetModalNodeDisplacements
 
 ~~~csharp
 OutputQueryResult<ModeDisplacements> GetModalNodeDisplacements(int nativeModeNumber, int nodeId);
 ~~~
-
 Native: `GetModalDisplacementAtNode`. Workstream: O8.
 
 Reads six dynamic eigenmode shape components at an analytical node.
@@ -444,13 +405,11 @@ Use for a dynamic modal shape; GetBucklingModeDisplacements queries a different 
 var result = output.GetModalNodeDisplacements(1, 11);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.Translation);
 ~~~
-
 ### GetModalMassParticipationFactors
 
 ~~~csharp
 OutputQueryResult<ModalMassParticipation> GetModalMassParticipationFactors(int nativeModeNumber);
 ~~~
-
 Native: `GetModalMassParticipationFactors`. Workstream: O8.
 
 Reads native X/Y/Z mass participation factors for an explicit dynamic mode.
@@ -465,13 +424,11 @@ Use for one mode, not missing-mass factors, cumulative participation or a load-c
 var result = output.GetModalMassParticipationFactors(1);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.Factors);
 ~~~
-
 ### GetTimeHistoryIntegrationInfo
 
 ~~~csharp
 OutputQueryResult<TimeHistoryIntegrationInfo> GetTimeHistoryIntegrationInfo();
 ~~~
-
 Native: `GetTimeHistoryIntegrationStepInfo`. Workstream: O9.
 
 Reads native time-history response-sample count and integration interval.
@@ -482,13 +439,11 @@ Unlike a Boolean availability query, this returns a sample count plus an interva
 var result = output.GetTimeHistoryIntegrationInfo();
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.SampleCount);
 ~~~
-
 ### GetTimeHistoryResponseAtTime
 
 ~~~csharp
 OutputQueryResult<TimeHistorySample> GetTimeHistoryResponseAtTime(int nodeId, ResponseDegreeOfFreedom degreeOfFreedom, TimeHistoryResponseKind responseKind, double timeSeconds);
 ~~~
-
 Native: `GetTimeHistoryResponseAtTime`. Workstream: O9.
 
 Reads a native time-history response at one bounded time.
@@ -506,13 +461,11 @@ GetTimeHistoryResponse retrieves the full integration series. The reserved nativ
 var result = output.GetTimeHistoryResponseAtTime(11, ResponseDegreeOfFreedom.TranslationX, TimeHistoryResponseKind.Displacement, 0.0);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.Value);
 ~~~
-
 ### GetTimeHistoryResponse
 
 ~~~csharp
 OutputQueryResult<TimeHistorySeries> GetTimeHistoryResponse(int nodeId, ResponseDegreeOfFreedom degreeOfFreedom, TimeHistoryResponseKind responseKind, int maximumSamples = 100000);
 ~~~
-
 Native: `GetTimeHistoryResponse`. Workstream: O9.
 
 Reads a bounded, owned native time-history response series.
@@ -530,13 +483,11 @@ Use for all integration samples rather than one requested time. The reserved nat
 var result = output.GetTimeHistoryResponse(11, ResponseDegreeOfFreedom.TranslationX, TimeHistoryResponseKind.Displacement);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.Samples.Count);
 ~~~
-
 ### GetMultipleSteelDesignResultAvailability
 
 ~~~csharp
 OutputQueryResult<bool> GetMultipleSteelDesignResultAvailability();
 ~~~
-
 Native: `IsMultipleMemberSteelDesignResultsAvailable`. Workstream: O10.
 
 Observes native availability for multiple steel-design parameter-block extraction.
@@ -547,10 +498,7 @@ This is distinct from general analysis or buckling availability. The reviewed co
 var result = output.GetMultipleSteelDesignResultAvailability();
 if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 ~~~
-
 ## Result vocabulary and interpretation
-
-Reused the existing MemberEnd enum, ForceComponents snapshot, Vector3D value type, OutputQueryResult<T> envelope and strict native-value readers. The read-only main project's MemberSteelDesignResults and node-displacement packets supplied reusable field meanings. Its public mutable design object requires private Beam/load-case dependencies and substitutes zeros for unreturned force components; this port instead owns its native observations and keeps only FX/MY/MZ in SteelDesignForces. Numeric and Boolean native design statuses remain Unknown rather than being silently classified as failure. No private source file was modified.
 
 Named immutable classes describe axial extrema/stations, two native deflection components, solid stresses, physical support-node quantities, modal shapes, modal mass factors, steel design and time-history observations. Public methods expose no ref/out, tuple, raw VARIANT packet or mutable native array. Collections retain input correspondence, including duplicates, and own their data. The native mode and corner numbers are deliberately explicit because the reviewed help does not establish a universal managed zero-/one-based conversion.
 
@@ -589,11 +537,3 @@ All 25 routes run synchronously on the caller's established COM apartment throug
 The selected 2024–2026 contracts are common or differ only in wording. OutputAdvancedReader supplies one shared implementation rather than artificial per-year classes. Future version-sensitive policies must select the acquired native wrapper.StaadVersion, not the host/client ApplicationVersion. No existing direction-code or uncertain layout gate is bypassed.
 
 Managed native-signature fixtures and isolated installed-package examples verify dispatch packets, return decoding, owned data and documentation. They do not establish live COM marshaling, output freshness or engineering correctness. Live 2024–2026 qualification remains pending.
-
-## Remaining work and reminder
-
-The [Output matrix](reports/OpenSTAAD-Output-Multi-Version-Architecture-and-Plan.md#3-complete-cross-version-function-matrix) retains twenty pending documented routes. Member-end displacement layout and three direction-code policies, plate corner/cut/point buffers, scalar-by-value BucklingFactor/NLNodeDisplacements transport, missing-mass metadata absence, solid Von Mises layout, advanced steel-design blocks, time-history extrema and newer beam-stress queries need their own review. Thirteen supplemental unit declarations remain outside the documented union.
-
-Property is limited to documented routes for this increment. **Remind the user before further supplemental Property work or the next public release:** nine documented Property gates and fifteen supplemental discovery candidates remain, and the supplemental candidates need separate review/approval. The parked Load work retains its explicit-approval requirement. See the [Property completion record](Property-Profile-Names-and-Final-Cleanup.md#remaining-contract-gates) and [roadmap](../ROADMAP.md).
-
-The [contract index](contracts/OutputAdvancedContractIndex.json) records every managed signature and comparative usage explanation. The [native inventory](reports/OpenSTAAD-Output-API-Coverage-and-Contract-Inventory.md) retains installed help declarations and main-source evidence.

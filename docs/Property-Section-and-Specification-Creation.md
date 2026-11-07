@@ -1,14 +1,10 @@
 # Property section and specification creation
 
-Incorporated **25 Property functions**: the eight remaining P6 section creators and the next seventeen P7 specification/property operations. This checkpoint reached **175 overloads**; the [latest fireproofing/attribute/UPT increment](Property-Fireproofing-Attributes-and-UPT.md) brings the current total to **200** and reaches **116 of 204 active native routes**, with **88 remaining**. All P2/P3/P4/P5/P6 allocations have managed routes; P7 has 20 of 46. Route coverage does not establish live native or engineering qualification. See [all 25 creation/specification contracts](Property-Section-and-Specification-Creation.md).
-
 Passed a Release build with zero warnings/errors and **4,551 offline tests**, including **205 new cases**. The isolated PackageReference-only consumer verifies **792 selected XML examples**, including all **350 Property interface/adapter examples**. All 24 new mutation examples are guarded; dedicated managed checks exercise every new route through both the interface and concrete adapter. Verification does not change a live STAAD model.
 
 Added explicit immutable wide-flange, general-prismatic, six-DOF and partial-factor inputs. Retained separate created section IDs, created specification IDs, zero-based fireproofing indices and zero-success status-only results. The void unique-ID setter returns InvokedWithoutAcknowledgement with no fabricated native code and IsSuccessful false; its exact requested property/text identity is retained. Existing signatures, current-material context and native units remain explicit.
 
 ## Native contracts and common implementation
-
-This increment completes the eight remaining P6 routes and follows the P7 allocation through SetPropertyUniqueID in the [roadmap](reports/OpenSTAAD-Property-Multi-Version-Architecture-and-Plan.md). The [exact contract index](contracts/PropertyCreationContractIndex.json) records all managed signatures and native mappings. The separately preserved Bentley 2024/2025/2026 help in the [comparison evidence](reports/data/OpenSTAAD-Property-2024-2026-Comparison.json) supplies the native declarations, parameter descriptions, selector tables and operation-specific returns. All 25 reviewed non-example contracts agree across the three years; shared implementation avoids a speculative year switch.
 
 The single non-partial OSPropertyAdapter delegates to PropertyCreationReader using the existing captured receiver, serialization gate and before/after binding checks. No new public ref/out, tuple, raw object or mutable array packets are exposed. Native calls run on the calling thread; the caller must arrange the correct apartment for actual COM use. A failed write or binding replacement may leave effects applied, without retry, hidden save or rollback.
 
@@ -51,9 +47,6 @@ Dependent-node inputs enumerate once, stop at 100001 items and reject counts out
 ```csharp
 PropertyMutationResult CreateWideFlangePropertyFromTable(WideFlangeTableDefinition definition)
 ```
-
-Native route: `CreateWideFlangePropertyFromTable` (P6). Creates a wide-flange table definition using explicit applicable native specifications.
-
 Parameters:
 
 - `definition`: Non-null immutable selection created with a named factory: Standard, Double, Tee, Composite, WithTopPlate, WithBottomPlate or WithTopAndBottomPlates. Country codes 1..16, exact native name and applicable numeric inputs are validated before dispatch.
@@ -72,15 +65,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateBeamPropertyFromTableEx
 
 ```csharp
 PropertyMutationResult CreateBeamPropertyFromTableEx(Country country, string sectionName, TableSolidShape shape)
 ```
-
-Native route: `CreateBeamPropertyFromTableEx` (P6). Creates a table property with the native solid-shape selector.
-
 Parameters:
 
 - `country`: Reviewed native country code 1..37. The source-only Country.Chilean=38 and undefined selectors are rejected; catalog availability is not inferred.
@@ -100,15 +89,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreatePrismaticRectangleProperty
 
 ```csharp
 PropertyMutationResult CreatePrismaticRectangleProperty(double depthY, double widthZ)
 ```
-
-Native route: `CreatePrismaticRectangleProperty` (P6). Creates a rectangular prismatic section from local-axis dimensions.
-
 Parameters:
 
 - `depthY`: YD depth along local Y. Finite positive value in the acquired native length convention; no conversion.
@@ -127,15 +112,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreatePrismaticCircleProperty
 
 ```csharp
 PropertyMutationResult CreatePrismaticCircleProperty(double diameter)
 ```
-
-Native route: `CreatePrismaticCircleProperty` (P6). Creates a circular prismatic section from its explicit diameter.
-
 Parameters:
 
 - `diameter`: Circle diameter YD, not radius. Finite positive value in the acquired native length convention; no conversion.
@@ -153,15 +134,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreatePrismaticTeeProperty
 
 ```csharp
 PropertyMutationResult CreatePrismaticTeeProperty(double totalDepth, double flangeWidth, double stemDepth, double stemWidth)
 ```
-
-Native route: `CreatePrismaticTeeProperty` (P6). Creates a tee prismatic section from explicit flange/stem dimensions.
-
 Parameters:
 
 - `totalDepth`: YD total depth from top of flange to bottom of stem. Finite positive value in the acquired native length convention; no conversion.
@@ -182,15 +159,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreatePrismaticTrapezoidalProperty
 
 ```csharp
 PropertyMutationResult CreatePrismaticTrapezoidalProperty(double depth, double topWidth, double bottomWidth)
 ```
-
-Native route: `CreatePrismaticTrapezoidalProperty` (P6). Creates a trapezoidal prismatic section from explicit depth/top/bottom widths.
-
 Parameters:
 
 - `depth`: YD total depth. Finite positive value in the acquired native length convention; no conversion.
@@ -210,15 +183,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreatePrismaticGeneralProperty
 
 ```csharp
 PropertyMutationResult CreatePrismaticGeneralProperty(GeneralPrismaticSectionDefinition definition)
 ```
-
-Native route: `CreatePrismaticGeneralProperty` (P6). Creates a general prismatic section from all ten named explicit constants.
-
 Parameters:
 
 - `definition`: Non-null immutable AX, AY, AZ, IX, IY, IZ, YD, ZD, YB, ZB packet in this native order. AX is finite positive; other inputs finite nonnegative. AY/AZ zero retains native ignore-shear-deformation semantics. Areas use length squared, inertia/torsion length to fourth power, dimensions length.
@@ -237,15 +206,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateTaperedTubeProperty
 
 ```csharp
 PropertyMutationResult CreateTaperedTubeProperty(TaperedTubeShape shape, double startDepth, double endDepth, double thickness)
 ```
-
-Native route: `CreateTaperedTubeProperty` (P6). Creates a tapered tube with constant explicit wall thickness.
-
 Parameters:
 
 - `shape`: Defined native shape: Round=0, Hexadecagonal=1, Dodecagonal=2, Octagonal=3, Hexagonal=4 or Square=5.
@@ -266,15 +231,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateMemberPartialReleaseSpec
 
 ```csharp
 PropertyMutationResult CreateMemberPartialReleaseSpec(MemberEnd memberEnd, DegreeOfFreedomSelection releasedDofs, PartialReleaseFactors factors)
 ```
-
-Native route: `CreateMemberPartialReleaseSpec` (P7). Requests a native partial member release specification with explicit six-DOF inputs.
-
 Parameters:
 
 - `memberEnd`: Defined native START=0 or END=1 selector; no member ID or geometry is implied.
@@ -296,15 +257,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateMemberTrussSpec
 
 ```csharp
 PropertyMutationResult CreateMemberTrussSpec()
 ```
-
-Native route: `CreateMemberTrussSpec` (P7). Creates a native MEMBER TRUSS specification definition.
-
 Returns: Created with a separate positive CreatedSpecificationId when STAAD returns a positive ID; the actual integral response and SpecificationDefinition scope are retained. Native -6010 gives NativeFailure. Zero is undocumented for this ID-returning function and throws rather than being exposed as an ID.
 
 When to use: create the MEMBER TRUSS definition independently of assigning any member. An existing specification may be reused by STAAD; no new-unique allocation or analytical behavior is certified. Every call uses the captured Property binding and shared serialization gate, checked before and after access. Native mutations may be partial after a failure or transport/lifetime exception. No retry, implicit save, analysis, unit conversion, assignment, read-back or rollback occurs unless explicitly stated. Native acknowledgement does not certify persistence or engineering adequacy.
@@ -318,15 +275,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateMemberInactiveSpec
 
 ```csharp
 PropertyMutationResult CreateMemberInactiveSpec()
 ```
-
-Native route: `CreateMemberInactiveSpec` (P7). Creates a native MEMBER INACTIVE specification definition.
-
 Returns: Created with a separate positive CreatedSpecificationId when STAAD returns a positive ID; the actual integral response and SpecificationDefinition scope are retained. Native -6011 gives NativeFailure. Zero is undocumented for this ID-returning function and throws rather than being exposed as an ID.
 
 When to use: create the MEMBER INACTIVE definition independently of assigning any member. An existing specification may be reused by STAAD; no new-unique allocation or analytical behavior is certified. Every call uses the captured Property binding and shared serialization gate, checked before and after access. Native mutations may be partial after a failure or transport/lifetime exception. No retry, implicit save, analysis, unit conversion, assignment, read-back or rollback occurs unless explicitly stated. Native acknowledgement does not certify persistence or engineering adequacy.
@@ -340,15 +293,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateMemberTensionSpec
 
 ```csharp
 PropertyMutationResult CreateMemberTensionSpec()
 ```
-
-Native route: `CreateMemberTensionSpec` (P7). Creates a native MEMBER TENSION specification definition.
-
 Returns: Created with a separate positive CreatedSpecificationId when STAAD returns a positive ID; the actual integral response and SpecificationDefinition scope are retained. Native -6012 gives NativeFailure. Zero is undocumented for this ID-returning function and throws rather than being exposed as an ID.
 
 When to use: create the MEMBER TENSION definition independently of assigning any member. An existing specification may be reused by STAAD; no new-unique allocation or analytical behavior is certified. Every call uses the captured Property binding and shared serialization gate, checked before and after access. Native mutations may be partial after a failure or transport/lifetime exception. No retry, implicit save, analysis, unit conversion, assignment, read-back or rollback occurs unless explicitly stated. Native acknowledgement does not certify persistence or engineering adequacy.
@@ -362,15 +311,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateMemberCompressionSpec
 
 ```csharp
 PropertyMutationResult CreateMemberCompressionSpec()
 ```
-
-Native route: `CreateMemberCompressionSpec` (P7). Creates a native MEMBER COMPRESSION specification definition.
-
 Returns: Created with a separate positive CreatedSpecificationId when STAAD returns a positive ID; the actual integral response and SpecificationDefinition scope are retained. Native -6013 gives NativeFailure. Zero is undocumented for this ID-returning function and throws rather than being exposed as an ID.
 
 When to use: create the MEMBER COMPRESSION definition independently of assigning any member. An existing specification may be reused by STAAD; no new-unique allocation or analytical behavior is certified. Every call uses the captured Property binding and shared serialization gate, checked before and after access. Native mutations may be partial after a failure or transport/lifetime exception. No retry, implicit save, analysis, unit conversion, assignment, read-back or rollback occurs unless explicitly stated. Native acknowledgement does not certify persistence or engineering adequacy.
@@ -384,15 +329,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateMemberIgnoreStiffSpec
 
 ```csharp
 PropertyMutationResult CreateMemberIgnoreStiffSpec()
 ```
-
-Native route: `CreateMemberIgnoreStiffSpec` (P7). Creates a native IGNORE STIFFNESS specification definition.
-
 Returns: Created with a separate positive CreatedSpecificationId when STAAD returns a positive ID; the actual integral response and SpecificationDefinition scope are retained. Native -6014 gives NativeFailure. Zero is undocumented for this ID-returning function and throws rather than being exposed as an ID.
 
 When to use: create the IGNORE STIFFNESS definition independently of assigning any member. An existing specification may be reused by STAAD; no new-unique allocation or analytical behavior is certified. Every call uses the captured Property binding and shared serialization gate, checked before and after access. Native mutations may be partial after a failure or transport/lifetime exception. No retry, implicit save, analysis, unit conversion, assignment, read-back or rollback occurs unless explicitly stated. Native acknowledgement does not certify persistence or engineering adequacy.
@@ -406,15 +347,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateMemberCableSpec
 
 ```csharp
 PropertyMutationResult CreateMemberCableSpec(CableDefinitionKind definitionKind, double value)
 ```
-
-Native route: `CreateMemberCableSpec` (P7). Creates a cable specification from an explicit tension-or-length value.
-
 Parameters:
 
 - `definitionKind`: InitialTension=0 or UnstressedLength=1. This selector changes the dimension of value; no Boolean inversion or unit conversion.
@@ -433,15 +370,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateMemberCableSpecEx
 
 ```csharp
 PropertyMutationResult CreateMemberCableSpecEx(CableDefinitionKind definitionKind, double value, CableTensionEnd tensionEnd, double selfWeightFactorX, double selfWeightFactorY, double selfWeightFactorZ)
 ```
-
-Native route: `CreateMemberCableSpecEx` (P7). Creates an advanced cable specification with explicit tension end and global self-weight factors.
-
 Parameters:
 
 - `definitionKind`: InitialTension=0 or UnstressedLength=1 as specified by all three reviewed native parameter tables; despite the declaration spelling varbTension, this is sent as an integral selector.
@@ -464,15 +397,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateElementNodeReleaseSpec
 
 ```csharp
 PropertyMutationResult CreateElementNodeReleaseSpec(int nodeId, DegreeOfFreedomSelection releasedDofs)
 ```
-
-Native route: `CreateElementNodeReleaseSpec` (P7). Requests a native element-node release using explicit six-DOF flags.
-
 Parameters:
 
 - `nodeId`: Positive analytical node number as documented by this native function; not a plate corner index or member-end selector.
@@ -492,15 +421,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateElementPlaneStressSpec
 
 ```csharp
 PropertyMutationResult CreateElementPlaneStressSpec()
 ```
-
-Native route: `CreateElementPlaneStressSpec` (P7). Creates a native ELEMENT PLANE STRESS specification definition.
-
 Returns: Created with a separate positive CreatedSpecificationId when STAAD returns a positive ID; the actual integral response and SpecificationDefinition scope are retained. Native -6018 gives NativeFailure. Zero is undocumented for this ID-returning function and throws rather than being exposed as an ID.
 
 When to use: create the ELEMENT PLANE STRESS definition without assigning analytical elements. Use a separately reviewed assignment route and the returned positive specification ID when applying it. Every call uses the captured Property binding and shared serialization gate, checked before and after access. Native mutations may be partial after a failure or transport/lifetime exception. No retry, implicit save, analysis, unit conversion, assignment, read-back or rollback occurs unless explicitly stated. Native acknowledgement does not certify persistence or engineering adequacy.
@@ -514,15 +439,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateElementIgnoreInplaneRotnSpec
 
 ```csharp
 PropertyMutationResult CreateElementIgnoreInplaneRotnSpec()
 ```
-
-Native route: `CreateElementIgnoreInplaneRotnSpec` (P7). Creates a native ELEMENT IGNORE INPLANE ROTATION specification definition.
-
 Returns: Created with a separate positive CreatedSpecificationId when STAAD returns a positive ID; the actual integral response and SpecificationDefinition scope are retained. Native -6019 gives NativeFailure. Zero is undocumented for this ID-returning function and throws rather than being exposed as an ID.
 
 When to use: create the ELEMENT IGNORE INPLANE ROTATION definition without assigning analytical elements. Use a separately reviewed assignment route and the returned positive specification ID when applying it. Every call uses the captured Property binding and shared serialization gate, checked before and after access. Native mutations may be partial after a failure or transport/lifetime exception. No retry, implicit save, analysis, unit conversion, assignment, read-back or rollback occurs unless explicitly stated. Native acknowledgement does not certify persistence or engineering adequacy.
@@ -536,15 +457,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### AddControlDependentRelation
 
 ```csharp
 PropertyMutationResult AddControlDependentRelation(int controlNodeId, ControlDependencyMode mode, DegreeOfFreedomSelection rigidDofs, IEnumerable<int> dependentNodeIds)
 ```
-
-Native route: `AddControlDependentRelation` (P7). Adds a control/dependent-node relation with explicit rigidity selection.
-
 Parameters:
 
 - `controlNodeId`: Positive analytical control-node ID. Must not appear in dependentNodeIds.
@@ -566,15 +483,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateElementOffsetSpec
 
 ```csharp
 PropertyMutationResult CreateElementOffsetSpec(ElementNodeOffsetAxis coordinateSystem, int plateNodeIndex, double offsetX, double offsetY, double offsetZ)
 ```
-
-Native route: `CreateElementOffsetSpec` (P7). Creates a local or global offset specification for one plate corner.
-
 Parameters:
 
 - `coordinateSystem`: ElementNodeOffsetAxis.Local=0 or Global=1 only. Z=2 is rejected; this numbering differs from member OffsetAxis.
@@ -596,15 +509,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateElementLocalZOffsetSpec
 
 ```csharp
 PropertyMutationResult CreateElementLocalZOffsetSpec(double node1Offset, double node2Offset, double node3Offset, double node4Offset)
 ```
-
-Native route: `CreateElementLocalZOffsetSpec` (P7). Creates a four-corner local-Z plate offset specification.
-
 Parameters:
 
 - `node1Offset`: Finite signed local-Z offset at native plate corner 1, in native length units. Corner order is retained; no analytical node ID is supplied.
@@ -625,15 +534,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateMemberFireProofingSpec
 
 ```csharp
 PropertyMutationResult CreateMemberFireProofingSpec(FireProofingType fireProofingType, double thickness, double density)
 ```
-
-Native route: `CreateMemberFireProofingSpec` (P7). Creates a native block/contour fireproofing definition and retains its zero-based index.
-
 Parameters:
 
 - `fireProofingType`: Defined native Block/BFP=1 or Contour/CFP=2.
@@ -653,15 +558,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### GetPropertyUniqueID
 
 ```csharp
 PropertyQueryResult<PropertyUniqueIdentifier> GetPropertyUniqueID(int propertyId)
 ```
-
-Native route: `GetPropertyUniqueID` (P7). Reads the exact native unique-ID metadata for a property reference.
-
 Parameters:
 
 - `propertyId`: Positive native property reference number, not a member ID or specification index.
@@ -675,15 +576,11 @@ var result = property.GetPropertyUniqueID(37);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.Value);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### SetPropertyUniqueID
 
 ```csharp
 PropertyMutationResult SetPropertyUniqueID(int propertyId, string uniqueId)
 ```
-
-Native route: `SetPropertyUniqueID` (P7). Invokes the native void unique-ID metadata setter without fabricating success.
-
 Parameters:
 
 - `propertyId`: Positive existing native property reference number, not a member ID or created specification index.
@@ -702,11 +599,3 @@ if (applyChanges)
     System.Console.WriteLine(result.PropertyId); // Void invocation supplies no success acknowledgement.
 }
 ```
-
-## Validation and next allocation
-
-Offline checks cover all 25 routes, exact matching expanded XML, binding disposal/replacement, transport exceptions, caller-thread dispatch, shared serialization, native failure contracts, separate identity fields, exact array/selector order, void invocation, immutable ownership and bounded single-pass dependent inputs. The installed consumer uses a fresh feed/project/cache and verifies the restored archive hash without a project reference.
-
-Live COM creation/mutation, unit interpretation, catalog/material preconditions, advanced cable behavior, release factors, fireproofing index relationships and engineering results remain unqualified. Do not assign a status-only creation result or increment a fireproofing index by analogy. Use disposable reviewed models for future native qualification.
-
-At this historical checkpoint, the next pending allocation started with P7 GetInactiveMemberCount, GetInactiveMemberList, GetAlphaAngleForSection, GetCentroidLocationForSection and the fireproofing reads, followed by attributes. Twenty-six P7, thirty P8, eight P9 and twenty-four P10 routes remain. Original inactive-list transport and other contract-verification gates still apply. Custom IOSProperty implementations must implement the new 25 members.

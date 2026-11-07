@@ -1,7 +1,6 @@
 {
   "date": "2026-10-26",
   "managedOverloads": 25,
-  "sourceAdaptations": 18,
   "typedEnablingOverloads": 7,
   "nativeNamesAdded": 1,
   "contracts": [
@@ -23,7 +22,6 @@
         }
       ],
       "summary": "Retrieves one qualified global plate-corner force/moment observation.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself.  ",
       "args": "loadCase, plate, cornerNode",
       "setup": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));",
       "sourceSignature": "PlateCornerForces GetPlateCornerForces(ILoadCase loadCase, Plate plate, Node cornerNode)",
@@ -49,7 +47,6 @@
         }
       ],
       "summary": "Retrieves one qualified global plate-corner force/moment observation.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself.  Resolves case metadata and plate incidence through this wrapper's current bindings before extraction. Automatic case resolution searches primary, combination and reference metadata and returns MetadataUnavailable for a missing or ambiguous number. Explicit-family overloads avoid this ambiguity; they do not add a native family selector. No case activation or model loading occurs.",
       "args": "1, 17, 1",
       "setup": "",
       "sourceSignature": "PlateCornerForces GetPlateCornerForces(int loadCaseId, int plateId, int cornerNodeId)",
@@ -83,7 +80,6 @@
         }
       ],
       "summary": "Retrieves one qualified global plate-corner force/moment observation.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself.  Resolves case metadata and plate incidence through this wrapper's current bindings before extraction. Automatic case resolution searches primary, combination and reference metadata and returns MetadataUnavailable for a missing or ambiguous number. Explicit-family overloads avoid this ambiguity; they do not add a native family selector. No case activation or model loading occurs.",
       "args": "1, 17, 1, wrapper.Geometry, wrapper.Load",
       "setup": "",
       "sourceSignature": "PlateCornerForces GetPlateCornerForces(int loadCaseId, int plateId, int cornerNodeId, IOSGeometry geometry, IOSLoad load)",
@@ -121,7 +117,6 @@
         }
       ],
       "summary": "Retrieves one qualified global plate-corner force/moment observation.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself.  Resolves case metadata and plate incidence through this wrapper's current bindings before extraction. Automatic case resolution searches primary, combination and reference metadata and returns MetadataUnavailable for a missing or ambiguous number. Explicit-family overloads avoid this ambiguity; they do not add a native family selector. No case activation or model loading occurs.",
       "args": "1, 17, 1, LoadCaseType.PrimaryLoad, wrapper.Geometry, wrapper.Load",
       "setup": "",
       "sourceSignature": "PlateCornerForces GetPlateCornerForces(int loadCaseId, int plateId, int cornerNodeId, LoadCaseType loadCaseType, IOSGeometry geometry, IOSLoad load)",
@@ -147,7 +142,6 @@
         }
       ],
       "summary": "Retrieves and indexes the requested plate-corner outcomes.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself. Returns an indexed, owned outcome set, including ordinary native failures. Exact duplicates are coalesced in first-seen order by family/case/plate/corner. Conflicting supplied geometry or metadata is rejected. All-corner expansions deduplicate repeated closing/triangular incidence and use case-major, plate-major, incidence order; they require supplied A/B/C nodes. Sparse/single ID-only plates are hydrated with checked incidence and written coordinate outputs. At most 100000 input entries and expanded requests are allowed before extraction; no thread-pool dispatch. ",
       "args": "new[] { loadCase }, plate, cornerNode",
       "setup": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));",
       "sourceSignature": "PlateCornerForcesResultSet GetPlateCornerForces(IEnumerable<ILoadCase> loadCases, Plate plate, Node cornerNode)",
@@ -169,7 +163,6 @@
         }
       ],
       "summary": "Retrieves and indexes the requested plate-corner outcomes.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself. Returns an indexed, owned outcome set, including ordinary native failures. Exact duplicates are coalesced in first-seen order by family/case/plate/corner. Conflicting supplied geometry or metadata is rejected. All-corner expansions deduplicate repeated closing/triangular incidence and use case-major, plate-major, incidence order; they require supplied A/B/C nodes. Sparse/single ID-only plates are hydrated with checked incidence and written coordinate outputs. At most 100000 input entries and expanded requests are allowed before extraction; no thread-pool dispatch. ",
       "args": "loadCase, plate",
       "setup": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));",
       "sourceSignature": "PlateCornerForcesResultSet GetPlateCornerForces(ILoadCase loadCase, Plate plate)",
@@ -191,7 +184,6 @@
         }
       ],
       "summary": "Retrieves and indexes the requested plate-corner outcomes.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself. Returns an indexed, owned outcome set, including ordinary native failures. Exact duplicates are coalesced in first-seen order by family/case/plate/corner. Conflicting supplied geometry or metadata is rejected. All-corner expansions deduplicate repeated closing/triangular incidence and use case-major, plate-major, incidence order; they require supplied A/B/C nodes. Sparse/single ID-only plates are hydrated with checked incidence and written coordinate outputs. At most 100000 input entries and expanded requests are allowed before extraction; no thread-pool dispatch. ",
       "args": "new[] { loadCase }, plate",
       "setup": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));",
       "sourceSignature": "PlateCornerForcesResultSet GetPlateCornerForces(IEnumerable<ILoadCase> loadCases, Plate plate)",
@@ -213,7 +205,6 @@
         }
       ],
       "summary": "Retrieves and indexes the requested plate-corner outcomes.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself. Returns an indexed, owned outcome set, including ordinary native failures. Exact duplicates are coalesced in first-seen order by family/case/plate/corner. Conflicting supplied geometry or metadata is rejected. All-corner expansions deduplicate repeated closing/triangular incidence and use case-major, plate-major, incidence order; they require supplied A/B/C nodes. Sparse/single ID-only plates are hydrated with checked incidence and written coordinate outputs. At most 100000 input entries and expanded requests are allowed before extraction; no thread-pool dispatch. ",
       "args": "loadCase, new[] { plate }",
       "setup": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));",
       "sourceSignature": "PlateCornerForcesResultSet GetPlateCornerForces(ILoadCase loadCase, IEnumerable<Plate> plates)",
@@ -235,7 +226,6 @@
         }
       ],
       "summary": "Retrieves and indexes the requested plate-corner outcomes.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself. Returns an indexed, owned outcome set, including ordinary native failures. Exact duplicates are coalesced in first-seen order by family/case/plate/corner. Conflicting supplied geometry or metadata is rejected. All-corner expansions deduplicate repeated closing/triangular incidence and use case-major, plate-major, incidence order; they require supplied A/B/C nodes. Sparse/single ID-only plates are hydrated with checked incidence and written coordinate outputs. At most 100000 input entries and expanded requests are allowed before extraction; no thread-pool dispatch. ",
       "args": "new[] { loadCase }, new[] { plate }",
       "setup": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));",
       "sourceSignature": "PlateCornerForcesResultSet GetPlateCornerForces(IEnumerable<ILoadCase> loadCases, IEnumerable<Plate> plates)",
@@ -253,7 +243,6 @@
         }
       ],
       "summary": "Retrieves and indexes the requested plate-corner outcomes.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself. Returns an indexed, owned outcome set, including ordinary native failures. Exact duplicates are coalesced in first-seen order by family/case/plate/corner. Conflicting supplied geometry or metadata is rejected. All-corner expansions deduplicate repeated closing/triangular incidence and use case-major, plate-major, incidence order; they require supplied A/B/C nodes. Sparse/single ID-only plates are hydrated with checked incidence and written coordinate outputs. At most 100000 input entries and expanded requests are allowed before extraction; no thread-pool dispatch. ",
       "args": "new[] { new PlateCornerForcesRequest(loadCase, plate, cornerNode) }",
       "setup": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));",
       "sourceSignature": "PlateCornerForcesResultSet GetPlateCornerForces(IEnumerable<PlateCornerForcesRequest> requests)",
@@ -287,7 +276,6 @@
         }
       ],
       "summary": "Retrieves and indexes the requested plate-corner outcomes.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself. Returns an indexed, owned outcome set, including ordinary native failures. Exact duplicates are coalesced in first-seen order by family/case/plate/corner. Conflicting supplied geometry or metadata is rejected. All-corner expansions deduplicate repeated closing/triangular incidence and use case-major, plate-major, incidence order; they require supplied A/B/C nodes. Sparse/single ID-only plates are hydrated with checked incidence and written coordinate outputs. At most 100000 input entries and expanded requests are allowed before extraction; no thread-pool dispatch. Resolves case metadata and plate incidence through this wrapper's current bindings before extraction. Automatic case resolution searches primary, combination and reference metadata and returns MetadataUnavailable for a missing or ambiguous number. Explicit-family overloads avoid this ambiguity; they do not add a native family selector. No case activation or model loading occurs.",
       "args": "new[] { 1 }, 17, 1, wrapper.Geometry, wrapper.Load",
       "setup": "",
       "sourceSignature": "PlateCornerForcesResultSet GetPlateCornerForces(IEnumerable<int> loadCaseIds, int plateId, int cornerNodeId, IOSGeometry geometry, IOSLoad load)",
@@ -313,7 +301,6 @@
         }
       ],
       "summary": "Retrieves one qualified global plate-corner force/moment observation.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself.  ",
       "args": "loadCase, plate, cornerNode",
       "setup": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));",
       "sourceSignature": "PlateCornerForces GetPlateCornerForcesInGlobalCoordinates(ILoadCase loadCase, Plate plate, Node cornerNode)",
@@ -339,7 +326,6 @@
         }
       ],
       "summary": "Retrieves one qualified global plate-corner force/moment observation.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself.   Replaces the source Boolean/out-vector convenience with a named status/data result; failures do not become zero vectors.",
       "args": "plate, cornerNode, 1",
       "setup": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));",
       "sourceSignature": "bool GetPlateCornerForcesGlobal(Plate plate, Node cornerNode, int loadCaseId, out Vector3D globalForce, out Vector3D globalMoment)",
@@ -369,7 +355,6 @@
         }
       ],
       "summary": "Retrieves a plate-corner packet and projects it into a described managed member basis.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself. Projects global corner forces and moments into a managed member basis at the same corner point. It does not reverse member-end signs, transfer moments, sum adjacent plates or return native analytical-member result forces. Beam overloads use supplied beta degrees and require the corner to match a supplied member end ID and point; node-direction overloads use zero beta and no fabricated native member ID. Projected global Y defines the reference except near vertical, where projected global Z is used. This convention is not native orientation read-back. ",
       "args": "loadCase, plate, cornerNode, otherMemberNode",
       "setup": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar otherMemberNode = plate.B;",
       "sourceSignature": "MemberForces GetPlateCornerForces(ILoadCase loadCase, Plate plate, Node cornerNode, Node otherMemberNode)",
@@ -399,7 +384,6 @@
         }
       ],
       "summary": "Retrieves a plate-corner packet and projects it into a described managed member basis.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself. Projects global corner forces and moments into a managed member basis at the same corner point. It does not reverse member-end signs, transfer moments, sum adjacent plates or return native analytical-member result forces. Beam overloads use supplied beta degrees and require the corner to match a supplied member end ID and point; node-direction overloads use zero beta and no fabricated native member ID. Projected global Y defines the reference except near vertical, where projected global Z is used. This convention is not native orientation read-back. ",
       "args": "loadCase, plate, cornerNode, member",
       "setup": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar member = new Beam(18, cornerNode, plate.B) { BetaAngle = 30 };\nvar otherMemberNode = plate.B;",
       "sourceSignature": "MemberForces GetPlateCornerForces(ILoadCase loadCase, Plate plate, Node cornerNode, Beam member)",
@@ -473,7 +457,6 @@
         }
       ],
       "summary": "Retrieves a plate-corner packet and projects it into a described managed member basis.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself. Projects global corner forces and moments into a managed member basis at the same corner point. It does not reverse member-end signs, transfer moments, sum adjacent plates or return native analytical-member result forces. Beam overloads use supplied beta degrees and require the corner to match a supplied member end ID and point; node-direction overloads use zero beta and no fabricated native member ID. Projected global Y defines the reference except near vertical, where projected global Z is used. This convention is not native orientation read-back.  Returns PlateCornerMemberForces rather than relabeling a global PlateCornerForces packet.",
       "args": "loadCase, plate, cornerNode, otherMemberNode",
       "setup": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar otherMemberNode = plate.B;",
       "sourceSignature": "PlateCornerForces GetPlateCornerForcesInMemberLocalCoordinates(ILoadCase loadCase, Plate plate, Node cornerNode, Node otherMemberNode)",
@@ -491,7 +474,6 @@
         }
       ],
       "summary": "Retrieves one sparse typed plate-corner request.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself. Unlike the enumerable request overload, this returns one status/data observation without allocating an indexed set.",
       "args": "new PlateCornerForcesRequest(loadCase, plate, cornerNode)",
       "setup": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));",
       "sourceSignature": null,
@@ -529,7 +511,6 @@
         }
       ],
       "summary": "Retrieves selected numeric cases using an explicit metadata family.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself. Resolves case metadata and plate incidence through this wrapper's current bindings before extraction. Automatic case resolution searches primary, combination and reference metadata and returns MetadataUnavailable for a missing or ambiguous number. Explicit-family overloads avoid this ambiguity; they do not add a native family selector. No case activation or model loading occurs. Returns an indexed, owned outcome set, including ordinary native failures. Exact duplicates are coalesced in first-seen order by family/case/plate/corner. Conflicting supplied geometry or metadata is rejected. All-corner expansions deduplicate repeated closing/triangular incidence and use case-major, plate-major, incidence order; they require supplied A/B/C nodes. Sparse/single ID-only plates are hydrated with checked incidence and written coordinate outputs. At most 100000 input entries and expanded requests are allowed before extraction; no thread-pool dispatch.",
       "args": "new[] { 1 }, 17, 1, LoadCaseType.PrimaryLoad, wrapper.Geometry, wrapper.Load",
       "setup": "",
       "sourceSignature": null,
@@ -559,7 +540,6 @@
         }
       ],
       "summary": "Retrieves a corner packet in the beta-aware managed basis of a supplied member.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself. Projects global corner forces and moments into a managed member basis at the same corner point. It does not reverse member-end signs, transfer moments, sum adjacent plates or return native analytical-member result forces. Beam overloads use supplied beta degrees and require the corner to match a supplied member end ID and point; node-direction overloads use zero beta and no fabricated native member ID. Projected global Y defines the reference except near vertical, where projected global Z is used. This convention is not native orientation read-back. Unlike the other-node overload, this retains a real member ID and Start/End identity.",
       "args": "loadCase, plate, cornerNode, member",
       "setup": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar member = new Beam(18, cornerNode, plate.B) { BetaAngle = 30 };",
       "sourceSignature": null,
@@ -581,7 +561,6 @@
         }
       ],
       "summary": "Retrieves sparse corner requests in one supplied member basis.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself. Returns an indexed, owned outcome set, including ordinary native failures. Exact duplicates are coalesced in first-seen order by family/case/plate/corner. Conflicting supplied geometry or metadata is rejected. All-corner expansions deduplicate repeated closing/triangular incidence and use case-major, plate-major, incidence order; they require supplied A/B/C nodes. Sparse/single ID-only plates are hydrated with checked incidence and written coordinate outputs. At most 100000 input entries and expanded requests are allowed before extraction; no thread-pool dispatch. Projects global corner forces and moments into a managed member basis at the same corner point. It does not reverse member-end signs, transfer moments, sum adjacent plates or return native analytical-member result forces. Beam overloads use supplied beta degrees and require the corner to match a supplied member end ID and point; node-direction overloads use zero beta and no fabricated native member ID. Projected global Y defines the reference except near vertical, where projected global Z is used. This convention is not native orientation read-back. Every requested corner must be a member end; an ordinary failed extraction remains an identified failed item.",
       "args": "new[] { new PlateCornerForcesRequest(loadCase, plate, cornerNode) }, member",
       "setup": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));\nvar member = new Beam(18, cornerNode, plate.B) { BetaAngle = 30 };",
       "sourceSignature": null,
@@ -629,7 +608,6 @@
         }
       ],
       "summary": "Resolves typed keys into indexed global corner observations.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself. Resolves case metadata and plate incidence through this wrapper's current bindings before extraction. Automatic case resolution searches primary, combination and reference metadata and returns MetadataUnavailable for a missing or ambiguous number. Explicit-family overloads avoid this ambiguity; they do not add a native family selector. No case activation or model loading occurs. Returns an indexed, owned outcome set, including ordinary native failures. Exact duplicates are coalesced in first-seen order by family/case/plate/corner. Conflicting supplied geometry or metadata is rejected. All-corner expansions deduplicate repeated closing/triangular incidence and use case-major, plate-major, incidence order; they require supplied A/B/C nodes. Sparse/single ID-only plates are hydrated with checked incidence and written coordinate outputs. At most 100000 input entries and expanded requests are allowed before extraction; no thread-pool dispatch. Family-aware keys select their metadata family; keys without a family require unambiguous discovery. Equivalent resolved keys are coalesced before native extraction.",
       "args": "new[] { new PlateCornerForcesKey(1, 17, 1) }, wrapper.Geometry, wrapper.Load",
       "setup": "",
       "sourceSignature": null,
@@ -659,7 +637,6 @@
         }
       ],
       "summary": "Resolves typed keys using one explicitly selected metadata family.",
-      "remarks": "Returns nodal Fx/Fy/Fz/Mx/My/Mz in global axes, not plate-center stresses or moments per unit width. The six-slot Double buffer follows installed 2024-2026 VBA examples; global axes follow the main adapter and read-only 2026 equilibrium checks. No extra plate-basis rotation is applied. Native false discards every buffer value. Case family describes metadata only: this native API accepts the numeric case selector and does not activate or disambiguate analysis families itself. Resolves case metadata and plate incidence through this wrapper's current bindings before extraction. Automatic case resolution searches primary, combination and reference metadata and returns MetadataUnavailable for a missing or ambiguous number. Explicit-family overloads avoid this ambiguity; they do not add a native family selector. No case activation or model loading occurs. Returns an indexed, owned outcome set, including ordinary native failures. Exact duplicates are coalesced in first-seen order by family/case/plate/corner. Conflicting supplied geometry or metadata is rejected. All-corner expansions deduplicate repeated closing/triangular incidence and use case-major, plate-major, incidence order; they require supplied A/B/C nodes. Sparse/single ID-only plates are hydrated with checked incidence and written coordinate outputs. At most 100000 input entries and expanded requests are allowed before extraction; no thread-pool dispatch. Keys without a family inherit the explicit family; a key that declares a different family is rejected.",
       "args": "new[] { new PlateCornerForcesKey(1, 17, 1) }, LoadCaseType.PrimaryLoad, wrapper.Geometry, wrapper.Load",
       "setup": "",
       "sourceSignature": null,

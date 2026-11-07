@@ -2,7 +2,7 @@
 
 This increment ports the 19 remaining active main-interface signatures plus six documented native Property observations. This checkpoint reached 125 overloads; the [latest material/member-section increment](Property-Materials-and-Member-Sections.md) reached 150; the [latest creation/specification increment](Property-Section-and-Specification-Creation.md) reached 175; the [latest fireproofing/attribute/UPT increment](Property-Fireproofing-Attributes-and-UPT.md) brings the current total to 200. Existing typed return collisions and five obsolete source overloads remain excluded; they cannot be represented as duplicate C# signatures or treated as working APIs.
 
-## Supporting boundary and deliberate corrections
+## SupAPI guide boundary and deliberate corrections
 
 - Preserved the main SectionProperty/SectionDefinition.SectionProfile.SelectedSection/AdditionalSpecifications creation graph through small H/C/L/O/Box table carriers. Private catalog/material selection, UI validation and display integrations are not imported.
 - IGenericSection preserves the identity, values, area and assignments required by the ports. Models carry data; the source model-level raw COM creation/catalog-display methods are excluded. All native writes stay inside the Property adapter.
@@ -27,7 +27,6 @@ Creation/assignment examples assume a suitable disposable native model, existing
 ```csharp
 IOSProperty AssignSectionProperties(HashSet<IGenericSection> gsSet)
 ```
-
 Assigns native section IDs from retrieved section packets to their candidate beams.
 
 - `gsSet`: Null/empty is a no-op. Non-null packets with nonempty AssignedBeams require positive existing section/member IDs; empty assignments are skipped.
@@ -45,13 +44,11 @@ var section = property.GetSectionBy(37);
 section.AssignedBeams.Add(new Beam { Id = 17 });
 property.AssignSectionProperties(new System.Collections.Generic.HashSet<StaadPro.Interop.Interfaces.IGenericSection> { section });
 ```
-
 ## 2. AssignSectionProperties
 
 ```csharp
 IOSProperty AssignSectionProperties(HashSet<SectionProperty> spSet)
 ```
-
 Assigns existing section definition IDs to their managed member candidates.
 
 - `spSet`: Null/empty is a no-op. Non-null packets with nonempty Beams require positive existing section/member IDs; creation definitions are not required for assignment.
@@ -71,13 +68,11 @@ var section = new SectionProperty { Id = 37, SectionDefinition = definition };
 section.Beams.Add(new Beam { Id = 17 });
 property.AssignSectionProperties(new System.Collections.Generic.HashSet<SectionProperty> { section });
 ```
-
 ## 3. AssignSectionProperties
 
 ```csharp
 IOSProperty AssignSectionProperties(HashSet<SectionProperty> sectionProperties, int nThreads)
 ```
-
 Assigns existing section definition IDs to their managed member candidates.
 
 - `sectionProperties`: Null/empty is a no-op. Non-null packets with nonempty Beams require positive existing section/member IDs; creation definitions are not required for assignment.
@@ -98,13 +93,11 @@ var section = new SectionProperty { Id = 37, SectionDefinition = definition };
 section.Beams.Add(new Beam { Id = 17 });
 property.AssignSectionProperties(new System.Collections.Generic.HashSet<SectionProperty> { section }, 2);
 ```
-
 ## 4. AssignSectionProperty
 
 ```csharp
 IOSProperty AssignSectionProperty(SectionProperty sp)
 ```
-
 Assigns existing section definition IDs to their managed member candidates.
 
 - `sp`: Null/empty is a no-op. Non-null packets with nonempty Beams require positive existing section/member IDs; creation definitions are not required for assignment.
@@ -124,13 +117,11 @@ var section = new SectionProperty { Id = 37, SectionDefinition = definition };
 section.Beams.Add(new Beam { Id = 17 });
 property.AssignSectionProperty(section);
 ```
-
 ## 5. AssignSectionProperty
 
 ```csharp
 IOSProperty AssignSectionProperty(SectionProperty sectionProperty, int nThreads)
 ```
-
 Assigns existing section definition IDs to their managed member candidates.
 
 - `sectionProperty`: Null/empty is a no-op. Non-null packets with nonempty Beams require positive existing section/member IDs; creation definitions are not required for assignment.
@@ -151,13 +142,11 @@ var section = new SectionProperty { Id = 37, SectionDefinition = definition };
 section.Beams.Add(new Beam { Id = 17 });
 property.AssignSectionProperty(section, 2);
 ```
-
 ## 6. CreateAndAssignSectionProperties
 
 ```csharp
 IOSProperty CreateAndAssignSectionProperties(HashSet<Beam> beams)
 ```
-
 Groups explicit beam section definitions, creates them and assigns their members.
 
 - `beams`: Non-null set of non-null positive-ID beams. Null SectionProperty references are ignored. Complete H/C/L/O/Box selections and valid additional values are required for non-null definitions.
@@ -179,13 +168,11 @@ property.SetMaterialName("STEEL");
 var beam = new Beam { Id = 17, SectionProperty = section };
 property.CreateAndAssignSectionProperties(new System.Collections.Generic.HashSet<Beam> { beam });
 ```
-
 ## 7. CreateAndAssignSectionProperties
 
 ```csharp
 IOSProperty CreateAndAssignSectionProperties(HashSet<Beam> beams, int nThreads)
 ```
-
 Groups explicit beam section definitions, creates them and assigns their members.
 
 - `beams`: Non-null set of non-null positive-ID beams. Null SectionProperty references are ignored. Complete H/C/L/O/Box selections and valid additional values are required for non-null definitions.
@@ -208,13 +195,11 @@ property.SetMaterialName("STEEL");
 var beam = new Beam { Id = 17, SectionProperty = section };
 property.CreateAndAssignSectionProperties(new System.Collections.Generic.HashSet<Beam> { beam }, 2);
 ```
-
 ## 8. CreateMaterialProperties
 
 ```csharp
 IOSProperty CreateMaterialProperties(HashSet<MaterialProperty> mpSet, UnitsConverter uc)
 ```
-
 Creates or updates isotropic materials using explicit dimensional conversion factors.
 
 - `mpSet`: Non-null material packet, or non-null nonempty set without null packets. Finite named creation inputs are required; all packets are validated before native writes.
@@ -233,13 +218,11 @@ var material = new MaterialProperty("STEEL") { E = 200000000.0, Poisson = 0.3, D
 var converter = new StaadPro.Interop.Common.Units.UnitsConverter(LengthInputUnit.Meter, ForceInputUnit.KiloNewton, LengthInputUnit.MilliMeter, ForceInputUnit.Newton);
 property.CreateMaterialProperties(new System.Collections.Generic.HashSet<MaterialProperty> { material }, converter);
 ```
-
 ## 9. CreateMaterialProperty
 
 ```csharp
 IOSProperty CreateMaterialProperty(MaterialProperty mp, UnitsConverter uc)
 ```
-
 Creates or updates isotropic materials using explicit dimensional conversion factors.
 
 - `mp`: Non-null material packet, or non-null nonempty set without null packets. Finite named creation inputs are required; all packets are validated before native writes.
@@ -258,13 +241,11 @@ var material = new MaterialProperty("STEEL") { E = 200000000.0, Poisson = 0.3, D
 var converter = new StaadPro.Interop.Common.Units.UnitsConverter(LengthInputUnit.Meter, ForceInputUnit.KiloNewton, LengthInputUnit.MilliMeter, ForceInputUnit.Newton);
 property.CreateMaterialProperty(material, converter);
 ```
-
 ## 10. CreatePlateThicknessProperty
 
 ```csharp
 IOSProperty CreatePlateThicknessProperty(dynamic property, PlateThickness pt)
 ```
-
 Creates a uniform thickness definition through the explicitly supplied captured receiver.
 
 - `property`: This adapter's ComObject instance. The proprietary OSPropertyUI parameter is adapted to dynamic (System.Object) to avoid a vendor assembly dependency; null and foreign receivers are rejected before native access.
@@ -283,13 +264,11 @@ var thickness = new PlateThickness { Thickness = 0.2 };
 property.CreatePlateThicknessProperty(property.ComObject, thickness);
 System.Console.WriteLine(thickness.Id);
 ```
-
 ## 11. CreateSectionProperties
 
 ```csharp
 IOSProperty CreateSectionProperties(HashSet<SectionProperty> spSet)
 ```
-
 Creates native section definitions from explicit H/C/L/O/Box profile selections.
 
 - `spSet`: Non-null complete section definition, or non-null nonempty set without null definitions. All selected names/country/modifier codes and applicable additional values are validated/copied before dispatch.
@@ -311,13 +290,11 @@ property.SetMaterialName("STEEL");
 property.CreateSectionProperties(new System.Collections.Generic.HashSet<SectionProperty> { section });
 System.Console.WriteLine(section.Id);
 ```
-
 ## 12. CreateSectionProperty
 
 ```csharp
 IOSProperty CreateSectionProperty(SectionProperty sp)
 ```
-
 Creates native section definitions from explicit H/C/L/O/Box profile selections.
 
 - `sp`: Non-null complete section definition, or non-null nonempty set without null definitions. All selected names/country/modifier codes and applicable additional values are validated/copied before dispatch.
@@ -339,15 +316,12 @@ property.SetMaterialName("STEEL");
 property.CreateSectionProperty(section);
 System.Console.WriteLine(section.Id);
 ```
-
 ## 13. GetAllSections
 
 ```csharp
 HashSet<IGenericSection> GetAllSections()
 ```
-
 Reads native section definitions into owned version-decoded section packets.
-
 
 **Returns:** A new mutable set of section packets with native IDs, identity, raw-capacity values, applicable field labels, area availability and empty AssignedBeams sets. Empty inventory returns an empty set.
 
@@ -360,13 +334,11 @@ Native routes: `GetSectionPropertyCount`, `GetSectionPropertyList`, `GetSectionP
 ```csharp
 foreach (var section in property.GetAllSections()) System.Console.WriteLine(section.StaadName);
 ```
-
 ## 14. GetAllSectionsWithAssignedBeamsList
 
 ```csharp
 HashSet<IGenericSection> GetAllSectionsWithAssignedBeamsList(IEnumerable<Beam> allBeams)
 ```
-
 Reads section packets and populates their candidate member references.
 
 - `allBeams`: Non-null finite sequence of non-null positive-ID candidate beams. Enumerated once and matching original references are reused.
@@ -383,13 +355,11 @@ Native routes: `GetSectionPropertyCount`, `GetSectionPropertyList`, `GetSectionP
 var sections = property.GetAllSectionsWithAssignedBeamsList(new[] { new Beam { Id = 17 } });
 System.Console.WriteLine(sections.Count);
 ```
-
 ## 15. GetAllSectionsWithAssignedBeamsList
 
 ```csharp
 HashSet<IGenericSection> GetAllSectionsWithAssignedBeamsList(IOSGeometry geometry)
 ```
-
 Reads section packets and populates their candidate member references.
 
 - `geometry`: Non-null Geometry adapter for the same model; hydrates all beams using GetAllEntities<Beam>(1).
@@ -406,13 +376,11 @@ Native routes: `GetSectionPropertyCount`, `GetSectionPropertyList`, `GetSectionP
 var sections = property.GetAllSectionsWithAssignedBeamsList(wrapper.Geometry);
 System.Console.WriteLine(sections.Count);
 ```
-
 ## 16. GetSectionalArea
 
 ```csharp
 double? GetSectionalArea(int propId)
 ```
-
 Reads an available native section area, or the source mean tapered-I plate area.
 
 - `propId`: Positive native section property reference ID; not a member ID or section type code.
@@ -429,13 +397,11 @@ Native routes: `GetSectionPropertyType`, `GetCountofSectionPropertyValuesEx`, `G
 double? area = property.GetSectionalArea(37);
 System.Console.WriteLine(area);
 ```
-
 ## 17. GetSectionBy
 
 ```csharp
 IGenericSection GetSectionBy(int propId)
 ```
-
 Reads one native section definition with the acquired version-specific value layout.
 
 - `propId`: Positive native section property reference ID, not an analytical member number.
@@ -452,13 +418,11 @@ Native routes: `GetSectionPropertyType`, `GetCountofSectionPropertyValuesEx`, `G
 var section = property.GetSectionBy(37);
 System.Console.WriteLine(section.StaadName);
 ```
-
 ## 18. GetSectionByPropertyIdWithAssignedBeamsList
 
 ```csharp
 IGenericSection GetSectionByPropertyIdWithAssignedBeamsList(int propId, IEnumerable<Beam> allBeams)
 ```
-
 Reads one native section and fills its actual candidate member assignment subset.
 
 - `propId`: Positive native section property reference ID.
@@ -476,13 +440,11 @@ Native routes: `GetSectionPropertyValuesEx`, `GetSectionPropertyType`, `GetSecti
 var section = property.GetSectionByPropertyIdWithAssignedBeamsList(37, new[] { new Beam { Id = 17 } });
 System.Console.WriteLine(section.AssignedBeams.Count);
 ```
-
 ## 19. GetSectionByPropertyIdWithAssignedBeamsList
 
 ```csharp
 IGenericSection GetSectionByPropertyIdWithAssignedBeamsList(int propId, IOSGeometry geometry)
 ```
-
 Reads one native section and fills its actual candidate member assignment subset.
 
 - `propId`: Positive native section property reference ID.
@@ -500,15 +462,12 @@ Native routes: `GetSectionPropertyValuesEx`, `GetSectionPropertyType`, `GetSecti
 var section = property.GetSectionByPropertyIdWithAssignedBeamsList(37, wrapper.Geometry);
 System.Console.WriteLine(section.AssignedBeams.Count);
 ```
-
 ## 20. GetSectionPropertyCount
 
 ```csharp
 int GetSectionPropertyCount()
 ```
-
 Counts native section definitions.
-
 
 **Returns:** The actual nonnegative native Int32-range count/capacity; zero is retained. This scalar observation does not allocate or return values.
 
@@ -521,15 +480,12 @@ Native routes: `GetSectionPropertyCount`.
 ```csharp
 System.Console.WriteLine(property.GetSectionPropertyCount());
 ```
-
 ## 21. GetThicknessPropertyCount
 
 ```csharp
 int GetThicknessPropertyCount()
 ```
-
 Counts native thickness definitions.
-
 
 **Returns:** The actual nonnegative native Int32-range count/capacity; zero is retained. This scalar observation does not allocate or return values.
 
@@ -542,15 +498,12 @@ Native routes: `GetThicknessPropertyCount`.
 ```csharp
 System.Console.WriteLine(property.GetThicknessPropertyCount());
 ```
-
 ## 22. GetCountofSectionPropertyValuesEx
 
 ```csharp
 int GetCountofSectionPropertyValuesEx()
 ```
-
 Reads the native section-value buffer capacity.
-
 
 **Returns:** The actual nonnegative native Int32-range count/capacity; zero is retained. This scalar observation does not allocate or return values.
 
@@ -563,13 +516,11 @@ Native routes: `GetCountofSectionPropertyValuesEx`.
 ```csharp
 System.Console.WriteLine(property.GetCountofSectionPropertyValuesEx());
 ```
-
 ## 23. GetSectionPropertyType
 
 ```csharp
 int GetSectionPropertyType(int varSecRefNo)
 ```
-
 Reads one native section type code by section definition ID.
 
 - `varSecRefNo`: Positive native section property reference ID, preserving the documented native parameter name.
@@ -585,13 +536,11 @@ Native routes: `GetSectionPropertyType`.
 ```csharp
 System.Console.WriteLine(property.GetSectionPropertyType(37));
 ```
-
 ## 24. GetSectionPropertyCountry
 
 ```csharp
 int GetSectionPropertyCountry(int varSecRefNo)
 ```
-
 Reads one native country code by section definition ID.
 
 - `varSecRefNo`: Positive native section property reference ID, preserving the documented native parameter name.
@@ -607,13 +556,11 @@ Native routes: `GetSectionPropertyCountry`.
 ```csharp
 System.Console.WriteLine(property.GetSectionPropertyCountry(37));
 ```
-
 ## 25. GetRecordForSection
 
 ```csharp
 int GetRecordForSection(int Country, string SectionName)
 ```
-
 Looks up a native section database record for an exact table designation.
 
 - `Country`: Positive native table country code; integer parameter name/type preserves the documented native input and allows future country codes.
@@ -630,11 +577,6 @@ Native routes: `GetRecordForSection`.
 ```csharp
 System.Console.WriteLine(property.GetRecordForSection((int)Country.Indian, "ISMB300"));
 ```
-
-## Remaining source exceptions
-
-Eight source signatures conflict with existing qualified return types (material name/beta/material/release reads). They remain available through the existing qualified APIs with their established parameter names. Five source overloads are obsolete(error=true): inactive-member listing (two), element-offset projections (two), and extended converted material creation. Those are not claimed as working ports. Native Property API coverage remains a separate inventory; completion of the active main surface does not establish native/engineering qualification.
-
 ## Verification checkpoint
 
 Passed a Release build with zero warnings/errors and **4,156 offline tests**, including **225 new section cases**. Isolated installed-package verification compiles and runs **692 selected XML examples**, including all **250 Property interface/adapter examples**, through a fresh PackageReference-only consumer and cache. Managed stand-ins perform every example; live native mutation and engineering qualification remain pending.

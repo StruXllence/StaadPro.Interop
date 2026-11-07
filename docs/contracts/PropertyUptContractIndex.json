@@ -1,13 +1,6 @@
 {
   "date": "2026-10-24",
   "description": "Twenty-two reviewed UPT operations and next three catalog/database-folder operations; unverified newer coordinate and indexed-string-list contracts remain pending.",
-  "gatedP8": {
-    "GetUptGeneralProfilePointsCount": "Reviewed CLR metadata passes output count values by value, unlike the help declaration; compatible native transport is not qualified.",
-    "GetUptGeneralProfileBoundaryPoints": "Newer optional coordinate API requires a compatible acquired capability; reviewed by-value output metadata does not establish safe returned buffers.",
-    "GetUptGeneralStressLocationPoints": "Newer optional coordinate output metadata is not qualified for safe paired buffer retrieval.",
-    "FindUPTTable": "Documented member is absent from inspected 2025/2026 exported IOSPropertyUI metadata; no qualified dispatch receiver is established.",
-    "GetUserProvidedTableSectionList": "Help specifies indexed CSStringList output without a verified CLR representation; no guessed String array or index mapping is exposed."
-  },
   "reviewedNativeProfiles": [
     "24.00.02.354",
     "25.00.01.424",
@@ -15,7 +8,6 @@
   ],
   "contracts": [
     {
-      "phase": "P8",
       "signature": "PropertyMutationResult AddUptPropertyChannel(int tableId, string sectionName, UptChannelDefinition definition)",
       "name": "AddUptPropertyChannel",
       "nativeFunction": "AddUPTPropertyCHANNEL",
@@ -40,7 +32,6 @@
       "mutation": true
     },
     {
-      "phase": "P8",
       "signature": "PropertyMutationResult AddUptPropertyAngle(int tableId, string sectionName, UptAngleDefinition definition)",
       "name": "AddUptPropertyAngle",
       "nativeFunction": "AddUPTPropertyANGLE",
@@ -65,7 +56,6 @@
       "mutation": true
     },
     {
-      "phase": "P8",
       "signature": "PropertyMutationResult AddUptPropertyDoubleAngle(int tableId, string sectionName, UptDoubleAngleDefinition definition)",
       "name": "AddUptPropertyDoubleAngle",
       "nativeFunction": "AddUPTPropertyDOUBLEANGLE",
@@ -90,7 +80,6 @@
       "mutation": true
     },
     {
-      "phase": "P8",
       "signature": "PropertyMutationResult AddUptPropertyTee(int tableId, string sectionName, UptTeeDefinition definition)",
       "name": "AddUptPropertyTee",
       "nativeFunction": "AddUPTPropertyTEE",
@@ -115,7 +104,6 @@
       "mutation": true
     },
     {
-      "phase": "P8",
       "signature": "PropertyMutationResult AddUptPropertyPipe(int tableId, string sectionName, UptPipeDefinition definition)",
       "name": "AddUptPropertyPipe",
       "nativeFunction": "AddUPTPropertyPIPE",
@@ -140,7 +128,6 @@
       "mutation": true
     },
     {
-      "phase": "P8",
       "signature": "PropertyMutationResult AddUptPropertyTube(int tableId, string sectionName, UptTubeDefinition definition)",
       "name": "AddUptPropertyTube",
       "nativeFunction": "AddUPTPropertyTUBE",
@@ -165,7 +152,6 @@
       "mutation": true
     },
     {
-      "phase": "P8",
       "signature": "PropertyMutationResult AddUptPropertyGeneral(int tableId, string sectionName, UptGeneralDefinition definition)",
       "name": "AddUptPropertyGeneral",
       "nativeFunction": "AddUPTPropertyGENERAL",
@@ -190,7 +176,6 @@
       "mutation": true
     },
     {
-      "phase": "P8",
       "signature": "PropertyMutationResult AddUptPropertyISection(int tableId, string sectionName, UptISectionDefinition definition)",
       "name": "AddUptPropertyISection",
       "nativeFunction": "AddUPTPropertyISECTION",
@@ -215,7 +200,6 @@
       "mutation": true
     },
     {
-      "phase": "P8",
       "signature": "PropertyMutationResult AddUptPropertyPrismatic(int tableId, string sectionName, UptPrismaticDefinition definition)",
       "name": "AddUptPropertyPrismatic",
       "nativeFunction": "AddUPTPropertyPRISMATIC",
@@ -240,7 +224,6 @@
       "mutation": true
     },
     {
-      "phase": "P8",
       "signature": "PropertyMutationResult AddUptPropertyWideFlangeComposite(int tableId, string sectionName, UptCompositeWideFlangeDefinition definition)",
       "name": "AddUptPropertyWideFlangeComposite",
       "nativeFunction": "AddUPTPropertyWIDEFLANGECOMPOSITE",
@@ -265,7 +248,6 @@
       "mutation": true
     },
     {
-      "phase": "P8",
       "signature": "PropertyMutationResult CreatePropertyFromUptTable(int tableId, string sectionName)",
       "name": "CreatePropertyFromUptTable",
       "nativeFunction": "CreatePropertyFromUPTTable",
@@ -286,7 +268,6 @@
       "mutation": true
     },
     {
-      "phase": "P8",
       "signature": "PropertyMutationResult CreatePropertyFromUserTable(string sectionName, int tableId)",
       "name": "CreatePropertyFromUserTable",
       "nativeFunction": "CreatePropertyFromUserTable",
@@ -307,7 +288,6 @@
       "mutation": true
     },
     {
-      "phase": "P8",
       "signature": "PropertyMutationResult CreateUptTableEx(int requestedTableId, UserProvidedTableType tableType)",
       "name": "CreateUptTableEx",
       "nativeFunction": "CreateUPTTableEx",
@@ -328,7 +308,6 @@
       "mutation": true
     },
     {
-      "phase": "P8",
       "signature": "PropertyMutationResult RemoveUptTable(int tableId)",
       "name": "RemoveUptTable",
       "nativeFunction": "RemoveUPTTable",
@@ -345,7 +324,6 @@
       "mutation": true
     },
     {
-      "phase": "P8",
       "signature": "PropertyMutationResult RemovePropertyFromUptTable(int tableId, string sectionName)",
       "name": "RemovePropertyFromUptTable",
       "nativeFunction": "RemovePropertyFromUPTTable",
@@ -366,7 +344,6 @@
       "mutation": true
     },
     {
-      "phase": "P8",
       "signature": "PropertyQueryResult<int> GetUserProvidedTableCount()",
       "name": "GetUserProvidedTableCount",
       "nativeFunction": "GetUserProvidedTableCount",
@@ -378,7 +355,6 @@
       "mutation": false
     },
     {
-      "phase": "P8",
       "signature": "PropertyQueryResult<IReadOnlyList<int>> GetUserProvidedTableList(int maximumResults = 100000)",
       "name": "GetUserProvidedTableList",
       "nativeFunction": "GetUserProvidedTableList",
@@ -389,13 +365,11 @@
           "Allocation limit 1..100000, default 100000. An oversize native count gives LimitExceeded before list allocation/retrieval."
         ]
       ],
-      "returns": "Success with read-only positive IDs in native order, retaining duplicates. Zero inventory skips list retrieval and returns empty data after count recheck. False/zero gives NativeFailure; count changes give StateChanged.",
       "remarks": "When to use: enumerate table numbers without assuming contiguous or zero/one-based IDs. Uses count/list/count within the shared gate, validates exact rank-one Int32 shape/length and every written positive ID. Equal counts cannot exclude same-count external edits. Uses the shared captured-binding gate; dependent dispatches check lifetime individually. Inspect IsSuccessful/Status before Data. No model mutation, geometry hydration, private catalog lookup, unit conversion or engineering certification occurs.",
       "example": "var result = property.GetUserProvidedTableList();\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Count);\nelse System.Console.WriteLine(result.Status);",
       "mutation": false
     },
     {
-      "phase": "P8",
       "signature": "PropertyQueryResult<UptTableSectionCount> GetUserProvidedTableSectionCount(int tableId)",
       "name": "GetUserProvidedTableSectionCount",
       "nativeFunction": "GetUserProvidedTableSectionCount",
@@ -412,7 +386,6 @@
       "mutation": false
     },
     {
-      "phase": "P8",
       "signature": "PropertyQueryResult<UptTableSectionType> GetUserProvidedTableSectionType(int tableId)",
       "name": "GetUserProvidedTableSectionType",
       "nativeFunction": "GetUserProvidedTableSectionType",
@@ -429,7 +402,6 @@
       "mutation": false
     },
     {
-      "phase": "P8",
       "signature": "PropertyQueryResult<UptNamedSectionCount> GetUserProvidedTableSectionPropertyCount(int tableId, string sectionName)",
       "name": "GetUserProvidedTableSectionPropertyCount",
       "nativeFunction": "GetUserProvidedTableSectionPropertyCount",
@@ -450,7 +422,6 @@
       "mutation": false
     },
     {
-      "phase": "P8",
       "signature": "PropertyQueryResult<UptSectionProperties> GetUserProvidedTableSectionProperties(int tableId, string sectionName)",
       "name": "GetUserProvidedTableSectionProperties",
       "nativeFunction": "GetUserProvidedTableSectionProperties",
@@ -465,13 +436,11 @@
           "Exact nonblank native section name without NUL characters. Case/whitespace are preserved; no database normalization or automatic rename."
         ]
       ],
-      "returns": "Success for true/integral one with exact requested identity, native type/version/capacity and read-only applicable field names/values. False/zero gives NativeFailure; capacity/version changes give StateChanged. Unreviewed profiles/types fail explicitly.",
       "remarks": "When to use: decode one of ten reviewed UPT type codes 412..502 without confusing them with common section-property type codes. Reviewed acquired native profiles are exactly 24.00.02.354, 25.00.01.424 and 26.00.00.340. Unreviewed/unknown versions fail before unsafe access. The profile uses wrapper.StaadVersion, never host ApplicationVersion. Native capacity from GetCountofSectionPropertyValuesEx must be 1..100000 and cover every applicable field. All required slots must be explicitly written finite floating-point values; unused padding is excluded, not turned into engineering zeros. Capacity is rechecked and native version frozen before returning. Native labels, inertia identities and units are retained without geometry/area substitution. Uses the shared captured-binding gate; dependent dispatches check lifetime individually. Inspect IsSuccessful/Status before Data. No model mutation, geometry hydration, private catalog lookup, unit conversion or engineering certification occurs.",
       "example": "var result = property.GetUserProvidedTableSectionProperties(7, \"EXPLICIT_WF\");\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.NativeTypeCode);\nelse System.Console.WriteLine(result.Status);",
       "mutation": false
     },
     {
-      "phase": "P8",
       "signature": "PropertyQueryResult<UptTableReference> GetUserProvidedTableNo(int nativeTableIndex)",
       "name": "GetUserProvidedTableNo",
       "nativeFunction": "GetUserProvidedTableNo",
@@ -488,7 +457,6 @@
       "mutation": false
     },
     {
-      "phase": "P9",
       "signature": "PropertyQueryResult<SectionShapeCode> GetShapeCode(Country country, string sectionName)",
       "name": "GetShapeCode",
       "nativeFunction": "GetShapeCode",
@@ -509,7 +477,6 @@
       "mutation": false
     },
     {
-      "phase": "P9",
       "signature": "PropertyMutationResult SetStandardProfileDBFolder(string folderPath)",
       "name": "SetStandardProfileDBFolder",
       "nativeFunction": "SetStandardProfileDBFolder",
@@ -526,7 +493,6 @@
       "mutation": true
     },
     {
-      "phase": "P9",
       "signature": "PropertyQueryResult<string> GetStandardProfileDBFolder()",
       "name": "GetStandardProfileDBFolder",
       "nativeFunction": "GetStandardProfileDBFolder",

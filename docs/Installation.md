@@ -4,11 +4,7 @@
 
 ## Package and runtime
 
-This preview adds three main-source View member-visibility methods with complete matching interface and concrete-adapter XML IntelliSense.
-
 Preview `1.0.0-preview.20261107` adds `ShowMembers(IEnumerable<Beam> beams)`, `HideMember(Beam beam)` and `HideMembers(IEnumerable<Beam> beams)`. It retains the preceding orientation, incremental rotation, zoom and visibility methods. It retains the earlier Commands, Support and Design methods. Commands now reaches sixteen active native analysis routes, Support provides 27 operations and Design reaches five native names. Output retains 96 managed overloads reaching 47 documented native functions. Nine documented Property contract gates remain. It also retains the correction for `GetLoadCasesFromIds` and related primary/combination discovery throwing `invalid integer result` when native number retrieval returns Boolean success. Update the installed package and rebuild/restart the consuming application to use the corrected DLL. The [Load query guide](Load-Queries.md) explains the distinct Boolean and integer contracts.
-
-The locally prepared preview is `1.0.0-preview.20261107`, including the approved wrapper surface, all 143 reference Geometry overloads, 171 Load overloads, 249 common Property overloads plus five optional catalog queries, 96 managed Output overloads, 27 Support operations, seventeen Commands methods, ten Design methods, twenty-nine Table operations and twenty-one View orientation/rotation/zoom/visibility requests, 53 common Root operations and three optional Root operations. Use this exact version with the local-feed instructions below. The package owner will upload this archive manually. Until NuGet.org validates and indexes this exact version, install it through a local feed. Public-feed commands for this preview are applicable only after that availability check; consult [release notes](Release-Notes.md), [Load contracts](Load-Porting.md), [Output usage](Output-Porting.md) and [Root capabilities](Root-Completion-and-Capabilities.md) for scope and limits.
 
 This guide uses preview version `1.0.0-preview.20261107` of package `StaadPro.Interop`. Public-feed commands apply after that exact version is accepted and available on NuGet.org; [Publishing.md](Publishing.md) explains upload and verification. The same verified archive can be installed immediately through a local feed.
 
@@ -22,7 +18,7 @@ This guide uses preview version `1.0.0-preview.20261107` of package `StaadPro.In
 
 Installation and managed package checks do not require a STAAD license. Native STAAD operations do. Bentley software/binaries are separately installed and licensed. The package targets `net481`; this release does not advertise .NET 8/9/10 application compatibility. SDK version and the consuming application's target framework are different things.
 
-Newtonsoft.Json is restored as a package dependency. Expanded XML documentation is included beside the DLL for IntelliSense on interfaces and concrete adapters, including all 249 common IOSProperty/OSPropertyAdapter overloads, five acquired catalog queries and 96 Output overloads. The [Property completion guide](Property-Profile-Names-and-Final-Cleanup.md), [plate-corner guide](Output-Plate-Corners.md) and [Support guide](Support-Foundations.md) describe the current APIs. The [Property guide](Property-Porting.md) links the preceding increments. IntelliSense describes native flags, units, inputs and failure behavior. No Bentley binaries are bundled.
+Newtonsoft.Json is restored as a package dependency. Expanded XML documentation is included beside the DLL for IntelliSense on interfaces and concrete adapters, including all 249 common IOSProperty/OSPropertyAdapter overloads, five acquired catalog queries and 96 Output overloads. The [Property completion guide](Property-Profile-Names-and-Final-Cleanup.md), [plate-corner guide](Output-Plate-Corners.md) and [Support guide](Support-Foundations.md) describe the current APIs. The [Property guide](Property.md) links the preceding increments. IntelliSense describes native flags, units, inputs and failure behavior. No Bentley binaries are bundled.
 
 The newer catalog group requires `property.Capabilities.GetStandardCatalog()` acquisition. Update the 17 renamed public UPT methods using [the migration table](Property-API-Naming.md); see [all new contracts](Property-Catalog-Capabilities-and-Cleanup.md).
 
@@ -37,7 +33,6 @@ dotnet add ./YourApp.csproj package StaadPro.Interop --version 1.0.0-preview.202
 dotnet restore ./YourApp.csproj
 dotnet build ./YourApp.csproj -c Release
 ```
-
 For SDK 10's noun-first CLI, the equivalent command is `dotnet package add StaadPro.Interop --project ./YourApp.csproj --version 1.0.0-preview.20261107 --source https://api.nuget.org/v3/index.json`. The older verb-first command above matches the SDK used for this repository's verification. See Microsoft's [package add reference](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-package-add).
 
 The resulting project reference should pin the version:
@@ -50,7 +45,6 @@ The resulting project reference should pin the version:
   <PackageReference Include="StaadPro.Interop" Version="1.0.0-preview.20261107" />
 </ItemGroup>
 ```
-
 For a fresh-cache public restore check, create a new consumer directory and this `NuGet.Config`:
 
 ```xml
@@ -62,7 +56,6 @@ For a fresh-cache public restore check, create a new consumer directory and this
   </packageSources>
 </configuration>
 ```
-
 Then run `dotnet restore ./YourApp.csproj --configfile ./NuGet.Config --packages ./packages`. A new `packages` directory avoids treating a previously cached/local installation as proof of public availability. When public publication is pending, use the local-feed procedure below rather than claiming this restore succeeded.
 
 ## Install in Visual Studio
@@ -77,13 +70,11 @@ The NuGet Package Manager Console equivalent is:
 ```powershell
 Install-Package StaadPro.Interop -Version 1.0.0-preview.20261107 -Source https://api.nuget.org/v3/index.json
 ```
-
 For the legacy WPF test solution `NugetTestApp`, the project is at `NugetTest\NugetTest.csproj`, one directory below the solution. Use the Package Manager Console command with an explicit project:
 
 ```powershell
 Install-Package StaadPro.Interop -Version 1.0.0-preview.20261107 -ProjectName NugetTest -Source https://api.nuget.org/v3/index.json
 ```
-
 `dotnet add package` searches its current directory for a project; Visual Studio's **Default project** selection does not change that directory for an external CLI command. Running it in the solution directory produces **Could not find any project**. Pointing it at this unconfigured legacy project produces **The project does not support adding package references through the add package command**. Use `Install-Package` or the Visual Studio NuGet UI. Alternatively, add a `PackageReference` to the legacy project and restore/build it with Visual Studio MSBuild; converting the entire WPF project to SDK style is unnecessary.
 
 Visual Studio source/version selection is described in the official [NuGet Package Manager guide](https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-visual-studio).
@@ -104,7 +95,6 @@ In the consumer directory, use a project-scoped `NuGet.Config`:
   </packageSources>
 </configuration>
 ```
-
 NuGet.org remains configured for dependencies. Add the exact package reference with:
 
 ```powershell
@@ -112,7 +102,6 @@ dotnet add ./YourApp.csproj package StaadPro.Interop --version 1.0.0-preview.202
 dotnet restore ./YourApp.csproj --configfile ./NuGet.Config --packages ./packages
 dotnet build ./YourApp.csproj -c Release --no-restore
 ```
-
 Alternatively, configure the folder as a Visual Studio package source and select it when installing the preview. Source configuration is covered by Microsoft's [NuGet.Config reference](https://learn.microsoft.com/en-us/nuget/reference/nuget-config-file).
 
 ## Minimal consumer project and first metadata read
@@ -132,7 +121,6 @@ For a small Windows console consumer, this SDK-style project is sufficient:
   </ItemGroup>
 </Project>
 ```
-
 Save this as `Program.cs`. Open STAAD.Pro with a licensed model first:
 
 ```csharp
@@ -160,14 +148,11 @@ internal static class Program
     }
 }
 ```
-
 These functions read existing case metadata. They do not create or activate a case. The new range includes both endpoints, ID filters omit missing IDs and collapse duplicates, and family lists have unspecified ordering. See [Load-Queries.md](Load-Queries.md) for the complete behavior and exceptions.
 
 Assignment queries such as `GetNodalLoads` activate the supplied primary/reference case and leave it active. They preserve raw native values; validate read-back units before applying conversions. Combination metadata is not an assignment-query case, and repeat-load discovery remains unsupported.
 
 ## Acquire a specific model
-
-Call `OpenStaadWrapperProvider.Get(fullPath)` on an STA thread (for example, the WPF UI thread). The provider queries the full filename using OpenSTAAD's output-VARIANT signature, compares normalized paths without case sensitivity, and reuses a matching model. If no matching model is registered, it opens the requested file once. It polls every 250 ms for up to two minutes until the requested filename, Geometry and Load interfaces, and read-only node/load-case count calls are available. Another model registered under the global ProgID is never accepted as a match.
 
 If the path does not exist, the provider retains its existing behavior of creating a blank model there. Connection failures/timeouts return null and emit `System.Diagnostics.Trace` messages. Check the result before using the adapters. `GetRunning()` attaches to a running session and never launches STAAD. Wrapper disposal releases managed references; it does not close the model or application.
 

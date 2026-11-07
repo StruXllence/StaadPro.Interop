@@ -10,7 +10,12 @@ function Read-PackageEntry([string] $name) {
     $entry = $archive.GetEntry($name)
     if ($null -eq $entry) { throw "Missing package entry: $name" }
     $reader = [IO.StreamReader]::new($entry.Open())
-    try { return $reader.ReadToEnd() } finally { $reader.Dispose() }
+    try {
+    foreach ($entry in $archive.Entries) {
+        if ($entry.FullName -match '(?i)(^|/)ROADMAP\.md$|(^|/)reports/|Implementation-Plan|Managed-API-Design|NuGet-Readiness') {
+            throw "Unexpected distribution entry: $($entry.FullName)"
+        }
+    } return $reader.ReadToEnd() } finally { $reader.Dispose() }
 }
 
 try {
@@ -46,11 +51,11 @@ try {
     $installation = Read-PackageEntry 'docs/Installation.md'
     $publishing = Read-PackageEntry 'docs/Publishing.md'
     $releaseNotes = Read-PackageEntry 'docs/Release-Notes.md'
-    $geometryGuide = Read-PackageEntry 'docs/Geometry-Porting.md'
-    $loadPorting = Read-PackageEntry 'docs/Load-Porting.md'
-    $rootPorting = Read-PackageEntry 'docs/Root-Porting.md'
-    $outputPorting = Read-PackageEntry 'docs/Output-Porting.md'
-    if ($outputPorting -notmatch 'GetAnalysisResultAvailability' -or $readme -notmatch '96 managed') { throw 'Missing packaged Output guidance.' }
+    $geometryGuide = Read-PackageEntry 'docs/Geometry.md'
+    $loadPorting = Read-PackageEntry 'docs/Load.md'
+    $rootPorting = Read-PackageEntry 'docs/Root.md'
+    $outputPorting = Read-PackageEntry 'docs/Output.md'
+    if ($outputPorting -notmatch 'GetAnalysisResultAvailability') { throw 'Missing packaged Output guidance.' }
     if ($installation -notmatch 'net481' -or $publishing -notmatch 'nuget.org') { throw 'Incomplete installation/publishing guides.' }
     $installationCode = [regex]::Match($installation, '(?s)```csharp\s*\r?\n(.*?)```').Groups[1].Value
     if ([string]::IsNullOrWhiteSpace($installationCode)) { throw 'Missing installation C# example.' }
@@ -58,7 +63,7 @@ try {
     $queryMethods = @('GetNodalLoads', 'GetMemberUniformlyDistributedLoads', 'GetMemberConcentratedLoads', 'GetMemberConcentratedMoments', 'GetMemberLinearVaryingLoads', 'GetMemberTrapezoidalLoads', 'GetAllPrimaryLoadCases', 'GetAllReferenceLoadCases', 'GetMemberUniformMoments', 'GetPrimaryLoadCaseFromId', 'GetReferenceLoadCaseFromId', 'GetPrimaryLoadCasesFromIds', 'GetReferenceLoadCasesFromIds', 'GetAllLoadCombinationCases', 'GetLoadCombinationCaseFromId', 'GetLoadCombinationCasesFromIds', 'GetAllLoadCasesOfType', 'GetLoadCase', 'GetLoadCases', 'GetLoadCasesFromIds', 'GetLoadCasesOfType')
     $queryMethods += @('GetEnvelopeIds', 'GetLoadEnvelopeDetail', 'GetAllLoadEnvelopeDetails')
     foreach ($method in $queryMethods) {
-        if ($readme -notmatch $method -or $guide -notmatch $method) { throw "Missing packaged guidance for $method" }
+        if ($guide -notmatch $method) { throw "Missing packaged guidance for $method" }
     }
     $nuspecEntry = @($archive.Entries | Where-Object FullName -like '*.nuspec')
     if ($nuspecEntry.Count -ne 1) { throw 'Expected exactly one nuspec.' }
@@ -216,7 +221,7 @@ try {
             # A current-model status example requires a named fixture after earlier close examples.
             $exampleSetup = if ($method -eq 'GetAnalysisStatus') { "((FakeRoot)(object)root.ComObject).Filename = @`"C:\Models\Frame.v2.STD`";`n" } else { '' }
             $snippets += "{`n" + $exampleSetup + $entry[0].SelectSingleNode('example/code').InnerText + "`n}"
-            if ($rootPorting -notmatch $method -or $readme -notmatch $method) { throw "Missing packaged root guidance for $method" }
+            if ($rootPorting -notmatch $method) { throw "Missing packaged root guidance for $method" }
         }
     }
     $hasLoadExpansion = @($xml.doc.members.member | Where-Object name -like 'M:StaadPro.Interop.Adapters.Interfaces.IOSLoad.GetAssignedEntityIds(*').Count -eq 1
@@ -295,7 +300,7 @@ try {
     }
     if ($outputSnippets.Count -ne 192) { throw 'Expected 192 Output XML examples.' }
     $supportSnippets = @()
-    $supportGuide = (Read-PackageEntry 'docs/Support-Foundations.md') + (Read-PackageEntry 'docs/Commands-and-Support-Porting.md')
+    $supportGuide = (Read-PackageEntry 'docs/Support-Foundations.md') + (Read-PackageEntry 'docs/Commands-and-Support.md')
     foreach ($owner in @('Adapters.Interfaces.IOSSupport', 'Adapters.Models.OSSupportAdapter')) {
         $entries = @($xml.doc.members.member | Where-Object { $_.name.StartsWith("M:StaadPro.Interop.$owner.") -and $_.name -notmatch '\.#ctor' })
         if ($entries.Count -ne 27) { throw "Expected 27 Support contracts for $owner." }
@@ -355,9 +360,6 @@ try {
     $viewGuide += Read-PackageEntry 'docs/View-Incremental-Rotations.md'
     $viewGuide += Read-PackageEntry 'docs/View-Zoom-and-Member-Visibility.md'
     $viewGuide += Read-PackageEntry 'docs/View-Member-Visibility.md'
-    $sourcePortingGuide = Read-PackageEntry 'docs/reports/OpenSTAAD-Main-Source-Porting-Status.md'
-    $sourcePortingStatus = (Read-PackageEntry 'docs/reports/data/OpenSTAAD-Main-Source-Porting-Status.json') | ConvertFrom-Json
-    if ($sourcePortingStatus.pendingBefore -ne 145 -or $sourcePortingStatus.pendingAfter -ne 142 -or $sourcePortingStatus.portedThisIncrement -ne 3 -or $sourcePortingGuide -notmatch '142') { throw 'Inconsistent packaged source-porting inventory.' }
     foreach ($owner in @('Adapters.Interfaces.IOSView', 'Adapters.Models.OSViewAdapter')) {
         $entries = @($xml.doc.members.member | Where-Object { $_.name.StartsWith("M:StaadPro.Interop.$owner.") -and $_.name -notmatch '\.#ctor' })
         if ($entries.Count -ne 21) { throw 'Expected twenty-one documented View functions.' }
@@ -373,7 +375,7 @@ try {
         }
     }
     if ($viewSnippets.Count -ne 42) { throw 'Expected forty-two View XML examples.' }
-    $designGuide = Read-PackageEntry 'docs/Design-Porting.md'
+    $designGuide = Read-PackageEntry 'docs/Design.md'
     $designSnippets = @()
     foreach ($owner in @('Adapters.Interfaces.IOSDesign', 'Adapters.Models.OSDesignAdapter')) {
         $entries = @($xml.doc.members.member | Where-Object { $_.name.StartsWith("M:StaadPro.Interop.$owner.") -and $_.name -notmatch '\.#ctor' })
@@ -430,7 +432,7 @@ try {
     $propertySnippets = @()
     $hasPropertyFoundation = @($xml.doc.members.member | Where-Object name -eq 'M:StaadPro.Interop.Adapters.Interfaces.IOSProperty.GetBetaAngle(System.Int32)').Count -eq 1
     if ($hasPropertyFoundation) {
-        $propertyGuide = Read-PackageEntry 'docs/Property-Porting.md'
+        $propertyGuide = Read-PackageEntry 'docs/Property.md'
         $propertyGuide += Read-PackageEntry 'docs/Property-Main-Ports.md'
         $propertyGuide += Read-PackageEntry 'docs/Property-Management-Ports.md'
         $propertyGuide += Read-PackageEntry 'docs/Property-Workflows.md'

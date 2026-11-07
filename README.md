@@ -18,8 +18,6 @@ A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD. Work wi
 - **Start from documented workflows:** explore the API guides and packaged XML IntelliSense examples.
 - **Contribute without STAAD.Pro:** build the library and run offline unit tests without Bentley binaries or a STAAD license.
 
-[Install](docs/Installation.md) · [API reference](docs/API-Reference.md) · [Contribute](CONTRIBUTING.md) · [Roadmap](ROADMAP.md) · [Report an issue](https://github.com/StruXllence/StaadPro.Interop/issues/new/choose)
-
 ## Installation and runtime
 
 Runtime requires **Windows, .NET Framework 4.8.1 (net481), and a licensed STAAD.Pro installation** exposing the APIs used by your application. The .NET SDK used to build the project is separate from the application's target framework.
@@ -55,32 +53,29 @@ internal static class Program
     }
 }
 ~~~
-
 This attaches to an existing instance and reads primary load-case metadata. It does not create or activate a load case. Wrapper disposal releases managed references without closing STAAD.Pro. Serialize COM access on the application's established apartment; see [connection and lifecycle guidance](docs/Installation.md#acquire-a-specific-model).
 
 ## API guides
 
 | Area | Explore |
 | --- | --- |
-| Connect and manage models | [Wrapper](docs/Wrapper-Porting.md) · [Root](docs/Root-Porting.md) |
-| Nodes, beams, plates and groups | [Geometry](docs/Geometry-Porting.md) |
-| Load cases and assignments | [Load](docs/Load-Porting.md) · [query contracts](docs/Load-Queries.md) |
-| Materials, sections and specifications | [Property](docs/Property-Porting.md) |
-| Analysis results and steel-design observations | [Output](docs/Output-Porting.md) |
-| Supports and analysis commands | [Support and Commands](docs/Commands-and-Support-Porting.md) |
-| Design briefs and assignments | [Design](docs/Design-Porting.md) |
-| Report tables and formatting | [Table](docs/Table-Porting.md) |
+| Connect and manage models | [Wrapper](docs/Wrapper.md) · [Root](docs/Root.md) |
+| Nodes, beams, plates and groups | [Geometry](docs/Geometry.md) |
+| Load cases and assignments | [Load](docs/Load.md) · [query contracts](docs/Load-Queries.md) |
+| Materials, sections and specifications | [Property](docs/Property.md) |
+| Analysis results and steel-design observations | [Output](docs/Output.md) |
+| Supports and analysis commands | [Support and Commands](docs/Commands-and-Support.md) |
+| Design briefs and assignments | [Design](docs/Design.md) |
+| Report tables and formatting | Table |
 | Graphical orientation, zoom and member visibility | [View](docs/View-Zoom-and-Member-Visibility.md) |
 
 ## View orientations
-
-Use `ShowFront()`, `ShowBack()`, `ShowLeft()`, `ShowRight()`, `ShowPlan()`, `ShowBottom()` or `ShowIsometric()` for a fixed direction. Use `RotateUp(angleDegrees)`, `RotateDown(angle)`, `RotateLeft(angle)`, `RotateRight(angle)`, `SpinLeft(angle)` or `SpinRight(angle)` for finite signed-degree increments about their documented global axes. Each returns a named unacknowledged completion receipt. See [orientation usage](docs/View-Orientations.md) and [incremental rotations](docs/View-Incremental-Rotations.md). View exposes 21/70 main-source overloads; **142 active source overloads remain** across the reviewed domains. See [the source inventory](docs/reports/OpenSTAAD-Main-Source-Porting-Status.md).
 
 ## Compatibility and preview status
 
 The current source passed **7,192 offline tests**; the installed-package verifier checks **1,316 XML examples**, including thirty-six View examples. These checks validate managed behavior and distribution, not every native STAAD build, COM response or engineering-unit convention. Consult method-specific version, result-state, unit and side-effect contracts before using results in an engineering workflow.
 
-The package remains a preview. [Release notes](docs/Release-Notes.md) identify the API scope, and [NuGet readiness](docs/NuGet-Readiness.md) records validation limits. Earlier public packages retain the license terms shipped with them.
+The package remains a preview. [Release notes](docs/Release-Notes.md) identify the API scope, and NuGet readiness records validation limits. Earlier public packages retain the license terms shipped with them.
 
 ## Contribute and get help
 
@@ -92,7 +87,6 @@ cd StaadPro.Interop
 dotnet build StaadPro.Interop.sln -c Release
 dotnet test tests/StaadPro.Interop.Tests/StaadPro.Interop.Tests.csproj -c Release --no-build
 ~~~
-
 Use the [primary forum](https://forum.struxllence.com) for engineering discussions and [GitHub Issues](https://github.com/StruXllence/StaadPro.Interop/issues) for package defects. Read the [code of conduct](CODE_OF_CONDUCT.md). If this library helps your workflow, star the repository to follow future work; useful examples and contributions help it grow.
 
 ## License and attribution

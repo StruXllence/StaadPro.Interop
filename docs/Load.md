@@ -1,4 +1,4 @@
-# Load API porting and new assignments
+# Load API API guide and new assignments
 
 ## Case-number return correction — 24 October 2026
 
@@ -8,37 +8,15 @@ Boolean false still fails. Boolean success requires an exact-length one-dimensio
 
 ## Approved Load expansion
 
-Implemented all 36 approved contracts with a single IOSLoad/OSLoadAdapter surface and internal services. Current source has 171 overloads and 126/129 documented native dispatches; the three unused names have managed alternatives. Passed 2,900 offline tests. See [Load expansion contracts, differences and operating limits](Load-Expansion.md). The prepared distribution archive remains unchanged; live native qualification is pending.
-
 ## Contract-first preparation
-
-Prepared all original 56 native-entry mappings, 36 pending signatures and their supporting types before further implementation. See the [contract/type plan](reports/OpenSTAAD-Load-Expansion-Contracts-and-Type-Plan.md) and [separate review signatures](contracts/IOSLoadExpansionContract.cs). Existing 15 inspection queries remain implemented; no additional pending native calls were added.
-
-## Current source — 15 additional inspection queries
-
-Implemented the 15 genuinely missing observation contracts selected after the semantic audit. Current IOSLoad/OSLoadAdapter each expose **135 overloads**, retaining all 115 private reference signatures and five conveniences plus 15 native expansions. Native dispatch coverage is now **88/129**, leaving 41 unused entry points: one alternative, one derived capability, four partial overlaps and 35 absent operations. Three metadata-only candidates remain separate. See [Load inspection contracts and examples](Load-Inspection-Queries.md) for all signatures, statuses, index bases, primary activation effects, bounded snapshots and qualification limits. Passed 2,448 offline tests (189 new) and 30 new XML examples; the prepared preview archive predates this source increment.
-
-The audit and reference-port entries below describe the baseline before this increment.
 
 ## Managed capability audit — 23 October 2026
 
-The 56 undispatched native names are not 56 missing features. Semantic review found one existing creation alternative, one derived combination-membership capability, four partial overlaps and 50 operations without a managed equivalent. See the [complete semantic audit](reports/OpenSTAAD-Load-Managed-Capability-Audit.md) before selecting new work; 54 native contracts have outstanding scope, without implying 54 separate public methods. No functions were added for this review.
-
-## Reference porting audit — 23 October 2026
-
-Reparsed the strictly read-only main IOSLoad/OSLoadAdapter and the current interface/adapter. All **115 main-interface signatures** are present in both current types, which each expose **120 overloads**. No main-interface port is pending and no NotImplementedException or executable placeholder was found in the Load adapter. Existing NotSupportedException paths describe documented family, profile or representation restrictions, rather than unimplemented stubs.
-
-The full offline regression suite was run with the new Output work. No Load implementation changes were necessary. The separate vendor inventory still has **56 documented native names without dispatch**, plus three metadata-only candidates. These require semantic disposition before API expansion, not a blanket implementation backlog; they are not missing main-project overloads. The semantic audit above records the corrected disposition.
-
-The private main project’s reference `IOSLoad` contains 115 method overloads. This repository now exposes 120: 115 matching reference overloads plus five repository-specific convenience overloads. There are no main-interface reference overloads pending. Counts treat overloads separately and compare both interface and adapter method signatures.
+## Reference API guide audit — 23 October 2026
 
 The repository-specific methods are `CreatePrimaryLoadCases`, `CreateReferenceLoadCases` and three `AddPlateUniformPressure` overloads. They explain why subtracting 120 from 115 does not give the pending reference count.
 
 ## Cross-version native coverage review — 22 October 2026
-
-Private-source overload parity is separate from Bentley native API coverage. The installed 2024/2025/2026 Load references each document 129 functions across 24 pages. The current source dispatches 73 of those names: 67 directly in OSLoadAdapter and six through member-load entity implementations. Fifty-six documented names have no current dispatch. The inspected 2025/2026 vendor interfaces each declare another three names outside those help sections.
-
-See the [Load multi-version comparison and architecture plan](reports/OpenSTAAD-Load-Multi-Version-Architecture-and-Plan.md) and [complete native contract and managed coverage inventory](reports/OpenSTAAD-Load-API-Coverage-and-Contract-Inventory.md). They include the complete matrix, version-sensitive seismic code mapping, status differences, per-function proposals, private-reference backlog and release verification gates. This review changes documentation only; its architecture and API proposals are not implemented.
 
 ## Batch 1: AddSelfweightInXYZTo, CreateLoadCombinations, CreateLoadEnvelopExt
 
@@ -64,7 +42,6 @@ IOSLoad AddSelfweightInXYZTo(int loadCaseId, LoadCaseType lcType, IEnumerable<in
 IOSLoad CreateLoadEnvelopExt(int envelopId, LoadEnvelopType envelopType, IEnumerable<int> loadCaseList);
 dynamic CreateLoadList(LoadListType loadListType, IEnumerable<int> loadCaseIds);
 ```
-
 Each retains the main signature and uses the existing non-partial adapter. `SelfWeightDirection` and `LoadListType` preserve native codes/spelling and ship full enum IntelliSense. Input sequences are snapshotted once before native calls; every ID must be positive, order/duplicates are preserved, and caller collections remain unchanged. Null input throws `ArgumentNullException`; invalid IDs/enums/non-finite factors throw `ArgumentOutOfRangeException`. Native COM/binding errors propagate. No mutation is automatically saved or rolled back.
 
 ### Self-weight assignment
@@ -88,7 +65,6 @@ load.AddSelfweightInXYZTo(17, LoadCaseType.PrimaryLoad, new[] { 101, 102 });
 load.CreateLoadEnvelopExt(7, LoadEnvelopType.Strength, new[] { 17, 41 });
 object status = load.CreateLoadList(LoadListType.EnvelopList, new[] { 7 });
 ```
-
 These IDs must exist and be suitable in the connected model. The statements mutate native state; coordinate COM session access and native persistence in the calling application.
 
 ## Envelope queries from the previous batch
@@ -96,8 +72,6 @@ These IDs must exist and be suitable in the connected model. The statements muta
 The envelope query batch adds `GetEnvelopeIds()`, `GetLoadEnvelopeDetail(int envId)` and `GetAllLoadEnvelopeDetails()`, along with standalone `LoadEnvelopeDetail`, `ILoadEnvelopeDetail` and `LoadEnvelopType`. All function signatures are on `IOSLoad`; all native implementations/helpers are in the existing non-partial `OSLoadAdapter`. The [envelope query guide](Load-Queries.md#load-envelope-queries) covers exact native statuses, empty/invalid results, ownership, examples and live validation.
 
 These three functions complete envelope metadata discovery and membership reads. Unlike the reference's nullable empty results and unchecked native calls, this port returns fresh empty sets on successful zero counts, rejects invalid envelope arguments before COM and throws on native failures or malformed data. Envelope fetching requires integer success status **1**, with **-1** treated as failure. It does not use assignment-query zero success or case-number count semantics. Returned membership is an independent snapshot; editing it performs no native writes.
-
-Reference provenance: main project commit `3f930d742f972c27d961f0e8eff9f1e11c520ff2`, `Adapters/Interfaces/IOSLoad.cs`, `Adapters/Models/OSLoadAdapter.cs`, `Interfaces/ILoadEnvelopeDetail.cs`, `Entities/Loads/LoadEnvelopeDetail.cs` and `Enums/Loads/LoadEnvelopType.cs`. The main project was not modified.
 
 ## Earlier grouped assignment additions
 
@@ -108,7 +82,6 @@ IOSLoad AddAxialThermalGradientTo(int loadCaseId, IEnumerable<int> entities, dou
 IOSLoad AddMemberLoadsFromGroupsByLoadCase(Dictionary<ILoadCase, List<(MemberLoad Load, List<Beam> Beams)>> grouped);
 IOSLoad AddNodalLoadsFromGroupsByLoadCase(Dictionary<ILoadCase, List<(NodalLoad Load, List<Node> Nodes)>> grouped);
 ```
-
 - **Four-parameter thermal overload:** preserves parameter names and types, validates positive `nThreads`, snapshots and validates all input, activates the primary target once and issues one scalar `AddTemperatureLoad(entityId, value, 0.0, 0.0)` call per entity in input order. The reference uses worker threads; this port keeps every COM call on the caller's thread. `nThreads` is retained for compatibility and does not control concurrency. Empty input makes no native calls; duplicate IDs and raw thermal values are preserved. A later native exception stops processing without rolling back earlier assignments.
 - **Grouped member assignments:** delegates each retained tuple to the existing `AddMemberLoad` helper. Null load definitions, null beam lists and empty beam lists are skipped, preserving the reference loop. Individual null beams are filtered by the helper; a nonempty list of only null beams still attempts case activation. Concrete member-load types retain their `ApplyTo` native mapping.
 - **Grouped nodal assignments:** delegates every tuple to the existing `AddNodalLoad` helper. Null loads or node lists are rejected by that helper. Individual null nodes are filtered, remaining ID order and duplicates are preserved, and Fx/Fy/Fz/Mx/My/Mz are passed unchanged. Empty/all-null node lists or null Forces still attempt case activation but supply no assignment.
@@ -126,7 +99,6 @@ IOSLoad AddReferenceLoadsTo(int loadCaseId, Dictionary<int, double> loadCaseNumb
 IOSLoad AddRepeatLoadsTo(int loadCaseId, IDictionary<int, double> loadCaseNumberFactorPairs);
 IOSLoad AddAxialThermalGradientTo(int loadCaseId, IEnumerable<int> entities, double axialThermalGradient);
 ```
-
 - **Reference loads:** snapshots source-case/factor pairs together, activates an existing primary target with `SetLoadActive`, then calls `AddReferenceLoad(int[] ids, double[] factors)`.
 - **Repeat loads:** uses the same paired snapshot and activation contract, then calls `AddRepeatLoad(int[] ids, double[] factors)`. It does not enumerate `Keys` and `Values` independently.
 - **Thermal loading:** the three-parameter overload snapshots entity IDs, activates the primary target and calls `AddTemperatureLoad(ids, axialThermalGradient, 0.0, 0.0)` with one array. The supplied value is the raw first native temperature argument. The method does not divide by a length or interpret node coordinates; use the installed STAAD temperature-input convention. The four-parameter overload is now ported as described above.
@@ -142,13 +114,11 @@ wrapper.Load.AddReferenceLoadsTo(17, new Dictionary<int, double> { { 41, 1.25 } 
 wrapper.Load.AddRepeatLoadsTo(17, new Dictionary<int, double> { { 42, -0.75 } });
 wrapper.Load.AddAxialThermalGradientTo(17, new[] { 101, 102 }, 15.5);
 ```
-
 ## IntelliSense and validation
 
 Each new method has identical expanded XML on `IOSLoad` and `OSLoadAdapter`, including inputs, native mapping, empty input, activation side effects, exceptions and executable examples. The XML ships beside the DLL and does not require source access. The published 1.0.0-preview.20261015 archive documents 78 Load overloads. The current source documents 90; the updated verifier will check 250 selected XML examples in the next package, including the new population and guarded wind examples.
 
 Offline tests check paired arrays, double precision, one thermal input snapshot, caller-thread scalar assignments, primary/reference grouped routing, member subtype dispatch, all six nodal components, skipped/null/empty group entries, unchanged managed data, activation ordering/failure and partial native failures. Installed-package verification compiles and runs the interface and concrete XML examples and checks argument layouts using managed native stand-ins. Live native mutations, engineering units and version-specific behavior remain unverified for these additions.
-
 
 ## Population completion and basic wind definitions — 22 October 2026
 
@@ -179,15 +149,11 @@ Reads run case-major and entity-minor on the caller's COM thread. Existing prima
 
 ### Wind contracts and status handling
 
-Public wind parameters use descriptive names; `windDefinitionId` corresponds to the main project's type number. The parameter types, overload defaults and return types remain source-compatible. Only the three exposure signatures declared in the main interface are counted; its adapter-only single-Node convenience method is outside this increment.
-
 Creation requires a positive ID and a nonblank name without NUL. Name text, including surrounding whitespace and Unicode, is preserved. Exposure requires a finite nonnegative factor and at least one positive node ID. Managed node overloads use IDs only, without reading coordinates or changing the objects. Order and duplicate IDs remain intact.
 
 Intensity pressures must be finite; signed values are preserved because the source contract imposes no positivity rule. Heights must be finite and nonnegative. Parallel sequences must be nonempty and equal in length. Pair overloads preserve index association. Inputs are not sorted or deduplicated; no assumed monotonic profile is imposed. Pressure units are the model's force/length-squared units and heights use model length units, with no conversion.
 
 `WindIntensityPair` is the source's small immutable value-pair abstraction, retained as a readonly struct with value equality and hashing. It holds two doubles, has no identity or lifecycle, and is suitable for value semantics. Its constructor rejects nonfinite values and negative height; the default zero/zero pair is valid. It avoids tuples and mutable profile rows.
-
-The [installed Bentley wind reference](<file:///C:/Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___property_load_def_wind.html>) documents:
 
 | Native operation | Documented status |
 | --- | --- |
@@ -214,15 +180,9 @@ if (status == 0)
 }
 Console.WriteLine(status); // Each step remains a separate native mutation.
 ```
-
-The wind documentation and signatures were inspected, and argument layouts/status behavior are tested with managed stand-ins. Verification passed **1,761 offline tests**, including **157 new cases**, and a Release solution build with zero warnings/errors. All **250 selected XML examples** compiled and executed in a source-reference consumer using the production verifier selection logic; wind mutation examples remained guarded. No new distribution archive or installed-package result is claimed for this increment. This does not certify live STAAD wind commands or engineering units. The main source project remains strictly read-only.
-
-
 <a id="asce-wind-and-seismic-definitions"></a>
 
 ## ASCE wind and seismic definitions — 22 October 2026
-
-Ported the next **15 reference overloads** into IOSLoad and the existing non-partial OSLoadAdapter. Source coverage is now **105 overloads: 100 matching the main interface plus five repository conveniences**, leaving **15 reference overloads pending**. All new signatures preserve source return types and optional defaults; no public ref/out parameters or tuples were added. These source changes are not included in the published 1.0.0-preview.20261015 archive.
 
 | Managed function | Overloads | Contract |
 | --- | ---: | --- |
@@ -238,8 +198,6 @@ Ported the next **15 reference overloads** into IOSLoad and the existing non-par
 
 ### Wind inputs and wire contracts
 
-Reused the main project's wind structure hierarchy (building, tank/chimney, solid sign, open sign/lattice and trussed tower), explicit velocity/length units, escarpment data and factor overrides. Enums retain their native numeric domains without proprietary assembly dependencies. Models reject nonfinite fields and undefined enum values; nested requests are validated before dispatch. Callers must keep mutable models stable during use.
-
 Definition requests send fifteen native arguments. The topography packet has four Doubles; structure data has seven Doubles; units and override flags each have eight Int32 values; factor values have eight Doubles. The eight-element forms follow source serialization and native index tables 0–7, despite inconsistent size-seven wording in help. Arrays supplied to native code are owned snapshots.
 
 Both profile calculations use ten native arguments, including the explicit unit packet and an Int32 1/0 escarpment flag, matching the inspected Win32 BOOL shape. Profile tables use a different open-sign/tower slot order from definition tables; internal packet preparation reorders these families. The calculation tables use legacy enclosure/tank classifications, including in the 2016 calculation entry. Definition serialization uses the requested publication's classification map. PartiallyOpen is rejected for a legacy packet because it has no distinct documented legacy value; it is not silently substituted with PartiallyEnclosed. These departures from the source's shared packet path are documented and tested against the installed tables; native numerical validation remains pending.
@@ -254,15 +212,11 @@ The newly ported member-weight overload preserves the reference integer paramete
 
 Distribution codes are Uniform=1 and Concentrated=2. Weight is forwarded unchanged (force for joint/concentrated weight, force per length for uniform member weight). Distances use native model length units from member start, must be finite/nonnegative, and a nonzero end cannot precede start. Both zero describe full-length uniform weight. Use zero for the unused concentrated end distance.
 
-Joint/member selections are enumerated once; positive IDs, input order and duplicates are preserved. Node overloads read only IDs. Empty joint/member selections return the source-compatible successful no-op (0/true) without native dispatch. No load case or seismic definition is implicitly created or selected.
-
 Integer-returning methods preserve native statuses/counts, including unknown integers, and reject null, Boolean, text, floating-point, enum or overflowing results. Zero is success for wind/seismic parameter/joint updates; profile counts have their own native meaning, with -1 documenting failure. Boolean families accept actual bool or integral 0/1/-1 only, and reject other statuses. This Boolean rule must not be applied to integer-status APIs.
 
 ### Parameter updates and partial completion
 
 The dictionary overload snapshots and validates every entry before the first update. Keywords must start with an uppercase ASCII letter and contain only uppercase ASCII letters/digits. Their text is preserved; no case normalization or unit conversion occurs. Entries are submitted in snapshot order. The first nonzero native code stops the sequence and is returned unchanged; a later exception/malformed result also stops execution. Earlier native updates remain. Empty dictionaries return zero without dispatch.
-
-Typed seismic models produce independent keyword dictionaries, retain main-source defaults and nullable optional fields, and reject nonfinite values before mutation. They do not select or track the active engineering code. Caller must ensure that keywords, location alternatives, units and values are appropriate to the existing native seismic definition. Validation does not certify engineering suitability or atomicity.
 
 All calls stay on the caller's COM thread. No automatic save, analysis, retry, restoration or rollback is added. A native operation may have effects before reporting an error or returning an invalid value. XML IntelliSense on both interface and adapter covers these contracts, result semantics, defaults, exceptions, side effects and guarded examples.
 
@@ -289,12 +243,9 @@ if (definitionCreated)
 }
 // Each call is a separate native mutation; no save or transaction is implied.
 ```
-
 <a id="load-reference-completion"></a>
 
 ## Completed reference port: spectrum, walls and direct analysis — 22 October 2026
-
-Ported the final **15 main-interface reference overloads**, completing **115 of 115 reference signatures**. IOSLoad and the existing non-partial OSLoadAdapter each expose **120 method overloads**, including five repository conveniences. No reference overload remains pending. This measures private-source interface parity, not complete coverage of the Bentley native manual or all adapter-only conveniences in the private project. Current native dispatch coverage is **73 of 129 documented names** (67 direct adapter targets and six delegated member-load mutations); **56 native names remain without a current dispatch**.
 
 | Function | Added overloads | Managed behavior |
 | --- | ---: | --- |
@@ -310,23 +261,17 @@ Ported the final **15 main-interface reference overloads**, completing **115 of 
 | DeleteDirectAnalysisDefinition | 1 | Explicit whole-definition deletion. |
 | AddRSLoad | 1 | Source request model, nineteen native slots and checked Single conversion. |
 
-New public parameters use descriptive names while preserving reference parameter types, order, return types and optional defaults. Implementations remain in the single adapter; packet capture/validation is isolated internally. OpenStaadWrapper and its properties are unchanged. Native calls stay on the caller’s COM thread; no task fan-out, case activation, save, analysis, retry or rollback is added. The main source project remained read-only.
-
 ### Seismic member and wall contracts
 
 The Beam member-weight overload snapshots once, rejects null/invalid IDs, preserves ordering and duplicates, and uses IDs without reading coordinates. Both convenience methods reuse the existing ID implementation and its acquired-profile safeguards. Empty member selections retain the successful no-op behavior.
 
 The wall-area code is **15 for IS1893-2016 in the reviewed wall-area table**. It is a separate native domain from SeismicCode.IS1893_2016=12 and member-weight code values. Both wall overloads require 15, validate global X/Z, and supply ordered length/thickness pairs in current native model length units. The string direction is trimmed and uppercased invariantly. Dimensions must be finite and positive, with even array length; empty input returns integer zero without native dispatch.
 
-Wall data follows the main source’s Double-array convention. Help examples mention float arrays while the -107 error text mentions long arrays, so the managed source convention is recorded explicitly and **live native type acceptance remains unverified**. Native integer statuses are preserved, including -1, -107, -8034, -8038 and unknown codes. They are never converted to Boolean success.
-
 ### Extended response spectrum
 
 Reused ResponseSpectrumLoadExParameters, SpectrumCurvePoint and the separate ResponseSpectrumCode/ModalCombinationMethod enums. Both overloads capture owned keyword/value/data arrays before one native call. Primary names and values must be non-null, nonempty and equal length. Names must be unique uppercase ASCII keywords containing letters/digits and starting with a letter. Values must be finite. Keyword syntax is checked; code-specific keyword meaning, physical suitability and the intended active case remain caller/native responsibilities.
 
 Generation names/values must both be null or both supplied with equal length. Paired empty arrays become native null. Nonempty generation data and custom spectrum data are mutually exclusive. Custom data is an even-length Double array of period/value pairs; periods are nonnegative and all values finite. Null/empty custom data is omitted. Typed dictionaries preserve key/value association through a single entry snapshot, rather than separate mutable key/value enumeration. Point order and duplicate periods remain unchanged; no sorting, interpolation, aggregation or unit conversion occurs.
-
-Extended modal codes are SRSS=0, ABS=1, CQC=2, ASCE=3, TEN=4, CSM=5 and GRP=6. These differ from the legacy AddRSLoad modal codes. Request-builder helpers retain main-source update rules: WithDirection skips magnitudes at most 1e-9 without removing an earlier factor; WithDamping and WithScale replace their named entries. Nonfinite builder inputs are rejected before updates. Mutable models must remain stable during capture.
 
 ### Legacy AddRSLoad
 
@@ -366,7 +311,8 @@ bool added = wrapper.Load.AddResponseSpectrumLoadEx(spectrum);
 Console.WriteLine(added);
 // Native engineering/units validation and saving remain the caller's responsibility.
 ```
-
 ## Reference coverage status
 
-All 115 method signatures in the main project’s IOSLoad interface are implemented, plus the repository’s five convenience overloads. No reference interface overload remains pending. Additional native functions, adapter-only conveniences and broader version-aware managed API design remain separate work; see the [cross-version coverage report](reports/OpenSTAAD-Load-Multi-Version-Architecture-and-Plan.md).
+## Available functions
+
+`AddAxialThermalGradientTo()`, `AddCasesToEnvelope()`, `AddDirectAnalysisAxialParameter()`, `AddDirectAnalysisDefinitionParameter()`, `AddDirectAnalysisFlexParameter()`, `AddFloorLoad()`, `AddHydrostaticPressure()`, `AddMemberAreaLoad()`, `AddMemberFixedEndLoad()`, `AddMemberLoad()`, `AddMemberLoadsFromGroupsByLoadCase()`, `AddNodalLoad()`, `AddNodalLoadsFromGroupsByLoadCase()`, `AddNotionalLoad()`, `AddPlateUniformPressure()`, `AddRSLoad()`, `AddReferenceLoadsTo()`, `AddRepeatLoadsTo()`, `AddResponseSpectrumLoadEx()`, `AddSeismicDefJointWeight()`, `AddSeismicDefMemberConcentratedWeight()`, `AddSeismicDefMemberUniformWeight()`, `AddSeismicDefMemberWeight()`, `AddSeismicDefSelfWeight()`, `AddSeismicDefWallArea()`, `AddSeismicDefinition()`, `AddSeismicLoad()`, `AddSelfWeight()`, `AddSelfweightInXYZTo()`, `AddStrainLoad()`, `AddSupportSettlement()`, `AddTrapezoidalPressure()`, `AddWindDefinition()`, `AddWindDefinitionASCE7Parameters()`, `AddWindExposure()`, `AddWindIntensity()`, `AddWindLoad()`, `ClearPrimaryLoadCase()`, `ClearPrimaryLoadCases()`, `ClearReferenceLoadCase()`, `ClearReferenceLoadCases()`, `ComputeWallWindPressureProfile()`, `ComputeWallWindPressureProfileASCE72016()`, `ContainsDynamicLoad()`, `CreateAutomaticCombinations()`, `CreateAutomaticRepeatLoads()`, `CreateLoadCombinations()`, `CreateLoadEnvelopExt()`, `CreateLoadList()`, `CreateNewLoadCase()`, `CreateNewPrimaryLoad()`, `CreateNewPrimaryLoadEx()`, `CreateNewPrimaryLoadEx2()`, `CreateNewReferenceLoad()`, `CreatePrimaryLoadCases()`, `CreateReferenceLoadCases()`, `DeleteAllWindDefinitions()`, `DeleteDirectAnalysisDefinition()`, `DeleteDirectAnalysisDefinitionParameter()`, `DeleteEnvelope()`, `DeleteLoadCases()`, `DeleteLoadList()`, `DeleteWindDefinition()`, `GetActiveLoadCaseNumber()`, `GetAllLoadCasesOfType()`, `GetAllLoadCombinationCases()`, `GetAllLoadEnvelopeDetails()`, `GetAllPrimaryLoadCases()`, `GetAllReferenceLoadCases()`, `GetAssignedEntityCount()`, `GetAssignedEntityIds()`, `GetEnvelopeIds()`, `GetFloorBeamCount()`, `GetFloorInfluenceAreas()`, `GetLoadAttribute()`, `GetLoadCase()`, `GetLoadCaseTitle()`, `GetLoadCases()`, `GetLoadCasesFromIds()`, `GetLoadCasesOfType()`, `GetLoadCombination()`, `GetLoadCombinationCaseFromId()`, `GetLoadCombinationCasesFromIds()`, `GetLoadCommandCount()`, `GetLoadEnvelopeDetail()`, `GetLoadItemCount()`, `GetLoadItemKind()`, `GetLoadListCaseCount()`, `GetLoadListCases()`, `GetLoadListCount()`, `GetMemberConcentratedLoads()`, `GetMemberConcentratedMoments()`, `GetMemberLinearVaryingLoads()`, `GetMemberLoadCommand()`, `GetMemberLoadsGroupedByLoadCase()`, `GetMemberTrapezoidalLoads()`, `GetMemberUniformMoments()`, `GetMemberUniformlyDistributedLoads()`, `GetNodalLoadCommand()`, `GetNodalLoads()`, `GetNodalLoadsGroupedByLoadCase()`, `GetNotionalContributionCount()`, `GetNotionalContributions()`, `GetNotionalItemCount()`, `GetPlateConcentratedLoadCount()`, `GetPlateConcentratedLoads()`, `GetPlateLoadCommand()`, `GetPlatePressureLoadCount()`, `GetPlatePressureLoads()`, `GetPrimaryLoadCaseFromId()`, `GetPrimaryLoadCasesFromIds()`, `GetReferenceContributionCount()`, `GetReferenceContributions()`, `GetReferenceItemCount()`, `GetReferenceLoadCaseFromId()`, `GetReferenceLoadCasesFromIds()`, `GetRepeatContributionCount()`, `GetRepeatContributions()`, `GetRepeatLoadCases()`, `MergeBeamLoads()`, `ModifySeismicDefinitionParam()`, `ModifySeismicDefinitionParams()`, `PopulateMemberConcentratedLoads()`, `PopulateMemberConcentratedMoments()`, `PopulateMemberLinearVaryingLoads()`, `PopulateMemberLoads()`, `PopulateMemberTrapezoidalLoads()`, `PopulateMemberUniformMoments()`, `PopulateMemberUniformlyDistributedLoads()`, `PopulateNodalLoads()`, `RemoveCasesFromEnvelope()`, `RemoveLoadAttribute()`, `SetAllowableStressAttribute()`, `SetLimitStateAttribute()`, `SetLoadCaseActive()`, `SetLoadType()`, `SplitLoadsOnBeam()`.

@@ -26,8 +26,7 @@
       "summary": "Creates a beam section definition from an installed native section table.",
       "parameters": [
         [
-          "country",
-          "Named table selector with the preserved main-project integer code; database availability is native-controlled."
+          "country"
         ],
         [
           "sectionName",

@@ -1,7 +1,5 @@
 # Geometry API comparison, grouping and mutations
 
-The private main project's geometry interface and adapter contain 143 method overloads. All 143 are now ported, including the final physical-member identification, plan-angle grouping and managed polygon-mesh operations. The table tracks the original nine pending functions; all are complete.
-
 | Function | Status after this update | Required supporting API |
 | --- | --- | --- |
 | `SegregateBeamsByConnectivity(IEnumerable<Beam> beams)` | Ported | Managed beam/node entities |
@@ -13,10 +11,6 @@ The private main project's geometry interface and adapter contain 143 method ove
 | `CreateMultipleBeamsExtended(IOSRoot openStaad, IEnumerable<Beam> beamCollection)` | Ported | `IOSRoot`, exposed as `wrapper.Root` |
 | `CreateMultipleNodesExtended(IOSRoot openStaad, IEnumerable<Node> nodeCollection)` | Ported | `IOSRoot`, exposed as `wrapper.Root` |
 | `MergeNodesExtended(IOSRoot openStaad, Node retain, IEnumerable<Node> nodesToMerge)` | Ported | `IOSRoot`, exposed as `wrapper.Root` |
-
-There are now 143 geometry overloads implemented, with no private-source Geometry interface overload pending. The counts include generic, asynchronous and collection overloads separately. The comparison covers both `IOSGeometry` and `OSGeometryAdapter`.
-
-For coverage against Bentley's installed native manuals, see the [2024–2026 Geometry comparison and architecture plan](reports/OpenSTAAD-Geometry-Multi-Version-Architecture-and-Plan.md) and [complete native contract/coverage inventory](reports/OpenSTAAD-Geometry-API-Coverage-and-Contract-Inventory.md). The reviewed manuals contain 135 native names per year; current code dispatches 59 of those names. The 143-overload figure measures private-source parity, not full native API coverage. The Geometry version policies in the new report are proposed, not implemented.
 
 ## Connectivity grouping
 
@@ -45,7 +39,6 @@ var chain = groups.Single().ToList(); // two original beam objects
 // wrapper.Geometry.SegregateMembersByConnectivity(members, MemberConnectivityScope.AnyNode);
 // wrapper.Geometry.SegregatePlatesByConnectivity(plates, PlateConnectivityScope.SharedEdge);
 ```
-
 ## Extended geometry mutations
 
 `wrapper.Root` supplies the minimal `IOSRoot` binding needed by the original signatures. `OSRootAdapter` wraps the raw root through late binding, without a Bentley build dependency. The reviewed Root mappings are now complete; see [Root completion](Root-Completion-and-Capabilities.md). Disposal clears the wrapper's binding; callers must not use bindings captured from a disposed or disconnected session.
@@ -66,7 +59,6 @@ wrapper.Geometry.CreateMultipleBeamsExtended(wrapper.Root,
 // To merge existing nodes, include the retained ID in the collection:
 // wrapper.Geometry.MergeNodesExtended(wrapper.Root, a, new[] { a, redundantNode });
 ```
-
 ## IntelliSense in an installed package
 
 The earlier package contained an XML file but no method documentation for its 134 geometry overloads; 33 load-adapter methods also lacked expanded comments. The current source provides complete documentation on all 143 geometry and all 78 load overloads, on both interfaces and concrete adapters. Previously undocumented exported managed functions now have summaries, parameter descriptions and return documentation as well.
@@ -79,10 +71,7 @@ Already-published versions are unchanged. The final three Geometry operations ar
 
 Offline checks cover array layouts, target-root routing, prevalidation, native exception propagation and partial beam failure. Live native mutation behavior and engineering-unit conventions require validation on the STAAD versions used by consumers.
 
-
 ## Completed managed Geometry operations
-
-The final three reference functions are now implemented. The Geometry interface and its single, non-partial adapter cover **all 143 reference overloads**. The main source project was read only. These additions are source changes and are not part of the already published `1.0.0-preview.20261015` archive.
 
 | Function | Managed behavior |
 | --- | --- |
@@ -139,7 +128,6 @@ Console.WriteLine(mesh.Plates.Count);
 // var mesh = wrapper.Geometry.GeneratePolygonMesh(boundary, 100, 200, 20, 2.5);
 // Explicitly create native nodes/plates later, after inspecting quality and ID availability.
 ```
-
 No operation in this section dispatches native OpenSTAAD, saves a model or changes its units. Physical-member reconstruction does update the documented managed back-references. The other operations only construct managed output.
 
 ### Verification
@@ -147,3 +135,7 @@ No operation in this section dispatches native OpenSTAAD, saves a model or chang
 Regression tests cover reversed incidence, chain splitting, branches/cycles, duplicate identity, invalid geometry, single enumeration, circular bearing grouping, representative grouping, concave polygons, both windings, horizontal/vertical/tilted planes, scale variation, deterministic irregular polygons, refinement, area conservation, edge incidence, boundary preservation, hanging-node prevention, ID collision/overflow, invalid topology, quality limits, wrapper refresh and matching XML contracts. Release compilation checks all XML includes and cross-references. Future package verification expects 143 Geometry methods and 226 selected XML example blocks.
 
 Verification on 22 October 2026 passed **1,604 offline tests**, including **57 new cases**, and a Release build with zero warnings/errors. All **nine new compiled XML example blocks** were compiled and executed in a source-reference consumer. The package verifier was updated for the next archive; no new NuGet archive or installed-package result is claimed for this increment.
+
+## Available functions
+
+`AddAndCommitParametricSurfaceToModel()`, `AddCircularRegionToSurface()`, `AddDensityLineToSurface()`, `AddDensityPointToSurface()`, `AddNode()`, `AddParametricSurfaceToModel()`, `AddPolygonalRegionToSurface()`, `AnyItemsSelected()`, `ClearMemberSelection()`, `ClearNodeSelection()`, `ClearPhysicalMemberSelection()`, `ClearPlateSelection()`, `ClearSolidSelection()`, `ClearSurfaceSelection()`, `CommitParametricSurfaceMesh()`, `CreateAnnularParametricSurface()`, `CreateBeam()`, `CreateGroupFrom()`, `CreateMultipleBeams()`, `CreateMultipleBeamsExtended()`, `CreateMultipleNodes()`, `CreateMultipleNodesExtended()`, `CreateMultiplePlates()`, `CreateNode()`, `CreatePlate()`, `CreateSolidCircularParametricSurface()`, `DefineParametricSurface()`, `DeleteAllBeams()`, `DeleteAllNodes()`, `DeleteAllPlates()`, `DeleteAllSolids()`, `DeleteExistingGeometry()`, `DistributeTorque()`, `DistributeTorqueAsync()`, `GeneratePolygonMesh()`, `GetAllBeamsList()`, `GetAllBeamsListAsync()`, `GetAllEntitiesAsync``1()`, `GetAllEntitiesIdsAsync``1()`, `GetAllEntitiesIds``1()`, `GetAllEntities``1()`, `GetAllGroupNames()`, `GetAllNodesList()`, `GetAllNodesListAsync()`, `GetAllPlatesList()`, `GetAllPlatesListAsync()`, `GetAllSolidsList()`, `GetAllSolidsListAsync()`, `GetBeam()`, `GetBeamsConnectedAtNode()`, `GetBeamsWithNoGroupAssignment()`, `GetEntitiesAsync``1()`, `GetEntitiesInGroupAsync``1()`, `GetEntitiesInGroup``1()`, `GetEntitiesInGroupsAsync``1()`, `GetEntitiesInGroups``1()`, `GetEntities``1()`, `GetEntityGroupsAsync``1()`, `GetEntityGroupsStartingWith``1()`, `GetEntityGroups``1()`, `GetGlobalVerticalAxis()`, `GetGroupNames()`, `GetIdsOfEntitiesInGroup()`, `GetIdsOfEntitiesInGroups()`, `GetLastBeamNo()`, `GetLastNodeNo()`, `GetLastPlateNo()`, `GetNode()`, `GetParametricSurfaceCount()`, `GetPlate()`, `GetPlateIncidence()`, `GetPlatesConnectedAtNode()`, `GetPlatesConnectedAtNodeAsync()`, `GetPlatesWithNoGroupAssignment()`, `GetSelectedBeamsExt()`, `GetSelectedBeamsIds()`, `GetSelectedBeamsListAsync()`, `GetSelectedEntitiesAsync``1()`, `GetSelectedEntitiesIdsAsync``1()`, `GetSelectedEntitiesIds``1()`, `GetSelectedEntities``1()`, `GetSelectedNodesExt()`, `GetSelectedNodesIds()`, `GetSelectedNodesListAsync()`, `GetSelectedPlatesExt()`, `GetSelectedPlatesIds()`, `GetSelectedPlatesListAsync()`, `GetUniqueNodesFromPlateGroup()`, `GroupPhysicalMembersByPlanAngle()`, `IdentifyPhysicalMembers()`, `IsZUp()`, `MergeNodesExtended()`, `RemoveParametricSurfaceMesh()`, `SegregateBeamsByConnectivity()`, `SegregateMembersByConnectivity()`, `SegregatePlatesByConnectivity()`, `SelectMultipleBeams()`, `SelectMultipleNodes()`, `SelectMultiplePhysicalMembers()`, `SelectMultiplePlates()`, `SelectMultipleSolids()`, `SetNodeCoordinate()`.

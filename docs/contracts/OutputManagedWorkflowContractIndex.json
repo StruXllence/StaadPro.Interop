@@ -1,6 +1,5 @@
 {
   "date": "2026-10-26",
-  "description": "23 synchronous main-project workflow adaptations and two typed enabling overloads; no additional native route enabled.",
   "managedOverloads": 25,
   "nativeCoverage": 46,
   "contracts": [
@@ -214,7 +213,6 @@
         }
       ],
       "summary": "Retrieves native global member-end forces and an offset-transfer audit packet.",
-      "remarks": "Unlike GetMemberEndForces, this includes native global member-end forces at the analytical face and a managed transfer to the physical joint, with an audit of the global joint-to-face offset. Uses Mjoint = Mface + offset cross F; forces are unchanged. Offset lengths and force/moment units must be mutually consistent; no unit conversion or independent engineering validation is performed. Explicit native NoSpecification is recorded as an absent offset; other offset failures do not become zero. Joint/face naming and transfer follow the main-project convention and require live model qualification before engineering use. Uses supplied hydrated incidence/coordinates; stale caller geometry cannot be certified against STAAD.",
       "args": "\"Dead\", beam, 1, MemberEnd.Start",
       "setup": "var beam = new Beam(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0));",
       "example": "var beam = new Beam(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0));\nvar result = wrapper.Output.GetMemberEndForcesConsideringOffsets(\"Dead\", beam, 1, MemberEnd.Start);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",
@@ -244,7 +242,6 @@
         }
       ],
       "summary": "Retrieves the managed global member-end action transferred to the physical joint.",
-      "remarks": "Unlike GetMemberEndForces, this includes native global member-end forces at the analytical face and a managed transfer to the physical joint, with an audit of the global joint-to-face offset. Uses Mjoint = Mface + offset cross F; forces are unchanged. Offset lengths and force/moment units must be mutually consistent; no unit conversion or independent engineering validation is performed. Explicit native NoSpecification is recorded as an absent offset; other offset failures do not become zero. Joint/face naming and transfer follow the main-project convention and require live model qualification before engineering use. Returns only the physical-joint projection; choose GetMemberEndForcesConsideringOffsets to inspect both face and joint results with the offset. This uses analytical members; it is not GetPhysicalMemberEndForces for a native physical-member ID. Supply hydrated incidence/coordinates.",
       "args": "\"Dead\", beam, 1, MemberEnd.Start",
       "setup": "var beam = new Beam(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0));",
       "example": "var beam = new Beam(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0));\nvar result = wrapper.Output.GetMemberEndForcesAtPhysicalJoint(\"Dead\", beam, 1, MemberEnd.Start);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",
@@ -274,7 +271,6 @@
         }
       ],
       "summary": "Retrieves native global member-end forces and an offset-transfer audit packet.",
-      "remarks": "Unlike GetMemberEndForces, this includes native global member-end forces at the analytical face and a managed transfer to the physical joint, with an audit of the global joint-to-face offset. Uses Mjoint = Mface + offset cross F; forces are unchanged. Offset lengths and force/moment units must be mutually consistent; no unit conversion or independent engineering validation is performed. Explicit native NoSpecification is recorded as an absent offset; other offset failures do not become zero. Joint/face naming and transfer follow the main-project convention and require live model qualification before engineering use. Reads incidence and node coordinates from the current Geometry binding with strict status/written-output validation.",
       "args": "\"Dead\", 17, 1, MemberEnd.Start",
       "setup": "",
       "example": "var result = wrapper.Output.GetMemberEndForcesConsideringOffsets(\"Dead\", 17, 1, MemberEnd.Start);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",
@@ -304,7 +300,6 @@
         }
       ],
       "summary": "Retrieves the managed global member-end action transferred to the physical joint.",
-      "remarks": "Unlike GetMemberEndForces, this includes native global member-end forces at the analytical face and a managed transfer to the physical joint, with an audit of the global joint-to-face offset. Uses Mjoint = Mface + offset cross F; forces are unchanged. Offset lengths and force/moment units must be mutually consistent; no unit conversion or independent engineering validation is performed. Explicit native NoSpecification is recorded as an absent offset; other offset failures do not become zero. Joint/face naming and transfer follow the main-project convention and require live model qualification before engineering use. Returns only the physical-joint projection; choose GetMemberEndForcesConsideringOffsets to inspect both face and joint results with the offset. This uses analytical members; it is not GetPhysicalMemberEndForces for a native physical-member ID. Resolves native incidence/coordinates.",
       "args": "\"Dead\", 17, 1, MemberEnd.Start",
       "setup": "",
       "example": "var result = wrapper.Output.GetMemberEndForcesAtPhysicalJoint(\"Dead\", 17, 1, MemberEnd.Start);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",
@@ -481,7 +476,6 @@
         }
       ],
       "summary": "Retrieves plate-center result sets with an explicit compatibility scheduling hint.",
-      "remarks": "Unlike individual plate-center family queries, this composes forces, moments, von Mises and normal principal stresses from four existing native calls. It is not the eight-value combined stress/moment native query. All four are observed even when an ordinary native failure occurs; the first failure determines Status and Data remains unavailable. Observations retains each contributing status; exceptions abort immediately. The calls are sequential observations, not an atomic solver snapshot. Native plate-local axes, top/bottom conventions and family-specific units are preserved. Snapshots both sequences once, then queries case-major/plate-minor Cartesian order. Duplicate selections are retained; conflicting metadata for the same case number is rejected. Ordinary per-pair failures remain in Items. Empty products perform no native queries. Unlike the main-source parallel implementation, degreeOfParallelism (1-64) is retained as a compatibility planning hint; every COM call remains serialized on the caller thread. It does not request native worker threads or promise parallel speedup.",
       "args": "new[] { loadCase }, new[] { plate }, 2",
       "setup": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar plate = new Plate { Id = 17 };",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar plate = new Plate { Id = 17 };\nvar result = wrapper.Output.GetPlateCenterResults(new[] { loadCase }, new[] { plate }, 2);\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data);\n    else System.Console.WriteLine(item.Status);",
@@ -543,7 +537,6 @@
         }
       ],
       "summary": "Retrieves the opposite of the native support reaction for use as an applied support action.",
-      "remarks": "Unlike GetSupportReactions, this negates all six global components, including moments, to preserve the main-project support-action convention. Native failure remains a failure without Data. No force or moment unit conversion, support assignment or model update is performed. Choose GetSupportReactions when the original STAAD reaction sign is required.",
       "args": "17, 1",
       "setup": "",
       "example": "var result = wrapper.Output.GetSupportForces(17, 1);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data);\nelse System.Console.WriteLine(result.Status);",

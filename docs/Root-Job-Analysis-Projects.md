@@ -41,7 +41,6 @@ wrapper.Root.SetFullJobInfo(
     checkerName: "Checker", checkerDate: "", approverName: "Approver", approverDate: "",
     comments: "Model notes");
 ```
-
 Native void return means dispatch completed. It does not verify storage, date acceptance or save. There is no automatic save, read-back, analysis, refresh or rollback. The existing full-job getter still parses returned date strings using its documented culture policy and can reject text that the native server returns.
 
 ## Analysis entry points
@@ -55,7 +54,6 @@ wrapper.Root.AnalyzeModel(AnalysisEngine.StaadPro);
 // Observe explicitly; this is separate from requesting analysis.
 var state = wrapper.Root.GetAnalysisStatus();
 ```
-
 Analyze and AnalyzeModel are distinct native operations, with no substitution through AnalyzeEx. AnalyzeModel defaults to the single documented engine selector (-1), which is still passed explicitly to COM. Other enum values are rejected before native access. The existing AnalyzeEx controls remain available for workflows that need their native silent/hidden/wait options.
 
 Both new entry points return void. Normal return does not mean analysis succeeded, completed or produced current results. The help's C# AnalyzeModel example assigns a return value, but its declaration and the inspected 2025/2026 managed interop signature are void. The managed API follows that verified signature and does not fabricate a status flag.
@@ -81,23 +79,15 @@ if (result.IsSuccessful)
     Console.WriteLine(result.Project.Name);
 }
 ```
-
-The data class permits explicit empty text so a successful native snapshot can be preserved without guessing association semantics. Its public constructor rejects null. Both classes are sealed with read-only properties; earlier snapshots are unaffected by later native changes.
-
 Assignment requires non-null, non-whitespace ID and name. Surrounding whitespace in otherwise nonblank text is preserved, and GUID syntax is not imposed. Blank values are rejected because native unassignment/clearing behavior is not established. This is a managed input policy, not a claim about all possible native inputs.
 
 ```csharp
 // With projectInfo selected by the caller, or obtained from a qualified query:
 bool assigned = wrapper.Root.SetConnectedProjectInfo(projectInfo);
 ```
-
 The setter returns the documented native flag. A true response does not verify cloud synchronization, credentials, membership, project creation or persistence. A false response is an expected native result, distinct from exceptions. The library adds no login, network retry, save or read-back. Native operations may still have account/network/licensing requirements and can display UI or block. Failures or malformed responses can follow native effects; no rollback is attempted.
 
 ## Reuse, evidence and validation
-
-The read-only main interop project has no implementations of these five operations and no equivalent CONNECTED data/result classes. Existing FullJobInfo remains unchanged; its DateTime representation is not silently repurposed as native date text. Shared NativeValues flag/text validation is reused, and the existing model-edit service is extended. New service implementations remain internal.
-
-The reviewed [2024](../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___root.html), [2025](../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___root.html) and [2026](../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___root.html) help describe unchanged contracts for these operations. Links target the installed help in this workspace. Read-only reflection over the 2025/2026 Bentley interop assemblies confirms:
 
 ```text
 Void SetFullJobInfo(Object, Object, Object, Object, Object, Object, Object,
@@ -107,7 +97,6 @@ Void AnalyzeModel(Object)
 Object GetCONNECTEDProjectInfo(Object ByRef, Object ByRef)
 Object SetCONNECTEDProjectInfo(Object, Object)
 ```
-
 No Bentley binary reference or live COM activation was added. The Release suite passes **1,547 offline tests**, including 76 additional cases for this increment. Tests cover all thirteen input positions, null validation, literal dates across cultures, engine/default selection, no substituted analysis calls, native flag shapes, successful/failed/partial project outputs, immutable data, assignment validation, exception identity, no retry/rollback, session isolation and matching XML documentation.
 
 The Release solution build passes with zero warnings or errors. All 53 common Root interface XML examples compile with warnings treated as errors. The consumer harness also compiles and runs all 217 selected geometry/load/Root XML examples against the source assembly and controlled stand-ins; this is not verification of a rebuilt NuGet archive. Its fake Root supports the new project query, common reads and analysis observation, and status examples receive a named model fixture after earlier close examples. Both 39-row coverage matrices agree on implementation status, and all checked local documentation links resolve.

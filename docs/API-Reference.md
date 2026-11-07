@@ -1,60 +1,31 @@
 # StaadPro.Interop API Reference
 
-**4 November 2026 checkpoint:** Ported `RotateDown(double angle)`, `RotateLeft(double angle)`, `RotateRight(double angle)`, `SpinLeft(double angle)` and `SpinRight(double angle)` from the main source. Preserved the original `angle` parameter name, type and order on both interfaces and the concrete adapter. View now exposes **13 of 70 main-source overloads** and reaches **13 of 67 reviewed native names**; **57 source overloads** and **54 native names** remain pending. See [rotation contracts](View-Incremental-Rotations.md).
-
 Passed **7,137 offline tests**, including **201 View cases** and **116 additional cases** in this increment. Installed-package verification compiles and executes **1,306 selected XML examples**, including all **26 View interface/adapter examples**, through a fresh PackageReference consumer. Live native COM/UI behavior remains separate qualification work.
 
-**Design checkpoint, 27 October 2026:** ten common methods reach five native names. See [the complete Design contract guide](Design-Porting.md). Current source validation passed 6,448 offline tests and all 70 new Commands/Support/Design XML examples. These additions are included in preview 1.0.0-preview.20261027.1.
+**Design checkpoint, 27 October 2026:** ten common methods reach five native names. See [the complete Design contract guide](Design.md). Current source validation passed 6,448 offline tests and all 70 new Commands/Support/Design XML examples. These additions are included in preview 1.0.0-preview.20261027.1.
 
-**Commands/Support checkpoint:** IOSCommands now exposes 17 analysis-command methods and IOSSupport covers 27/35 native routes. See [the 25 new contracts](Commands-and-Support-Porting.md). These configure model commands or explicit support mutations; Commands calls do not execute the solver.
+**Commands/Support checkpoint:** IOSCommands now exposes 17 analysis-command methods and IOSSupport covers 27/35 native routes. See [the 25 new contracts](Commands-and-Support.md). These configure model commands or explicit support mutations; Commands calls do not execute the solver.
 
 ## Current implementation - plate-corner workflows
 
-Added **25 Output overloads** for plate-corner extraction, indexed sparse/Cartesian selections, explicit metadata families and member-local projections: 18 synchronous main-source adaptations plus seven typed enabling overloads. Output now exposes **96 managed overloads reaching 47/60 documented native names**, with **13 documented native routes pending**. All additions use the newly enabled GetPlateCornerForces route. See [the plate-corner guide](Output-Plate-Corners.md) for exact signatures, comparisons, axes evidence and limitations.
-
-Passed a Release build with zero warnings/errors and **6,036 offline tests**, including **248 new corner cases**. Isolated package verification covers **1,152 selected XML examples**, including all 192 Output examples. Read-only native checks support the global force/moment contract on sampled STAAD.Pro 2026.0.0.340 observations; broader native/engineering qualification remains pending.
-
-
 ## Managed Output workflows - current source
-
-Added **25 managed Output overloads**: 23 synchronous main-project workflow adaptations and two typed enabling overloads for explicit native axes and Beam ratio queries. Output now exposes **71 managed overloads reaching 46/60 documented native names**. The fourteen native contract gates remain; this increment adds compositions, entity conveniences and ordered batches over qualified native routes. See [the managed workflow guide](Output-Managed-Workflows.md) for exact contracts and comparative usage.
 
 Added governing-case resolution, per-item batch outcomes, staged caller utilization caches, native global offset-transfer audit packets, geometry bases, plate-center composites, ordered static checks and opposite support actions. All new APIs have matching XML documentation and examples; no public ref/out, tuples, partial adapters or thread-pool COM calls were introduced.
 
-
 ## `OpenStaadWrapperProvider` Members
+
 - `Get(string fileFullPath = null)`: With a path, reuses that model if already open; otherwise opens it once (or creates a blank model when the file is missing). Polls every 250 ms for up to two minutes for the matching filename and available Geometry/Load interfaces and count calls. Returns null on failure/timeout with Trace diagnostics. Without a path, attaches to a running session or starts STAAD. Call on an STA thread.
 - `GetRunning()`: Attaches to an existing active STAAD session without launching or modifying model state.
 
 ## `OpenStaadWrapper` Members
 
-All 30 main-source wrapper properties, both constructor forms, RefreshComObjects, RefreshUnits and Dispose are ported. See [Wrapper-Porting](Wrapper-Porting.md) for complete member parity, examples and limits.
-
-- `Root`, `Geometry`, `Load`: existing implemented adapters.
-- `RawOpenStaad`, `RawGeometry`, `RawLoad`, `RawOutput`, `RawProperty`, `RawSupport`, `RawDesign`, `RawCommands`, `RawTable`, `RawView`: native bindings; RawCommands reads the native singular Command property.
-- `Output`: 96 managed result overloads reaching 47 native names; `Property`: 249 common overloads plus five optional catalog queries.
-- `Support`: 27 typed operations for discovery, foundation readback and explicit mutations.
-- `Design`: ten common brief/assignment/query methods; `Commands`: seventeen analysis-configuration methods.
-- `Table`: all 29 main-project overloads and all 24 reviewed native names; [completion contracts](Table-Completion-and-View-Foundations.md).
-- `View`: 18 methods for standard directions, incremental rotations, current/main-view zoom and initial member visibility; 52 source overloads remain. Reuses Beam for ShowMember. See [zoom and visibility contracts](View-Zoom-and-Member-Visibility.md), [orientations](View-Orientations.md) and [rotations](View-Incremental-Rotations.md).
-- `IdeaStatiCa`: integration placeholder when Geometry/Load/Output exist; no transformation, verification or export functions are available.
-- `StaadVersion`: cached native STAAD version; each access returns a copy, null when unavailable. This is the source for native version selection.
-- `ApplicationVersion`: entry/calling host assembly version; it is not the STAAD version.
-- `StaadEdition`: None/V8i/Connect using the source major-version rule; not a feature-support guarantee.
-- `StaadApplicationWindowHandle`: cached non-owning Connect-family window handle, using the same root by default.
-- `BaseUnitSystem`, `InputForceUnit`, `InputLengthUnit`: cached unit snapshots, with documented source-compatible unit fallback.
-- `IsDedicated`: caller-supplied dedication flag; no process ownership. `IsConnected`: managed binding-state check, not native readiness.
-- `StaadInteropInteractionService`: captured host interaction service; default is noninteractive.
-- `RefreshUnits()`: rereads only base/force/length units after native unit changes.
-- `RefreshComObjects()`: rebinds adapters and rereads metadata after model reopening/database initialization; callers reacquire adapter properties.
-- `Dispose()`: clears all bindings without saving/closing STAAD; refresh methods reject further use.
-
 Construction/refresh read native metadata on the session’s COM thread. Five typed Root metadata queries now reuse wrapper snapshots. Common live analysis observation is also implemented. Root profile selection, other pending operations and optional capabilities remain separate work.
 
 ## `IOSGeometry` Members
+
 - `CreateMultipleNodesExtended(IOSRoot openStaad, IEnumerable<Node> nodeCollection)`: Creates explicit node IDs using an XYZ coordinate matrix in model input units.
 - `CreateMultipleBeamsExtended(IOSRoot openStaad, IEnumerable<Beam> beamCollection)`: Creates explicit beam IDs in order through synchronous native `CreateBeam` calls; endpoints must exist.
-- `MergeNodesExtended(IOSRoot openStaad, Node retain, IEnumerable<Node> nodesToMerge)`: Merges existing IDs, requiring the retained ID in the collection. See [Geometry-Porting.md](Geometry-Porting.md) for validation and partial-failure behavior.
+- `MergeNodesExtended(IOSRoot openStaad, Node retain, IEnumerable<Node> nodesToMerge)`: Merges existing IDs, requiring the retained ID in the collection. See [Geometry.md](Geometry.md) for validation and partial-failure behavior.
 - `IsZUp()`: Returns whether the model uses global Z upwards.
 - `GetGlobalVerticalAxis()`: Returns `GlobalVerticalAxis.Y` or `GlobalVerticalAxis.Z`.
 - `CreateNode(Node)`: Creates a single node.
@@ -70,23 +41,15 @@ Construction/refresh read native metadata on the session’s COM thread. Five ty
 
 ## Load expansion contracts for review
 
-The [contract-first plan](reports/OpenSTAAD-Load-Expansion-Contracts-and-Type-Plan.md) and [signature review file](contracts/IOSLoadExpansionContract.cs) define the remaining additions and all required types. The review interface is compiled only into tests, not the NuGet assembly. New supporting request/result definitions reside under Models.Loads.Contracts; pending adapter methods are not exposed.
-
 ## Load expansion
-
-The 36 approved additions are implemented through IOSLoad and OSLoadAdapter; total Load coverage is 171 overloads. See [all signatures and operation comparisons](Load-Expansion.md). New public signatures use named result/request classes and managed collections without ref/out or tuples. The native attribute getter is status-only and beam merging returns invocation evidence; these limits are explicit in IntelliSense.
 
 ## `IOSLoad` Members
 
 ### Completed main-interface reference coverage
 
-All 115 main-interface reference signatures are implemented; source now exposes 171 overloads: 115 reference signatures, five conveniences, 15 additional native inspection queries and 36 Load expansion methods. See [Load inspection](Load-Inspection-Queries.md) for their status/data contracts and activation effects. The final 15 include AddSeismicDefMemberWeight, AddSeismicDefMemberUniformWeight, AddSeismicDefMemberConcentratedWeight, AddSeismicDefWallArea, AddResponseSpectrumLoadEx, AddDirectAnalysisDefinitionParameter, AddDirectAnalysisFlexParameter, AddDirectAnalysisAxialParameter, DeleteDirectAnalysisDefinitionParameter, DeleteDirectAnalysisDefinition, AddRSLoad. See [packet contracts, overload details, model reuse, side effects and native validation limits](Load-Porting.md#load-reference-completion). The latest additions are outside the published preview.
-
+All 115 main-interface reference signatures are implemented; source now exposes 171 overloads: 115 reference signatures, five conveniences, 15 additional native inspection queries and 36 Load expansion methods. See [Load inspection](Load-Inspection-Queries.md) for their status/data contracts and activation effects. The final 15 include AddSeismicDefMemberWeight, AddSeismicDefMemberUniformWeight, AddSeismicDefMemberConcentratedWeight, AddSeismicDefWallArea, AddResponseSpectrumLoadEx, AddDirectAnalysisDefinitionParameter, AddDirectAnalysisFlexParameter, AddDirectAnalysisAxialParameter, DeleteDirectAnalysisDefinitionParameter, DeleteDirectAnalysisDefinition, AddRSLoad. See [packet contracts, overload details, model reuse, side effects and native validation limits](Load.md#load-reference-completion). The latest additions are outside the published preview.
 
 ### ASCE wind and seismic definitions
-
-The preceding source increment exposed 105 Load overloads, with 15 main-interface reference overloads then pending. The latest 15 include AddWindDefinitionASCE7Parameters, ComputeWallWindPressureProfile, ComputeWallWindPressureProfileASCE72016, AddSeismicDefinition, ModifySeismicDefinitionParam, ModifySeismicDefinitionParams, AddSeismicDefSelfWeight, AddSeismicDefJointWeight and AddSeismicDefMemberWeight. Signatures retain reference return types and defaults, with native ref handling kept internal. See [complete contracts, units, native-code distinctions and examples](Load-Porting.md#asce-wind-and-seismic-definitions). These are source additions after the published preview.
-
 
 ### Reference, Repeat and Temperature Assignments
 
@@ -95,14 +58,14 @@ The preceding source increment exposed 105 Load overloads, with 15 main-interfac
 - `AddAxialThermalGradientTo(int loadCaseId, IEnumerable<int> entities, double axialThermalGradient)`: Synchronously passes the raw thermal input as the first native temperature argument, with transverse arguments zero.
 - `AddAxialThermalGradientTo(int loadCaseId, IEnumerable<int> entities, double axialThermalGradient, int nThreads)`: Preserves the reference four-parameter signature, but executes one scalar assignment per entity on the caller's COM thread. `nThreads` must be positive and does not create workers.
 
-Inputs are validated before activation. Empty collections make no native calls; nonempty assignments leave the primary target active, including on native assignment failure. Native assignment return values are not interpreted. See [Load-Porting.md](Load-Porting.md) for complete contracts, examples and the remaining load inventory.
+Inputs are validated before activation. Empty collections make no native calls; nonempty assignments leave the primary target active, including on native assignment failure. Native assignment return values are not interpreted. See [Load.md](Load.md) for complete contracts, examples and the remaining load inventory.
 
 ### Grouped Assignments by Load Case
 
 - `AddMemberLoadsFromGroupsByLoadCase(Dictionary<ILoadCase, List<(MemberLoad Load, List<Beam> Beams)>> grouped)`: Delegates member tuples to `AddMemberLoad`, skipping null load definitions and null/empty beam lists.
 - `AddNodalLoadsFromGroupsByLoadCase(Dictionary<ILoadCase, List<(NodalLoad Load, List<Node> Nodes)>> grouped)`: Delegates every nodal tuple to `AddNodalLoad`, which rejects null loads/node lists and filters individual null nodes.
 
-Dictionary keys select the destination case. These functions preserve the existing assignment helpers' native mapping and activation-status handling; they do not convert units, change load metadata, refresh managed collections or supply rollback. Use valid existing primary/reference cases. See [Load-Porting.md](Load-Porting.md) for empty-entry behavior and partial failures.
+Dictionary keys select the destination case. These functions preserve the existing assignment helpers' native mapping and activation-status handling; they do not convert units, change load metadata, refresh managed collections or supply rollback. Use valid existing primary/reference cases. See [Load.md](Load.md) for empty-entry behavior and partial failures.
 
 ### Load Assignment Queries
 
@@ -156,6 +119,7 @@ Repeat and undefined families throw `NotSupportedException` before COM; nonposit
 All three preserve active-case state and return eager metadata lists in unspecified order. Primary/reference/combination families are supported; repeat/undefined families throw. Unmatched metadata errors still throw during full-family reads. See [Load-Queries.md](Load-Queries.md#filtering-and-materializing-case-lists).
 
 ### Load Case Creation & Titles
+
 - `CreateNewPrimaryLoad(string lcTitle, LoadType loadType)`: Creates a new primary load case with automatic ID assignment.
 - `CreateNewPrimaryLoad(int lcId, string lcTitle, LoadType loadType)`: Creates a new primary load case with explicit ID.
 - `CreateNewPrimaryLoadEx(LoadCase lc)`: Creates a primary load case from a `LoadCase` entity.
@@ -167,20 +131,24 @@ All three preserve active-case state and return eager metadata lists in unspecif
 - `CreateNewLoadCase(ILoadCase lc)`: Creates a primary or reference load case based on `ILoadCase.CaseType`.
 
 ### Support Settlement
+
 - `AddSupportSettlement(ILoadCase, int nodeId, SettlementDirection, double mmSettlement)`: Applies support settlement/displacement to a single node by ID.
 - `AddSupportSettlement(ILoadCase, Node, SettlementDirection, double mmSettlement)`: Applies support settlement/displacement to a single Node entity.
 - `AddSupportSettlement(ILoadCase, IEnumerable<Node>, SettlementDirection, double mmSettlement)`: Applies support settlement/displacement to multiple Node entities.
 - `AddSupportSettlement(ILoadCase, IEnumerable<int>, SettlementDirection, double mmSettlement)`: Applies support settlement/displacement to multiple node IDs.
 
 ### Nodal Loading
+
 - `AddNodalLoad(ILoadCase lc, Node node, NodalLoad nl)`: Applies a 6-DOF concentrated nodal load to a single node.
 - `AddNodalLoad(ILoadCase lc, IEnumerable<Node> nodes, NodalLoad nl)`: Applies a 6-DOF concentrated nodal load across multiple nodes.
 
 ### Member Loading
+
 - `AddMemberLoad(ILoadCase lc, Beam beam, MemberLoad ml)`: Applies a member load (uniformly distributed load or concentrated point load) to a single beam element.
 - `AddMemberLoad(ILoadCase lc, IEnumerable<Beam> beams, MemberLoad ml)`: Applies a member load to multiple beam elements.
 
 ### Plate Pressure Loading
+
 - `AddPlateUniformPressure(ILoadCase lc, int plateId, double pressure, LoadDirection direction = LoadDirection.LocalZ)`: Applies uniform surface pressure to a single plate by plate ID.
 - `AddPlateUniformPressure(ILoadCase lc, IEnumerable<int> plateIds, double pressure, LoadDirection direction = LoadDirection.LocalZ)`: Applies uniform surface pressure across multiple plate IDs.
 - `AddPlateUniformPressure(ILoadCase lc, IEnumerable<Plate> plates, double pressure, LoadDirection direction = LoadDirection.LocalZ)`: Applies uniform surface pressure across multiple Plate entities.
@@ -196,10 +164,12 @@ All three preserve active-case state and return eager metadata lists in unspecif
 Each method preserves active-case/load-list state and checks native fetch success **1**, counts, array dimensions, positive IDs and duplicate IDs. Valid zero-member envelopes are retained with an empty set. `LoadEnvelopType` preserves native values 0–6 and the reference spelling. See the [full envelope guide](Load-Queries.md#load-envelope-queries) for examples, errors, ownership and native validation.
 
 ### Batch Load Case Creation
+
 - `CreatePrimaryLoadCases(HashSet<ILoadCase> / IEnumerable<ILoadCase>)`: Batch creates primary load cases in the active model.
 - `CreateReferenceLoadCases(HashSet<ILoadCase> / IEnumerable<ILoadCase>)`: Batch creates reference load cases in the active model.
 
 ### Load Case Clearing
+
 - `ClearPrimaryLoadCase(ILoadCase)`: Clears a single primary load case.
 - `ClearPrimaryLoadCase(ILoadCase, bool isReferenceLoad)`: Clears a primary load case with reference load flag.
 - `ClearPrimaryLoadCases(IEnumerable<ILoadCase>)`: Clears multiple primary load cases.
@@ -218,7 +188,7 @@ Each method preserves active-case/load-list state and checks native fetch succes
 | `CreateLoadEnvelopExt(int envelopId, LoadEnvelopType envelopType, IEnumerable<int> loadCaseList)` | One checked native envelope creation; no activation or read-back. |
 | `CreateLoadList(LoadListType loadListType, IEnumerable<int> loadCaseIds)` | Native load-case/envelope-list selection, returning its original integer-zero success status. |
 
-Inputs are snapshotted and validated before native access. The first two mutation APIs use Boolean success; load-list selection uses integer zero. Native existence/suitability and empty-envelope/list behavior remain native decisions. See [Load-Porting.md](Load-Porting.md) for input, empty-result, failure and state-change contracts.
+Inputs are snapshotted and validated before native access. The first two mutation APIs use Boolean success; load-list selection uses integer zero. Native existence/suitability and empty-envelope/list behavior remain native decisions. See [Load.md](Load.md) for input, empty-result, failure and state-change contracts.
 
 ## Root Adapter
 
@@ -290,8 +260,6 @@ The metadata queries below reuse cached wrapper values. RefreshUnits updates uni
 | `void RestoreStaadMainWindow()` | Validate native window/PID and post ShowWindowAsync command 9; Accepted request does not verify final state |
 | `AnalysisResult AnalyzeEx(SilentMode silentMode, HiddenMode hiddenMode, WaitAnalysisMode waitMode)` | Validate/send native silent, hidden, wait codes; preserve integer analysis status; Starts native analysis; wait mode can block |
 
-Filename/identity queries preserve empty native filenames and perform no native writes. The job getters validate all outputs and return editable managed snapshots; malformed dates throw. The unit setter changes native input-unit state and does not rescale managed values, save or roll back. Silent/save/close operations can mutate native state, write files or display dialogs; no rollback or verified unattended completion is provided. See [Root-Porting.md](Root-Porting.md) for complete native mappings, date/empty/error behavior, examples and the completed private-reference helper. Private-source coverage is 23 of 23. IOSRoot exposes 53 common methods; three separately acquired operation interfaces complete all 39 documented native functions (56 managed operations in total). See the [analysis query guide](Root-Analysis-Queries.md), [common query guide](Root-Common-Queries.md), [model setup guide](Root-Model-Setup.md), [job/analysis/project guide](Root-Job-Analysis-Projects.md), [creation/view/lifecycle guide](Root-Creation-Views-and-Lifecycle.md) and [managed API rules](Root-Managed-API-Design.md). Custom `IOSRoot` implementations must implement the added members.
-
 AnalysisEngine is in `StaadPro.Interop.Enums.Root`. ConnectedProjectResult and ConnectedProjectInfo are in `StaadPro.Interop.Models.Root`; their properties are immutable. A false project query returns null Project, while native success requires validated string outputs. The assignment overload rejects null/blank fields before native access.
 
 NativeProcessHandleValue is in `StaadPro.Interop.Models.Root`. It exposes immutable numeric data, not an owning or verified Windows handle. CreateNamedView/SaveNamedView follow inspected 2025/2026 managed interop declarations; their help pages contain inconsistent error-output arguments. Their void return does not establish success.
@@ -302,11 +270,7 @@ Optional access uses `root.Capabilities.GetAdinaExport()`, `GetAnalysisErrorMess
 
 IOSOutput and OSOutputAdapter expose 96 managed overloads covering analysis/buckling availability, nodal displacement, support reactions, local member-end forces, static checks, seven plate-center result families and member design section/ratio observations. Single native observations return OutputQueryResult&lt;T&gt;; managed workflows additionally return named batch, population and coordinate-system results with documented status/ownership rules; inspect IsSuccessful before Data. No public reference outputs or tuples are used.
 
-See the [Output API guide](Output-Porting.md) for all signatures, payloads, native flags, axes/units, sentinels, examples, threading/lifetime rules and the 13 pending native mappings. These are source additions after the published preview; live native qualification remains pending.
-
 ## Property observations
-
-The current `IOSProperty` / `OSPropertyAdapter` surface contains 25 read-only queries. Every query returns `PropertyQueryResult<T>`; inspect `IsSuccessful` before accessing `Data`. No public reference outputs or tuples are used. See the [complete signature and behavior table](Property-Porting.md#implemented-apis-and-choosing-between-them) for member releases, member/plate offsets, section properties, material names/constants, isotropic observations and orthotropic observations.
 
 Existing `MemberEnd` and `Vector3D` types are reused. New named results distinguish native success, missing entities, absent specifications, unavailable members, collection limits and changed counts. Native units, signs and array ordering are preserved. These methods do not assign properties, convert units, run analysis or certify result freshness. The documented-but-metadata-absent plate property reference query reports `Unsupported` when its exact member is unavailable.
 
@@ -318,16 +282,10 @@ The selected contracts are shared or cosmetic across the installed 2024–2026 r
 
 Validation passed **5,353 offline tests**, including 165 new Output cases and 32 Property completion cases. The isolated installed-package consumer verifies **1,002 selected XML examples**, including all 80 Output examples and 510 Property/capability examples. Live native marshaling and engineering qualification remain pending.
 
-Implemented the final four safely specified P10 operations: `RemoveAllElementNodeReleaseSpec`, `RemoveMemberFireProofingSpecFromBeam`, `GetPublishedProfileName` and `GetStaadProfileName`. Property now exposes **249 common overloads plus five separately acquired catalog queries**, covering **195 of 204 active documented native routes**. P10 is complete at 24/24. The remaining **nine P7/P8 contract gates** require transport, status or context evidence; they are not implemented by guessing.
-
-The increment deliberately excludes the **fifteen supplemental Property discovery candidates**. **Reminder checkpoint:** present those candidates and the nine documented gates before further Property expansion or the next public release, and obtain separate approval for supplemental work. See [the four complete contracts and remaining gates](Property-Profile-Names-and-Final-Cleanup.md).
-
 The subsequent domain increment implements **25 Output routes**, bringing typed Output coverage to **40/60**. Validation passed **5,353 offline tests** with zero failures; package verification covers **1,002 selected XML examples**. These checks use managed native-signature fixtures; live 2024–2026 COM and engineering qualification remain pending.
 
 ## Output steel-design blocks and Support foundations
 
 Implemented six further common documented Output routes for named design-parameter-block observations and independent failure-ratio limits. Typed Output coverage is **46/60**, with **14 documented routes pending**. Matching interface/adapter XML, named subset results and exact block identity distinguish the new overloads from the existing member-only APIs. See [the steel-block guide](Output-Steel-Design-Blocks.md).
-
-Implemented **19 common documented Support routes**, leaving **16/35 pending**. The new surface covers supported-node discovery, typed support information and GUIDs, foundation counts/readback, explicit fixed/pinned/fixed-but creation, assignment, unassignment, deletion and void GUID invocation. One internal shared service validates operation-specific counts/types/flags, owned bounded buffers and binding lifetime. Reused existing Releases/Springs packets and ported the main-project enums without private UI dependencies. See [all 19 contracts](Support-Foundations.md).
 
 Release build passed with zero warnings/errors and **5,523 offline tests** (170 new cases). Isolated documentation/package verification covers **1,052 selected XML examples**, including all 92 Output and 38 Support examples. Managed fixtures do not certify live 2024–2026 COM or engineering behavior.

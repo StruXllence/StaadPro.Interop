@@ -46,7 +46,6 @@ wrapper.Root.SetInputUnitForLength(LengthInputUnit.Meter);
 wrapper.Root.SetInputUnitForForce(ForceInputUnit.KiloNewton);
 wrapper.RefreshUnits();
 ```
-
 RefreshUnits makes additional native reads and is a separate caller-controlled operation. If refresh fails or uses a documented compatibility fallback, this does not roll back the preceding native unit requests. The library adds no value rescaling, base-system change, save or structure update to these setters.
 
 ## Job metadata and explicit update
@@ -64,7 +63,6 @@ var observed = wrapper.Root.GetShortJobInfo(); // explicit read-back
 
 wrapper.Root.UpdateStructure(); // explicit native request when needed by the workflow
 ```
-
 UpdateStructure has no arguments or native status result. The help says that it updates the current structure but does not define rebuild completion, readiness, persistence or result-validity guarantees. The adapter adds no save, analysis, wait, read-back or wrapper refresh. Calling it is an explicit model operation, not a prerequisite silently inserted into another setter.
 
 ## Completion and failure semantics
@@ -75,8 +73,6 @@ Argument errors occur before native mutation. COM/binder exceptions propagate wi
 
 ## Evidence and verification
 
-The five contracts match in the reviewed [2024](../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___root.html), [2025](../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___root.html) and [2026](../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___root.html) Root help. These local links resolve in the reviewed workspace. Read-only inspection of the installed 2025 and 2026 Bentley managed interop assemblies confirms:
-
 ```text
 System.Object GetProcessId()
 Void SetInputUnitForLength(System.Object)
@@ -84,9 +80,6 @@ Void SetInputUnitForForce(System.Object)
 Void SetShortJobInfo(System.Object, System.Object, System.Object)
 Void UpdateStructure()
 ```
-
-The main source was checked for reusable implementations: these dedicated functions are absent there. Existing ShortJobInfo and unit enums are reused, and existing internal PID validation was shared rather than duplicated. No Bentley binary dependency or change to the read-only main project was introduced.
-
 The Release suite passes **1,547 offline tests**, including 73 additional cases for this increment. Tests cover PID boundaries/types, every unit code, code-1 compatibility policy, native argument shapes/order, validation before dispatch, stale caches and explicit refresh, object snapshots, inherited short fields, no automatic save/analysis, same-instance behavior, exception identity and no retries/rollback. Matching compiled XML is checked on both interface and adapter. The Release solution build passes with zero warnings or errors. All 53 common interface Root XML examples also compile in an isolated net481 project with warnings treated as errors; matching adapter XML is checked by the suite.
 
 Native behavior with actual saved/unsaved models, unit changes, blank sessions and structure updates still requires controlled runtime validation. No live STAAD model was modified and no NuGet archive was rebuilt for this increment. Current coverage is **39 of 39 native Root functions implemented, none pending**. IOSRoot exposes **53 common managed methods plus three optional operations**, including conveniences and overloads; managed convenience methods are counted separately from native coverage.

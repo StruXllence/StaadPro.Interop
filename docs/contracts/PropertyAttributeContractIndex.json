@@ -1,15 +1,7 @@
 {
   "date": "2026-10-24",
-  "description": "Twenty-two remaining reviewed P7 routes plus first three P8 routes; four P7 contract gaps remain gated.",
-  "deferred": {
-    "GetInactiveMemberList": "Void by-value Object transport is marked unusable in reference source; a live native written-buffer fixture is missing.",
-    "GetAlphaAngleForSection": "Native help supplies no interpretable return-status contract; no finite default/output is promoted to certified success.",
-    "GetCentroidLocationForSection": "Native return status is undocumented; qualification must establish success/absence before exposing engineering data.",
-    "GetAssignedAttributeByIndex": "Index base and native observation-context relationship are not verified; no guessed mapping to a requested entity."
-  },
   "contracts": [
     {
-      "phase": "P7",
       "signature": "PropertyQueryResult<int> GetInactiveMemberCount()",
       "name": "GetInactiveMemberCount",
       "nativeFunction": "GetInactiveMemberCount",
@@ -21,7 +13,6 @@
       "mutation": false
     },
     {
-      "phase": "P7",
       "signature": "PropertyQueryResult<int> GetFireProofedBeamCount()",
       "name": "GetFireProofedBeamCount",
       "nativeFunction": "GetFireProofedBeamCount",
@@ -33,7 +24,6 @@
       "mutation": false
     },
     {
-      "phase": "P7",
       "signature": "PropertyQueryResult<int> GetFireProofingSpecCount()",
       "name": "GetFireProofingSpecCount",
       "nativeFunction": "GetFireProofingSpecCount",
@@ -45,7 +35,6 @@
       "mutation": false
     },
     {
-      "phase": "P7",
       "signature": "PropertyQueryResult<IReadOnlyList<int>> GetFireProofedBeamList(int maximumResults = 100000)",
       "name": "GetFireProofedBeamList",
       "nativeFunction": "GetFireProofedBeamList",
@@ -56,13 +45,11 @@
           "Allocation limit from 1 through 100000, default 100000. Larger native counts give LimitExceeded before buffer allocation/retrieval."
         ]
       ],
-      "returns": "Success with a read-only ID list in native order, retaining duplicates. Zero count gives an empty list without list dispatch. False/zero list flag gives NativeFailure; changed counts give StateChanged; failures have no Data.",
       "remarks": "When to use: enumerate fireproofed member IDs without loading beam objects. Uses GetFireProofedBeamCount before and after the flag-returning list call, validates exact rank-one Int32 shape/length and positive written IDs. Equal counts cannot exclude same-count external edits. No assumption about specification indices is made. All native calls use the shared captured-binding gate with before/after lifetime checks. No native model mutation, geometry hydration, unit conversion, save or engineering certification occurs.",
       "example": "var result = property.GetFireProofedBeamList();\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Count);\nelse System.Console.WriteLine(result.Status);",
       "mutation": false
     },
     {
-      "phase": "P7",
       "signature": "PropertyQueryResult<FireProofingData> GetFireProofDataForBeam(int memberId)",
       "name": "GetFireProofDataForBeam",
       "nativeFunction": "GetFireProofDataForBeam",
@@ -79,7 +66,6 @@
       "mutation": false
     },
     {
-      "phase": "P7",
       "signature": "PropertyQueryResult<FireProofingData> GetFireProofingSpecDetails(int specificationIndex)",
       "name": "GetFireProofingSpecDetails",
       "nativeFunction": "GetFireProofingSpecDetails",
@@ -96,7 +82,6 @@
       "mutation": false
     },
     {
-      "phase": "P7",
       "signature": "PropertyQueryResult<int> GetFireProofingSpecAssignedBeamCount(int specificationIndex)",
       "name": "GetFireProofingSpecAssignedBeamCount",
       "nativeFunction": "GetFireProofingSpecAssignedBeamCount",
@@ -113,7 +98,6 @@
       "mutation": false
     },
     {
-      "phase": "P7",
       "signature": "PropertyQueryResult<IReadOnlyList<int>> GetFireProofingSpecAssignedBeamList(int specificationIndex, int maximumResults = 100000)",
       "name": "GetFireProofingSpecAssignedBeamList",
       "nativeFunction": "GetFireProofingSpecAssignedBeamList",
@@ -128,13 +112,11 @@
           "Allocation limit from 1 through 100000, default 100000. Larger native counts give LimitExceeded before buffer allocation/retrieval."
         ]
       ],
-      "returns": "Success with a read-only native-order ID list, including duplicates; zero count gives empty data without retrieval. False/zero gives NativeFailure, count changes StateChanged, and oversize counts LimitExceeded.",
       "remarks": "When to use: enumerate a specification's assignments without synthesizing a specification ID. Uses the indexed count before/after retrieval and exact rank-one Int32 positive-ID validation. Every dependent dispatch rechecks binding. Count equality does not establish a model-wide atomic snapshot. All native calls use the shared captured-binding gate with before/after lifetime checks. No native model mutation, geometry hydration, unit conversion, save or engineering certification occurs.",
       "example": "var result = property.GetFireProofingSpecAssignedBeamList(1);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Count);\nelse System.Console.WriteLine(result.Status);",
       "mutation": false
     },
     {
-      "phase": "P7",
       "signature": "PropertyMutationResult CreateMemberAttribute(PropertyAttribute attribute)",
       "name": "CreateMemberAttribute",
       "nativeFunction": "CreateMemberAttribute",
@@ -151,7 +133,6 @@
       "mutation": true
     },
     {
-      "phase": "P7",
       "signature": "PropertyMutationResult CreateElementAttribute(PropertyAttribute attribute)",
       "name": "CreateElementAttribute",
       "nativeFunction": "CreateElementAttribute",
@@ -168,7 +149,6 @@
       "mutation": true
     },
     {
-      "phase": "P7",
       "signature": "PropertyMutationResult DeleteMemberAttribute(PropertyAttribute attribute)",
       "name": "DeleteMemberAttribute",
       "nativeFunction": "DeleteMemberAttribute",
@@ -185,7 +165,6 @@
       "mutation": true
     },
     {
-      "phase": "P7",
       "signature": "PropertyMutationResult DeleteElementAttribute(PropertyAttribute attribute)",
       "name": "DeleteElementAttribute",
       "nativeFunction": "DeleteElementAttribute",
@@ -202,7 +181,6 @@
       "mutation": true
     },
     {
-      "phase": "P7",
       "signature": "PropertyQueryResult<PropertyAttributeMatchCount> GetMemberCountByAttribute(PropertyAttribute attribute)",
       "name": "GetMemberCountByAttribute",
       "nativeFunction": "GetMemberCountByAttribute",
@@ -219,7 +197,6 @@
       "mutation": false
     },
     {
-      "phase": "P7",
       "signature": "PropertyQueryResult<PropertyAttributeEntityIds> GetMemberListByAttribute(PropertyAttribute attribute, int maximumResults = 100000)",
       "name": "GetMemberListByAttribute",
       "nativeFunction": "GetMemberListByAttribute",
@@ -234,13 +211,11 @@
           "Allocation limit from 1 through 100000, default 100000. Larger native counts give LimitExceeded before buffer allocation/retrieval."
         ]
       ],
-      "returns": "Success with immutable pair/domain correspondence and read-only positive EntityIds in native order, retaining duplicates. Native -1 gives NativeFailure, oversize count LimitExceeded, and count/input-value changes StateChanged. Zero inventory is successful empty data without list retrieval.",
       "remarks": "When to use: enumerate matching member IDs without geometry hydration. Uses the matching native count/list/count sequence within the shared gate; the list's integral zero is success, not a returned count. Native metadata requires ref string and ref Object outputs; local copies keep caller text immutable. Exact Int32 rank/length and every written positive ID are validated. Count equality cannot exclude same-count external edits. All native calls use the shared captured-binding gate with before/after lifetime checks. No native model mutation, geometry hydration, unit conversion, save or engineering certification occurs.",
       "example": "var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\nvar result = property.GetMemberListByAttribute(attribute);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.EntityIds.Count);\nelse System.Console.WriteLine(result.Status);",
       "mutation": false
     },
     {
-      "phase": "P7",
       "signature": "PropertyQueryResult<PropertyAttributeMatchCount> GetElementCountByAttribute(PropertyAttribute attribute)",
       "name": "GetElementCountByAttribute",
       "nativeFunction": "GetElementCountByAttribute",
@@ -257,7 +232,6 @@
       "mutation": false
     },
     {
-      "phase": "P7",
       "signature": "PropertyQueryResult<PropertyAttributeEntityIds> GetElementListByAttribute(PropertyAttribute attribute, int maximumResults = 100000)",
       "name": "GetElementListByAttribute",
       "nativeFunction": "GetElementListByAttribute",
@@ -272,13 +246,11 @@
           "Allocation limit from 1 through 100000, default 100000. Larger native counts give LimitExceeded before buffer allocation/retrieval."
         ]
       ],
-      "returns": "Success with immutable pair/domain correspondence and read-only positive EntityIds in native order, retaining duplicates. Native -1 gives NativeFailure, oversize count LimitExceeded, and count/input-value changes StateChanged. Zero inventory is successful empty data without list retrieval.",
       "remarks": "When to use: enumerate matching element IDs without geometry hydration. Uses the matching native count/list/count sequence within the shared gate; the list's integral zero is success, not a returned count. Native metadata requires ref string and ref Object outputs; local copies keep caller text immutable. Exact Int32 rank/length and every written positive ID are validated. Count equality cannot exclude same-count external edits. All native calls use the shared captured-binding gate with before/after lifetime checks. No native model mutation, geometry hydration, unit conversion, save or engineering certification occurs.",
       "example": "var attribute = new StaadPro.Interop.Models.Property.PropertyAttribute(\"Purpose\", \" REVIEWED \");\nvar result = property.GetElementListByAttribute(attribute);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.EntityIds.Count);\nelse System.Console.WriteLine(result.Status);",
       "mutation": false
     },
     {
-      "phase": "P7",
       "signature": "PropertyQueryResult<int> GetMemberAttributeCount()",
       "name": "GetMemberAttributeCount",
       "nativeFunction": "GetMemberAttributeCount",
@@ -290,7 +262,6 @@
       "mutation": false
     },
     {
-      "phase": "P7",
       "signature": "PropertyQueryResult<IReadOnlyList<PropertyAttribute>> GetMemberAttributeList(int maximumResults = 100000)",
       "name": "GetMemberAttributeList",
       "nativeFunction": "GetMemberAttributeList",
@@ -301,13 +272,11 @@
           "Allocation limit from 1 through 100000, default 100000. Larger native counts give LimitExceeded before buffer allocation/retrieval."
         ]
       ],
-      "returns": "Success with read-only immutable pairs in native order, retaining duplicates and empty/whitespace strings. Count/input state changes give StateChanged and allocation excess LimitExceeded. Zero count skips list dispatch.",
       "remarks": "When to use: enumerate paired metadata without losing name/value correspondence. GetMemberAttributeList returns an integral count, not a success flag; it must equal the preflight count and separate postflight count. Both output buffers must be rank-one String arrays of exactly that size, with every string written and free of NUL. Null sentinels detect unwritten output. No deduplication, case folding or numerical parsing occurs. All native calls use the shared captured-binding gate with before/after lifetime checks. No native model mutation, geometry hydration, unit conversion, save or engineering certification occurs.",
       "example": "var result = property.GetMemberAttributeList();\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Count);\nelse System.Console.WriteLine(result.Status);",
       "mutation": false
     },
     {
-      "phase": "P7",
       "signature": "PropertyQueryResult<AssignedAttributeSummary> GetAssignedAttributeCount(int memberOrPlateId)",
       "name": "GetAssignedAttributeCount",
       "nativeFunction": "GetAssignedAttributeCount",
@@ -324,7 +293,6 @@
       "mutation": false
     },
     {
-      "phase": "P7",
       "signature": "PropertyMutationResult RemoveAttribute(PropertyAttribute attribute, IEnumerable<int> memberOrPlateIds)",
       "name": "RemoveAttribute",
       "nativeFunction": "RemoveAttribute",
@@ -345,7 +313,6 @@
       "mutation": true
     },
     {
-      "phase": "P7",
       "signature": "PropertyMutationResult AssignMemberAttribute(PropertyAttribute attribute, IEnumerable<int> memberIds)",
       "name": "AssignMemberAttribute",
       "nativeFunction": "AssignMemberAttribute",
@@ -366,7 +333,6 @@
       "mutation": true
     },
     {
-      "phase": "P7",
       "signature": "PropertyMutationResult AssignElementAttribute(PropertyAttribute attribute, IEnumerable<int> elementIds)",
       "name": "AssignElementAttribute",
       "nativeFunction": "AssignElementAttribute",
@@ -387,7 +353,6 @@
       "mutation": true
     },
     {
-      "phase": "P8",
       "signature": "PropertyMutationResult CreateUptTable(UserProvidedTableType tableType)",
       "name": "CreateUptTable",
       "nativeFunction": "CreateUPTTable",
@@ -404,7 +369,6 @@
       "mutation": true
     },
     {
-      "phase": "P8",
       "signature": "PropertyMutationResult AddUptPropertyWideFlange(int tableId, string sectionName, UptWideFlangeDefinition definition)",
       "name": "AddUptPropertyWideFlange",
       "nativeFunction": "AddUPTPropertyWIDEFLANGE",
@@ -429,7 +393,6 @@
       "mutation": true
     },
     {
-      "phase": "P8",
       "signature": "PropertyMutationResult AddUptPropertyWideFlangeUnequal(int tableId, string sectionName, UptUnequalWideFlangeDefinition definition)",
       "name": "AddUptPropertyWideFlangeUnequal",
       "nativeFunction": "AddUPTPropertyWIDEFLANGEUNEQUAL",

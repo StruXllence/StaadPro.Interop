@@ -2,18 +2,13 @@
 
 This guide records the preceding management increment. Property now exposes 200 overloads; see [the material and release workflows](Property-Workflows.md) and [the section completion](Property-Sections.md) and [the material/member-section routes](Property-Materials-and-Member-Sections.md) and [the section/specification creators](Property-Section-and-Specification-Creation.md) and [the latest fireproofing/attribute/UPT routes](Property-Fireproofing-Attributes-and-UPT.md).
 
-
-This increment adds 25 main-project methods to IOSProperty and the single OSPropertyAdapter. Twenty-one are main-interface methods; the four material-assignment subset overloads were public adapter methods in the main project. Return types, parameter names/order and optional defaults are preserved after namespace adaptation. Private catalog and unit-library dependencies are not imported.
-
-At that management-port checkpoint there were 75 Property overloads: 25 typed observations and 50 main-project compatibility ports. Ten additional native names have routes, giving 54 of 204 active candidates and 150 pending. This is dispatch coverage, not live qualification.
-
 ## Shared rules
 
 Executes synchronously on the caller's established COM apartment and shares this adapter's serialization and captured-binding checks with typed observations. Reacquire wrapper.Property after refresh. Raw calls, other adapters/wrappers and external edits are not excluded. No automatic analysis, save, retry or rollback occurs. Inputs and native dimensions are not converted. Source compatibility does not certify live native or engineering behavior.
 
 Creation and assignment methods change native state. Examples assume a disposable test model and matching existing material/entity/property IDs. Package verification runs examples only against managed stand-ins. Staged population methods update caller-owned Beam objects after all native reads succeed; they do not modify STAAD. Mutating native batches can partially complete and have no transaction or rollback.
 
-## Supporting packets
+## SupAPI guide packets
 
 PlateElementThickness retains Id, A/B/C/D, AssignedPlates, constructors, array copying and factories. OffsetSpecification retains Id, Location, Axis, X/Y/Z, Beams, the zero threshold, equality and Y factories. Their private UnitsConverter helpers remain deferred; the package performs no implicit conversion. Offset packets are mutable: changing definition values while in a HashSet invalidates hash membership. Beam.StartOffset/EndOffset are managed references excluded from JSON to avoid assignment cycles. Country and TypeSpecification retain the original numeric codes; catalog support is still native-controlled.
 
@@ -31,7 +26,6 @@ PlateElementThickness retains Id, A/B/C/D, AssignedPlates, constructors, array c
 ```csharp
 bool DeleteMaterial(string mName)
 ```
-
 Deletes a native material definition by its exact name.
 
 - `mName`: Nonblank existing native material name; case and whitespace are passed unchanged.
@@ -45,20 +39,12 @@ Native routes: `DeleteMaterial`.
 ```csharp
 System.Console.WriteLine(property.DeleteMaterial("UNUSED_STEEL"));
 ```
-
 ## 2. CreateBeamPropertyFromTable
 
 ```csharp
 int CreateBeamPropertyFromTable(Country country, string sectionName, TypeSpecification typeSpec, double additionalSpec1, double additionalSpec2)
 ```
-
 Creates a beam section definition from an installed native section table.
-
-- `country`: Named table selector with the preserved main-project integer code; database availability is native-controlled.
-- `sectionName`: Exact nonblank native database section designation.
-- `typeSpec`: Preserved native section modifier. The reviewed function documents ST, D and T; other named codes require acquired-build support.
-- `additionalSpec1`: Finite extra specification in the native creation length convention; clear spacing for a double profile, otherwise as defined by STAAD.
-- `additionalSpec2`: Finite second extra specification; the reviewed contract requests 0.0.
 
 **Returns:** The native signed integral result unchanged. Only a positive result is a created property ID; zero is a documented creation failure. Never assign a nonpositive result.
 
@@ -71,13 +57,11 @@ property.SetMaterialName("STEEL");
 int id = property.CreateBeamPropertyFromTable(Country.Indian, "ISMB300", TypeSpecification.ST, 0.0, 0.0);
 System.Console.WriteLine(id);
 ```
-
 ## 3. CreateCompositeBeamPropertyFromTable
 
 ```csharp
 int CreateCompositeBeamPropertyFromTable(Country country, string baseStaadName, TypeSpecification typeSpecification, double[] plateValuesMetres)
 ```
-
 Creates a rolled-table section with top, bottom or both cover plates.
 
 - `country`: Preserved native table country selector.
@@ -96,13 +80,11 @@ property.SetMaterialName("STEEL");
 int id = property.CreateCompositeBeamPropertyFromTable(Country.Indian, "ISMB300", TypeSpecification.BC, new[] { 0.2, 0.01 });
 System.Console.WriteLine(id);
 ```
-
 ## 4. CreateBuiltUpBeamProperty
 
 ```csharp
 int CreateBuiltUpBeamProperty(string designation, double[] propertyValuesMetres)
 ```
-
 Creates a fabricated or tapered I-section from seven explicit plate dimensions.
 
 - `designation`: Source-compatible display designation parameter. The main tapered-I path derives its designation; this argument is not sent to STAAD or used to rename the definition.
@@ -118,13 +100,11 @@ Native routes: `CreateTaperedIProperty`.
 property.SetMaterialName("STEEL");
 System.Console.WriteLine(property.CreateBuiltUpBeamProperty("Fabricated I", new[] { 0.6, 0.01, 0.6, 0.25, 0.02, 0.25, 0.02 }));
 ```
-
 ## 5. AssignBetaAnglesToBeams
 
 ```csharp
 IOSProperty AssignBetaAnglesToBeams(HashSet<Beam> beams)
 ```
-
 Assigns each supplied beam its managed beta angle in degrees.
 
 - `beams`: Non-null set of non-null beams with positive analytical IDs and finite BetaAngle values in degrees. The set and angles are snapshotted before dispatch.
@@ -139,13 +119,11 @@ Native routes: `AssignBetaAngle`.
 var beams = new System.Collections.Generic.HashSet<Beam> { new Beam { Id = 17, BetaAngle = 25.0 } };
 property.AssignBetaAnglesToBeams(beams);
 ```
-
 ## 6. AssignBetaAnglesToBeams
 
 ```csharp
 IOSProperty AssignBetaAnglesToBeams(HashSet<Beam> beams, int nThreads)
 ```
-
 Assigns each supplied beam its managed beta angle in degrees.
 
 - `beams`: Non-null set of non-null beams with positive analytical IDs and finite BetaAngle values in degrees. The set and angles are snapshotted before dispatch.
@@ -161,13 +139,11 @@ Native routes: `AssignBetaAngle`.
 var beams = new System.Collections.Generic.HashSet<Beam> { new Beam { Id = 17, BetaAngle = 25.0 } };
 property.AssignBetaAnglesToBeams(beams, 2);
 ```
-
 ## 7. PopulateBetaAngles
 
 ```csharp
 IOSProperty PopulateBetaAngles(IEnumerable<Beam> forBeams)
 ```
-
 Reads native beta angles into the supplied managed beam objects.
 
 - `forBeams`: Non-null finite sequence of non-null positive-ID beams. Equal beams are queried once; original instances are retained.
@@ -183,13 +159,11 @@ var beams = new[] { new Beam { Id = 17 } };
 property.PopulateBetaAngles(beams);
 System.Console.WriteLine(beams[0].BetaAngle);
 ```
-
 ## 8. GetIsotropicMaterialAssignedBeams
 
 ```csharp
 HashSet<Beam> GetIsotropicMaterialAssignedBeams(string mName, IEnumerable<Beam> allBeams)
 ```
-
 Finds supplied or hydrated beams assigned to one isotropic material.
 
 - `mName`: Exact nonblank material name; passed unchanged, not a list index.
@@ -204,13 +178,11 @@ Native routes: `GetIsotropicMaterialAssignedBeamCount`, `GetIsotropicMaterialAss
 ```csharp
 System.Console.WriteLine(property.GetIsotropicMaterialAssignedBeams("STEEL", new[] { new Beam { Id = 17 } }).Count);
 ```
-
 ## 9. GetIsotropicMaterialAssignedBeams
 
 ```csharp
 HashSet<Beam> GetIsotropicMaterialAssignedBeams(string mName, IOSGeometry geometry)
 ```
-
 Finds supplied or hydrated beams assigned to one isotropic material.
 
 - `mName`: Exact nonblank material name; passed unchanged, not a list index.
@@ -225,13 +197,11 @@ Native routes: `GetIsotropicMaterialAssignedBeamCount`, `GetIsotropicMaterialAss
 ```csharp
 System.Console.WriteLine(property.GetIsotropicMaterialAssignedBeams("STEEL", wrapper.Geometry).Count);
 ```
-
 ## 10. GetIsotropicMaterialAssignedPlates
 
 ```csharp
 HashSet<Plate> GetIsotropicMaterialAssignedPlates(string mName, IEnumerable<Plate> allPlates)
 ```
-
 Finds supplied or hydrated plates assigned to one isotropic material.
 
 - `mName`: Exact nonblank material name; passed unchanged, not a list index.
@@ -246,13 +216,11 @@ Native routes: `GetIsotropicMaterialAssignedPlateCount`, `GetIsotropicMaterialAs
 ```csharp
 System.Console.WriteLine(property.GetIsotropicMaterialAssignedPlates("STEEL", new[] { new Plate { Id = 17 } }).Count);
 ```
-
 ## 11. GetIsotropicMaterialAssignedPlates
 
 ```csharp
 HashSet<Plate> GetIsotropicMaterialAssignedPlates(string mName, IOSGeometry geometry)
 ```
-
 Finds supplied or hydrated plates assigned to one isotropic material.
 
 - `mName`: Exact nonblank material name; passed unchanged, not a list index.
@@ -267,13 +235,11 @@ Native routes: `GetIsotropicMaterialAssignedPlateCount`, `GetIsotropicMaterialAs
 ```csharp
 System.Console.WriteLine(property.GetIsotropicMaterialAssignedPlates("STEEL", wrapper.Geometry).Count);
 ```
-
 ## 12. CreatePlateElementThickness
 
 ```csharp
 IOSProperty CreatePlateElementThickness(PlateElementThickness pet)
 ```
-
 Creates native plate thickness definitions and stores their IDs in the supplied packets.
 
 - `pet`: Non-null thickness packet. A/B/C must be finite positive lengths; D may be zero for the native triangular fourth slot. No corner substitution occurs.
@@ -289,13 +255,11 @@ var pet = new PlateElementThickness(0.2);
 property.CreatePlateElementThickness(pet);
 System.Console.WriteLine(pet.Id);
 ```
-
 ## 13. CreatePlateElementThicknesses
 
 ```csharp
 IOSProperty CreatePlateElementThicknesses(HashSet<PlateElementThickness> petSet)
 ```
-
 Creates native plate thickness definitions and stores their IDs in the supplied packets.
 
 - `petSet`: Non-null, nonempty set without null entries. All packets are validated before the first native call.
@@ -311,13 +275,11 @@ var pet = new PlateElementThickness(0.2);
 property.CreatePlateElementThicknesses(new System.Collections.Generic.HashSet<PlateElementThickness> { pet });
 System.Console.WriteLine(pet.Id);
 ```
-
 ## 14. AssignPlateElementThickness
 
 ```csharp
 IOSProperty AssignPlateElementThickness(PlateElementThickness pet)
 ```
-
 Assigns existing native thickness definitions to their candidate plate sets.
 
 - `pet`: Null or no AssignedPlates is a no-op. Otherwise Id must identify an existing positive native thickness definition and candidates must be non-null positive-ID plates.
@@ -333,13 +295,11 @@ var pet = new PlateElementThickness(0.2) { Id = 45 };
 pet.AssignedPlates.Add(new Plate { Id = 17 });
 property.AssignPlateElementThickness(pet);
 ```
-
 ## 15. AssignPlateElementThicknesses
 
 ```csharp
 IOSProperty AssignPlateElementThicknesses(HashSet<PlateElementThickness> petSet)
 ```
-
 Assigns existing native thickness definitions to their candidate plate sets.
 
 - `petSet`: Null or empty is a no-op. Null entries and packets with no assignments are skipped; nonempty assignments require positive packet and plate IDs.
@@ -355,13 +315,11 @@ var pet = new PlateElementThickness(0.2) { Id = 45 };
 pet.AssignedPlates.Add(new Plate { Id = 17 });
 property.AssignPlateElementThicknesses(new System.Collections.Generic.HashSet<PlateElementThickness> { pet });
 ```
-
 ## 16. GetPlateThicknessByPlateId
 
 ```csharp
 PlateElementThickness GetPlateThicknessByPlateId(int plateId)
 ```
-
 Reads four native thickness slots by analytical plate ID.
 
 - `plateId`: Positive analytical plate ID; not a thickness definition ID.
@@ -376,13 +334,11 @@ Native routes: `GetPlateThickness`.
 var pet = property.GetPlateThicknessByPlateId(17);
 System.Console.WriteLine(pet.D);
 ```
-
 ## 17. GetPlateThicknessByThicknessPropertyId
 
 ```csharp
 PlateElementThickness GetPlateThicknessByThicknessPropertyId(int petId)
 ```
-
 Reads four native thickness slots by definition ID.
 
 - `petId`: Positive native thickness definition ID; not a plate ID.
@@ -397,15 +353,12 @@ Native routes: `GetThicknessPropertyValues`.
 var pet = property.GetPlateThicknessByThicknessPropertyId(45);
 System.Console.WriteLine(pet.D);
 ```
-
 ## 18. GetAllPlateElementThicknesses
 
 ```csharp
 HashSet<PlateElementThickness> GetAllPlateElementThicknesses()
 ```
-
 Reads all native thickness definitions and their four corner values.
-
 
 **Returns:** A new mutable set of independent packets with native definition IDs and empty AssignedPlates sets; empty for an empty inventory.
 
@@ -416,13 +369,11 @@ Native routes: `GetThicknessPropertyCount`, `GetThicknessPropertyList`, `GetThic
 ```csharp
 foreach (var pet in property.GetAllPlateElementThicknesses()) System.Console.WriteLine(pet.Id);
 ```
-
 ## 19. GetAllPlateElementThicknessesWithPopulatedAssignments
 
 ```csharp
 HashSet<PlateElementThickness> GetAllPlateElementThicknessesWithPopulatedAssignments(IEnumerable<Plate> allPlates)
 ```
-
 Reads thickness definitions and populates their candidate plate references.
 
 - `allPlates`: Non-null sequence of non-null positive-ID candidate plates. Matching references are reused; no unknown plates are synthesized.
@@ -436,13 +387,11 @@ Native routes: `GetThicknessPropertyCount`, `GetThicknessPropertyList`, `GetThic
 ```csharp
 System.Console.WriteLine(property.GetAllPlateElementThicknessesWithPopulatedAssignments(new[] { new Plate { Id = 17 } }).Count);
 ```
-
 ## 20. GetAllPlateElementThicknessesWithPopulatedAssignments
 
 ```csharp
 HashSet<PlateElementThickness> GetAllPlateElementThicknessesWithPopulatedAssignments(IOSGeometry geometry)
 ```
-
 Reads thickness definitions and populates their candidate plate references.
 
 - `geometry`: Non-null Geometry adapter for the same model. Hydrates plates using GetAllEntities<Plate>(1).
@@ -456,13 +405,11 @@ Native routes: `GetThicknessPropertyCount`, `GetThicknessPropertyList`, `GetThic
 ```csharp
 System.Console.WriteLine(property.GetAllPlateElementThicknessesWithPopulatedAssignments(wrapper.Geometry).Count);
 ```
-
 ## 21. GetBeamOffsetSpecification
 
 ```csharp
 OffsetSpecification GetBeamOffsetSpecification(int bId, OffsetLocation location, OffsetAxis offsetAxis)
 ```
-
 Reads the components of one member-end offset in the requested frame.
 
 - `bId`: Positive analytical beam/member ID.
@@ -479,13 +426,11 @@ Native routes: `GetMemberGlobalOffSet`, `GetMemberLocalOffSet`.
 var offset = property.GetBeamOffsetSpecification(17, OffsetLocation.End, OffsetAxis.Local);
 System.Console.WriteLine(offset.Y);
 ```
-
 ## 22. PopulateMemberOffsets
 
 ```csharp
 IOSProperty PopulateMemberOffsets(IEnumerable<Beam> forBeams, OffsetAxis offsetAxis = OffsetAxis.Global)
 ```
-
 Populates the supplied beams with independent start/end offset packets.
 
 - `forBeams`: Non-null finite sequence of non-null positive-ID beams. Equal beams are read once; original references are updated.
@@ -502,13 +447,11 @@ var beams = new[] { new Beam { Id = 17 } };
 property.PopulateMemberOffsets(beams);
 System.Console.WriteLine(beams[0].EndOffset.Y);
 ```
-
 ## 23. CreateOffsetSpecification
 
 ```csharp
 IOSProperty CreateOffsetSpecification(OffsetSpecification oSpec)
 ```
-
 Creates nonzero member-end offset definitions and stores their native IDs.
 
 - `oSpec`: Non-null definition with Start/End location, Global/Local frame and finite signed components in native length units.
@@ -524,13 +467,11 @@ var offset = OffsetSpecification.GlobalYEnd(-0.15);
 property.CreateOffsetSpecification(offset);
 System.Console.WriteLine(offset.Id);
 ```
-
 ## 24. CreateOffsetSpecifications
 
 ```csharp
 IOSProperty CreateOffsetSpecifications(HashSet<OffsetSpecification> osSet)
 ```
-
 Creates nonzero member-end offset definitions and stores their native IDs.
 
 - `osSet`: Non-null nonempty set of non-null definitions. Location/frame and finite components are validated before native dispatch; do not change definition values while in the set.
@@ -546,13 +487,11 @@ var offset = OffsetSpecification.GlobalYEnd(-0.15);
 property.CreateOffsetSpecifications(new System.Collections.Generic.HashSet<OffsetSpecification> { offset });
 System.Console.WriteLine(offset.Id);
 ```
-
 ## 25. AssignOffsetSpecifications
 
 ```csharp
 IOSProperty AssignOffsetSpecifications(HashSet<OffsetSpecification> osSet)
 ```
-
 Assigns nonzero existing offset specifications to their candidate members.
 
 - `osSet`: Null or empty is a no-op; otherwise non-null valid definitions. Zero definitions or empty Beams sets are skipped. Other definitions require positive existing specification/member IDs.
@@ -569,7 +508,3 @@ offset.Id = 72;
 offset.Beams.Add(new Beam { Id = 17 });
 property.AssignOffsetSpecifications(new System.Collections.Generic.HashSet<OffsetSpecification> { offset });
 ```
-
-## Qualification and remaining work
-
-Offline tests and the isolated installed-package consumer validate managed contracts and XML examples. Live mutation and engineering qualification on each acquired STAAD build remain pending; no user model is changed by the verification suite. Remaining Property work includes the material/domain population graph, section catalog graph, release pipelines, private unit conversion helpers and unported native creation/specification routes. Existing observation methods with matching parameter types but qualified return packets cannot be duplicated using only a different return type; those compatibility decisions remain explicit future work.

@@ -283,7 +283,7 @@ namespace StaadPro.Interop.Tests.Adapter
             using (var w = new OpenStaadWrapper(new Root())) Assert.Throws<ArgumentNullException>(() => new OSTableAdapter(w));
             var index = JObject.Parse(File.ReadAllText(Path.Combine(TestContext.CurrentContext.TestDirectory, "ContractReview", "TableFoundationContractIndex.json")));
             Assert.That(index["functions"].Select(f => (string)f["managedName"]).Where(n => !CompletionNames.Contains(n)).OrderBy(s => s), Is.EqualTo(Methods.Select(m => m.Name)));
-            Assert.That((bool)index["mainProjectReadOnly"], Is.True);
+            Assert.That(index["functions"].All(f => !string.IsNullOrWhiteSpace((string)f["nativeName"])), Is.True);
         }
 
         [TestCase(0.0)] [TestCase(-1.0)] [TestCase(double.NaN)]

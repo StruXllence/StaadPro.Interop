@@ -2,7 +2,7 @@
 
 ## Overview & Prerequisites
 
-The latest port adds self-weight, envelope creation and load-list selection through `wrapper.Load`, plus current-model path/filename and derived analysis-file path through `wrapper.Root`. See [Load-Porting.md](Load-Porting.md) and [Root-Porting.md](Root-Porting.md) for signatures, examples and native success/state-change contracts. All new functions include expanded interface/concrete IntelliSense in installed packages.
+The latest port adds self-weight, envelope creation and load-list selection through `wrapper.Load`, plus current-model path/filename and derived analysis-file path through `wrapper.Root`. See [Load.md](Load.md) and [Root.md](Root.md) for signatures, examples and native success/state-change contracts. All new functions include expanded interface/concrete IntelliSense in installed packages.
 
 StaadPro.Interop provides a modern, strongly-typed .NET interface for Bentley STAAD.Pro.
 
@@ -10,7 +10,7 @@ StaadPro.Interop provides a modern, strongly-typed .NET interface for Bentley ST
 - **Runtime**: A licensed STAAD.Pro installation exposing the OpenSTAAD signatures used by your application.
 
 > [!IMPORTANT]
-> **STAAD.Pro version compatibility**: Runtime dynamic dispatch removes build-time Bentley references; it does not certify API compatibility across versions. Verify the methods you use on the installed version. The load query port has offline tests and package checks; live version and unit verification remains pending. See [NuGet readiness](NuGet-Readiness.md).
+> **STAAD.Pro version compatibility**: Runtime dynamic dispatch removes build-time Bentley references; it does not certify API compatibility across versions. Verify the methods you use on the installed version. The load query port has offline tests and package checks; live version and unit verification remains pending. See NuGet readiness.
 
 ---
 
@@ -35,7 +35,6 @@ using (OpenStaadWrapper wrapper = OpenStaadWrapperProvider.Get(@"C:\Models\Struc
     Console.WriteLine($"Total Nodes: {nodeCount}");
 }
 ```
-
 ---
 
 ## 2. Optional: Adding Direct `COMFileReference` Based on Installed STAAD Version
@@ -47,13 +46,16 @@ If your project requires early-bound COM type library references (`<COMFileRefer
 You can identify the installed STAAD directory using either the Windows Registry or standard filesystem locations:
 
 #### Option A: Via Windows Registry (Authoritative)
+
 1. Open PowerShell and run:
+
    ```powershell
    Get-ItemProperty 'HKLM:\SOFTWARE\Bentley\Installed_Products\*' | Where-Object DisplayProductName -like '*STAAD.Pro*' | Select-Object DisplayProductName, Version, InstallDir
    ```
 2. The output displays the installed product name, version number, and base installation folder (e.g. `C:\Program Files\Bentley\Engineering\STAAD.Pro 2025\`).
 
 #### Option B: Standard Filesystem Installation Paths
+
 | STAAD Version | Typical Installation Path |
 | :--- | :--- |
 | **STAAD.Pro 2025** | `C:\Program Files\Bentley\Engineering\STAAD.Pro 2025\STAAD\StaadPro.dll` |
@@ -75,7 +77,6 @@ Open your client `.csproj` file and add the `COMFileReference` pointing to your 
   </COMFileReference>
 </ItemGroup>
 ```
-
 > **Tip for Multi-Machine Teams**: You can use conditional MSBuild resolution to automatically detect the path:
 > ```xml
 > <PropertyGroup>
@@ -99,10 +100,10 @@ When building a standalone client executable (WPF, WinForms, or Console App) con
 1. Copy [`app.manifest`](../src/StaadPro.Interop/app.manifest) into your client project folder.
 2. Ensure the `<comInterfaceExternalProxyStub>` elements are included for OpenSTAAD interfaces (`IOpenSTAADUI`, `IOSGeometryUI`, `IOSLoadUI`, etc.).
 3. In your client project properties under **Build Events** (Post-build event), add:
+
    ```cmd
    copy $(ProjectDir)app.manifest $(TargetDir)\$(AssemblyName).exe.manifest
    ```
-
 ---
 
 ## 4. Key Namespaces & Architecture

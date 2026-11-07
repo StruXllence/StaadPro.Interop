@@ -20,9 +20,7 @@
 | Public feed | `https://api.nuget.org/v3/index.json` |
 | Source | [StruXllence/StaadPro.Interop](https://github.com/StruXllence/StaadPro.Interop) |
 
-Public publication is complete after NuGet.org accepts the submission, validates/indexes it, and the exact version restores from the public feed. A generated archive alone does not establish public availability. See [NuGet-Readiness.md](NuGet-Readiness.md) for the current publication status and remaining native STAAD validation gates. This release uses a preview version because offline tests do not certify live COM/unit behavior.
-
-The package contains the `net481` DLL, expanded XML IntelliSense, a NuGet README, the load query guide, and installation/publishing guides. Newtonsoft.Json is a NuGet dependency. Bentley binaries and the private main application's dependencies are not bundled.
+Public publication is complete after NuGet.org accepts the submission, validates/indexes it, and the exact version restores from the public feed. A generated archive alone does not establish public availability. This release uses a preview version because offline tests do not certify live COM/unit behavior.
 
 The project embeds both supplied PNG logos and sets `PackageIcon` to `images/symbol-only-logo.png`. Keep this selection for subsequent releases. Use the full logo with text in the repository and NuGet README. Before publication, push both root logo files and check that the README's [hosted banner](https://raw.githubusercontent.com/StruXllence/StaadPro.Interop/main/logo-with-text.png) is publicly reachable. NuGet.org does not render relative local README image paths, even when those images are embedded in the package. See [NuGet's README image guidance](https://learn.microsoft.com/en-us/nuget/nuget-org/package-readme-on-nuget-org#allowed-domains-for-images-and-badges).
 
@@ -50,7 +48,6 @@ git config --local user.name "StruXllence"
 git config --local user.email "struxllence@outlook.com"
 git config --local credential.https://github.com.username "StruXllence"
 ~~~
-
 Use the maintainer's verified struxllence@outlook.com address for this checkout and authenticate the push as StruXllence. Contributors should use their own identities; these maintainer commands are not a contribution requirement. Git commit identity and push authentication are separate from NuGet Authors, which remains Srinivasa Rao Masanam.
 
 ## Publisher metadata and NuGet.org ownership
@@ -87,7 +84,6 @@ dotnet pack src/StaadPro.Interop/StaadPro.Interop.csproj -c Release -p:PackageVe
 ./eng/Verify-LoadPackage.ps1 -PackagePath "artifacts/release/StaadPro.Interop.$releaseVersion.nupkg"
 Get-FileHash "artifacts/release/StaadPro.Interop.$releaseVersion.nupkg" -Algorithm SHA256
 ```
-
 Stop if a command fails. Publish the exact archive that passed verification. Keep its version, source commit, SHA256 and test results together. When preparing an ordinary release, commit the implementation and documentation before packing so repository metadata identifies the matching source. The project defaults PackageVersion to the reviewed ReleaseDocumentationVersion; retain that preview version until the stable-release gates are closed.
 
 The verifier restores through a fresh temporary PackageReference-only consumer/cache, checks the restored archive hash, validates package metadata and shipped documentation, and compiles/runs 1,152 selected XML example blocks. These include 498 common Property examples, twelve optional catalog/acquisition examples, all 192 Output examples, all 38 Support examples and the existing Geometry/Load/Root examples and runtime checks. Mutation examples are guarded; managed native-signature fixtures exercise dispatch and result decoding without modifying a STAAD model. This verification does not upload anything to NuGet.org.
@@ -122,7 +118,6 @@ if ($index.versions -notcontains $releaseVersion) {
     throw 'The exact preview version is not available from the public flat-container feed yet.'
 }
 ```
-
 Also inspect the NuGet.org page and search with prerelease results enabled. An exact-version download can succeed for an unlisted version; search visibility requires listing/indexing. Microsoft describes this distinction in its [unlisting policy](https://learn.microsoft.com/en-us/nuget/nuget-org/policies/deleting-packages).
 
 For a download check:
@@ -135,7 +130,6 @@ $downloadPath = Join-Path $downloadDirectory "StaadPro.Interop.$releaseVersion.n
 Invoke-WebRequest "https://api.nuget.org/v3-flatcontainer/staadpro.interop/$releaseVersion/staadpro.interop.$releaseVersion.nupkg" -OutFile $downloadPath
 ./eng/Verify-LoadPackage.ps1 -PackagePath $downloadPath
 ```
-
 The verifier checks a downloaded archive using its temporary local feed. To prove **public-feed restore**, separately use [Installation.md](Installation.md#install-from-the-public-feed) in a fresh `net481` consumer with a new package cache, explicitly sourcing NuGet.org. Build it and run its metadata sample against a licensed known STAAD model for native validation. Record the public page, accepted version, actual owner, source commit and public restore outcome in the release assessment. NuGet.org may sign the uploaded package, so compare DLL/XML contents when correlating local and downloaded artifacts rather than assuming whole-archive hashes must remain identical; see the [signed package reference](https://learn.microsoft.com/en-us/nuget/reference/signed-packages-reference).
 
 ## 4. Optional command-line publication
@@ -150,7 +144,6 @@ if ([string]::IsNullOrWhiteSpace($env:NUGET_API_KEY)) {
 dotnet nuget push "artifacts/release/StaadPro.Interop.$releaseVersion.nupkg" --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json
 if ($LASTEXITCODE -ne 0) { throw 'NuGet push failed; inspect the response before treating this version as published.' }
 ```
-
 Avoid a literal key in command history. The key is passed to the publishing process; use an appropriately protected terminal/runner. The locally verified SDK 10.0.401 also supports direct environment-variable handling; the explicit argument shown works with older SDKs as well. See the official [dotnet nuget push reference](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-nuget-push) and [scoped key documentation](https://learn.microsoft.com/en-us/nuget/nuget-org/scoped-api-keys).
 
 ## 5. Later releases through Trusted Publishing
@@ -178,14 +171,13 @@ steps:
       PACKAGE_VERSION: ${{ inputs.package_version }}
     run: dotnet nuget push "artifacts/release/StaadPro.Interop.$env:PACKAGE_VERSION.nupkg" --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json
 ```
-
 This is a fragment, not an installed publication workflow. `NUGET_USER` must be the NuGet profile name, and `package_version` must be defined and validated by the enclosing workflow. Its filename/environment must match the registered policy. NuGet issues short-lived credentials after verifying GitHub's OIDC token, as described in [Trusted Publishing](https://learn.microsoft.com/en-us/nuget/nuget-org/trusted-publishing). Configure the policy before running a publish job.
 
 ## 6. Version updates and stable release
 
 Use a new version for each different public build, for example `1.0.0-preview.20261014` for a release on the following day, or `1.0.0-preview.20261013.5` for a subsequent release on the same day. Never treat `--skip-duplicate` as permission to replace an existing version. Keep the version pinned in release commands, installation examples and release notes; this preview uses a date-based version without a load-increment suffix.
 
-After a successful preview publication, keep validation evidence and optionally create a matching Git tag from the source commit. Publish stable `1.0.0` only after the live compatibility/unit and inherited API gates in [NuGet-Readiness.md](NuGet-Readiness.md) are closed for the advertised scope. Source Link/symbol packages can improve debugging later; they are not bundled in this preview.
+After a successful preview publication, keep validation evidence and optionally create a matching Git tag from the source commit. Publish stable `1.0.0` only after the advertised APIs pass live compatibility and engineering validation. Source Link/symbol packages can improve debugging later; they are not bundled in this preview.
 
 ## Troubleshooting publication
 

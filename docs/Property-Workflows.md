@@ -2,16 +2,13 @@
 
 This guide records the preceding 25-workflow checkpoint. Property now exposes 200 overloads; see [the section completion](Property-Sections.md) and [the material/member-section routes](Property-Materials-and-Member-Sections.md) and [the section/specification creators](Property-Section-and-Specification-Creation.md) and [the latest fireproofing/attribute/UPT routes](Property-Fireproofing-Attributes-and-UPT.md). The basic material converter overloads deferred at this checkpoint are now included using the repository UnitsConverter.
 
-
-This increment ports 25 further main-interface overloads while preserving names, parameter types/names/order and defaults after adapting namespaces. Property now exposes 100 overloads: 25 qualified observations and 75 main-project compatibility ports. Three additional native names have routes, reaching 57 of 204 active candidates with 147 pending. This is dispatch coverage, not native qualification.
-
 ## Shared contracts
 
 Executes synchronously on the established caller COM apartment and shares this Property adapter's captured-binding/lifetime checks and lock with earlier queries and ports. Reacquire wrapper.Property after refresh. Other receivers, raw calls, callbacks and external STAAD edits are not excluded. Only the explicitly documented legacy material E/G scale is applied; no unit discovery, input-unit change, implicit analysis/save/retry or transactional rollback occurs. Validate behavior and units on the acquired native build before engineering use.
 
 Read/population examples change only managed packets. Creation and assignment examples assume an appropriate disposable native test model with matching material/entity/property IDs; package verification runs every example against managed stand-ins. Native writes can partially complete and have no rollback.
 
-## Supporting models and deliberate corrections
+## SupAPI guide models and deliberate corrections
 
 - MaterialProperty retains source field names, mutable candidate sets, assumed creation defaults and derived G/K. Defaults are not native observations. Qualified material queries retain their original immutable status/data contract and directly observed G.
 - Material creation native 0/1 means Created/Updated. The packet records LastCreationStatus and leaves Id unchanged; it never writes those statuses into a material list index. Basic creation does not send strength fields. The legacy non-NoConversion overloads retain their fixed E/G x1000 scale, which is not unit detection.
@@ -29,7 +26,6 @@ Read/population examples change only managed packets. Creation and assignment ex
 ```csharp
 IOSProperty AssignMaterialProperties(HashSet<MaterialProperty> mpSet)
 ```
-
 Assigns each named material to its managed beam and plate candidates.
 
 - `mpSet`: Material packet, or set of packets. Null/empty is a no-op; null packets in sets are rejected. Nonempty candidate sets require non-null positive-ID entities and an exact nonblank native material name.
@@ -46,13 +42,11 @@ material.Beams.Add(new Beam { Id = 17 });
 material.Plates.Add(new Plate { Id = 17 });
 property.AssignMaterialProperties(new System.Collections.Generic.HashSet<MaterialProperty> { material });
 ```
-
 ## 2. AssignMaterialProperties
 
 ```csharp
 IOSProperty AssignMaterialProperties(HashSet<MaterialProperty> materialPropertyCollection, int nThreads)
 ```
-
 Assigns each named material to its managed beam and plate candidates.
 
 - `materialPropertyCollection`: Material packet, or set of packets. Null/empty is a no-op; null packets in sets are rejected. Nonempty candidate sets require non-null positive-ID entities and an exact nonblank native material name.
@@ -70,13 +64,11 @@ material.Beams.Add(new Beam { Id = 17 });
 material.Plates.Add(new Plate { Id = 17 });
 property.AssignMaterialProperties(new System.Collections.Generic.HashSet<MaterialProperty> { material }, 2);
 ```
-
 ## 3. AssignMaterialProperty
 
 ```csharp
 IOSProperty AssignMaterialProperty(MaterialProperty mp, int nThreads)
 ```
-
 Assigns each named material to its managed beam and plate candidates.
 
 - `mp`: Material packet, or set of packets. Null/empty is a no-op; null packets in sets are rejected. Nonempty candidate sets require non-null positive-ID entities and an exact nonblank native material name.
@@ -94,20 +86,16 @@ material.Beams.Add(new Beam { Id = 17 });
 material.Plates.Add(new Plate { Id = 17 });
 property.AssignMaterialProperty(material, 2);
 ```
-
 ## 4. CreateMaterialProperties
 
 ```csharp
 IOSProperty CreateMaterialProperties(HashSet<MaterialProperty> mpSet)
 ```
-
 Creates or updates named isotropic material definitions using the source legacy E/G scale.
 
 - `mpSet`: Non-null, nonempty set without null packets. All input values are snapshotted and validated before the first native call.
 
 **Returns:** The same Property adapter for fluent chaining after the requested workflow completes.
-
-When to use: This legacy compatibility overload multiplies E and the derived G by exactly 1000 and leaves density, thermal expansion and damping unchanged, matching the main source. This is a fixed legacy scale, not a detected unit conversion. Prefer the NoConversion overload after preparing inputs in the acquired native creation convention. Calls CreateIsotropicMaterialProperties: native 0 means Created and 1 Updated, not a material ID. Records LastCreationStatus after success and leaves Id unchanged, correcting the source status-as-ID assignment. General error -1 and other undocumented responses throw without changing that packet's prior status/Id. Earlier successful definitions survive a later failure. G is computed from E/Poisson as in the source packet, not read from native storage. Does not populate assignment sets, assign entities, send Fy/Fu/Ry/Rt/Fcu, save or roll back.
 
 Native routes: `CreateIsotropicMaterialProperties`.
 
@@ -116,13 +104,11 @@ var material = new MaterialProperty("STEEL") { E = 200000.0, Poisson = 0.3, Dens
 property.CreateMaterialProperties(new System.Collections.Generic.HashSet<MaterialProperty> { material });
 System.Console.WriteLine(material.LastCreationStatus);
 ```
-
 ## 5. CreateMaterialPropertiesNoConversion
 
 ```csharp
 IOSProperty CreateMaterialPropertiesNoConversion(HashSet<MaterialProperty> mpSet)
 ```
-
 Creates or updates named isotropic material definitions using unconverted constants.
 
 - `mpSet`: Non-null, nonempty set without null packets. All input values are snapshotted and validated before the first native call.
@@ -138,20 +124,16 @@ var material = new MaterialProperty("STEEL") { E = 200000.0, Poisson = 0.3, Dens
 property.CreateMaterialPropertiesNoConversion(new System.Collections.Generic.HashSet<MaterialProperty> { material });
 System.Console.WriteLine(material.LastCreationStatus);
 ```
-
 ## 6. CreateMaterialProperty
 
 ```csharp
 IOSProperty CreateMaterialProperty(MaterialProperty mp)
 ```
-
 Creates or updates named isotropic material definitions using the source legacy E/G scale.
 
 - `mp`: Non-null named material with finite constants. E/G must be positive, -1 < Poisson < 0.5, and weight density/damping nonnegative. Basic creation does not send strength fields.
 
 **Returns:** The same Property adapter for fluent chaining after the requested workflow completes.
-
-When to use: This legacy compatibility overload multiplies E and the derived G by exactly 1000 and leaves density, thermal expansion and damping unchanged, matching the main source. This is a fixed legacy scale, not a detected unit conversion. Prefer the NoConversion overload after preparing inputs in the acquired native creation convention. Calls CreateIsotropicMaterialProperties: native 0 means Created and 1 Updated, not a material ID. Records LastCreationStatus after success and leaves Id unchanged, correcting the source status-as-ID assignment. General error -1 and other undocumented responses throw without changing that packet's prior status/Id. Earlier successful definitions survive a later failure. G is computed from E/Poisson as in the source packet, not read from native storage. Does not populate assignment sets, assign entities, send Fy/Fu/Ry/Rt/Fcu, save or roll back.
 
 Native routes: `CreateIsotropicMaterialProperties`.
 
@@ -160,13 +142,11 @@ var material = new MaterialProperty("STEEL") { E = 200000.0, Poisson = 0.3, Dens
 property.CreateMaterialProperty(material);
 System.Console.WriteLine(material.LastCreationStatus);
 ```
-
 ## 7. CreateMaterialPropertyNoConversion
 
 ```csharp
 IOSProperty CreateMaterialPropertyNoConversion(MaterialProperty mp)
 ```
-
 Creates or updates named isotropic material definitions using unconverted constants.
 
 - `mp`: Non-null named material with finite constants. E/G must be positive, -1 < Poisson < 0.5, and weight density/damping nonnegative. Basic creation does not send strength fields.
@@ -182,15 +162,12 @@ var material = new MaterialProperty("STEEL") { E = 200000.0, Poisson = 0.3, Dens
 property.CreateMaterialPropertyNoConversion(material);
 System.Console.WriteLine(material.LastCreationStatus);
 ```
-
 ## 8. GetAllExtendedIsotropicMaterialProperties
 
 ```csharp
 HashSet<MaterialProperty> GetAllExtendedIsotropicMaterialProperties()
 ```
-
 Reads all extended isotropic material definitions by native zero-based index.
-
 
 **Returns:** A new mutable name-equal set of material packets with actual native names and zero-based Id values; empty for a zero inventory. Case-insensitive duplicate names collapse, retaining the first packet.
 
@@ -201,15 +178,12 @@ Native routes: `GetIsotropicMaterialCount`, `GetIsotropicMaterialPropertiesEx`.
 ```csharp
 foreach (var material in property.GetAllExtendedIsotropicMaterialProperties()) System.Console.WriteLine(material.Name);
 ```
-
 ## 9. GetAllIsotropicMaterialProperties
 
 ```csharp
 HashSet<MaterialProperty> GetAllIsotropicMaterialProperties()
 ```
-
 Reads all isotropic material definitions by native zero-based index.
-
 
 **Returns:** A new mutable name-equal set of material packets with actual native names and zero-based Id values; empty for a zero inventory. Case-insensitive duplicate names collapse, retaining the first packet.
 
@@ -220,13 +194,11 @@ Native routes: `GetIsotropicMaterialCount`, `GetIsotropicMaterialProperties`.
 ```csharp
 foreach (var material in property.GetAllIsotropicMaterialProperties()) System.Console.WriteLine(material.Name);
 ```
-
 ## 10. GetAllExtendedIsotropicMaterialPropertiesWithPopulatedAssignments
 
 ```csharp
 HashSet<MaterialProperty> GetAllExtendedIsotropicMaterialPropertiesWithPopulatedAssignments(IEnumerable<Beam> forBeams, IEnumerable<Plate> forPlates)
 ```
-
 Reads all indexed isotropic definitions and populates candidate assignments.
 
 - `forBeams`: Optional finite sequence of non-null positive-ID beam candidates; null/empty skips replacing beam assignments.
@@ -242,13 +214,11 @@ Native routes: `GetIsotropicMaterialCount`, `GetIsotropicMaterialPropertiesEx`, 
 var materials = property.GetAllExtendedIsotropicMaterialPropertiesWithPopulatedAssignments(new[] { new Beam { Id = 17 } }, new[] { new Plate { Id = 17 } });
 System.Console.WriteLine(materials.Count);
 ```
-
 ## 11. GetAllIsotropicMaterialPropertiesWithPopulatedAssignments
 
 ```csharp
 HashSet<MaterialProperty> GetAllIsotropicMaterialPropertiesWithPopulatedAssignments(IEnumerable<Beam> forBeams, IEnumerable<Plate> forPlates)
 ```
-
 Reads all indexed isotropic definitions and populates candidate assignments.
 
 - `forBeams`: Optional finite sequence of non-null positive-ID beam candidates; null/empty skips replacing beam assignments.
@@ -264,13 +234,11 @@ Native routes: `GetIsotropicMaterialCount`, `GetIsotropicMaterialProperties`, `G
 var materials = property.GetAllIsotropicMaterialPropertiesWithPopulatedAssignments(new[] { new Beam { Id = 17 } }, new[] { new Plate { Id = 17 } });
 System.Console.WriteLine(materials.Count);
 ```
-
 ## 12. GetAllExtendedMaterialPropertiesWithPopulatedAssignments
 
 ```csharp
 HashSet<MaterialProperty> GetAllExtendedMaterialPropertiesWithPopulatedAssignments(IEnumerable<Beam> forBeams, IEnumerable<Plate> forPlates)
 ```
-
 Reads material definitions used by the supplied entities and populates candidate assignments.
 
 - `forBeams`: Optional finite sequence of non-null positive-ID beam candidates; null/empty skips replacing beam assignments.
@@ -286,13 +254,11 @@ Native routes: `GetBeamMaterialName`, `GetPlateMaterialName`, `GetMaterialProper
 var materials = property.GetAllExtendedMaterialPropertiesWithPopulatedAssignments(new[] { new Beam { Id = 17 } }, new[] { new Plate { Id = 17 } });
 System.Console.WriteLine(materials.Count);
 ```
-
 ## 13. GetAllMaterialPropertiesWithPopulatedAssignments
 
 ```csharp
 HashSet<MaterialProperty> GetAllMaterialPropertiesWithPopulatedAssignments(IEnumerable<Beam> forBeams, IEnumerable<Plate> forPlates)
 ```
-
 Reads material definitions used by the supplied entities and populates candidate assignments.
 
 - `forBeams`: Optional finite sequence of non-null positive-ID beam candidates; null/empty skips replacing beam assignments.
@@ -308,13 +274,11 @@ Native routes: `GetBeamMaterialName`, `GetPlateMaterialName`, `GetMaterialProper
 var materials = property.GetAllMaterialPropertiesWithPopulatedAssignments(new[] { new Beam { Id = 17 } }, new[] { new Plate { Id = 17 } });
 System.Console.WriteLine(materials.Count);
 ```
-
 ## 14. GetAllMaterialPropertiesWithPopulatedAssignments
 
 ```csharp
 HashSet<MaterialProperty> GetAllMaterialPropertiesWithPopulatedAssignments(IEnumerable<Beam> forBeams, IEnumerable<Plate> forPlates, Func<string, MaterialProperty> materialResolver)
 ```
-
 Resolves distinct entity material names with a caller delegate and populates their candidate assignments.
 
 - `forBeams`: Optional finite sequence of non-null positive-ID beam candidates; enumerated once.
@@ -331,13 +295,11 @@ Native routes: `GetBeamMaterialName`, `GetPlateMaterialName`, `GetIsotropicMater
 var materials = property.GetAllMaterialPropertiesWithPopulatedAssignments(new[] { new Beam { Id = 17 } }, new[] { new Plate { Id = 17 } }, name => new MaterialProperty(name));
 System.Console.WriteLine(materials.Count);
 ```
-
 ## 15. CreatePlateThicknessProperties
 
 ```csharp
 IOSProperty CreatePlateThicknessProperties(HashSet<PlateThickness> ptSet)
 ```
-
 Creates uniform native thickness definitions from scalar thickness packets.
 
 - `ptSet`: Non-null nonempty set of non-null packets with finite positive Thickness values in the acquired native creation length convention. All values are copied before native access.
@@ -353,13 +315,11 @@ var thickness = new PlateThickness { Thickness = 0.2 };
 property.CreatePlateThicknessProperties(new System.Collections.Generic.HashSet<PlateThickness> { thickness });
 System.Console.WriteLine(thickness.Id);
 ```
-
 ## 16. AssignThicknessProperties
 
 ```csharp
 IOSProperty AssignThicknessProperties(HashSet<PlateThickness> tpSet)
 ```
-
 Assigns existing uniform thickness IDs to their managed plate candidates.
 
 - `tpSet`: Null/empty input or no plate candidates is a no-op. Nonempty assignments require a positive existing thickness Id and non-null positive-ID plates. Null packets in sets are rejected.
@@ -375,13 +335,11 @@ var thickness = new PlateThickness { Id = 45, Thickness = 0.2 };
 thickness.Plates.Add(new Plate { Id = 17 });
 property.AssignThicknessProperties(new System.Collections.Generic.HashSet<PlateThickness> { thickness });
 ```
-
 ## 17. AssignThicknessProperties
 
 ```csharp
 IOSProperty AssignThicknessProperties(HashSet<PlateThickness> thicknessPropertyCollection, int nThreads)
 ```
-
 Assigns existing uniform thickness IDs to their managed plate candidates.
 
 - `thicknessPropertyCollection`: Null/empty input or no plate candidates is a no-op. Nonempty assignments require a positive existing thickness Id and non-null positive-ID plates. Null packets in sets are rejected.
@@ -398,13 +356,11 @@ var thickness = new PlateThickness { Id = 45, Thickness = 0.2 };
 thickness.Plates.Add(new Plate { Id = 17 });
 property.AssignThicknessProperties(new System.Collections.Generic.HashSet<PlateThickness> { thickness }, 2);
 ```
-
 ## 18. AssignThicknessProperty
 
 ```csharp
 IOSProperty AssignThicknessProperty(PlateThickness thicknessProperty, int nThreads)
 ```
-
 Assigns existing uniform thickness IDs to their managed plate candidates.
 
 - `thicknessProperty`: Null/empty input or no plate candidates is a no-op. Nonempty assignments require a positive existing thickness Id and non-null positive-ID plates. Null packets in sets are rejected.
@@ -421,13 +377,11 @@ var thickness = new PlateThickness { Id = 45, Thickness = 0.2 };
 thickness.Plates.Add(new Plate { Id = 17 });
 property.AssignThicknessProperty(thickness, 2);
 ```
-
 ## 19. AssignOffsetSpecification
 
 ```csharp
 IOSProperty AssignOffsetSpecification(OffsetSpecification os, int nThreads)
 ```
-
 Assigns existing offset specification IDs to individual candidate members.
 
 - `os`: Null/empty input or no member candidates is a no-op. Nonempty targets require positive existing specification and member IDs. Assignment uses Id; these overloads do not inspect component values or skip IsZero packets.
@@ -445,13 +399,11 @@ offset.Id = 72;
 offset.Beams.Add(new Beam { Id = 17 });
 property.AssignOffsetSpecification(offset, 2);
 ```
-
 ## 20. AssignOffsetSpecifications
 
 ```csharp
 IOSProperty AssignOffsetSpecifications(HashSet<OffsetSpecification> offsetSpecificationCollection, int nThreads)
 ```
-
 Assigns existing offset specification IDs to individual candidate members.
 
 - `offsetSpecificationCollection`: Null/empty input or no member candidates is a no-op. Nonempty targets require positive existing specification and member IDs. Assignment uses Id; these overloads do not inspect component values or skip IsZero packets.
@@ -469,13 +421,11 @@ offset.Id = 72;
 offset.Beams.Add(new Beam { Id = 17 });
 property.AssignOffsetSpecifications(new System.Collections.Generic.HashSet<OffsetSpecification> { offset }, 2);
 ```
-
 ## 21. CreateAndAssignOffsetSpecifications
 
 ```csharp
 IOSProperty CreateAndAssignOffsetSpecifications(HashSet<Beam> beams)
 ```
-
 Groups managed member-end offsets, creates native definitions and assigns their target members.
 
 - `beams`: Non-null set of positive-ID beams. Null StartOffset/EndOffset is ignored. Definition location/frame and components must be valid and finite; packet Location is used as supplied rather than inferred from the Beam property.
@@ -490,13 +440,11 @@ Native routes: `CreateMemberOffsetSpec`, `AssignMemberSpecToBeam`.
 var beam = new Beam { Id = 17, EndOffset = OffsetSpecification.GlobalYEnd(-0.15) };
 property.CreateAndAssignOffsetSpecifications(new System.Collections.Generic.HashSet<Beam> { beam });
 ```
-
 ## 22. CreateAndAssignOffsetSpecifications
 
 ```csharp
 IOSProperty CreateAndAssignOffsetSpecifications(HashSet<Beam> beams, int nThreads)
 ```
-
 Groups managed member-end offsets, creates native definitions and assigns their target members.
 
 - `beams`: Non-null set of positive-ID beams. Null StartOffset/EndOffset is ignored. Definition location/frame and components must be valid and finite; packet Location is used as supplied rather than inferred from the Beam property.
@@ -512,13 +460,11 @@ Native routes: `CreateMemberOffsetSpec`, `AssignMemberSpecToBeam`.
 var beam = new Beam { Id = 17, EndOffset = OffsetSpecification.GlobalYEnd(-0.15) };
 property.CreateAndAssignOffsetSpecifications(new System.Collections.Generic.HashSet<Beam> { beam }, 2);
 ```
-
 ## 23. PopulateMemberReleases
 
 ```csharp
 IOSProperty PopulateMemberReleases(IEnumerable<Beam> forBeams)
 ```
-
 Reads both member-end release specifications into the supplied managed beams.
 
 - `forBeams`: Non-null finite sequence of non-null positive-ID beams. Equal candidates are queried once; original beam references are updated only after all reads succeed.
@@ -534,13 +480,11 @@ var beams = new[] { new Beam { Id = 17 } };
 property.PopulateMemberReleases(beams);
 System.Console.WriteLine(beams[0].EndRelease.ReleaseType);
 ```
-
 ## 24. CreateAndAssignMemberEndReleases
 
 ```csharp
 IOSProperty CreateAndAssignMemberEndReleases(HashSet<Beam> beams)
 ```
-
 Creates and assigns basic full-release/spring specifications at supplied member ends.
 
 - `beams`: Non-null set of non-null positive-ID beams. Null/no-release ends are skipped. Use independent release packets for start and end; applicable spring inputs must be finite and nonnegative.
@@ -558,13 +502,11 @@ releases.Releases.Mz = true;
 var beam = new Beam { Id = 17, EndRelease = releases };
 property.CreateAndAssignMemberEndReleases(new System.Collections.Generic.HashSet<Beam> { beam });
 ```
-
 ## 25. CreateAndAssignMemberEndReleases
 
 ```csharp
 IOSProperty CreateAndAssignMemberEndReleases(HashSet<Beam> beams, int nThreads)
 ```
-
 Creates and assigns basic full-release/spring specifications at supplied member ends.
 
 - `beams`: Non-null set of non-null positive-ID beams. Null/no-release ends are skipped. Use independent release packets for start and end; applicable spring inputs must be finite and nonnegative.
@@ -583,11 +525,6 @@ releases.Releases.Mz = true;
 var beam = new Beam { Id = 17, EndRelease = releases };
 property.CreateAndAssignMemberEndReleases(new System.Collections.Generic.HashSet<Beam> { beam }, 2);
 ```
-
-## Remaining scope
-
-Private unit/catalog integrations, polymorphic section-definition creation/read-back and obsolete main functions remain separate work. Existing qualified single-material/release methods have parameter-type collisions with the source's mutable return types and cannot be duplicated by return type alone; this batch keeps those APIs unchanged and uses qualified observations internally. Partial-moment creation, caller-apartment marshaling and native engineering results remain qualification work. No native STAAD model is changed by offline tests or installed-package verification.
-
 ## Verification checkpoint
 
 Passed a Release build with zero warnings/errors and **3,931 offline tests**, including **168 new workflow cases**. Isolated installed-package verification compiles and runs **642 selected XML examples**, including all **200 Property interface/adapter examples**, through a fresh PackageReference-only consumer and package cache. Examples run against managed native stand-ins; live mutation and engineering qualification remain pending.

@@ -8,14 +8,7 @@ The existing Root member-force service continues to call AreResultsAvailable and
 
 ## Current implementation - plate-corner workflows
 
-Added **25 Output overloads** for plate-corner extraction, indexed sparse/Cartesian selections, explicit metadata families and member-local projections: 18 synchronous main-source adaptations plus seven typed enabling overloads. Output now exposes **96 managed overloads reaching 47/60 documented native names**, with **13 documented native routes pending**. All additions use the newly enabled GetPlateCornerForces route. See [the plate-corner guide](Output-Plate-Corners.md) for exact signatures, comparisons, axes evidence and limitations.
-
-Passed a Release build with zero warnings/errors and **6,036 offline tests**, including **248 new corner cases**. Isolated package verification covers **1,152 selected XML examples**, including all 192 Output examples. Read-only native checks support the global force/moment contract on sampled STAAD.Pro 2026.0.0.340 observations; broader native/engineering qualification remains pending.
-
-
 ## Managed Output workflows - current source
-
-Added **25 managed Output overloads**: 23 synchronous main-project workflow adaptations and two typed enabling overloads for explicit native axes and Beam ratio queries. Output now exposes **71 managed overloads reaching 46/60 documented native names**. The fourteen native contract gates remain; this increment adds compositions, entity conveniences and ordered batches over qualified native routes. See [the managed workflow guide](Output-Managed-Workflows.md) for exact contracts and comparative usage.
 
 Added governing-case resolution, per-item batch outcomes, staged caller utilization caches, native global offset-transfer audit packets, geometry bases, plate-center composites, ordered static checks and opposite support actions. All new APIs have matching XML documentation and examples; no public ref/out, tuples, partial adapters or thread-pool COM calls were introduced.
 
@@ -119,27 +112,14 @@ if (output != null && output.GetAnalysisResultAvailability().Data)
         System.Console.WriteLine(result.Status);
 }
 ~~~
-
 Identifiers must refer to suitable results in the acquired model. Availability alone does not certify freshness or engineering correctness.
 
 ## Cross-version review
 
-- [Output comparison, architecture and implementation sequence](reports/OpenSTAAD-Output-Multi-Version-Architecture-and-Plan.md)
-- [Complete native contracts, private-source overloads and reuse inventory](reports/OpenSTAAD-Output-API-Coverage-and-Contract-Inventory.md)
-- [Machine-readable comparison and fingerprints](reports/data/OpenSTAAD-Output-2024-2026-Comparison.json)
-
 Reviewed all installed 2024/2025/2026 Output help sections and Output-owned steel-result functions filed under Design. Counts are **59 / 60 / 60 native names**, with 59 common and 60 in the union. GetMaxBeamStresses is newly documented in 2025; four common contracts need direction/layout policy verification. Normalized 2025/2026 declarations, contracts and examples match.
-
-The strictly read-only main project exposes **86 managed overloads**, implemented by 86 public adapter methods backed by **17 native targets**. Thirty-three return Task; two expose out outputs that should become named results in this repository. The four offset-aware/physical-joint overloads now reuse the implemented Property offset query; the latest workflow guide records their managed adaptations. The contract annex records every signature, dependency and required adaptation.
 
 Both installed 2025/2026 vendor IOSOutputUI interfaces contain 72 matching metadata methods. Thirteen additional unit queries appear in all three native class listings without detailed contracts, with a reference/value mismatch against interop metadata; they need contract discovery, and GetMissingMassParticipationFactors is documented but absent from those interfaces. These evidence gaps require acquired-server verification, not version guesses.
 
-## Roadmap progress and validation
+## Available functions
 
-Implemented the O1 foundation, all five O2 typed mappings, all seven O3 plate-center mappings and three independent O5 queries. Native qualification exit criteria remain pending for every phase. O4 corner/cut/point contracts retain unresolved layouts, axes or invocation discrepancies; the roadmap allows independent queries to proceed while those are resolved. The new increment adds independent common O5–O11 queries while the remaining twenty routes retain their specific gates. Native phase-exit qualification remains pending.
-
-Use the acquired wrapper.StaadVersion internally. Keep one non-partial adapter, no new public ref/out or tuple outputs, and complete XML documentation for interfaces, adapters and result models. Native ambiguity must remain explicitly unverified until resolved.
-
-Reused the main-source node/static-check vocabulary and plate component/surface order as immutable snapshots. Reused MemberEnd, strict native integral readers and the existing Forces model for editable copies. The main project remains strictly read-only. Source Task/parallel COM behavior, Property-offset conveniences and batch APIs were not copied.
-
-Offline tests cover all 40 query packets, caller-thread execution, native failures, scalar/array sentinels, Single/Double principal buffers, nonzero lower bounds, ordering, ownership, design sentinels, stale/disposed bindings and expanded matching XML contracts. These tests do not run STAAD or certify native engineering behavior. The target remains net481 and the existing distribution archives remain unchanged.
+`GetAbsoluteMemberDisplacement()`, `GetAnalysisResultAvailability()`, `GetBasePressures()`, `GetBucklingFactorCount()`, `GetBucklingModeDisplacements()`, `GetBucklingResultAvailability()`, `GetExtractedModeCount()`, `GetMatInfluenceAreas()`, `GetMaximumMemberSteelUtilizationRatio()`, `GetMaximumSteelDesignFailureRatio()`, `GetMemberAxialForceExtrema()`, `GetMemberDeflectionAtDistance()`, `GetMemberDesignSectionName()`, `GetMemberEndForces()`, `GetMemberEndForcesAtPhysicalJoint()`, `GetMemberEndForcesConsideringOffsets()`, `GetMemberForcesAtDistance()`, `GetMemberLocalCoordinateSystem()`, `GetMemberSteelDesignResults()`, `GetMemberSteelUtilizationRatio()`, `GetMemberSteelUtilizationRatios()`, `GetMinimumSteelDesignFailureRatio()`, `GetModalMassParticipationFactors()`, `GetModalNodeDisplacements()`, `GetModeFrequency()`, `GetMultipleSteelDesignResultAvailability()`, `GetNodeDisplacements()`, `GetNonlinearLoadStep()`, `GetPhysicalMemberEndForces()`, `GetPhysicalMemberForcesAtDistance()`, `GetPlateCenterForces()`, `GetPlateCenterMoments()`, `GetPlateCenterNormalPrincipalStresses()`, `GetPlateCenterPrincipalStressesAndAngles()`, `GetPlateCenterPrincipalStressesAndAnglesEx()`, `GetPlateCenterResults()`, `GetPlateCenterStressesAndMoments()`, `GetPlateCenterVonMises()`, `GetPlateCenterVonMisesStresses()`, `GetPlateCornerForces()`, `GetPlateCornerForcesGlobal()`, `GetPlateCornerForcesInGlobalCoordinates()`, `GetPlateCornerForcesInMemberLocalCoordinates()`, `GetPlatePrincipalStresses()`, `GetRelativeMemberDisplacement()`, `GetSolidNormalStresses()`, `GetSolidPrincipalStresses()`, `GetSolidShearStresses()`, `GetStaticCheckResult()`, `GetStaticCheckResults()`, `GetSteelDesignParameterBlockCount()`, `GetSteelDesignParameterBlockName()`, `GetSteelDesignResultsForBeam()`, `GetSteelDesignResultsForBeams()`, `GetSupportForces()`, `GetSupportReactions()`, `GetTimeHistoryIntegrationInfo()`, `GetTimeHistoryResponse()`, `GetTimeHistoryResponseAtTime()`, `PopulateMemberSteelUtilizationRatios()`, `TransformPlateCornerForcesToMemberLocal()`.

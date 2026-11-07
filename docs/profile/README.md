@@ -14,8 +14,6 @@ The [StruXllence website](https://struxllence.com) is live. Join the community f
 
 A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD. Build structural-engineering tools with managed geometry, loads, properties, results and automation APIs. Runtime use requires Windows, .NET Framework 4.8.1 and a separately licensed STAAD.Pro installation.
 
-[Source and quick start](https://github.com/StruXllence/StaadPro.Interop) · [NuGet package](https://www.nuget.org/packages/StaadPro.Interop) · [API guides](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/API-Reference.md) · [Roadmap](https://github.com/StruXllence/StaadPro.Interop/blob/main/ROADMAP.md)
-
 ## Build with the community
 
 Documentation fixes, offline tests, examples and reproducible reports are welcome. You can contribute to the managed code without a STAAD.Pro installation. Fork the repository to develop a change, read the [contribution guide](https://github.com/StruXllence/StaadPro.Interop/blob/main/CONTRIBUTING.md), or propose a focused improvement through [GitHub Issues](https://github.com/StruXllence/StaadPro.Interop/issues/new/choose).

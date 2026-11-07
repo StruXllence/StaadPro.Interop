@@ -40,7 +40,6 @@ var hidden = wrapper.View.HideMember(beams[0]);
 var batchHidden = wrapper.View.HideMembers(beams);
 Console.WriteLine(batchHidden.NativeFunction + ": " + batchHidden.Status);
 ```
-
 Use `StaadPro.Interop.Entities` for `Beam`. Every receipt names the exact native function, has `Status = InvokedWithoutAcknowledgement`, `NativeReturnCode = null` and `IsSuccessful = false`. That false reflects the native void contract, not a reported native failure. Normal return does not verify visible effects, repaint completion, graphical readiness or persistence.
 
 ## Lifetime, threading and errors
@@ -54,5 +53,3 @@ The installed STAAD.Pro 2025 help documents one input VARIANT for `HideMember` a
 Managed regressions check single enumeration and disposal, ID boundaries, nulls, duplicates, order, empty arrays, enumeration errors, captured IDs, binding replacement during enumeration and dispatch, original native errors, caller-thread execution and the common gate. The installed-package verifier compiles all 42 View XML examples and exercises the new calls against a managed native-signature stand-in. These checks do not certify live SAFEARRAY marshaling, empty-input graphical effects or native compatibility across STAAD versions. Live COM/UI qualification remains separate.
 
 Passed **7,240 offline tests**, including **299 View cases** and **48 additional regression cases** in this increment. A fresh installed NuGet consumer compiled and executed **1,322 XML examples**, including all **42 View examples**, and checked the new native-signature routes, input validation and owned snapshots.
-
-[Source inventory](reports/OpenSTAAD-Main-Source-Porting-Status.md) · [Contract index](contracts/ViewFoundationContractIndex.json) · [Earlier visibility and zoom operations](View-Zoom-and-Member-Visibility.md)

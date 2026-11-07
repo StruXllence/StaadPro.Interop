@@ -164,7 +164,6 @@
       "parameters": "",
       "args": "",
       "summary": "Creates the native pinned-support definition without inventing its restraint packet.",
-      "remarks": "When to use: The native pinned operation is separate from synthesizing fixed-but release flags. Help describes local Y/Z rotations while the private source convenience releases all rotations; this method deliberately returns only the created ID and does not claim torsional restraint. Assign it separately, then use GetSupportInformation at a node to observe actual states. Native -1 is failure; success requires a positive integral reference.",
       "example": "bool allowNativeMutation = false;\nif (allowNativeMutation)\n{\n    var result = support.CreatePinnedSupport();\n    System.Console.WriteLine(result.Status);\n}",
       "mutation": true,
       "signature": "SupportMutationResult CreatePinnedSupport()"

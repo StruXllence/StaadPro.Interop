@@ -1,31 +1,14 @@
 # Property materials and member sections
 
-Incorporated **25 Property functions**: the eight remaining P3 material operations, eight remaining P4 member-section queries and nine remaining P5 mutations. This checkpoint reached **150 overloads**; the [latest creation/specification increment](Property-Section-and-Specification-Creation.md) reached **175**; the [latest fireproofing/attribute/UPT increment](Property-Fireproofing-Attributes-and-UPT.md) brings the current total to **200** and reaches **91 of 204 active native routes**, with **113 remaining**. All P2/P3/P4/P5 allocations have managed routes; this is implementation coverage, not live native or engineering qualification.
-
 Passed a Release build with zero warnings/errors and **4,346 offline tests**, including **190 new cases**. The isolated PackageReference-only consumer verifies **742 selected XML examples**, including all **300 Property interface/adapter examples**. New mutation examples are guarded; separate installed-consumer checks invoke all eleven mutations against managed stand-ins. No live STAAD model is changed by verification.
 
 Added immutable explicit material definitions/strengths, orthotropic constants, member-section snapshots and named mutation acknowledgements retaining actual native evidence and requested identity. Kept Steel Fu/Fy/Rt/Ry order distinct from extended Fy/Fu/Ry/Rt/Fcu order. Added bounded owned solid-ID snapshots, strict written-output checks, operation-specific absence/error handling and native-version section layouts. A successful mutation acknowledgement does not prove design-strength persistence, save the model or provide rollback.
 
 ## Contracts and native evidence
 
-These additions follow the remaining P3, P4 and P5 allocations in the [multi-version roadmap](reports/OpenSTAAD-Property-Multi-Version-Architecture-and-Plan.md). The [contract index](contracts/PropertyRoadmapContractIndex.json) records all 25 exact managed signatures, native routes, parameters, outcomes and examples. Native declarations, parameter descriptions, tables and operation-specific return contracts come from the separately preserved 2024/2025/2026 Bentley help in the [comparison evidence](reports/data/OpenSTAAD-Property-2024-2026-Comparison.json); no public signature is inferred from a function-name match alone.
-
 The single non-partial OSPropertyAdapter delegates to an internal reader using the same captured receiver, serialization gate and before/after binding checks as existing Property queries. Every dependent count/list dispatch checks binding independently. Unknown native layouts or undocumented results fail explicitly. New public signatures use no ref/out, tuples, object payloads or mutable output arrays. Existing 125 overloads remain available, including the property-ID compatibility query GetSectionPropertyValues(int propId).
 
 ## Inputs and results
-
-| Type | Meaning |
-| --- | --- |
-| `PropertyQueryResult<T>` | Inspect IsSuccessful/Status before Data; failed queries expose no default payload. Actual Boolean and integral evidence remain separate. |
-| `PropertyMutationResult` | Operation, status, actual native return, target scope, owned requested IDs/name and applicable specification/profile/created-section identity. CreatedPropertyId is populated only for successful assigned-profile creation. |
-| `PropertyMutationStatus` | Succeeded, Created, Updated, NativeFailure or InvalidInput, interpreted independently for each operation. Material zero/one means Created/Updated, never an ID. |
-| `IsotropicMaterialDefinition` | Required exact name and explicit E, Poisson, G, weight density, thermal expansion and damping. No defaults, implicit unit conversion or derived G. |
-| `IsotropicMaterialStrengths` | Explicit Fy, Fu, Ry, Rt and Fcu for the extended creator. Strengths use native stress units and ratios are dimensionless. |
-| `SteelMaterialStrengths` | Explicit Fu, Fy, Rt and Ry in the Steel creator's different native order. |
-| `Orthotropic3DMaterialProperties` | Exact native name/number and eighteen named scalar constants, six groups of three. First/second/third retain native order without guessing physical axes/planes. |
-| `MemberSectionValues` | Requested member ID, native version/type and read-only applicable labels/values from the fixed 24-double buffer. Padding is excluded; no property ID/country/catalog identity is fabricated. |
-| `AssignedSectionProfile` | Angle=0, DoubleAngle=1, Beam=2, Column=3, Channel=4. These selectors are not property reference IDs. |
-| `IsotropicMaterialType` | NotSpecified=0, Steel=1, Concrete=2, Aluminum=3, Timber=4. Classification does not supply elastic/design constants. |
 
 Numeric material inputs must be finite; E/G positive, -1 < Poisson < 0.5, weight density/damping/strengths/ratios nonnegative. Thermal expansion may be negative. Names are exact nonblank strings without NUL characters. These checks do not certify engineering adequacy. Set input constants in the intended native creation convention; no ambient unit change occurs.
 
@@ -38,9 +21,6 @@ Assignment inputs enumerate once, stop at 100001 items and reject counts outside
 ```csharp
 PropertyQueryResult<int> GetOrthotropic3DMaterialCount()
 ```
-
-Native route: `GetOrthotropic3DMaterialCount` (P3). Reads the count of orthotropic 3D material definitions.
-
 Returns: Success with the actual nonnegative count, including zero; the integral response is retained as evidence.
 
 When to use: size or inspect the orthotropic 3D inventory. A count is not an upper bound on native material number IDs and does not establish their indexing. Inspect IsSuccessful and Status before reading Data. Known absence/failure states do not expose default data; malformed values, undocumented status codes and transport failures throw. No conversion, hydration, model write, save or catalog lookup occurs.
@@ -50,15 +30,11 @@ var result = property.GetOrthotropic3DMaterialCount();
 if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### GetOrthotropic3DMaterialProperties
 
 ```csharp
 PropertyQueryResult<Orthotropic3DMaterialProperties> GetOrthotropic3DMaterialProperties(int nativeMaterialNumber)
 ```
-
-Native route: `GetOrthotropic3DMaterialProperties` (P3). Reads all eighteen constants of one native orthotropic 3D material.
-
 Parameters:
 
 - `nativeMaterialNumber`: Nonnegative native material number ID established by the caller. It is not inferred from the 3D count or a managed zero/one-based list index.
@@ -72,15 +48,11 @@ var result = property.GetOrthotropic3DMaterialProperties(0);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.Name);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### RemoveMaterialFromBeam
 
 ```csharp
 PropertyMutationResult RemoveMaterialFromBeam(int memberId)
 ```
-
-Native route: `RemoveMaterialFromBeam` (P3). Removes a material assignment from one analytical member.
-
 Parameters:
 
 - `memberId`: Positive analytical member ID in the acquired model; not a section property ID, table number or section type.
@@ -98,15 +70,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### GetSolidMaterialName
 
 ```csharp
 PropertyQueryResult<string> GetSolidMaterialName(int solidId)
 ```
-
-Native route: `GetSolidMaterialName` (P3). Reads the exact material name assigned to an analytical solid.
-
 Parameters:
 
 - `solidId`: Positive analytical solid ID in the acquired model; not a plate/member ID or material number.
@@ -120,15 +88,11 @@ var result = property.GetSolidMaterialName(71);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### GetIsotropicMaterialAssignedSolidCount
 
 ```csharp
 PropertyQueryResult<int> GetIsotropicMaterialAssignedSolidCount(string materialName)
 ```
-
-Native route: `GetIsotropicMaterialAssignedSolidCount` (P3). Reads the count of solids assigned to a named isotropic material.
-
 Parameters:
 
 - `materialName`: Exact nonblank native material name without NUL characters. Case and whitespace are preserved; no material is created by this input.
@@ -142,21 +106,15 @@ var result = property.GetIsotropicMaterialAssignedSolidCount("STEEL");
 if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### GetIsotropicMaterialAssignedSolidIds
 
 ```csharp
 PropertyQueryResult<IReadOnlyList<int>> GetIsotropicMaterialAssignedSolidIds(string materialName, int maximumResults = 100000)
 ```
-
-Native route: `GetIsotropicMaterialAssignedSolidList` (P3). Reads a bounded owned snapshot of solid IDs assigned to an isotropic material.
-
 Parameters:
 
 - `materialName`: Exact nonblank native material name without NUL characters. Case and whitespace are preserved; no material is created by this input.
 - `maximumResults`: Allocation limit from 1 through 100000, default 100000. A larger native count returns LimitExceeded before allocating/retrieving a list.
-
-Returns: Success with a read-only owned ID list retaining native order and duplicates; zero count gives an empty list without retrieval. False retrieval gives NativeFailure; changed before/after counts give StateChanged.
 
 When to use: enumerate assignment IDs without loading solids. Uses GetIsotropicMaterialAssignedSolidCount before and after GetIsotropicMaterialAssignedSolidList; checks rank-one Int32 shape, exact length and positive written IDs. Every native dispatch rechecks captured receiver binding. Count equality cannot rule out same-count external edits; no model-wide atomic snapshot is promised. Inspect IsSuccessful and Status before reading Data. Known absence/failure states do not expose default data; malformed values, undocumented status codes and transport failures throw. No conversion, hydration, model write, save or catalog lookup occurs.
 
@@ -165,15 +123,11 @@ var result = property.GetIsotropicMaterialAssignedSolidIds("STEEL");
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.Count);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### SetTypeToIsotropicMaterial
 
 ```csharp
 PropertyMutationResult SetTypeToIsotropicMaterial(string materialName, IsotropicMaterialType materialType)
 ```
-
-Native route: `SetTypeToIsotropicMaterial` (P3). Sets the classification of an existing named isotropic material.
-
 Parameters:
 
 - `materialName`: Exact nonblank native material name without NUL characters. Case and whitespace are preserved; no material is created by this input.
@@ -192,15 +146,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### GetTypeForIsotropicMaterial
 
 ```csharp
 PropertyQueryResult<IsotropicMaterialType> GetTypeForIsotropicMaterial(string materialName)
 ```
-
-Native route: `GetTypeForIsotropicMaterial` (P3). Reads the native classification of an isotropic material.
-
 Parameters:
 
 - `materialName`: Exact nonblank native material name without NUL characters. Case and whitespace are preserved; no material is created by this input.
@@ -214,15 +164,11 @@ var result = property.GetTypeForIsotropicMaterial("STEEL");
 if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### GetSectionPropertiesForProfile
 
 ```csharp
 PropertyQueryResult<BeamSectionProperties> GetSectionPropertiesForProfile(AssignedSectionProfile profileType)
 ```
-
-Native route: `GetSectionPropertyValues` (P4). Reads the ten native section values for an ASSIGN profile selector.
-
 Parameters:
 
 - `profileType`: Defined ASSIGN profile selector: Angle=0, DoubleAngle=1, Beam=2, Column=3 or Channel=4. Not a property reference ID.
@@ -236,15 +182,11 @@ var result = property.GetSectionPropertiesForProfile(StaadPro.Interop.Enums.Prop
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.AxialArea);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### GetBeamSectionPropertyRefNo
 
 ```csharp
 PropertyQueryResult<int> GetBeamSectionPropertyRefNo(int memberId)
 ```
-
-Native route: `GetBeamSectionPropertyRefNo` (P4). Reads the section property reference assigned to a member.
-
 Parameters:
 
 - `memberId`: Positive analytical member ID in the acquired model; not a section property ID, table number or section type.
@@ -258,20 +200,14 @@ var result = property.GetBeamSectionPropertyRefNo(17);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### GetBeamSectionPropertyValuesEx
 
 ```csharp
 PropertyQueryResult<MemberSectionValues> GetBeamSectionPropertyValuesEx(int memberId)
 ```
-
-Native route: `GetBeamSectionPropertyValuesEx` (P4). Reads the version-decoded section-value packet directly from a member.
-
 Parameters:
 
 - `memberId`: Positive analytical member ID in the acquired model; not a section property ID, table number or section type.
-
-Returns: Success with an immutable member identity, native type/version, applicable field labels and matching read-only values. False/zero gives NativeFailure with no Data.
 
 When to use: inspect assigned member section parameters without synthesizing a property reference, country, catalog identity or area. Allocates the documented fixed 24-double sentinel buffer, validates its exact rank/type/length, and validates only applicable slots using the reviewed native STAAD 24/25/26 layout selected at execution from wrapper.StaadVersion. Unknown versions/types fail explicitly. Unused padding is excluded. Required nonfinite/unwritten values throw. No extra entity lookup or atomic external-edit guarantee is implied. Inspect IsSuccessful and Status before reading Data. Known absence/failure states do not expose default data; malformed values, undocumented status codes and transport failures throw. No conversion, hydration, model write, save or catalog lookup occurs.
 
@@ -280,15 +216,11 @@ var result = property.GetBeamSectionPropertyValuesEx(17);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.NativePropertyType);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### GetSectionTableNo
 
 ```csharp
 PropertyQueryResult<int> GetSectionTableNo(int memberId)
 ```
-
-Native route: `GetSectionTableNo` (P4). Reads the native section table number for a member.
-
 Parameters:
 
 - `memberId`: Positive analytical member ID in the acquired model; not a section property ID, table number or section type.
@@ -302,15 +234,11 @@ var result = property.GetSectionTableNo(17);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### GetBeamSectionPropertyTypeNo
 
 ```csharp
 PropertyQueryResult<int> GetBeamSectionPropertyTypeNo(int memberId)
 ```
-
-Native route: `GetBeamSectionPropertyTypeNo` (P4). Reads the native section property type code for a member.
-
 Parameters:
 
 - `memberId`: Positive analytical member ID in the acquired model; not a section property ID, table number or section type.
@@ -324,15 +252,11 @@ var result = property.GetBeamSectionPropertyTypeNo(17);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### GetBeamSectionName
 
 ```csharp
 PropertyQueryResult<string> GetBeamSectionName(int memberId)
 ```
-
-Native route: `GetBeamSectionName` (P4). Reads the exact section name assigned to a member.
-
 Parameters:
 
 - `memberId`: Positive analytical member ID in the acquired model; not a section property ID, table number or section type.
@@ -346,15 +270,11 @@ var result = property.GetBeamSectionName(17);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### GetBeamSectionDisplayName
 
 ```csharp
 PropertyQueryResult<string> GetBeamSectionDisplayName(int memberId)
 ```
-
-Native route: `GetBeamSectionDisplayName` (P4). Reads the exact display section name assigned to a member.
-
 Parameters:
 
 - `memberId`: Positive analytical member ID in the acquired model; not a section property ID, table number or section type.
@@ -368,15 +288,11 @@ var result = property.GetBeamSectionDisplayName(17);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### GetCountryTableNo
 
 ```csharp
 PropertyQueryResult<int> GetCountryTableNo(int memberId)
 ```
-
-Native route: `GetCountryTableNo` (P4). Reads the native country code associated with a member section.
-
 Parameters:
 
 - `memberId`: Positive analytical member ID in the acquired model; not a section property ID, table number or section type.
@@ -390,15 +306,11 @@ var result = property.GetCountryTableNo(17);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### CreateAssignProfileProperty
 
 ```csharp
 PropertyMutationResult CreateAssignProfileProperty(AssignedSectionProfile profileType)
 ```
-
-Native route: `CreateAssignProfileProperty` (P5). Creates an ASSIGN profile section definition.
-
 Parameters:
 
 - `profileType`: Defined ASSIGN profile selector: Angle=0, DoubleAngle=1, Beam=2, Column=3 or Channel=4. Not a property reference ID.
@@ -416,15 +328,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### AssignElementSpecToPlate
 
 ```csharp
 PropertyMutationResult AssignElementSpecToPlate(IEnumerable<int> plateIds, int specificationId)
 ```
-
-Native route: `AssignElementSpecToPlate` (P5). Assigns an existing element specification to explicit plate IDs.
-
 Parameters:
 
 - `plateIds`: Finite sequence of 1 through 100000 positive analytical plate IDs. Enumerated once with a hard bound; order/duplicates retained. Empty/null/invalid sequences are rejected before native writes.
@@ -443,15 +351,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### UpdatePropertiesToDesignSection
 
 ```csharp
 PropertyMutationResult UpdatePropertiesToDesignSection()
 ```
-
-Native route: `UpdatePropertiesToDesignSection` (P5). Updates model section assignments to their design sections.
-
 Returns: Succeeded for true/integral one and NativeFailure for false/integral zero, retaining the actual representation and model-wide scope.
 
 When to use: deliberately apply existing design section selections to the acquired model. This is a whole-model mutation; does not run design/analysis or produce a per-member change report. Native success is an acknowledgement only, not persistence read-back or engineering certification. Changes may remain after a native failure, stale-binding exception or transport error. No analysis, implicit save, retry, transaction or rollback occurs.
@@ -465,15 +369,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateIsotropicMaterialPropertiesEx
 
 ```csharp
 PropertyMutationResult CreateIsotropicMaterialPropertiesEx(IsotropicMaterialDefinition material, IsotropicMaterialStrengths strengths)
 ```
-
-Native route: `CreateIsotropicMaterialPropertiesEx` (P5). Creates or updates an isotropic material with explicit extended strengths.
-
 Parameters:
 
 - `material`: Non-null immutable definition with explicit name, E, Poisson, G, weight density, thermal expansion and damping in the acquired native creation convention. No defaults, derived G or conversion are applied.
@@ -493,15 +393,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateIsotropicMaterialSteel
 
 ```csharp
 PropertyMutationResult CreateIsotropicMaterialSteel(IsotropicMaterialDefinition material, SteelMaterialStrengths strengths, bool isPhysical)
 ```
-
-Native route: `CreateIsotropicMaterialSteel` (P5). Creates or updates a Steel material with explicit strengths and physical flag.
-
 Parameters:
 
 - `material`: Non-null immutable definition with explicit name, E, Poisson, G, weight density, thermal expansion and damping in the acquired native creation convention. No defaults, derived G or conversion are applied.
@@ -522,15 +418,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateIsotropicMaterialConcrete
 
 ```csharp
 PropertyMutationResult CreateIsotropicMaterialConcrete(IsotropicMaterialDefinition material, double compressiveStrength, bool isPhysical)
 ```
-
-Native route: `CreateIsotropicMaterialConcrete` (P5). Creates or updates a Concrete material with explicit Fcu and physical flag.
-
 Parameters:
 
 - `material`: Non-null immutable definition with explicit name, E, Poisson, G, weight density, thermal expansion and damping in the acquired native creation convention. No defaults, derived G or conversion are applied.
@@ -551,15 +443,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateIsotropicMaterialAluminum
 
 ```csharp
 PropertyMutationResult CreateIsotropicMaterialAluminum(IsotropicMaterialDefinition material, bool isPhysical)
 ```
-
-Native route: `CreateIsotropicMaterialAluminum` (P5). Creates or updates a Aluminum material from explicit common constants.
-
 Parameters:
 
 - `material`: Non-null immutable definition with explicit name, E, Poisson, G, weight density, thermal expansion and damping in the acquired native creation convention. No defaults, derived G or conversion are applied.
@@ -579,15 +467,11 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### CreateIsotropicMaterialTimber
 
 ```csharp
 PropertyMutationResult CreateIsotropicMaterialTimber(IsotropicMaterialDefinition material, bool isPhysical)
 ```
-
-Native route: `CreateIsotropicMaterialTimber` (P5). Creates or updates a Timber material from explicit common constants.
-
 Parameters:
 
 - `material`: Non-null immutable definition with explicit name, E, Poisson, G, weight density, thermal expansion and damping in the acquired native creation convention. No defaults, derived G or conversion are applied.
@@ -607,21 +491,15 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### AssignMaterialToSolid
 
 ```csharp
 PropertyMutationResult AssignMaterialToSolid(string materialName, IEnumerable<int> solidIds)
 ```
-
-Native route: `AssignMaterialToSolid` (P5). Assigns an existing named material to explicit analytical solids.
-
 Parameters:
 
 - `materialName`: Exact nonblank native material name without NUL characters. Case and whitespace are preserved; no material is created by this input.
 - `solidIds`: Finite sequence of 1 through 100000 positive analytical solid IDs. Enumerated once with a hard bound and copied; empty/null/invalid input is rejected. Order and duplicates are retained.
-
-Returns: Succeeded for true/integral one, NativeFailure for false/integral zero. Retains exact name, owned read-only requested solid IDs and actual return evidence.
 
 When to use: assign solid material directly without entity hydration. Uses the documented native Int32-array route even for a single solid. Does not create the material, change current material context or report per-solid completion; partial assignment can remain. Native success is an acknowledgement only, not persistence read-back or engineering certification. Changes may remain after a native failure, stale-binding exception or transport error. No analysis, implicit save, retry, transaction or rollback occurs.
 
@@ -634,11 +512,3 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
-## Qualification and next work
-
-All 25 additions have offline call, binding-lifetime, transport and matching compiled-XML coverage. Focused cases cover native numeric/Boolean distinctions, malformed/unwritten arrays, three native layout profiles, material strength argument order, immutable ownership, bounded single-pass assignment inputs, status-only acknowledgements and shared serialization. Package verification uses a fresh local feed, project and cache, compares the restored archive hash, and compiles against the installed DLL/XML without a project reference.
-
-Live COM mutation, units, physical-material behavior, strength persistence, design-section updates and engineering results still require qualification on disposable models for the acquired STAAD build. Failed native writes may be partial; there is no transaction, hidden save or automatic retry. Guarded examples do not execute writes unless deliberately enabled.
-
-At this historical checkpoint, the next unimplemented allocation started in P6: eight section creators remained, followed by 43 P7, 30 P8, eight P9 and 24 P10 routes. Existing P6/P7/P9 compatibility dispatches count as implementation coverage only. Custom IOSProperty implementations must implement the 25 added members.

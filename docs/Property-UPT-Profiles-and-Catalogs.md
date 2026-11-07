@@ -1,24 +1,10 @@
 # Property UPT profiles, observations and catalogs
 
-Incorporated **25 Property functions**: 22 reviewed P8 user-provided-table operations and the next three P9 catalog/database-folder operations. Property now exposes **225 overloads**, covering **166 of 204 active native routes**, with **38 remaining**. Five P8 transport contracts and four earlier P7 contracts remain pending. P8 has 25 of 30 routes; P9 has four of nine. See [all 25 UPT/catalog contracts](Property-UPT-Profiles-and-Catalogs.md).
-
 Passed a Release build with zero warnings/errors and **4,959 offline tests**, including **213 new cases**. The isolated PackageReference-only consumer verifies **892 selected XML examples**, including all **450 Property interface/adapter examples**. All sixteen new mutation examples are guarded; separate managed checks execute all 25 routes through both public surfaces. Live native mutation and engineering qualification remain pending.
 
 Added immutable explicit UPT profile inputs, owned table inventories and named section observations. Kept operation-specific creation, insertion and removal outcomes separate. Qualified ten UPT read-back layouts and the database-folder setter against exact acquired native profiles 24.00.02.354, 25.00.01.424 and 26.00.00.340, retaining their different folder return conventions. Unreviewed builds cannot select those policies. Table numbers, native indices and property references retain separate identities.
 
 ## Deferred contracts
-
-The roadmap permits reviewed work to continue while unqualified transport remains pending. No placeholder method or guessed native representation is counted as implemented.
-
-| Pending P8 function | Missing qualification |
-| --- | --- |
-| `GetUptGeneralProfilePointsCount` | Reviewed CLR metadata passes output count values by value, unlike the help declaration; compatible native transport is not qualified. |
-| `GetUptGeneralProfileBoundaryPoints` | Newer optional coordinate API requires a compatible acquired capability; reviewed by-value output metadata does not establish safe returned buffers. |
-| `GetUptGeneralStressLocationPoints` | Newer optional coordinate output metadata is not qualified for safe paired buffer retrieval. |
-| `FindUPTTable` | Documented member is absent from inspected 2025/2026 exported IOSPropertyUI metadata; no qualified dispatch receiver is established. |
-| `GetUserProvidedTableSectionList` | Help specifies indexed CSStringList output without a verified CLR representation; no guessed String array or index mapping is exposed. |
-
-The earlier P7 inactive-list, alpha-angle, centroid and indexed-attribute gates remain unchanged. The next pending roadmap entry is `GetDefaultStandardProfileDBFolder` in P9. Newer optional catalog getters require separate capability qualification.
 
 ## Native inputs, units and identities
 
@@ -32,15 +18,11 @@ Composite packets contain exactly 12 steel slots, 16 slots with slab, or 19 slot
 
 Scalar UPT insertions use integral 0 success, -6032 failure and -6045 duplicate; composite insertion uses Boolean/integral success flags. Removal uses its own policies: table removal is a success flag, while named-section removal is integral 1 success, 0 failure and -100 invalid input. Acknowledgements retain actual native evidence and do not establish persistence or engineering adequacy.
 
-Table lists use bounded count/list/count observations and owned read-only IDs. Section type is the documented scalar output checked against the returned and separately observed section counts. The ambiguously described named-section property count is retained as an observation and never used for allocation. Section-value capacity comes from `GetCountofSectionPropertyValuesEx`, capped at 100000. Applicable slots must be explicitly written and finite; unused padding is excluded. Counts cannot detect same-count external edits or establish model-wide atomicity.
-
 UPT value layouts and database-folder mutation require exact acquired native profiles **24.00.02.354**, **25.00.01.424** or **26.00.00.340**. The host ApplicationVersion is not used. UPT layouts 412, 422, 432, 442, 452, 462, 472, 482, 492 and 502 retain native slot labels in owned packets. The folder setter uses integral 1/0 success/failure for the reviewed 2024 profile, versus 0/-1 for the reviewed 2025/2026 profiles. Other servicing builds remain unqualified for those policies. Folder text is preserved without creating, probing or normalizing paths.
 
 Every operation uses the captured receiver and shared serialization gate on the caller thread. Disposal, receiver replacement and transport failures abort without retry. Native effects may remain after an error; no hidden save, analysis, rollback or transaction is supplied. Query failures expose no data.
 
 ## Evidence and verification
-
-The [exact managed contract index](contracts/PropertyUptContractIndex.json) records signatures, parameter guidance, return policies and deferred reasons. The [three-version comparison](reports/data/OpenSTAAD-Property-2024-2026-Comparison.json) retains native declarations, parameter descriptions, value tables, exported vendor metadata and evidence fingerprints separately. The installed 2025 vendor help corroborates the reviewed routes. Managed fixtures verify dispatch order, return-shape boundaries, all ten layouts across three profiles, ownership, stale binding and installed XML compilation. These checks do not establish live native compatibility.
 
 ## The 25 contracts
 
@@ -53,7 +35,6 @@ Adds explicit channel data to an existing native UPT table.
 ```csharp
 PropertyMutationResult AddUptPropertyChannel(int tableId, string sectionName, UptChannelDefinition definition);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `tableId` | Positive existing native UPT table number ID, distinct from member IDs, property references and zero/one-based inventory indices. |
@@ -77,7 +58,6 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### 2. AddUptPropertyAngle
 
 Adds explicit angle data to an existing native UPT table.
@@ -85,7 +65,6 @@ Adds explicit angle data to an existing native UPT table.
 ```csharp
 PropertyMutationResult AddUptPropertyAngle(int tableId, string sectionName, UptAngleDefinition definition);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `tableId` | Positive existing native UPT table number ID, distinct from member IDs, property references and zero/one-based inventory indices. |
@@ -108,7 +87,6 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### 3. AddUptPropertyDoubleAngle
 
 Adds explicit double angle data to an existing native UPT table.
@@ -116,7 +94,6 @@ Adds explicit double angle data to an existing native UPT table.
 ```csharp
 PropertyMutationResult AddUptPropertyDoubleAngle(int tableId, string sectionName, UptDoubleAngleDefinition definition);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `tableId` | Positive existing native UPT table number ID, distinct from member IDs, property references and zero/one-based inventory indices. |
@@ -139,7 +116,6 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### 4. AddUptPropertyTee
 
 Adds explicit tee data to an existing native UPT table.
@@ -147,7 +123,6 @@ Adds explicit tee data to an existing native UPT table.
 ```csharp
 PropertyMutationResult AddUptPropertyTee(int tableId, string sectionName, UptTeeDefinition definition);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `tableId` | Positive existing native UPT table number ID, distinct from member IDs, property references and zero/one-based inventory indices. |
@@ -171,7 +146,6 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### 5. AddUptPropertyPipe
 
 Adds explicit pipe data to an existing native UPT table.
@@ -179,7 +153,6 @@ Adds explicit pipe data to an existing native UPT table.
 ```csharp
 PropertyMutationResult AddUptPropertyPipe(int tableId, string sectionName, UptPipeDefinition definition);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `tableId` | Positive existing native UPT table number ID, distinct from member IDs, property references and zero/one-based inventory indices. |
@@ -202,7 +175,6 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### 6. AddUptPropertyTube
 
 Adds explicit tube data to an existing native UPT table.
@@ -210,7 +182,6 @@ Adds explicit tube data to an existing native UPT table.
 ```csharp
 PropertyMutationResult AddUptPropertyTube(int tableId, string sectionName, UptTubeDefinition definition);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `tableId` | Positive existing native UPT table number ID, distinct from member IDs, property references and zero/one-based inventory indices. |
@@ -233,7 +204,6 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### 7. AddUptPropertyGeneral
 
 Adds explicit general profile data to an existing native UPT table.
@@ -241,7 +211,6 @@ Adds explicit general profile data to an existing native UPT table.
 ```csharp
 PropertyMutationResult AddUptPropertyGeneral(int tableId, string sectionName, UptGeneralDefinition definition);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `tableId` | Positive existing native UPT table number ID, distinct from member IDs, property references and zero/one-based inventory indices. |
@@ -264,7 +233,6 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### 8. AddUptPropertyISection
 
 Adds explicit I-section data to an existing native UPT table.
@@ -272,7 +240,6 @@ Adds explicit I-section data to an existing native UPT table.
 ```csharp
 PropertyMutationResult AddUptPropertyISection(int tableId, string sectionName, UptISectionDefinition definition);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `tableId` | Positive existing native UPT table number ID, distinct from member IDs, property references and zero/one-based inventory indices. |
@@ -295,7 +262,6 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### 9. AddUptPropertyPrismatic
 
 Adds explicit prismatic profile data to an existing native UPT table.
@@ -303,7 +269,6 @@ Adds explicit prismatic profile data to an existing native UPT table.
 ```csharp
 PropertyMutationResult AddUptPropertyPrismatic(int tableId, string sectionName, UptPrismaticDefinition definition);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `tableId` | Positive existing native UPT table number ID, distinct from member IDs, property references and zero/one-based inventory indices. |
@@ -326,7 +291,6 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### 10. AddUptPropertyWideFlangeComposite
 
 Adds an explicit 12-, 16- or 19-slot composite wide-flange UPT section.
@@ -334,7 +298,6 @@ Adds an explicit 12-, 16- or 19-slot composite wide-flange UPT section.
 ```csharp
 PropertyMutationResult AddUptPropertyWideFlangeComposite(int tableId, string sectionName, UptCompositeWideFlangeDefinition definition);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `tableId` | Positive existing native UPT table number ID, distinct from member IDs, property references and zero/one-based inventory indices. |
@@ -361,7 +324,6 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### 11. CreatePropertyFromUptTable
 
 Creates an assigned section-property reference from an existing named UPT entry.
@@ -369,7 +331,6 @@ Creates an assigned section-property reference from an existing named UPT entry.
 ```csharp
 PropertyMutationResult CreatePropertyFromUptTable(int tableId, string sectionName);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `tableId` | Positive existing native UPT table number ID, distinct from member IDs, property references and zero/one-based inventory indices. |
@@ -390,7 +351,6 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### 12. CreatePropertyFromUserTable
 
 Obtains a positive section-property reference through the native section-name-first user-table route.
@@ -398,7 +358,6 @@ Obtains a positive section-property reference through the native section-name-fi
 ```csharp
 PropertyMutationResult CreatePropertyFromUserTable(string sectionName, int tableId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `sectionName` | Exact nonblank native section name without NUL characters. Case/whitespace are preserved; no database normalization or automatic rename. |
@@ -419,7 +378,6 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### 13. CreateUptTableEx
 
 Creates a UPT table using an explicit requested table number and type.
@@ -427,7 +385,6 @@ Creates a UPT table using an explicit requested table number and type.
 ```csharp
 PropertyMutationResult CreateUptTableEx(int requestedTableId, UserProvidedTableType tableType);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `requestedTableId` | Positive requested new native table number. It is retained in TableId separately from the actual returned CreatedTableId. |
@@ -448,7 +405,6 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### 14. RemoveUptTable
 
 Requests native removal of an explicitly identified UPT table.
@@ -456,7 +412,6 @@ Requests native removal of an explicitly identified UPT table.
 ```csharp
 PropertyMutationResult RemoveUptTable(int tableId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `tableId` | Positive existing native UPT table number ID, distinct from member IDs, property references and zero/one-based inventory indices. |
@@ -476,7 +431,6 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### 15. RemovePropertyFromUptTable
 
 Requests deletion of an exact named section from a UPT table.
@@ -484,7 +438,6 @@ Requests deletion of an exact named section from a UPT table.
 ```csharp
 PropertyMutationResult RemovePropertyFromUptTable(int tableId, string sectionName);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `tableId` | Positive existing native UPT table number ID, distinct from member IDs, property references and zero/one-based inventory indices. |
@@ -505,7 +458,6 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### 16. GetUserProvidedTableCount
 
 Reads the native user-provided table count.
@@ -513,7 +465,6 @@ Reads the native user-provided table count.
 ```csharp
 PropertyQueryResult<int> GetUserProvidedTableCount();
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | None | Uses the captured native Property receiver. |
@@ -529,7 +480,6 @@ var result = property.GetUserProvidedTableCount();
 if (result.IsSuccessful) System.Console.WriteLine(result.Data);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### 17. GetUserProvidedTableList
 
 Reads a bounded owned snapshot of native UPT table IDs.
@@ -537,12 +487,9 @@ Reads a bounded owned snapshot of native UPT table IDs.
 ```csharp
 PropertyQueryResult<IReadOnlyList<int>> GetUserProvidedTableList(int maximumResults = 100000);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `maximumResults` | Allocation limit 1..100000, default 100000. An oversize native count gives LimitExceeded before list allocation/retrieval. |
-
-**Returns:** Success with read-only positive IDs in native order, retaining duplicates. Zero inventory skips list retrieval and returns empty data after count recheck. False/zero gives NativeFailure; count changes give StateChanged.
 
 When to use: enumerate table numbers without assuming contiguous or zero/one-based IDs. Uses count/list/count within the shared gate, validates exact rank-one Int32 shape/length and every written positive ID. Equal counts cannot exclude same-count external edits. Uses the shared captured-binding gate; dependent dispatches check lifetime individually. Inspect IsSuccessful/Status before Data. No model mutation, geometry hydration, private catalog lookup, unit conversion or engineering certification occurs.
 
@@ -553,7 +500,6 @@ var result = property.GetUserProvidedTableList();
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.Count);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### 18. GetUserProvidedTableSectionCount
 
 Reads a native table's section count with explicit table identity.
@@ -561,7 +507,6 @@ Reads a native table's section count with explicit table identity.
 ```csharp
 PropertyQueryResult<UptTableSectionCount> GetUserProvidedTableSectionCount(int tableId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `tableId` | Positive existing native UPT table number ID, distinct from member IDs, property references and zero/one-based inventory indices. |
@@ -577,7 +522,6 @@ var result = property.GetUserProvidedTableSectionCount(7);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.Count);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### 19. GetUserProvidedTableSectionType
 
 Reads the written scalar native UPT section type with count consistency checks.
@@ -585,7 +529,6 @@ Reads the written scalar native UPT section type with count consistency checks.
 ```csharp
 PropertyQueryResult<UptTableSectionType> GetUserProvidedTableSectionType(int tableId);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `tableId` | Positive existing native UPT table number ID, distinct from member IDs, property references and zero/one-based inventory indices. |
@@ -601,7 +544,6 @@ var result = property.GetUserProvidedTableSectionType(7);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.NativeTypeCode);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### 20. GetUserProvidedTableSectionPropertyCount
 
 Retains the native named-section count with exact requested UPT identity.
@@ -609,7 +551,6 @@ Retains the native named-section count with exact requested UPT identity.
 ```csharp
 PropertyQueryResult<UptNamedSectionCount> GetUserProvidedTableSectionPropertyCount(int tableId, string sectionName);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `tableId` | Positive existing native UPT table number ID, distinct from member IDs, property references and zero/one-based inventory indices. |
@@ -626,7 +567,6 @@ var result = property.GetUserProvidedTableSectionPropertyCount(7, "EXPLICIT_WF")
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.NativeCount);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### 21. GetUserProvidedTableSectionProperties
 
 Reads an owned version-qualified native UPT section-value layout.
@@ -634,13 +574,10 @@ Reads an owned version-qualified native UPT section-value layout.
 ```csharp
 PropertyQueryResult<UptSectionProperties> GetUserProvidedTableSectionProperties(int tableId, string sectionName);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `tableId` | Positive existing native UPT table number ID, distinct from member IDs, property references and zero/one-based inventory indices. |
 | `sectionName` | Exact nonblank native section name without NUL characters. Case/whitespace are preserved; no database normalization or automatic rename. |
-
-**Returns:** Success for true/integral one with exact requested identity, native type/version/capacity and read-only applicable field names/values. False/zero gives NativeFailure; capacity/version changes give StateChanged. Unreviewed profiles/types fail explicitly.
 
 When to use: decode one of ten reviewed UPT type codes 412..502 without confusing them with common section-property type codes. Reviewed acquired native profiles are exactly 24.00.02.354, 25.00.01.424 and 26.00.00.340. Unreviewed/unknown versions fail before unsafe access. The profile uses wrapper.StaadVersion, never host ApplicationVersion. Native capacity from GetCountofSectionPropertyValuesEx must be 1..100000 and cover every applicable field. All required slots must be explicitly written finite floating-point values; unused padding is excluded, not turned into engineering zeros. Capacity is rechecked and native version frozen before returning. Native labels, inertia identities and units are retained without geometry/area substitution. Uses the shared captured-binding gate; dependent dispatches check lifetime individually. Inspect IsSuccessful/Status before Data. No model mutation, geometry hydration, private catalog lookup, unit conversion or engineering certification occurs.
 
@@ -651,7 +588,6 @@ var result = property.GetUserProvidedTableSectionProperties(7, "EXPLICIT_WF");
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.NativeTypeCode);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### 22. GetUserProvidedTableNo
 
 Reads a table number for an explicitly supplied native UPT inventory index.
@@ -659,7 +595,6 @@ Reads a table number for an explicitly supplied native UPT inventory index.
 ```csharp
 PropertyQueryResult<UptTableReference> GetUserProvidedTableNo(int nativeTableIndex);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `nativeTableIndex` | Nonnegative native table index independently established by the caller. The help example uses one but does not establish an index base; this method sends the exact supplied value without incrementing/decrementing it. It is not automatically a section property reference. |
@@ -675,7 +610,6 @@ var result = property.GetUserProvidedTableNo(1);
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.TableId);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### 23. GetShapeCode
 
 Reads a raw country-specific section shape code with exact catalog identity.
@@ -683,7 +617,6 @@ Reads a raw country-specific section shape code with exact catalog identity.
 ```csharp
 PropertyQueryResult<SectionShapeCode> GetShapeCode(Country country, string sectionName);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `country` | Reviewed repository country selector codes 1..37. Source-only Chilean=38 and undefined selectors are rejected; catalog availability is not inferred. |
@@ -700,7 +633,6 @@ var result = property.GetShapeCode(Country.Indian, "ISMB300");
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.NativeCode);
 else System.Console.WriteLine(result.Status);
 ```
-
 ### 24. SetStandardProfileDBFolder
 
 Requests a standard-profile database folder change under an exact native return-policy profile.
@@ -708,7 +640,6 @@ Requests a standard-profile database folder change under an exact native return-
 ```csharp
 PropertyMutationResult SetStandardProfileDBFolder(string folderPath);
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | `folderPath` | Exact non-null path text without NUL. Empty/whitespace/relative text is forwarded unchanged for native validation; no directory creation, existence check or path normalization. |
@@ -728,7 +659,6 @@ if (applyChanges)
     if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);
 }
 ```
-
 ### 25. GetStandardProfileDBFolder
 
 Reads the exact native standard-profile database folder path.
@@ -736,7 +666,6 @@ Reads the exact native standard-profile database folder path.
 ```csharp
 PropertyQueryResult<string> GetStandardProfileDBFolder();
 ```
-
 | Parameter | Contract |
 | --- | --- |
 | None | Uses the captured native Property receiver. |

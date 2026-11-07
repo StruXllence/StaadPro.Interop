@@ -12,17 +12,17 @@ Start with [good first issues](https://github.com/StruXllence/StaadPro.Interop/l
    - Bentley STAAD.Pro (required only for live COM integration tests, not for unit tests)
 
 2. **Clone and Build**:
+
    ```powershell
    git clone https://github.com/StruXllence/StaadPro.Interop.git
    cd StaadPro.Interop
    dotnet build StaadPro.Interop.sln -c Release
    ```
-
 3. **Run Unit Tests**:
+
    ```powershell
    dotnet test tests/StaadPro.Interop.Tests/StaadPro.Interop.Tests.csproj -c Release
    ```
-
 ## Contribution Workflow
 
 1. Fork the repository and create your feature branch: `git checkout -b feature/my-new-feature`

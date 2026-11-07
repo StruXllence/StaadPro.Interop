@@ -32,5 +32,4 @@ if (applyChanges)
     Console.WriteLine(result.NativeFunction); // AddUPTPropertyCHANNEL
 }
 ```
-
 The [rename index](contracts/PropertyApiRenames.json) records the complete mapping. The [UPT guide](Property-UPT-Profiles-and-Catalogs.md) uses the current public names. Historical package archives remain immutable.

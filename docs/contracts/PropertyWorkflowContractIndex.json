@@ -78,7 +78,6 @@
         ]
       ],
       "returns": "The same Property adapter for fluent chaining after the requested workflow completes.",
-      "remarks": "When to use: This legacy compatibility overload multiplies E and the derived G by exactly 1000 and leaves density, thermal expansion and damping unchanged, matching the main source. This is a fixed legacy scale, not a detected unit conversion. Prefer the NoConversion overload after preparing inputs in the acquired native creation convention. Calls CreateIsotropicMaterialProperties: native 0 means Created and 1 Updated, not a material ID. Records LastCreationStatus after success and leaves Id unchanged, correcting the source status-as-ID assignment. General error -1 and other undocumented responses throw without changing that packet's prior status/Id. Earlier successful definitions survive a later failure. G is computed from E/Poisson as in the source packet, not read from native storage. Does not populate assignment sets, assign entities, send Fy/Fu/Ry/Rt/Fcu, save or roll back.",
       "example": "var material = new MaterialProperty(\"STEEL\") { E = 200000.0, Poisson = 0.3, Density = 77.0, Alpha = 0.000012, Damping = 0.02 };\nproperty.CreateMaterialProperties(new System.Collections.Generic.HashSet<MaterialProperty> { material });\nSystem.Console.WriteLine(material.LastCreationStatus);",
       "native": [
         "CreateIsotropicMaterialProperties"
@@ -114,7 +113,6 @@
         ]
       ],
       "returns": "The same Property adapter for fluent chaining after the requested workflow completes.",
-      "remarks": "When to use: This legacy compatibility overload multiplies E and the derived G by exactly 1000 and leaves density, thermal expansion and damping unchanged, matching the main source. This is a fixed legacy scale, not a detected unit conversion. Prefer the NoConversion overload after preparing inputs in the acquired native creation convention. Calls CreateIsotropicMaterialProperties: native 0 means Created and 1 Updated, not a material ID. Records LastCreationStatus after success and leaves Id unchanged, correcting the source status-as-ID assignment. General error -1 and other undocumented responses throw without changing that packet's prior status/Id. Earlier successful definitions survive a later failure. G is computed from E/Poisson as in the source packet, not read from native storage. Does not populate assignment sets, assign entities, send Fy/Fu/Ry/Rt/Fcu, save or roll back.",
       "example": "var material = new MaterialProperty(\"STEEL\") { E = 200000.0, Poisson = 0.3, Density = 77.0, Alpha = 0.000012, Damping = 0.02 };\nproperty.CreateMaterialProperty(material);\nSystem.Console.WriteLine(material.LastCreationStatus);",
       "native": [
         "CreateIsotropicMaterialProperties"

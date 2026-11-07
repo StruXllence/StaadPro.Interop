@@ -1,8 +1,6 @@
 {
-  "description": "Twenty-five native Property routes completing remaining P3/P4/P5 allocations. Native mutation acknowledgement is not persistence qualification.",
   "contracts": [
     {
-      "phase": "P3",
       "signature": "PropertyQueryResult<int> GetOrthotropic3DMaterialCount()",
       "name": "GetOrthotropic3DMaterialCount",
       "nativeFunction": "GetOrthotropic3DMaterialCount",
@@ -14,7 +12,6 @@
       "mutation": false
     },
     {
-      "phase": "P3",
       "signature": "PropertyQueryResult<Orthotropic3DMaterialProperties> GetOrthotropic3DMaterialProperties(int nativeMaterialNumber)",
       "name": "GetOrthotropic3DMaterialProperties",
       "nativeFunction": "GetOrthotropic3DMaterialProperties",
@@ -31,7 +28,6 @@
       "mutation": false
     },
     {
-      "phase": "P3",
       "signature": "PropertyMutationResult RemoveMaterialFromBeam(int memberId)",
       "name": "RemoveMaterialFromBeam",
       "nativeFunction": "RemoveMaterialFromBeam",
@@ -48,7 +44,6 @@
       "mutation": true
     },
     {
-      "phase": "P3",
       "signature": "PropertyQueryResult<string> GetSolidMaterialName(int solidId)",
       "name": "GetSolidMaterialName",
       "nativeFunction": "GetSolidMaterialName",
@@ -65,7 +60,6 @@
       "mutation": false
     },
     {
-      "phase": "P3",
       "signature": "PropertyQueryResult<int> GetIsotropicMaterialAssignedSolidCount(string materialName)",
       "name": "GetIsotropicMaterialAssignedSolidCount",
       "nativeFunction": "GetIsotropicMaterialAssignedSolidCount",
@@ -82,7 +76,6 @@
       "mutation": false
     },
     {
-      "phase": "P3",
       "signature": "PropertyQueryResult<IReadOnlyList<int>> GetIsotropicMaterialAssignedSolidIds(string materialName, int maximumResults = 100000)",
       "name": "GetIsotropicMaterialAssignedSolidIds",
       "nativeFunction": "GetIsotropicMaterialAssignedSolidList",
@@ -97,13 +90,11 @@
           "Allocation limit from 1 through 100000, default 100000. A larger native count returns LimitExceeded before allocating/retrieving a list."
         ]
       ],
-      "returns": "Success with a read-only owned ID list retaining native order and duplicates; zero count gives an empty list without retrieval. False retrieval gives NativeFailure; changed before/after counts give StateChanged.",
       "remarks": "When to use: enumerate assignment IDs without loading solids. Uses GetIsotropicMaterialAssignedSolidCount before and after GetIsotropicMaterialAssignedSolidList; checks rank-one Int32 shape, exact length and positive written IDs. Every native dispatch rechecks captured receiver binding. Count equality cannot rule out same-count external edits; no model-wide atomic snapshot is promised. Inspect IsSuccessful and Status before reading Data. Known absence/failure states do not expose default data; malformed values, undocumented status codes and transport failures throw. No conversion, hydration, model write, save or catalog lookup occurs.",
       "example": "var result = property.GetIsotropicMaterialAssignedSolidIds(\"STEEL\");\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Count);\nelse System.Console.WriteLine(result.Status);",
       "mutation": false
     },
     {
-      "phase": "P3",
       "signature": "PropertyMutationResult SetTypeToIsotropicMaterial(string materialName, IsotropicMaterialType materialType)",
       "name": "SetTypeToIsotropicMaterial",
       "nativeFunction": "SetTypeToIsotropicMaterial",
@@ -124,7 +115,6 @@
       "mutation": true
     },
     {
-      "phase": "P3",
       "signature": "PropertyQueryResult<IsotropicMaterialType> GetTypeForIsotropicMaterial(string materialName)",
       "name": "GetTypeForIsotropicMaterial",
       "nativeFunction": "GetTypeForIsotropicMaterial",
@@ -141,7 +131,6 @@
       "mutation": false
     },
     {
-      "phase": "P4",
       "signature": "PropertyQueryResult<BeamSectionProperties> GetSectionPropertiesForProfile(AssignedSectionProfile profileType)",
       "name": "GetSectionPropertiesForProfile",
       "nativeFunction": "GetSectionPropertyValues",
@@ -158,7 +147,6 @@
       "mutation": false
     },
     {
-      "phase": "P4",
       "signature": "PropertyQueryResult<int> GetBeamSectionPropertyRefNo(int memberId)",
       "name": "GetBeamSectionPropertyRefNo",
       "nativeFunction": "GetBeamSectionPropertyRefNo",
@@ -175,7 +163,6 @@
       "mutation": false
     },
     {
-      "phase": "P4",
       "signature": "PropertyQueryResult<MemberSectionValues> GetBeamSectionPropertyValuesEx(int memberId)",
       "name": "GetBeamSectionPropertyValuesEx",
       "nativeFunction": "GetBeamSectionPropertyValuesEx",
@@ -186,13 +173,11 @@
           "Positive analytical member ID in the acquired model; not a section property ID, table number or section type."
         ]
       ],
-      "returns": "Success with an immutable member identity, native type/version, applicable field labels and matching read-only values. False/zero gives NativeFailure with no Data.",
       "remarks": "When to use: inspect assigned member section parameters without synthesizing a property reference, country, catalog identity or area. Allocates the documented fixed 24-double sentinel buffer, validates its exact rank/type/length, and validates only applicable slots using the reviewed native STAAD 24/25/26 layout selected at execution from wrapper.StaadVersion. Unknown versions/types fail explicitly. Unused padding is excluded. Required nonfinite/unwritten values throw. No extra entity lookup or atomic external-edit guarantee is implied. Inspect IsSuccessful and Status before reading Data. Known absence/failure states do not expose default data; malformed values, undocumented status codes and transport failures throw. No conversion, hydration, model write, save or catalog lookup occurs.",
       "example": "var result = property.GetBeamSectionPropertyValuesEx(17);\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.NativePropertyType);\nelse System.Console.WriteLine(result.Status);",
       "mutation": false
     },
     {
-      "phase": "P4",
       "signature": "PropertyQueryResult<int> GetSectionTableNo(int memberId)",
       "name": "GetSectionTableNo",
       "nativeFunction": "GetSectionTableNo",
@@ -209,7 +194,6 @@
       "mutation": false
     },
     {
-      "phase": "P4",
       "signature": "PropertyQueryResult<int> GetBeamSectionPropertyTypeNo(int memberId)",
       "name": "GetBeamSectionPropertyTypeNo",
       "nativeFunction": "GetBeamSectionPropertyTypeNo",
@@ -226,7 +210,6 @@
       "mutation": false
     },
     {
-      "phase": "P4",
       "signature": "PropertyQueryResult<string> GetBeamSectionName(int memberId)",
       "name": "GetBeamSectionName",
       "nativeFunction": "GetBeamSectionName",
@@ -243,7 +226,6 @@
       "mutation": false
     },
     {
-      "phase": "P4",
       "signature": "PropertyQueryResult<string> GetBeamSectionDisplayName(int memberId)",
       "name": "GetBeamSectionDisplayName",
       "nativeFunction": "GetBeamSectionDisplayName",
@@ -260,7 +242,6 @@
       "mutation": false
     },
     {
-      "phase": "P4",
       "signature": "PropertyQueryResult<int> GetCountryTableNo(int memberId)",
       "name": "GetCountryTableNo",
       "nativeFunction": "GetCountryTableNo",
@@ -277,7 +258,6 @@
       "mutation": false
     },
     {
-      "phase": "P5",
       "signature": "PropertyMutationResult CreateAssignProfileProperty(AssignedSectionProfile profileType)",
       "name": "CreateAssignProfileProperty",
       "nativeFunction": "CreateAssignProfileProperty",
@@ -294,7 +274,6 @@
       "mutation": true
     },
     {
-      "phase": "P5",
       "signature": "PropertyMutationResult AssignElementSpecToPlate(IEnumerable<int> plateIds, int specificationId)",
       "name": "AssignElementSpecToPlate",
       "nativeFunction": "AssignElementSpecToPlate",
@@ -315,7 +294,6 @@
       "mutation": true
     },
     {
-      "phase": "P5",
       "signature": "PropertyMutationResult UpdatePropertiesToDesignSection()",
       "name": "UpdatePropertiesToDesignSection",
       "nativeFunction": "UpdatePropertiesToDesignSection",
@@ -327,7 +305,6 @@
       "mutation": true
     },
     {
-      "phase": "P5",
       "signature": "PropertyMutationResult CreateIsotropicMaterialPropertiesEx(IsotropicMaterialDefinition material, IsotropicMaterialStrengths strengths)",
       "name": "CreateIsotropicMaterialPropertiesEx",
       "nativeFunction": "CreateIsotropicMaterialPropertiesEx",
@@ -348,7 +325,6 @@
       "mutation": true
     },
     {
-      "phase": "P5",
       "signature": "PropertyMutationResult CreateIsotropicMaterialSteel(IsotropicMaterialDefinition material, SteelMaterialStrengths strengths, bool isPhysical)",
       "name": "CreateIsotropicMaterialSteel",
       "nativeFunction": "CreateIsotropicMaterialSteel",
@@ -373,7 +349,6 @@
       "mutation": true
     },
     {
-      "phase": "P5",
       "signature": "PropertyMutationResult CreateIsotropicMaterialConcrete(IsotropicMaterialDefinition material, double compressiveStrength, bool isPhysical)",
       "name": "CreateIsotropicMaterialConcrete",
       "nativeFunction": "CreateIsotropicMaterialConcrete",
@@ -398,7 +373,6 @@
       "mutation": true
     },
     {
-      "phase": "P5",
       "signature": "PropertyMutationResult CreateIsotropicMaterialAluminum(IsotropicMaterialDefinition material, bool isPhysical)",
       "name": "CreateIsotropicMaterialAluminum",
       "nativeFunction": "CreateIsotropicMaterialAluminum",
@@ -419,7 +393,6 @@
       "mutation": true
     },
     {
-      "phase": "P5",
       "signature": "PropertyMutationResult CreateIsotropicMaterialTimber(IsotropicMaterialDefinition material, bool isPhysical)",
       "name": "CreateIsotropicMaterialTimber",
       "nativeFunction": "CreateIsotropicMaterialTimber",
@@ -440,7 +413,6 @@
       "mutation": true
     },
     {
-      "phase": "P5",
       "signature": "PropertyMutationResult AssignMaterialToSolid(string materialName, IEnumerable<int> solidIds)",
       "name": "AssignMaterialToSolid",
       "nativeFunction": "AssignMaterialToSolid",
@@ -455,7 +427,6 @@
           "Finite sequence of 1 through 100000 positive analytical solid IDs. Enumerated once with a hard bound and copied; empty/null/invalid input is rejected. Order and duplicates are retained."
         ]
       ],
-      "returns": "Succeeded for true/integral one, NativeFailure for false/integral zero. Retains exact name, owned read-only requested solid IDs and actual return evidence.",
       "remarks": "When to use: assign solid material directly without entity hydration. Uses the documented native Int32-array route even for a single solid. Does not create the material, change current material context or report per-solid completion; partial assignment can remain. Native success is an acknowledgement only, not persistence read-back or engineering certification. Changes may remain after a native failure, stale-binding exception or transport error. No analysis, implicit save, retry, transaction or rollback occurs.",
       "example": "bool applyChanges = false; // Set true only for the intended model and reviewed inputs.\nif (applyChanges)\n{\n    var result = property.AssignMaterialToSolid(\"STEEL\", new[] { 71, 89 });\n    System.Console.WriteLine(result.Status);\n    if (result.IsSuccessful) System.Console.WriteLine(result.NativeFunction);\n}",
       "mutation": true

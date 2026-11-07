@@ -6,7 +6,6 @@
     {
       "name": "RemovePropertyFromPlate",
       "nativeFunction": "RemovePropertyFromPlate",
-      "phase": "P10",
       "signature": "PropertyMutationResult RemovePropertyFromPlate(int plateId)",
       "parameters": [
         [
@@ -34,7 +33,6 @@
     {
       "name": "RemoveMaterialFromPlate",
       "nativeFunction": "RemoveMaterialFromPlate",
-      "phase": "P10",
       "signature": "PropertyMutationResult RemoveMaterialFromPlate(IEnumerable<int> plateIds)",
       "parameters": [
         [
@@ -62,7 +60,6 @@
     {
       "name": "RemoveMaterialFromSolid",
       "nativeFunction": "RemoveMaterialFromSolid",
-      "phase": "P10",
       "signature": "PropertyMutationResult RemoveMaterialFromSolid(IEnumerable<int> solidIds)",
       "parameters": [
         [
@@ -90,7 +87,6 @@
     {
       "name": "DeleteMemberReleaseSpec",
       "nativeFunction": "DeleteMemberReleaseSpec",
-      "phase": "P10",
       "signature": "PropertyMutationResult DeleteMemberReleaseSpec(int memberId, MemberEnd memberEnd)",
       "parameters": [
         [
@@ -128,7 +124,6 @@
     {
       "name": "DeleteAllControlDependentRelations",
       "nativeFunction": "DeleteAllControlDependentRelations",
-      "phase": "P10",
       "signature": "PropertyMutationResult DeleteAllControlDependentRelations()",
       "parameters": [],
       "summary": "Delete all control/dependent joint specifications from model.",
@@ -143,7 +138,6 @@
     {
       "name": "RemoveAllElementOffsetSpec",
       "nativeFunction": "RemoveAllElementOffsetSpec",
-      "phase": "P10",
       "signature": "PropertyMutationResult RemoveAllElementOffsetSpec()",
       "parameters": [],
       "summary": "Remove all element node offset specification from the model.",
@@ -158,7 +152,6 @@
     {
       "name": "RemovePropertyFromBeam",
       "nativeFunction": "RemovePropertyFromBeam",
-      "phase": "P10",
       "signature": "PropertyMutationResult RemovePropertyFromBeam(int memberId)",
       "parameters": [
         [
@@ -186,7 +179,6 @@
     {
       "name": "DeleteProperty",
       "nativeFunction": "DeleteProperty",
-      "phase": "P10",
       "signature": "PropertyMutationResult DeleteProperty(int propertyId)",
       "parameters": [
         [
@@ -214,7 +206,6 @@
     {
       "name": "DeleteMemberSpec",
       "nativeFunction": "DeleteMemberSpec",
-      "phase": "P10",
       "signature": "PropertyMutationResult DeleteMemberSpec(int specificationId)",
       "parameters": [
         [
@@ -242,7 +233,6 @@
     {
       "name": "RemoveMemberReleaseSpecFromBeam",
       "nativeFunction": "RemoveMemberReleaseSpecFromBeam",
-      "phase": "P10",
       "signature": "PropertyMutationResult RemoveMemberReleaseSpecFromBeam(int memberId, MemberEnd memberEnd)",
       "parameters": [
         [
@@ -280,7 +270,6 @@
     {
       "name": "RemoveMemberOffsetSpecFromBeam",
       "nativeFunction": "RemoveMemberOffsetSpecFromBeam",
-      "phase": "P10",
       "signature": "PropertyMutationResult RemoveMemberOffsetSpecFromBeam(int memberId, MemberEnd memberEnd)",
       "parameters": [
         [
@@ -318,7 +307,6 @@
     {
       "name": "RemoveMemberTrussSpecFromBeam",
       "nativeFunction": "RemoveMemberTrussSpecFromBeam",
-      "phase": "P10",
       "signature": "PropertyMutationResult RemoveMemberTrussSpecFromBeam(int memberId)",
       "parameters": [
         [
@@ -346,7 +334,6 @@
     {
       "name": "RemoveMemberInactiveSpecFromBeam",
       "nativeFunction": "RemoveMemberInactiveSpecFromBeam",
-      "phase": "P10",
       "signature": "PropertyMutationResult RemoveMemberInactiveSpecFromBeam(int memberId)",
       "parameters": [
         [
@@ -374,7 +361,6 @@
     {
       "name": "RemoveMemberTensionSpecFromBeam",
       "nativeFunction": "RemoveMemberTensionSpecFromBeam",
-      "phase": "P10",
       "signature": "PropertyMutationResult RemoveMemberTensionSpecFromBeam(int memberId)",
       "parameters": [
         [
@@ -402,7 +388,6 @@
     {
       "name": "RemoveMemberCompressionSpecFromBeam",
       "nativeFunction": "RemoveMemberCompressionSpecFromBeam",
-      "phase": "P10",
       "signature": "PropertyMutationResult RemoveMemberCompressionSpecFromBeam(int memberId)",
       "parameters": [
         [
@@ -430,7 +415,6 @@
     {
       "name": "RemoveMemberIgnoreStiffSpecFromBeam",
       "nativeFunction": "RemoveMemberIgnoreStiffSpecFromBeam",
-      "phase": "P10",
       "signature": "PropertyMutationResult RemoveMemberIgnoreStiffSpecFromBeam(int memberId)",
       "parameters": [
         [
@@ -458,7 +442,6 @@
     {
       "name": "RemoveMemberCableSpecFromBeam",
       "nativeFunction": "RemoveMemberCableSpecFromBeam",
-      "phase": "P10",
       "signature": "PropertyMutationResult RemoveMemberCableSpecFromBeam(int memberId, CableDefinitionKind definitionKind)",
       "parameters": [
         [
@@ -496,7 +479,6 @@
     {
       "name": "RemoveElementPlaneStressSpecFromPlate",
       "nativeFunction": "RemoveElementPlaneStressSpecFromPlate",
-      "phase": "P10",
       "signature": "PropertyMutationResult RemoveElementPlaneStressSpecFromPlate(int plateId)",
       "parameters": [
         [
@@ -524,7 +506,6 @@
     {
       "name": "RemoveElementIgnoreInplaneRotnSpecFromPlate",
       "nativeFunction": "RemoveElementIgnoreInplaneRotnSpecFromPlate",
-      "phase": "P10",
       "signature": "PropertyMutationResult RemoveElementIgnoreInplaneRotnSpecFromPlate(int plateId)",
       "parameters": [
         [
@@ -552,7 +533,6 @@
     {
       "name": "RemoveElementNodeReleaseSpecFromPlate",
       "nativeFunction": "RemoveElementNodeReleaseSpecFromPlate",
-      "phase": "P10",
       "signature": "PropertyMutationResult RemoveElementNodeReleaseSpecFromPlate(int plateId, int nodeId)",
       "parameters": [
         [
@@ -590,7 +570,6 @@
     {
       "name": "GetDefaultStandardProfileDBFolder",
       "nativeFunction": "GetDefaultStandardProfileDBFolder",
-      "phase": "P9",
       "signature": "PropertyQueryResult<string> GetDefaultStandardProfileDBFolder()",
       "parameters": [],
       "summary": "Gets standard profile default database folder path.",
@@ -602,7 +581,6 @@
     {
       "name": "IsStandardDatabaseSection",
       "nativeFunction": "IsStandardDatabaseSection",
-      "phase": "P9",
       "signature": "PropertyQueryResult<StandardSectionSource> IsStandardDatabaseSection(int propertyId)",
       "parameters": [
         [
@@ -619,7 +597,6 @@
     {
       "name": "GetStandardSectionDatabaseName",
       "nativeFunction": "GetStandardSectionDatabaseName",
-      "phase": "P9",
       "signature": "PropertyQueryResult<StandardSectionText> GetStandardSectionDatabaseName(int propertyId)",
       "parameters": [
         [
@@ -636,7 +613,6 @@
     {
       "name": "GetStandardSectionTableName",
       "nativeFunction": "GetStandardSectionTableName",
-      "phase": "P9",
       "signature": "PropertyQueryResult<StandardSectionText> GetStandardSectionTableName(int propertyId)",
       "parameters": [
         [
@@ -653,7 +629,6 @@
     {
       "name": "GetStandardSectionName",
       "nativeFunction": "GetStandardSectionName",
-      "phase": "P9",
       "signature": "PropertyQueryResult<StandardSectionText> GetStandardSectionName(int propertyId)",
       "parameters": [
         [

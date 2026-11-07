@@ -40,7 +40,6 @@ else
 AnalysisStatusResult currentModel = root.GetAnalysisStatus();
 Console.WriteLine(currentModel.ModelFilePath);
 ```
-
 `IsSuccessful` describes **status retrieval**, not the engineering outcome. A running, terminated, completed-with-errors or not-performed analysis can all be observed successfully. `IsCompleted` includes completion with errors. Inspect `Status` before using analysis results; neither query proves that stored results match current model edits.
 
 ## Status mapping
@@ -82,21 +81,12 @@ These validation rules are managed policy derived from the documented output con
 
 ## Path, lifetime and threading behavior
 
-- The explicit-path overload rejects null and whitespace-only paths before COM access and normalizes relative paths with the Windows .NET Framework path API. It performs no file-existence, extension or result-file check. A missing model can be reported through the native invalid-path response.
-- The parameterless overload makes one native filename query and one status query. Empty or whitespace-only names produce `InvalidOperationException`; malformed/unwritten filename outputs also throw. A model switch between those calls is possible: the result identifies the captured path, not a guarantee of the still-open model.
-- All queries use the captured root on the calling thread. They do not select a global active object, acquire another process, launch STAAD or refresh the wrapper's metadata cache.
-- Use the session's appropriate COM thread and coordinate shared access. No background tasks, waits, model saves, silent-mode changes, filesystem writes or analysis requests occur. Native calls can block beyond any caller-side deadline.
-- A result is a read-only managed snapshot. Later native calls do not alter an earlier result. Existing wrapper disposal ownership rules still apply; captured native adapters are not automatically revoked.
-
 ## Evidence and verification
-
-The installed [2024](../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___root.html#ga731f741a97cb618d7409544055b8a2bb), [2025](../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___root.html#ga731f741a97cb618d7409544055b8a2bb) and [2026](../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___root.html#ga731f741a97cb618d7409544055b8a2bb) Root references describe the same analysis query contract. Read-only reflection over the installed 2025 and 2026 Bentley interop assemblies confirms:
 
 ```text
 System.Object IsAnalyzing()
 Int32 GetAnalysisStatus(System.String, Int32 ByRef, Int32 ByRef, Double ByRef)
 ```
-
 No Bentley assembly reference or binary was added to this project. Inspection does not establish native runtime behavior or 2024 ABI compatibility. A 2024 interop assembly was not found at the corresponding installation path.
 
 <details>

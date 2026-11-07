@@ -27,28 +27,19 @@ Console.WriteLine(physicalModel);
 string nativeMessage = root.GetErrorMessage();
 Console.WriteLine(nativeMessage);
 ```
-
 Do not interpret an empty folder as proof that a model is blank, an empty message as proof that all prior operations succeeded, or a false physical-model predicate as a readiness guarantee. Native behavior in blank/unsupported sessions remains subject to native validation.
 
 ## Shared implementation and reuse
 
-- `Services/Root/Common/RootCommonQueryService` owns the three same-root native calls. It performs no global instance discovery or wrapper construction.
-- `Services/Interop/NativeValues` contains shared strict Int32, Boolean-flag and string validation. The former wrapper integer parser and duplicated analysis status conversion now use this single implementation. Existing `AnalyzeEx` status values and wrapper version/unit validation retain their behavior.
-- The main read-only interop project contains no equivalent implementation of these three queries. Its permissive integer conversion inside OpenStaadWrapper is not suitable for native status validation because it permits unrelated numeric conversions. Its existing wrapper-derived unit parsing remains reused separately.
-- No enum consolidation or unrelated model-service/domain port is included in this increment.
-
 All calls remain live observations on the supplied root. They do not refresh cached wrapper properties, open/save/close a model, start analysis, write files or retry failed native dispatch. Use the correct COM thread and coordinate shared access; native calls can block. Error text can be replaced by other operations, and repeated reads need not return the same message. Original COM and binder exceptions propagate.
 
 ## Evidence and validation
-
-The installed Root references for [2024](../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___root.html), [2025](../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___root.html) and [2026](../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___root.html) describe unchanged contracts for these calls. Read-only reflection over the installed 2026 Bentley interop assembly confirms:
 
 ```text
 Void GetSTAADFileFolder(System.Object ByRef)
 System.Object IsPhysicalModel()
 System.Object GetErrorMessage()
 ```
-
 No Bentley binary reference was added. No live STAAD session or model was changed. Managed policy accepts an explicitly written empty folder/message; it does not claim those values have been observed in every native blank-model state. Error-state consumption and actual 2024–2026 server behavior still require controlled native validation.
 
 The Release suite passes **1,547 offline tests**, including 43 added cases for this increment. New cases cover exact text, empty/Unicode/UNC paths, initialized string reference buffers, unwritten/malformed output, strict flags, wrapper-owned and standalone access, live reads, instance isolation, exception identity, no extra diagnostic calls and matching compiled XML. Existing wrapper/analysis tests cover the shared integer-conversion refactor. The Release build passes with zero warnings or errors.

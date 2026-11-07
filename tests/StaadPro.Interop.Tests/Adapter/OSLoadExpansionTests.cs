@@ -116,7 +116,7 @@ namespace StaadPro.Interop.Tests.Adapter
             public void EndLoadMerging() => R(nameof(EndLoadMerging), null);
         }
         private static JObject Index => JObject.Parse(File.ReadAllText(Path.Combine(TestContext.CurrentContext.TestDirectory, "ContractReview", "LoadExpansionContractIndex.json")));
-        public static IEnumerable<string> Names => Index["pendingSignatures"].Select(x => (string)x["name"]);
+        public static IEnumerable<string> Names => Index["implementedSignatures"].Select(x => (string)x["name"]);
         private static MethodInfo Method(string name) => typeof(IOSLoad).GetMethod(name);
         private static OpenStaadWrapper Wrap(Native native) => new OpenStaadWrapper(new Root { Load = native });
         private static FloorRegion Region() => new FloorRegion(new GlobalLoadRegion(1, 2, 3, 4, 5, 6), GlobalAxis.Y);
@@ -162,7 +162,7 @@ namespace StaadPro.Interop.Tests.Adapter
                 var args = Args(name); if (name == "DeleteLoadList") args[0] = 1;
                 var result = Invoke(wrapper.Load, name, args);
                 Assert.That(Prop(result, "IsSuccessful"), Is.EqualTo(name != "MergeBeamLoads"));
-                var entry = Index["pendingSignatures"].Single(e => (string)e["name"] == name);
+                var entry = Index["implementedSignatures"].Single(e => (string)e["name"] == name);
                 foreach (string target in entry["nativeNames"].Values<string>())
                     if (!(name == "DeleteLoadCases" && target == "DeleteReferenceLoadCases") && target != "AddMemberFloorLoad") Assert.That(native.Calls, Does.Contain(target), name);
                 Assert.That(native.Threads.All(t => t == Thread.CurrentThread.ManagedThreadId), Is.True);
@@ -244,7 +244,7 @@ namespace StaadPro.Interop.Tests.Adapter
             var native = For(name);
             using (var wrapper = Wrap(native))
             {
-                string op = name == "AddFloorLoad" ? "AddMemberFloorLoadEx" : (string)Index["pendingSignatures"].Single(e=>(string)e["name"]==name)["nativeNames"][0];
+                string op = name == "AddFloorLoad" ? "AddMemberFloorLoadEx" : (string)Index["implementedSignatures"].Single(e=>(string)e["name"]==name)["nativeNames"][0];
                 bool boolean = new[] { "SplitLoadsOnBeam", "AddSelfWeight", "AddHydrostaticPressure", "AddTrapezoidalPressure" }.Contains(name);
                 bool one = new[] { "SplitLoadsOnBeam", "AddCasesToEnvelope", "RemoveCasesFromEnvelope", "DeleteEnvelope", "DeleteLoadCases", "AddSelfWeight", "AddHydrostaticPressure", "AddTrapezoidalPressure", "AddFloorLoad" }.Contains(name);
                 native.Responses[op] = new Queue<object>(new[] { boolean ? (object)false : one ? 0 : -1 });
@@ -287,7 +287,7 @@ namespace StaadPro.Interop.Tests.Adapter
         public void ObservedCaseSwitchDiscardsReadbackOrReportsPossibleMutation(string name)
         {
             var native = For(name);
-            string op = name == "AddFloorLoad" ? "AddMemberFloorLoadEx" : (string)Index["pendingSignatures"].Single(e=>(string)e["name"]==name)["nativeNames"][0];
+            string op = name == "AddFloorLoad" ? "AddMemberFloorLoadEx" : (string)Index["implementedSignatures"].Single(e=>(string)e["name"]==name)["nativeNames"][0];
             native.OnCall = call => { if (call == op) native.Active = 99; };
             using (var wrapper = Wrap(native))
             {
@@ -419,7 +419,7 @@ namespace StaadPro.Interop.Tests.Adapter
             {
                 var args=Args(name);args[args.Length-1]=1;
                 var result=Invoke(wrapper.Load,name,args);Assert.That(Prop(result,"Status"),Is.EqualTo(LoadQueryStatus.LimitExceeded));
-                string op=(string)Index["pendingSignatures"].Single(e=>(string)e["name"]==name)["nativeNames"][0];Assert.That(native.Calls,Does.Not.Contain(op));
+                string op=(string)Index["implementedSignatures"].Single(e=>(string)e["name"]==name)["nativeNames"][0];Assert.That(native.Calls,Does.Not.Contain(op));
                 Assert.That(()=>Prop(result,"Data"),Throws.TypeOf<TargetInvocationException>().With.InnerException.TypeOf<InvalidOperationException>());
             }
         }
@@ -434,7 +434,7 @@ namespace StaadPro.Interop.Tests.Adapter
         public void EmptyCollectionsAreOwnedAndDoNotFetch(string name)
         {
             var native=For(name);native.Count=0;using(var wrapper=Wrap(native))
-            {var result=Invoke(wrapper.Load,name);Assert.That(Prop(result,"IsSuccessful"),Is.True);Assert.That((IEnumerable)Prop(result,"Data"),Is.Empty);string op=(string)Index["pendingSignatures"].Single(e=>(string)e["name"]==name)["nativeNames"][0];Assert.That(native.Calls,Does.Not.Contain(op));}
+            {var result=Invoke(wrapper.Load,name);Assert.That(Prop(result,"IsSuccessful"),Is.True);Assert.That((IEnumerable)Prop(result,"Data"),Is.Empty);string op=(string)Index["implementedSignatures"].Single(e=>(string)e["name"]==name)["nativeNames"][0];Assert.That(native.Calls,Does.Not.Contain(op));}
         }
         [Test]
         public void ReferenceScalarIsNotAssumedToBeACountAndNativeIndexIsPassedUnchanged()
@@ -533,7 +533,7 @@ namespace StaadPro.Interop.Tests.Adapter
         [TestCase("GetReferenceContributions",-1)] [TestCase("GetAssignedEntityIds",0)]
         public void FailedQueriesNeverExposeBufferData(string name,object failure)
         {
-            var native=For(name);string op=(string)Index["pendingSignatures"].Single(e=>(string)e["name"]==name)["nativeNames"][0];native.Responses[op]=new Queue<object>(new[]{failure});
+            var native=For(name);string op=(string)Index["implementedSignatures"].Single(e=>(string)e["name"]==name)["nativeNames"][0];native.Responses[op]=new Queue<object>(new[]{failure});
             using(var wrapper=Wrap(native))
             {var result=Invoke(wrapper.Load,name);Assert.That(Prop(result,"Status"),Is.EqualTo(LoadQueryStatus.NativeFailure));Assert.That(()=>Prop(result,"Data"),Throws.TypeOf<TargetInvocationException>().With.InnerException.TypeOf<InvalidOperationException>());}
         }

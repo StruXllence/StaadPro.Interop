@@ -1,7 +1,6 @@
 {
   "schemaVersion": 1,
   "date": "2026-10-27",
-  "branch": "main",
   "managedMethods": 10,
   "nativeNames": [
     "CreateDesignBrief",
@@ -10,7 +9,6 @@
     "GetMemberDesignParameters",
     "GetDesignBriefCode"
   ],
-  "extendedGroupPending": true,
   "functions": [
     {
       "name": "CreateDesignBrief",
@@ -115,87 +113,5 @@
     "nativeRuntimeValidation": false,
     "packageBuilt": false,
     "indexedPropertyReaderVerified": true
-  },
-  "mainSourceEvidence": [
-    {
-      "file": "Adapters/Interfaces/IOSDesign.cs",
-      "sha256": "ed4785496c2f2c446bf02ef87feab914fa007be9fccfc63a8c54e852320c7dca"
-    },
-    {
-      "file": "Adapters/Models/OSDesignAdapter.cs",
-      "sha256": "9ea8c12b101252ca0d663833e0f1af25e689813448c5463de8be9249bc85fd82"
-    },
-    {
-      "file": "Enums/StaadDesignCode.cs",
-      "sha256": "8d8887580de384b3962dc00a2359db4f2353ece80243d5a5e5f43c6eb39e5496"
-    },
-    {
-      "file": "Models/Design/MemberDesignParameterInfo.cs",
-      "sha256": "824dd6120de5151eac14900508a3344a5dd747e74bb59a5a99b81426a945b46e"
-    },
-    {
-      "file": "Models/Design/MemberDesignParametersResult.cs",
-      "sha256": "9eff527833eb692aac13fb552537c4ffa8dcc34d778658f7296fcbe44effdd52"
-    },
-    {
-      "file": "Design/DesignCommand.cs",
-      "sha256": "69eb56ce4126a73c5aac4618bfd1d1891f951573032e233153e8182ea065ba1b"
-    },
-    {
-      "file": "Design/DesignParameter`.cs",
-      "sha256": "bf318f4603eacdb13cd90948e2dd1dc0a85e603bb07311f7cd4863ff42129bda"
-    }
-  ],
-  "nativeManualEvidence": [
-    {
-      "year": 2024,
-      "filename": "group___design_steel.html",
-      "title": "Design: Steel Design Results",
-      "version": "24.00.02.354",
-      "bytes": 122127,
-      "sha256": "cbb6c514c7619d96bdfb37681af8e848d73607a345da670ef183e373d98297d0",
-      "summaries": 6,
-      "details": 6,
-      "children": [
-        "group___chinese_steel.html"
-      ]
-    },
-    {
-      "year": 2025,
-      "filename": "group___design_steel.html",
-      "title": "Design: Steel Design Results",
-      "version": "25.00.01.424",
-      "bytes": 129007,
-      "sha256": "5e32a0960a7c1b90781e1533a3d9744d166f1c53bd68c4abe4b896fe58d28bfe",
-      "summaries": 6,
-      "details": 6,
-      "children": [
-        "group___chinese_steel.html"
-      ]
-    },
-    {
-      "year": 2026,
-      "filename": "group___design_steel.html",
-      "title": "Design: Steel Design Results",
-      "version": "26.00.00.340",
-      "bytes": 129007,
-      "sha256": "f179af4eb90bd78f772aaa3fd75318f57138522b1636db334056972b752045a4",
-      "summaries": 6,
-      "details": 6,
-      "children": [
-        "group___chinese_steel.html"
-      ]
-    }
-  ],
-  "packageRelease": {
-    "version": "1.0.0-preview.20261027.1",
-    "date": "2026-10-27",
-    "artifact": "artifacts/release/StaadPro.Interop.1.0.0-preview.20261027.1.nupkg",
-    "offlineTestsPassed": 6448,
-    "installedXmlExamples": 1222,
-    "icon": "images/symbol-only-logo.png",
-    "readmeBanner": "logo-with-text.png",
-    "publicAvailabilityConfirmed": false,
-    "nativeRuntimeValidation": false
   }
 }

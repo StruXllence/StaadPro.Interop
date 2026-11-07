@@ -2,8 +2,6 @@
 
 For current coverage and the subsequent `ShowMembers`, `HideMember` and `HideMembers` ports, see [member visibility contracts](View-Member-Visibility.md). The checkpoint below records the preceding batch.
 
-**Implemented in source: 5 November 2026.** Ported five methods from the read-only main OSViewAdapter into IOSView and the existing, non-partial OSViewAdapter. The common internal service and ViewOperationResult are reused; no new public models, enums or tuples were introduced.
-
 View now implements **18 of 70 source overloads** and **18 of 67 reviewed native names**. There are **52 View source overloads**, **49 native names**, and **145 active source overloads across the reviewed domains** still pending. The new 1.0.0-preview.20261105 prepared preview includes these additions; earlier archives retain their original scope.
 
 ## Choose the operation
@@ -27,7 +25,6 @@ ViewOperationResult ShowAllMembers();
 ViewOperationResult HideAllMembers();
 ViewOperationResult ShowMember(Beam beam);
 ~~~
-
 Every method returns the existing named receipt. NativeFunction identifies the exact call, Status is InvokedWithoutAcknowledgement, NativeReturnCode is null, and IsSuccessful is false because native void completion supplies no acknowledgement. That false is not a reported native failure. Normal return does not verify the visible result, graphical readiness, repaint completion or persistence.
 
 The reviewed 2024, 2025 and 2026 native help contracts agree. Inspected 2025/2026 metadata also agrees: four parameterless void calls and ShowMember(Object) with an input member number. One common service handles these contracts; no speculative year-specific branch is added.
@@ -64,7 +61,6 @@ if (changeView)
     System.Console.WriteLine(showOne.NativeFunction + ": " + showOne.Status);
 }
 ~~~
-
 ## Lifetime, errors and side effects
 
 All five functions share the View adapter gate with existing orientations and rotations. They invoke the captured native object exactly once on the calling thread. The gate serializes this adapter's requests; it does not marshal COM apartments, lock other wrappers/adapters, exclude raw callers or prevent external UI edits.
@@ -78,5 +74,3 @@ These operations do not save, analyze, open a different model, change structural
 All 256 View cases passed, including 55 additional cases for this increment. Coverage checks all five routes against 2024/2025/2026 fixture profiles, original native exceptions, missing methods, binding replacement/disposal before and during calls, caller-thread dispatch, matching compiled interface/adapter XML and existing receipt semantics. Focused cases cover boxed Int32 IDs, null/nonpositive IDs, missing Beam geometry, captured-ID changes and distinct visibility/zoom sequences. Managed concurrency fixtures check the common adapter gate; they do not authorize background-thread COM access.
 
 The installed-package verifier selects all 36 current View XML examples and invokes each route against a managed native stand-in, including invalid-member checks. Real STAAD UI/COM, native effects and engineering qualification remain separate.
-
-[Contract index and source fingerprints](contracts/ViewFoundationContractIndex.json) · [Native comparison](reports/OpenSTAAD-View-API-Coverage-and-Contract-Inventory.md) · [Source-status totals](reports/OpenSTAAD-Main-Source-Porting-Status.md) · [Orientations](View-Orientations.md) · [Rotations](View-Incremental-Rotations.md)

@@ -1,7 +1,6 @@
 {
   "schemaVersion": 1,
   "date": "2026-10-26",
-  "branch": "main",
   "functions": [
     {
       "name": "PerformAnalysis",
@@ -40,7 +39,6 @@
       "name": "PerformPDeltaAnalysis",
       "parameters": "PDeltaAnalysisOptions options",
       "args": "options",
-      "summary": "Configures P-Delta instructions from the main-project typed options.",
       "detail": "This convenience delegates once to PerformPDeltaAnalysisEx and reports that exact native function. It does not call both P-Delta variants or execute analysis. Native void gives no acknowledgement.",
       "example": "new StaadPro.Interop.Models.Commands.PDeltaAnalysisOptions()",
       "domain": "Commands",
@@ -278,45 +276,5 @@
       "returnType": "SupportMutationResult",
       "native": "AssignSupportToEntityList"
     }
-  ],
-  "continuationAudit": {
-    "date": "2026-10-27",
-    "readOnlyReferenceEvidence": [
-      {
-        "file": "[read-only source] Adapters/Interfaces/IOSCommands.cs",
-        "sha256": "35e1fd729e00608c01fef3605d92247f18f03168a57c6f9ef1980a84df8952fa"
-      },
-      {
-        "file": "[read-only source] Adapters/Models/OSCommandsAdapter.cs",
-        "sha256": "52fd5691d4c44fa66869edf84fb0bdd4ee4403642341485d5f2d7aa7094d25ce"
-      },
-      {
-        "file": "[read-only source] Models/AnalysisCommands/AnalysisCommandOptions.cs",
-        "sha256": "233a2b2e6f09631f002ffe18df7bf0cff3aa12a119c7f93e88839c11a9cccf72"
-      },
-      {
-        "file": "[read-only source] Adapters/Interfaces/IOSSupport.cs",
-        "sha256": "be21566bc6d36663bc54d55210f1541702dc394dc69c412d5c624d6dbbff78c7"
-      },
-      {
-        "file": "[read-only source] Adapters/Models/OSSupportAdapter.cs",
-        "sha256": "80b5f2c3069cfaba32cb832423f2cc0f633c25434df5e29d14493d41df260a8b"
-      }
-    ],
-    "offlineTestsPassed": 6320,
-    "newCases": 284,
-    "newXmlExamples": 50,
-    "nugetBuilt": false
-  },
-  "packageRelease": {
-    "version": "1.0.0-preview.20261027.1",
-    "date": "2026-10-27",
-    "artifact": "artifacts/release/StaadPro.Interop.1.0.0-preview.20261027.1.nupkg",
-    "offlineTestsPassed": 6448,
-    "installedXmlExamples": 1222,
-    "icon": "images/symbol-only-logo.png",
-    "readmeBanner": "logo-with-text.png",
-    "publicAvailabilityConfirmed": false,
-    "nativeRuntimeValidation": false
-  }
+  ]
 }

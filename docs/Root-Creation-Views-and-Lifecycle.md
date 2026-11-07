@@ -12,8 +12,6 @@ This increment adds five native Root mappings to IOSRoot and its single non-part
 
 ## Native signature evidence
 
-The installed [2024](../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202024/OSAPP_Help/group___root.html), [2025](../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202025/OSAPP_Help/group___root.html) and [2026](../../../../../../../Program%20Files/Bentley/Engineering/STAAD.Pro%202026/OSAPP_Help/group___root.html) help list these operations. Read-only reflection in separate processes over the installed 2025 and 2026 Bentley managed interop assemblies confirms:
-
 ```text
 Object GetProcessHandle()
 Void NewSTAADFile(Object, Object, Object)
@@ -21,7 +19,6 @@ Void CreateNamedView(Object, Object)
 Void SaveNamedView(Object)
 Void Quit()
 ```
-
 The help's extra reference-error argument for CreateNamedView and SaveNamedView conflicts with both inspected assemblies. The implementation follows their two-input/one-input void contracts. No error buffer, result status or success Boolean is fabricated. An alternate signature is never retried after an uncertain mutation.
 
 This verifies installed managed interface declarations, not live IDispatch behavior on every build. No 2024 managed interop assembly was available at the expected installation path. Shared implementation remains a compatibility candidate; native behavior still needs validation.
@@ -38,7 +35,6 @@ wrapper.Root.NewSTAADFile(
     lengthUnit: LengthInputUnit.Meter,
     forceUnit: ForceInputUnit.KiloNewton);
 ```
-
 The implementation:
 
 1. Rejects null/blank paths and normalizes to an absolute Windows path.
@@ -66,7 +62,6 @@ There is no automatic save, polling, read-back, wrapper refresh, retry, cleanup 
 wrapper.Root.CreateNamedView(viewName: "Frame view", creationFlag: suppliedFlag);
 wrapper.Root.SaveNamedView(viewName: "Frame view");
 ```
-
 Both operations reject null/blank names before dispatch and preserve other text exactly, including Unicode and surrounding whitespace. CreateNamedView forwards a required Int32 flag. The reviewed help does not define allowed values or meanings, so no enum, default or supported range is invented. Every Int32 is passed unchanged; the caller must establish a valid flag.
 
 SaveNamedView uses its own single-input entry point. It is not substituted with creation or SaveModel. Normal return does not certify success or persistence. Duplicate names, overwrite behavior, view contents, no-model cases and prompts require native validation. Neither operation adds selection edits, model save, read-back, refresh, retry or rollback. Native calls can affect view/model state, block or fail after effects.
@@ -77,7 +72,6 @@ SaveNamedView uses its own single-input entry point. It is not substituted with 
 var value = wrapper.Root.GetProcessHandle();
 Console.WriteLine(value.RawValue); // diagnostic data only
 ```
-
 NativeProcessHandleValue is a sealed immutable class in StaadPro.Interop.Models.Root. RawValue is UInt64. Integral CLR values and IntPtr/UIntPtr representations are accepted. Unsigned values are preserved; signed negatives are sign-extended to a 64-bit unsigned bit pattern. Zero/all-one values are retained without assigning validity or pseudo-handle meanings. Null, Boolean, enum, text and fractional responses are rejected.
 
 This representation establishes no server pointer width, handle ownership, lifetime, access rights or caller-process usability. It exposes no SafeHandle, IDisposable, conversion operator or native pointer property. Do not pass RawValue to Windows APIs or close it. No process is opened, duplicated, enumerated or terminated by the getter. Use GetProcessId when a process identifier is required; a number is not proof of connection liveness.
@@ -90,17 +84,6 @@ This adopts the coverage plan's explicitly opaque fallback. The provisional IntP
 // First handle unsaved work and coordinate all clients of this application.
 wrapper.Root.Quit();
 ```
-
 Quit targets the captured application once and can affect unsaved work and other clients sharing it. There is no pre-save, silent-mode change, model close, process kill, provider lookup or automatic wrapper disposal. OpenStaadWrapper.Dispose does not invoke Quit.
 
 Prompts or running analysis may delay/prevent exit. Normal void return does not prove termination; exceptions can follow effects. Retained native interfaces may become unusable and are not silently retargeted. Test native shutdown last in a dedicated disposable process.
-
-## Validation and remaining work
-
-The main source remains strictly read-only. Its NewSTAADFile usage is through a model service; matching managed Root named-view APIs, an opaque-handle model and shared validators were not found. Existing enums, strict integer conversion and filename reading are reused. Only needed internal services and a data class were added.
-
-The Release offline suite passes **1,547 tests**, including 109 additional cases. Tests cover all unit codes, validation before dispatch, path normalization and Unicode, reserved devices, existing/read-only targets, missing parents, named/blank/malformed sessions, competing target creation during identity lookup, partial native effects, exact view signatures/flags, opaque numeric types, immutable snapshots, same-instance calls, no implicit Quit on disposal, original exceptions, no retries and matching XML.
-
-The Release solution build passes with zero warnings or errors. All 53 common Root interface XML examples compile with warnings treated as errors. The 217-example consumer harness compiles and runs against source stand-ins; this does not verify a rebuilt NuGet archive. Both 39-row coverage matrices and the 53-row common managed API table agree, and all checked local document links resolve.
-
-No live model was created, edited or shut down, and no NuGet archive was rebuilt. Native flag meanings, 2024 signatures, overwrite/race behavior, handle context and view persistence still need controlled validation. Coverage is **39 of 39 native Root functions implemented, none pending**, exposed through **53 common managed methods plus three optional operations**. Those five mappings and the optional capability gateway are now implemented; see the [completion guide](Root-Completion-and-Capabilities.md) for native/private coverage and release gates.

@@ -59,7 +59,7 @@ namespace StaadPro.Interop.Tests.Adapter
         public void ReviewIndexMatchesEveryCompiledReturnParameterAndDefaultExactly()
         {
             var index = JObject.Parse(File.ReadAllText(Path.Combine(TestContext.CurrentContext.TestDirectory, "ContractReview", "LoadExpansionContractIndex.json")));
-            foreach (JObject entry in (JArray)index["pendingSignatures"])
+            foreach (JObject entry in (JArray)index["implementedSignatures"])
             {
                 var method = typeof(IOSLoadExpansionContract).GetMethod((string)entry["name"]);
                 Assert.That(FriendlyType(method.ReturnType), Is.EqualTo((string)entry["returnType"]), method.Name);

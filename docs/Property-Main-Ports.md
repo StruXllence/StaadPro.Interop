@@ -1,11 +1,8 @@
-# Property main-project ports
+# Property API operations
 
 This guide records the preceding 25-method increment. Property now has 200 overloads; see [the management ports](Property-Management-Ports.md) and [the workflows](Property-Workflows.md) and [the section completion](Property-Sections.md) and [the material/member-section routes](Property-Materials-and-Member-Sections.md) and [the section/specification creators](Property-Section-and-Specification-Creation.md) and [the latest fireproofing/attribute/UPT routes](Property-Fireproofing-Attributes-and-UPT.md) for subsequent creation, assignment and population methods.
 
-
 **Updated:** 23 October 2026
-
-This increment adds **25 main-project method overloads** to both `IOSProperty` and the single `OSPropertyAdapter`, preserving function names, parameter names/types/order and return types. The existing 25 typed observations remain available, giving **50 public Property overloads**. The main project was inspected read-only.
 
 These compatibility methods retain direct return types (`int`, `string`, arrays, sets, enums, Boolean or void). The earlier observation APIs return `PropertyQueryResult<T>`. A direct-return failure throws unless the individual contract explicitly specifies a sentinel, no-op or Boolean failure. No overload is counted twice because it is exposed on both the interface and adapter.
 
@@ -17,8 +14,6 @@ Calls execute synchronously on the caller's established COM apartment and share 
 
 Inventory/assignment buffers are bounded to 100000 entries, checked for element type, shape and positive IDs, and copied before returning. Positive counts are rechecked after list retrieval; zero counts skip fetching. Input collections are snapshotted before native access. No save, STAAD launch, refresh or analysis is implicit. Returned entity sets retain candidate object references and never populate missing native IDs. Native mutation is not transactional, and errors may leave partial assignments or orphan offset definitions.
 
-The two obsolete main-project inactive-member methods remain excluded. Section-catalog hydration and typed/version-specific section-buffer interpretation are also separate work. `GetSectionPropertyValues` intentionally returns the main-project raw zero-padded array; nine documented section layouts change between 2024 and 2025/2026. Its array must not be interpreted through a universal positional schema.
-
 ## Added overloads
 
 ### 1. GetUnusedSectionsCount
@@ -26,7 +21,6 @@ The two obsolete main-project inactive-member methods remain excluded. Section-c
 ```csharp
 int GetUnusedSectionsCount();
 ```
-
 Counts distinct section property definitions with no assigned analytical members.
 
 Returns: The number of distinct section IDs whose native assigned-member count is exactly zero.
@@ -36,13 +30,11 @@ When to use: Choose this for an unused-definition count and GetUnusedSectionsIds
 ```csharp
 System.Console.WriteLine(property.GetUnusedSectionsCount());
 ```
-
 ### 2. GetUnusedSectionsIds
 
 ```csharp
 HashSet<int> GetUnusedSectionsIds();
 ```
-
 Finds section property definitions with no assigned analytical members.
 
 Returns: A new mutable set of positive native section IDs having exactly zero assigned members; an empty set is valid.
@@ -52,50 +44,40 @@ When to use: Use to inspect unused definitions before deciding whether to remove
 ```csharp
 foreach (int id in property.GetUnusedSectionsIds()) System.Console.WriteLine(id);
 ```
-
 ### 3. GetBeamProperty
 
 ```csharp
 int GetBeamProperty(int memberId);
 ```
-
 Finds the first section property assigned to an analytical member.
 
 - `memberId`: Positive analytical member number; not a property ID, list index or physical-member number.
 
 Returns: The first matching positive property ID in native property-list order, or zero when no enumerated assignment contains the member.
 
-When to use: Use to discover a section ID before GetSectionPropertyName or GetSectionPropertyValues. This managed search enumerates sections and their member assignments, matching the main-project implementation; it does not call the similarly named native dimensional GetBeamProperty API used by GetMemberSectionProperties. Zero does not distinguish an absent member from an unassigned member. Failures throw instead of returning zero.
-
 ```csharp
 int propertyId = property.GetBeamProperty(17);
 System.Console.WriteLine(propertyId);
 ```
-
 ### 4. GetPlateMaterialName
 
 ```csharp
 string GetPlateMaterialName(int pId);
 ```
-
 Reads the material name assigned to a plate using the native plate-specific query.
 
 - `pId`: Positive analytical plate number; not a material index, property ID, node or solid number.
 
 Returns: The exact native string, preserving case and whitespace; null or empty text is retained when returned by STAAD.
 
-When to use: Use the main-project plate-specific compatibility method when the plate number is known. GetElementMaterialName is the existing status/data observation over a different native entry point; this port calls GetPlateMaterialName without alias fallback. Null or empty text cannot distinguish a missing plate from no material or an unavailable response. Does not retrieve constants or assign material.
-
 ```csharp
 System.Console.WriteLine(property.GetPlateMaterialName(17));
 ```
-
 ### 5. GetSectionPropertyList
 
 ```csharp
 int[] GetSectionPropertyList();
 ```
-
 Lists the native section property reference IDs.
 
 Returns: A new owned array of positive IDs in native order, retaining duplicates; an empty array when the count is zero.
@@ -105,13 +87,11 @@ When to use: Use to enumerate section definitions, not assigned members or thick
 ```csharp
 foreach (int id in property.GetSectionPropertyList()) System.Console.WriteLine(id);
 ```
-
 ### 6. GetSectionPropertyName
 
 ```csharp
 string GetSectionPropertyName(int propId);
 ```
-
 Reads the native identification name of a section property.
 
 - `propId`: Positive native section property reference ID, typically from GetSectionPropertyList; not a member number.
@@ -123,32 +103,24 @@ When to use: Use for a section label after locating its property ID. GetBeamProp
 ```csharp
 System.Console.WriteLine(property.GetSectionPropertyName(37));
 ```
-
 ### 7. GetSectionPropertyValues
 
 ```csharp
 double[] GetSectionPropertyValues(int propId);
 ```
-
-Reads the main-project raw, zero-padded native section-definition value buffer.
-
 - `propId`: Positive native section property reference ID; not an analytical member number.
 
 Returns: A new owned array sized by GetCountofSectionPropertyValuesEx, in native section-specific order and units, including zero padding.
-
-When to use: Use only when the native section type and acquired STAAD version are already known. This compatibility port calls GetSectionPropertyValuesEx, not native GetSectionPropertyValues or the member-dimensional queries. Preserves the main-project zero-initialized full buffer and discards the returned section type after validating it. Unused padding and genuinely zero fields cannot be distinguished from unwritten zero slots. Layouts differ by section kind and some change between 2024 and 2025/2026; no universal Ax/inertia index, section parser, unit conversion or inferred physical axis is supplied. The native call must succeed; capacity must be 1-100000 and remain unchanged. Nonfinite or malformed outputs throw.
 
 ```csharp
 double[] values = property.GetSectionPropertyValues(37);
 System.Console.WriteLine(values.Length);
 ```
-
 ### 8. GetSectionPropertyAssignedBeams
 
 ```csharp
 HashSet<Beam> GetSectionPropertyAssignedBeams(HashSet<Beam> allBeams, int propId);
 ```
-
 Filters supplied beam objects by one section property assignment.
 
 - `allBeams`: Non-null candidate set containing non-null Beam objects with positive analytical IDs. Objects are not cloned or hydrated.
@@ -162,13 +134,11 @@ When to use: Use when beam objects are already available and only their assignme
 var beams = new System.Collections.Generic.HashSet<Beam> { new Beam { Id = 17 } };
 System.Console.WriteLine(property.GetSectionPropertyAssignedBeams(beams, 37).Count);
 ```
-
 ### 9. GetThicknessPropertyList
 
 ```csharp
 int[] GetThicknessPropertyList();
 ```
-
 Lists native plate thickness property reference IDs.
 
 Returns: A new owned array of positive thickness IDs in native order, retaining duplicates; an empty array for zero definitions.
@@ -178,13 +148,11 @@ When to use: Choose this inventory for thickness definitions; GetSectionProperty
 ```csharp
 foreach (int id in property.GetThicknessPropertyList()) System.Console.WriteLine(id);
 ```
-
 ### 10. GetThicknessPropertyAssignedPlates
 
 ```csharp
 HashSet<Plate> GetThicknessPropertyAssignedPlates(HashSet<Plate> allPlates, int propId);
 ```
-
 Filters supplied plate objects by one thickness property assignment.
 
 - `allPlates`: Non-null candidate set of non-null plates with positive analytical IDs. Returned objects are these original instances.
@@ -198,13 +166,11 @@ When to use: Use for assignment membership when plate objects are already availa
 var plates = new System.Collections.Generic.HashSet<Plate> { new Plate { Id = 17 } };
 System.Console.WriteLine(property.GetThicknessPropertyAssignedPlates(plates, 45).Count);
 ```
-
 ### 11. GetBeamsWithMissingSectionProperty
 
 ```csharp
 HashSet<Beam> GetBeamsWithMissingSectionProperty(HashSet<Beam> allBeams, IEnumerable<int> propIds);
 ```
-
 Finds supplied beams absent from the assignments of the supplied property IDs.
 
 - `allBeams`: Non-null candidate set of non-null Beam objects with positive analytical IDs; original instances are retained.
@@ -218,13 +184,11 @@ When to use: Use as a missing-assignment check only when propIds includes every 
 var candidates = new System.Collections.Generic.HashSet<Beam> { new Beam { Id = 17 } };
 System.Console.WriteLine(property.GetBeamsWithMissingSectionProperty(candidates, new[] { 37 }).Count);
 ```
-
 ### 12. GetPlatesWithMissingThicknessProperty
 
 ```csharp
 HashSet<Plate> GetPlatesWithMissingThicknessProperty(HashSet<Plate> allPlates, IEnumerable<int> propIds);
 ```
-
 Finds supplied plates absent from the assignments of the supplied property IDs.
 
 - `allPlates`: Non-null candidate set of non-null Plate objects with positive analytical IDs; original instances are retained.
@@ -238,34 +202,26 @@ When to use: Use as a missing-assignment check only when propIds includes every 
 var candidates = new System.Collections.Generic.HashSet<Plate> { new Plate { Id = 17 } };
 System.Console.WriteLine(property.GetPlatesWithMissingThicknessProperty(candidates, new[] { 45 }).Count);
 ```
-
 ### 13. GetAveragePlateThickness
 
 ```csharp
 double GetAveragePlateThickness(int plateId);
 ```
-
 Computes the rounded arithmetic mean of four native plate-corner thickness slots.
 
 - `plateId`: Positive analytical plate number, not a thickness property ID.
 
 Returns: The sum of four native thickness values divided by four, rounded to five decimal places with midpoint-to-even rounding, in unchanged native length units.
 
-When to use: Use for the main-project four-slot arithmetic average, not an area-weighted or integration-point thickness. Calls GetPlateThickness once and requires native code zero and four explicitly written finite values. No interpolation, triangular-corner substitution, sign adjustment or unit conversion is performed; an unwritten fourth slot throws. Native missing-property and invalid-plate errors throw rather than yielding a zero thickness. The intermediate sum must remain finite.
-
 ```csharp
 System.Console.WriteLine(property.GetAveragePlateThickness(17));
 ```
-
 ### 14. GetMemberSpecification
 
 ```csharp
 MemberSpecificationType GetMemberSpecification(int msId);
 ```
-
 Reads the native axial behavior specification of an analytical member.
-
-- `msId`: Positive analytical member number forwarded to GetMemberSpecCode. The preserved main-project parameter name does not mean a specification record ID.
 
 Returns: The defined native specification: Other=-1, Truss=0, TensionOnly=1, CompressionOnly=2, CableOnly=3 or Joist=4.
 
@@ -274,13 +230,11 @@ When to use: Use for member behavior, not section, material, release or offset c
 ```csharp
 System.Console.WriteLine(property.GetMemberSpecification(17));
 ```
-
 ### 15. AssignBeamProperty
 
 ```csharp
 void AssignBeamProperty(int memberId, int propertyId);
 ```
-
 Assigns an existing section property to one analytical member.
 
 - `memberId`: Positive analytical member ID, not a property reference ID.
@@ -291,13 +245,11 @@ When to use: Use to assign an existing property; section inventory/read methods 
 ```csharp
 property.AssignBeamProperty(17, 37);
 ```
-
 ### 16. AssignBeamProperty
 
 ```csharp
 void AssignBeamProperty(int[] memberIds, int propertyId);
 ```
-
 Assigns an existing section property to a batch of analytical members.
 
 - `memberIds`: Analytical member IDs. Null or empty arrays are a no-op; otherwise copied and all entries must be positive. Order and duplicates are forwarded.
@@ -308,13 +260,11 @@ When to use: Use to assign an existing property; section inventory/read methods 
 ```csharp
 property.AssignBeamProperty(new[] { 17, 41 }, 37);
 ```
-
 ### 17. AssignMaterialToMember
 
 ```csharp
 void AssignMaterialToMember(string materialName, int memberId);
 ```
-
 Assigns an existing named material to one analytical member.
 
 - `materialName`: Exact native material name; case and surrounding whitespace are preserved. Null/empty/whitespace-only names are a no-op. Nonblank names must not contain NUL.
@@ -325,13 +275,11 @@ When to use: Use to change the actual member material assignment. SetMaterialNam
 ```csharp
 property.AssignMaterialToMember("STEEL", 17);
 ```
-
 ### 18. AssignMaterialToMember
 
 ```csharp
 void AssignMaterialToMember(string materialName, int[] memberIds);
 ```
-
 Assigns an existing named material to a batch of analytical members.
 
 - `materialName`: Exact native material name; case and surrounding whitespace are preserved. Null/empty/whitespace-only names are a no-op. Nonblank names must not contain NUL.
@@ -342,13 +290,11 @@ When to use: Use to change the actual member material assignment. SetMaterialNam
 ```csharp
 property.AssignMaterialToMember("STEEL", new[] { 17, 41 });
 ```
-
 ### 19. SetMaterialName
 
 ```csharp
 void SetMaterialName(string materialName);
 ```
-
 Sets the native Property material context for subsequent creation operations.
 
 - `materialName`: Exact existing native material name, preserving case and whitespace. Null/empty/whitespace-only names are a no-op; nonblank names must not contain NUL.
@@ -358,13 +304,11 @@ When to use: Use before a native property creation API that consumes the current
 ```csharp
 property.SetMaterialName("STEEL");
 ```
-
 ### 20. AssignMemberEndOffsets
 
 ```csharp
 bool AssignMemberEndOffsets(int memberId, double startY, double endY);
 ```
-
 Creates and assigns global-Y offsets at both analytical member ends.
 
 - `memberId`: Positive analytical member number, not a specification ID.
@@ -378,13 +322,11 @@ When to use: Use to create and assign both end specifications; AssignMemberEndOf
 ```csharp
 System.Console.WriteLine(property.AssignMemberEndOffsets(17, 0.15, -0.20));
 ```
-
 ### 21. AssignMemberEndOffsets
 
 ```csharp
 bool AssignMemberEndOffsets(int[] memberIds, double startY, double endY);
 ```
-
 Creates and assigns global-Y offsets at both analytical member ends.
 
 - `memberIds`: Positive analytical member IDs, copied before dispatch; null/empty arrays return false without native calls.
@@ -398,13 +340,11 @@ When to use: Use to create and assign both end specifications; AssignMemberEndOf
 ```csharp
 System.Console.WriteLine(property.AssignMemberEndOffsets(new[] { 17, 41 }, 0.15, -0.20));
 ```
-
 ### 22. AssignMemberEndOffset
 
 ```csharp
 bool AssignMemberEndOffset(int memberId, int location, double offsetY);
 ```
-
 Creates and assigns a global-Y offset at one analytical member end.
 
 - `memberId`: Positive analytical member number.
@@ -418,13 +358,11 @@ When to use: Choose this for one end and AssignMemberEndOffsets for both ends. C
 ```csharp
 System.Console.WriteLine(property.AssignMemberEndOffset(17, 1, -0.20));
 ```
-
 ### 23. AssignMemberEndOffset
 
 ```csharp
 bool AssignMemberEndOffset(int memberId, OffsetLocation location, double offsetY);
 ```
-
 Creates and assigns a global-Y offset at one analytical member end.
 
 - `memberId`: Positive analytical member number.
@@ -438,13 +376,11 @@ When to use: Choose this for one end and AssignMemberEndOffsets for both ends. T
 ```csharp
 System.Console.WriteLine(property.AssignMemberEndOffset(17, OffsetLocation.End, -0.20));
 ```
-
 ### 24. AssignMemberEndOffset
 
 ```csharp
 bool AssignMemberEndOffset(int[] memberIds, int location, double offsetY);
 ```
-
 Creates and assigns a global-Y offset at one analytical member end.
 
 - `memberIds`: Positive analytical member IDs copied before dispatch. Null or empty arrays return false without native calls.
@@ -458,13 +394,11 @@ When to use: Choose this for one end and AssignMemberEndOffsets for both ends. C
 ```csharp
 System.Console.WriteLine(property.AssignMemberEndOffset(new[] { 17, 41 }, 1, -0.20));
 ```
-
 ### 25. AssignMemberEndOffset
 
 ```csharp
 bool AssignMemberEndOffset(int[] memberIds, OffsetLocation location, double offsetY);
 ```
-
 Creates and assigns a global-Y offset at one analytical member end.
 
 - `memberIds`: Positive analytical member IDs copied before dispatch. Null or empty arrays return false without native calls.
@@ -478,7 +412,6 @@ When to use: Choose this for one end and AssignMemberEndOffsets for both ends. T
 ```csharp
 System.Console.WriteLine(property.AssignMemberEndOffset(new[] { 17, 41 }, OffsetLocation.End, -0.20));
 ```
-
 ## Reference corrections and validation boundaries
 
 - `GetBeamProperty` preserves the main managed inventory search and zero sentinel; it is not an alias of the similarly named native dimensional getter.

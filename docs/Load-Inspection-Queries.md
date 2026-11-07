@@ -2,8 +2,6 @@
 
 ## Implemented surface
 
-Added 15 managed operations beyond the completed private-source reference port. IOSLoad and OSLoadAdapter expose **135 overloads**: 115 reference signatures, five existing conveniences and these 15 native-expansion queries. The single adapter delegates to an internal shared LoadInspectionService; no adapter partial classes, public ref/out parameters or tuples were introduced.
-
 | Native function | Managed method | Data on success |
 | --- | --- | --- |
 | `GetActiveLoad` | `LoadQueryResult<int> GetActiveLoadCaseNumber()` | `int` |
@@ -49,8 +47,6 @@ RequestedNativeFunction identifies the request. NativeFunction and NativeReturnC
 
 ## Retrieval and lifetime rules
 
-The three collection readers eagerly return read-only owned snapshots as IEnumerable, with immutable contribution records. Internal buffers use Int32 IDs/directions and Double factors; factors start as NaN, IDs/directions as invalid zero. Successful unwritten, nonfinite, wrong-rank, wrong-element-type or wrong-length outputs are rejected. Valid one-dimensional nonzero lower bounds are copied correctly.
-
 Paired reads compare sizing counts with returned counts and a post-fetch count. Collection readers accept a positive maximumResults (default 100000), checked before output buffers are allocated. A zero contribution count returns a successful empty snapshot without fetch; this does not erase the separate ambiguous-zero contract of GetLoadTypeCount.
 
 Calls run synchronously on the caller’s owning COM apartment. New queries on one adapter serialize with each other; legacy methods, other adapters, raw calls and external clients are not globally locked. Detected count/activation changes produce StateChanged, but same-count replacements, change-away-and-back races and an external family switch sharing the same case number cannot be excluded. These observations are not atomic native transactions.
@@ -77,13 +73,8 @@ if (contributions.IsSuccessful)
 }
 else Console.WriteLine(contributions.Status);
 ~~~
-
 ## Coverage and verification
 
 Source native coverage is **88/129** documented names: 67 direct adapter calls, 15 additional common-service targets and six member-entity targets. Of the remaining **41** names, one has an existing creation alternative, one is derivable, four are partial and **35 have no managed equivalent**. Three metadata-only candidates remain separate. Thus 39 documented native contracts retain missing scope, without implying 39 required public methods.
 
 Passed **2,448 offline tests**, including **189 new inspection cases**. Compiled and executed all **30 new XML examples** on interface and concrete adapter consumers against managed stand-ins. Existing API inventory checks were updated to 135 overloads. A validation-only CI archive passed isolated PackageReference restore/build/runtime verification with all 370 selected XML examples, including the 30 new examples. The verifier also retains the prepared 120-overload archive path (340 examples). The validation archive is separate from the prepared distribution preview.
-
-The shared service follows matching installed 2024/2025/2026 contracts; no artificial per-year implementation was added. Live native marshaling, index semantics, active-family behavior and engineering qualification remain pending. This source increment does not replace or rebuild the prepared 1.0.0-preview.20261023 archive, which predates these 15 queries.
-
-See the [cross-version plan](reports/OpenSTAAD-Load-Multi-Version-Architecture-and-Plan.md), [full contract inventory](reports/OpenSTAAD-Load-API-Coverage-and-Contract-Inventory.md) and [semantic coverage audit](reports/OpenSTAAD-Load-Managed-Capability-Audit.md).

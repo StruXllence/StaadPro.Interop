@@ -1,9 +1,5 @@
 # View orientations and incremental rotation
 
-**Current source, 5 November 2026:** View also includes [zoom and member visibility requests](View-Zoom-and-Member-Visibility.md), reaching 18/70 source overloads and 18/67 native names. There are 52 View source overloads and 145 active source overloads across all reviewed domains pending. The orientation/rotation contracts below remain applicable.
-
-The View adapter exposes seven standard orientation requests and six incremental rotations/spins adapted from the read-only main source: ShowFront, ShowBack, ShowLeft, ShowRight, ShowPlan, ShowBottom, ShowIsometric, RotateUp, RotateDown, RotateLeft, RotateRight, SpinLeft and SpinRight. Each targets the captured native View interface of the acquired OpenStaadWrapper. The common contract is the same in the reviewed STAAD.Pro 2024, 2025 and 2026 manuals; passive 2025/2026 automation metadata also declares void methods, with a by-value Object angle input for the incremental requests. No separate per-year service is needed for these matching contracts.
-
 ## Choose the graphical direction
 
 | Managed call | Native call | Use |
@@ -37,14 +33,11 @@ A normal receipt records dispatch completion. It does not verify the orientation
 
 ## Further incremental rotations
 
-Ported `RotateDown(double angle)`, `RotateLeft(double angle)`, `RotateRight(double angle)`, `SpinLeft(double angle)` and `SpinRight(double angle)` from the main source. Preserved the original `angle` parameter name, type and order on both interfaces and the concrete adapter. View now exposes **13 of 70 main-source overloads** and reaches **13 of 67 reviewed native names**; **57 source overloads** and **54 native names** remain pending. See [the complete five-method contracts](View-Incremental-Rotations.md).
-
 ## Rotation input and behavior
 
 ~~~csharp
 ViewOperationResult RotateUp(double angleDegrees);
 ~~~
-
 The descriptive managed parameter replaces the source parameter named angle. It is a finite signed Double in degrees. The native metadata accepts an Object input, so the value is marshaled as the corresponding boxed Double. Zero, negative values and values beyond one revolution are passed unchanged; NaN and either infinity throw ArgumentOutOfRangeException for angleDegrees before dispatch. No undocumented angle limit, radians conversion or normalization is introduced. Very large finite values remain subject to native numerical behavior.
 
 Choose a Show method for a standard direction. Choose RotateUp to incrementally rotate the current view about the documented global X-axis. STAAD controls the positive-angle screen convention; the managed API does not certify a clockwise direction or infer an absolute camera angle. Zero is still dispatched once. Repeated requests remain separate native calls and can accumulate, so an ambiguous completion must not be retried automatically.
@@ -77,7 +70,6 @@ if (changeView)
     System.Console.WriteLine(rotation.NativeFunction + ": " + rotation.Status);
 }
 ~~~
-
 ## Binding, threading and errors
 
 The single non-partial OSViewAdapter captures RawView at construction and delegates to the common internal ViewService. Invocation stays on the calling thread. A per-adapter gate serializes these requests and checks binding identity before and after each native call; it does not lock other adapters, raw automation clients or the STAAD UI. A lock does not select or marshal a COM apartment. Call from the application's established COM context.
@@ -86,10 +78,4 @@ Reacquire wrapper.View after wrapper refresh. Calls through a stale or disposed 
 
 ## Coverage and verification
 
-View provides **13 of 70 main-source overloads**, reaching **13 of 67 reviewed native names**. There are **57 main-source overloads** and **54 native names** still pending. Main-source ports precede native-only expansion. This increment does not authorize the parked Load or Property work.
-
 Regression coverage checks exact native names and captured targets, 2024/2025/2026 fixture profiles, caller-thread identity, unacknowledged receipts, stale/disposed/replaced bindings, post-call lifetime failures, unchanged native exceptions, missing methods and absence of retries. Rotation cases additionally verify finite signed Double transport, zero/negative-zero preservation, nonfinite rejection and repeated-request behavior. Interface and adapter XML entries match and all twenty-six View XML examples are checked through an isolated installed-package consumer. No real native view or model is changed by these managed tests.
-
-The [source porting status](reports/OpenSTAAD-Main-Source-Porting-Status.md) records 160 active source overloads pending before this increment and 155 afterwards, across all reviewed domains. Native-only expansion and excluded obsolete signatures are counted separately.
-
-Source fingerprints and exact declarations are retained in the [View contract index](contracts/ViewFoundationContractIndex.json). See [the View roadmap](View-Porting.md), [API reference](API-Reference.md), [cross-version plan](reports/OpenSTAAD-View-Multi-Version-Architecture-and-Plan.md), and [installation guide](Installation.md) for remaining scope and prerequisites. Live COM/UI validation remains separate from managed signature coverage.

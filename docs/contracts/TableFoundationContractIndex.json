@@ -1,44 +1,12 @@
 {
   "schemaVersion": 1,
   "date": "2026-10-28",
-  "mainProjectReadOnly": true,
-  "scope": "All 29 existing main-project Table overloads adapted to managed contracts; all 24 reviewed native names dispatched. Source coverage is not live certification.",
-  "sourceFiles": [
-    {
-      "file": "Adapters/Interfaces/IOSTable.cs",
-      "sha256": "51260f658904d33f79fa48be16cb68d884b1df8922a5e240c1bbd1a05ce380b9"
-    },
-    {
-      "file": "Adapters/Models/OSTableAdapter.cs",
-      "sha256": "9f6e306969847d74543a767c3c8c40bfc0e19a413d2b86a80c12372ccd3ae7ff"
-    },
-    {
-      "file": "Enums/HorizontalAlignment.cs",
-      "sha256": "b3edbbbcf684e0c03372279452aaa2fc371d70e5949fdf59e8f31e0f03f54acd"
-    },
-    {
-      "file": "Enums/VerticalAlignment.cs",
-      "sha256": "b5ead9db1daa70b1dddd9236305383232adb02b5de8beaf6c3d235bad23f8be1"
-    }
-  ],
   "functions": [
     {
       "managedName": "CreateReport",
       "returnType": "TableOperationResult",
       "parameters": "string title",
       "nativeName": "CreateReport",
-      "source": [
-        {
-          "managedName": "CreateReport",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 55,
-          "name": "CreateReport",
-          "receiver": "ComObject",
-          "arguments": [
-            "title"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "VARIANT OSTableUI::CreateReport(const VARIANT FAR&szReportTitle)",
@@ -79,21 +47,6 @@
       "returnType": "TableOperationResult",
       "parameters": "int reportId, string tableName, int rowCount, int columnCount",
       "nativeName": "AddTable",
-      "source": [
-        {
-          "managedName": "AddTable",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 50,
-          "name": "AddTable",
-          "receiver": "ComObject",
-          "arguments": [
-            "reportId",
-            "tableName",
-            "numRows",
-            "numCols"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "VARIANT OSTableUI::AddTable(const VARIANT FAR&ToReportNo,const VARIANT FAR&szTableName,const VARIANT FAR&RowNos,const VARIANT FAR&ColNos)",
@@ -179,16 +132,6 @@
       "returnType": "int",
       "parameters": "",
       "nativeName": "GetReportCount",
-      "source": [
-        {
-          "managedName": "GetReportCount",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 79,
-          "name": "GetReportCount",
-          "receiver": "ComObject",
-          "arguments": []
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "VARIANT OSTableUI::GetReportCount()",
@@ -211,18 +154,6 @@
       "returnType": "int",
       "parameters": "int reportId",
       "nativeName": "GetTableCount",
-      "source": [
-        {
-          "managedName": "GetTableCount",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 84,
-          "name": "GetTableCount",
-          "receiver": "ComObject",
-          "arguments": [
-            "reportId"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "VARIANT OSTableUI::GetTableCount(const VARIANT FAR&OfReportNo)",
@@ -263,22 +194,6 @@
       "returnType": "string",
       "parameters": "int reportId, int tableId, int rowNumber, int columnNumber",
       "nativeName": "GetCellValue",
-      "source": [
-        {
-          "managedName": "GetCellValue",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 72,
-          "name": "GetCellValue",
-          "receiver": "ComObject",
-          "arguments": [
-            "reportId",
-            "cellId",
-            "iRow",
-            "iCol",
-            "ref value"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "void OSTableUI::GetCellValue(const VARIANT FAR&ReportNo,const VARIANT FAR&TableNo,const VARIANT FAR&lRow,const VARIANT FAR&lCol,VARIANT FAR&varValueStr)",
@@ -379,22 +294,6 @@
       "returnType": "TableOperationResult",
       "parameters": "int reportId, int tableId, int rowNumber, int columnNumber, string value",
       "nativeName": "SetCellValue",
-      "source": [
-        {
-          "managedName": "SetCellValue",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 154,
-          "name": "SetCellValue",
-          "receiver": "ComObject",
-          "arguments": [
-            "reportId",
-            "cellId",
-            "iRow",
-            "iCol",
-            "value"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "void OSTableUI::SetCellValue(const VARIANT FAR&ReportNo,const VARIANT FAR&TableNo,const VARIANT FAR&lRow,const VARIANT FAR&lCol,const VARIANT FAR&varValue)",
@@ -495,21 +394,6 @@
       "returnType": "TableOperationResult",
       "parameters": "int reportId, int tableId, int columnNumber, string headerText",
       "nativeName": "SetColumnHeader",
-      "source": [
-        {
-          "managedName": "SetColumnHeader",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 159,
-          "name": "SetColumnHeader",
-          "receiver": "ComObject",
-          "arguments": [
-            "reportId",
-            "tableId",
-            "iCol",
-            "headerText"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "void OSTableUI::SetColumnHeader(const VARIANT FAR&ReportNo,const VARIANT FAR&TableNo,const VARIANT FAR&lCol,const VARIANT FAR&varHeader)",
@@ -595,21 +479,6 @@
       "returnType": "TableOperationResult",
       "parameters": "int reportId, int tableId, int columnNumber, string unitString",
       "nativeName": "SetColumnUnitString",
-      "source": [
-        {
-          "managedName": "SetColumnUnitString",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 164,
-          "name": "SetColumnUnitString",
-          "receiver": "ComObject",
-          "arguments": [
-            "reportId",
-            "tableId",
-            "iCol",
-            "unitString"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "void OSTableUI::SetColumnUnitString(const VARIANT FAR&ReportNo,const VARIANT FAR&TableNo,const VARIANT FAR&lCol,const VARIANT FAR&varUnitString)",
@@ -695,21 +564,6 @@
       "returnType": "TableOperationResult",
       "parameters": "int reportId, int tableId, int rowNumber, string headerText",
       "nativeName": "SetRowHeader",
-      "source": [
-        {
-          "managedName": "SetRowHeader",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 169,
-          "name": "SetRowHeader",
-          "receiver": "ComObject",
-          "arguments": [
-            "reportId",
-            "tableId",
-            "iRow",
-            "headerText"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "void OSTableUI::SetRowHeader(const VARIANT FAR&ReportNo,const VARIANT FAR&TableNo,const VARIANT FAR&lRow,const VARIANT FAR&varHeader)",
@@ -795,18 +649,6 @@
       "returnType": "TableOperationResult",
       "parameters": "int reportId",
       "nativeName": "SaveReport",
-      "source": [
-        {
-          "managedName": "SaveReport",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 99,
-          "name": "SaveReport",
-          "receiver": "ComObject",
-          "arguments": [
-            "reportId"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "void OSTableUI::SaveReport(const VARIANT FAR&ReportNo)",
@@ -839,7 +681,6 @@
           ]
         }
       },
-      "differenceFromSimilarApis": "This is the main-source SaveReport workflow, scoped to one report and its contained tables. It does not save the STAAD model through Root, save all reports or promise file-system durability. Native void completion records InvokedWithoutAcknowledgement, with no read-back or success flag; native dialogs and storage behavior remain STAAD responsibilities.",
       "example": "table.SaveReport(11)"
     },
     {
@@ -847,18 +688,6 @@
       "returnType": "TableOperationResult",
       "parameters": "int reportId",
       "nativeName": "DeleteReport",
-      "source": [
-        {
-          "managedName": "DeleteReport",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 60,
-          "name": "DeleteReport",
-          "receiver": "ComObject",
-          "arguments": [
-            "reportId"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "void OSTableUI::DeleteReport(const VARIANT FAR&FromReportNo)",
@@ -899,19 +728,6 @@
       "returnType": "TableOperationResult",
       "parameters": "int reportId, int tableId",
       "nativeName": "DeleteTable",
-      "source": [
-        {
-          "managedName": "DeleteTable",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 65,
-          "name": "DeleteTable",
-          "receiver": "ComObject",
-          "arguments": [
-            "reportId",
-            "tableId"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "void OSTableUI::DeleteTable(const VARIANT FAR&FromReportNo,const VARIANT FAR&TableNo)",
@@ -967,20 +783,6 @@
       "returnType": "TableOperationResult",
       "parameters": "int reportId, int tableId, string newName",
       "nativeName": "RenameTable",
-      "source": [
-        {
-          "managedName": "RenameTable",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 89,
-          "name": "RenameTable",
-          "receiver": "ComObject",
-          "arguments": [
-            "reportId",
-            "tableId",
-            "newName"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "void OSTableUI::RenameTable(const VARIANT FAR&ReportNo,const VARIANT FAR&TableNo,const VARIANT FAR&szTableName)",
@@ -1051,21 +853,6 @@
       "returnType": "TableOperationResult",
       "parameters": "int reportId, int tableId, int rowCount, int columnCount",
       "nativeName": "ResizeTable",
-      "source": [
-        {
-          "managedName": "ResizeTable",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 94,
-          "name": "ResizeTable",
-          "receiver": "ComObject",
-          "arguments": [
-            "reportId",
-            "tableId",
-            "numRows",
-            "numCols"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "void OSTableUI::ResizeTable(const VARIANT FAR&ReportNo,const VARIANT FAR&TableNo,const VARIANT FAR&RowNos,const VARIANT FAR&ColNos)",
@@ -1151,16 +938,6 @@
       "returnType": "TableOperationResult",
       "parameters": "",
       "nativeName": "SaveReportAll",
-      "source": [
-        {
-          "managedName": "SaveAllReports",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 104,
-          "name": "SaveReportAll",
-          "receiver": "ComObject",
-          "arguments": []
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "void OSTableUI::SaveReportAll()",
@@ -1175,7 +952,6 @@
           "parameters": []
         }
       },
-      "differenceFromSimilarApis": "Unlike SaveReport, this is not scoped to one report; unlike SaveTable, it is not scoped to one table. Calls the main-source native target SaveReportAll exactly once. ReportId and TableId are null because no single identity was supplied. This does not enumerate or save reports in other STAAD application instances, save the model through Root, or establish file-system durability.",
       "example": "table.SaveAllReports()"
     },
     {
@@ -1183,19 +959,6 @@
       "returnType": "TableOperationResult",
       "parameters": "int reportId, int tableId",
       "nativeName": "SaveTable",
-      "source": [
-        {
-          "managedName": "SaveTable",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 109,
-          "name": "SaveTable",
-          "receiver": "ComObject",
-          "arguments": [
-            "reportId",
-            "tableId"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "void OSTableUI::SaveTable(const VARIANT FAR&ReportNo,const VARIANT FAR&TableNo)",
@@ -1251,21 +1014,6 @@
       "returnType": "TableOperationResult",
       "parameters": "int reportId, int tableId, int rowNumber, int columnNumber",
       "nativeName": "SetCellTextBold",
-      "source": [
-        {
-          "managedName": "SetCellTextBold",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 114,
-          "name": "SetCellTextBold",
-          "receiver": "ComObject",
-          "arguments": [
-            "reportId",
-            "tableId",
-            "iRow",
-            "iCol"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "void OSTableUI::SetCellTextBold(const VARIANT FAR&ReportNo,const VARIANT FAR&TableNo,const VARIANT FAR&lRow,const VARIANT FAR&lCol)",
@@ -1351,21 +1099,6 @@
       "returnType": "TableOperationResult",
       "parameters": "int reportId, int tableId, int rowNumber, int columnNumber",
       "nativeName": "SetCellTextItalic",
-      "source": [
-        {
-          "managedName": "SetCellTextItalic",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 129,
-          "name": "SetCellTextItalic",
-          "receiver": "ComObject",
-          "arguments": [
-            "reportId",
-            "tableId",
-            "iRow",
-            "iCol"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "void OSTableUI::SetCellTextItalic(const VARIANT FAR&ReportNo,const VARIANT FAR&TableNo,const VARIANT FAR&lRow,const VARIANT FAR&lCol)",
@@ -1451,21 +1184,6 @@
       "returnType": "TableOperationResult",
       "parameters": "int reportId, int tableId, int rowNumber, int columnNumber",
       "nativeName": "SetCellTextUnderline",
-      "source": [
-        {
-          "managedName": "SetCellTextUnderline",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 144,
-          "name": "SetCellTextUnderline",
-          "receiver": "ComObject",
-          "arguments": [
-            "reportId",
-            "tableId",
-            "iRow",
-            "iCol"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "void OSTableUI::SetCellTextUnderline(const VARIANT FAR&ReportNo,const VARIANT FAR&TableNo,const VARIANT FAR&lRow,const VARIANT FAR&lCol)",
@@ -1551,22 +1269,6 @@
       "returnType": "TableOperationResult",
       "parameters": "int reportId, int tableId, int rowNumber, int columnNumber, double fontSize",
       "nativeName": "SetCellTextSize",
-      "source": [
-        {
-          "managedName": "SetCellTextSize",
-          "file": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Models\\OSTableAdapter.cs",
-          "line": 134,
-          "name": "SetCellTextSize",
-          "receiver": "ComObject",
-          "arguments": [
-            "reportId",
-            "tableId",
-            "iRow",
-            "iCol",
-            "fontSize"
-          ]
-        }
-      ],
       "contractsByYear": {
         "2024": {
           "signature": "void OSTableUI::SetCellTextSize(const VARIANT FAR&ReportNo,const VARIANT FAR&TableNo,const VARIANT FAR&lRow,const VARIANT FAR&lCol,const VARIANT FAR&dSize)",
@@ -1659,7 +1361,6 @@
           ]
         }
       },
-      "differenceFromSimilarApis": "Unlike ResizeTable, this changes font sizing rather than row/column counts. Unlike the main-source SetCellTextSizeForTable workflow, which remains a separate port, this targets one cell only. A finite positive Double is forwarded unchanged using the native Microsoft Word-equivalent size convention, not model input length units. No string formatting, rounding, clamping or automatic save occurs; native size/capacity restrictions remain authoritative.",
       "example": "table.SetCellTextSize(11, 7, 1, 2, 12.5)"
     },
     {
@@ -1668,7 +1369,6 @@
       "parameters": "int reportId, int tableId, int rowNumber, int columnNumber, int red, int green, int blue",
       "nativeName": "SetCellTextColor",
       "mainInterfaceSignature": {
-        "File": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Interfaces\\IOSTable.cs",
         "Owner": "IOSTable",
         "Name": "SetCellTextColor",
         "ReturnType": "void",
@@ -1852,7 +1552,6 @@
       "parameters": "int reportId, int tableId, int rowNumber, int columnNumber, Color color",
       "nativeName": "SetCellTextColor",
       "mainInterfaceSignature": {
-        "File": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Interfaces\\IOSTable.cs",
         "Owner": "IOSTable",
         "Name": "SetCellTextColor",
         "ReturnType": "void",
@@ -2024,7 +1723,6 @@
       "parameters": "int reportId, int tableId, int rowNumber, int columnNumber, string colorText",
       "nativeName": "SetCellTextColor",
       "mainInterfaceSignature": {
-        "File": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Interfaces\\IOSTable.cs",
         "Owner": "IOSTable",
         "Name": "SetCellTextColor",
         "ReturnType": "void",
@@ -2187,7 +1885,6 @@
           ]
         }
       },
-      "differenceFromSimilarApis": "Unlike the typed Color/RGB overloads, this parses WPF ColorConverter text, such as a named color, #RGB, #RRGGBB or #AARRGGBB. A FormatException from parsing alone selects black, matching the main source; empty/malformed text can therefore write black. Null is rejected. Other parser exceptions propagate. Alpha is ignored. Parsing is completed before native dispatch: native exceptions, including FormatException, propagate unchanged without retry or a second black write.",
       "example": "table.SetCellTextColor(11, 7, 1, 2, \"#0C112233\")"
     },
     {
@@ -2196,7 +1893,6 @@
       "parameters": "int reportId, int tableId, int rowNumber, int columnNumber, int argbValue",
       "nativeName": "SetCellTextColor",
       "mainInterfaceSignature": {
-        "File": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Interfaces\\IOSTable.cs",
         "Owner": "IOSTable",
         "Name": "SetCellTextColor",
         "ReturnType": "void",
@@ -2368,7 +2064,6 @@
       "parameters": "int reportId, int tableId, int rowNumber, int columnNumber, byte alpha, byte red, byte green, byte blue",
       "nativeName": "SetCellTextColor",
       "mainInterfaceSignature": {
-        "File": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Interfaces\\IOSTable.cs",
         "Owner": "IOSTable",
         "Name": "SetCellTextColor",
         "ReturnType": "void",
@@ -2558,7 +2253,6 @@
       "parameters": "int reportId, int tableId, int rowNumber, int columnNumber, float hue, float saturation, float lightness",
       "nativeName": "SetCellTextColor",
       "mainInterfaceSignature": {
-        "File": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Interfaces\\IOSTable.cs",
         "Owner": "IOSTable",
         "Name": "SetCellTextColorHsl",
         "ReturnType": "void",
@@ -2733,7 +2427,6 @@
           ]
         }
       },
-      "differenceFromSimilarApis": "Unlike the RGB overloads, this accepts Single-precision HSL components. Finite hue is clamped to 0–360 degrees, and finite saturation/lightness to 0–1, matching the main source. Hue is clamped rather than wrapped; 360 maps to red. Nonfinite values are rejected. Source-compatible Single arithmetic and midpoint-to-even Math.Round produce RGB bytes; conversion makes one native RGB call. HSL has no alpha or model-unit conversion.",
       "example": "table.SetCellTextColorHsl(11, 7, 1, 2, 210f, 0.5f, 0.25f)"
     },
     {
@@ -2742,7 +2435,6 @@
       "parameters": "int reportId, int tableId, int rowNumber, int columnNumber, TableHorizontalAlignment alignment",
       "nativeName": "SetCellTextHorzAlignment",
       "mainInterfaceSignature": {
-        "File": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Interfaces\\IOSTable.cs",
         "Owner": "IOSTable",
         "Name": "SetCellTextHorizontalAlignment",
         "ReturnType": "void",
@@ -2875,7 +2567,6 @@
           ]
         }
       },
-      "differenceFromSimilarApis": "Unlike SetCellTextVerticalAlignment, this uses horizontal codes Left=0, Center=1 and Right=2. The enum adapts the main-project vocabulary with an explicit Table prefix; it is not WPF HorizontalAlignment and offers no Stretch option. Undefined values are rejected. It does not change text, units, column sizing or save the report.",
       "example": "table.SetCellTextHorizontalAlignment(11, 7, 1, 2, TableHorizontalAlignment.Center)"
     },
     {
@@ -2884,7 +2575,6 @@
       "parameters": "int reportId, int tableId, int rowNumber, int columnNumber, TableVerticalAlignment alignment",
       "nativeName": "SetCellTextVertAlignment",
       "mainInterfaceSignature": {
-        "File": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Interfaces\\IOSTable.cs",
         "Owner": "IOSTable",
         "Name": "SetCellTextVerticalAlignment",
         "ReturnType": "void",
@@ -3017,7 +2707,6 @@
           ]
         }
       },
-      "differenceFromSimilarApis": "Unlike horizontal alignment, native vertical codes are Top=0, Middle=4 and Bottom=8. The enum preserves the main-project code mapping and deliberately avoids WPF VerticalAlignment numeric values. Undefined values are rejected. No row-height change, text rewrite or implicit save occurs.",
       "example": "table.SetCellTextVerticalAlignment(11, 7, 1, 2, TableVerticalAlignment.Middle)"
     },
     {
@@ -3026,7 +2715,6 @@
       "parameters": "int reportId, int tableId, double fontSize",
       "nativeName": "SetCellTextSizeAll",
       "mainInterfaceSignature": {
-        "File": "D:\\04. ReInvented\\MainProjects\\SRi.XamlUIThickenerApp\\src\\ReInvented.StaadPro.Interop\\Adapters\\Interfaces\\IOSTable.cs",
         "Owner": "IOSTable",
         "Name": "SetCellTextSizeForTable",
         "ReturnType": "void",
