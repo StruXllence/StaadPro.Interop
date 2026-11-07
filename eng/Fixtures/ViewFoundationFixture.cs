@@ -19,6 +19,9 @@ namespace PackageVerification
             public readonly List<int> Threads = new List<int>();
             public readonly List<double> RotationAngles = new List<double>();
             public readonly List<int> ShownMemberIds = new List<int>();
+            public readonly List<int> HiddenMemberIds = new List<int>();
+            public readonly List<int[]> ShownMemberBatches = new List<int[]>();
+            public readonly List<int[]> HiddenMemberBatches = new List<int[]>();
             public Action OnCall;
             public void ShowFront()
             { Record("ShowFront"); }
@@ -56,6 +59,25 @@ namespace PackageVerification
                     throw new ArgumentException("ShowMember must receive a boxed Int32.", nameof(memberId));
                 ShownMemberIds.Add((int)memberId);
                 Record("ShowMember");
+            }
+
+            public void HideMember(object memberId)
+            {
+                if (!(memberId is int)) throw new ArgumentException("HideMember requires a boxed Int32.", nameof(memberId));
+                HiddenMemberIds.Add((int)memberId);
+                Record("HideMember");
+            }
+            public void ShowMembers(object count, object memberIds) => RecordMembers("ShowMembers", count, memberIds, ShownMemberBatches);
+            public void HideMembers(object count, object memberIds) => RecordMembers("HideMembers", count, memberIds, HiddenMemberBatches);
+            private void RecordMembers(string operation, object count, object memberIds, List<int[]> batches)
+            {
+                var ids = memberIds as int[];
+                if (!(count is int) || ids == null || (int)count != ids.Length)
+                    throw new ArgumentException("Native member lists require a matching boxed Int32 count and Int32 array.");
+                if (ids.Rank != 1 || ids.GetLowerBound(0) != 0)
+                    throw new ArgumentException("Native member lists must be one-dimensional and zero-based.");
+                batches.Add(ids);
+                Record(operation);
             }
 
             private void RecordAngle(string operation, object angle)

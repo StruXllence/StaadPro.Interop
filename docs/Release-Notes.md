@@ -1,5 +1,13 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261107 - 7 November 2026
+
+Ported `ShowMembers(IEnumerable<Beam> beams)`, `HideMember(Beam beam)` and `HideMembers(IEnumerable<Beam> beams)`. Preserved source names and parameters while reusing the captured View service and `ViewOperationResult`. Collection methods enumerate once, capture positive IDs in an owned array, preserve order and duplicates, and forward a matching count/array pair. Null inputs, null elements and nonpositive IDs fail before native dispatch. Native void completion remains explicitly unacknowledged.
+
+Added comprehensive matching interface/adapter XML IntelliSense, guarded examples and regression coverage for input snapshots, enumeration failures, binding lifetime, dispatch and native errors. View reaches **21/70 source overloads** and **21/67 reviewed native names**; **142 active source overloads remain** across the reviewed domains. Live native COM/UI qualification remains separate. See [member visibility contracts](View-Member-Visibility.md).
+
+Passed **7,240 offline tests**, including **299 View cases** and **48 additional regression cases** in this increment. A fresh installed NuGet consumer compiled and executed **1,322 XML examples**, including all **42 View examples**, and checked the new native-signature routes, input validation and owned snapshots.
+
 ## 1.0.0-preview.20261105 - 5 November 2026 (prepared preview)
 
 Ported ZoomAll, ZoomExtentsMainView, ShowAllMembers, HideAllMembers and ShowMember(Beam) from the read-only main project. Reused the single View adapter, shared captured-binding service, named void-completion receipt and existing Beam class. ShowMember captures and validates the positive analytical member ID before native dispatch. No public reference outputs, tuples or new data types were added.

@@ -354,13 +354,14 @@ try {
     $viewGuide = Read-PackageEntry 'docs/View-Orientations.md'
     $viewGuide += Read-PackageEntry 'docs/View-Incremental-Rotations.md'
     $viewGuide += Read-PackageEntry 'docs/View-Zoom-and-Member-Visibility.md'
+    $viewGuide += Read-PackageEntry 'docs/View-Member-Visibility.md'
     $sourcePortingGuide = Read-PackageEntry 'docs/reports/OpenSTAAD-Main-Source-Porting-Status.md'
     $sourcePortingStatus = (Read-PackageEntry 'docs/reports/data/OpenSTAAD-Main-Source-Porting-Status.json') | ConvertFrom-Json
-    if ($sourcePortingStatus.pendingBefore -ne 150 -or $sourcePortingStatus.pendingAfter -ne 145 -or $sourcePortingStatus.portedThisIncrement -ne 5 -or $sourcePortingGuide -notmatch '145') { throw 'Inconsistent packaged source-porting inventory.' }
+    if ($sourcePortingStatus.pendingBefore -ne 145 -or $sourcePortingStatus.pendingAfter -ne 142 -or $sourcePortingStatus.portedThisIncrement -ne 3 -or $sourcePortingGuide -notmatch '142') { throw 'Inconsistent packaged source-porting inventory.' }
     foreach ($owner in @('Adapters.Interfaces.IOSView', 'Adapters.Models.OSViewAdapter')) {
         $entries = @($xml.doc.members.member | Where-Object { $_.name.StartsWith("M:StaadPro.Interop.$owner.") -and $_.name -notmatch '\.#ctor' })
-        if ($entries.Count -ne 18) { throw 'Expected eighteen documented View functions.' }
-        foreach ($function in @('ShowFront','ShowBack','ShowLeft','ShowRight','ShowPlan','ShowBottom','ShowIsometric','RotateUp','RotateDown','RotateLeft','RotateRight','SpinLeft','SpinRight','ZoomAll','ZoomExtentsMainView','ShowAllMembers','HideAllMembers','ShowMember')) {
+        if ($entries.Count -ne 21) { throw 'Expected twenty-one documented View functions.' }
+        foreach ($function in @('ShowFront','ShowBack','ShowLeft','ShowRight','ShowPlan','ShowBottom','ShowIsometric','RotateUp','RotateDown','RotateLeft','RotateRight','SpinLeft','SpinRight','ZoomAll','ZoomExtentsMainView','ShowAllMembers','HideAllMembers','ShowMember','ShowMembers','HideMember','HideMembers')) {
             if ($viewGuide -notmatch $function) { throw "Missing View guidance for $function." }
         }
         foreach ($entry in $entries) {
@@ -371,7 +372,7 @@ try {
             $viewSnippets += 'using (var wrapper = new OpenStaadWrapper(new PackageVerification.ViewFoundationFixture.Root { View = new PackageVerification.ViewFoundationFixture.Native() })) {' + $newLine + $binding + $newLine + $entry.SelectSingleNode('example/code').InnerText + $newLine + '}'
         }
     }
-    if ($viewSnippets.Count -ne 36) { throw 'Expected thirty-six View XML examples.' }
+    if ($viewSnippets.Count -ne 42) { throw 'Expected forty-two View XML examples.' }
     $designGuide = Read-PackageEntry 'docs/Design-Porting.md'
     $designSnippets = @()
     foreach ($owner in @('Adapters.Interfaces.IOSDesign', 'Adapters.Models.OSDesignAdapter')) {
@@ -870,6 +871,35 @@ public static class Program
             try { wrapper.View.ShowMember(new Beam()); throw new Exception("Nonpositive member was accepted."); }
             catch (ArgumentOutOfRangeException error) { Check(error.ParamName == "beam", "Nonpositive beam argument name"); }
             Check(viewNative.Calls.Count == beforeInvalidMember, "Invalid member must not dispatch");
+            var memberInputs = new[] { new Beam { Id = 41 }, new Beam { Id = 17 }, new Beam { Id = 41 } };
+            int enumerations = 0;
+            IEnumerable<Beam> memberSequence = memberInputs.Select(beam => { enumerations++; return beam; });
+            int beforeMembers = viewNative.Calls.Count;
+            var memberReceipts = new[] { wrapper.View.ShowMembers(memberSequence), wrapper.View.HideMember(memberInputs[0]), wrapper.View.HideMembers(memberInputs) };
+            Check(enumerations == 3, "Member inputs enumerated once");
+            Check(viewNative.ShownMemberBatches.Single().SequenceEqual(new[] { 41, 17, 41 }), "Shown array preserves order and duplicates");
+            Check(viewNative.HiddenMemberBatches.Single().SequenceEqual(new[] { 41, 17, 41 }), "Hidden array preserves order and duplicates");
+            Check(viewNative.HiddenMemberIds.SequenceEqual(new[] { 41 }), "Hidden single Int32 member ID");
+            Check(viewNative.Calls.Skip(beforeMembers).SequenceEqual(new[] { "ShowMembers", "HideMember", "HideMembers" }), "Exact new member routes");
+            Check(memberReceipts.All(result => result.Status == ViewOperationStatus.InvokedWithoutAcknowledgement && !result.IsSuccessful && result.NativeReturnCode == null), "Member void receipts");
+            memberInputs[0].Id = 99;
+            Check(viewNative.ShownMemberBatches.Single()[0] == 41 && viewNative.HiddenMemberBatches.Single()[0] == 41, "Owned member snapshots");
+            wrapper.View.ShowMembers(new Beam[0]);
+            wrapper.View.HideMembers(new Beam[0]);
+            Check(viewNative.ShownMemberBatches.Last().Length == 0 && viewNative.HiddenMemberBatches.Last().Length == 0, "Empty exact count-array pairs");
+            int beforeInvalidMembers = viewNative.Calls.Count;
+            try { wrapper.View.ShowMembers(null); throw new Exception("Null member sequence was accepted."); }
+            catch (ArgumentNullException error) { Check(error.ParamName == "beams", "Null sequence argument"); }
+            try { wrapper.View.HideMembers(new Beam[] { new Beam { Id = 17 }, null }); throw new Exception("Null member element was accepted."); }
+            catch (ArgumentException error) { Check(error.ParamName == "beams", "Null element argument"); }
+            try { wrapper.View.ShowMembers(new[] { new Beam { Id = 17 }, new Beam() }); throw new Exception("Invalid member sequence was accepted."); }
+            catch (ArgumentOutOfRangeException error) { Check(error.ParamName == "beams", "Invalid sequence ID argument"); }
+            try { wrapper.View.HideMember(null); throw new Exception("Null hidden member was accepted."); }
+            catch (ArgumentNullException error) { Check(error.ParamName == "beam", "Null hidden member argument"); }
+            try { wrapper.View.HideMember(new Beam()); throw new Exception("Invalid hidden member was accepted."); }
+            catch (ArgumentOutOfRangeException error) { Check(error.ParamName == "beam", "Invalid hidden ID argument"); }
+            Check(viewNative.Calls.Count == beforeInvalidMembers, "Invalid member inputs do not partially dispatch");
+            Check(viewNative.Threads.All(thread => thread == System.Threading.Thread.CurrentThread.ManagedThreadId), "Member requests retain caller thread");
             int callsBeforeInvalidAngle = viewNative.Calls.Count;
             try { wrapper.View.RotateUp(double.NaN); throw new Exception("Nonfinite angle was accepted."); }
             catch (ArgumentOutOfRangeException error) { Check(error.ParamName == "angleDegrees", "Native angle argument name"); }

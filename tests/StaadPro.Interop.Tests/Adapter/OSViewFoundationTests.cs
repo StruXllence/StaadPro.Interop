@@ -24,7 +24,7 @@ namespace StaadPro.Interop.Tests.Adapter
         private static readonly string[] Names =
         {
             "ShowFront", "ShowBack", "ShowLeft", "ShowRight", "ShowPlan", "ShowBottom", "ShowIsometric", "RotateUp", "RotateDown", "RotateLeft", "RotateRight", "SpinLeft", "SpinRight",
-            "ZoomAll", "ZoomExtentsMainView", "ShowAllMembers", "HideAllMembers", "ShowMember"
+            "ZoomAll", "ZoomExtentsMainView", "ShowAllMembers", "HideAllMembers", "ShowMember", "ShowMembers", "HideMember", "HideMembers"
         };
 
         private static IEnumerable<object[]> OrientationVersions
@@ -61,6 +61,9 @@ namespace StaadPro.Interop.Tests.Adapter
                 case "ShowAllMembers": return view.ShowAllMembers();
                 case "HideAllMembers": return view.HideAllMembers();
                 case "ShowMember": return view.ShowMember(new Beam { Id = 17 });
+                case "HideMember": return view.HideMember(new Beam { Id = 17 });
+                case "ShowMembers": return view.ShowMembers(new[] { new Beam { Id = 17 } });
+                case "HideMembers": return view.HideMembers(new[] { new Beam { Id = 17 } });
                 default: throw new ArgumentOutOfRangeException(nameof(name));
             }
         }
@@ -166,7 +169,7 @@ namespace StaadPro.Interop.Tests.Adapter
                 Assert.That(parameters[0].Name, Is.EqualTo(name == "RotateUp" ? "angleDegrees" : "angle"));
                 Assert.That(parameters[0].ParameterType.IsByRef, Is.False);
             }
-            else if (name == "ShowMember")
+            else if (name == "ShowMember" || name == "HideMember")
             {
                 Assert.That(parameters.Length, Is.EqualTo(1));
                 Assert.That(parameters[0].ParameterType, Is.EqualTo(typeof(Beam)));
@@ -174,21 +177,28 @@ namespace StaadPro.Interop.Tests.Adapter
                 Assert.That(parameters[0].ParameterType.IsByRef, Is.False);
                 Assert.That(parameters[0].IsOptional, Is.False);
             }
+            else if (name == "ShowMembers" || name == "HideMembers")
+            {
+                Assert.That(parameters.Length, Is.EqualTo(1));
+                Assert.That(parameters[0].ParameterType, Is.EqualTo(typeof(IEnumerable<Beam>)));
+                Assert.That(parameters[0].Name, Is.EqualTo("beams"));
+                Assert.That(parameters[0].IsOptional, Is.False);
+            }
             else
                 Assert.That(parameters, Is.Empty);
             var xml = XDocument.Load(Path.ChangeExtension(typeof(IOSView).Assembly.Location, ".xml"));
-            string suffix = IsAngular(name) ? "(System.Double)" : name == "ShowMember" ? "(StaadPro.Interop.Entities.Beam)" : string.Empty;
+            string suffix = IsAngular(name) ? "(System.Double)" : (name == "ShowMember" || name == "HideMember") ? "(StaadPro.Interop.Entities.Beam)" : (name == "ShowMembers" || name == "HideMembers") ? "(System.Collections.Generic.IEnumerable{StaadPro.Interop.Entities.Beam})" : string.Empty;
             var contract = xml.Descendants("member").Single(m => (string)m.Attribute("name") == "M:" + typeof(IOSView).FullName + "." + name + suffix);
             var adapter = xml.Descendants("member").Single(m => (string)m.Attribute("name") == "M:" + typeof(OSViewAdapter).FullName + "." + name + suffix);
             Assert.That(contract.Elements().Select(x => x.ToString()), Is.EqualTo(adapter.Elements().Select(x => x.ToString())));
             foreach (string tag in new[] { "summary", "returns", "remarks", "example" })
                 Assert.That(contract.Element(tag)?.Value, Is.Not.Null.And.Not.Empty);
             Assert.That(contract.Element("remarks").Value, Does.Contain("Unlike").Or.Contain("unlike"));
-            Assert.That(contract.Descendants("exception").Count(), Is.EqualTo(IsAngular(name) ? 4 : name == "ShowMember" ? 5 : 3));
+            Assert.That(contract.Descendants("exception").Count(), Is.EqualTo(IsAngular(name) ? 4 : (name == "ShowMember" || name == "HideMember") ? 5 : (name == "ShowMembers" || name == "HideMembers") ? 6 : 3));
             Assert.That(contract.Descendants().Attributes("cref").Any(a => a.Value.StartsWith("!:")), Is.False);
-            Assert.That(contract.Descendants("code").Single().Value, Does.Contain("view." + name + "(" + (IsAngular(name) ? (name == "RotateUp" ? "angleDegrees" : "angle") : name == "ShowMember" ? "beam" : "") + ")"));
+            Assert.That(contract.Descendants("code").Single().Value, Does.Contain("view." + name + "(" + (IsAngular(name) ? (name == "RotateUp" ? "angleDegrees" : "angle") : (name == "ShowMember" || name == "HideMember") ? "beam" : (name == "ShowMembers" || name == "HideMembers") ? "beams" : "") + ")"));
             Assert.That(contract.Elements("param").Select(p => (string)p.Attribute("name")),
-                Is.EqualTo(IsAngular(name) ? new[] { name == "RotateUp" ? "angleDegrees" : "angle" } : name == "ShowMember" ? new[] { "beam" } : new string[0]));
+                Is.EqualTo(IsAngular(name) ? new[] { name == "RotateUp" ? "angleDegrees" : "angle" } : (name == "ShowMember" || name == "HideMember") ? new[] { "beam" } : (name == "ShowMembers" || name == "HideMembers") ? new[] { "beams" } : new string[0]));
             if (IsAngular(name))
                 Assert.That(contract.Element("param").Value, Does.Contain("degrees").And.Contain("negative").And.Contain("Zero"));
         }

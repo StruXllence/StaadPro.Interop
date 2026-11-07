@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using StaadPro.Interop.Entities;
 using StaadPro.Interop.Models;
 using StaadPro.Interop.Models.View;
@@ -54,6 +55,45 @@ namespace StaadPro.Interop.Services.View
                 throw new ArgumentOutOfRangeException(nameof(beam), "The beam must identify a positive analytical member number in the acquired model.");
 
             return RequestOrientation("ShowMember", view => view.ShowMember(memberId));
+        }
+
+        internal ViewOperationResult HideMember(Beam beam)
+        {
+            if (beam == null)
+                throw new ArgumentNullException(nameof(beam));
+            int memberId = beam.Id;
+            if (memberId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(beam), "The beam must identify a positive analytical member number in the acquired model.");
+            return RequestOrientation("HideMember", view => view.HideMember(memberId));
+        }
+
+        internal ViewOperationResult ShowMembers(IEnumerable<Beam> beams)
+        {
+            int[] memberIds = SnapshotMemberIds(beams);
+            return RequestOrientation("ShowMembers", view => view.ShowMembers(memberIds.Length, memberIds));
+        }
+
+        internal ViewOperationResult HideMembers(IEnumerable<Beam> beams)
+        {
+            int[] memberIds = SnapshotMemberIds(beams);
+            return RequestOrientation("HideMembers", view => view.HideMembers(memberIds.Length, memberIds));
+        }
+
+        private static int[] SnapshotMemberIds(IEnumerable<Beam> beams)
+        {
+            if (beams == null)
+                throw new ArgumentNullException(nameof(beams));
+            var ids = new List<int>();
+            foreach (Beam beam in beams)
+            {
+                if (beam == null)
+                    throw new ArgumentException("The sequence must not contain a null beam.", nameof(beams));
+                int memberId = beam.Id;
+                if (memberId <= 0)
+                    throw new ArgumentOutOfRangeException(nameof(beams), "Every beam must identify a positive analytical member number in the acquired model.");
+                ids.Add(memberId);
+            }
+            return ids.ToArray();
         }
 
         private ViewOperationResult RequestRotation(string nativeFunction, double angle, Action<dynamic> request)

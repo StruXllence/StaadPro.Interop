@@ -24,11 +24,11 @@ A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD. Work wi
 
 Runtime requires **Windows, .NET Framework 4.8.1 (net481), and a licensed STAAD.Pro installation** exposing the APIs used by your application. The .NET SDK used to build the project is separate from the application's target framework.
 
-The latest locally prepared preview is **1.0.0-preview.20261105**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
+The latest locally prepared preview is **1.0.0-preview.20261107**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
 
-## Latest preview — 1.0.0-preview.20261105
+## Latest preview — 1.0.0-preview.20261107
 
-Ported `ZoomAll()`, `ZoomExtentsMainView()`, `ShowAllMembers()`, `HideAllMembers()` and `ShowMember(Beam)` from the read-only main source. These additions are included in the new preview; earlier archives retain their original scope. See [zoom and visibility contracts](docs/View-Zoom-and-Member-Visibility.md).
+Ported `ShowMembers(IEnumerable<Beam> beams)`, `HideMember(Beam beam)` and `HideMembers(IEnumerable<Beam> beams)` with complete XML IntelliSense, positive member-ID validation and stable collection snapshots. See [member visibility contracts](docs/View-Member-Visibility.md).
 
 ## Quick start: read an open model
 
@@ -74,7 +74,7 @@ This attaches to an existing instance and reads primary load-case metadata. It d
 
 ## View orientations
 
-Use `ShowFront()`, `ShowBack()`, `ShowLeft()`, `ShowRight()`, `ShowPlan()`, `ShowBottom()` or `ShowIsometric()` for a fixed direction. Use `RotateUp(angleDegrees)`, `RotateDown(angle)`, `RotateLeft(angle)`, `RotateRight(angle)`, `SpinLeft(angle)` or `SpinRight(angle)` for finite signed-degree increments about their documented global axes. Each returns a named unacknowledged completion receipt. See [orientation usage](docs/View-Orientations.md) and [incremental rotations](docs/View-Incremental-Rotations.md). View exposes 18/70 main-source overloads; **145 active source overloads remain** across the reviewed domains. See [the source inventory](docs/reports/OpenSTAAD-Main-Source-Porting-Status.md).
+Use `ShowFront()`, `ShowBack()`, `ShowLeft()`, `ShowRight()`, `ShowPlan()`, `ShowBottom()` or `ShowIsometric()` for a fixed direction. Use `RotateUp(angleDegrees)`, `RotateDown(angle)`, `RotateLeft(angle)`, `RotateRight(angle)`, `SpinLeft(angle)` or `SpinRight(angle)` for finite signed-degree increments about their documented global axes. Each returns a named unacknowledged completion receipt. See [orientation usage](docs/View-Orientations.md) and [incremental rotations](docs/View-Incremental-Rotations.md). View exposes 21/70 main-source overloads; **142 active source overloads remain** across the reviewed domains. See [the source inventory](docs/reports/OpenSTAAD-Main-Source-Porting-Status.md).
 
 ## Compatibility and preview status
 

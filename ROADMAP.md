@@ -1,5 +1,7 @@
 # StaadPro.Interop — Strategic Product Roadmap
 
+**7 November 2026 checkpoint:** Ported `ShowMembers(IEnumerable<Beam> beams)`, `HideMember(Beam beam)` and `HideMembers(IEnumerable<Beam> beams)` with matching detailed XML IntelliSense, owned ID snapshots and the shared View service. View covers **21/70 source overloads** and **21/67 reviewed native names**. **142 active source overloads remain** across the reviewed domains. See [member visibility contracts](docs/View-Member-Visibility.md) and [the source inventory](docs/reports/OpenSTAAD-Main-Source-Porting-Status.md). Native COM/UI qualification remains separate.
+
 **4 November 2026 checkpoint:** Ported `RotateDown(double angle)`, `RotateLeft(double angle)`, `RotateRight(double angle)`, `SpinLeft(double angle)` and `SpinRight(double angle)` from the main source. Preserved the original `angle` parameter name, type and order on both interfaces and the concrete adapter. View now exposes **13 of 70 main-source overloads** and reaches **13 of 67 reviewed native names**; **57 source overloads** and **54 native names** remain pending. See [rotation contracts](docs/View-Incremental-Rotations.md).
 
 Passed **7,137 offline tests**, including **201 View cases** and **116 additional cases** in this increment. Installed-package verification compiles and executes **1,306 selected XML examples**, including all **26 View interface/adapter examples**, through a fresh PackageReference consumer. Live native COM/UI behavior remains separate qualification work.

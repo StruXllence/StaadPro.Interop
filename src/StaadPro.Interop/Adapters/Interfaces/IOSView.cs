@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using StaadPro.Interop.Entities;
 using StaadPro.Interop.Models.View;
 using System;
@@ -332,5 +333,72 @@ namespace StaadPro.Interop.Adapters.Interfaces
         ///     System.Console.WriteLine(result.NativeFunction + ": " + result.Status);
         /// }</code></example>
         ViewOperationResult ShowMember(Beam beam);
+
+        /// <summary>Displays the specified analytical members in the acquired STAAD graphical view.</summary>
+        /// <param name="beams">A non-null sequence of non-null beams with positive analytical member IDs in the acquired model. Enumerated once before dispatch; each ID is captured once into an owned Int32 array. Order and duplicates are retained. An empty sequence forwards count zero and an empty array; its graphical effect is native-defined. Geometry fields are not required.</param>
+        /// <returns>A <see cref="ViewOperationResult"/> naming ShowMembers with InvokedWithoutAcknowledgement, a null NativeReturnCode and IsSuccessful false. Native void completion provides no success acknowledgement; false does not indicate native failure.</returns>
+        /// <remarks>
+        /// <para>Changes member display only. Unlike HideAllMembers or ShowAllMembers, this request targets supplied member IDs. It does not isolate, select, delete or renumber members, change geometry or loads, zoom, analyze or save. The caller must ensure IDs belong to the acquired model; membership is not queried. A normal return does not certify graphical readiness, repaint completion, visible effects or persistence.</para>
+        /// <para>The main-source name and IEnumerable&lt;Beam&gt; parameter are preserved. A single enumeration snapshots IDs before native dispatch. No sorting, deduplication, geometry lookup or caller collection mutation occurs. Enumeration exceptions propagate without calling native code. The native call receives the exact array length and that same owned Int32 array, including zero length; empty-input effects require native qualification. Concurrent mutation while enumerating is the caller's responsibility.</para>
+        /// <para>Uses the captured RawView on the caller's established COM apartment under the existing per-adapter gate, with binding checks before and after dispatch. Reacquire wrapper.View after refresh. The gate does not coordinate raw-object access, other adapters or external UI changes. Native errors propagate unchanged; a post-call lifetime error can follow a graphical change. No retry, rollback, alternate instance, background dispatch or implicit model launch occurs. The installed 2025 help agrees with the recorded 2024/2025/2026 input-VARIANT contracts. Managed fixtures do not establish live COM marshaling or graphical compatibility for every STAAD build.</para>
+        /// </remarks>
+        /// <exception cref="ArgumentNullException">beams is null.</exception>
+        /// <exception cref="ArgumentException">beams contains a null element.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">A supplied beam ID is zero or negative; the parameter name is beams.</exception>
+        /// <exception cref="InvalidOperationException">The captured View binding is disposed or replaced, including during dispatch; sequence enumeration can also propagate its own InvalidOperationException.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native request failed; graphical effects may precede the exception.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured automation object lacks the reviewed ShowMembers contract.</exception>
+        /// <example><code>bool changeVisibility = false; // Enable only when a graphical change is intended.
+        /// if (changeVisibility)
+        /// {
+        ///     var beams = new[] { new StaadPro.Interop.Entities.Beam { Id = 17 }, new StaadPro.Interop.Entities.Beam { Id = 41 } };
+        ///     var receipt = view.ShowMembers(beams);
+        ///     System.Console.WriteLine(receipt.NativeFunction + ": " + receipt.Status);
+        /// }</code></example>
+        ViewOperationResult ShowMembers(IEnumerable<Beam> beams);
+
+        /// <summary>Hides one specified analytical member in the acquired STAAD graphical view.</summary>
+        /// <param name="beam">A non-null beam whose positive Id identifies an existing analytical member in the acquired model. Only Id is captured, once; StartNode, EndNode and other geometry are not required.</param>
+        /// <returns>A <see cref="ViewOperationResult"/> naming HideMember with InvokedWithoutAcknowledgement, a null NativeReturnCode and IsSuccessful false. Native void completion provides no success acknowledgement; false does not indicate native failure.</returns>
+        /// <remarks>
+        /// <para>Changes member display only. Unlike HideAllMembers or ShowAllMembers, this request targets supplied member IDs. It does not isolate, select, delete or renumber members, change geometry or loads, zoom, analyze or save. The caller must ensure IDs belong to the acquired model; membership is not queried. A normal return does not certify graphical readiness, repaint completion, visible effects or persistence.</para>
+        /// <para>Uses the captured RawView on the caller's established COM apartment under the existing per-adapter gate, with binding checks before and after dispatch. Reacquire wrapper.View after refresh. The gate does not coordinate raw-object access, other adapters or external UI changes. Native errors propagate unchanged; a post-call lifetime error can follow a graphical change. No retry, rollback, alternate instance, background dispatch or implicit model launch occurs. The installed 2025 help agrees with the recorded 2024/2025/2026 input-VARIANT contracts. Managed fixtures do not establish live COM marshaling or graphical compatibility for every STAAD build.</para>
+        /// </remarks>
+        /// <exception cref="ArgumentNullException">beam is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">A supplied beam.Id is zero or negative; the parameter name is beam.</exception>
+        /// <exception cref="InvalidOperationException">The captured View binding is disposed or replaced, including during dispatch; sequence enumeration can also propagate its own InvalidOperationException.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native request failed; graphical effects may precede the exception.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured automation object lacks the reviewed HideMember contract.</exception>
+        /// <example><code>bool changeVisibility = false; // Enable only when a graphical change is intended.
+        /// if (changeVisibility)
+        /// {
+        ///     var beam = new StaadPro.Interop.Entities.Beam { Id = 17 };
+        ///     var receipt = view.HideMember(beam);
+        ///     System.Console.WriteLine(receipt.NativeFunction + ": " + receipt.Status);
+        /// }</code></example>
+        ViewOperationResult HideMember(Beam beam);
+
+        /// <summary>Hides the specified analytical members in the acquired STAAD graphical view.</summary>
+        /// <param name="beams">A non-null sequence of non-null beams with positive analytical member IDs in the acquired model. Enumerated once before dispatch; each ID is captured once into an owned Int32 array. Order and duplicates are retained. An empty sequence forwards count zero and an empty array; its graphical effect is native-defined. Geometry fields are not required.</param>
+        /// <returns>A <see cref="ViewOperationResult"/> naming HideMembers with InvokedWithoutAcknowledgement, a null NativeReturnCode and IsSuccessful false. Native void completion provides no success acknowledgement; false does not indicate native failure.</returns>
+        /// <remarks>
+        /// <para>Changes member display only. Unlike HideAllMembers or ShowAllMembers, this request targets supplied member IDs. It does not isolate, select, delete or renumber members, change geometry or loads, zoom, analyze or save. The caller must ensure IDs belong to the acquired model; membership is not queried. A normal return does not certify graphical readiness, repaint completion, visible effects or persistence.</para>
+        /// <para>The main-source name and IEnumerable&lt;Beam&gt; parameter are preserved. A single enumeration snapshots IDs before native dispatch. No sorting, deduplication, geometry lookup or caller collection mutation occurs. Enumeration exceptions propagate without calling native code. The native call receives the exact array length and that same owned Int32 array, including zero length; empty-input effects require native qualification. Concurrent mutation while enumerating is the caller's responsibility.</para>
+        /// <para>Uses the captured RawView on the caller's established COM apartment under the existing per-adapter gate, with binding checks before and after dispatch. Reacquire wrapper.View after refresh. The gate does not coordinate raw-object access, other adapters or external UI changes. Native errors propagate unchanged; a post-call lifetime error can follow a graphical change. No retry, rollback, alternate instance, background dispatch or implicit model launch occurs. The installed 2025 help agrees with the recorded 2024/2025/2026 input-VARIANT contracts. Managed fixtures do not establish live COM marshaling or graphical compatibility for every STAAD build.</para>
+        /// </remarks>
+        /// <exception cref="ArgumentNullException">beams is null.</exception>
+        /// <exception cref="ArgumentException">beams contains a null element.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">A supplied beam ID is zero or negative; the parameter name is beams.</exception>
+        /// <exception cref="InvalidOperationException">The captured View binding is disposed or replaced, including during dispatch; sequence enumeration can also propagate its own InvalidOperationException.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native request failed; graphical effects may precede the exception.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured automation object lacks the reviewed HideMembers contract.</exception>
+        /// <example><code>bool changeVisibility = false; // Enable only when a graphical change is intended.
+        /// if (changeVisibility)
+        /// {
+        ///     var beams = new[] { new StaadPro.Interop.Entities.Beam { Id = 17 }, new StaadPro.Interop.Entities.Beam { Id = 41 } };
+        ///     var receipt = view.HideMembers(beams);
+        ///     System.Console.WriteLine(receipt.NativeFunction + ": " + receipt.Status);
+        /// }</code></example>
+        ViewOperationResult HideMembers(IEnumerable<Beam> beams);
     }
 }

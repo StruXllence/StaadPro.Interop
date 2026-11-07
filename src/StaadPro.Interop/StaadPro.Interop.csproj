@@ -12,12 +12,12 @@
     <RootNamespace>StaadPro.Interop</RootNamespace>
     <PackageId>StaadPro.Interop</PackageId>
     <Version>1.0.0</Version>
-    <ReleaseDocumentationVersion>1.0.0-preview.20261105</ReleaseDocumentationVersion>
+    <ReleaseDocumentationVersion>1.0.0-preview.20261107</ReleaseDocumentationVersion>
     <PackageVersion>$(ReleaseDocumentationVersion)</PackageVersion>
     <Authors>Srinivasa Rao Masanam</Authors>
     <Company>StruXllence</Company>
     <Copyright>Copyright (c) 2026 StruXllence</Copyright>
-    <PackageReleaseNotes>Ported ZoomAll, ZoomExtentsMainView, ShowAllMembers, HideAllMembers and ShowMember(Beam) from the main source with comprehensive matching XML IntelliSense. Reused Beam and the captured View service, preserving caller-thread dispatch and explicit unacknowledged native void completion. View now covers 18 of 70 source overloads and 18 of 67 reviewed native names. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
+    <PackageReleaseNotes>Ported ShowMembers(IEnumerable&lt;Beam&gt; beams), HideMember(Beam beam) and HideMembers(IEnumerable&lt;Beam&gt; beams) with complete interface and adapter XML IntelliSense. Captured positive analytical IDs once, preserved collection order and duplicates, and reused caller-thread View dispatch with explicit unacknowledged void-completion receipts. View covers 21 of 70 source overloads and 21 of 67 reviewed native names. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
     <Description>A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageTags>staad;staad-pro;openstaad;structural-engineering;structural-analysis;engineering-automation;csharp;dotnet-framework;com-interop;geometry;loads;bentley;struxllence</PackageTags>
@@ -55,6 +55,7 @@
     <None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
     <None Include="..\..\CITATION.cff" Pack="true" PackagePath="CITATION.cff" />
     <None Include="..\..\TRADEMARKS.md" Pack="true" PackagePath="TRADEMARKS.md" />
+    <None Include="..\..\docs\View-Member-Visibility.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\View-Orientations.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\View-Incremental-Rotations.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\View-Zoom-and-Member-Visibility.md" Pack="true" PackagePath="docs\" />

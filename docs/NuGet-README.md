@@ -10,9 +10,9 @@ By **Srinivasa Rao Masanam**.
 
 The [StruXllence website](https://struxllence.com) is live. Join the community forum for structural-engineering discussions, explore the forum preview, or follow @StruXllence on YouTube. Report package defects through [GitHub Issues](https://github.com/StruXllence/StaadPro.Interop/issues).
 
-## Version 1.0.0-preview.20261105
+## Version 1.0.0-preview.20261107
 
-Ported ZoomAll, ZoomExtentsMainView, ShowAllMembers, HideAllMembers and ShowMember(Beam) from the read-only main source. View now exposes **18/70 source overloads** over **18/67 native names**, leaving **145 active source overloads** across the reviewed domains. Reused Beam and ViewOperationResult, with comprehensive comparative XML documentation and 55 additional managed regression cases. The current source passes 7,192 offline tests; the verifier checks 1,316 XML examples. These functions are included in this preview; previous archives retain their original scope. See [zoom and member visibility contracts](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/View-Zoom-and-Member-Visibility.md).
+Ported `ShowMembers(IEnumerable<Beam> beams)`, `HideMember(Beam beam)` and `HideMembers(IEnumerable<Beam> beams)` with complete matching interface/adapter XML IntelliSense. Collection inputs are captured once into owned member-ID arrays, preserving order and duplicates. View reaches **21/70 source overloads** and **21/67 native names**; **142 active source overloads remain** across the reviewed domains. See [member visibility contracts](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/View-Member-Visibility.md).
 
 Published by **StruXllence**. **Copyright (c) 2026 StruXllence**. The package targets Windows and .NET Framework 4.8.1 (net481) and requires a licensed STAAD.Pro installation for live use. This preview is prepared for manual upload; public availability of this exact version is not confirmed. Native COM/UI and engineering qualification remain separate from managed tests.
 
@@ -24,7 +24,7 @@ The earlier increment passed **7,137 offline tests**, including **201 View cases
 
 StaadPro.Interop provides typed adapters and managed models for working with an existing Bentley STAAD.Pro application through OpenSTAAD. It includes geometry and load operations, model information and lifecycle functions, application-window controls, and native analysis requests.
 
-This preview includes 249 common Property overloads and five optional catalog queries, all 171 current Load overloads, the completed reference Geometry ports, 96 managed Output overloads reaching 47 native names, 27 Support operations, seventeen Commands methods, ten Design methods, twenty-nine Table methods and eighteen View methods, the reviewed Root APIs and approved wrapper surface, including separately acquired, version-aware export and analysis-message capabilities. See the [release notes](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md) for the changes included in each version.
+This preview includes 249 common Property overloads and five optional catalog queries, all 171 current Load overloads, the completed reference Geometry ports, 96 managed Output overloads reaching 47 native names, 27 Support operations, seventeen Commands methods, ten Design methods, twenty-nine Table methods and twenty-one View methods, the reviewed Root APIs and approved wrapper surface, including separately acquired, version-aware export and analysis-message capabilities. See the [release notes](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md) for the changes included in each version.
 
 ## Completed Table ports and View foundation
 
@@ -148,7 +148,7 @@ Load exposes **171 managed overloads**, including all 115 main-interface referen
 
 Output provides **96 managed overloads reaching 47 native names**, including parameter-block steel-design observations, model-wide failure ratios, member and physical-member actions, nodal and solid results, plate-center quantities, support-node observations, steel design, modal/buckling information and time histories. Named status/data results preserve native units and operation-specific failure distinctions. Inspect IsSuccessful before Data. See the [Output guide](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Output-Porting.md) and [extended-query contracts](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Output-Extended-Queries.md). Thirteen documented Output routes remain; live native qualification is pending. Support provides 27 common documented operations, with eight native contract gates pending; see the packaged Support foundation and Commands/Support guides.
 
-The approved wrapper surface is complete. This archive includes all 249 common Property overloads and five acquired catalog queries described above. Commands provides seventeen analysis-configuration methods and Design provides ten common brief/assignment/query methods. Table provides all 29 reviewed source overloads, View provides eight source methods, and IDEA StatiCa remains a binding/contract placeholder.
+The approved wrapper surface is complete. This archive includes all 249 common Property overloads and five acquired catalog queries described above. Commands provides seventeen analysis-configuration methods and Design provides ten common brief/assignment/query methods. Table provides all 29 reviewed source overloads, View provides twenty-one source methods, and IDEA StatiCa remains a binding/contract placeholder.
 
 ## Requirements
 
@@ -270,7 +270,7 @@ See the [root guide](https://github.com/StruXllence/StaadPro.Interop/blob/main/d
 
 ## IntelliSense and included documentation
 
-Expanded XML IntelliSense is included for **143 Geometry overloads, 171 Load overloads, 249 common Property overloads plus five optional catalog queries, 96 Output overloads, 27 Support operations, seventeen Commands methods, ten Design methods, twenty-nine Table methods, eighteen View methods, 53 common Root operations and three optional Root operation interfaces**, on both interfaces and concrete adapters. Keep `StaadPro.Interop.xml` beside the library when distributing assemblies outside normal NuGet restore.
+Expanded XML IntelliSense is included for **143 Geometry overloads, 171 Load overloads, 249 common Property overloads plus five optional catalog queries, 96 Output overloads, 27 Support operations, seventeen Commands methods, ten Design methods, twenty-nine Table methods, twenty-one View methods, 53 common Root operations and three optional Root operation interfaces**, on both interfaces and concrete adapters. Keep `StaadPro.Interop.xml` beside the library when distributing assemblies outside normal NuGet restore.
 
 The archive includes Property, Geometry, Load, Output and Root guides, installation and publishing instructions, and the release history.
 

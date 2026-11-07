@@ -1,5 +1,7 @@
 # View zoom and member visibility
 
+For current coverage and the subsequent `ShowMembers`, `HideMember` and `HideMembers` ports, see [member visibility contracts](View-Member-Visibility.md). The checkpoint below records the preceding batch.
+
 **Implemented in source: 5 November 2026.** Ported five methods from the read-only main OSViewAdapter into IOSView and the existing, non-partial OSViewAdapter. The common internal service and ViewOperationResult are reused; no new public models, enums or tuples were introduced.
 
 View now implements **18 of 70 source overloads** and **18 of 67 reviewed native names**. There are **52 View source overloads**, **49 native names**, and **145 active source overloads across the reviewed domains** still pending. The new 1.0.0-preview.20261105 prepared preview includes these additions; earlier archives retain their original scope.

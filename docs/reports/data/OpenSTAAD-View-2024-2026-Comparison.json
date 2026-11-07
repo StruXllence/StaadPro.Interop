@@ -13,7 +13,7 @@
     "mainPublicAdapterOverloads": 70,
     "mainPrivateAdapterMethods": 0,
     "mainDistinctNativeTargets": 66,
-    "currentTypedDomainMethods": 18,
+    "currentTypedDomainMethods": 21,
     "missingMainNativeTargets": [
       "SetModeSectionPage"
     ],
@@ -27,9 +27,9 @@
       "GetScaleCount"
     ],
     "exampleChanges2024To2025": 24,
-    "currentTypedNativeNames": 18,
-    "remainingMainInterfaceOverloads": 52,
-    "remainingNativeNames": 49
+    "currentTypedNativeNames": 21,
+    "remainingMainInterfaceOverloads": 49,
+    "remainingNativeNames": 46
   },
   "functions": [
     {
@@ -5038,9 +5038,9 @@
     {
       "name": "ShowMembers",
       "phase": "V2",
-      "currentTyped": "pending",
+      "currentTyped": "implemented",
       "excludedFromNewApi": false,
-      "managedProposal": "ViewOperationResult ShowMembers; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.",
+      "managedProposal": "ViewOperationResult ShowMembers(IEnumerable<Beam> beams)",
       "versions": {
         "2024": {
           "page": "group___view.html",
@@ -5190,14 +5190,21 @@
             "beamIds"
           ]
         }
-      ]
+      ],
+      "implementation": {
+        "date": "2026-11-07",
+        "service": "Services/View/ViewService.cs",
+        "returnType": "ViewOperationResult",
+        "nativeVoidCompletion": true,
+        "nativeRuntimeQualified": false
+      }
     },
     {
       "name": "HideMembers",
       "phase": "V2",
-      "currentTyped": "pending",
+      "currentTyped": "implemented",
       "excludedFromNewApi": false,
-      "managedProposal": "ViewOperationResult HideMembers; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.",
+      "managedProposal": "ViewOperationResult HideMembers(IEnumerable<Beam> beams)",
       "versions": {
         "2024": {
           "page": "group___view.html",
@@ -5347,7 +5354,14 @@
             "beamIds"
           ]
         }
-      ]
+      ],
+      "implementation": {
+        "date": "2026-11-07",
+        "service": "Services/View/ViewService.cs",
+        "returnType": "ViewOperationResult",
+        "nativeVoidCompletion": true,
+        "nativeRuntimeQualified": false
+      }
     },
     {
       "name": "ShowMember",
@@ -5470,9 +5484,9 @@
     {
       "name": "HideMember",
       "phase": "V2",
-      "currentTyped": "pending",
+      "currentTyped": "implemented",
       "excludedFromNewApi": false,
-      "managedProposal": "ViewOperationResult HideMember; named scalar/enum inputs or an immutable options class for multi-field operations; ID and entity overloads where justified.",
+      "managedProposal": "ViewOperationResult HideMember(Beam beam)",
       "versions": {
         "2024": {
           "page": "group___view.html",
@@ -5576,7 +5590,14 @@
             "beam.Id"
           ]
         }
-      ]
+      ],
+      "implementation": {
+        "date": "2026-11-07",
+        "service": "Services/View/ViewService.cs",
+        "returnType": "ViewOperationResult",
+        "nativeVoidCompletion": true,
+        "nativeRuntimeQualified": false
+      }
     },
     {
       "name": "HidePlate",
@@ -17521,11 +17542,11 @@
     }
   ],
   "implementationUpdate": {
-    "date": "2026-11-05",
-    "managedMethods": 18,
-    "nativeMappings": 18,
-    "referenceOverloadsPorted": 18,
-    "pendingReferenceOverloads": 52,
+    "date": "2026-11-07",
+    "managedMethods": 21,
+    "nativeMappings": 21,
+    "referenceOverloadsPorted": 21,
+    "pendingReferenceOverloads": 49,
     "pendingNativeNames": [
       "CreateNewViewForSelections",
       "SetLabel",
@@ -17539,9 +17560,6 @@
       "SetModeSectionPage",
       "SetBeamAnnotationMode",
       "SetUnits",
-      "ShowMembers",
-      "HideMembers",
-      "HideMember",
       "HidePlate",
       "HideSolid",
       "HideSurface",
@@ -17578,14 +17596,14 @@
       "SetDesignResults"
     ],
     "sourceMainReadOnly": true,
-    "guide": "docs/View-Zoom-and-Member-Visibility.md",
+    "guide": "docs/View-Member-Visibility.md",
     "nativeRuntimeValidation": false,
     "validation": {
-      "offlineTestsPassed": 7192,
-      "viewTestsPassed": 256,
-      "newCases": 55,
-      "packagedXmlExamplesSelected": 1316,
-      "viewXmlExamples": 36,
+      "offlineTestsPassed": 7240,
+      "viewTestsPassed": 299,
+      "newCases": 48,
+      "packagedXmlExamplesSelected": 1322,
+      "viewXmlExamples": 42,
       "nativeRuntimeValidation": false
     }
   },
@@ -17911,6 +17929,75 @@
         "newCases": 116,
         "packagedXmlExamplesSelected": 1306,
         "viewXmlExamples": 26,
+        "nativeRuntimeValidation": false
+      }
+    },
+    {
+      "date": "2026-11-05",
+      "managedMethods": 18,
+      "nativeMappings": 18,
+      "referenceOverloadsPorted": 18,
+      "pendingReferenceOverloads": 52,
+      "pendingNativeNames": [
+        "CreateNewViewForSelections",
+        "SetLabel",
+        "SetSectionView",
+        "SetDiagramMode",
+        "RefreshView",
+        "SetNodeAnnotationMode",
+        "SetReactionAnnotationMode",
+        "GetInterfaceMode",
+        "SetInterfaceMode",
+        "SetModeSectionPage",
+        "SetBeamAnnotationMode",
+        "SetUnits",
+        "ShowMembers",
+        "HideMembers",
+        "HideMember",
+        "HidePlate",
+        "HideSolid",
+        "HideSurface",
+        "HideEntity",
+        "SelectMembersParallelTo",
+        "SelectGroup",
+        "SelectInverse",
+        "SelectByItemList",
+        "SelectByMissingAttribute",
+        "SelectEntitiesConnectedToNode",
+        "SelectEntitiesConnectedToMember",
+        "SelectEntitiesConnectedToPlate",
+        "SelectEntitiesConnectedToSolid",
+        "GetNoOfBeamsInView",
+        "GetBeamsInView",
+        "CreateNewViewForSelectionsEx",
+        "ExportView",
+        "CopyPicture",
+        "SetWindowPosition",
+        "GetApplicationDesktopSize",
+        "GetScaleValues",
+        "SetScaleValues",
+        "GetScaleValueByType",
+        "SetScaleValueByType",
+        "GetScaleCount",
+        "DetachView",
+        "RenameView",
+        "OpenView",
+        "SaveView",
+        "GetWindowTitle",
+        "GetWindowCount",
+        "CloseActiveWindow",
+        "SetActiveWindow",
+        "SetDesignResults"
+      ],
+      "sourceMainReadOnly": true,
+      "guide": "docs/View-Zoom-and-Member-Visibility.md",
+      "nativeRuntimeValidation": false,
+      "validation": {
+        "offlineTestsPassed": 7192,
+        "viewTestsPassed": 256,
+        "newCases": 55,
+        "packagedXmlExamplesSelected": 1316,
+        "viewXmlExamples": 36,
         "nativeRuntimeValidation": false
       }
     }

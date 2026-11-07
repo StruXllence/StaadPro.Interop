@@ -1,13 +1,13 @@
 {
-  "date": "2026-11-05",
+  "date": "2026-11-07",
   "scope": "Reviewed main domain interface overloads; constructors, properties, private helpers and optional native-only expansion are excluded. Existing semantic replacements count as covered. Counts are not binary signature parity.",
   "sourceReadOnly": true,
   "totalReferenceOverloads": 654,
-  "coveredBefore": 496,
-  "pendingBefore": 150,
-  "portedThisIncrement": 5,
-  "coveredAfter": 501,
-  "pendingAfter": 145,
+  "coveredBefore": 501,
+  "pendingBefore": 145,
+  "portedThisIncrement": 3,
+  "coveredAfter": 504,
+  "pendingAfter": 142,
   "excludedObsoleteOrDeprecated": 8,
   "domains": [
     {
@@ -85,9 +85,9 @@
     {
       "domain": "View",
       "referenceOverloads": 70,
-      "coveredBefore": 13,
-      "pendingBefore": 57,
-      "pendingAfter": 52,
+      "coveredBefore": 18,
+      "pendingBefore": 52,
+      "pendingAfter": 49,
       "excluded": 0
     },
     {
@@ -597,24 +597,6 @@
         "name": "RefreshView",
         "signature": "void RefreshView()",
         "sourceLine": 130,
-        "isAsync": false
-      },
-      {
-        "name": "ShowMembers",
-        "signature": "void ShowMembers(IEnumerable<Beam> beams)",
-        "sourceLine": 233,
-        "isAsync": false
-      },
-      {
-        "name": "HideMember",
-        "signature": "void HideMember(Beam beam)",
-        "sourceLine": 238,
-        "isAsync": false
-      },
-      {
-        "name": "HideMembers",
-        "signature": "void HideMembers(IEnumerable<Beam> beams)",
-        "sourceLine": 243,
         "isAsync": false
       },
       {

@@ -1,6 +1,6 @@
 # Remaining OpenSTAAD adapter reviews and implementation sequence
 
-**Current source, 5 November 2026:** ported ZoomAll, ZoomExtentsMainView, ShowAllMembers, HideAllMembers and ShowMember(Beam) from the read-only main source. View now provides 18/70 source overloads over 18/67 reviewed native names, leaving 52 View source overloads and 49 native names pending. The reviewed source-interface total has 145 active overloads pending. See [zoom and visibility contracts](../View-Zoom-and-Member-Visibility.md) and [source totals](OpenSTAAD-Main-Source-Porting-Status.md). These additions are unreleased; native COM/UI qualification remains separate.
+**Current source, 7 November 2026:** ported `ShowMembers(IEnumerable<Beam> beams)`, `HideMember(Beam beam)` and `HideMembers(IEnumerable<Beam> beams)` from the read-only main source. View provides **21/70 source overloads** over **21/67 reviewed native names**, leaving **49 View overloads** and **46 native names** pending. Across the reviewed domains, **142 active source overloads remain**. See [member visibility contracts](../View-Member-Visibility.md). Live native COM/UI qualification remains separate.
 
 **4 November 2026 checkpoint:** Ported `RotateDown(double angle)`, `RotateLeft(double angle)`, `RotateRight(double angle)`, `SpinLeft(double angle)` and `SpinRight(double angle)` from the main source. Preserved the original `angle` parameter name, type and order on both interfaces and the concrete adapter. View now exposes **13 of 70 main-source overloads** and reaches **13 of 67 reviewed native names**; **57 source overloads** and **54 native names** remain pending. See [rotation contracts](../View-Incremental-Rotations.md).
 
@@ -45,7 +45,7 @@ Passed **7,137 offline tests**, including **201 View cases** and **116 additiona
 | Design | 31 / 45 / 45 | 7 | Ten common methods over five native names; extended GROUP and forty union native names pending. [Design plan](OpenSTAAD-Design-Multi-Version-Architecture-and-Plan.md) |
 | Commands | 18 / 18 / 18, including one deprecated summary | 21 | 17 managed methods cover sixteen active analysis-command targets; steel catalog group pending. [Commands plan](OpenSTAAD-Commands-Multi-Version-Architecture-and-Plan.md) |
 | Table | 24 / 24 / 24 | 29 | All 29 reference overloads and 24 reviewed native names implemented; live qualification separate. [Table plan](OpenSTAAD-Table-Multi-Version-Architecture-and-Plan.md) |
-| View | 67 / 67 / 67 | 70 | 18 source overloads implemented; 52 source overloads and 49 native names remain. [View plan](OpenSTAAD-View-Multi-Version-Architecture-and-Plan.md) |
+| View | 67 / 67 / 67 | 70 | 21 source overloads implemented; 49 source overloads and 46 native names remain. [View plan](OpenSTAAD-View-Multi-Version-Architecture-and-Plan.md) |
 | IDEA StatiCa | Not a native OpenSTAAD group | 24 | Managed integration placeholder. [Integration plan](OpenSTAAD-IDEA-StatiCa-Architecture-and-Porting-Plan.md) |
 
 These are domain report scopes, not interchangeable measures. Managed overloads, native names, class helpers, reserved entries and metadata-only functions must not be summed as a single “implemented API” total. In particular, Output-owned functions filed under the Design steel help page are counted in Output.
@@ -63,7 +63,7 @@ All reviewed domains have comparison/source inventories and architecture plans. 
 | Commands | Matching contracts across all years; one deprecated entry | One common service, exclude the deprecated entry from new APIs. |
 | Steel command catalog | 49 codes and 1,066 keyword/number occurrences; operand schemas incomplete | Reuse catalog/validator/marshaller; keep unqualified tuples provisional. |
 | Table | Matching contracts; one-based rows/columns contradict source XML | Shared service with explicit one-based contracts and named table IDs. |
-| View | 67 / 67 / 67 | 70 | 18 source overloads implemented; 52 source overloads and 49 native names remain. [View plan](OpenSTAAD-View-Multi-Version-Architecture-and-Plan.md) |
+| View | 67 / 67 / 67 | 70 | 21 source overloads implemented; 49 source overloads and 46 native names remain. [View plan](OpenSTAAD-View-Multi-Version-Architecture-and-Plan.md) |
 | View source defect | Scale model omits Bending Z and shifts later values | Full 14-slot mapping and validated status/count/fill behavior. |
 | View export ABI | Manuals specify four arguments; inspected 2025/2026 metadata exposes three | Verify acquired dispatch shape and overwrite behavior; never retry with a different arity after an ambiguous write. |
 | View missing private target | SetModeSectionPage absent from the main adapter | Plan a native-contract implementation beyond private parity. |

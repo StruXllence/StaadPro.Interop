@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "date": "2026-11-05",
+  "date": "2026-11-07",
   "mainProjectReadOnly": true,
   "sourceFiles": [
     {
@@ -411,6 +411,83 @@
         "2026": "void OSViewUI::ShowMember(const VARIANT FAR&nMember)"
       },
       "argumentPolicy": "Reuse Beam. Reject null and nonpositive Id before dispatch. Capture Id once and pass unchanged as boxed Int32; no node geometry or model-membership inference."
+    },
+    {
+      "managedName": "ShowMembers",
+      "returnType": "ViewOperationResult",
+      "nativeName": "ShowMembers",
+      "parameters": "IEnumerable<Beam> beams",
+      "source": [
+        {
+          "managedName": "ShowMembers",
+          "file": "Adapters/Models/OSViewAdapter.cs",
+          "line": 201,
+          "name": "ShowMembers",
+          "receiver": "ComObject",
+          "arguments": [
+            "beamIds.Count()",
+            "beamIds"
+          ]
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::ShowMembers(const VARIANT FAR&nMembers,const VARIANT FAR&naMemberNos)",
+        "2025": "void OSViewUI::ShowMembers(const VARIANT FAR&nMembers,const VARIANT FAR&naMemberNos)",
+        "2026": "void OSViewUI::ShowMembers(const VARIANT FAR&nMembers,const VARIANT FAR&naMemberNos)"
+      },
+      "inputContract": "Enumerate once; capture positive IDs in an owned Int32 array; preserve order and duplicates; pass exact Length and array, including zero length.",
+      "nativeRuntimeQualified": false
+    },
+    {
+      "managedName": "HideMember",
+      "returnType": "ViewOperationResult",
+      "nativeName": "HideMember",
+      "parameters": "Beam beam",
+      "source": [
+        {
+          "managedName": "HideMember",
+          "file": "Adapters/Models/OSViewAdapter.cs",
+          "line": 206,
+          "name": "HideMember",
+          "receiver": "ComObject",
+          "arguments": [
+            "beam.Id"
+          ]
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::HideMember(const VARIANT FAR&nMember)",
+        "2025": "void OSViewUI::HideMember(const VARIANT FAR&nMember)",
+        "2026": "void OSViewUI::HideMember(const VARIANT FAR&nMember)"
+      },
+      "inputContract": "Capture one positive Beam.Id as Int32.",
+      "nativeRuntimeQualified": false
+    },
+    {
+      "managedName": "HideMembers",
+      "returnType": "ViewOperationResult",
+      "nativeName": "HideMembers",
+      "parameters": "IEnumerable<Beam> beams",
+      "source": [
+        {
+          "managedName": "HideMembers",
+          "file": "Adapters/Models/OSViewAdapter.cs",
+          "line": 212,
+          "name": "HideMembers",
+          "receiver": "ComObject",
+          "arguments": [
+            "beamIds.Count()",
+            "beamIds"
+          ]
+        }
+      ],
+      "contractsByYear": {
+        "2024": "void OSViewUI::HideMembers(const VARIANT FAR&nMembers,const VARIANT FAR&naMemberNos)",
+        "2025": "void OSViewUI::HideMembers(const VARIANT FAR&nMembers,const VARIANT FAR&naMemberNos)",
+        "2026": "void OSViewUI::HideMembers(const VARIANT FAR&nMembers,const VARIANT FAR&naMemberNos)"
+      },
+      "inputContract": "Enumerate once; capture positive IDs in an owned Int32 array; preserve order and duplicates; pass exact Length and array, including zero length.",
+      "nativeRuntimeQualified": false
     }
   ],
   "nativeRuntimeQualified": false
