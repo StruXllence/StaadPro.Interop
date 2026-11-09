@@ -22,11 +22,11 @@ A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD. Work wi
 
 Runtime requires **Windows, .NET Framework 4.8.1 (net481), and a licensed STAAD.Pro installation** exposing the APIs used by your application. The .NET SDK used to build the project is separate from the application's target framework.
 
-The latest locally prepared preview is **1.0.0-preview.20261107**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
+The latest locally prepared preview is **1.0.0-preview.20261109**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
 
-## Latest preview — 1.0.0-preview.20261107
+## Latest preview — 1.0.0-preview.20261109
 
-Ported `ShowMembers(IEnumerable<Beam> beams)`, `HideMember(Beam beam)` and `HideMembers(IEnumerable<Beam> beams)` with complete XML IntelliSense, positive member-ID validation and stable collection snapshots. See [member visibility contracts](docs/View-Member-Visibility.md).
+Ported `HidePlate(Plate plate)`, `HideSolid(int solidId)` and `HideSurface(int surfaceId)` with complete matching XML IntelliSense, positive analytical-ID validation and captured-View dispatch. See [entity visibility contracts](docs/View-Entity-Visibility.md).
 
 ## Quick start: read an open model
 
@@ -67,13 +67,13 @@ This attaches to an existing instance and reads primary load-case metadata. It d
 | Supports and analysis commands | [Support and Commands](docs/Commands-and-Support.md) |
 | Design briefs and assignments | [Design](docs/Design.md) |
 | Report tables and formatting | Table |
-| Graphical orientation, zoom and member visibility | [View](docs/View-Zoom-and-Member-Visibility.md) |
+| Graphical orientation, zoom and entity visibility | [View](docs/View-Entity-Visibility.md) |
 
 ## View orientations
 
 ## Compatibility and preview status
 
-The current source passed **7,192 offline tests**; the installed-package verifier checks **1,316 XML examples**, including thirty-six View examples. These checks validate managed behavior and distribution, not every native STAAD build, COM response or engineering-unit convention. Consult method-specific version, result-state, unit and side-effect contracts before using results in an engineering workflow.
+The current source passed **7,292 offline tests**; the installed-package verifier checks **1,328 XML examples**, including **48 View examples**. These checks validate managed behavior and distribution, not every native STAAD build, COM response or engineering-unit convention. Consult method-specific version, result-state, unit and side-effect contracts before using results in an engineering workflow.
 
 The package remains a preview. [Release notes](docs/Release-Notes.md) identify the API scope, and NuGet readiness records validation limits. Earlier public packages retain the license terms shipped with them.
 

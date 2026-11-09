@@ -4,7 +4,7 @@ using StaadPro.Interop.Models.View;
 using System;
 namespace StaadPro.Interop.Adapters.Interfaces
 {
-    /// <summary>Provides captured-view orientations, incremental rotations, zoom and member visibility requests.</summary>
+    /// <summary>Provides captured-view orientations, incremental rotations, zoom and analytical-entity visibility requests.</summary>
     /// <remarks>Standard orientations, incremental rotations, zoom and initial member visibility functions are implemented; other source functions remain pending.</remarks>
     public interface IOSView : IOSBase
     {
@@ -400,5 +400,123 @@ namespace StaadPro.Interop.Adapters.Interfaces
         ///     System.Console.WriteLine(receipt.NativeFunction + ": " + receipt.Status);
         /// }</code></example>
         ViewOperationResult HideMembers(IEnumerable<Beam> beams);
+
+        /// <summary>Requests hiding one specified analytical plate in the acquired STAAD graphical view.</summary>
+        /// <param name="plate">A non-null Plate whose positive Id identifies an existing analytical plate in the acquired model. Only Id is captured once; node coordinates/connectivity and other fields are not read. The caller must ensure model membership and coordinate concurrent identity changes.</param>
+        /// <returns>A <see cref="ViewOperationResult"/> naming HidePlate with
+        /// <see cref="StaadPro.Interop.Enums.View.ViewOperationStatus.InvokedWithoutAcknowledgement"/>,
+        /// a null NativeReturnCode and IsSuccessful false after normal native void completion and the final binding check.
+        /// False reflects the absence of native success acknowledgement; it is not a native failure flag.</returns>
+        /// <remarks>
+        /// <para>Targets one plate's display. Unlike HideMember, this uses the native plate visibility operation;
+        /// unlike zoom/orientation requests, it asks to hide the identified entity rather than change the camera.
+        /// Does not delete, select, isolate or renumber geometry, change connectivity, loads or results, analyze or save.
+        /// STAAD defines display scope, interactions with other entity types and repaint behavior. A return receipt
+        /// does not certify hidden state, visible effect, UI readiness or persistence. Prior visibility is not captured
+        /// and no automatic restoration or undo is supplied.</para>
+        /// <para>Snapshots plate.Id once before native dispatch and sends that Int32 unchanged. The Plate object is neither sent to COM nor modified; A, B, C and D can be null. No geometry, topology, selection or membership lookup is performed.</para>
+        /// <para>Preserves the source name and parameter contract while returning the same named receipt as other
+        /// View methods. The installed STAAD.Pro 2025 help and recorded 2024/2025/2026 contracts specify a single
+        /// input VARIANT (nPlate) and void completion. The input const VARIANT reference is internal to native
+        /// dispatch; no public ref/out parameter or guessed status code is introduced. Signature agreement and
+        /// managed stand-ins do not establish live COM marshaling, native licensing or cross-version UI effects.</para>
+        /// <para>Invokes the captured RawView exactly once, on the caller's established COM apartment, under the
+        /// existing per-adapter gate with binding checks before and after dispatch. Reacquire wrapper.View after
+        /// refresh. The gate does not marshal callers to another thread, reject every wrong-apartment caller, or
+        /// coordinate raw-object calls, other adapters/wrappers or external UI. Native errors propagate unchanged;
+        /// a post-call lifetime error can follow a real graphical change. No retry, fallback instance, rollback,
+        /// background dispatch, model launch or effect read-back occurs.</para>
+        /// </remarks>
+        /// <exception cref="ArgumentNullException">plate is null; no native call occurs.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">plate.Id is zero or negative; the exception names plate and no native call occurs.</exception>
+        /// <exception cref="InvalidOperationException">The captured View binding is disposed or replaced, including during dispatch.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native visibility request fails; effects may precede the exception.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured native View lacks the reviewed HidePlate signature.</exception>
+        /// <example><code>bool changeVisibility = false; // Enable only when the graphical change is intended.
+        /// if (changeVisibility)
+        /// {
+        ///     var plate = new StaadPro.Interop.Entities.Plate { Id = 17 }; // An existing plate in this model.
+        ///     var receipt = view.HidePlate(plate);
+        ///     System.Console.WriteLine(receipt.NativeFunction + ": " + receipt.Status);
+        /// }</code></example>
+        ViewOperationResult HidePlate(Plate plate);
+
+        /// <summary>Requests hiding one specified analytical solid in the acquired STAAD graphical view.</summary>
+        /// <param name="solidId">A positive Int32 number identifying an existing solid in the acquired model. Passed unchanged; it is not a member/plate number or a collection index. Model membership and graphical readiness are the caller's responsibility.</param>
+        /// <returns>A <see cref="ViewOperationResult"/> naming HideSolid with
+        /// <see cref="StaadPro.Interop.Enums.View.ViewOperationStatus.InvokedWithoutAcknowledgement"/>,
+        /// a null NativeReturnCode and IsSuccessful false after normal native void completion and the final binding check.
+        /// False reflects the absence of native success acknowledgement; it is not a native failure flag.</returns>
+        /// <remarks>
+        /// <para>Targets one solid's display. Unlike HideMember, this uses the native solid visibility operation;
+        /// unlike zoom/orientation requests, it asks to hide the identified entity rather than change the camera.
+        /// Does not delete, select, isolate or renumber geometry, change connectivity, loads or results, analyze or save.
+        /// STAAD defines display scope, interactions with other entity types and repaint behavior. A return receipt
+        /// does not certify hidden state, visible effect, UI readiness or persistence. Prior visibility is not captured
+        /// and no automatic restoration or undo is supplied.</para>
+        /// <para>Sends the supplied solidId as one Int32 input unchanged, including Int32.MaxValue. The library does not resolve geometry, infer an entity type, query existence or map an ID from another model. A positive value alone does not establish membership.</para>
+        /// <para>Preserves the source name and parameter contract while returning the same named receipt as other
+        /// View methods. The installed STAAD.Pro 2025 help and recorded 2024/2025/2026 contracts specify a single
+        /// input VARIANT (nSolid) and void completion. The input const VARIANT reference is internal to native
+        /// dispatch; no public ref/out parameter or guessed status code is introduced. Signature agreement and
+        /// managed stand-ins do not establish live COM marshaling, native licensing or cross-version UI effects.</para>
+        /// <para>Invokes the captured RawView exactly once, on the caller's established COM apartment, under the
+        /// existing per-adapter gate with binding checks before and after dispatch. Reacquire wrapper.View after
+        /// refresh. The gate does not marshal callers to another thread, reject every wrong-apartment caller, or
+        /// coordinate raw-object calls, other adapters/wrappers or external UI. Native errors propagate unchanged;
+        /// a post-call lifetime error can follow a real graphical change. No retry, fallback instance, rollback,
+        /// background dispatch, model launch or effect read-back occurs.</para>
+        /// </remarks>
+        /// <exception cref="ArgumentOutOfRangeException">solidId is zero or negative; no native call occurs.</exception>
+        /// <exception cref="InvalidOperationException">The captured View binding is disposed or replaced, including during dispatch.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native visibility request fails; effects may precede the exception.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured native View lacks the reviewed HideSolid signature.</exception>
+        /// <example><code>bool changeVisibility = false; // Enable only when the graphical change is intended.
+        /// if (changeVisibility)
+        /// {
+        ///     int solidId = 17; // An existing solid in this model.
+        ///     var receipt = view.HideSolid(solidId);
+        ///     System.Console.WriteLine(receipt.NativeFunction + ": " + receipt.Status);
+        /// }</code></example>
+        ViewOperationResult HideSolid(int solidId);
+
+        /// <summary>Requests hiding one specified analytical surface in the acquired STAAD graphical view.</summary>
+        /// <param name="surfaceId">A positive Int32 number identifying an existing surface in the acquired model. Passed unchanged; it is not a member/plate number or a collection index. Model membership and graphical readiness are the caller's responsibility.</param>
+        /// <returns>A <see cref="ViewOperationResult"/> naming HideSurface with
+        /// <see cref="StaadPro.Interop.Enums.View.ViewOperationStatus.InvokedWithoutAcknowledgement"/>,
+        /// a null NativeReturnCode and IsSuccessful false after normal native void completion and the final binding check.
+        /// False reflects the absence of native success acknowledgement; it is not a native failure flag.</returns>
+        /// <remarks>
+        /// <para>Targets one surface's display. Unlike HideMember, this uses the native surface visibility operation;
+        /// unlike zoom/orientation requests, it asks to hide the identified entity rather than change the camera.
+        /// Does not delete, select, isolate or renumber geometry, change connectivity, loads or results, analyze or save.
+        /// STAAD defines display scope, interactions with other entity types and repaint behavior. A return receipt
+        /// does not certify hidden state, visible effect, UI readiness or persistence. Prior visibility is not captured
+        /// and no automatic restoration or undo is supplied.</para>
+        /// <para>Sends the supplied surfaceId as one Int32 input unchanged, including Int32.MaxValue. The library does not resolve geometry, infer an entity type, query existence or map an ID from another model. A positive value alone does not establish membership.</para>
+        /// <para>Preserves the source name and parameter contract while returning the same named receipt as other
+        /// View methods. The installed STAAD.Pro 2025 help and recorded 2024/2025/2026 contracts specify a single
+        /// input VARIANT (nSurface) and void completion. The input const VARIANT reference is internal to native
+        /// dispatch; no public ref/out parameter or guessed status code is introduced. Signature agreement and
+        /// managed stand-ins do not establish live COM marshaling, native licensing or cross-version UI effects.</para>
+        /// <para>Invokes the captured RawView exactly once, on the caller's established COM apartment, under the
+        /// existing per-adapter gate with binding checks before and after dispatch. Reacquire wrapper.View after
+        /// refresh. The gate does not marshal callers to another thread, reject every wrong-apartment caller, or
+        /// coordinate raw-object calls, other adapters/wrappers or external UI. Native errors propagate unchanged;
+        /// a post-call lifetime error can follow a real graphical change. No retry, fallback instance, rollback,
+        /// background dispatch, model launch or effect read-back occurs.</para>
+        /// </remarks>
+        /// <exception cref="ArgumentOutOfRangeException">surfaceId is zero or negative; no native call occurs.</exception>
+        /// <exception cref="InvalidOperationException">The captured View binding is disposed or replaced, including during dispatch.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native visibility request fails; effects may precede the exception.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The captured native View lacks the reviewed HideSurface signature.</exception>
+        /// <example><code>bool changeVisibility = false; // Enable only when the graphical change is intended.
+        /// if (changeVisibility)
+        /// {
+        ///     int surfaceId = 17; // An existing surface in this model.
+        ///     var receipt = view.HideSurface(surfaceId);
+        ///     System.Console.WriteLine(receipt.NativeFunction + ": " + receipt.Status);
+        /// }</code></example>
+        ViewOperationResult HideSurface(int surfaceId);
     }
 }

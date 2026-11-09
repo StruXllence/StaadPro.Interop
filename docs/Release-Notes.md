@@ -1,5 +1,13 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261109 - 9 November 2026
+
+Ported `HidePlate(Plate plate)`, `HideSolid(int solidId)` and `HideSurface(int surfaceId)` with preserved function names, parameter names/types/order and complete matching XML IntelliSense on `IOSView` and `OSViewAdapter`. The package now exposes 24 typed View operations.
+
+Validated positive analytical IDs before one matching native call. `HidePlate` captures only `Plate.Id` once; node fields and geometry are not required or read. Reused the captured View receiver, caller-thread dispatch, per-adapter gate and binding checks before/after native access. Each returns the existing `ViewOperationResult` with explicit unacknowledged void completion, without fabricating a success flag or certifying visible effects. Native errors and post-call lifetime failures propagate without retry or rollback. See [entity visibility contracts](View-Entity-Visibility.md).
+
+Passed **7,292 offline tests**, including **356 View cases** and **52 new regression cases**. An isolated installed NuGet consumer compiled and executed **1,328 XML examples**, including all **48 View examples**, checked the new native-signature routes and validation, and verified expanded XML beside the DLL. No live STAAD graphical mutation or new cross-version COM/UI qualification was performed.
+
 ## 1.0.0-preview.20261107 - 7 November 2026
 
 Ported `ShowMembers(IEnumerable<Beam> beams)`, `HideMember(Beam beam)` and `HideMembers(IEnumerable<Beam> beams)`. Preserved source names and parameters while reusing the captured View service and `ViewOperationResult`. Collection methods enumerate once, capture positive IDs in an owned array, preserve order and duplicates, and forward a matching count/array pair. Null inputs, null elements and nonpositive IDs fail before native dispatch. Native void completion remains explicitly unacknowledged.

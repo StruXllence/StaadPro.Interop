@@ -10,9 +10,9 @@ By **Srinivasa Rao Masanam**.
 
 The [StruXllence website](https://struxllence.com) is live. Join the community forum for structural-engineering discussions, explore the forum preview, or follow @StruXllence on YouTube. Report package defects through [GitHub Issues](https://github.com/StruXllence/StaadPro.Interop/issues).
 
-## Version 1.0.0-preview.20261107
+## Version 1.0.0-preview.20261109
 
-Ported `ShowMembers(IEnumerable<Beam> beams)`, `HideMember(Beam beam)` and `HideMembers(IEnumerable<Beam> beams)` with complete matching interface/adapter XML IntelliSense. Collection inputs are captured once into owned member-ID arrays, preserving order and duplicates. View reaches **21/70 source overloads** and **21/67 native names**; **142 active source overloads remain** across the reviewed domains. See [member visibility contracts](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/View-Member-Visibility.md).
+Ported `HidePlate(Plate plate)`, `HideSolid(int solidId)` and `HideSurface(int surfaceId)` with complete matching interface/adapter XML IntelliSense. Each validates a positive analytical entity ID and dispatches once to the captured native View. Plate identity is captured without reading geometry. The package now exposes 24 typed View operations. See [entity visibility contracts](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/View-Entity-Visibility.md) for completion receipts, inputs and native limits.
 
 Published by **StruXllence**. **Copyright (c) 2026 StruXllence**. The package targets Windows and .NET Framework 4.8.1 (net481) and requires a licensed STAAD.Pro installation for live use. This preview is prepared for manual upload; public availability of this exact version is not confirmed. Native COM/UI and engineering qualification remain separate from managed tests.
 

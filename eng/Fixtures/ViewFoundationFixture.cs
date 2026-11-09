@@ -20,6 +20,9 @@ namespace PackageVerification
             public readonly List<double> RotationAngles = new List<double>();
             public readonly List<int> ShownMemberIds = new List<int>();
             public readonly List<int> HiddenMemberIds = new List<int>();
+            public readonly List<int> HiddenPlateIds = new List<int>();
+            public readonly List<int> HiddenSolidIds = new List<int>();
+            public readonly List<int> HiddenSurfaceIds = new List<int>();
             public readonly List<int[]> ShownMemberBatches = new List<int[]>();
             public readonly List<int[]> HiddenMemberBatches = new List<int[]>();
             public Action OnCall;
@@ -69,6 +72,16 @@ namespace PackageVerification
             }
             public void ShowMembers(object count, object memberIds) => RecordMembers("ShowMembers", count, memberIds, ShownMemberBatches);
             public void HideMembers(object count, object memberIds) => RecordMembers("HideMembers", count, memberIds, HiddenMemberBatches);
+
+            public void HidePlate(object plateId) => RecordEntity("HidePlate", plateId, HiddenPlateIds);
+            public void HideSolid(object solidId) => RecordEntity("HideSolid", solidId, HiddenSolidIds);
+            public void HideSurface(object surfaceId) => RecordEntity("HideSurface", surfaceId, HiddenSurfaceIds);
+            private void RecordEntity(string operation, object entityId, List<int> ids)
+            {
+                if (!(entityId is int)) throw new ArgumentException("Native visibility requires a boxed Int32.", nameof(entityId));
+                ids.Add((int)entityId);
+                Record(operation);
+            }
             private void RecordMembers(string operation, object count, object memberIds, List<int[]> batches)
             {
                 var ids = memberIds as int[];

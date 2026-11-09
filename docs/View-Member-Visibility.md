@@ -2,7 +2,7 @@
 
 `ShowMembers(IEnumerable<Beam> beams)`, `HideMember(Beam beam)` and `HideMembers(IEnumerable<Beam> beams)` are included in `1.0.0-preview.20261107`. Both `IOSView` and `OSViewAdapter` expose matching detailed XML IntelliSense. These ports preserve the source names and parameter names, types and order, while returning the established `ViewOperationResult` used by the other View operations.
 
-View covers **21/70 source overloads** and **21/67 reviewed native names**. There are **49 View source overloads**, **46 native names** and **142 active source overloads across the reviewed domains** still pending.
+The current preview exposes 24 typed View operations. For plate, solid and surface display requests, see [entity visibility contracts](View-Entity-Visibility.md).
 
 ## Choose a request
 
@@ -50,6 +50,6 @@ The existing service invokes the captured `RawView` once, on the caller's thread
 
 The installed STAAD.Pro 2025 help documents one input VARIANT for `HideMember` and a count plus member-number array for the collection calls, all returning void. This agrees with the recorded 2024/2025/2026 contracts. The C++ const VARIANT references describe input automation parameters; the managed API has no public `ref` or `out` arguments. The source adapter materializes Int32 arrays; the port adds validation and explicit owned snapshots.
 
-Managed regressions check single enumeration and disposal, ID boundaries, nulls, duplicates, order, empty arrays, enumeration errors, captured IDs, binding replacement during enumeration and dispatch, original native errors, caller-thread execution and the common gate. The installed-package verifier compiles all 42 View XML examples and exercises the new calls against a managed native-signature stand-in. These checks do not certify live SAFEARRAY marshaling, empty-input graphical effects or native compatibility across STAAD versions. Live COM/UI qualification remains separate.
+Managed regressions check single enumeration and disposal, ID boundaries, nulls, duplicates, order, empty arrays, enumeration errors, captured IDs, binding replacement during enumeration and dispatch, original native errors, caller-thread execution and the common gate. The installed-package verifier compiles all 48 View XML examples and exercises the new calls against a managed native-signature stand-in. These checks do not certify live SAFEARRAY marshaling, empty-input graphical effects or native compatibility across STAAD versions. Live COM/UI qualification remains separate.
 
 Passed **7,240 offline tests**, including **299 View cases** and **48 additional regression cases** in this increment. A fresh installed NuGet consumer compiled and executed **1,322 XML examples**, including all **42 View examples**, and checked the new native-signature routes, input validation and owned snapshots.

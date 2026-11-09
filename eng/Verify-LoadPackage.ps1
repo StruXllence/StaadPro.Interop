@@ -360,10 +360,12 @@ try {
     $viewGuide += Read-PackageEntry 'docs/View-Incremental-Rotations.md'
     $viewGuide += Read-PackageEntry 'docs/View-Zoom-and-Member-Visibility.md'
     $viewGuide += Read-PackageEntry 'docs/View-Member-Visibility.md'
+    $entityVisibilityGuide = Read-PackageEntry 'docs/View-Entity-Visibility.md'
+    $viewGuide += $entityVisibilityGuide
     foreach ($owner in @('Adapters.Interfaces.IOSView', 'Adapters.Models.OSViewAdapter')) {
         $entries = @($xml.doc.members.member | Where-Object { $_.name.StartsWith("M:StaadPro.Interop.$owner.") -and $_.name -notmatch '\.#ctor' })
-        if ($entries.Count -ne 21) { throw 'Expected twenty-one documented View functions.' }
-        foreach ($function in @('ShowFront','ShowBack','ShowLeft','ShowRight','ShowPlan','ShowBottom','ShowIsometric','RotateUp','RotateDown','RotateLeft','RotateRight','SpinLeft','SpinRight','ZoomAll','ZoomExtentsMainView','ShowAllMembers','HideAllMembers','ShowMember','ShowMembers','HideMember','HideMembers')) {
+        if ($entries.Count -ne 24) { throw 'Expected twenty-four documented View functions.' }
+        foreach ($function in @('ShowFront','ShowBack','ShowLeft','ShowRight','ShowPlan','ShowBottom','ShowIsometric','RotateUp','RotateDown','RotateLeft','RotateRight','SpinLeft','SpinRight','ZoomAll','ZoomExtentsMainView','ShowAllMembers','HideAllMembers','ShowMember','ShowMembers','HideMember','HideMembers','HidePlate','HideSolid','HideSurface')) {
             if ($viewGuide -notmatch $function) { throw "Missing View guidance for $function." }
         }
         foreach ($entry in $entries) {
@@ -374,7 +376,15 @@ try {
             $viewSnippets += 'using (var wrapper = new OpenStaadWrapper(new PackageVerification.ViewFoundationFixture.Root { View = new PackageVerification.ViewFoundationFixture.Native() })) {' + $newLine + $binding + $newLine + $entry.SelectSingleNode('example/code').InnerText + $newLine + '}'
         }
     }
-    if ($viewSnippets.Count -ne 42) { throw 'Expected forty-two View XML examples.' }
+    if ($viewSnippets.Count -ne 48) { throw 'Expected forty-eight View XML examples.' }
+    foreach ($method in @('HidePlate','HideSolid','HideSurface')) {
+        $suffix = if ($method -eq 'HidePlate') { '(StaadPro.Interop.Entities.Plate)' } else { '(System.Int32)' }
+        $contract = $xml.SelectSingleNode("//member[@name='M:StaadPro.Interop.Adapters.Interfaces.IOSView.$method$suffix']")
+        $implementation = $xml.SelectSingleNode("//member[@name='M:StaadPro.Interop.Adapters.Models.OSViewAdapter.$method$suffix']")
+        if ($null -eq $contract -or $null -eq $implementation -or $contract.InnerXml -cne $implementation.InnerXml) { throw "Missing or mismatched new View IntelliSense: $method" }
+    }
+    $entityVisibilityCode = [regex]::Match($entityVisibilityGuide, '(?s)```csharp\s*\r?\n(.*?)```').Groups[1].Value
+    if ([string]::IsNullOrWhiteSpace($entityVisibilityCode)) { throw 'Missing entity visibility guide example.' }
     $designGuide = Read-PackageEntry 'docs/Design.md'
     $designSnippets = @()
     foreach ($owner in @('Adapters.Interfaces.IOSDesign', 'Adapters.Models.OSDesignAdapter')) {
@@ -902,6 +912,32 @@ public static class Program
             catch (ArgumentOutOfRangeException error) { Check(error.ParamName == "beam", "Invalid hidden ID argument"); }
             Check(viewNative.Calls.Count == beforeInvalidMembers, "Invalid member inputs do not partially dispatch");
             Check(viewNative.Threads.All(thread => thread == System.Threading.Thread.CurrentThread.ManagedThreadId), "Member requests retain caller thread");
+            var plate = new Plate { Id = int.MaxValue };
+            int beforeEntities = viewNative.Calls.Count;
+            var entityReceipts = new[] { wrapper.View.HidePlate(plate), wrapper.View.HideSolid(41), wrapper.View.HideSurface(63) };
+            Check(viewNative.Calls.Skip(beforeEntities).SequenceEqual(new[] { "HidePlate", "HideSolid", "HideSurface" }), "Exact entity visibility routes");
+            Check(viewNative.HiddenPlateIds.SequenceEqual(new[] { int.MaxValue }) && viewNative.HiddenSolidIds.SequenceEqual(new[] { 41 }) && viewNative.HiddenSurfaceIds.SequenceEqual(new[] { 63 }), "Exact Int32 entity inputs");
+            Check(plate.Id == int.MaxValue && plate.A == null && plate.B == null && plate.C == null && plate.D == null, "Plate identity-only input remains unchanged");
+            Check(entityReceipts.Select(r=>r.NativeFunction).SequenceEqual(new[] { "HidePlate", "HideSolid", "HideSurface" }) && entityReceipts.All(r=>r.Status==ViewOperationStatus.InvokedWithoutAcknowledgement && !r.IsSuccessful && r.NativeReturnCode==null), "Entity void completion receipts");
+            int beforeInvalidEntities = viewNative.Calls.Count;
+            try { wrapper.View.HidePlate(null); throw new Exception("Null plate accepted."); }
+            catch(ArgumentNullException error) { Check(error.ParamName=="plate", "Null plate argument"); }
+            try { wrapper.View.HidePlate(new Plate()); throw new Exception("Invalid plate ID accepted."); }
+            catch(ArgumentOutOfRangeException error) { Check(error.ParamName=="plate", "Invalid plate argument"); }
+            try { wrapper.View.HideSolid(0); throw new Exception("Invalid solid ID accepted."); }
+            catch(ArgumentOutOfRangeException error) { Check(error.ParamName=="solidId", "Invalid solid argument"); }
+            try { wrapper.View.HideSurface(-1); throw new Exception("Invalid surface ID accepted."); }
+            catch(ArgumentOutOfRangeException error) { Check(error.ParamName=="surfaceId", "Invalid surface argument"); }
+            Check(viewNative.Calls.Count==beforeInvalidEntities, "Invalid entities do not dispatch");
+            Check(viewNative.Threads.All(thread=>thread==System.Threading.Thread.CurrentThread.ManagedThreadId), "Entity caller-thread dispatch");
+            foreach(string methodName in new[] { "HidePlate", "HideSolid", "HideSurface" })
+            {
+                foreach(Type owner in new[] { typeof(IOSView), typeof(StaadPro.Interop.Adapters.Models.OSViewAdapter) })
+                {
+                    var method=owner.GetMethod(methodName);var parameter=method.GetParameters().Single();
+                    Check(method.ReturnType==typeof(StaadPro.Interop.Models.View.ViewOperationResult) && parameter.ParameterType==(methodName=="HidePlate"?typeof(Plate):typeof(int)) && parameter.Name==(methodName=="HidePlate"?"plate":methodName=="HideSolid"?"solidId":"surfaceId") && !parameter.IsOptional && !parameter.ParameterType.IsByRef, "Entity public signature "+methodName);
+                }
+            }
             int callsBeforeInvalidAngle = viewNative.Calls.Count;
             try { wrapper.View.RotateUp(double.NaN); throw new Exception("Nonfinite angle was accepted."); }
             catch (ArgumentOutOfRangeException error) { Check(error.ParamName == "angleDegrees", "Native angle argument name"); }
@@ -1199,6 +1235,7 @@ Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Fixtures/LoadInspectionFixture.
 [IO.File]::WriteAllText((Join-Path $consumerRoot 'NuGet.Config'), $config)
 [IO.File]::WriteAllText((Join-Path $consumerRoot 'Consumer.csproj'), $project)
 [IO.File]::WriteAllText((Join-Path $consumerRoot 'Program.cs'), $program)
+[IO.File]::WriteAllText((Join-Path $consumerRoot 'ViewEntityGuideExample.cs'), 'using StaadPro.Interop.Models; internal static class ViewEntityGuideExample { static void Example() { using (var wrapper = new OpenStaadWrapper(new PackageVerification.ViewFoundationFixture.Root { View = new PackageVerification.ViewFoundationFixture.Native() })) {' + [Environment]::NewLine + $entityVisibilityCode + [Environment]::NewLine + '}}}')
 [IO.File]::WriteAllText((Join-Path $consumerRoot 'InstallationExample.cs'), ('namespace GuideExamples {' + [Environment]::NewLine + $installationCode + [Environment]::NewLine + '}'))
 
 Write-Host "Verifying package $version in $consumerRoot"

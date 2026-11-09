@@ -79,6 +79,29 @@ namespace StaadPro.Interop.Services.View
             return RequestOrientation("HideMembers", view => view.HideMembers(memberIds.Length, memberIds));
         }
 
+        internal ViewOperationResult HidePlate(Plate plate)
+        {
+            if (plate == null) throw new ArgumentNullException(nameof(plate));
+            int plateId = plate.Id;
+            if (plateId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(plate), "The plate must identify a positive analytical plate number in the acquired model.");
+            return RequestOrientation("HidePlate", view => view.HidePlate(plateId));
+        }
+
+        internal ViewOperationResult HideSolid(int solidId)
+        {
+            if (solidId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(solidId), "A positive solid number in the acquired model is required.");
+            return RequestOrientation("HideSolid", view => view.HideSolid(solidId));
+        }
+
+        internal ViewOperationResult HideSurface(int surfaceId)
+        {
+            if (surfaceId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(surfaceId), "A positive surface number in the acquired model is required.");
+            return RequestOrientation("HideSurface", view => view.HideSurface(surfaceId));
+        }
+
         private static int[] SnapshotMemberIds(IEnumerable<Beam> beams)
         {
             if (beams == null)
