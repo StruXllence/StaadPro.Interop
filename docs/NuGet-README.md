@@ -12,7 +12,7 @@ The [StruXllence website](https://struxllence.com) is live. Join the community f
 
 ## StruXllence themes for Visual Studio Code
 
-[![StruXllence VS Code theme installs](https://img.shields.io/visual-studio-marketplace/i/StruXllence.struxllence-themes?label=StruXllence%20Themes&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=StruXllence.struxllence-themes)
+[![Install StruXllence Themes from Visual Studio Marketplace](https://img.shields.io/badge/StruXllence%20Themes-Install-007ACC?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=StruXllence.struxllence-themes)
 
 Code your C# and OpenSTAAD tools with **StruXllence Themes**, a dark and light Visual Studio Code theme suite with matching file and product icons by Srinivasa Rao Masanam.
 
@@ -26,7 +26,7 @@ code-insiders --install-extension StruXllence.struxllence-themes
 
 After installation, run **Preferences: Color Theme** and select **StruXllence Dark** or **StruXllence Light**. See the [theme previews and icon setup](https://github.com/StruXllence/struxllence-themes). The editor theme is optional and is installed separately from the NuGet library.
 
-## Version 1.0.0-preview.20261112.1
+## Version 1.0.0-preview.20261112.2
 
 Added `GetClosestNode(nodesCollection, referenceNode)` and `GetClosestBeam(beamsCollection, referenceNode)` with complete XML IntelliSense. Searches consume the input once, retain first-seen ties and compare scaled 3D distances. Node exclusion preserves ID-plus-distance equality; beam distance uses the nearer endpoint. See [nearest geometry examples](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md).
 

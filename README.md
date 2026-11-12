@@ -20,7 +20,7 @@ A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD. Work wi
 
 ## StruXllence themes for Visual Studio Code
 
-[![StruXllence VS Code theme installs](https://img.shields.io/visual-studio-marketplace/i/StruXllence.struxllence-themes?label=StruXllence%20Themes&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=StruXllence.struxllence-themes)
+[![Install StruXllence Themes from Visual Studio Marketplace](https://img.shields.io/badge/StruXllence%20Themes-Install-007ACC?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=StruXllence.struxllence-themes)
 
 Code your C# and OpenSTAAD tools with **StruXllence Themes**, a dark and light Visual Studio Code theme suite with matching file and product icons by Srinivasa Rao Masanam.
 
@@ -42,9 +42,9 @@ Use `GetClosestNode(...)`, `GetClosestBeam(...)`, `GetDuplicateNodes(...)` and `
 
 Runtime requires **Windows, .NET Framework 4.8.1 (net481), and a licensed STAAD.Pro installation** exposing the APIs used by your application. The .NET SDK used to build the project is separate from the application's target framework.
 
-The latest locally prepared preview is **1.0.0-preview.20261112.1**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
+The latest locally prepared preview is **1.0.0-preview.20261112.2**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
 
-## Latest preview — 1.0.0-preview.20261112.1
+## Latest preview — 1.0.0-preview.20261112.2
 
 Ported `HidePlate(Plate plate)`, `HideSolid(int solidId)` and `HideSurface(int surfaceId)` with complete matching XML IntelliSense, positive analytical-ID validation and captured-View dispatch. See [entity visibility contracts](docs/View-Entity-Visibility.md).
 

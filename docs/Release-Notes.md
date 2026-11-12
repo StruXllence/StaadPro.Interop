@@ -1,5 +1,9 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261112.2 - 12 November 2026
+
+Provides the detached nearest-node and nearest-endpoint beam searches with expanded XML IntelliSense. See [geometry diagnostics](Geometry-Diagnostics.md) for equality, distance, enumeration and consumer examples.
+
 ## 1.0.0-preview.20261112.1 - 12 November 2026
 
 Ported `GetClosestNode(this IEnumerable<Node> nodesCollection, Node referenceNode)` and `GetClosestBeam(this IEnumerable<Beam> beamsCollection, Node referenceNode)` with complete XML IntelliSense and [detached geometry examples](Geometry-Diagnostics.md).

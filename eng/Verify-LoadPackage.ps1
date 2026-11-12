@@ -37,6 +37,7 @@ try {
     if ($null -eq $archive.GetEntry('lib/net481/StaadPro.Interop.dll')) { throw 'Missing net481 library.' }
     [xml] $xml = Read-PackageEntry 'lib/net481/StaadPro.Interop.xml'
     $readme = Read-PackageEntry 'README.md'
+    if (!$readme.Contains('https://img.shields.io/badge/StruXllence%20Themes-Install-007ACC?style=flat-square') -or $readme.Contains('img.shields.io/visual-studio-marketplace/')) { throw 'The packaged Marketplace installation badge is missing or uses a retired endpoint.' }
     if(!$readme.Contains('https://marketplace.visualstudio.com/items?itemName=StruXllence.struxllence-themes') -or !$readme.Contains('code --install-extension StruXllence.struxllence-themes')){throw 'Missing packaged Marketplace installation links.'}
     $license = Read-PackageEntry 'LICENSE'
     $notice = Read-PackageEntry 'NOTICE.md'
