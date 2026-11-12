@@ -1,5 +1,13 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261112 - 12 November 2026
+
+Ported `GetDuplicateNodes(this IEnumerable<Node> nodesCollection, double tolerance = 0.0001)` and `GetZeroLengthBeams(this IEnumerable<Beam> beamsCollection, double tolerance = 0.0001)` with complete XML IntelliSense and [detached diagnostic examples](Geometry-Diagnostics.md).
+
+Duplicate-node groups use inclusive per-axis comparisons with first-seen seeds, preserving nontransitive grouping. Repeated IDs with identical coordinates retain their first instance; conflicting snapshots are rejected explicitly. Zero-length beams use inclusive Euclidean distance with scaled arithmetic for extreme and subnormal deltas. Both helpers validate finite geometry/tolerances, enumerate once, preserve original references and return owned read-only collections without native changes. Null entries are ignored; missing incidence and enumerator failures remain explicit errors.
+
+Passed a zero-warning Release build and 7,309 tests, including 17 new diagnostics cases. The exact installed NuGet consumer verifies both signatures/defaults and expanded XML, executes both XML examples, compiles the guide and checks result ownership/numeric boundaries. No native model operation or new runtime qualification is involved.
+
 ## 1.0.0-preview.20261109 - 9 November 2026
 
 Ported `HidePlate(Plate plate)`, `HideSolid(int solidId)` and `HideSurface(int surfaceId)` with preserved function names, parameter names/types/order and complete matching XML IntelliSense on `IOSView` and `OSViewAdapter`. The package now exposes 24 typed View operations.

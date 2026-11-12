@@ -18,13 +18,17 @@ A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD. Work wi
 - **Start from documented workflows:** explore the API guides and packaged XML IntelliSense examples.
 - **Contribute without STAAD.Pro:** build the library and run offline unit tests without Bentley binaries or a STAAD license.
 
+## Detached geometry diagnostics
+
+Use `GetDuplicateNodes(...)` and `GetZeroLengthBeams(...)` to inspect supplied collections without native model changes. See [geometry diagnostics](docs/Geometry-Diagnostics.md) for identity, tolerance, materialization and error contracts.
+
 ## Installation and runtime
 
 Runtime requires **Windows, .NET Framework 4.8.1 (net481), and a licensed STAAD.Pro installation** exposing the APIs used by your application. The .NET SDK used to build the project is separate from the application's target framework.
 
-The latest locally prepared preview is **1.0.0-preview.20261109**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
+The latest locally prepared preview is **1.0.0-preview.20261112**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
 
-## Latest preview — 1.0.0-preview.20261109
+## Latest preview — 1.0.0-preview.20261112
 
 Ported `HidePlate(Plate plate)`, `HideSolid(int solidId)` and `HideSurface(int surfaceId)` with complete matching XML IntelliSense, positive analytical-ID validation and captured-View dispatch. See [entity visibility contracts](docs/View-Entity-Visibility.md).
 

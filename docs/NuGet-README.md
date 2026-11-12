@@ -10,7 +10,9 @@ By **Srinivasa Rao Masanam**.
 
 The [StruXllence website](https://struxllence.com) is live. Join the community forum for structural-engineering discussions, explore the forum preview, or follow @StruXllence on YouTube. Report package defects through [GitHub Issues](https://github.com/StruXllence/StaadPro.Interop/issues).
 
-## Version 1.0.0-preview.20261109
+## Version 1.0.0-preview.20261112
+
+Added `GetDuplicateNodes(...)` and `GetZeroLengthBeams(...)` for detached geometry diagnostics, with finite input validation, owned materialized collections and explicit identity/tolerance behavior. See [geometry diagnostics](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md) for examples and contracts. These helpers perform no native model changes.
 
 Ported `HidePlate(Plate plate)`, `HideSolid(int solidId)` and `HideSurface(int surfaceId)` with complete matching interface/adapter XML IntelliSense. Each validates a positive analytical entity ID and dispatches once to the captured native View. Plate identity is captured without reading geometry. The package now exposes 24 typed View operations. See [entity visibility contracts](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/View-Entity-Visibility.md) for completion receipts, inputs and native limits.
 

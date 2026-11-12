@@ -355,6 +355,17 @@ try {
         }
     }
     if ($tableSnippets.Count -ne 58) { throw 'Expected fifty-eight Table XML examples.' }
+    $diagnosticGuide=Read-PackageEntry 'docs/Geometry-Diagnostics.md'
+    $diagnosticCode=[regex]::Match($diagnosticGuide,'(?s)```csharp\s*\r?\n(.*?)```').Groups[1].Value
+    if([string]::IsNullOrWhiteSpace($diagnosticCode)){throw 'Missing diagnostic guide example.'}
+    $diagnosticSnippets=@()
+    foreach($name in @('GetDuplicateNodes','GetZeroLengthBeams')){
+        $prefix='M:StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.'+$name+'('
+        $entries=@($xml.doc.members.member | Where-Object {$_.name.StartsWith($prefix)})
+        if($entries.Count -ne 1){throw 'Missing diagnostic XML.'}
+        foreach($tag in @('summary','returns','remarks','exception','example/code')){if($null -eq $entries[0].SelectSingleNode($tag)){throw 'Incomplete diagnostic XML.'}}
+        $diagnosticSnippets += '{'+[Environment]::NewLine+$entries[0].SelectSingleNode('example/code').InnerText+[Environment]::NewLine+'}'
+    }
     $viewSnippets = @()
     $viewGuide = Read-PackageEntry 'docs/View-Orientations.md'
     $viewGuide += Read-PackageEntry 'docs/View-Incremental-Rotations.md'
@@ -546,8 +557,10 @@ using StaadPro.Interop.Models;
 
 public static class Program
 {
-    public static void Main()
+    public static void Main(string[] arguments)
     {
+        PackageVerification.GeometryDiagnosticsFixture.Verify(arguments[0]);
+        __DIAGNOSTIC_EXAMPLES__
         var copyright = (System.Reflection.AssemblyCopyrightAttribute)typeof(OpenStaadWrapper).Assembly
             .GetCustomAttributes(typeof(System.Reflection.AssemblyCopyrightAttribute), false)[0];
         Check(copyright.Copyright == "Copyright (c) 2026 StruXllence", "installed assembly copyright");
@@ -1203,6 +1216,7 @@ __PROPERTY_EXAMPLES__
 $program = $program.Replace('__EXAMPLES__', ($snippets -join "`n"))
 $program = $program.Replace('__SUPPORT_EXAMPLES__', ($supportSnippets -join [Environment]::NewLine))
 $program = $program.Replace('__COMMAND_EXAMPLES__', ($commandSnippets -join [Environment]::NewLine))
+$program = $program.Replace('__DIAGNOSTIC_EXAMPLES__',($diagnosticSnippets -join [Environment]::NewLine))
 $program = $program.Replace('__VIEW_EXAMPLES__', ($viewSnippets -join [Environment]::NewLine))
 $program = $program.Replace('__TABLE_EXAMPLES__', ($tableSnippets -join [Environment]::NewLine))
 $program = $program.Replace('__DESIGN_EXAMPLES__', ($designSnippets -join [Environment]::NewLine))
@@ -1210,7 +1224,7 @@ $program = $program.Replace('__OUTPUT_EXAMPLES__', ($outputSnippets -join [Envir
 $program = $program.Replace('__INSPECTION_EXAMPLES__', ($inspectionSnippets -join [Environment]::NewLine))
 $program = $program.Replace('__EXPANSION_EXAMPLES__', ($expansionSnippets -join [Environment]::NewLine))
 $program = $program.Replace('__PROPERTY_EXAMPLES__', ($propertySnippets -join [Environment]::NewLine))
-$program = $program.Replace('__EXAMPLE_COUNT__', [string](310 + $viewSnippets.Count + $tableSnippets.Count + $designSnippets.Count + $commandSnippets.Count + $supportSnippets.Count + $outputSnippets.Count + $inspectionSnippets.Count + $expansionSnippets.Count + $propertySnippets.Count))
+$program = $program.Replace('__EXAMPLE_COUNT__', [string](310 + $diagnosticSnippets.Count + $viewSnippets.Count + $tableSnippets.Count + $designSnippets.Count + $commandSnippets.Count + $supportSnippets.Count + $outputSnippets.Count + $inspectionSnippets.Count + $expansionSnippets.Count + $propertySnippets.Count))
 if ($hasLoadExpansion) { $program = 'using StaadPro.Interop.Models.Loads.Contracts;' + [Environment]::NewLine + 'using StaadPro.Interop.Models.Loads.Queries;' + [Environment]::NewLine + $program }
 if ($hasLoadInspection) { $program = 'using StaadPro.Interop.Enums.Loads;' + [Environment]::NewLine + $program }
 if ($hasPropertyFoundation) { Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Fixtures/PropertyQueryFixture.cs') -Destination (Join-Path $consumerRoot 'PropertyQueryFixture.cs') }
@@ -1221,6 +1235,7 @@ if ($hasPropertyFoundation) { Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'F
 if ($hasPropertyFoundation) { Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Fixtures/PropertyAttributeFixture.cs') -Destination (Join-Path $consumerRoot 'PropertyAttributeFixture.cs') }
 if ($hasPropertyFoundation) { Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Fixtures/PropertyUptFixture.cs') -Destination (Join-Path $consumerRoot 'PropertyUptFixture.cs') }
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Fixtures/OutputSteelBlockFixture.cs') -Destination (Join-Path $consumerRoot 'OutputSteelBlockFixture.cs')
+Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Fixtures/GeometryDiagnosticsFixture.cs') -Destination (Join-Path $consumerRoot 'GeometryDiagnosticsFixture.cs')
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Fixtures/ViewFoundationFixture.cs') -Destination (Join-Path $consumerRoot 'ViewFoundationFixture.cs')
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Fixtures/TableFoundationFixture.cs') -Destination (Join-Path $consumerRoot 'TableFoundationFixture.cs')
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Fixtures/DesignFoundationFixture.cs') -Destination (Join-Path $consumerRoot 'DesignFoundationFixture.cs')
@@ -1236,6 +1251,7 @@ Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Fixtures/LoadInspectionFixture.
 [IO.File]::WriteAllText((Join-Path $consumerRoot 'Consumer.csproj'), $project)
 [IO.File]::WriteAllText((Join-Path $consumerRoot 'Program.cs'), $program)
 [IO.File]::WriteAllText((Join-Path $consumerRoot 'ViewEntityGuideExample.cs'), 'using StaadPro.Interop.Models; internal static class ViewEntityGuideExample { static void Example() { using (var wrapper = new OpenStaadWrapper(new PackageVerification.ViewFoundationFixture.Root { View = new PackageVerification.ViewFoundationFixture.Native() })) {' + [Environment]::NewLine + $entityVisibilityCode + [Environment]::NewLine + '}}}')
+[IO.File]::WriteAllText((Join-Path $consumerRoot 'GeometryDiagnosticExample.cs'),'using System.Linq; internal static class GeometryDiagnosticExample{static void Example(){'+$diagnosticCode+'}}')
 [IO.File]::WriteAllText((Join-Path $consumerRoot 'InstallationExample.cs'), ('namespace GuideExamples {' + [Environment]::NewLine + $installationCode + [Environment]::NewLine + '}'))
 
 Write-Host "Verifying package $version in $consumerRoot"
@@ -1250,6 +1266,6 @@ if (!(Test-Path -LiteralPath $installedLibrary) -or !(Test-Path -LiteralPath $in
 if ($installedDocumentation.OuterXml -cne $xml.OuterXml) { throw 'Installed IntelliSense differs from the verified archive XML.' }
 & dotnet build (Join-Path $consumerRoot 'Consumer.csproj') -c Release --no-restore --verbosity minimal
 if ($LASTEXITCODE -ne 0) { throw 'Isolated consumer compilation failed.' }
-& (Join-Path $consumerRoot 'bin/Release/net481/Consumer.exe')
+& (Join-Path $consumerRoot 'bin/Release/net481/Consumer.exe') $installedXml
 if ($LASTEXITCODE -ne 0) { throw 'Isolated consumer runtime checks failed.' }
 Write-Host 'PASS: package metadata, XML IntelliSense, packaged guides, isolated restore/build/runtime.'

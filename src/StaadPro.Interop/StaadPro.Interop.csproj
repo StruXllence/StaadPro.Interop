@@ -12,12 +12,12 @@
     <RootNamespace>StaadPro.Interop</RootNamespace>
     <PackageId>StaadPro.Interop</PackageId>
     <Version>1.0.0</Version>
-    <ReleaseDocumentationVersion>1.0.0-preview.20261109</ReleaseDocumentationVersion>
+    <ReleaseDocumentationVersion>1.0.0-preview.20261112</ReleaseDocumentationVersion>
     <PackageVersion>$(ReleaseDocumentationVersion)</PackageVersion>
     <Authors>Srinivasa Rao Masanam</Authors>
     <Company>StruXllence</Company>
     <Copyright>Copyright (c) 2026 StruXllence</Copyright>
-    <PackageReleaseNotes>Ported HidePlate(Plate plate), HideSolid(int solidId) and HideSurface(int surfaceId) with complete matching interface/adapter XML IntelliSense. Validated positive analytical IDs and captured Plate.Id once without reading geometry. Reused caller-thread captured-View dispatch, binding checks and explicit unacknowledged void-completion receipts. The package exposes 24 typed View operations. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
+    <PackageReleaseNotes>Ported GetDuplicateNodes and GetZeroLengthBeams with complete XML IntelliSense and detached consumer examples. Preserved seed-based per-axis grouping and Euclidean endpoint-length semantics with explicit ID consistency, finite-input validation, one-pass materialization and read-only result ownership. Added scaled distance checks for extreme/subnormal coordinates. No native model changes are performed. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
     <Description>A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageTags>staad;staad-pro;openstaad;structural-engineering;structural-analysis;engineering-automation;csharp;dotnet-framework;com-interop;geometry;loads;bentley;struxllence</PackageTags>
@@ -55,6 +55,7 @@
     <None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
     <None Include="..\..\CITATION.cff" Pack="true" PackagePath="CITATION.cff" />
     <None Include="..\..\TRADEMARKS.md" Pack="true" PackagePath="TRADEMARKS.md" />
+    <None Include="..\..\docs\Geometry-Diagnostics.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\View-Entity-Visibility.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\View-Member-Visibility.md" Pack="true" PackagePath="docs\" />
     <None Include="..\..\docs\View-Orientations.md" Pack="true" PackagePath="docs\" />
