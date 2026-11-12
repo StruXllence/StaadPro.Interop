@@ -18,17 +18,33 @@ A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD. Work wi
 - **Start from documented workflows:** explore the API guides and packaged XML IntelliSense examples.
 - **Contribute without STAAD.Pro:** build the library and run offline unit tests without Bentley binaries or a STAAD license.
 
+## StruXllence themes for Visual Studio Code
+
+[![StruXllence VS Code theme installs](https://img.shields.io/visual-studio-marketplace/i/StruXllence.struxllence-themes?label=StruXllence%20Themes&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=StruXllence.struxllence-themes)
+
+Code your C# and OpenSTAAD tools with **StruXllence Themes**, a dark and light Visual Studio Code theme suite with matching file and product icons by Srinivasa Rao Masanam.
+
+[Install StruXllence Themes from the Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=StruXllence.struxllence-themes) or use the command line:
+
+~~~powershell
+code --install-extension StruXllence.struxllence-themes
+# For VS Code Insiders:
+code-insiders --install-extension StruXllence.struxllence-themes
+~~~
+
+After installation, run **Preferences: Color Theme** and select **StruXllence Dark** or **StruXllence Light**. See the [theme previews and icon setup](https://github.com/StruXllence/struxllence-themes). The editor theme is optional and is installed separately from the NuGet library.
+
 ## Detached geometry diagnostics
 
-Use `GetDuplicateNodes(...)` and `GetZeroLengthBeams(...)` to inspect supplied collections without native model changes. See [geometry diagnostics](docs/Geometry-Diagnostics.md) for identity, tolerance, materialization and error contracts.
+Use `GetClosestNode(...)`, `GetClosestBeam(...)`, `GetDuplicateNodes(...)` and `GetZeroLengthBeams(...)` to inspect supplied collections without native model changes. See [geometry diagnostics](docs/Geometry-Diagnostics.md) for identity, tolerance, materialization and error contracts.
 
 ## Installation and runtime
 
 Runtime requires **Windows, .NET Framework 4.8.1 (net481), and a licensed STAAD.Pro installation** exposing the APIs used by your application. The .NET SDK used to build the project is separate from the application's target framework.
 
-The latest locally prepared preview is **1.0.0-preview.20261112**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
+The latest locally prepared preview is **1.0.0-preview.20261112.1**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
 
-## Latest preview — 1.0.0-preview.20261112
+## Latest preview — 1.0.0-preview.20261112.1
 
 Ported `HidePlate(Plate plate)`, `HideSolid(int solidId)` and `HideSurface(int surfaceId)` with complete matching XML IntelliSense, positive analytical-ID validation and captured-View dispatch. See [entity visibility contracts](docs/View-Entity-Visibility.md).
 

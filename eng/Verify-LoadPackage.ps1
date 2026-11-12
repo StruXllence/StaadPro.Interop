@@ -37,6 +37,7 @@ try {
     if ($null -eq $archive.GetEntry('lib/net481/StaadPro.Interop.dll')) { throw 'Missing net481 library.' }
     [xml] $xml = Read-PackageEntry 'lib/net481/StaadPro.Interop.xml'
     $readme = Read-PackageEntry 'README.md'
+    if(!$readme.Contains('https://marketplace.visualstudio.com/items?itemName=StruXllence.struxllence-themes') -or !$readme.Contains('code --install-extension StruXllence.struxllence-themes')){throw 'Missing packaged Marketplace installation links.'}
     $license = Read-PackageEntry 'LICENSE'
     $notice = Read-PackageEntry 'NOTICE.md'
     $citation = Read-PackageEntry 'CITATION.cff'
@@ -122,7 +123,7 @@ try {
     if ([string]$metadata.authors -cne 'Srinivasa Rao Masanam') { throw 'Incorrect package author.' }
     if ([string]$metadata.copyright -cne 'Copyright (c) 2026 StruXllence') { throw 'Incorrect package copyright.' }
     if ($readme -notmatch 'Srinivasa Rao Masanam' -or $readme -notmatch 'StruXllence' -or $readme -notmatch 'Copyright \(c\) 2026 StruXllence') { throw 'Incorrect packaged README author/publisher metadata.' }
-    if ([string]$metadata.description -ne 'A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD') { throw 'Incorrect package description.' }
+    if ([string]$metadata.description -ne 'A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD Developer resources include Marketplace installation links for the optional StruXllence VS Code dark and light themes in the packaged README.') { throw 'Incorrect package description.' }
     if ([string]::IsNullOrWhiteSpace([string]$metadata.releaseNotes)) { throw 'Missing release notes in package metadata.' }
     if ($releaseNotes -notmatch '1.0.0-preview.20261012' -or $releaseNotes -notmatch 'GetLoadCasesFromIds') { throw 'Incomplete packaged release notes.' }
     if (!$readme.Contains('`GetApplicationVersion`') -or !$readme.Contains('`AddUptPropertyChannel`')) { throw 'README function references must retain inline-code styling.' }
@@ -359,7 +360,7 @@ try {
     $diagnosticCode=[regex]::Match($diagnosticGuide,'(?s)```csharp\s*\r?\n(.*?)```').Groups[1].Value
     if([string]::IsNullOrWhiteSpace($diagnosticCode)){throw 'Missing diagnostic guide example.'}
     $diagnosticSnippets=@()
-    foreach($name in @('GetDuplicateNodes','GetZeroLengthBeams')){
+    foreach($name in @('GetDuplicateNodes','GetZeroLengthBeams','GetClosestNode','GetClosestBeam')){
         $prefix='M:StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.'+$name+'('
         $entries=@($xml.doc.members.member | Where-Object {$_.name.StartsWith($prefix)})
         if($entries.Count -ne 1){throw 'Missing diagnostic XML.'}

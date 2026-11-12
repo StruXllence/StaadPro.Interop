@@ -1,5 +1,13 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261112.1 - 12 November 2026
+
+Ported `GetClosestNode(this IEnumerable<Node> nodesCollection, Node referenceNode)` and `GetClosestBeam(this IEnumerable<Beam> beamsCollection, Node referenceNode)` with complete XML IntelliSense and [detached geometry examples](Geometry-Diagnostics.md).
+
+Node searches exclude candidates with the reference ID and Euclidean distance at most the existing 0.001 equality threshold. Differently numbered coincident nodes remain eligible. Beam searches measure the nearer endpoint rather than the distance to the beam segment. Both return original entity references, retain the first equal-distance candidate, ignore null entries and return null when no candidate remains. Single-pass scans use constant auxiliary storage and scaled comparisons that distinguish huge and subnormal distances. Nonfinite coordinates, missing beam incidence and enumeration failures propagate; a zero-distance match does not bypass later validation. No native session or model mutation is involved.
+
+Passed a zero-warning Release build and 7,329 offline tests, including 20 new nearest-geometry cases. The installed NuGet consumer checks exact method/parameter contracts and expanded XML, executes 1,332 selected XML examples and compiles the geometry guide. These managed checks do not provide assembly-wide native or engineering qualification.
+
 ## 1.0.0-preview.20261112 - 12 November 2026
 
 Ported `GetDuplicateNodes(this IEnumerable<Node> nodesCollection, double tolerance = 0.0001)` and `GetZeroLengthBeams(this IEnumerable<Beam> beamsCollection, double tolerance = 0.0001)` with complete XML IntelliSense and [detached diagnostic examples](Geometry-Diagnostics.md).

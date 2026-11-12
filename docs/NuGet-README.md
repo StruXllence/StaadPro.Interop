@@ -10,7 +10,25 @@ By **Srinivasa Rao Masanam**.
 
 The [StruXllence website](https://struxllence.com) is live. Join the community forum for structural-engineering discussions, explore the forum preview, or follow @StruXllence on YouTube. Report package defects through [GitHub Issues](https://github.com/StruXllence/StaadPro.Interop/issues).
 
-## Version 1.0.0-preview.20261112
+## StruXllence themes for Visual Studio Code
+
+[![StruXllence VS Code theme installs](https://img.shields.io/visual-studio-marketplace/i/StruXllence.struxllence-themes?label=StruXllence%20Themes&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=StruXllence.struxllence-themes)
+
+Code your C# and OpenSTAAD tools with **StruXllence Themes**, a dark and light Visual Studio Code theme suite with matching file and product icons by Srinivasa Rao Masanam.
+
+[Install StruXllence Themes from the Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=StruXllence.struxllence-themes) or use the command line:
+
+~~~powershell
+code --install-extension StruXllence.struxllence-themes
+# For VS Code Insiders:
+code-insiders --install-extension StruXllence.struxllence-themes
+~~~
+
+After installation, run **Preferences: Color Theme** and select **StruXllence Dark** or **StruXllence Light**. See the [theme previews and icon setup](https://github.com/StruXllence/struxllence-themes). The editor theme is optional and is installed separately from the NuGet library.
+
+## Version 1.0.0-preview.20261112.1
+
+Added `GetClosestNode(nodesCollection, referenceNode)` and `GetClosestBeam(beamsCollection, referenceNode)` with complete XML IntelliSense. Searches consume the input once, retain first-seen ties and compare scaled 3D distances. Node exclusion preserves ID-plus-distance equality; beam distance uses the nearer endpoint. See [nearest geometry examples](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md).
 
 Added `GetDuplicateNodes(...)` and `GetZeroLengthBeams(...)` for detached geometry diagnostics, with finite input validation, owned materialized collections and explicit identity/tolerance behavior. See [geometry diagnostics](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md) for examples and contracts. These helpers perform no native model changes.
 

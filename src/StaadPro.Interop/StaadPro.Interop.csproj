@@ -12,13 +12,13 @@
     <RootNamespace>StaadPro.Interop</RootNamespace>
     <PackageId>StaadPro.Interop</PackageId>
     <Version>1.0.0</Version>
-    <ReleaseDocumentationVersion>1.0.0-preview.20261112</ReleaseDocumentationVersion>
+    <ReleaseDocumentationVersion>1.0.0-preview.20261112.1</ReleaseDocumentationVersion>
     <PackageVersion>$(ReleaseDocumentationVersion)</PackageVersion>
     <Authors>Srinivasa Rao Masanam</Authors>
     <Company>StruXllence</Company>
     <Copyright>Copyright (c) 2026 StruXllence</Copyright>
-    <PackageReleaseNotes>Ported GetDuplicateNodes and GetZeroLengthBeams with complete XML IntelliSense and detached consumer examples. Preserved seed-based per-axis grouping and Euclidean endpoint-length semantics with explicit ID consistency, finite-input validation, one-pass materialization and read-only result ownership. Added scaled distance checks for extreme/subnormal coordinates. No native model changes are performed. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
-    <Description>A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD</Description>
+    <PackageReleaseNotes>Ported GetClosestNode and GetClosestBeam with complete XML IntelliSense and detached collection examples. Preserved ID-plus-distance reference exclusion, nearest-endpoint beam semantics, first-seen ties and original entity references. Added one-pass constant-storage scans, finite geometry validation and scaled distance ordering for huge/subnormal coordinates. No native changes are performed. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
+    <Description>A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD Developer resources include Marketplace installation links for the optional StruXllence VS Code dark and light themes in the packaged README.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageTags>staad;staad-pro;openstaad;structural-engineering;structural-analysis;engineering-automation;csharp;dotnet-framework;com-interop;geometry;loads;bentley;struxllence</PackageTags>
     <RepositoryType>git</RepositoryType>
@@ -122,7 +122,7 @@
     <Error Condition="'$(PackageLicenseExpression)' != 'Apache-2.0'" Text="The package license expression must be exactly Apache-2.0." />
     <Error Condition="'$(Company)' != 'StruXllence'" Text="The package Company metadata must be exactly StruXllence." />
     <Error Condition="'$(Copyright)' != 'Copyright (c) 2026 StruXllence'" Text="The package Copyright metadata must be exactly Copyright (c) 2026 StruXllence." />
-    <Error Condition="'$(Description)' != 'A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD'" Text="The package Description metadata must be exactly A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD." />
+    <Error Condition="'$(Description)' != 'A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD Developer resources include Marketplace installation links for the optional StruXllence VS Code dark and light themes in the packaged README.'" Text="The configured package description is required." />
     <Error Condition="'$(RepositoryUrl)' != 'https://github.com/StruXllence/StaadPro.Interop'" Text="The package RepositoryUrl metadata must be exactly https://github.com/StruXllence/StaadPro.Interop." />
     <Error Condition="'$(PackageProjectUrl)' != 'https://github.com/StruXllence/StaadPro.Interop'" Text="The package PackageProjectUrl metadata must be exactly https://github.com/StruXllence/StaadPro.Interop." />
     <Error Condition="!$([System.Text.RegularExpressions.Regex]::IsMatch('$(PackageVersion)', '^[0-9A-Za-z][0-9A-Za-z.+-]*$'))" Text="The package version contains unsupported characters." />
