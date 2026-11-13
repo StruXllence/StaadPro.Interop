@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using StaadPro.Interop.Entities;
+using StaadPro.Interop.Common;
+using StaadPro.Interop.Models.Geometry;
 using StaadPro.Interop.Helpers;
 
 namespace StaadPro.Interop.Extensions
@@ -211,6 +213,137 @@ namespace StaadPro.Interop.Extensions
                 { best = beam; bestDistance = distance; }
             }
             return best;
+        }
+
+
+        /// <summary>Filters beams by their midpoint's inclusive radial band in the XZ plane.</summary>
+        /// <param name="beamsCollection">Non-null sequence enumerated once. Null beams are skipped; every other beam
+        /// must have both endpoint nodes with finite X, Y and Z coordinates. Order and repeated references are preserved.</param>
+        /// <param name="minRadius">Finite nonnegative inclusive inner radius in the supplied model length units.</param>
+        /// <param name="maxRadius">Finite inclusive outer radius, greater than or equal to minRadius, in the same units.</param>
+        /// <param name="centre">Optional radial centre; null uses X=0 and Z=0. A supplied node must have finite coordinates.
+        /// Its X/Z values are captured before enumeration. Y does not affect radial membership.</param>
+        /// <returns>An owned, read-only, fully materialized collection of original matching beam references.</returns>
+        /// <remarks><para>Measures the XZ distance from centre to the arithmetic midpoint of each beam's endpoints.
+        /// This is a plan-view midpoint test, not a three-dimensional sphere, nearest-endpoint search, segment clipping,
+        /// or a requirement that both endpoints lie in the band. A beam crossing the centre can match a zero-radius band
+        /// even when both endpoints are far away. Height, axes and units are not inferred or converted.</para>
+        /// <para>Uses overflow-aware midpoint arithmetic and scaled distance comparisons for huge and subnormal finite values.
+        /// Boundaries are inclusive with no extra tolerance. Ordinary floating-point rounding still applies.
+        /// Validates the complete sequence even after a match; malformed incidence/coordinates and enumerator failures
+        /// throw rather than returning partial results. Null input/radii/centre are checked before enumeration.</para>
+        /// <para>Enumerates once and freezes membership before return. Original entities remain mutable, while result storage
+        /// is read-only. Capture is not atomic across concurrent writers; coordinate edits must be coordinated.
+        /// No native calls, geometry hydration, selection, merging, analysis, save or model mutation occur.</para></remarks>
+        /// <exception cref="ArgumentNullException">beamsCollection is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">A radius is nonfinite, negative, or maxRadius is smaller than minRadius.</exception>
+        /// <exception cref="ArgumentException">The centre has nonfinite coordinates, or a non-null beam has missing/nonfinite endpoints.</exception>
+        /// <example><code>
+        /// var a = new StaadPro.Interop.Entities.Node(1, -10, 4, 0);
+        /// var b = new StaadPro.Interop.Entities.Node(2, 10, 4, 0);
+        /// var beams = new[] { new StaadPro.Interop.Entities.Beam(1, a, b) };
+        /// var atCentre = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.GetBeamsWithinRadius(beams, 0, 0);
+        /// System.Console.WriteLine(atCentre.Count()); // midpoint at origin in XZ, despite Y=4
+        /// </code></example>
+        public static IEnumerable<Beam> GetBeamsWithinRadius(this IEnumerable<Beam> beamsCollection,
+            double minRadius, double maxRadius, Node centre = null)
+        {
+            if (beamsCollection == null) throw new ArgumentNullException(nameof(beamsCollection));
+            if (!Finite(minRadius) || minRadius < 0) throw new ArgumentOutOfRangeException(nameof(minRadius));
+            if (!Finite(maxRadius) || maxRadius < minRadius) throw new ArgumentOutOfRangeException(nameof(maxRadius));
+            Point origin = ReferenceEquals(centre, null) ? new Point(null, 0, 0, 0, 0) : Capture(centre, nameof(centre));
+            var radialOrigin = new Point(null, 0, origin.X, 0, origin.Z);
+            var minimum = new DistanceKey(minRadius, 1);
+            var maximum = new DistanceKey(maxRadius, 1);
+            var matches = new List<Beam>();
+            foreach (Beam beam in beamsCollection)
+            {
+                if (ReferenceEquals(beam, null)) continue;
+                Node start = beam.StartNode, end = beam.EndNode;
+                if (ReferenceEquals(start, null) || ReferenceEquals(end, null))
+                    throw new ArgumentException("Every non-null beam requires both endpoint nodes.", nameof(beamsCollection));
+                Point a = Capture(start, nameof(beamsCollection)), b = Capture(end, nameof(beamsCollection));
+                var midpoint = new Point(null, 0, Midpoint(a.X, b.X), 0, Midpoint(a.Z, b.Z));
+                DistanceKey radius = DistanceKey.Between(midpoint, radialOrigin);
+                if (radius.CompareTo(minimum) >= 0 && radius.CompareTo(maximum) <= 0) matches.Add(beam);
+            }
+            return new ReadOnlyCollection<Beam>(matches);
+        }
+
+        /// <summary>Captures the axis-aligned coordinate bounds of supplied nodes, beam endpoints or plate corners.</summary>
+        /// <typeparam name="T">Exactly Node, Beam or Plate. A sequence declared as IEntity or another generic entity type is not supported.</typeparam>
+        /// <param name="source">Non-null sequence enumerated once. Null entities are ignored. Beams require both endpoints;
+        /// plates require A/B/C and may omit D for a triangle. Every participating coordinate must be finite.</param>
+        /// <returns>An immutable AxisAlignedBounds containing XMin/XMax, YMin/YMax and ZMin/ZMax in the input units.</returns>
+        /// <remarks><para>Uses all supplied nodes, both endpoints of every beam and the three/four corners of every plate.
+        /// Computes coordinate extrema in one pass with constant auxiliary storage. Repeated entities do not change extrema.
+        /// Supports a point or flat collection with equal minima/maxima. No width/volume calculation can overflow because
+        /// this result retains coordinates, not subtracted extents.</para>
+        /// <para>Unlike a spatial filter, this method returns a named bounds snapshot, not matching entities.
+        /// It does not compute an oriented box, plate centroid, curved/offset envelope, native model extents or tolerance padding.
+        /// Empty/all-null input throws rather than inventing zero bounds. Unsupported generic types are rejected before
+        /// enumeration, even if their objects happen to be nodes. A triangle has no D; missing A/B/C is malformed.</para>
+        /// <para>Reads the complete sequence and returns no partial result on invalid geometry or enumeration failure.
+        /// The result remains unchanged after entity edits. Coordinate capture is not atomic across concurrent writers.
+        /// No native acquisition, hydration, unit conversion, selection, analysis or mutation is performed.</para></remarks>
+        /// <exception cref="ArgumentNullException">source is null.</exception>
+        /// <exception cref="InvalidOperationException">T is unsupported or source contains no non-null supported entities.</exception>
+        /// <exception cref="ArgumentException">A participating coordinate is nonfinite, a beam lacks an endpoint, or a plate lacks A/B/C.</exception>
+        /// <example><code>
+        /// var nodes = new[] { new StaadPro.Interop.Entities.Node(1, -2, 0, 4),
+        ///     new StaadPro.Interop.Entities.Node(2, 3, 5, -1) };
+        /// var bounds = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.GetBoundingBox(nodes);
+        /// System.Console.WriteLine(bounds.XMin + " to " + bounds.XMax);
+        /// </code></example>
+        public static AxisAlignedBounds GetBoundingBox<T>(this IEnumerable<T> source) where T : IEntity
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            Type type = typeof(T);
+            if (type != typeof(Node) && type != typeof(Beam) && type != typeof(Plate))
+                throw new InvalidOperationException("Bounds support Node, Beam or Plate as the generic entity type.");
+            bool hasPoint = false;
+            double xMin = 0, xMax = 0, yMin = 0, yMax = 0, zMin = 0, zMax = 0;
+            void Include(Node node)
+            {
+                if (ReferenceEquals(node, null)) throw new ArgumentException("Required entity incidence is missing.", nameof(source));
+                Point point = Capture(node, nameof(source));
+                if (!hasPoint)
+                {
+                    xMin = xMax = point.X; yMin = yMax = point.Y; zMin = zMax = point.Z; hasPoint = true;
+                }
+                else
+                {
+                    xMin = Math.Min(xMin, point.X); xMax = Math.Max(xMax, point.X);
+                    yMin = Math.Min(yMin, point.Y); yMax = Math.Max(yMax, point.Y);
+                    zMin = Math.Min(zMin, point.Z); zMax = Math.Max(zMax, point.Z);
+                }
+            }
+            foreach (T entity in source)
+            {
+                if (ReferenceEquals(entity, null)) continue;
+                if (type == typeof(Node)) Include((Node)(object)entity);
+                else if (type == typeof(Beam))
+                {
+                    var beam = (Beam)(object)entity;
+                    Node start = beam.StartNode, end = beam.EndNode;
+                    Include(start); Include(end);
+                }
+                else
+                {
+                    var plate = (Plate)(object)entity;
+                    Node a = plate.A, b = plate.B, c = plate.C, d = plate.D;
+                    Include(a); Include(b); Include(c);
+                    if (!ReferenceEquals(d, null)) Include(d);
+                }
+            }
+            if (!hasPoint) throw new InvalidOperationException("At least one non-null entity is required to compute bounds.");
+            return new AxisAlignedBounds(xMin, xMax, yMin, yMax, zMin, zMax);
+        }
+
+        private static double Midpoint(double a, double b)
+        {
+            double sum = a + b;
+            return double.IsInfinity(sum) ? a / 2 + b / 2 : sum / 2;
         }
 
         // Keep length as scale * factor so even lengths above Double.MaxValue can be ordered.

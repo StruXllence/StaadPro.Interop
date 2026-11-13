@@ -5,6 +5,8 @@ using System.Linq;
 using System.Xml.Linq;
 using StaadPro.Interop.Entities;
 using StaadPro.Interop.Extensions;
+using StaadPro.Interop.Common;
+using StaadPro.Interop.Models.Geometry;
 namespace PackageVerification
 {
     internal static class GeometryDiagnosticsFixture
@@ -26,6 +28,41 @@ namespace PackageVerification
                 foreach(string tag in new[]{"summary","returns","remarks","exception","example"})if(entry.Element(tag)==null)throw new Exception("Incomplete geometry diagnostic IntelliSense.");
                 if(entry.Elements("param").Count()!=2||entry.Descendants().Any(x=>x.Name=="include"||x.Name=="inheritdoc"))throw new Exception("Unexpanded geometry diagnostic XML.");
             }
+            var radialMethod=typeof(GeometryDiagnosticsExtensions).GetMethod("GetBeamsWithinRadius");
+            var rp=radialMethod.GetParameters();
+            if(radialMethod.ReturnType!=typeof(IEnumerable<Beam>)||!rp.Select(p=>p.ParameterType).SequenceEqual(new[]{typeof(IEnumerable<Beam>),typeof(double),typeof(double),typeof(Node)})||!rp.Select(p=>p.Name).SequenceEqual(new[]{"beamsCollection","minRadius","maxRadius","centre"})||rp.Take(3).Any(p=>p.IsOptional)||!rp[3].IsOptional||rp[3].DefaultValue!=null)throw new Exception("Radial filter signature changed.");
+            var boundsMethod=typeof(GeometryDiagnosticsExtensions).GetMethod("GetBoundingBox");
+            if(!boundsMethod.IsGenericMethodDefinition||boundsMethod.ReturnType!=typeof(AxisAlignedBounds)||boundsMethod.GetGenericArguments().Length!=1||!boundsMethod.GetGenericArguments()[0].GetGenericParameterConstraints().Contains(typeof(IEntity))||boundsMethod.GetParameters().Length!=1||boundsMethod.GetParameters()[0].Name!="source"||boundsMethod.GetParameters()[0].IsOptional)throw new Exception("Named bounds signature changed.");
+            var connectivityMethod=typeof(BeamExtensions).GetMethod("IsConnectedToBeam");
+            if(connectivityMethod.ReturnType!=typeof(bool)||!connectivityMethod.GetParameters().Select(p=>p.ParameterType).SequenceEqual(new[]{typeof(Beam),typeof(Beam)})||!connectivityMethod.GetParameters().Select(p=>p.Name).SequenceEqual(new[]{"beam","targetBeam"})||connectivityMethod.GetParameters().Any(p=>p.IsOptional))throw new Exception("Beam connectivity signature changed.");
+            foreach(var method in new[]{radialMethod,boundsMethod,connectivityMethod})
+            {
+                string prefix="M:"+method.DeclaringType.FullName+"."+method.Name;
+                var doc=docs.Descendants("member").Single(e=>((string)e.Attribute("name")).StartsWith(prefix+"(")||((string)e.Attribute("name")).StartsWith(prefix+"``1("));
+                foreach(string tag in new[]{"summary","returns","remarks","exception","example"})if(doc.Element(tag)==null)throw new Exception("Missing new geometry IntelliSense.");
+                if(!doc.Elements("param").Select(e=>(string)e.Attribute("name")).SequenceEqual(method.GetParameters().Select(p=>p.Name))||doc.Descendants().Any(e=>e.Name=="include"||e.Name=="inheritdoc"))throw new Exception("Geometry IntelliSense parameter mismatch.");
+            }
+            if(!typeof(AxisAlignedBounds).IsSealed||typeof(AxisAlignedBounds).GetConstructors().Length!=0||!typeof(AxisAlignedBounds).GetProperties().Select(p=>p.Name).OrderBy(n=>n).SequenceEqual(new[]{"XMax","XMin","YMax","YMin","ZMax","ZMin"})||typeof(AxisAlignedBounds).GetProperties().Any(p=>p.GetSetMethod(true)!=null||p.PropertyType!=typeof(double)))throw new Exception("Bounds snapshot must be named and immutable.");
+            foreach(var property in typeof(AxisAlignedBounds).GetProperties())
+            {
+                var doc=docs.Descendants("member").Single(e=>(string)e.Attribute("name")=="P:"+typeof(AxisAlignedBounds).FullName+"."+property.Name);
+                if(doc.Element("summary")==null||doc.Element("value")==null)throw new Exception("Bounds property IntelliSense is missing.");
+            }
+            var crossing=new Beam(new Node(11,-100,70,0),new Node(12,100,70,0));
+            var radial=new Beam[]{null,crossing,crossing}.GetBeamsWithinRadius(0,0);
+            crossing.StartNode.X=-200;
+            if(radial.Count()!=2||!ReferenceEquals(radial.First(),crossing))throw new Exception("Radial filter did not materialize XZ midpoint membership.");
+            bool radialReadOnly=false;try{((IList<Beam>)radial).Clear();}catch(NotSupportedException){radialReadOnly=true;}if(!radialReadOnly)throw new Exception("Radial storage is mutable.");
+            var hugeBeam=new Beam(new Node(1,double.MaxValue,0,0),new Node(2,double.MaxValue,0,0));
+            if(!new[]{hugeBeam}.GetBeamsWithinRadius(double.MaxValue,double.MaxValue).Any())throw new Exception("Finite huge midpoint overflowed.");
+            var triangle=new Plate(new Node(1,-2,3,9),new Node(2,7,-5,4),new Node(3,1,6,-8));
+            var bounds=new[]{triangle}.GetBoundingBox();triangle.A.X=500;
+            if(bounds.XMin!=-2||bounds.XMax!=7||bounds.YMin!=-5||bounds.YMax!=6||bounds.ZMin!=-8||bounds.ZMax!=9)throw new Exception("Bounds did not capture all triangle corners.");
+            var joint=new Node(19,1,2,3);var left=new Beam(new Node(1,0,0,0),joint);
+            var right=new Beam(new Node(19,1,2,3),new Node(2,20,0,0));
+            if(!left.IsConnectedToBeam(right))throw new Exception("Equivalent endpoints did not connect.");
+            right.StartNode.Id=99;if(left.IsConnectedToBeam(right))throw new Exception("Coincidence with another ID connected.");
+            bool malformedRejected=false;try{left.IsConnectedToBeam(new Beam(joint,null));}catch(ArgumentException){malformedRejected=true;}if(!malformedRejected)throw new Exception("An early match hid missing incidence.");
             var a=new Node(1,0,0,0);var b=new Node(2,.00001,0,0);var groups=new[]{a,b}.GetDuplicateNodes().Single();
             b.X=100;if(groups.Count()!=2||!ReferenceEquals(groups.Last(),b))throw new Exception("Diagnostic membership is deferred or identity was lost.");
             bool immutable=false;try{((IList<Node>)groups).Clear();}catch(NotSupportedException){immutable=true;}if(!immutable)throw new Exception("Diagnostic group is mutable.");

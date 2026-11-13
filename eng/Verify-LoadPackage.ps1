@@ -361,9 +361,9 @@ try {
     $diagnosticCode=[regex]::Match($diagnosticGuide,'(?s)```csharp\s*\r?\n(.*?)```').Groups[1].Value
     if([string]::IsNullOrWhiteSpace($diagnosticCode)){throw 'Missing diagnostic guide example.'}
     $diagnosticSnippets=@()
-    foreach($name in @('GetDuplicateNodes','GetZeroLengthBeams','GetClosestNode','GetClosestBeam')){
-        $prefix='M:StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.'+$name+'('
-        $entries=@($xml.doc.members.member | Where-Object {$_.name.StartsWith($prefix)})
+    foreach($operation in @('Extensions.GeometryDiagnosticsExtensions.GetDuplicateNodes','Extensions.GeometryDiagnosticsExtensions.GetZeroLengthBeams','Extensions.GeometryDiagnosticsExtensions.GetClosestNode','Extensions.GeometryDiagnosticsExtensions.GetClosestBeam','Extensions.GeometryDiagnosticsExtensions.GetBeamsWithinRadius','Extensions.GeometryDiagnosticsExtensions.GetBoundingBox','Extensions.BeamExtensions.IsConnectedToBeam')){
+        $prefix='M:StaadPro.Interop.'+$operation
+        $entries=@($xml.doc.members.member | Where-Object {$_.name.StartsWith($prefix+'(') -or $_.name.StartsWith($prefix+'``1(')})
         if($entries.Count -ne 1){throw 'Missing diagnostic XML.'}
         foreach($tag in @('summary','returns','remarks','exception','example/code')){if($null -eq $entries[0].SelectSingleNode($tag)){throw 'Incomplete diagnostic XML.'}}
         $diagnosticSnippets += '{'+[Environment]::NewLine+$entries[0].SelectSingleNode('example/code').InnerText+[Environment]::NewLine+'}'

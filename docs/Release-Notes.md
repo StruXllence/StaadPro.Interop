@@ -1,5 +1,15 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261113 - 13 November 2026
+
+Ported `GetBeamsWithinRadius(this IEnumerable<Beam> beamsCollection, double minRadius, double maxRadius, Node centre = null)`, `GetBoundingBox<T>(this IEnumerable<T> source)` and `IsConnectedToBeam(this Beam beam, Beam targetBeam)` from the established managed geometry helpers, with complete XML IntelliSense and [consumer examples](Geometry-Diagnostics.md).
+
+Radial filtering uses inclusive XZ midpoint bands, overflow-aware arithmetic, one enumeration and owned read-only result storage. Bounds use all node coordinates, beam endpoints or three/four plate corners and return an immutable `AxisAlignedBounds` class. Beam connectivity captures endpoint IDs and coordinates, preserving the existing inclusive Euclidean tolerance. All participating geometry is qualified before a result is returned; malformed incidence and source failures remain explicit errors. No native calls, selection changes, geometry edits or unit conversions occur.
+
+Passed a zero-warning Release build and 7,359 offline tests, including 30 new geometry cases. Installed-package verification checks exact signatures/defaults, expanded XML and the immutable bounds model, executes 1,335 selected XML examples and compiles the geometry guide. These detached managed checks do not establish assembly-wide native or engineering qualification.
+
+
+
 ## 1.0.0-preview.20261112.2 - 12 November 2026
 
 Provides the detached nearest-node and nearest-endpoint beam searches with expanded XML IntelliSense. See [geometry diagnostics](Geometry-Diagnostics.md) for equality, distance, enumeration and consumer examples.

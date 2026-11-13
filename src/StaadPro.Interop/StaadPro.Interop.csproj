@@ -12,12 +12,12 @@
     <RootNamespace>StaadPro.Interop</RootNamespace>
     <PackageId>StaadPro.Interop</PackageId>
     <Version>1.0.0</Version>
-    <ReleaseDocumentationVersion>1.0.0-preview.20261112.2</ReleaseDocumentationVersion>
+    <ReleaseDocumentationVersion>1.0.0-preview.20261113</ReleaseDocumentationVersion>
     <PackageVersion>$(ReleaseDocumentationVersion)</PackageVersion>
     <Authors>Srinivasa Rao Masanam</Authors>
     <Company>StruXllence</Company>
     <Copyright>Copyright (c) 2026 StruXllence</Copyright>
-    <PackageReleaseNotes>Ported GetClosestNode and GetClosestBeam with complete XML IntelliSense and detached collection examples. Preserved ID-plus-distance reference exclusion, nearest-endpoint beam semantics, first-seen ties and original entity references. Added one-pass constant-storage scans, finite geometry validation and scaled distance ordering for huge/subnormal coordinates. No native changes are performed. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
+    <PackageReleaseNotes>Ported GetBeamsWithinRadius, GetBoundingBox and IsConnectedToBeam with comprehensive XML IntelliSense. Added inclusive XZ midpoint filtering, immutable named bounds and captured endpoint identity/distance checks. Validated finite geometry and malformed incidence without native changes. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
     <Description>A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD Developer resources include Marketplace installation links for the optional StruXllence VS Code dark and light themes in the packaged README.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageTags>staad;staad-pro;openstaad;structural-engineering;structural-analysis;engineering-automation;csharp;dotnet-framework;com-interop;geometry;loads;bentley;struxllence</PackageTags>
