@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using StaadPro.Interop.Entities;
+using StaadPro.Interop.Enums;
 using StaadPro.Interop.Extensions;
 using StaadPro.Interop.Common;
 using StaadPro.Interop.Models.Geometry;
@@ -35,7 +36,12 @@ namespace PackageVerification
             if(!boundsMethod.IsGenericMethodDefinition||boundsMethod.ReturnType!=typeof(AxisAlignedBounds)||boundsMethod.GetGenericArguments().Length!=1||!boundsMethod.GetGenericArguments()[0].GetGenericParameterConstraints().Contains(typeof(IEntity))||boundsMethod.GetParameters().Length!=1||boundsMethod.GetParameters()[0].Name!="source"||boundsMethod.GetParameters()[0].IsOptional)throw new Exception("Named bounds signature changed.");
             var connectivityMethod=typeof(BeamExtensions).GetMethod("IsConnectedToBeam");
             if(connectivityMethod.ReturnType!=typeof(bool)||!connectivityMethod.GetParameters().Select(p=>p.ParameterType).SequenceEqual(new[]{typeof(Beam),typeof(Beam)})||!connectivityMethod.GetParameters().Select(p=>p.Name).SequenceEqual(new[]{"beam","targetBeam"})||connectivityMethod.GetParameters().Any(p=>p.IsOptional))throw new Exception("Beam connectivity signature changed.");
-            foreach(var method in new[]{radialMethod,boundsMethod,connectivityMethod})
+            var beamNodeMethod=typeof(BeamExtensions).GetMethod("IsConnectedToNode");
+            if(beamNodeMethod.ReturnType!=typeof(bool)||!beamNodeMethod.GetParameters().Select(p=>p.ParameterType).SequenceEqual(new[]{typeof(Beam),typeof(Node)})||!beamNodeMethod.GetParameters().Select(p=>p.Name).SequenceEqual(new[]{"beam","node"})||beamNodeMethod.GetParameters().Any(p=>p.IsOptional))throw new Exception("Beam-node connectivity signature changed.");
+            var memberMethod=typeof(MemberExtensions).GetMethod("IsConnectedToMember");
+            var memberParameters=memberMethod.GetParameters();
+            if(memberMethod.ReturnType!=typeof(bool)||!memberParameters.Select(p=>p.ParameterType).SequenceEqual(new[]{typeof(Member),typeof(Member),typeof(MemberConnectivityScope)})||!memberParameters.Select(p=>p.Name).SequenceEqual(new[]{"member","targetMember","scope"})||memberParameters.Take(2).Any(p=>p.IsOptional)||!memberParameters[2].IsOptional||!Equals(memberParameters[2].DefaultValue,MemberConnectivityScope.EndpointsOnly)||(int)MemberConnectivityScope.EndpointsOnly!=0||(int)MemberConnectivityScope.AnyNode!=1)throw new Exception("Member connectivity contract changed.");
+            foreach(var method in new[]{radialMethod,boundsMethod,connectivityMethod,beamNodeMethod,memberMethod})
             {
                 string prefix="M:"+method.DeclaringType.FullName+"."+method.Name;
                 var doc=docs.Descendants("member").Single(e=>((string)e.Attribute("name")).StartsWith(prefix+"(")||((string)e.Attribute("name")).StartsWith(prefix+"``1("));
@@ -63,6 +69,18 @@ namespace PackageVerification
             if(!left.IsConnectedToBeam(right))throw new Exception("Equivalent endpoints did not connect.");
             right.StartNode.Id=99;if(left.IsConnectedToBeam(right))throw new Exception("Coincidence with another ID connected.");
             bool malformedRejected=false;try{left.IsConnectedToBeam(new Beam(joint,null));}catch(ArgumentException){malformedRejected=true;}if(!malformedRejected)throw new Exception("An early match hid missing incidence.");
+            var endpoint=new Node(7,5,0,0);
+            var endpointBeam=new Beam(new Node(1,0,0,0),endpoint);
+            if(!endpointBeam.IsConnectedToNode(new Node(7,5,0,0))||endpointBeam.IsConnectedToNode(new Node(8,5,0,0)))throw new Exception("Beam-node equality changed.");
+            bool invalidEndpoint=false;try{new Beam(endpoint,null).IsConnectedToNode(endpoint);}catch(ArgumentException){invalidEndpoint=true;}if(!invalidEndpoint)throw new Exception("Beam-node early match hid missing incidence.");
+            var host=new Member(new Node(1,0,0,0),new Node(2,10,0,0));host.Nodes.Add(endpoint);
+            var spur=new Member(new Node(7,5,0,0),new Node(3,5,4,0));
+            if(host.IsConnectedToMember(spur)||!host.IsConnectedToMember(spur,MemberConnectivityScope.AnyNode)||!spur.IsConnectedToMember(host,MemberConnectivityScope.AnyNode))throw new Exception("Member T-junction scope changed.");
+            host.Nodes=new HashSet<Node>();if(host.IsConnectedToMember(spur,MemberConnectivityScope.AnyNode))throw new Exception("Empty selected Nodes gained implicit endpoints.");
+            var mutableJoint=new Node(11,5,0,0);host.Nodes.Add(mutableJoint);mutableJoint.Id=7;
+            if(!host.IsConnectedToMember(spur,MemberConnectivityScope.AnyNode))throw new Exception("Member connectivity depended on stale node hashing.");
+            spur.Nodes.Add(null);bool invalidMember=false;try{host.IsConnectedToMember(spur,MemberConnectivityScope.AnyNode);}catch(ArgumentException){invalidMember=true;}if(!invalidMember)throw new Exception("Member early match hid null selected incidence.");
+            bool invalidScope=false;try{new Member().IsConnectedToMember(new Member(),(MemberConnectivityScope)999);}catch(ArgumentOutOfRangeException){invalidScope=true;}if(!invalidScope)throw new Exception("Undefined member scope accepted.");
             var a=new Node(1,0,0,0);var b=new Node(2,.00001,0,0);var groups=new[]{a,b}.GetDuplicateNodes().Single();
             b.X=100;if(groups.Count()!=2||!ReferenceEquals(groups.Last(),b))throw new Exception("Diagnostic membership is deferred or identity was lost.");
             bool immutable=false;try{((IList<Node>)groups).Clear();}catch(NotSupportedException){immutable=true;}if(!immutable)throw new Exception("Diagnostic group is mutable.");

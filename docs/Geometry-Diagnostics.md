@@ -2,7 +2,7 @@
 
 `GeometryDiagnosticsExtensions` provides six collection extensions in `StaadPro.Interop.Extensions`. They inspect supplied entities without acquiring STAAD, hydrating geometry, changing selections or repairing the model. Coordinate values and tolerance must use the same model length units.
 
-The related `BeamExtensions.IsConnectedToBeam` helper checks two supplied analytical beams using endpoint identity and coordinates.
+Related beam/node and physical-member connectivity extensions use selected node identity and coordinates.
 
 | Method | Meaning |
 | --- | --- |
@@ -13,6 +13,8 @@ The related `BeamExtensions.IsConnectedToBeam` helper checks two supplied analyt
 | `GetBeamsWithinRadius(beamsCollection, minRadius, maxRadius, centre = null)` | Materialized radial band filter over beam midpoints in the XZ plane. |
 | `GetBoundingBox<T>(source)` | Immutable named axis-aligned bounds of Node, Beam or Plate collections. |
 | `beam.IsConnectedToBeam(targetBeam)` | Endpoint pair with the same node ID and Euclidean separation at most 0.001. |
+| `beam.IsConnectedToNode(node)` | Supplied node equivalent to either beam endpoint by ID and distance. |
+| `member.IsConnectedToMember(targetMember, scope = EndpointsOnly)` | Equivalent node pair from both members' selected endpoints or supplied Nodes collections. |
 
 The duplicate/zero-length methods validate non-null collections and finite nonnegative tolerances before enumeration. Null entries are ignored. Nonfinite coordinates throw `ArgumentException`; missing endpoints on a non-null beam also throw. Inputs are enumerated once and results are fully materialized before return. Enumerator exceptions propagate without returning partial results.
 
@@ -59,6 +61,14 @@ Both beams must be non-null, with two finite endpoints. All participating geomet
 
 This method does not detect geometric segment crossings or a node in a segment's interior. It does not merge nodes, populate cached connected-beam lists, select geometry, query STAAD or determine solver/engineering connectivity. The two supplied objects must belong to a compatible coordinate system, model context and length unit, which the helper cannot infer.
 
+`BeamExtensions.IsConnectedToNode(beam, node)` uses the same ID-and-distance test against either beam endpoint. Both endpoints and the comparison node require finite initialized geometry. A matching start node does not hide a missing or invalid end node. A point in the beam interior qualifies only when it also equals an endpoint by ID and distance. Positive native IDs are not required for these supplied-data checks; draft IDs retain equality semantics.
+
+`MemberExtensions.IsConnectedToMember(member, targetMember, scope)` defaults to the existing `MemberConnectivityScope.EndpointsOnly` value (0). Both members' endpoints participate, while their `Nodes` and `Beams` collections are unused. `AnyNode` (1) instead captures exactly each supplied `Nodes` collection, so an interior T-junction is recognized when the joint is present in both selected sets. It does not add endpoints, scan constituent beams or populate missing collections. Endpoint geometry outside the supplied sets is unused in this scope. Undefined scope values throw `ArgumentOutOfRangeException` before geometry reads.
+
+Each selected ID and coordinate is captured once. Both selections are fully qualified before matching. Missing selected collections/incidence, null selected nodes and nonfinite coordinates throw `ArgumentException`, even after an apparent match or opposite an empty set. Valid empty AnyNode selections return false. Capturing values and using an ID index avoids dependence on mutable HashSet keys or cached connected-member lists. Repeated IDs at distinct coordinates are compared individually. Collection modifications during enumeration propagate their exception; callers must coordinate edits. Large repeated-ID buckets may require pairwise comparisons.
+
+The result is an immediate Boolean observation. Changing the supplied objects later does not recompute it. These checks use the same 3D Euclidean tolerance and require compatible model coordinates and length units. Native model membership and engineering connectivity cannot be inferred from the supplied data.
+
 All these operations are detached and non-mutating. Captures are not atomic across simultaneous writers; coordinate/collection edits must be coordinated by the caller.
 
 ```csharp
@@ -84,6 +94,14 @@ var radial = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.GetBeamsW
 var bounds = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.GetBoundingBox(nodes);
 bool connected = StaadPro.Interop.Extensions.BeamExtensions.IsConnectedToBeam(beams[0], beams[0]);
 System.Console.WriteLine(radial.Count() + ": " + bounds.XMin + " to " + bounds.XMax + "; " + connected);
+
+bool atNode = StaadPro.Interop.Extensions.BeamExtensions.IsConnectedToNode(beams[0], nodes[0]);
+var firstMember = new StaadPro.Interop.Entities.Member(nodes[0], nodes[1]);
+var secondMember = new StaadPro.Interop.Entities.Member(nodes[1], new StaadPro.Interop.Entities.Node(3, 1, 0, 0));
+bool endpoints = StaadPro.Interop.Extensions.MemberExtensions.IsConnectedToMember(firstMember, secondMember);
+bool suppliedNodes = StaadPro.Interop.Extensions.MemberExtensions.IsConnectedToMember(firstMember, secondMember,
+    StaadPro.Interop.Enums.MemberConnectivityScope.AnyNode);
+System.Console.WriteLine(atNode + ": " + endpoints + ": " + suppliedNodes);
 ```
 
-Offline tests cover seed/nontransitive grouping, inclusive axis/distance boundaries, exact/duplicate IDs, nulls, invalid coordinates/tolerances, missing incidence, collection ownership, one-pass enumeration, source failures, huge finite values and subnormal deltas. The installed NuGet consumer checks expanded XML, exact signatures/defaults, executes all seven XML examples and compiles this guide. Nearest-search tests also cover equality exclusion, endpoint-versus-segment semantics, stable ties, reference capture, full-sequence validation and randomized moderate geometry. No live STAAD operation is involved.
+Offline tests cover seed/nontransitive grouping, inclusive axis/distance boundaries, exact/duplicate IDs, nulls, invalid coordinates/tolerances, missing incidence, collection ownership, one-pass enumeration, source failures, huge finite values and subnormal deltas. The installed NuGet consumer checks expanded XML, exact signatures/defaults, executes all nine XML examples and compiles this guide. Nearest-search tests also cover equality exclusion, endpoint-versus-segment semantics, stable ties, reference capture, full-sequence validation and randomized moderate geometry. No live STAAD operation is involved.

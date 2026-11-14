@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using StaadPro.Interop.Entities;
+using StaadPro.Interop.Enums;
 using StaadPro.Interop.Helpers;
 
 namespace StaadPro.Interop.Services.Geometry.Detached
@@ -25,6 +26,20 @@ namespace StaadPro.Interop.Services.Geometry.Detached
         {
             Node start = beam.StartNode, end = beam.EndNode;
             return new[] { new NodeSnapshot(start, parameter), new NodeSnapshot(end, parameter) };
+        }
+
+        internal static NodeSnapshot[] MemberNodes(Member member, MemberConnectivityScope scope, string parameter)
+        {
+            if (scope == MemberConnectivityScope.EndpointsOnly)
+            {
+                Node start = member.StartNode, end = member.EndNode;
+                return new[] { new NodeSnapshot(start, parameter), new NodeSnapshot(end, parameter) };
+            }
+            HashSet<Node> nodes = member.Nodes;
+            if (nodes == null) throw new ArgumentException("The selected member Nodes collection is missing.", parameter);
+            var snapshots = new List<NodeSnapshot>();
+            foreach (Node node in nodes) snapshots.Add(new NodeSnapshot(node, parameter));
+            return snapshots.ToArray();
         }
 
         internal static bool ShareNode(NodeSnapshot[] left, NodeSnapshot[] right)

@@ -26,7 +26,9 @@ code-insiders --install-extension StruXllence.struxllence-themes
 
 After installation, run **Preferences: Color Theme** and select **StruXllence Dark** or **StruXllence Light**. See the [theme previews and icon setup](https://github.com/StruXllence/struxllence-themes). The editor theme is optional and is installed separately from the NuGet library.
 
-## Version 1.0.0-preview.20261113
+## Version 1.0.0-preview.20261114
+
+Added `BeamExtensions.IsConnectedToNode(beam, node)` and `MemberExtensions.IsConnectedToMember(member, targetMember, scope = EndpointsOnly)` with expanded XML IntelliSense. Scope selects either both members' endpoints or exactly their supplied `Nodes` collections. Selected incidence is fully qualified before comparing node IDs and the existing Euclidean tolerance. See [connectivity contracts](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md).
 
 Ported `GetBeamsWithinRadius(...)`, `GetBoundingBox<T>(...)` and `IsConnectedToBeam(...)` with comprehensive XML IntelliSense. Radial filtering uses XZ beam midpoints, bounds return an immutable named class, and beam connectivity requires a matching endpoint ID plus the existing distance tolerance. Inputs are validated before a detached result is returned; no native changes occur. See [geometry filtering, bounds and connectivity](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md).
 

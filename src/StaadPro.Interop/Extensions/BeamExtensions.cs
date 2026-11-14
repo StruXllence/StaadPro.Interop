@@ -45,5 +45,36 @@ namespace StaadPro.Interop.Extensions
             return GeometryConnectivityService.ShareNode(left, right);
         }
 
+        /// <summary>Determines whether a supplied node is equivalent to either analytical beam endpoint.</summary>
+        /// <param name="beam">Non-null beam with two initialized endpoint nodes and finite coordinates.</param>
+        /// <param name="node">Non-null comparison node with finite coordinates in the same model coordinate system and length units.</param>
+        /// <returns>True when the supplied node's ID matches an endpoint ID and their three-dimensional Euclidean
+        /// separation is at most Constants.Tolerance (0.001 model length units); otherwise false.</returns>
+        /// <remarks><para>Captures both endpoint references and all participating IDs/coordinates before matching.
+        /// A match at one endpoint does not bypass validation of the other. Preserves Node equality identity and its
+        /// inclusive distance threshold, using scaled arithmetic for very large or subnormal coordinate differences.
+        /// IDs may be draft values; this helper cannot establish native model ownership or node existence.</para>
+        /// <para>Only beam endpoints participate. A point on the beam interior qualifies only when it also equals an
+        /// endpoint by the documented ID/distance rule. Coincident coordinates with a different ID remain distinct.
+        /// Reads supplied managed entities without hydrating geometry, using cached connectivity, acquiring STAAD,
+        /// selecting entities, converting units or modifying a model. Captures are not atomic across concurrent edits;
+        /// callers must coordinate changes. Subsequent edits do not recompute this returned Boolean.</para></remarks>
+        /// <exception cref="ArgumentNullException">beam or node is null.</exception>
+        /// <exception cref="ArgumentException">A participating endpoint is missing or any participating coordinate is nonfinite.</exception>
+        /// <example><code>
+        /// var joint = new StaadPro.Interop.Entities.Node(2, 1, 0, 0);
+        /// var beam = new StaadPro.Interop.Entities.Beam(10, new StaadPro.Interop.Entities.Node(1, 0, 0, 0), joint);
+        /// var copy = new StaadPro.Interop.Entities.Node(2, 1, 0, 0);
+        /// System.Console.WriteLine(StaadPro.Interop.Extensions.BeamExtensions.IsConnectedToNode(beam, copy));
+        /// </code></example>
+        public static bool IsConnectedToNode(this Beam beam, Node node)
+        {
+            if (ReferenceEquals(beam, null)) throw new ArgumentNullException(nameof(beam));
+            if (ReferenceEquals(node, null)) throw new ArgumentNullException(nameof(node));
+            var endpoints = GeometryConnectivityService.BeamNodes(beam, nameof(beam));
+            var target = new GeometryConnectivityService.NodeSnapshot(node, nameof(node));
+            return GeometryConnectivityService.ShareNode(endpoints, new[] { target });
+        }
+
     }
 }

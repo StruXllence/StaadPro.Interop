@@ -42,11 +42,11 @@ Use `GetBeamsWithinRadius(...)`, `GetBoundingBox(...)` and `IsConnectedToBeam(..
 
 Runtime requires **Windows, .NET Framework 4.8.1 (net481), and a licensed STAAD.Pro installation** exposing the APIs used by your application. The .NET SDK used to build the project is separate from the application's target framework.
 
-The latest locally prepared preview is **1.0.0-preview.20261113**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
+The latest locally prepared preview is **1.0.0-preview.20261114**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
 
-## Latest preview — 1.0.0-preview.20261113
+## Latest preview — 1.0.0-preview.20261114
 
-Ported `GetBeamsWithinRadius`, `GetBoundingBox` and `IsConnectedToBeam` with comprehensive XML IntelliSense. Added materialized XZ midpoint filtering, immutable named bounds and captured ID-plus-distance connectivity, with finite geometry validation and no native changes. See [detached geometry contracts and examples](docs/Geometry-Diagnostics.md).
+Ported `BeamExtensions.IsConnectedToNode` and `MemberExtensions.IsConnectedToMember` with comprehensive XML IntelliSense. Member connectivity supports the default endpoint scope and supplied-node scope for interior junctions. Both helpers qualify selected geometry and compare captured node IDs and Euclidean distances. See [detached geometry contracts and examples](docs/Geometry-Diagnostics.md).
 
 ## Quick start: read an open model
 

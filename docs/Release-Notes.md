@@ -1,5 +1,13 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261114 - 14 November 2026
+
+Ported `BeamExtensions.IsConnectedToNode(this Beam beam, Node node)` and `MemberExtensions.IsConnectedToMember(this Member member, Member targetMember, MemberConnectivityScope scope = MemberConnectivityScope.EndpointsOnly)` with complete XML IntelliSense and [detached connectivity examples](Geometry-Diagnostics.md).
+
+Beam-node connectivity compares either endpoint. Member connectivity defaults to both members' start/end nodes, with `AnyNode` selecting exactly their supplied `Nodes` collections, including interior junctions. Participating pairs require matching node IDs and Euclidean separation at most the existing 0.001 tolerance in model length units. Captured snapshots and an ID index preserve current values after mutable HashSet keys change. All selected nodes are qualified before a match, including malformed entries after an early candidate and invalid selections opposite empty collections. Undefined scopes, missing selected incidence and nonfinite coordinates throw. The helpers use supplied managed geometry without native model changes.
+
+Release build passed with zero warnings/errors. Passed 7,392 offline tests including 33 new connectivity cases. Exact installed-package verification checks signatures/defaults and expanded XML, executes nine geometry examples and 1,337 selected XML examples overall, compiles the guide and verifies isolated restore/build/runtime. Native/engineering acceptance remains separate from detached managed behavior.
+
 ## 1.0.0-preview.20261113 - 13 November 2026
 
 Ported `GetBeamsWithinRadius(this IEnumerable<Beam> beamsCollection, double minRadius, double maxRadius, Node centre = null)`, `GetBoundingBox<T>(this IEnumerable<T> source)` and `IsConnectedToBeam(this Beam beam, Beam targetBeam)` from the established managed geometry helpers, with complete XML IntelliSense and [consumer examples](Geometry-Diagnostics.md).

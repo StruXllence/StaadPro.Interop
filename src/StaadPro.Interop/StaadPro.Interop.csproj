@@ -12,12 +12,12 @@
     <RootNamespace>StaadPro.Interop</RootNamespace>
     <PackageId>StaadPro.Interop</PackageId>
     <Version>1.0.0</Version>
-    <ReleaseDocumentationVersion>1.0.0-preview.20261113</ReleaseDocumentationVersion>
+    <ReleaseDocumentationVersion>1.0.0-preview.20261114</ReleaseDocumentationVersion>
     <PackageVersion>$(ReleaseDocumentationVersion)</PackageVersion>
     <Authors>Srinivasa Rao Masanam</Authors>
     <Company>StruXllence</Company>
     <Copyright>Copyright (c) 2026 StruXllence</Copyright>
-    <PackageReleaseNotes>Ported GetBeamsWithinRadius, GetBoundingBox and IsConnectedToBeam with comprehensive XML IntelliSense. Added inclusive XZ midpoint filtering, immutable named bounds and captured endpoint identity/distance checks. Validated finite geometry and malformed incidence without native changes. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
+    <PackageReleaseNotes>Ported BeamExtensions.IsConnectedToNode and MemberExtensions.IsConnectedToMember with complete XML IntelliSense. Preserved default endpoint scope and supplied AnyNode collection semantics with ID-plus-Euclidean-distance equality. Qualified all selected incidence before comparison, rejected undefined scopes and avoided mutable HashSet membership/cached connectivity assumptions. Included detached consumer examples and geometry guidance. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
     <Description>A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD Developer resources include Marketplace installation links for the optional StruXllence VS Code dark and light themes in the packaged README.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageTags>staad;staad-pro;openstaad;structural-engineering;structural-analysis;engineering-automation;csharp;dotnet-framework;com-interop;geometry;loads;bentley;struxllence</PackageTags>
