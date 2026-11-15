@@ -41,7 +41,13 @@ namespace PackageVerification
             var memberMethod=typeof(MemberExtensions).GetMethod("IsConnectedToMember");
             var memberParameters=memberMethod.GetParameters();
             if(memberMethod.ReturnType!=typeof(bool)||!memberParameters.Select(p=>p.ParameterType).SequenceEqual(new[]{typeof(Member),typeof(Member),typeof(MemberConnectivityScope)})||!memberParameters.Select(p=>p.Name).SequenceEqual(new[]{"member","targetMember","scope"})||memberParameters.Take(2).Any(p=>p.IsOptional)||!memberParameters[2].IsOptional||!Equals(memberParameters[2].DefaultValue,MemberConnectivityScope.EndpointsOnly)||(int)MemberConnectivityScope.EndpointsOnly!=0||(int)MemberConnectivityScope.AnyNode!=1)throw new Exception("Member connectivity contract changed.");
-            foreach(var method in new[]{radialMethod,boundsMethod,connectivityMethod,beamNodeMethod,memberMethod})
+            var memberNodeMethod=typeof(MemberExtensions).GetMethod("IsConnectedToNode");
+            var mnp=memberNodeMethod.GetParameters();
+            if(memberNodeMethod.ReturnType!=typeof(bool)||!mnp.Select(p=>p.ParameterType).SequenceEqual(new[]{typeof(Member),typeof(Node),typeof(MemberConnectivityScope)})||!mnp.Select(p=>p.Name).SequenceEqual(new[]{"member","node","scope"})||mnp.Take(2).Any(p=>p.IsOptional)||!mnp[2].IsOptional||!Equals(mnp[2].DefaultValue,MemberConnectivityScope.EndpointsOnly))throw new Exception("Member-node contract changed.");
+            var cornerMethod=typeof(PlateExtensions).GetMethod("GetCornerLoop");
+            var cp=cornerMethod.GetParameters();
+            if(cornerMethod.ReturnType!=typeof(IReadOnlyList<Node>)||cp.Length!=1||cp[0].Name!="plate"||cp[0].ParameterType!=typeof(Plate)||cp[0].IsOptional)throw new Exception("Corner loop contract changed.");
+            foreach(var method in new[]{radialMethod,boundsMethod,connectivityMethod,beamNodeMethod,memberMethod,memberNodeMethod,cornerMethod})
             {
                 string prefix="M:"+method.DeclaringType.FullName+"."+method.Name;
                 var doc=docs.Descendants("member").Single(e=>((string)e.Attribute("name")).StartsWith(prefix+"(")||((string)e.Attribute("name")).StartsWith(prefix+"``1("));
@@ -81,6 +87,18 @@ namespace PackageVerification
             if(!host.IsConnectedToMember(spur,MemberConnectivityScope.AnyNode))throw new Exception("Member connectivity depended on stale node hashing.");
             spur.Nodes.Add(null);bool invalidMember=false;try{host.IsConnectedToMember(spur,MemberConnectivityScope.AnyNode);}catch(ArgumentException){invalidMember=true;}if(!invalidMember)throw new Exception("Member early match hid null selected incidence.");
             bool invalidScope=false;try{new Member().IsConnectedToMember(new Member(),(MemberConnectivityScope)999);}catch(ArgumentOutOfRangeException){invalidScope=true;}if(!invalidScope)throw new Exception("Undefined member scope accepted.");
+            var nodeHost=new Member(new Node(1,0,0,0),new Node(2,10,0,0));nodeHost.Nodes.Add(new Node(3,5,0,0));
+            if(nodeHost.IsConnectedToNode(new Node(3,5,0,0))||!nodeHost.IsConnectedToNode(new Node(3,5,0,0),MemberConnectivityScope.AnyNode))throw new Exception("Member-node scope changed.");
+            var key=new Node(8,5,0,0);nodeHost.Nodes=new HashSet<Node>{key};key.Id=3;
+            if(!nodeHost.IsConnectedToNode(new Node(3,5,0,0),MemberConnectivityScope.AnyNode))throw new Exception("Member-node depended on stale hashing.");
+            bool badTarget=false;nodeHost.Nodes.Clear();try{nodeHost.IsConnectedToNode(new Node(1,double.NaN,0,0),MemberConnectivityScope.AnyNode);}catch(ArgumentException){badTarget=true;}if(!badTarget)throw new Exception("Empty selection hid invalid target.");
+            var cornerA=new Node(1,0,0,0);var cornerC=new Node(1,.0015,0,0);
+            var cornerPlate=new Plate(cornerA,new Node(1,.00075,0,0),cornerC,new Node(1,0,0,0));var loop=cornerPlate.GetCornerLoop();
+            if(loop.Count!=2||!ReferenceEquals(loop[0],cornerA)||!ReferenceEquals(loop[1],cornerC))throw new Exception("Corner winding/first-representative equality changed.");
+            bool cornerReadOnly=false;try{((IList<Node>)loop).Clear();}catch(NotSupportedException){cornerReadOnly=true;}if(!cornerReadOnly)throw new Exception("Corner storage is mutable.");
+            cornerPlate.A=new Node(9,9,0,0);cornerA.Y=7;if(loop.Count!=2||!ReferenceEquals(loop[0],cornerA)||loop[0].Y!=7)throw new Exception("Corner ownership changed.");
+            if(new Plate().GetCornerLoop().Count!=0||new Plate(null,new Node(1,0,0,0),null,new Node(1,0,0,0)).GetCornerLoop().Count!=1)throw new Exception("Sparse corners changed.");
+            bool invalidCorner=false;try{new Plate(new Node(1,0,0,0),null,null,new Node(1,double.NaN,0,0)).GetCornerLoop();}catch(ArgumentException){invalidCorner=true;}if(!invalidCorner)throw new Exception("A repeated corner hid nonfinite coordinates.");
             var a=new Node(1,0,0,0);var b=new Node(2,.00001,0,0);var groups=new[]{a,b}.GetDuplicateNodes().Single();
             b.X=100;if(groups.Count()!=2||!ReferenceEquals(groups.Last(),b))throw new Exception("Diagnostic membership is deferred or identity was lost.");
             bool immutable=false;try{((IList<Node>)groups).Clear();}catch(NotSupportedException){immutable=true;}if(!immutable)throw new Exception("Diagnostic group is mutable.");

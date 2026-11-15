@@ -26,7 +26,9 @@ code-insiders --install-extension StruXllence.struxllence-themes
 
 After installation, run **Preferences: Color Theme** and select **StruXllence Dark** or **StruXllence Light**. See the [theme previews and icon setup](https://github.com/StruXllence/struxllence-themes). The editor theme is optional and is installed separately from the NuGet library.
 
-## Version 1.0.0-preview.20261114
+## Version 1.0.0-preview.20261115
+
+Added `MemberExtensions.IsConnectedToNode(member, node, scope = EndpointsOnly)` and `PlateExtensions.GetCornerLoop(plate)` with complete XML IntelliSense. Member checks use either endpoints or exactly the supplied `Nodes` collection. Plate loops preserve first distinct supplied corners in A-B-C-D order without a repeated closing corner, with read-only membership and original node references. See [geometry contracts and examples](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md).
 
 Added `BeamExtensions.IsConnectedToNode(beam, node)` and `MemberExtensions.IsConnectedToMember(member, targetMember, scope = EndpointsOnly)` with expanded XML IntelliSense. Scope selects either both members' endpoints or exactly their supplied `Nodes` collections. Selected incidence is fully qualified before comparing node IDs and the existing Euclidean tolerance. See [connectivity contracts](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md).
 

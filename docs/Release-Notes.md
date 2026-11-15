@@ -1,5 +1,15 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261115 - 15 November 2026
+
+Added `MemberExtensions.IsConnectedToNode(this Member member, Node node, MemberConnectivityScope scope = MemberConnectivityScope.EndpointsOnly)` and `PlateExtensions.GetCornerLoop(this Plate plate)` with complete XML IntelliSense and [detached geometry examples](Geometry-Diagnostics.md).
+
+Member-to-node connectivity checks endpoints by default or exactly the supplied `Nodes` collection for `AnyNode`, recognizing supplied interior junctions. Undefined scopes and malformed participating geometry throw before matching. Captured values avoid mutable HashSet-key assumptions. Comparison nodes are qualified even for empty selected collections.
+
+Plate corner loops retain the first distinct supplied corners in A-B-C-D order, skip missing slots and do not repeat the first corner to close the loop. Equality requires matching IDs and Euclidean separation at most the existing 0.001 model-length tolerance. Deduplication compares retained representatives, preserving nontransitive tolerance behavior. All present coordinates must be finite. Sparse or collapsed plates can return fewer than three corners; this extraction does not certify plate validity. Owned read-only list storage retains original node references: later slot edits do not change membership, while retained node edits remain visible. Neither helper performs native model changes.
+
+Release build passed with zero warnings/errors. Passed 7,426 offline tests including 34 new regression cases. Exact installed-package verification checks signatures/defaults and expanded XML, executes eleven geometry examples and 1,339 selected XML examples overall, and compiles the geometry guide. Native/engineering acceptance remains separate from detached managed behavior.
+
 ## 1.0.0-preview.20261114 - 14 November 2026
 
 Ported `BeamExtensions.IsConnectedToNode(this Beam beam, Node node)` and `MemberExtensions.IsConnectedToMember(this Member member, Member targetMember, MemberConnectivityScope scope = MemberConnectivityScope.EndpointsOnly)` with complete XML IntelliSense and [detached connectivity examples](Geometry-Diagnostics.md).

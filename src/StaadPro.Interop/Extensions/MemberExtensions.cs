@@ -58,5 +58,49 @@ namespace StaadPro.Interop.Extensions
             var right = GeometryConnectivityService.MemberNodes(targetMember, scope, nameof(targetMember));
             return GeometryConnectivityService.ShareNode(left, right);
         }
+
+        /// <summary>Determines whether a supplied node matches a physical member's selected nodes.</summary>
+        /// <param name="member">Non-null member whose selected endpoints or supplied Nodes collection will be inspected.</param>
+        /// <param name="node">Non-null comparison node with finite coordinates in the same model context and length units.</param>
+        /// <param name="scope">EndpointsOnly (0, the default) checks StartNode and EndNode. AnyNode (1) checks exactly
+        /// the supplied Nodes collection, including supplied interior nodes. Undefined values throw before geometry is read.</param>
+        /// <returns>True when a selected node has the same ID as node and a three-dimensional Euclidean separation
+        /// at most Constants.Tolerance (0.001 model length units); otherwise false. A valid empty AnyNode collection
+        /// returns false. Coordinate coincidence alone, or an interior point absent from the selected nodes, does not qualify.</returns>
+        /// <remarks><para>EndpointsOnly ignores the Nodes and Beams collections. AnyNode does not add endpoints, scan
+        /// constituent beams or hydrate geometry; endpoints outside the supplied collection are unused. Draft IDs are
+        /// accepted. The caller must supply compatible model coordinates and units; native membership is not inferred.</para>
+        /// <para>Captures selected IDs and coordinates once and validates the complete selection and comparison node
+        /// before matching. Missing selected incidence, null selected entries and nonfinite coordinates throw even after
+        /// an apparent early match or opposite an empty selection. Captured values avoid stale HashSet-key membership;
+        /// repeated IDs at different coordinates are compared individually using the existing scaled distance rule.</para>
+        /// <para>This is an immediate detached observation without STAAD acquisition, selection, hydration, unit conversion,
+        /// mutation or analysis. Subsequent edits do not recompute the Boolean. Captures are not atomic; callers must
+        /// coordinate concurrent edits. Collection enumeration failures propagate.</para></remarks>
+        /// <exception cref="ArgumentNullException">member or node is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">scope is not EndpointsOnly or AnyNode.</exception>
+        /// <exception cref="ArgumentException">Selected incidence or the selected Nodes collection is missing,
+        /// a selected entry is null, or a participating coordinate is NaN or infinite.</exception>
+        /// <exception cref="InvalidOperationException">The selected HashSet is modified during enumeration.</exception>
+        /// <example><code>
+        /// var member = new StaadPro.Interop.Entities.Member(new StaadPro.Interop.Entities.Node(1, 0, 0, 0),
+        ///     new StaadPro.Interop.Entities.Node(2, 10, 0, 0));
+        /// member.Nodes.Add(new StaadPro.Interop.Entities.Node(3, 5, 0, 0));
+        /// var interior = new StaadPro.Interop.Entities.Node(3, 5, 0, 0);
+        /// System.Console.WriteLine(StaadPro.Interop.Extensions.MemberExtensions.IsConnectedToNode(member, interior)); // False
+        /// System.Console.WriteLine(StaadPro.Interop.Extensions.MemberExtensions.IsConnectedToNode(member, interior,
+        ///     StaadPro.Interop.Enums.MemberConnectivityScope.AnyNode)); // True
+        /// </code></example>
+        public static bool IsConnectedToNode(this Member member, Node node,
+            MemberConnectivityScope scope = MemberConnectivityScope.EndpointsOnly)
+        {
+            if (ReferenceEquals(member, null)) throw new ArgumentNullException(nameof(member));
+            if (ReferenceEquals(node, null)) throw new ArgumentNullException(nameof(node));
+            if (scope != MemberConnectivityScope.EndpointsOnly && scope != MemberConnectivityScope.AnyNode)
+                throw new ArgumentOutOfRangeException(nameof(scope));
+            var selected = GeometryConnectivityService.MemberNodes(member, scope, nameof(member));
+            var target = new GeometryConnectivityService.NodeSnapshot(node, nameof(node));
+            return GeometryConnectivityService.ShareNode(selected, new[] { target });
+        }
     }
 }

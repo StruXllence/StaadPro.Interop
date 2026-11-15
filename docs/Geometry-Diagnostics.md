@@ -2,7 +2,7 @@
 
 `GeometryDiagnosticsExtensions` provides six collection extensions in `StaadPro.Interop.Extensions`. They inspect supplied entities without acquiring STAAD, hydrating geometry, changing selections or repairing the model. Coordinate values and tolerance must use the same model length units.
 
-Related beam/node and physical-member connectivity extensions use selected node identity and coordinates.
+Related beam/node and physical-member connectivity extensions use selected node identity and coordinates. `PlateExtensions.GetCornerLoop` extracts ordered distinct supplied plate corners.
 
 | Method | Meaning |
 | --- | --- |
@@ -15,6 +15,8 @@ Related beam/node and physical-member connectivity extensions use selected node 
 | `beam.IsConnectedToBeam(targetBeam)` | Endpoint pair with the same node ID and Euclidean separation at most 0.001. |
 | `beam.IsConnectedToNode(node)` | Supplied node equivalent to either beam endpoint by ID and distance. |
 | `member.IsConnectedToMember(targetMember, scope = EndpointsOnly)` | Equivalent node pair from both members' selected endpoints or supplied Nodes collections. |
+| `member.IsConnectedToNode(node, scope = EndpointsOnly)` | Supplied node equivalent to an endpoint or a node in the selected supplied collection. |
+| `plate.GetCornerLoop()` | Read-only list of first distinct supplied corners in A-B-C-D order; no repeated closing corner. |
 
 The duplicate/zero-length methods validate non-null collections and finite nonnegative tolerances before enumeration. Null entries are ignored. Nonfinite coordinates throw `ArgumentException`; missing endpoints on a non-null beam also throw. Inputs are enumerated once and results are fully materialized before return. Enumerator exceptions propagate without returning partial results.
 
@@ -69,6 +71,12 @@ Each selected ID and coordinate is captured once. Both selections are fully qual
 
 The result is an immediate Boolean observation. Changing the supplied objects later does not recompute it. These checks use the same 3D Euclidean tolerance and require compatible model coordinates and length units. Native model membership and engineering connectivity cannot be inferred from the supplied data.
 
+`MemberExtensions.IsConnectedToNode(member, node, scope)` uses the same default endpoint scope and exact supplied `Nodes` scope as member-to-member connectivity. `AnyNode` recognizes a supplied interior junction without adding endpoints or scanning beams. The comparison node is validated even when the selected collection is empty. All selected geometry is qualified before matching, including invalid entries after an apparent match. Null top-level arguments throw `ArgumentNullException`; malformed participating geometry throws `ArgumentException`. Undefined scopes throw before geometry reads. A Boolean result does not update after later edits.
+
+`PlateExtensions.GetCornerLoop(plate)` captures A, B, C and D and skips missing slots anywhere in that order. A corner is omitted when an already retained representative has the same ID and Euclidean separation at most 0.001. The first representative survives; tolerance equality is not transitive, so omitted corners do not bridge a chain of later corners. Coincident corners with different IDs and matching IDs farther apart remain distinct. A triangle with D missing or equivalent to A normally returns three corners; a four-distinct-corner plate returns four. The first corner is not repeated at the end.
+
+The corner list is immediately materialized in owned read-only storage. It retains original node references: changing plate slots later does not change the list, but edits to retained nodes remain visible without rerunning deduplication. All present corners must have finite coordinates, including apparently repeated corners. Null plates throw `ArgumentNullException`; nonfinite present coordinates throw `ArgumentException`. Sparse and collapsed inputs can return zero, one or two corners. This is extraction rather than validation of area, planarity, orientation, self-intersection, native membership or engineering suitability. Draft IDs are allowed. Inputs must use common model coordinates and length units.
+
 All these operations are detached and non-mutating. Captures are not atomic across simultaneous writers; coordinate/collection edits must be coordinated by the caller.
 
 ```csharp
@@ -102,6 +110,11 @@ bool endpoints = StaadPro.Interop.Extensions.MemberExtensions.IsConnectedToMembe
 bool suppliedNodes = StaadPro.Interop.Extensions.MemberExtensions.IsConnectedToMember(firstMember, secondMember,
     StaadPro.Interop.Enums.MemberConnectivityScope.AnyNode);
 System.Console.WriteLine(atNode + ": " + endpoints + ": " + suppliedNodes);
+
+bool memberAtNode = StaadPro.Interop.Extensions.MemberExtensions.IsConnectedToNode(firstMember, nodes[0]);
+var plate = new StaadPro.Interop.Entities.Plate(nodes[0], nodes[1], new StaadPro.Interop.Entities.Node(4, 0, 1, 0), nodes[0]);
+var corners = StaadPro.Interop.Extensions.PlateExtensions.GetCornerLoop(plate);
+System.Console.WriteLine(memberAtNode + ": " + corners.Count);
 ```
 
-Offline tests cover seed/nontransitive grouping, inclusive axis/distance boundaries, exact/duplicate IDs, nulls, invalid coordinates/tolerances, missing incidence, collection ownership, one-pass enumeration, source failures, huge finite values and subnormal deltas. The installed NuGet consumer checks expanded XML, exact signatures/defaults, executes all nine XML examples and compiles this guide. Nearest-search tests also cover equality exclusion, endpoint-versus-segment semantics, stable ties, reference capture, full-sequence validation and randomized moderate geometry. No live STAAD operation is involved.
+Offline tests cover seed/nontransitive grouping, inclusive axis/distance boundaries, exact/duplicate IDs, nulls, invalid coordinates/tolerances, missing incidence, collection ownership, one-pass enumeration, source failures, huge finite values and subnormal deltas. The installed NuGet consumer checks expanded XML, exact signatures/defaults, executes all eleven XML examples and compiles this guide. Nearest-search tests also cover equality exclusion, endpoint-versus-segment semantics, stable ties, reference capture, full-sequence validation and randomized moderate geometry. No live STAAD operation is involved.

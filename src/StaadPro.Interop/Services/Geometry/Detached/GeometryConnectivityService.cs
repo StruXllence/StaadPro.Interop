@@ -59,8 +59,9 @@ namespace StaadPro.Interop.Services.Geometry.Detached
             return false;
         }
 
-        private static bool Equal(NodeSnapshot a, NodeSnapshot b)
+        internal static bool Equal(NodeSnapshot a, NodeSnapshot b)
         {
+            if (a.Id != b.Id) return false;
             double x = Math.Abs(a.X - b.X), y = Math.Abs(a.Y - b.Y), z = Math.Abs(a.Z - b.Z);
             double scale = Math.Max(x, Math.Max(y, z));
             if (scale > Constants.Tolerance) return false; // includes overflowing subtraction
