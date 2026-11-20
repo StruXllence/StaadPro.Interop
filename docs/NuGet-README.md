@@ -26,7 +26,9 @@ code-insiders --install-extension StruXllence.struxllence-themes
 
 After installation, run **Preferences: Color Theme** and select **StruXllence Dark** or **StruXllence Light**. See the [theme previews and icon setup](https://github.com/StruXllence/struxllence-themes). The editor theme is optional and is installed separately from the NuGet library.
 
-## Version 1.0.0-preview.20261115
+## Version 1.0.0-preview.20261120
+
+Added `GetEdges(plate)` returning named `PlateEdge` endpoint pairs, and `IsConnectedToPlate(plate, targetPlate, scope = SharedEdge)` with full XML IntelliSense. Edge extraction preserves retained winding and closure in owned read-only storage. Shared-edge connectivity checks consecutive pairs on both loops in either direction; two shared corners forming a diagonal do not qualify. `AnyCorner` supports corner-only neighbours. See [plate edge/connectivity examples](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md).
 
 Added `MemberExtensions.IsConnectedToNode(member, node, scope = EndpointsOnly)` and `PlateExtensions.GetCornerLoop(plate)` with complete XML IntelliSense. Member checks use either endpoints or exactly the supplied `Nodes` collection. Plate loops preserve first distinct supplied corners in A-B-C-D order without a repeated closing corner, with read-only membership and original node references. See [geometry contracts and examples](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md).
 

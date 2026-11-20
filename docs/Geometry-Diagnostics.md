@@ -17,6 +17,8 @@ Related beam/node and physical-member connectivity extensions use selected node 
 | `member.IsConnectedToMember(targetMember, scope = EndpointsOnly)` | Equivalent node pair from both members' selected endpoints or supplied Nodes collections. |
 | `member.IsConnectedToNode(node, scope = EndpointsOnly)` | Supplied node equivalent to an endpoint or a node in the selected supplied collection. |
 | `plate.GetCornerLoop()` | Read-only list of first distinct supplied corners in A-B-C-D order; no repeated closing corner. |
+| `plate.GetEdges()` | Named `PlateEdge` endpoint pairs between consecutive retained corners, wrapping last to first. |
+| `plate.IsConnectedToPlate(targetPlate, scope = SharedEdge)` | A matching consecutive edge in both loops, or a common corner for `AnyCorner`. |
 
 The duplicate/zero-length methods validate non-null collections and finite nonnegative tolerances before enumeration. Null entries are ignored. Nonfinite coordinates throw `ArgumentException`; missing endpoints on a non-null beam also throw. Inputs are enumerated once and results are fully materialized before return. Enumerator exceptions propagate without returning partial results.
 
@@ -77,6 +79,14 @@ The result is an immediate Boolean observation. Changing the supplied objects la
 
 The corner list is immediately materialized in owned read-only storage. It retains original node references: changing plate slots later does not change the list, but edits to retained nodes remain visible without rerunning deduplication. All present corners must have finite coordinates, including apparently repeated corners. Null plates throw `ArgumentNullException`; nonfinite present coordinates throw `ArgumentException`. Sparse and collapsed inputs can return zero, one or two corners. This is extraction rather than validation of area, planarity, orientation, self-intersection, native membership or engineering suitability. Draft IDs are allowed. Inputs must use common model coordinates and length units.
 
+`PlateExtensions.GetEdges(plate)` returns an immediately materialized read-only collection through `IEnumerable<PlateEdge>`. The named result replaces a public tuple and exposes immutable `Start`/`End` endpoint slots retaining original Node references. It uses the same captured first-representative corner loop as `GetCornerLoop`, then pairs each retained corner with its successor, closing last to first. Zero corners gives no edges, one gives a self-edge, two gives both directed edges, and ordinary triangles/quadrilaterals give three/four. Validation occurs at the call rather than deferred enumeration. Later plate edits do not change membership or endpoint slots; node edits remain visible without recomputation.
+
+`PlateExtensions.IsConnectedToPlate(plate, targetPlate, scope)` retains `PlateConnectivityScope.SharedEdge` (0) as its default. A qualifying edge must be consecutive in both retained loops, matching either direction under the existing node ID-plus-Euclidean-distance rule (0.001 model length units). The closing last-to-first pair participates. Two shared corners that form a diagonal in either plate do not qualify. Both endpoints cannot qualify solely by matching the same target corner. Both loops need at least two retained corners; a one-corner self-edge does not turn corner-only contact into edge contact. Two-corner collapsed loops can qualify as extracted topology, without certifying a valid analytical plate.
+
+`AnyCorner` (1) instead requires one equivalent retained corner. Empty loops return false under either scope. Same-object input follows the same rule: at least one retained corner for `AnyCorner`, at least two for `SharedEdge`. Plate IDs and cached adjacency are unused. Coordinate coincidence with different node IDs does not connect geometry. Draft IDs remain allowed. Undefined scopes throw `ArgumentOutOfRangeException` before geometry reads; null plate arguments throw `ArgumentNullException`.
+
+Both supplied loops are fully captured and all present coordinates qualified before matching, even opposite an empty loop or after an apparent early match. Any nonfinite present corner throws `ArgumentException` naming its plate parameter. Missing corner slots are skipped using the same nontransitive first-retained-representative rule as `GetCornerLoop`; no mutable HashSet membership is used. No area, planarity, self-intersection, native model membership, solver connectivity or engineering suitability is inferred. Geometric segment crossings and interior points do not become corner/edge matches. Connectivity is an immediate Boolean observation and is not recomputed after edits.
+
 All these operations are detached and non-mutating. Captures are not atomic across simultaneous writers; coordinate/collection edits must be coordinated by the caller.
 
 ```csharp
@@ -115,6 +125,15 @@ bool memberAtNode = StaadPro.Interop.Extensions.MemberExtensions.IsConnectedToNo
 var plate = new StaadPro.Interop.Entities.Plate(nodes[0], nodes[1], new StaadPro.Interop.Entities.Node(4, 0, 1, 0), nodes[0]);
 var corners = StaadPro.Interop.Extensions.PlateExtensions.GetCornerLoop(plate);
 System.Console.WriteLine(memberAtNode + ": " + corners.Count);
+
+foreach (var edge in StaadPro.Interop.Extensions.PlateExtensions.GetEdges(plate))
+    System.Console.WriteLine(edge.Start.Id + " to " + edge.End.Id);
+var neighbour = new StaadPro.Interop.Entities.Plate(plate.B, plate.A,
+    new StaadPro.Interop.Entities.Node(5, 0, -1, 0));
+bool plateConnected = StaadPro.Interop.Extensions.PlateExtensions.IsConnectedToPlate(plate, neighbour);
+bool cornerContact = StaadPro.Interop.Extensions.PlateExtensions.IsConnectedToPlate(plate, neighbour,
+    StaadPro.Interop.Enums.PlateConnectivityScope.AnyCorner);
+System.Console.WriteLine(plateConnected + ": " + cornerContact);
 ```
 
-Offline tests cover seed/nontransitive grouping, inclusive axis/distance boundaries, exact/duplicate IDs, nulls, invalid coordinates/tolerances, missing incidence, collection ownership, one-pass enumeration, source failures, huge finite values and subnormal deltas. The installed NuGet consumer checks expanded XML, exact signatures/defaults, executes all eleven XML examples and compiles this guide. Nearest-search tests also cover equality exclusion, endpoint-versus-segment semantics, stable ties, reference capture, full-sequence validation and randomized moderate geometry. No live STAAD operation is involved.
+Offline tests cover seed/nontransitive grouping, inclusive axis/distance boundaries, exact/duplicate IDs, nulls, invalid coordinates/tolerances, missing incidence, collection ownership, one-pass enumeration, source failures, huge finite values and subnormal deltas. The installed NuGet consumer checks expanded XML, exact signatures/defaults, executes all thirteen XML examples and compiles this guide. Nearest-search tests also cover equality exclusion, endpoint-versus-segment semantics, stable ties, reference capture, full-sequence validation and randomized moderate geometry. No live STAAD operation is involved.

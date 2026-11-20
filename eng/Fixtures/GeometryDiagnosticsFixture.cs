@@ -47,7 +47,19 @@ namespace PackageVerification
             var cornerMethod=typeof(PlateExtensions).GetMethod("GetCornerLoop");
             var cp=cornerMethod.GetParameters();
             if(cornerMethod.ReturnType!=typeof(IReadOnlyList<Node>)||cp.Length!=1||cp[0].Name!="plate"||cp[0].ParameterType!=typeof(Plate)||cp[0].IsOptional)throw new Exception("Corner loop contract changed.");
-            foreach(var method in new[]{radialMethod,boundsMethod,connectivityMethod,beamNodeMethod,memberMethod,memberNodeMethod,cornerMethod})
+            var edgesMethod=typeof(PlateExtensions).GetMethod("GetEdges");
+            var ep=edgesMethod.GetParameters();
+            if(edgesMethod.ReturnType!=typeof(IEnumerable<PlateEdge>)||ep.Length!=1||ep[0].Name!="plate"||ep[0].ParameterType!=typeof(Plate)||ep[0].IsOptional)throw new Exception("Named plate-edge signature changed.");
+            var plateMethod=typeof(PlateExtensions).GetMethod("IsConnectedToPlate");
+            var pp=plateMethod.GetParameters();
+            if(plateMethod.ReturnType!=typeof(bool)||!pp.Select(p=>p.ParameterType).SequenceEqual(new[]{typeof(Plate),typeof(Plate),typeof(PlateConnectivityScope)})||!pp.Select(p=>p.Name).SequenceEqual(new[]{"plate","targetPlate","scope"})||pp.Take(2).Any(p=>p.IsOptional)||!pp[2].IsOptional||!Equals(pp[2].DefaultValue,PlateConnectivityScope.SharedEdge)||(int)PlateConnectivityScope.SharedEdge!=0||(int)PlateConnectivityScope.AnyCorner!=1)throw new Exception("Plate connectivity/default changed.");
+            if(!typeof(PlateEdge).IsSealed||typeof(PlateEdge).GetConstructors().Length!=0||typeof(PlateEdge).GetProperties().Any(p=>p.GetSetMethod(true)!=null||p.PropertyType!=typeof(Node))||!typeof(PlateEdge).GetProperties().Select(p=>p.Name).OrderBy(n=>n).SequenceEqual(new[]{"End","Start"}))throw new Exception("Plate edge endpoint slots are not immutable/named.");
+            foreach(var edgeProperty in typeof(PlateEdge).GetProperties())
+            {
+                var edgeDoc=docs.Descendants("member").Single(e=>(string)e.Attribute("name")=="P:"+typeof(PlateEdge).FullName+"."+edgeProperty.Name);
+                if(edgeDoc.Element("summary")==null||edgeDoc.Element("value")==null)throw new Exception("Plate-edge endpoint IntelliSense missing.");
+            }
+            foreach(var method in new[]{radialMethod,boundsMethod,connectivityMethod,beamNodeMethod,memberMethod,memberNodeMethod,cornerMethod,edgesMethod,plateMethod})
             {
                 string prefix="M:"+method.DeclaringType.FullName+"."+method.Name;
                 var doc=docs.Descendants("member").Single(e=>((string)e.Attribute("name")).StartsWith(prefix+"(")||((string)e.Attribute("name")).StartsWith(prefix+"``1("));
@@ -99,6 +111,18 @@ namespace PackageVerification
             cornerPlate.A=new Node(9,9,0,0);cornerA.Y=7;if(loop.Count!=2||!ReferenceEquals(loop[0],cornerA)||loop[0].Y!=7)throw new Exception("Corner ownership changed.");
             if(new Plate().GetCornerLoop().Count!=0||new Plate(null,new Node(1,0,0,0),null,new Node(1,0,0,0)).GetCornerLoop().Count!=1)throw new Exception("Sparse corners changed.");
             bool invalidCorner=false;try{new Plate(new Node(1,0,0,0),null,null,new Node(1,double.NaN,0,0)).GetCornerLoop();}catch(ArgumentException){invalidCorner=true;}if(!invalidCorner)throw new Exception("A repeated corner hid nonfinite coordinates.");
+            var edgeA=new Node(1,0,0,0);var edgeB=new Node(2,1,0,0);var edgeC=new Node(3,0,1,0);
+            var edgePlate=new Plate(edgeA,edgeB,edgeC,new Node(1,0,0,0));var edgeSequence=edgePlate.GetEdges();var edgeArray=edgeSequence.ToArray();
+            if(edgeArray.Length!=3||!ReferenceEquals(edgeArray[0].Start,edgeA)||!ReferenceEquals(edgeArray[0].End,edgeB)||!ReferenceEquals(edgeArray[2].End,edgeA))throw new Exception("Plate edge winding/closure changed.");
+            bool readOnlyEdges=false;try{((IList<PlateEdge>)edgeSequence).Clear();}catch(NotSupportedException){readOnlyEdges=true;}if(!readOnlyEdges)throw new Exception("Edge collection is mutable.");
+            var edgeNeighbour=new Plate(new Node(2,1,0,0),new Node(1,0,0,0),new Node(9,0,-1,0));
+            if(!edgePlate.IsConnectedToPlate(edgeNeighbour)||!edgeNeighbour.IsConnectedToPlate(edgePlate))throw new Exception("Reversed edges did not connect symmetrically.");
+            var diagonalNeighbour=new Plate(new Node(1,0,0,0),new Node(4,0,-1,0),new Node(2,1,0,0),new Node(5,1,-1,0));
+            if(edgePlate.IsConnectedToPlate(diagonalNeighbour)||diagonalNeighbour.IsConnectedToPlate(edgePlate)||!edgePlate.IsConnectedToPlate(diagonalNeighbour,PlateConnectivityScope.AnyCorner))throw new Exception("Target diagonal was counted as an edge.");
+            var oneCorner=new Plate(edgeA,null,null);if(oneCorner.GetEdges().Count()!=1||oneCorner.IsConnectedToPlate(edgePlate)||!oneCorner.IsConnectedToPlate(edgePlate,PlateConnectivityScope.AnyCorner))throw new Exception("Sparse self-edge connectivity changed.");
+            edgePlate.A=new Node(99,99,0,0);edgeA.Z=7;if(!ReferenceEquals(edgeSequence.First(),edgeArray[0])||!ReferenceEquals(edgeArray[0].Start,edgeA)||edgeArray[0].Start.Z!=7)throw new Exception("Edge materialization/reference ownership changed.");
+            bool badPlate=false;try{new Plate().IsConnectedToPlate(new Plate(new Node(1,double.NaN,0,0),null,null));}catch(ArgumentException){badPlate=true;}if(!badPlate)throw new Exception("An empty loop hid malformed opposite geometry.");
+            bool badPlateScope=false;try{new Plate().IsConnectedToPlate(new Plate(),(PlateConnectivityScope)999);}catch(ArgumentOutOfRangeException){badPlateScope=true;}if(!badPlateScope)throw new Exception("Undefined plate scope accepted.");
             var a=new Node(1,0,0,0);var b=new Node(2,.00001,0,0);var groups=new[]{a,b}.GetDuplicateNodes().Single();
             b.X=100;if(groups.Count()!=2||!ReferenceEquals(groups.Last(),b))throw new Exception("Diagnostic membership is deferred or identity was lost.");
             bool immutable=false;try{((IList<Node>)groups).Clear();}catch(NotSupportedException){immutable=true;}if(!immutable)throw new Exception("Diagnostic group is mutable.");

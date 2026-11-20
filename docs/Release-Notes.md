@@ -1,5 +1,15 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261120 - 20 November 2026
+
+Added `PlateExtensions.GetEdges(this Plate plate)` and `PlateExtensions.IsConnectedToPlate(this Plate plate, Plate targetPlate, PlateConnectivityScope scope = PlateConnectivityScope.SharedEdge)` with comprehensive XML IntelliSense and [plate edge/connectivity examples](Geometry-Diagnostics.md).
+
+`GetEdges` returns `IEnumerable<PlateEdge>` with named immutable `Start`/`End` slots retaining original Node references. Immediately materialized read-only membership preserves first-retained A-B-C-D winding and last-to-first closure. Empty, one-corner and two-corner extraction yield zero edges, one self-edge and two directed edges respectively. The existing `GetCornerLoop` contract is preserved through shared snapshot extraction.
+
+`SharedEdge` now requires a consecutive endpoint pair in both loops, in either direction. Merely finding two corners somewhere on the target can mistake its diagonal for an edge; that false positive is rejected. Both loops need at least two retained corners, so one-corner self-edges never promote corner contact. `AnyCorner` permits a common retained corner. Both loops are fully qualified before matching, with finite coordinates, defined scopes, captured ID-plus-3D-distance equality and the established inclusive 0.001 model-length tolerance. Sparse/collapsed loops remain supplied-data observations, not analytical plate certification.
+
+Release build passed with zero warnings/errors. Passed 7,465 offline tests including 39 new regression cases. Exact installed-package checks verify signatures/defaults, named edge ownership and expanded XML, execute thirteen geometry examples and 1,341 selected XML examples overall, compile the geometry guide and verify isolated archive restore/build/runtime. These helpers perform no native operations or model mutation; native/engineering acceptance remains separate.
+
 ## 1.0.0-preview.20261115 - 15 November 2026
 
 Added `MemberExtensions.IsConnectedToNode(this Member member, Node node, MemberConnectivityScope scope = MemberConnectivityScope.EndpointsOnly)` and `PlateExtensions.GetCornerLoop(this Plate plate)` with complete XML IntelliSense and [detached geometry examples](Geometry-Diagnostics.md).

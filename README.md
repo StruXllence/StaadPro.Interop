@@ -42,11 +42,11 @@ Use `GetBeamsWithinRadius(...)`, `GetBoundingBox(...)` and `IsConnectedToBeam(..
 
 Runtime requires **Windows, .NET Framework 4.8.1 (net481), and a licensed STAAD.Pro installation** exposing the APIs used by your application. The .NET SDK used to build the project is separate from the application's target framework.
 
-The latest locally prepared preview is **1.0.0-preview.20261115**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
+The latest locally prepared preview is **1.0.0-preview.20261120**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
 
-## Latest preview — 1.0.0-preview.20261115
+## Latest preview — 1.0.0-preview.20261120
 
-Added `MemberExtensions.IsConnectedToNode` and `PlateExtensions.GetCornerLoop` with comprehensive XML IntelliSense. Member-to-node checks preserve endpoint and supplied-node scopes. Plate loops retain first distinct corners in A-B-C-D order in read-only list storage, including triangles and sparse inputs. Both use captured node IDs and the existing Euclidean tolerance. See [detached geometry contracts and examples](docs/Geometry-Diagnostics.md).
+Added `PlateExtensions.GetEdges` and `PlateExtensions.IsConnectedToPlate` with comprehensive XML IntelliSense. Edges return named `PlateEdge` endpoints in winding order with closing wraparound. Shared-edge connectivity requires consecutive corners on both plates in either direction, correcting diagonal-only matches; `AnyCorner` permits corner-only contact. Captured geometry uses the existing ID-plus-distance rule. See [detached geometry contracts and examples](docs/Geometry-Diagnostics.md).
 
 ## Quick start: read an open model
 
