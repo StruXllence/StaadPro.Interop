@@ -1,5 +1,15 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261121 - 21 November 2026
+
+Added `PlateExtensions.GetPlatesSharingEdgeWith(this Plate plate, IEnumerable<Plate> candidatePlates)` and `BeamGroupingService.GroupBeamsByPlanAngle(IEnumerable<Beam> beams, Node origin, double toleranceDegrees = 0.001)` with complete XML IntelliSense and [detached geometry examples](Geometry-Diagnostics.md).
+
+Neighbour filtering captures and qualifies candidate geometry once, retains original matching occurrences/order/duplicates and skips null or same-plate-ID candidates. It reuses actual consecutive-edge comparison on both loops, including closing edges/either direction, and returns owned read-only membership without deferred native or geometry work. No partial result escapes a later invalid candidate or enumeration failure.
+
+Plan-angle grouping retains the source endpoint-to-origin XZ bearing convention, inclusive circular tolerance and input-order-dependent first fixed seed. Endpoint-origin coincidence has undefined bearing and is skipped rather than treated as zero. Qualifying groups return by ascending seed; their original beam occurrences sort by captured XZ midpoint radius with stable ties. Added editable `BeamGroup<T>` key/list metadata with independent list storage. All geometry is finite and fully captured before grouping, including ineligible entries; scaled differences/distances handle finite extremes without overflow or squared-distance underflow. Neither helper performs native or model changes.
+
+Release build passed with zero warnings/errors. Passed 7,503 offline tests including 38 new regression cases. Exact installed-package verification checks signatures/defaults, group-model IntelliSense, owned results and expanded XML, executes fifteen geometry examples and 1,343 selected XML examples overall, compiles the geometry guide and verifies isolated archive restore/build/runtime. Native/engineering acceptance remains separate.
+
 ## 1.0.0-preview.20261120 - 20 November 2026
 
 Added `PlateExtensions.GetEdges(this Plate plate)` and `PlateExtensions.IsConnectedToPlate(this Plate plate, Plate targetPlate, PlateConnectivityScope scope = PlateConnectivityScope.SharedEdge)` with comprehensive XML IntelliSense and [plate edge/connectivity examples](Geometry-Diagnostics.md).

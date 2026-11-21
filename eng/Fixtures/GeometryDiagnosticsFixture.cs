@@ -8,6 +8,8 @@ using StaadPro.Interop.Enums;
 using StaadPro.Interop.Extensions;
 using StaadPro.Interop.Common;
 using StaadPro.Interop.Models.Geometry;
+using StaadPro.Interop.Models;
+using StaadPro.Interop.Services;
 namespace PackageVerification
 {
     internal static class GeometryDiagnosticsFixture
@@ -59,7 +61,12 @@ namespace PackageVerification
                 var edgeDoc=docs.Descendants("member").Single(e=>(string)e.Attribute("name")=="P:"+typeof(PlateEdge).FullName+"."+edgeProperty.Name);
                 if(edgeDoc.Element("summary")==null||edgeDoc.Element("value")==null)throw new Exception("Plate-edge endpoint IntelliSense missing.");
             }
-            foreach(var method in new[]{radialMethod,boundsMethod,connectivityMethod,beamNodeMethod,memberMethod,memberNodeMethod,cornerMethod,edgesMethod,plateMethod})
+            var neighbourMethod=typeof(PlateExtensions).GetMethod("GetPlatesSharingEdgeWith");var np=neighbourMethod.GetParameters();
+            if(neighbourMethod.ReturnType!=typeof(IEnumerable<Plate>)||!np.Select(p=>p.Name).SequenceEqual(new[]{"plate","candidatePlates"})||!np.Select(p=>p.ParameterType).SequenceEqual(new[]{typeof(Plate),typeof(IEnumerable<Plate>)})||np.Any(p=>p.IsOptional))throw new Exception("Neighbour signature changed.");
+            var planMethod=typeof(BeamGroupingService).GetMethod("GroupBeamsByPlanAngle");var gp=planMethod.GetParameters();
+            if(planMethod.ReturnType!=typeof(List<BeamGroup<double>>)||!gp.Select(p=>p.Name).SequenceEqual(new[]{"beams","origin","toleranceDegrees"})||!gp.Select(p=>p.ParameterType).SequenceEqual(new[]{typeof(IEnumerable<Beam>),typeof(Node),typeof(double)})||gp.Take(2).Any(p=>p.IsOptional)||!gp[2].IsOptional||!Equals(gp[2].DefaultValue,.001d))throw new Exception("Plan-angle signature/default changed.");
+            foreach(string property in new[]{"Key","Beams"}){var groupDoc=docs.Descendants("member").Single(e=>(string)e.Attribute("name")=="P:StaadPro.Interop.Models.BeamGroup`1."+property);if(groupDoc.Element("summary")==null||groupDoc.Element("value")==null)throw new Exception("Beam-group IntelliSense missing.");}
+            foreach(var method in new[]{radialMethod,boundsMethod,connectivityMethod,beamNodeMethod,memberMethod,memberNodeMethod,cornerMethod,edgesMethod,plateMethod,neighbourMethod,planMethod})
             {
                 string prefix="M:"+method.DeclaringType.FullName+"."+method.Name;
                 var doc=docs.Descendants("member").Single(e=>((string)e.Attribute("name")).StartsWith(prefix+"(")||((string)e.Attribute("name")).StartsWith(prefix+"``1("));
@@ -123,6 +130,17 @@ namespace PackageVerification
             edgePlate.A=new Node(99,99,0,0);edgeA.Z=7;if(!ReferenceEquals(edgeSequence.First(),edgeArray[0])||!ReferenceEquals(edgeArray[0].Start,edgeA)||edgeArray[0].Start.Z!=7)throw new Exception("Edge materialization/reference ownership changed.");
             bool badPlate=false;try{new Plate().IsConnectedToPlate(new Plate(new Node(1,double.NaN,0,0),null,null));}catch(ArgumentException){badPlate=true;}if(!badPlate)throw new Exception("An empty loop hid malformed opposite geometry.");
             bool badPlateScope=false;try{new Plate().IsConnectedToPlate(new Plate(),(PlateConnectivityScope)999);}catch(ArgumentOutOfRangeException){badPlateScope=true;}if(!badPlateScope)throw new Exception("Undefined plate scope accepted.");
+            var neighbourhoodReference=new Plate(1,new Node(1,0,0,0),new Node(2,1,0,0),new Node(3,0,1,0));
+            var neighbourhoodMatch=new Plate(2,new Node(2,1,0,0),new Node(1,0,0,0),new Node(4,0,-1,0));
+            var neighbours=neighbourhoodReference.GetPlatesSharingEdgeWith(new[]{null,neighbourhoodReference,neighbourhoodMatch,neighbourhoodMatch});
+            if(neighbours.Count()!=2||!ReferenceEquals(neighbours.First(),neighbourhoodMatch)||!ReferenceEquals(neighbours.Last(),neighbourhoodMatch))throw new Exception("Neighbour identity/order/duplicates changed.");
+            bool neighbourReadOnly=false;try{((IList<Plate>)neighbours).Clear();}catch(NotSupportedException){neighbourReadOnly=true;}if(!neighbourReadOnly)throw new Exception("Neighbour collection is mutable.");
+            if(neighbourhoodReference.GetPlatesSharingEdgeWith(new[]{new Plate(1,new Node(1,double.NaN,0,0),null,null)}).Any())throw new Exception("Same-ID self exclusion changed.");
+            var planFar=new Beam(new Node(1,5,0,0),new Node(2,6,0,0));var planNear=new Beam(new Node(3,1,0,0),new Node(4,2,0,0));
+            var planGroups=BeamGroupingService.GroupBeamsByPlanAngle(new[]{planFar,planNear,planNear},new Node(0,0,0,0));
+            if(planGroups.Count!=1||planGroups[0].Key!=180||planGroups[0].Beams.Count!=3||!ReferenceEquals(planGroups[0].Beams[0],planNear)||!ReferenceEquals(planGroups[0].Beams[2],planFar))throw new Exception("Inward bearing/midpoint ordering changed.");
+            planNear.StartNode.Z=8;if(planGroups[0].Key!=180||!ReferenceEquals(planGroups[0].Beams[0],planNear))throw new Exception("Plan grouping became deferred.");
+            if(BeamGroupingService.GroupBeamsByPlanAngle(new[]{new Beam(new Node(0,0,0,0),new Node(1,1,0,0))},new Node(0,0,0,0)).Any())throw new Exception("Undefined origin bearing was grouped.");
             var a=new Node(1,0,0,0);var b=new Node(2,.00001,0,0);var groups=new[]{a,b}.GetDuplicateNodes().Single();
             b.X=100;if(groups.Count()!=2||!ReferenceEquals(groups.Last(),b))throw new Exception("Diagnostic membership is deferred or identity was lost.");
             bool immutable=false;try{((IList<Node>)groups).Clear();}catch(NotSupportedException){immutable=true;}if(!immutable)throw new Exception("Diagnostic group is mutable.");

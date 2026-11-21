@@ -19,6 +19,8 @@ Related beam/node and physical-member connectivity extensions use selected node 
 | `plate.GetCornerLoop()` | Read-only list of first distinct supplied corners in A-B-C-D order; no repeated closing corner. |
 | `plate.GetEdges()` | Named `PlateEdge` endpoint pairs between consecutive retained corners, wrapping last to first. |
 | `plate.IsConnectedToPlate(targetPlate, scope = SharedEdge)` | A matching consecutive edge in both loops, or a common corner for `AnyCorner`. |
+| `plate.GetPlatesSharingEdgeWith(candidatePlates)` | Ordered candidate occurrences sharing a consecutive edge in both loops, excluding the same plate ID. |
+| `BeamGroupingService.GroupBeamsByPlanAngle(beams, origin, toleranceDegrees = 0.001)` | Radial XZ endpoint-to-origin bearing groups, sorted by seed bearing and midpoint radius. |
 
 The duplicate/zero-length methods validate non-null collections and finite nonnegative tolerances before enumeration. Null entries are ignored. Nonfinite coordinates throw `ArgumentException`; missing endpoints on a non-null beam also throw. Inputs are enumerated once and results are fully materialized before return. Enumerator exceptions propagate without returning partial results.
 
@@ -87,6 +89,16 @@ The corner list is immediately materialized in owned read-only storage. It retai
 
 Both supplied loops are fully captured and all present coordinates qualified before matching, even opposite an empty loop or after an apparent early match. Any nonfinite present corner throws `ArgumentException` naming its plate parameter. Missing corner slots are skipped using the same nontransitive first-retained-representative rule as `GetCornerLoop`; no mutable HashSet membership is used. No area, planarity, self-intersection, native model membership, solver connectivity or engineering suitability is inferred. Geometric segment crossings and interior points do not become corner/edge matches. Connectivity is an immediate Boolean observation and is not recomputed after edits.
 
+`GetPlatesSharingEdgeWith(plate, candidatePlates)` enumerates candidates once and returns immediately materialized read-only membership retaining original Plate references, order and duplicates. Null candidates and candidates whose captured plate ID equals the reference ID are skipped, including draft IDs. Their geometry is unused. This explicitly preserves source ID-based self-exclusion despite differences in Plate equality across implementations. Every other candidate's corners are captured and qualified, even after prior matches or when the reference has no usable edge. Later validation/enumeration failure returns no partial result. Matching reuses actual consecutive-edge comparison on both retained loops, including closure/either direction and the existing 0.001 node-ID/distance rule. Later edits do not recompute membership.
+
+`BeamGroupingService.GroupBeamsByPlanAngle(beams, origin, toleranceDegrees = 0.001)` groups beams with agreeing endpoint-to-origin bearings in the XZ plane. It deliberately retains the source convention `atan2(origin.Z - endpoint.Z, origin.X - endpoint.X)` in degrees normalized to [0,360). For example, endpoints on the +X ray have an inward key of 180 degrees. These are not outward origin-to-node bearings or beam-local-axis angles. Y coordinates are qualified as finite but ignored in bearing and midpoint-radius calculations. IDs are unused.
+
+Each beam must have two finite endpoints. Beams with either endpoint coincident with the origin in XZ have undefined bearing and are skipped; a fabricated zero bearing is not assigned. Other beams qualify when the shortest circular endpoint-bearing separation is at most the finite nonnegative `toleranceDegrees`. Wraparound at zero is supported. Tolerance zero means exact computed equality; tolerances at least 180 accept every defined difference. Undefined/missing/nonfinite data throws. Even later invalid geometry on an otherwise ineligible beam is validated before grouping.
+
+A qualifying beam joins the first created group whose fixed seed matches its captured start bearing. Otherwise its start bearing becomes a new seed. Seeds are not averaged/moved: this is input-order-dependent, nontransitive first-seed grouping, not connected clustering or physical-member identification. Groups are returned by ascending key. Original beam occurrences, including duplicates, are sorted within each group by captured XZ midpoint distance to origin, preserving input order for equal distances. Finite-extreme scaled distances/midpoints avoid overflow and squaring underflow with normal floating-point rounding. Worst-case grouping is quadratic.
+
+Results are editable `List<BeamGroup<double>>` records with `Key` and independently owned editable `Beams` lists. Original beam references remain shared; later geometry edits are visible but do not recompute keys, membership or order. Manual setters store values/references without validation. Inputs are enumerated once, origin is captured once and endpoints once per occurrence. These observations do not certify 3D collinearity, native membership or engineering suitability. No grouping function mutates native or supplied geometry.
+
 All these operations are detached and non-mutating. Captures are not atomic across simultaneous writers; coordinate/collection edits must be coordinated by the caller.
 
 ```csharp
@@ -134,6 +146,15 @@ bool plateConnected = StaadPro.Interop.Extensions.PlateExtensions.IsConnectedToP
 bool cornerContact = StaadPro.Interop.Extensions.PlateExtensions.IsConnectedToPlate(plate, neighbour,
     StaadPro.Interop.Enums.PlateConnectivityScope.AnyCorner);
 System.Console.WriteLine(plateConnected + ": " + cornerContact);
+
+plate.Id = 1; neighbour.Id = 2;
+foreach (var match in StaadPro.Interop.Extensions.PlateExtensions.GetPlatesSharingEdgeWith(plate,
+    new[] { plate, neighbour, neighbour })) System.Console.WriteLine(match.Id);
+var radialBeam = new StaadPro.Interop.Entities.Beam(new StaadPro.Interop.Entities.Node(6, 1, 0, 0),
+    new StaadPro.Interop.Entities.Node(7, 2, 0, 0));
+var planGroups = StaadPro.Interop.Services.BeamGroupingService.GroupBeamsByPlanAngle(
+    new[] { radialBeam }, new StaadPro.Interop.Entities.Node(0, 0, 0, 0));
+System.Console.WriteLine(planGroups[0].Key); // 180: inward bearing
 ```
 
-Offline tests cover seed/nontransitive grouping, inclusive axis/distance boundaries, exact/duplicate IDs, nulls, invalid coordinates/tolerances, missing incidence, collection ownership, one-pass enumeration, source failures, huge finite values and subnormal deltas. The installed NuGet consumer checks expanded XML, exact signatures/defaults, executes all thirteen XML examples and compiles this guide. Nearest-search tests also cover equality exclusion, endpoint-versus-segment semantics, stable ties, reference capture, full-sequence validation and randomized moderate geometry. No live STAAD operation is involved.
+Offline tests cover seed/nontransitive grouping, inclusive axis/distance boundaries, exact/duplicate IDs, nulls, invalid coordinates/tolerances, missing incidence, collection ownership, one-pass enumeration, source failures, huge finite values and subnormal deltas. The installed NuGet consumer checks expanded XML, exact signatures/defaults, executes all fifteen XML examples and compiles this guide. Nearest-search tests also cover equality exclusion, endpoint-versus-segment semantics, stable ties, reference capture, full-sequence validation and randomized moderate geometry. No live STAAD operation is involved.

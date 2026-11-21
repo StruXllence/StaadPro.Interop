@@ -26,7 +26,9 @@ code-insiders --install-extension StruXllence.struxllence-themes
 
 After installation, run **Preferences: Color Theme** and select **StruXllence Dark** or **StruXllence Light**. See the [theme previews and icon setup](https://github.com/StruXllence/struxllence-themes). The editor theme is optional and is installed separately from the NuGet library.
 
-## Version 1.0.0-preview.20261120
+## Version 1.0.0-preview.20261121
+
+Added `GetPlatesSharingEdgeWith(plate, candidatePlates)` and `GroupBeamsByPlanAngle(beams, origin, toleranceDegrees = 0.001)` with full XML IntelliSense. Neighbours retain ordered matching occurrences, excluding null/same-ID candidates. Plan-angle grouping preserves endpoint-to-origin XZ bearings and first-seed circular grouping, with midpoint-radius ordering and independently owned editable `BeamGroup<double>` lists. See [contracts and examples](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md).
 
 Added `GetEdges(plate)` returning named `PlateEdge` endpoint pairs, and `IsConnectedToPlate(plate, targetPlate, scope = SharedEdge)` with full XML IntelliSense. Edge extraction preserves retained winding and closure in owned read-only storage. Shared-edge connectivity checks consecutive pairs on both loops in either direction; two shared corners forming a diagonal do not qualify. `AnyCorner` supports corner-only neighbours. See [plate edge/connectivity examples](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md).
 

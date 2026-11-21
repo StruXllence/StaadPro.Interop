@@ -141,5 +141,54 @@ namespace StaadPro.Interop.Extensions
                 ? PlateConnectivityService.ShareEdge(left, right)
                 : PlateConnectivityService.ShareCorner(left, right);
         }
+
+        /// <summary>Gets candidate plate occurrences sharing an actual consecutive edge with a supplied plate.</summary>
+        /// <param name="plate">Non-null reference plate. Present corner coordinates must be finite. Its captured ID
+        /// excludes candidates with the same ID, including draft zero/negative IDs.</param>
+        /// <param name="candidatePlates">Non-null sequence enumerated once. Null entries and candidates with the same
+        /// captured plate ID are skipped. Every other candidate's present corners must have finite coordinates.</param>
+        /// <returns>An immediately materialized owned read-only collection through IEnumerable, retaining matching
+        /// original Plate references, input order and duplicate occurrences. Empty/no-match input returns an empty
+        /// collection. No partial result escapes on a later validation or enumeration failure.</returns>
+        /// <remarks><para>Captures the reference plate ID/retained corner values once and each eligible candidate's
+        /// retained corner values once, before filtering. All eligible geometry is qualified even after a prior match,
+        /// or when the reference has no usable edge. Null/same-ID candidates are unused and their geometry is not read.
+        /// Preserves source self-exclusion by plate ID rather than relying on differing plate equality implementations.</para>
+        /// <para>Uses IsConnectedToPlate's corrected SharedEdge semantics: consecutive endpoint pairs in both retained
+        /// A-B-C-D loops, including closure and either direction. Each loop needs two retained corners; corner-only,
+        /// target-diagonal or one-corner self-edge matches do not qualify. Node identity requires matching IDs plus
+        /// inclusive scaled 3D Euclidean separation at most 0.001 model length units. Missing slots are skipped and
+        /// first-retained-representative deduplication is nontransitive. Draft node IDs are allowed.</para>
+        /// <para>Membership/order is fixed at invocation, with original editable Plate/Node references retained. Later
+        /// edits remain visible through those references but do not rerun filtering. No STAAD acquisition, geometry
+        /// hydration, selection, unit conversion, merge, save, analysis or mutation occurs. Does not certify plate
+        /// validity, native membership, solver connectivity or engineering suitability. Inputs must share compatible
+        /// model coordinates/length units; callers coordinate concurrent writers because captures are not atomic.</para></remarks>
+        /// <exception cref="ArgumentNullException">plate or candidatePlates is null.</exception>
+        /// <exception cref="ArgumentException">A present corner of the reference or an eligible candidate is nonfinite.</exception>
+        /// <example><code>
+        /// var a = new StaadPro.Interop.Entities.Node(1, 0, 0, 0);
+        /// var b = new StaadPro.Interop.Entities.Node(2, 1, 0, 0);
+        /// var plate = new StaadPro.Interop.Entities.Plate(1, a, b, new StaadPro.Interop.Entities.Node(3, 0, 1, 0));
+        /// var neighbour = new StaadPro.Interop.Entities.Plate(2, b, a, new StaadPro.Interop.Entities.Node(4, 0, -1, 0));
+        /// foreach (var match in StaadPro.Interop.Extensions.PlateExtensions.GetPlatesSharingEdgeWith(plate,
+        ///     new[] { plate, neighbour })) System.Console.WriteLine(match.Id); // 2
+        /// </code></example>
+        public static IEnumerable<Plate> GetPlatesSharingEdgeWith(this Plate plate, IEnumerable<Plate> candidatePlates)
+        {
+            if (ReferenceEquals(plate, null)) throw new ArgumentNullException(nameof(plate));
+            if (candidatePlates == null) throw new ArgumentNullException(nameof(candidatePlates));
+            int id = plate.Id;
+            var reference = PlateConnectivityService.CaptureLoop(plate, nameof(plate));
+            var candidates = new List<KeyValuePair<Plate, PlateConnectivityService.Corner[]>>();
+            foreach (var candidate in candidatePlates)
+            {
+                if (ReferenceEquals(candidate, null) || candidate.Id == id) continue;
+                candidates.Add(new KeyValuePair<Plate, PlateConnectivityService.Corner[]>(candidate,
+                    PlateConnectivityService.CaptureLoop(candidate, nameof(candidatePlates))));
+            }
+            return candidates.Where(candidate => PlateConnectivityService.ShareEdge(reference, candidate.Value))
+                .Select(candidate => candidate.Key).ToList().AsReadOnly();
+        }
     }
 }
