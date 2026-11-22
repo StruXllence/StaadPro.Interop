@@ -12,12 +12,12 @@
     <RootNamespace>StaadPro.Interop</RootNamespace>
     <PackageId>StaadPro.Interop</PackageId>
     <Version>1.0.0</Version>
-    <ReleaseDocumentationVersion>1.0.0-preview.20261121</ReleaseDocumentationVersion>
+    <ReleaseDocumentationVersion>1.0.0-preview.20261122</ReleaseDocumentationVersion>
     <PackageVersion>$(ReleaseDocumentationVersion)</PackageVersion>
     <Authors>Srinivasa Rao Masanam</Authors>
     <Company>StruXllence</Company>
     <Copyright>Copyright (c) 2026 StruXllence</Copyright>
-    <PackageReleaseNotes>Added PlateExtensions.GetPlatesSharingEdgeWith and BeamGroupingService.GroupBeamsByPlanAngle with complete XML IntelliSense. Preserved ordered neighbour occurrences and plate-ID self-exclusion using qualified both-loop edge matching. Added editable BeamGroup records with inward XZ circular first-seed grouping, undefined-origin-bearing exclusion and stable captured midpoint-radius ordering. Qualified finite geometry eagerly with one-pass inputs and owned result storage, including scaled finite-extreme arithmetic. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
+    <PackageReleaseNotes>Added BeamGroupingService.GroupBeamsByRadius and GroupBeamsByElevation with complete XML IntelliSense. Preserved XZ-radius and signed-Y endpoint eligibility, inclusive absolute length tolerances, first fixed seed selection, ascending keys and original ordered duplicate beam references. Captured and validated all endpoints eagerly, copied mutable group/list storage and used scaled finite-radius arithmetic with explicit unrepresentable-radius failures. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
     <Description>A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD Developer resources include Marketplace installation links for the optional StruXllence VS Code dark and light themes in the packaged README.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageTags>staad;staad-pro;openstaad;structural-engineering;structural-analysis;engineering-automation;csharp;dotnet-framework;com-interop;geometry;loads;bentley;struxllence</PackageTags>

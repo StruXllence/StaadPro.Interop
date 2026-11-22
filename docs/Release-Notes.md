@@ -1,5 +1,15 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261122 - 22 November 2026
+
+Added `BeamGroupingService.GroupBeamsByRadius(IEnumerable<Beam> beams, Node origin, double tolerance = 0.001)` and `BeamGroupingService.GroupBeamsByElevation(IEnumerable<Beam> beams, double tolerance = 0.001)` with complete XML IntelliSense. See [detached geometry contracts and examples](Geometry-Diagnostics.md).
+
+Radius grouping compares captured XZ endpoint distances from origin; elevation grouping compares signed endpoint Y values. Both preserve inclusive absolute length tolerances, start-value fixed seeds, input-order-dependent first matching groups, ascending keys and original ordered duplicate beam occurrences. Seeds are not averaged or moved. Results own editable group/list storage while retaining original beam references.
+
+Every supplied endpoint is captured and finite-validated before grouping, including otherwise ineligible entries. Scaled radii avoid squaring overflow/underflow; a radius that cannot fit a finite Double throws instead of producing an invalid seed. Zero-radius projections, coincident endpoints, negative elevations and exact zero-tolerance comparisons have explicit contracts. Neither method performs native calls, geometry changes, unit conversion or engineering acceptance checks.
+
+Release build passed with zero warnings/errors. Passed 7,551 offline tests including 48 new regression cases. Exact installed-package checks verify signatures/defaults, owned grouping results and expanded XML IntelliSense, execute seventeen geometry examples and 1,345 selected XML examples overall, compile the geometry guide and verify isolated archive restore/build/runtime. No live STAAD operation is needed for these detached helpers; engineering acceptance remains separate.
+
 ## 1.0.0-preview.20261121 - 21 November 2026
 
 Added `PlateExtensions.GetPlatesSharingEdgeWith(this Plate plate, IEnumerable<Plate> candidatePlates)` and `BeamGroupingService.GroupBeamsByPlanAngle(IEnumerable<Beam> beams, Node origin, double toleranceDegrees = 0.001)` with complete XML IntelliSense and [detached geometry examples](Geometry-Diagnostics.md).

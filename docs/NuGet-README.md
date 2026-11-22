@@ -26,7 +26,9 @@ code-insiders --install-extension StruXllence.struxllence-themes
 
 After installation, run **Preferences: Color Theme** and select **StruXllence Dark** or **StruXllence Light**. See the [theme previews and icon setup](https://github.com/StruXllence/struxllence-themes). The editor theme is optional and is installed separately from the NuGet library.
 
-## Version 1.0.0-preview.20261121
+## Version 1.0.0-preview.20261122
+
+Added `GroupBeamsByRadius(beams, origin, tolerance = 0.001)` and `GroupBeamsByElevation(beams, tolerance = 0.001)` with full XML IntelliSense. Grouping uses captured XZ endpoint radii or signed Y elevations, fixed first seeds, inclusive length tolerances and ordered duplicate beam occurrences. Every participating endpoint is validated before grouping; scaled radii avoid squaring overflow/underflow and unrepresentable keys are rejected. See [geometry contracts and examples](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md).
 
 Added `GetPlatesSharingEdgeWith(plate, candidatePlates)` and `GroupBeamsByPlanAngle(beams, origin, toleranceDegrees = 0.001)` with full XML IntelliSense. Neighbours retain ordered matching occurrences, excluding null/same-ID candidates. Plan-angle grouping preserves endpoint-to-origin XZ bearings and first-seed circular grouping, with midpoint-radius ordering and independently owned editable `BeamGroup<double>` lists. See [contracts and examples](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md).
 

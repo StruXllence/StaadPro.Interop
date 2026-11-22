@@ -78,6 +78,138 @@ namespace StaadPro.Interop.Services
             { Key = g.Key, Beams = g.Items.OrderBy(item => item.Distance).Select(item => item.Beam).ToList() }).ToList();
         }
 
+        /// <summary>Groups beams whose two captured XZ endpoint radii agree within an inclusive length tolerance.</summary>
+        /// <param name="beams">Non-null sequence of non-null beams with two initialized finite endpoints. Enumerated
+        /// once with duplicate occurrences and input order retained. Node/beam IDs are unused.</param>
+        /// <param name="origin">Non-null finite reference point in the same coordinates and length units as the
+        /// endpoints. Only X/Z define radius; Y is validated but ignored.</param>
+        /// <param name="tolerance">Finite nonnegative absolute length tolerance, default 0.001. Applied inclusively
+        /// both to endpoint-radius agreement and to matching a group's fixed start-radius seed. Zero uses exact
+        /// computed Double equality; no relative or angular tolerance is applied.</param>
+        /// <returns>A new editable list of independent BeamGroup of Double records sorted by ascending seed radius.
+        /// Each Beams list retains original references in input order, including duplicates. Empty/no qualifying input
+        /// returns a new empty list. Group keys are finite nonnegative radii in supplied length units.</returns>
+        /// <remarks><para>Computes XZ distance from origin to each endpoint. A beam qualifies when the two radii
+        /// differ by at most tolerance; its start radius becomes the grouping value. Joins the first previously
+        /// created seed within tolerance, otherwise creates a group. Seeds are not averaged or moved. This is
+        /// input-order-dependent, nontransitive first-seed grouping, not circle fitting, curved-member detection or
+        /// physical-member identification. Straight chords, coincident endpoints and origin-projected endpoints can
+        /// qualify. Y does not affect eligibility or ordering. Reversing endpoints can change the seed within tolerance.</para>
+        /// <para>Captures origin once and each endpoint once per occurrence before grouping; validates every entry,
+        /// including otherwise ineligible beams. Scaled distance calculation avoids squaring overflow/underflow.
+        /// Each computed radius must fit a finite Double; an unrepresentable radius throws rather than producing
+        /// an infinite or NaN seed. Ordinary floating-point rounding applies to distances and tolerance boundaries.
+        /// Worst-case grouping is quadratic; input and result storage grow with supplied occurrences.</para>
+        /// <para>Owns outer/group list storage while retaining original Beam references. Later edits do not recompute
+        /// keys, membership or order; mutable Key/Beams setters affect detached data only. Enumeration/validation
+        /// failures propagate at invocation with no partial result. Captures are not atomic; coordinate concurrent
+        /// writers. No native acquisition, geometry hydration, selection, conversion, analysis, save or mutation occurs.
+        /// Compatible coordinates/units are the caller's responsibility; no engineering suitability is certified.</para></remarks>
+        /// <exception cref="ArgumentNullException">beams or origin is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">tolerance is negative, NaN or infinite.</exception>
+        /// <exception cref="ArgumentException">A beam/endpoint is missing, a participating coordinate is nonfinite,
+        /// or a computed endpoint radius cannot be represented as a finite Double.</exception>
+        /// <example><code>
+        /// var origin = new StaadPro.Interop.Entities.Node(0, 0, 0, 0);
+        /// var chord = new StaadPro.Interop.Entities.Beam(new StaadPro.Interop.Entities.Node(1, 3, 10, 4),
+        ///     new StaadPro.Interop.Entities.Node(2, -3, -10, 4));
+        /// var groups = StaadPro.Interop.Services.BeamGroupingService.GroupBeamsByRadius(new[] { chord, chord }, origin);
+        /// System.Console.WriteLine(groups[0].Key); // 5 model length units; Y is ignored
+        /// System.Console.WriteLine(groups[0].Beams.Count); // 2: repeated occurrences are retained
+        /// </code></example>
+        public static List<BeamGroup<double>> GroupBeamsByRadius(IEnumerable<Beam> beams, Node origin, double tolerance = 1e-3)
+        {
+            ValidateScalarArguments(beams, tolerance);
+            if (ReferenceEquals(origin, null)) throw new ArgumentNullException(nameof(origin));
+            var reference = new GeometryConnectivityService.NodeSnapshot(origin, nameof(origin));
+            return GroupScalars(CaptureScalarBeams(beams, reference), tolerance);
+        }
+
+        /// <summary>Groups beams whose captured endpoint Y elevations agree within an inclusive length tolerance.</summary>
+        /// <param name="beams">Non-null sequence of non-null beams with two initialized finite endpoints. Enumerated
+        /// once with original order/duplicate occurrences retained. Node/beam IDs are unused.</param>
+        /// <param name="tolerance">Finite nonnegative absolute Y difference in supplied length units, default 0.001.
+        /// Applied inclusively both to endpoint agreement and to the first fixed group seed. Zero requires exact
+        /// computed Y equality; no relative tolerance or model-unit conversion is applied.</param>
+        /// <returns>A new editable list of independent BeamGroup of Double records sorted by ascending start-elevation
+        /// seed, including negative elevations. Each Beams list retains input order, duplicates and original Beam
+        /// references. Empty/no qualifying input returns a new empty list.</returns>
+        /// <remarks><para>Requires the absolute difference of captured StartNode.Y and EndNode.Y to be at most
+        /// tolerance; qualifying beams use start Y as their grouping value. Joins the first created fixed seed within
+        /// tolerance, otherwise creates a new group. Seeds are never averaged or moved. This first-seed grouping is
+        /// input-order-dependent and nontransitive. Endpoint reversal may change a seed within tolerance. Coincident
+        /// endpoints qualify; this does not certify horizontal alignment beyond the supplied Y criterion.</para>
+        /// <para>Validates/captures both endpoints of every occurrence before grouping. All X/Y/Z coordinates must be
+        /// finite, though only Y participates. Finite opposite-sign differences exceeding Double range are outside
+        /// every finite tolerance and do not match. Ordinary floating-point rounding applies at tolerance boundaries.
+        /// Worst-case grouping is quadratic and storage grows with input occurrences.</para>
+        /// <para>Owns outer/group list storage while retaining original Beam references. Later source changes do not
+        /// recompute membership/keys/order. Mutable result setters affect detached data only. Enumeration/validation
+        /// failures propagate at invocation with no partial result; callers coordinate concurrent writers because
+        /// captures are not atomic. No native acquisition, hydration, selection, conversion, analysis, save or mutation
+        /// occurs. Compatible coordinates/units remain the caller's responsibility; no engineering acceptance is inferred.</para></remarks>
+        /// <exception cref="ArgumentNullException">beams is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">tolerance is negative, NaN or infinite.</exception>
+        /// <exception cref="ArgumentException">A beam/endpoint is missing or any participating X/Y/Z coordinate is nonfinite.</exception>
+        /// <example><code>
+        /// var low = new StaadPro.Interop.Entities.Beam(new StaadPro.Interop.Entities.Node(1, 0, -2, 0),
+        ///     new StaadPro.Interop.Entities.Node(2, 10, -2, 20));
+        /// var high = new StaadPro.Interop.Entities.Beam(new StaadPro.Interop.Entities.Node(3, 0, 3, 0),
+        ///     new StaadPro.Interop.Entities.Node(4, 10, 3, 20));
+        /// var groups = StaadPro.Interop.Services.BeamGroupingService.GroupBeamsByElevation(new[] { high, low, low });
+        /// System.Console.WriteLine(groups[0].Key); // -2
+        /// System.Console.WriteLine(groups[0].Beams.Count); // 2
+        /// </code></example>
+        public static List<BeamGroup<double>> GroupBeamsByElevation(IEnumerable<Beam> beams, double tolerance = 1e-3)
+        {
+            ValidateScalarArguments(beams, tolerance);
+            return GroupScalars(CaptureScalarBeams(beams, null), tolerance);
+        }
+
+        private static void ValidateScalarArguments(IEnumerable<Beam> beams, double tolerance)
+        {
+            if (beams == null) throw new ArgumentNullException(nameof(beams));
+            if (double.IsNaN(tolerance) || double.IsInfinity(tolerance) || tolerance < 0)
+                throw new ArgumentOutOfRangeException(nameof(tolerance));
+        }
+
+        private sealed class ScalarObservation
+        {
+            internal readonly Beam Beam;
+            internal readonly double Start, End;
+            internal ScalarObservation(Beam beam, double start, double end) { Beam = beam; Start = start; End = end; }
+        }
+
+        private static List<ScalarObservation> CaptureScalarBeams(IEnumerable<Beam> beams,
+            GeometryConnectivityService.NodeSnapshot origin)
+        {
+            var captured = new List<ScalarObservation>();
+            foreach (Beam beam in beams)
+            {
+                if (ReferenceEquals(beam, null)) throw new ArgumentException("A beam is missing.", nameof(beams));
+                var points = GeometryConnectivityService.BeamNodes(beam, nameof(beams));
+                double start = origin == null ? points[0].Y
+                    : DistanceKey.Between(points[0].X, points[0].Z, origin.X, origin.Z).FiniteRadius(nameof(beams));
+                double end = origin == null ? points[1].Y
+                    : DistanceKey.Between(points[1].X, points[1].Z, origin.X, origin.Z).FiniteRadius(nameof(beams));
+                captured.Add(new ScalarObservation(beam, start, end));
+            }
+            return captured;
+        }
+
+        private static List<BeamGroup<double>> GroupScalars(List<ScalarObservation> captured, double tolerance)
+        {
+            var groups = new List<BeamGroup<double>>();
+            foreach (ScalarObservation item in captured)
+            {
+                if (Math.Abs(item.Start - item.End) > tolerance) continue;
+                var group = groups.FirstOrDefault(g => Math.Abs(g.Key - item.Start) <= tolerance);
+                if (group == null) { group = new BeamGroup<double> { Key = item.Start }; groups.Add(group); }
+                group.Beams.Add(item.Beam);
+            }
+            return groups.OrderBy(g => g.Key).ToList();
+        }
+
         private sealed class Group
         {
             internal readonly double Key;
@@ -131,6 +263,13 @@ namespace StaadPro.Interop.Services
                 if (scale == 0 || other.scale == 0) return scale.CompareTo(other.scale);
                 return scale <= other.scale ? ((scale / other.scale) * factor).CompareTo(other.factor)
                     : factor.CompareTo((other.scale / scale) * other.factor);
+            }
+            internal double FiniteRadius(string parameter)
+            {
+                double value = scale * factor;
+                if (double.IsNaN(value) || double.IsInfinity(value))
+                    throw new ArgumentException("A computed endpoint radius must fit a finite Double.", parameter);
+                return value;
             }
         }
     }

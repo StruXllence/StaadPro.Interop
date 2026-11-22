@@ -21,6 +21,8 @@ Related beam/node and physical-member connectivity extensions use selected node 
 | `plate.IsConnectedToPlate(targetPlate, scope = SharedEdge)` | A matching consecutive edge in both loops, or a common corner for `AnyCorner`. |
 | `plate.GetPlatesSharingEdgeWith(candidatePlates)` | Ordered candidate occurrences sharing a consecutive edge in both loops, excluding the same plate ID. |
 | `BeamGroupingService.GroupBeamsByPlanAngle(beams, origin, toleranceDegrees = 0.001)` | Radial XZ endpoint-to-origin bearing groups, sorted by seed bearing and midpoint radius. |
+| `BeamGroupingService.GroupBeamsByRadius(beams, origin, tolerance = 0.001)` | Equal XZ endpoint-radius groups with start-radius seeds and ordered occurrences. |
+| `BeamGroupingService.GroupBeamsByElevation(beams, tolerance = 0.001)` | Equal endpoint-Y elevation groups with signed start-elevation seeds and ordered occurrences. |
 
 The duplicate/zero-length methods validate non-null collections and finite nonnegative tolerances before enumeration. Null entries are ignored. Nonfinite coordinates throw `ArgumentException`; missing endpoints on a non-null beam also throw. Inputs are enumerated once and results are fully materialized before return. Enumerator exceptions propagate without returning partial results.
 
@@ -99,6 +101,14 @@ A qualifying beam joins the first created group whose fixed seed matches its cap
 
 Results are editable `List<BeamGroup<double>>` records with `Key` and independently owned editable `Beams` lists. Original beam references remain shared; later geometry edits are visible but do not recompute keys, membership or order. Manual setters store values/references without validation. Inputs are enumerated once, origin is captured once and endpoints once per occurrence. These observations do not certify 3D collinearity, native membership or engineering suitability. No grouping function mutates native or supplied geometry.
 
+`GroupBeamsByRadius(beams, origin, tolerance = 0.001)` computes XZ endpoint distances from one captured origin. Y is finite-validated but ignored. A beam qualifies when its two computed radii agree within the inclusive absolute length tolerance. Its start radius is matched to the first created fixed seed within that tolerance, otherwise a new group is created. Chords, coincident endpoints and endpoints projected at origin may qualify; no circle fit or curved-member inference is made. Radii use scaled hypotenuse arithmetic to avoid squaring overflow/underflow. Every computed radius must fit a finite Double; unrepresentable endpoint radii throw `ArgumentException` rather than create Infinity/NaN keys, including otherwise ineligible beams. Normal floating-point rounding applies.
+
+`GroupBeamsByElevation(beams, tolerance = 0.001)` uses signed endpoint Y values. A beam qualifies when their absolute difference is within tolerance, then joins the first fixed start-elevation seed within tolerance. X/Z are finite-validated but ignored. Negative elevations and coincident endpoints are valid. An opposite-sign Y difference beyond Double range cannot match a finite tolerance. This criterion alone is not a 3D horizontal-member or engineering certification.
+
+Both functions preserve public names, parameter order and defaults. Tolerance is finite nonnegative, in supplied length units, and applied inclusively to both endpoint eligibility and group membership. Zero means exact computed equality; no relative/angular tolerance or unit conversion is introduced. First seeds are never averaged or moved: grouping is order-dependent and nontransitive. Reversing endpoints can change a key within tolerance. Groups sort by ascending seed, but their beam occurrences preserve original input order and duplicates, without the plan-angle method's midpoint-distance sorting.
+
+Inputs are enumerated once, both finite initialized endpoints captured once per occurrence and every entry validated before grouping. IDs are unused; draft IDs are allowed. Missing/nonfinite geometry or enumeration errors propagate at invocation with no partial result. Origin is required and validated even for empty radius input. Result outer lists, `BeamGroup<double>` records and each beam list are independently owned and editable; original Beam references remain shared, with later edits visible but without regrouping. Empty/no eligible inputs return new empty lists. Worst-case grouping is quadratic; memory grows with input. Captures are not atomic, so callers coordinate writers and supply compatible coordinates/units.
+
 All these operations are detached and non-mutating. Captures are not atomic across simultaneous writers; coordinate/collection edits must be coordinated by the caller.
 
 ```csharp
@@ -155,6 +165,13 @@ var radialBeam = new StaadPro.Interop.Entities.Beam(new StaadPro.Interop.Entitie
 var planGroups = StaadPro.Interop.Services.BeamGroupingService.GroupBeamsByPlanAngle(
     new[] { radialBeam }, new StaadPro.Interop.Entities.Node(0, 0, 0, 0));
 System.Console.WriteLine(planGroups[0].Key); // 180: inward bearing
+var chord = new StaadPro.Interop.Entities.Beam(new StaadPro.Interop.Entities.Node(8, 3, -2, 4),
+    new StaadPro.Interop.Entities.Node(9, -3, -2, 4));
+var radiusGroups = StaadPro.Interop.Services.BeamGroupingService.GroupBeamsByRadius(
+    new[] { chord, chord }, new StaadPro.Interop.Entities.Node(0, 0, 0, 0));
+System.Console.WriteLine(radiusGroups[0].Key); // 5; XZ only
+var elevationGroups = StaadPro.Interop.Services.BeamGroupingService.GroupBeamsByElevation(new[] { chord });
+System.Console.WriteLine(elevationGroups[0].Key); // -2
 ```
 
-Offline tests cover seed/nontransitive grouping, inclusive axis/distance boundaries, exact/duplicate IDs, nulls, invalid coordinates/tolerances, missing incidence, collection ownership, one-pass enumeration, source failures, huge finite values and subnormal deltas. The installed NuGet consumer checks expanded XML, exact signatures/defaults, executes all fifteen XML examples and compiles this guide. Nearest-search tests also cover equality exclusion, endpoint-versus-segment semantics, stable ties, reference capture, full-sequence validation and randomized moderate geometry. No live STAAD operation is involved.
+Offline tests cover seed/nontransitive grouping, inclusive axis/distance boundaries, exact/duplicate IDs, nulls, invalid coordinates/tolerances, missing incidence, collection ownership, one-pass enumeration, source failures, huge finite values and subnormal deltas. The installed NuGet consumer checks expanded XML, exact signatures/defaults, executes all seventeen XML examples and compiles this guide. Nearest-search tests also cover equality exclusion, endpoint-versus-segment semantics, stable ties, reference capture, full-sequence validation and randomized moderate geometry. No live STAAD operation is involved.

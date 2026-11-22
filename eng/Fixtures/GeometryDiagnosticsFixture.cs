@@ -65,8 +65,15 @@ namespace PackageVerification
             if(neighbourMethod.ReturnType!=typeof(IEnumerable<Plate>)||!np.Select(p=>p.Name).SequenceEqual(new[]{"plate","candidatePlates"})||!np.Select(p=>p.ParameterType).SequenceEqual(new[]{typeof(Plate),typeof(IEnumerable<Plate>)})||np.Any(p=>p.IsOptional))throw new Exception("Neighbour signature changed.");
             var planMethod=typeof(BeamGroupingService).GetMethod("GroupBeamsByPlanAngle");var gp=planMethod.GetParameters();
             if(planMethod.ReturnType!=typeof(List<BeamGroup<double>>)||!gp.Select(p=>p.Name).SequenceEqual(new[]{"beams","origin","toleranceDegrees"})||!gp.Select(p=>p.ParameterType).SequenceEqual(new[]{typeof(IEnumerable<Beam>),typeof(Node),typeof(double)})||gp.Take(2).Any(p=>p.IsOptional)||!gp[2].IsOptional||!Equals(gp[2].DefaultValue,.001d))throw new Exception("Plan-angle signature/default changed.");
+            var radiusMethod=typeof(BeamGroupingService).GetMethod("GroupBeamsByRadius");
+            var elevationMethod=typeof(BeamGroupingService).GetMethod("GroupBeamsByElevation");
+            foreach(var method in new[]{radiusMethod,elevationMethod})
+            {
+                bool radius=method==radiusMethod;var parameters=method.GetParameters();
+                if(method.ReturnType!=typeof(List<BeamGroup<double>>)||!parameters.Select(p=>p.Name).SequenceEqual(radius?new[]{"beams","origin","tolerance"}:new[]{"beams","tolerance"})||!parameters.Select(p=>p.ParameterType).SequenceEqual(radius?new[]{typeof(IEnumerable<Beam>),typeof(Node),typeof(double)}:new[]{typeof(IEnumerable<Beam>),typeof(double)})||!parameters.Last().IsOptional||!Equals(parameters.Last().DefaultValue,.001d)||parameters.Take(parameters.Length-1).Any(p=>p.IsOptional))throw new Exception("Radius/elevation signature/default changed.");
+            }
             foreach(string property in new[]{"Key","Beams"}){var groupDoc=docs.Descendants("member").Single(e=>(string)e.Attribute("name")=="P:StaadPro.Interop.Models.BeamGroup`1."+property);if(groupDoc.Element("summary")==null||groupDoc.Element("value")==null)throw new Exception("Beam-group IntelliSense missing.");}
-            foreach(var method in new[]{radialMethod,boundsMethod,connectivityMethod,beamNodeMethod,memberMethod,memberNodeMethod,cornerMethod,edgesMethod,plateMethod,neighbourMethod,planMethod})
+            foreach(var method in new[]{radialMethod,boundsMethod,connectivityMethod,beamNodeMethod,memberMethod,memberNodeMethod,cornerMethod,edgesMethod,plateMethod,neighbourMethod,planMethod,radiusMethod,elevationMethod})
             {
                 string prefix="M:"+method.DeclaringType.FullName+"."+method.Name;
                 var doc=docs.Descendants("member").Single(e=>((string)e.Attribute("name")).StartsWith(prefix+"(")||((string)e.Attribute("name")).StartsWith(prefix+"``1("));
@@ -141,6 +148,14 @@ namespace PackageVerification
             if(planGroups.Count!=1||planGroups[0].Key!=180||planGroups[0].Beams.Count!=3||!ReferenceEquals(planGroups[0].Beams[0],planNear)||!ReferenceEquals(planGroups[0].Beams[2],planFar))throw new Exception("Inward bearing/midpoint ordering changed.");
             planNear.StartNode.Z=8;if(planGroups[0].Key!=180||!ReferenceEquals(planGroups[0].Beams[0],planNear))throw new Exception("Plan grouping became deferred.");
             if(BeamGroupingService.GroupBeamsByPlanAngle(new[]{new Beam(new Node(0,0,0,0),new Node(1,1,0,0))},new Node(0,0,0,0)).Any())throw new Exception("Undefined origin bearing was grouped.");
+            var chord=new Beam(new Node(1,3,50,4),new Node(2,-3,-50,4));
+            var radiusGroups=BeamGroupingService.GroupBeamsByRadius(new[]{chord,chord},new Node(0,0,100,0));
+            if(radiusGroups.Count!=1||radiusGroups[0].Key!=5||radiusGroups[0].Beams.Count!=2||!ReferenceEquals(radiusGroups[0].Beams[1],chord))throw new Exception("XZ radius/group occurrence semantics changed.");
+            var low=new Beam(new Node(1,0,-2,0),new Node(2,8,-2,9));var high=new Beam(new Node(3,0,3,0),new Node(4,8,3,9));
+            var elevationGroups=BeamGroupingService.GroupBeamsByElevation(new[]{high,low,low});
+            if(elevationGroups.Count!=2||elevationGroups[0].Key!=-2||elevationGroups[0].Beams.Count!=2||!ReferenceEquals(elevationGroups[1].Beams[0],high))throw new Exception("Signed elevation/stable grouping changed.");
+            chord.StartNode.X=100;if(radiusGroups[0].Key!=5||radiusGroups[0].Beams.Count!=2)throw new Exception("Radius membership became deferred.");
+            bool unrepresentable=false;try{BeamGroupingService.GroupBeamsByRadius(new[]{new Beam(new Node(1,double.MaxValue,0,double.MaxValue),new Node(2,1,0,0))},new Node(0,0,0,0));}catch(ArgumentException){unrepresentable=true;}if(!unrepresentable)throw new Exception("Unrepresentable radius was accepted.");
             var a=new Node(1,0,0,0);var b=new Node(2,.00001,0,0);var groups=new[]{a,b}.GetDuplicateNodes().Single();
             b.X=100;if(groups.Count()!=2||!ReferenceEquals(groups.Last(),b))throw new Exception("Diagnostic membership is deferred or identity was lost.");
             bool immutable=false;try{((IList<Node>)groups).Clear();}catch(NotSupportedException){immutable=true;}if(!immutable)throw new Exception("Diagnostic group is mutable.");
