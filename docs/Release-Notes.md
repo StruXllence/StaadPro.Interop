@@ -1,5 +1,15 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261123.1 - 23 November 2026
+
+Added `GetNodesFromBeams(this IEnumerable<Beam> beams)` and `GetNodesFromPlates(this IEnumerable<Plate> plates)` in `GeometryDiagnosticsExtensions` with complete XML IntelliSense. See [node extraction contracts and examples](Geometry-Diagnostics.md).
+
+Both methods preserve source node-ID-only first-reference retention and return owned editable `List<Node>` storage in first-encounter order. Beam traversal visits StartNode then EndNode; plate traversal visits raw A-B-C-D slots, skipping missing corners. Different IDs remain distinct even at coincident coordinates, and same-ID nodes retain the first reference even when coordinates differ. Draft IDs are accepted, while coordinates, entity equality and geometry tolerances are unused.
+
+Input sequences are enumerated once, references/IDs captured per occurrence, and results materialized before return. Missing beam endpoints/null entities produce explicit argument failures, while sparse/empty plates are supported. Enumerator failures expose no partial result. Original nodes remain shared; later ID edits do not rededuplicate results. No STAAD query, hydration or model mutation is introduced.
+
+Release build passed with zero warnings/errors. Passed 7,595 offline tests including 27 new regression cases. Exact installed-package checks verify signatures, extension contracts, first-reference ownership and expanded XML, execute twenty-one geometry examples and 1,349 selected XML examples overall, compile packaged guides and verify isolated archive restore/build/runtime. These detached helpers perform no live STAAD operation.
+
 ## 1.0.0-preview.20261123 - 23 November 2026
 
 Ported `BeamGroupingService.GetUnwrappedAngles(nodes, origin)` and the detached `GetBeamsWithNoGroupAssignment(beamsCollection, groups)` extension with full XML IntelliSense and [consumer examples](Geometry-Diagnostics.md).

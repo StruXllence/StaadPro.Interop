@@ -26,7 +26,9 @@ code-insiders --install-extension StruXllence.struxllence-themes
 
 After installation, run **Preferences: Color Theme** and select **StruXllence Dark** or **StruXllence Light**. See the [theme previews and icon setup](https://github.com/StruXllence/struxllence-themes). The editor theme is optional and is installed separately from the NuGet library.
 
-## Version 1.0.0-preview.20261123
+## Version 1.0.0-preview.20261123.1
+
+Added `GetNodesFromBeams(beams)` and `GetNodesFromPlates(plates)` in `GeometryDiagnosticsExtensions` with full XML IntelliSense. Extraction preserves first-encounter order and first supplied node references per captured ID, with owned editable lists and sparse plate slots. Coordinates are unused metadata; these methods do not hydrate or query the native model. See [node extraction contracts](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md).
 
 Ported `GetUnwrappedAngles(nodes, origin)` and detached `GetBeamsWithNoGroupAssignment(beamsCollection, groups)` with complete XML IntelliSense. Angle results use immutable named `UnwrappedNodeAngle` records in outward XZ radians; group filtering captures analytical IDs and returns owned, read-only results without native queries. See [geometry diagnostics](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md) for seam/order, equality and snapshot behavior.
 

@@ -398,6 +398,111 @@ namespace StaadPro.Interop.Extensions
             return new ReadOnlyCollection<Beam>(result);
         }
 
+        /// <summary>Extracts the first supplied node reference for each captured node ID from beam endpoints.</summary>
+        /// <param name="beams">Non-null supplied beam sequence, enumerated once. Every entry must be non-null with
+        /// initialized StartNode and EndNode references. Beam IDs and all coordinates are unused.</param>
+        /// <returns>A new editable List of Node containing original references in first-encounter order: beam input
+        /// order, then StartNode before EndNode. Duplicate captured node IDs retain only the first reference, even
+        /// when later nodes with that ID have different coordinates. Empty input yields a new empty list.</returns>
+        /// <remarks><para>Preserves the source node-ID dictionary semantics. Every Int32 ID is accepted, including
+        /// zero/negative draft values. Different IDs remain distinct even at coincident coordinates. No Node equality,
+        /// coordinate tolerance, geometry validation or node cloning participates. Nonfinite coordinates are retained
+        /// as unused metadata rather than interpreted as valid geometry. This identifies supplied IDs only.</para>
+        /// <para>Captures both endpoint references once per beam occurrence and each visited node ID once; first
+        /// occurrences establish immutable deduplication keys for this call. Repeated beam occurrences are visited
+        /// normally. The entire sequence is consumed before return, so later null endpoints or enumerator failures
+        /// propagate at invocation and expose no partial list. Both endpoints are required even after earlier IDs match.</para>
+        /// <para>The result owns its editable list storage, but node objects remain shared. Later input/list/ID edits
+        /// do not rerun extraction; visible result IDs may cease to be unique. Concurrent or enumerator-driven ID
+        /// changes can cause the same object to appear under different captured IDs; observations are not atomic.
+        /// Callers must coordinate geometry and ID edits. Expected time is linear in endpoint
+        /// occurrences with storage proportional to distinct captured IDs.</para>
+        /// <para>Does not acquire STAAD, hydrate incidence, query connectivity, merge/renumber nodes, convert units,
+        /// select, save, analyze or mutate supplied/native data. No native membership or engineering suitability is certified.</para></remarks>
+        /// <exception cref="ArgumentNullException">beams is null.</exception>
+        /// <exception cref="ArgumentException">A beam entry or either endpoint is null.</exception>
+        /// <example><code>
+        /// var first = new StaadPro.Interop.Entities.Node(1, 0, 0, 0);
+        /// var duplicateId = new StaadPro.Interop.Entities.Node(1, 99, 0, 0);
+        /// var other = new StaadPro.Interop.Entities.Node(2, 0, 0, 0);
+        /// var beam = new StaadPro.Interop.Entities.Beam(first, other);
+        /// var repeated = new StaadPro.Interop.Entities.Beam(duplicateId, first);
+        /// var nodes = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.GetNodesFromBeams(new[] { beam, repeated });
+        /// System.Console.WriteLine(nodes.Count); // 2: node IDs 1, 2
+        /// System.Console.WriteLine(System.Object.ReferenceEquals(nodes[0], first)); // True
+        /// </code></example>
+        public static List<Node> GetNodesFromBeams(this IEnumerable<Beam> beams)
+        {
+            if (beams == null) throw new ArgumentNullException(nameof(beams));
+            var ids = new HashSet<int>();
+            var result = new List<Node>();
+            foreach (Beam beam in beams)
+            {
+                if (ReferenceEquals(beam, null)) throw new ArgumentException("A beam entry is missing.", nameof(beams));
+                Node start = beam.StartNode, end = beam.EndNode;
+                if (ReferenceEquals(start, null) || ReferenceEquals(end, null))
+                    throw new ArgumentException("Both beam endpoints must be initialized.", nameof(beams));
+                AddExtractedNode(start, ids, result);
+                AddExtractedNode(end, ids, result);
+            }
+            return result;
+        }
+
+        /// <summary>Extracts the first supplied node reference for each captured ID from plate corner slots.</summary>
+        /// <param name="plates">Non-null plate sequence, enumerated once. Every plate entry must be non-null.
+        /// A/B/C/D slots may be null anywhere; only present corner references and their IDs are inspected.</param>
+        /// <returns>A new editable List of Node containing original references in first-encounter order: plate input
+        /// order, then A,B,C,D slot order. Null slots are skipped. The first node per captured Int32 ID is retained;
+        /// repeated closing corners and later same-ID nodes are omitted. Empty/all-empty plates yield a new empty list.</returns>
+        /// <remarks><para>Preserves source GetNodesFromPlates/GetNodes ID-only extraction, visiting raw A/B/C/D slots
+        /// rather than a tolerance-deduplicated corner loop. All present IDs, including zero/negative draft IDs, are
+        /// accepted. Same-ID corners with different coordinates keep the first reference, while different IDs at the
+        /// same position remain distinct. Node/Plate equality, coordinate tolerances and plate geometry are unused;
+        /// even nonfinite coordinates remain literal unvalidated metadata.</para>
+        /// <para>Captures A/B/C/D references once per occurrence before visiting them and each present node ID once.
+        /// Sparse/collapsed/triangular loops and completely empty plates are permitted; no area, winding, closure,
+        /// planarity, incidence or connectivity check is inferred. Does not query the native model for missing slots.
+        /// Enumeration or null-plate failures propagate at invocation with no partial list returned.</para>
+        /// <para>Owns mutable list storage and retains shared Node objects. Later slot/collection edits do not change
+        /// membership or order, but retained nodes' later edits remain visible without rededuplication. Visible IDs
+        /// may no longer be unique; a changing object may appear twice under different captured IDs. Capture is not
+        /// atomic; callers coordinate writers. Expected time is linear in visited corner slots, with storage proportional
+        /// to distinct captured IDs.</para>
+        /// <para>No STAAD acquisition, hydration, node merge/renumbering, unit conversion, selection, analysis, save or
+        /// supplied/native mutation occurs. Extracted metadata does not certify native membership or engineering suitability.</para></remarks>
+        /// <exception cref="ArgumentNullException">plates is null.</exception>
+        /// <exception cref="ArgumentException">A plate entry is null. Missing corner slots are permitted and skipped.</exception>
+        /// <example><code>
+        /// var first = new StaadPro.Interop.Entities.Node(1, 0, 0, 0);
+        /// var other = new StaadPro.Interop.Entities.Node(2, 0, 0, 0);
+        /// var plate = new StaadPro.Interop.Entities.Plate(first, null, other, first);
+        /// var nodes = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.GetNodesFromPlates(new[] { plate, plate });
+        /// System.Console.WriteLine(nodes.Count); // 2: sparse slots and duplicate IDs are handled
+        /// System.Console.WriteLine(System.Object.ReferenceEquals(nodes[0], first)); // True
+        /// </code></example>
+        public static List<Node> GetNodesFromPlates(this IEnumerable<Plate> plates)
+        {
+            if (plates == null) throw new ArgumentNullException(nameof(plates));
+            var ids = new HashSet<int>();
+            var result = new List<Node>();
+            foreach (Plate plate in plates)
+            {
+                if (ReferenceEquals(plate, null)) throw new ArgumentException("A plate entry is missing.", nameof(plates));
+                Node a = plate.A, b = plate.B, c = plate.C, d = plate.D;
+                if (!ReferenceEquals(a, null)) AddExtractedNode(a, ids, result);
+                if (!ReferenceEquals(b, null)) AddExtractedNode(b, ids, result);
+                if (!ReferenceEquals(c, null)) AddExtractedNode(c, ids, result);
+                if (!ReferenceEquals(d, null)) AddExtractedNode(d, ids, result);
+            }
+            return result;
+        }
+
+        private static void AddExtractedNode(Node node, HashSet<int> ids, List<Node> result)
+        {
+            int id = node.Id;
+            if (ids.Add(id)) result.Add(node);
+        }
+
         private static double Midpoint(double a, double b)
         {
             double sum = a + b;

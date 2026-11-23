@@ -42,11 +42,11 @@ Use `GetBeamsWithinRadius(...)`, `GetBoundingBox(...)` and `IsConnectedToBeam(..
 
 Runtime requires **Windows, .NET Framework 4.8.1 (net481), and a licensed STAAD.Pro installation** exposing the APIs used by your application. The .NET SDK used to build the project is separate from the application's target framework.
 
-The latest locally prepared preview is **1.0.0-preview.20261123**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
+The latest locally prepared preview is **1.0.0-preview.20261123.1**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
 
-## Latest preview — 1.0.0-preview.20261123
+## Latest preview — 1.0.0-preview.20261123.1
 
-Added `BeamGroupingService.GroupBeamsByRadius` and `BeamGroupingService.GroupBeamsByElevation` with comprehensive XML IntelliSense. Radius groups compare captured XZ endpoint distances; elevation groups compare captured signed Y values. Both preserve inclusive length tolerances, fixed first seeds, ascending keys and ordered duplicate beam occurrences in independently owned editable lists. See [detached geometry contracts and examples](docs/Geometry-Diagnostics.md).
+Added `GetNodesFromBeams(beams)` and `GetNodesFromPlates(plates)` with comprehensive XML IntelliSense. Both extract the first supplied node reference per captured ID into owned editable lists, preserving beam start/end and plate A-B-C-D encounter order. Plate extraction permits sparse corner slots; both methods use node IDs without coordinate equality or native queries. See [detached geometry contracts and examples](docs/Geometry-Diagnostics.md).
 
 ## Quick start: read an open model
 

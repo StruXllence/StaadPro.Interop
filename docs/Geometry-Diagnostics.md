@@ -1,6 +1,6 @@
 # Detached geometry diagnostics
 
-`GeometryDiagnosticsExtensions` provides six collection extensions in `StaadPro.Interop.Extensions`. They inspect supplied entities without acquiring STAAD, hydrating geometry, changing selections or repairing the model. Coordinate values and tolerance must use the same model length units.
+`GeometryDiagnosticsExtensions` provides detached collection extensions in `StaadPro.Interop.Extensions`. They inspect supplied entities without acquiring STAAD, hydrating geometry, changing selections or repairing the model. Coordinate values and tolerance must use the same model length units.
 
 Related beam/node and physical-member connectivity extensions use selected node identity and coordinates. `PlateExtensions.GetCornerLoop` extracts ordered distinct supplied plate corners.
 
@@ -12,6 +12,8 @@ Related beam/node and physical-member connectivity extensions use selected node 
 | `GetClosestBeam(beamsCollection, referenceNode)` | Beam with the nearer endpoint closest to the reference. |
 | `GetBeamsWithinRadius(beamsCollection, minRadius, maxRadius, centre = null)` | Materialized radial band filter over beam midpoints in the XZ plane. |
 | `GetBoundingBox<T>(source)` | Immutable named axis-aligned bounds of Node, Beam or Plate collections. |
+| `GetNodesFromBeams(beams)` | First supplied endpoint reference per captured node ID, in beam/start/end encounter order. |
+| `GetNodesFromPlates(plates)` | First supplied corner reference per captured node ID, in plate/A-B-C-D order, skipping null slots. |
 | `beam.IsConnectedToBeam(targetBeam)` | Endpoint pair with the same node ID and Euclidean separation at most 0.001. |
 | `beam.IsConnectedToNode(node)` | Supplied node equivalent to either beam endpoint by ID and distance. |
 | `member.IsConnectedToMember(targetMember, scope = EndpointsOnly)` | Equivalent node pair from both members' selected endpoints or supplied Nodes collections. |
@@ -108,6 +110,18 @@ Results are editable `List<BeamGroup<double>>` records with `Key` and independen
 Both functions preserve public names, parameter order and defaults. Tolerance is finite nonnegative, in supplied length units, and applied inclusively to both endpoint eligibility and group membership. Zero means exact computed equality; no relative/angular tolerance or unit conversion is introduced. First seeds are never averaged or moved: grouping is order-dependent and nontransitive. Reversing endpoints can change a key within tolerance. Groups sort by ascending seed, but their beam occurrences preserve original input order and duplicates, without the plan-angle method's midpoint-distance sorting.
 
 Inputs are enumerated once, both finite initialized endpoints captured once per occurrence and every entry validated before grouping. IDs are unused; draft IDs are allowed. Missing/nonfinite geometry or enumeration errors propagate at invocation with no partial result. Origin is required and validated even for empty radius input. Result outer lists, `BeamGroup<double>` records and each beam list are independently owned and editable; original Beam references remain shared, with later edits visible but without regrouping. Empty/no eligible inputs return new empty lists. Worst-case grouping is quadratic; memory grows with input. Captures are not atomic, so callers coordinate writers and supply compatible coordinates/units.
+
+## Node extraction by supplied ID
+
+`GeometryDiagnosticsExtensions.GetNodesFromBeams(beams)` returns a `List<Node>` visiting beams in input order and each beam's StartNode then EndNode. Both endpoints must be initialized and every beam entry non-null; later missing entries fail even after their apparent IDs were seen earlier. The first visited node for each captured ID is retained.
+
+`GeometryDiagnosticsExtensions.GetNodesFromPlates(plates)` visits each non-null plate's raw A-B-C-D slots in input order, skipping null corners anywhere. Sparse/collapsed/triangular and completely empty plates are allowed. It uses raw slots, not `GetCornerLoop`'s tolerance-based representative selection. A repeated closing corner or any later same-ID node keeps the first supplied node reference.
+
+Both helpers use **node ID only**. Same-ID nodes with conflicting coordinates deliberately keep the first; different IDs at the same coordinates remain distinct. All Int32 IDs, including zero/negative draft IDs, are accepted. Node equality, mutable Node hashing, distance tolerances and coordinates are unused. Nonfinite coordinate values are retained as unvalidated metadata, so extraction does not imply valid geometry. Beam/plate IDs are unused, and no native incidence is queried.
+
+Each input is enumerated once and the result fully materialized before return. Endpoint/corner references are captured once per entity occurrence and each visited ID once. An owned editable result list preserves first-encounter order without relying on dictionary enumeration order. Enumerator failures propagate unchanged, and null entities/missing beam endpoints produce explicit argument errors without a partial result.
+
+Original Node objects remain shared. Later collection/slot edits do not change result membership, while later node/ID edits remain visible without rededuplication. Visible IDs may no longer be unique. If a shared node changes ID between occurrences, the same object can be retained under different captured keys. Captures are not atomic; callers coordinate writers. Expected time is linear in endpoint/corner occurrences and storage proportional to distinct captured IDs. No model access, hydration, merge, renumbering, conversion, selection, analysis or mutation occurs.
 
 All these operations are detached and non-mutating. Captures are not atomic across simultaneous writers; coordinate/collection edits must be coordinated by the caller.
 
@@ -214,6 +228,10 @@ var candidates = new[] { new StaadPro.Interop.Entities.Beam { Id = 101 },
 var notInSuppliedGroups = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.GetBeamsWithNoGroupAssignment(
     candidates, new[] { assigned });
 System.Console.WriteLine(notInSuppliedGroups.Count());
+
+var extractedBeamNodes = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.GetNodesFromBeams(beams);
+var extractedPlateNodes = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.GetNodesFromPlates(new[] { plate, neighbour });
+System.Console.WriteLine(extractedBeamNodes.Count + ": " + extractedPlateNodes.Count);
 ```
 
-Offline tests cover seed/nontransitive grouping, inclusive axis/distance boundaries, exact/duplicate IDs, nulls, invalid coordinates/tolerances, missing incidence, collection ownership, one-pass enumeration, source failures, huge finite values and subnormal deltas. The installed NuGet consumer checks expanded XML, exact signatures/defaults, executes all nineteen XML examples and compiles this guide. Nearest-search tests also cover equality exclusion, endpoint-versus-segment semantics, stable ties, reference capture, full-sequence validation and randomized moderate geometry. No live STAAD operation is involved.
+Offline tests cover seed/nontransitive grouping, inclusive axis/distance boundaries, exact/duplicate IDs, nulls, invalid coordinates/tolerances, missing incidence, collection ownership, one-pass enumeration, source failures, huge finite values and subnormal deltas. The installed NuGet consumer checks expanded XML, exact signatures/defaults, executes all twenty-one XML examples and compiles this guide. Nearest-search tests also cover equality exclusion, endpoint-versus-segment semantics, stable ties, reference capture, full-sequence validation and randomized moderate geometry. No live STAAD operation is involved.
