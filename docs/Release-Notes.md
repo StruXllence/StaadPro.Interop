@@ -1,5 +1,17 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261123 - 23 November 2026
+
+Ported `BeamGroupingService.GetUnwrappedAngles(nodes, origin)` and the detached `GetBeamsWithNoGroupAssignment(beamsCollection, groups)` extension with full XML IntelliSense and [consumer examples](Geometry-Diagnostics.md).
+
+Unwrapped angles retain the outward XZ-radian convention, stable normalized ordering and strict π suffix adjustments without a final re-sort. Replaced positional tuples with immutable named `UnwrappedNodeAngle` records. Captured and qualified finite coordinates once, including origin-before-enumeration capture and overflow-aware direction arithmetic.
+
+Detached group filtering uses captured beam IDs, preserving source identifier membership independently of endpoint geometry or mutable hash buckets. It reads supplied groups and candidate beams once, preserves unassigned order/repetitions and returns read-only materialized storage. Null/malformed inputs and enumeration failures remain explicit; no native query, assignment hydration or entity mutation is performed.
+
+Passed a zero-warning Release build and **7,568 offline tests**, including **17 new cases**. Installed-package checks verify signatures, the immutable named result and expanded XML, execute **1,347 selected XML examples** including nineteen geometry examples, and compile the consumer guides. No new native or engineering qualification was performed.
+
+
+
 ## 1.0.0-preview.20261122 - 22 November 2026
 
 Added `BeamGroupingService.GroupBeamsByRadius(IEnumerable<Beam> beams, Node origin, double tolerance = 0.001)` and `BeamGroupingService.GroupBeamsByElevation(IEnumerable<Beam> beams, double tolerance = 0.001)` with complete XML IntelliSense. See [detached geometry contracts and examples](Geometry-Diagnostics.md).

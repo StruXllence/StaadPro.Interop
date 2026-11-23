@@ -111,6 +111,33 @@ Inputs are enumerated once, both finite initialized endpoints captured once per 
 
 All these operations are detached and non-mutating. Captures are not atomic across simultaneous writers; coordinate/collection edits must be coordinated by the caller.
 
+
+## Unwrapped node angles
+
+`BeamGroupingService.GetUnwrappedAngles(nodes, origin)` returns a `List<UnwrappedNodeAngle>`. Each immutable named record contains the original `Node` reference and `AngleInRadians`; no tuple or positional Item fields are required. The outer list remains editable and owns its storage. Later node edits do not recompute captured angles.
+
+The angle is **outward** from the origin toward the node in the **XZ plane**, using atan2(node.Z-origin.Z, node.X-origin.X) in **radians**. This differs from `GroupBeamsByPlanAngle`, which uses inward endpoint-to-origin bearings in degrees. Y must be finite but does not change the angle. IDs are unused; repeated nodes and equal bearings remain separate, with stable input ordering for ties.
+
+Negative bearings first receive a full turn (2π), then the normalized values are sorted. Consecutive gaps strictly greater than π shift the entire remaining suffix by a full turn, following the source convention. There is no tolerance, closing last-to-first comparison, optimal-seam choice, original-path traversal or final re-sort.
+
+For example, nodes initially at 10° and 350° are returned in that initial normalized sort order, with captured radians equivalent to +10° and -10°. The returned values need not be ascending and are not guaranteed to lie in [-π,π]. An exact π gap is left unchanged. Tiny negative angles may round to exactly 2π during normalization.
+
+Coincident XZ points are retained with `Math.Atan2` zero/signed-zero behavior; this does not supply a physically meaningful direction. Origin coordinates are captured before enumeration. Every node must be non-null and finite on all axes, even unused Y. Empty input returns a fresh empty list. Input is enumerated once; malformed later nodes or a failing enumerator throw without a partial list.
+
+When finite coordinate subtraction overflows, both X/Z differences are halved before atan2 to preserve direction. Ordinary floating-point angle/rounding limits remain. Data must share compatible coordinates/units and concurrent writers must be coordinated; captures are not atomic. No native call, unit conversion, selection, geometry hydration or mutation occurs.
+
+## Detached ungrouped-beam filtering
+
+`GeometryDiagnosticsExtensions.GetBeamsWithNoGroupAssignment(beamsCollection, groups)` checks only the supplied managed groups. It differs from the live Geometry adapter's same-named query: it does not retrieve all model groups or verify native assignments. Omitted group data can make a beam appear unassigned relative to the supplied collections.
+
+Membership compares **captured analytical beam IDs only**, matching the main source helper's identity. A different beam object with the same ID counts as assigned even if endpoints differ or are absent. This deliberately differs from the package's geometry-sensitive `Beam.Equals`. No coordinates, group names or entity-family properties are read. Draft zero/negative IDs participate; supply groups and beams from a compatible model context to avoid cross-model ID collisions.
+
+The non-null group sequence is enumerated once first. Null groups and null entity entries are skipped. Every non-null group must have an initialized `Entities` set; a null set throws even when the beam sequence is empty. Grouped IDs are snapshotted without relying on potentially stale hash buckets of mutable beam objects.
+
+The non-null candidate beam sequence is then enumerated once. Null beams are skipped; unassigned input order, repetitions and original references are retained in owned **read-only, eagerly materialized** storage. Unlike a deferred filter, later collection or ID edits do not change result membership. Objects remain mutable, and concurrent edits must be coordinated. Enumerator/validation failures propagate without returning a partial result.
+
+This is a detached collection filter, not validation of group completeness, model membership or engineering suitability. It performs no acquisition, native query, selection, conversion, analysis, save or group/entity edits.
+
 ```csharp
 var nodes = new[]
 {
@@ -172,6 +199,21 @@ var radiusGroups = StaadPro.Interop.Services.BeamGroupingService.GroupBeamsByRad
 System.Console.WriteLine(radiusGroups[0].Key); // 5; XZ only
 var elevationGroups = StaadPro.Interop.Services.BeamGroupingService.GroupBeamsByElevation(new[] { chord });
 System.Console.WriteLine(elevationGroups[0].Key); // -2
+
+var outward = StaadPro.Interop.Services.BeamGroupingService.GetUnwrappedAngles(
+    new[] { new StaadPro.Interop.Entities.Node(10, 1, 0, 1),
+        new StaadPro.Interop.Entities.Node(11, 1, 0, -1) },
+    new StaadPro.Interop.Entities.Node(0, 0, 0, 0));
+foreach (var observation in outward)
+    System.Console.WriteLine(observation.Node.Id + ": " + observation.AngleInRadians);
+
+var assigned = new StaadPro.Interop.Entities.EntityGroup<StaadPro.Interop.Entities.Beam>();
+assigned.Entities.Add(new StaadPro.Interop.Entities.Beam { Id = 101 });
+var candidates = new[] { new StaadPro.Interop.Entities.Beam { Id = 101 },
+    new StaadPro.Interop.Entities.Beam { Id = 102 } };
+var notInSuppliedGroups = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.GetBeamsWithNoGroupAssignment(
+    candidates, new[] { assigned });
+System.Console.WriteLine(notInSuppliedGroups.Count());
 ```
 
-Offline tests cover seed/nontransitive grouping, inclusive axis/distance boundaries, exact/duplicate IDs, nulls, invalid coordinates/tolerances, missing incidence, collection ownership, one-pass enumeration, source failures, huge finite values and subnormal deltas. The installed NuGet consumer checks expanded XML, exact signatures/defaults, executes all seventeen XML examples and compiles this guide. Nearest-search tests also cover equality exclusion, endpoint-versus-segment semantics, stable ties, reference capture, full-sequence validation and randomized moderate geometry. No live STAAD operation is involved.
+Offline tests cover seed/nontransitive grouping, inclusive axis/distance boundaries, exact/duplicate IDs, nulls, invalid coordinates/tolerances, missing incidence, collection ownership, one-pass enumeration, source failures, huge finite values and subnormal deltas. The installed NuGet consumer checks expanded XML, exact signatures/defaults, executes all nineteen XML examples and compiles this guide. Nearest-search tests also cover equality exclusion, endpoint-versus-segment semantics, stable ties, reference capture, full-sequence validation and randomized moderate geometry. No live STAAD operation is involved.

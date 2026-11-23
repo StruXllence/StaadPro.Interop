@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using StaadPro.Interop.Entities;
 using StaadPro.Interop.Models;
+using StaadPro.Interop.Models.Geometry;
 using StaadPro.Interop.Services.Geometry.Detached;
 
 namespace StaadPro.Interop.Services
@@ -208,6 +209,69 @@ namespace StaadPro.Interop.Services
                 group.Beams.Add(item.Beam);
             }
             return groups.OrderBy(g => g.Key).ToList();
+        }
+
+
+        /// <summary>Captures outward XZ node angles, sorts their normalized bearings and unwraps large consecutive gaps.</summary>
+        /// <param name="nodes">Non-null sequence of non-null nodes with finite X/Y/Z coordinates, enumerated once.
+        /// Repeated nodes/IDs remain separate occurrences; IDs are not used for sorting or filtering.</param>
+        /// <param name="origin">Non-null finite reference point, captured before enumeration. X/Z define outward
+        /// angles; Y is validated but otherwise unused. Supply compatible coordinates and length units.</param>
+        /// <returns>A fresh editable List of immutable UnwrappedNodeAngle records holding original node references
+        /// and captured angles in radians. Empty input returns a fresh empty list; equal normalized bearings retain
+        /// input order. No tuple is exposed. Later entity/collection edits do not recompute angles or ordering.</returns>
+        /// <remarks><para>Computes atan2(node.Z-origin.Z, node.X-origin.X), measured from +X toward +Z in the XZ plane.
+        /// Adds 2*pi to negative values, then stably sorts these normalized angles. Unlike GroupBeamsByPlanAngle,
+        /// this is an outward origin-to-node bearing in RADIANS, not an inward endpoint-to-origin key in degrees.
+        /// Coincident XZ points are retained using Math.Atan2's zero/signed-zero convention; this does not infer
+        /// a geometrically defined direction. Tiny negative angles can round to 2*pi during normalization.</para>
+        /// <para>Scans consecutive sorted entries. If current minus previous exceeds pi, subtracts 2*pi from that
+        /// entry and every following angle; if previous minus current exceeds pi, adds 2*pi to that suffix.
+        /// The pi comparison is strict, with no tolerance. Does not inspect the closing last-to-first gap,
+        /// choose an optimal seam, unwrap in original traversal order or sort again after adjustment.
+        /// For bearings 10 and 350 degrees, result order remains the 10-degree node followed by the
+        /// 350-degree node, with angles equivalent to +10 and -10 degrees expressed in radians.</para>
+        /// <para>All coordinates are captured/validated and no partial result escapes on invalid geometry or
+        /// enumeration failure. Uses halved finite coordinate differences when direct subtraction overflows;
+        /// ordinary Double angle/rounding limits remain. Captures are not atomic across concurrent writers.
+        /// Returned list owns its storage; immutable records retain mutable original nodes. No unit conversion,
+        /// geometry hydration, grouping, native acquisition/selection, analysis or model mutation occurs.</para></remarks>
+        /// <exception cref="ArgumentNullException">nodes or origin is null.</exception>
+        /// <exception cref="ArgumentException">A node is null or any supplied coordinate is NaN or infinite.</exception>
+        /// <example><code>
+        /// var origin = new StaadPro.Interop.Entities.Node(0, 0, 0, 0);
+        /// var nodes = new[] { new StaadPro.Interop.Entities.Node(1, 1, 0, 1),
+        ///     new StaadPro.Interop.Entities.Node(2, 1, 0, -1) };
+        /// var angles = StaadPro.Interop.Services.BeamGroupingService.GetUnwrappedAngles(nodes, origin);
+        /// foreach (var angle in angles) System.Console.WriteLine(angle.Node.Id + ": " + angle.AngleInRadians);
+        /// </code></example>
+        public static List<UnwrappedNodeAngle> GetUnwrappedAngles(IEnumerable<Node> nodes, Node origin)
+        {
+            if (nodes == null) throw new ArgumentNullException(nameof(nodes));
+            if (ReferenceEquals(origin, null)) throw new ArgumentNullException(nameof(origin));
+            var centre = new GeometryConnectivityService.NodeSnapshot(origin, nameof(origin));
+            var captured = new List<UnwrappedNodeAngle>();
+            foreach (Node node in nodes)
+            {
+                var point = new GeometryConnectivityService.NodeSnapshot(node, nameof(nodes));
+                double x = point.X - centre.X, z = point.Z - centre.Z;
+                if (double.IsInfinity(x) || double.IsInfinity(z))
+                { x = point.X / 2 - centre.X / 2; z = point.Z / 2 - centre.Z / 2; }
+                double theta = Math.Atan2(z, x);
+                if (theta < 0) theta += 2 * Math.PI;
+                captured.Add(new UnwrappedNodeAngle(node, theta));
+            }
+            var result = captured.OrderBy(a => a.AngleInRadians).ToList();
+            for (int i = 1; i < result.Count; i++)
+            {
+                double previous = result[i - 1].AngleInRadians, current = result[i].AngleInRadians;
+                double turn = current - previous > Math.PI ? -2 * Math.PI :
+                    previous - current > Math.PI ? 2 * Math.PI : 0;
+                if (turn == 0) continue;
+                for (int j = i; j < result.Count; j++)
+                    result[j] = new UnwrappedNodeAngle(result[j].Node, result[j].AngleInRadians + turn);
+            }
+            return result;
         }
 
         private sealed class Group

@@ -42,9 +42,9 @@ Use `GetBeamsWithinRadius(...)`, `GetBoundingBox(...)` and `IsConnectedToBeam(..
 
 Runtime requires **Windows, .NET Framework 4.8.1 (net481), and a licensed STAAD.Pro installation** exposing the APIs used by your application. The .NET SDK used to build the project is separate from the application's target framework.
 
-The latest locally prepared preview is **1.0.0-preview.20261122**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
+The latest locally prepared preview is **1.0.0-preview.20261123**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
 
-## Latest preview — 1.0.0-preview.20261122
+## Latest preview — 1.0.0-preview.20261123
 
 Added `BeamGroupingService.GroupBeamsByRadius` and `BeamGroupingService.GroupBeamsByElevation` with comprehensive XML IntelliSense. Radius groups compare captured XZ endpoint distances; elevation groups compare captured signed Y values. Both preserve inclusive length tolerances, fixed first seeds, ascending keys and ordered duplicate beam occurrences in independently owned editable lists. See [detached geometry contracts and examples](docs/Geometry-Diagnostics.md).
 
@@ -116,3 +116,5 @@ Use the [primary forum](https://forum.struxllence.com) for engineering discussio
 ## Independence and trademarks
 
 StaadPro.Interop is independent and is not affiliated with, sponsored by, endorsed by or officially supported by Bentley Systems, Incorporated or its subsidiaries or affiliates. Bentley, STAAD, STAAD.Pro and OpenSTAAD are trademarks or registered trademarks of their respective owners. Names identify interoperability and do not imply endorsement. A separately licensed STAAD.Pro installation is required; see [NOTICE](NOTICE.md).
+
+Ported `GetUnwrappedAngles(nodes, origin)` and detached `GetBeamsWithNoGroupAssignment(beamsCollection, groups)` with complete XML IntelliSense. Angle results use immutable named `UnwrappedNodeAngle` records in outward XZ radians; group filtering captures analytical IDs and returns owned, read-only results without native queries. See [geometry diagnostics](docs/Geometry-Diagnostics.md) for seam/order, equality and snapshot behavior.

@@ -340,6 +340,64 @@ namespace StaadPro.Interop.Extensions
             return new AxisAlignedBounds(xMin, xMax, yMin, yMax, zMin, zMax);
         }
 
+
+        /// <summary>Filters supplied beams whose analytical ID occurs in none of the supplied groups.</summary>
+        /// <param name="beamsCollection">Non-null sequence enumerated once after group membership is captured.
+        /// Null beams are skipped. Order, repeated occurrences and original non-null beam references are retained.</param>
+        /// <param name="groups">Non-null sequence enumerated once. Null groups and null entity entries are skipped;
+        /// each non-null group's Entities set must be initialized. Names/families and geometry are not read.</param>
+        /// <returns>An owned, read-only, eagerly materialized collection of original beams with no supplied
+        /// group membership by captured Id. An empty or entirely grouped beam sequence returns an empty collection.</returns>
+        /// <remarks><para>Checks only the supplied group data, not all groups in a live STAAD model. Unlike
+        /// wrapper.Geometry.GetBeamsWithNoGroupAssignment, this detached overload performs no native call,
+        /// model inventory, assignment hydration or selection. Missing groups in the input can make a grouped
+        /// model beam appear unassigned; the result describes only these supplied collections.</para>
+        /// <para>Membership uses analytical beam Id ONLY, matching the source helper's identifier identity.
+        /// A distinct beam object with the same number is grouped even if endpoints differ or are absent.
+        /// Does not use this assembly's geometry-sensitive Beam.Equals, node equality, endpoint order or reference
+        /// identity. Draft zero/negative IDs are accepted and can match; IDs are not proof of native membership.
+        /// Use data from one compatible model context because IDs from different models can collide.</para>
+        /// <para>Captures all group IDs first, then each candidate ID once, ignoring group/entity hash-cache state.
+        /// Duplicate grouped IDs collapse; duplicate ungrouped beam occurrences do not. Null Entities throws
+        /// even for an empty beam sequence. Complete enumeration/qualification occurs before return; enumerator
+        /// failures propagate without returning partial results. Later edits do not recompute membership.
+        /// Original objects remain mutable, captures are not atomic and concurrent writers must be coordinated.
+        /// Does not edit groups/beams, convert units, query geometry, analyze, save or acquire a session.</para></remarks>
+        /// <exception cref="ArgumentNullException">beamsCollection or groups is null.</exception>
+        /// <exception cref="ArgumentException">A non-null group has a null Entities collection.</exception>
+        /// <example><code>
+        /// var a = new StaadPro.Interop.Entities.Beam { Id = 1 };
+        /// var b = new StaadPro.Interop.Entities.Beam { Id = 2 };
+        /// var group = new StaadPro.Interop.Entities.EntityGroup&lt;StaadPro.Interop.Entities.Beam&gt;();
+        /// group.Entities.Add(new StaadPro.Interop.Entities.Beam { Id = 1 });
+        /// var remaining = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.GetBeamsWithNoGroupAssignment(
+        ///     new[] { a, b, b }, new[] { group });
+        /// System.Console.WriteLine(remaining.Count()); // two occurrences of beam 2
+        /// </code></example>
+        public static IEnumerable<Beam> GetBeamsWithNoGroupAssignment(this IEnumerable<Beam> beamsCollection,
+            IEnumerable<EntityGroup<Beam>> groups)
+        {
+            if (beamsCollection == null) throw new ArgumentNullException(nameof(beamsCollection));
+            if (groups == null) throw new ArgumentNullException(nameof(groups));
+            var assigned = new HashSet<int>();
+            foreach (EntityGroup<Beam> group in groups)
+            {
+                if (ReferenceEquals(group, null)) continue;
+                HashSet<Beam> entities = group.Entities;
+                if (entities == null) throw new ArgumentException("A group has no initialized Entities collection.", nameof(groups));
+                foreach (Beam beam in entities)
+                    if (!ReferenceEquals(beam, null)) assigned.Add(beam.Id);
+            }
+            var result = new List<Beam>();
+            foreach (Beam beam in beamsCollection)
+            {
+                if (ReferenceEquals(beam, null)) continue;
+                int id = beam.Id;
+                if (!assigned.Contains(id)) result.Add(beam);
+            }
+            return new ReadOnlyCollection<Beam>(result);
+        }
+
         private static double Midpoint(double a, double b)
         {
             double sum = a + b;

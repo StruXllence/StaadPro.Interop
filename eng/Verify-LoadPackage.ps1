@@ -361,7 +361,7 @@ try {
     $diagnosticCode=[regex]::Match($diagnosticGuide,'(?s)```csharp\s*\r?\n(.*?)```').Groups[1].Value
     if([string]::IsNullOrWhiteSpace($diagnosticCode)){throw 'Missing diagnostic guide example.'}
     $diagnosticSnippets=@()
-    foreach($operation in @('Extensions.GeometryDiagnosticsExtensions.GetDuplicateNodes','Extensions.GeometryDiagnosticsExtensions.GetZeroLengthBeams','Extensions.GeometryDiagnosticsExtensions.GetClosestNode','Extensions.GeometryDiagnosticsExtensions.GetClosestBeam','Extensions.GeometryDiagnosticsExtensions.GetBeamsWithinRadius','Extensions.GeometryDiagnosticsExtensions.GetBoundingBox','Extensions.BeamExtensions.IsConnectedToBeam','Extensions.BeamExtensions.IsConnectedToNode','Extensions.MemberExtensions.IsConnectedToMember','Extensions.MemberExtensions.IsConnectedToNode','Extensions.PlateExtensions.GetCornerLoop','Extensions.PlateExtensions.GetEdges','Extensions.PlateExtensions.IsConnectedToPlate','Extensions.PlateExtensions.GetPlatesSharingEdgeWith','Services.BeamGroupingService.GroupBeamsByPlanAngle','Services.BeamGroupingService.GroupBeamsByRadius','Services.BeamGroupingService.GroupBeamsByElevation')){
+    foreach($operation in @('Extensions.GeometryDiagnosticsExtensions.GetDuplicateNodes','Extensions.GeometryDiagnosticsExtensions.GetZeroLengthBeams','Extensions.GeometryDiagnosticsExtensions.GetClosestNode','Extensions.GeometryDiagnosticsExtensions.GetClosestBeam','Extensions.GeometryDiagnosticsExtensions.GetBeamsWithinRadius','Extensions.GeometryDiagnosticsExtensions.GetBoundingBox','Extensions.BeamExtensions.IsConnectedToBeam','Extensions.BeamExtensions.IsConnectedToNode','Extensions.MemberExtensions.IsConnectedToMember','Extensions.MemberExtensions.IsConnectedToNode','Extensions.PlateExtensions.GetCornerLoop','Extensions.PlateExtensions.GetEdges','Extensions.PlateExtensions.IsConnectedToPlate','Extensions.PlateExtensions.GetPlatesSharingEdgeWith','Services.BeamGroupingService.GroupBeamsByPlanAngle','Services.BeamGroupingService.GroupBeamsByRadius','Services.BeamGroupingService.GroupBeamsByElevation','Services.BeamGroupingService.GetUnwrappedAngles','Extensions.GeometryDiagnosticsExtensions.GetBeamsWithNoGroupAssignment')){
         $prefix='M:StaadPro.Interop.'+$operation
         $entries=@($xml.doc.members.member | Where-Object {$_.name.StartsWith($prefix+'(') -or $_.name.StartsWith($prefix+'``1(')})
         if($entries.Count -ne 1){throw 'Missing diagnostic XML.'}
@@ -562,6 +562,7 @@ public static class Program
     public static void Main(string[] arguments)
     {
         PackageVerification.GeometryDiagnosticsFixture.Verify(arguments[0]);
+        PackageVerification.AngleMembershipFixture.Verify(System.Xml.Linq.XDocument.Load(arguments[0]));
         __DIAGNOSTIC_EXAMPLES__
         var copyright = (System.Reflection.AssemblyCopyrightAttribute)typeof(OpenStaadWrapper).Assembly
             .GetCustomAttributes(typeof(System.Reflection.AssemblyCopyrightAttribute), false)[0];
@@ -1238,6 +1239,7 @@ if ($hasPropertyFoundation) { Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'F
 if ($hasPropertyFoundation) { Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Fixtures/PropertyUptFixture.cs') -Destination (Join-Path $consumerRoot 'PropertyUptFixture.cs') }
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Fixtures/OutputSteelBlockFixture.cs') -Destination (Join-Path $consumerRoot 'OutputSteelBlockFixture.cs')
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Fixtures/GeometryDiagnosticsFixture.cs') -Destination (Join-Path $consumerRoot 'GeometryDiagnosticsFixture.cs')
+Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Fixtures/AngleMembershipFixture.cs') -Destination (Join-Path $consumerRoot 'AngleMembershipFixture.cs')
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Fixtures/ViewFoundationFixture.cs') -Destination (Join-Path $consumerRoot 'ViewFoundationFixture.cs')
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Fixtures/TableFoundationFixture.cs') -Destination (Join-Path $consumerRoot 'TableFoundationFixture.cs')
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Fixtures/DesignFoundationFixture.cs') -Destination (Join-Path $consumerRoot 'DesignFoundationFixture.cs')
