@@ -26,9 +26,9 @@ code-insiders --install-extension StruXllence.struxllence-themes
 
 After installation, run **Preferences: Color Theme** and select **StruXllence Dark** or **StruXllence Light**. See the [theme previews and icon setup](https://github.com/StruXllence/struxllence-themes). The editor theme is optional and is installed separately from the NuGet library.
 
-## Version 1.0.0-preview.20261124
+## Version 1.0.0-preview.20261124.1
 
-Added both `FirstNodeWithSameCoordinatesAs` overloads with complete XML IntelliSense. Searches retain source first-match semantics and a fixed inclusive 0.0001 tolerance per coordinate, capturing the reference before streaming candidates. Explicit validation applies to visited data; later entries remain unobserved after success. See [coordinate lookup contracts](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md).
+Added `HasSameCoordinatesAs` and `InXRange<T>` with complete XML IntelliSense. Coordinate comparison ignores IDs, while range selection uses whole extents and dedicated set equality: beam/plate IDs and node ID plus 0.000001 distance. No global equality or native state changes occur. See [comparison and range contracts](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md).
 
 Ported `GetUnwrappedAngles(nodes, origin)` and detached `GetBeamsWithNoGroupAssignment(beamsCollection, groups)` with complete XML IntelliSense. Angle results use immutable named `UnwrappedNodeAngle` records in outward XZ radians; group filtering captures analytical IDs and returns owned, read-only results without native queries. See [geometry diagnostics](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md) for seam/order, equality and snapshot behavior.
 

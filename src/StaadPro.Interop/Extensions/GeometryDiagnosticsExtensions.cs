@@ -9,7 +9,7 @@ using StaadPro.Interop.Helpers;
 
 namespace StaadPro.Interop.Extensions
 {
-    /// <summary>Provides detached, non-mutating geometry diagnostics over supplied entity collections.</summary>
+    /// <summary>Provides detached, non-mutating geometry comparisons and selection over supplied entities.</summary>
     /// <remarks>These methods do not acquire a STAAD session or perform native calls. Coordinate/tolerance values
     /// must use the same model length units. Collections own their storage; returned entity references remain editable.</remarks>
     public static class GeometryDiagnosticsExtensions
@@ -567,6 +567,55 @@ namespace StaadPro.Interop.Extensions
             }
             return null;
         }
+
+        /// <summary>Tests coordinate coincidence using a fixed inclusive 0.0001 tolerance on each axis, without comparing IDs.</summary>
+        /// <param name="left">First detached node; null returns false without reading the other node.</param>
+        /// <param name="right">Second detached node; null returns false, including when both references are null.</param>
+        /// <returns>True when both nodes have finite coordinates and each absolute X/Y/Z difference is at most 0.0001; otherwise false for valid nonmatching or null inputs.</returns>
+        /// <remarks><para>Captures each non-null node's complete XYZ triple once. The fixed threshold is in the same model length units as the supplied data. This axis-aligned box test permits diagonal Euclidean separation greater than 0.0001. IDs, connectivity, hashing and Node.Equals are unused. The same finite node can match itself; a same-reference node with nonfinite data still throws. Null inputs take precedence over validating the other node.</para>
+        /// <para>Uses the same coordinate criterion as FirstNodeWithSameCoordinatesAs, but compares one pair rather than searching a sequence. It does not replace entity identity, node-set equality, nearest-distance ranking or transitive clustering. General Node equality uses both ID and distance at 0.001; InXRange node-set equality instead uses ID and a 0.000001 distance threshold. No configurable tolerance, rounding, conversion or global equality change is introduced.</para>
+        /// <para>NaN/infinite coordinates on non-null inputs produce explicit argument errors. Signed zero, subnormal values and finite extremes are accepted; an overflowing difference is too large to match. Captures are not atomic across writers. No mutation, cloning, STAAD acquisition/query, geometry hydration, selection, node merging/renumbering, analysis or save occurs; coordinate coincidence alone does not certify native identity or model suitability.</para></remarks>
+        /// <exception cref="ArgumentException">A non-null pair contains nonfinite coordinates; left is validated before right.</exception>
+        /// <example><code>
+        /// var left = new StaadPro.Interop.Entities.Node(1, 0, 0, 0);
+        /// var right = new StaadPro.Interop.Entities.Node(99, 0.0001, -0.0001, 0.0001);
+        /// bool coincident = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.HasSameCoordinatesAs(left, right);
+        /// System.Console.WriteLine(coincident); // True: IDs and Euclidean radius are not used
+        /// </code></example>
+        public static bool HasSameCoordinatesAs(this Node left, Node right)
+        {
+            if (ReferenceEquals(left, null) || ReferenceEquals(right, null)) return false;
+            double lx = left.X, ly = left.Y, lz = left.Z;
+            if (!Finite(lx) || !Finite(ly) || !Finite(lz)) throw new ArgumentException("Coordinates must be finite.", nameof(left));
+            double rx = right.X, ry = right.Y, rz = right.Z;
+            if (!Finite(rx) || !Finite(ry) || !Finite(rz)) throw new ArgumentException("Coordinates must be finite.", nameof(right));
+            return Math.Abs(lx - rx) <= CoordinateSearchTolerance && Math.Abs(ly - ry) <= CoordinateSearchTolerance &&
+                Math.Abs(lz - rz) <= CoordinateSearchTolerance;
+        }
+
+        /// <summary>Selects nodes or whole beam/plate X extents inside an inclusive closed coordinate interval.</summary>
+        /// <typeparam name="T">Exactly Node, Beam or Plate as the declared generic type. Interface-typed, mixed and other entity sequences are unsupported.</typeparam>
+        /// <param name="source">Non-null finite entity sequence, enumerated once and fully validated before a set is returned. Null entries and missing required incidence are invalid.</param>
+        /// <param name="xMin">Inclusive lower X bound in the same model length units; may be negative infinity for an open lower end. NaN is invalid.</param>
+        /// <param name="xMax">Inclusive upper X bound, at least xMin; may be positive infinity for an open upper end. NaN is invalid.</param>
+        /// <returns>A fresh editable HashSet retaining original qualifying entity references, with the first equal qualifying occurrence retained. Empty valid input/no matches return an empty set. Enumeration order of the returned set is unspecified.</returns>
+        /// <remarks><para>Nodes qualify by X. A beam qualifies only when both endpoint X values lie in the interval; a plate requires all A/B/C and optional D X values to lie inside. This is complete extent containment, not midpoint selection, interval overlap or intersection. Bounds are inclusive with no expansion/tolerance or unit conversion. Beam endpoints and plate A/B/C must exist; D may be null or repeated. All visited participating X values must be finite, even on ultimately excluded entities. Node selections additionally require finite Y/Z for well-defined node-set equality; beam/plate Y/Z and incidence IDs are unused.</para>
+        /// <para>The returned comparer preserves this selection's identity rules: beams and plates compare only integer IDs, including zero/negative/draft IDs; nodes require equal IDs and Euclidean separation at most 0.000001. These rules deliberately differ from general Beam/Plate geometry equality and Node's 0.001 equality tolerance. They also differ from HasSameCoordinatesAs, which ignores IDs and uses a 0.0001 per-axis box. Near-node equality is not transitive clustering; retained representatives can depend on input order. No entity ID, equality implementation or global tolerance is changed.</para>
+        /// <para>Captures incidence/X bounds per occurrence and materializes qualifying metadata before building the set. Accepted IDs and accepted-node coordinates must remain stable while building; detectable changes throw rather than publishing corrupted hash membership. Captures/checks are not atomic, so callers coordinate concurrent writers. Full enumeration/validation occurs even after an early match; original enumeration failures propagate with no partial set returned. Working storage is proportional to qualifying occurrences.</para>
+        /// <para>Owns editable set storage and retains mutable source objects. Later geometry edits do not reapply the range; Add/Remove do not run selection again. Keep stored IDs and node coordinates stable, or remove before editing/re-add afterwards. After bulk edits, rebuild through a materialized sequence with the returned comparer, for example new HashSet&lt;T&gt;(set.ToArray(), set.Comparer), to rehash and deduplicate. No cloning, native membership check, STAAD acquisition/query, geometry hydration, selection, analysis, save or supplied/native mutation is performed.</para></remarks>
+        /// <exception cref="ArgumentNullException">source is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">A bound is NaN, or xMax is smaller than xMin.</exception>
+        /// <exception cref="NotSupportedException">T is not exactly Node, Beam or Plate.</exception>
+        /// <exception cref="ArgumentException">A visited entity/incidence is missing, participating coordinates are nonfinite, or accepted hash-relevant metadata changes during construction.</exception>
+        /// <example><code>
+        /// var start = new StaadPro.Interop.Entities.Node(1, 0, 0, 0);
+        /// var end = new StaadPro.Interop.Entities.Node(2, 2, 0, 0);
+        /// var beam = new StaadPro.Interop.Entities.Beam(7, start, end);
+        /// var selected = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.InXRange(new[] { beam }, 0, 2);
+        /// System.Console.WriteLine(selected.Count); // 1: both endpoints are inside, including boundaries
+        /// </code></example>
+        public static HashSet<T> InXRange<T>(this IEnumerable<T> source, double xMin, double xMax) where T : IEntity =>
+            StaadPro.Interop.Services.Geometry.Detached.XRangeSelectionService.Select(source, xMin, xMax);
 
         private static void AddExtractedNode(Node node, HashSet<int> ids, List<Node> result)
         {

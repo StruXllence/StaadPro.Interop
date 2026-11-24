@@ -10,6 +10,8 @@ Related beam/node and physical-member connectivity extensions use selected node 
 | `GetZeroLengthBeams(beamsCollection, tolerance = 0.0001)` | Beams whose endpoint Euclidean distance is at most the inclusive tolerance. |
 | `FirstNodeWithSameCoordinatesAs(nodeCollection, node)` | First candidate within a fixed inclusive 0.0001 per-axis box around captured reference-node coordinates; ID-independent. |
 | `FirstNodeWithSameCoordinatesAs(nodeCollection, x, y, z)` | Same first-match search using an explicit finite coordinate triple. |
+| `HasSameCoordinatesAs(left, right)` | Pairwise inclusive 0.0001 per-axis coincidence, independent of IDs; either null returns false. |
+| `InXRange<T>(source, xMin, xMax)` | Complete Node/Beam/Plate X extents inside closed bounds; an editable set with dedicated equality. |
 | `GetClosestNode(nodesCollection, referenceNode)` | Nearest eligible node, excluding the reference by ID-plus-distance equality. |
 | `GetClosestBeam(beamsCollection, referenceNode)` | Beam with the nearer endpoint closest to the reference. |
 | `GetBeamsWithinRadius(beamsCollection, minRadius, maxRadius, centre = null)` | Materialized radial band filter over beam midpoints in the XZ plane. |
@@ -120,6 +122,27 @@ Inputs are enumerated once, both finite initialized endpoints captured once per 
 Reference coordinates are captured and validated before enumeration. Null collections/reference nodes and nonfinite reference values fail even when input is empty. Each visited non-null candidate has its entire finite XYZ triple captured and validated before comparison; malformed visited geometry throws instead of being silently excluded. Node IDs, including draft/negative values, are unused. Ordinary finite extremes/signed zero/subnormal deltas are accepted; an overflowed coordinate difference is too large to match the fixed threshold.
 
 The sequence is streamed once and stops immediately at the first match, disposing its enumerator. **Later entries and failures are intentionally unobserved.** This differs from `GetClosestNode`, which scans and validates the complete candidate sequence. No materialization, sorting or deferred requery is introduced. Enumerator failures reached before success propagate unchanged. Returned nodes remain editable shared references; later collection/coordinate edits do not rerun the search. Captures are not atomic, so callers coordinate simultaneous writers. These helpers do not query/hydrate STAAD geometry, merge/renumber nodes, validate model membership or change native state.
+
+## Pairwise coordinate coincidence
+
+`HasSameCoordinatesAs(left, right)` compares two supplied nodes using the same fixed inclusive **0.0001 per-axis box** as the first-coordinate lookup. It ignores IDs; a diagonal separation can exceed 0.0001 in Euclidean length and still qualify. Either null returns false, including two nulls and a null paired with malformed metadata. With two non-null nodes, complete finite XYZ triples are captured once and left is validated before right. Nonfinite values throw explicitly, including on a same-reference pair. There is no transitive clustering, global equality change, native identity check or mutation. Captures are not atomic across writers.
+
+## Whole-extent X-range selection
+
+`InXRange<T>(source, xMin, xMax)` supports exactly `Node`, `Beam` or `Plate` as the declared generic type. A node qualifies by X; beams require both endpoint X values inside; plates require every A/B/C and optional D X value inside. This is whole-extent containment, without midpoint selection, overlap/intersection tests or tolerance expansion. Bounds are inclusive. Ordered infinite bounds are supported for open-ended selections; NaN/inverted bounds throw. Other declared entity types, including `IEntity`-typed/mixed sequences, throw before enumeration instead of silently returning null.
+
+All entries are visited once. Null entries, missing beam endpoints/plate A/B/C and nonfinite participating X values throw even after an earlier match. Plate D may be absent or repeated. Nodes additionally need finite Y/Z because their set equality uses coordinates; beam/plate Y/Z and incidence IDs are unused. No geometry hydration, native existence/planarity check or unit conversion occurs. Input coordinates/bounds use the same model length units.
+
+The fresh editable `HashSet<T>` keeps original references and the first equal qualifying occurrence. Its enumeration order is unspecified. The returned comparer defines these function-specific rules:
+
+| Declared type | Set equality |
+| --- | --- |
+| `Node` | Same integer ID and Euclidean distance at most **0.000001**. |
+| `Beam`, `Plate` | Same integer ID only; geometry and endpoint/corner identity are unused for equality. |
+
+Zero/negative/draft IDs participate literally. Same-ID beam/plate duplicates collapse even with different geometry; different IDs remain distinct. Node same-ID positions farther apart than 0.000001 remain distinct even when general `Node.Equals` would accept them at 0.001. These set rules also differ from the ID-independent 0.0001 axis-box coincidence predicate. Near-node equality is not transitive clustering, so retained representatives can depend on input order. General entity equality and tolerances remain unchanged.
+
+Qualifying metadata is materialized before set construction, with storage proportional to qualifying occurrences. Detected changes to accepted IDs or accepted-node coordinates during construction throw before a set escapes, protecting hash membership. Captures/checks are not atomic; callers coordinate writers. Enumeration errors propagate with no partial result. Later geometry edits do not reapply the range, and normal `Add` operations may insert entities outside it. Keep IDs and node coordinates stable while stored, or remove before editing and re-add afterwards. After bulk edits, rebuild through `new HashSet<T>(set.ToArray(), set.Comparer)` to rehash/deduplicate with the intended comparer. No supplied/native writes or STAAD operation occurs.
 
 ## Node extraction by supplied ID
 
@@ -249,6 +272,11 @@ var explicitCoordinateMatch = StaadPro.Interop.Extensions.GeometryDiagnosticsExt
     new[] { firstCoordinateMatch }, 0, 0, 0);
 System.Console.WriteLine(System.Object.ReferenceEquals(firstCoordinateMatch, explicitCoordinateMatch)); // True
 
+var coincidentPair = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.HasSameCoordinatesAs(
+    new StaadPro.Interop.Entities.Node(1, 0, 0, 0), new StaadPro.Interop.Entities.Node(99, 0.0001, 0.0001, 0));
+var insideX = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.InXRange(beams, 0, 10);
+System.Console.WriteLine(coincidentPair + ": " + insideX.Count);
+
 ```
 
-Offline tests cover seed/nontransitive grouping, inclusive axis/distance boundaries, exact/duplicate IDs, nulls, invalid coordinates/tolerances, missing incidence, collection ownership, one-pass enumeration, source failures, huge finite values and subnormal deltas. The installed NuGet consumer checks expanded XML, exact signatures/defaults, executes all twenty-three XML examples and compiles this guide. Nearest-search tests also cover equality exclusion, endpoint-versus-segment semantics, stable ties, reference capture, full-sequence validation and randomized moderate geometry. No live STAAD operation is involved.
+Offline tests cover seed/nontransitive grouping, inclusive axis/distance boundaries, exact/duplicate IDs, nulls, invalid coordinates/tolerances, missing incidence, collection ownership, one-pass enumeration, source failures, huge finite values and subnormal deltas. The installed NuGet consumer checks expanded XML, exact signatures/defaults, executes all twenty-five XML examples and compiles this guide. Nearest-search tests also cover equality exclusion, endpoint-versus-segment semantics, stable ties, reference capture, full-sequence validation and randomized moderate geometry. No live STAAD operation is involved.

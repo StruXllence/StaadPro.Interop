@@ -12,12 +12,12 @@
     <RootNamespace>StaadPro.Interop</RootNamespace>
     <PackageId>StaadPro.Interop</PackageId>
     <Version>1.0.0</Version>
-    <ReleaseDocumentationVersion>1.0.0-preview.20261124</ReleaseDocumentationVersion>
+    <ReleaseDocumentationVersion>1.0.0-preview.20261124.1</ReleaseDocumentationVersion>
     <PackageVersion>$(ReleaseDocumentationVersion)</PackageVersion>
     <Authors>Srinivasa Rao Masanam</Authors>
     <Company>StruXllence</Company>
     <Copyright>Copyright (c) 2026 StruXllence</Copyright>
-    <PackageReleaseNotes>Added both FirstNodeWithSameCoordinatesAs overloads with comprehensive XML IntelliSense. Preserved first matching supplied-node selection with a fixed inclusive 0.0001 tolerance independently on X, Y and Z, without ID comparison or nearest-distance ranking. Captured reference coordinates before one-pass candidate enumeration, rejected null/nonfinite visited data explicitly and stopped at the first match. Reused existing Node entities without native queries or model changes. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
+    <PackageReleaseNotes>Added HasSameCoordinatesAs and generic InXRange with comprehensive XML IntelliSense. Preserved fixed inclusive 0.0001 per-axis coincidence and whole Node/Beam/Plate X-extent containment. Retained source-specific set equality without changing global entities: beam/plate IDs and node ID plus 0.000001 distance. Added finite-geometry, range and stable hash-metadata validation, with owned editable results and no native operations. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
     <Description>A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD Developer resources include Marketplace installation links for the optional StruXllence VS Code dark and light themes in the packaged README.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageTags>staad;staad-pro;openstaad;structural-engineering;structural-analysis;engineering-automation;csharp;dotnet-framework;com-interop;geometry;loads;bentley;struxllence</PackageTags>

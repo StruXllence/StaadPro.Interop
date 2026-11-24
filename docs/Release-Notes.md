@@ -1,5 +1,15 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261124.1 - 24 November 2026
+
+Added `HasSameCoordinatesAs(left, right)` and generic `InXRange<T>(source, xMin, xMax)` in `GeometryDiagnosticsExtensions` with comprehensive XML IntelliSense, retaining the existing `Node`, `Beam` and `Plate` models. See [comparison and range contracts](Geometry-Diagnostics.md).
+
+Coordinate coincidence preserves the fixed inclusive 0.0001 per-axis test and null-to-false behavior, independently of IDs. X-range selection preserves whole-extent containment and function-specific set equality: beam/plate IDs, and node ID with Euclidean separation at most 0.000001. Global entity equality remains unchanged. Ordered open-ended bounds are supported; malformed geometry, NaN/inverted bounds and unsupported declared types produce explicit errors.
+
+Selections enumerate once, validate complete input before returning owned editable sets and retain the first equal qualifying reference. Detected changes to accepted hash-relevant metadata fail before publication. The guide explains mutable-key constraints, comparer-preserving rebuilds and differences from coincidence, nearest searches and overlap filters. No native calls, geometry hydration, source writes or model changes are introduced.
+
+Release build passed with zero warnings/errors. Passed 7,689 offline tests including 36 new cases covering tolerance/extent boundaries, source-versus-global equality, draft IDs, finite extremes/open bounds, malformed input, mutation detection, ownership, enumeration failures, randomized predicate parity and XML contracts. Exact installed-package checks execute twenty-five geometry examples and 1,353 selected XML examples overall, verify overloads and compile the guide with isolated restore/build/runtime/archive equality checks. No new native or engineering qualification is claimed.
+
 ## 1.0.0-preview.20261124 - 24 November 2026
 
 Added both `FirstNodeWithSameCoordinatesAs` overloads in `GeometryDiagnosticsExtensions`, accepting a reference `Node` or explicit X/Y/Z coordinates with complete XML IntelliSense. Reused the existing `Node` model and retained source function/parameter/return contracts. See [coordinate lookup contracts and examples](Geometry-Diagnostics.md).
