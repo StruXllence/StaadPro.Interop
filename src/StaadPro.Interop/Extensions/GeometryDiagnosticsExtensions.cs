@@ -497,6 +497,77 @@ namespace StaadPro.Interop.Extensions
             return result;
         }
 
+        private const double CoordinateSearchTolerance = 0.0001;
+
+        /// <summary>Finds the first supplied node within a fixed inclusive coordinate tolerance on all three axes.</summary>
+        /// <param name="nodeCollection">Non-null candidate sequence, visited once in input order until the first match. Every visited entry must be non-null with finite X/Y/Z coordinates; later entries are not examined.</param>
+        /// <param name="node">Non-null reference node with finite X/Y/Z values, captured before input enumeration. Its ID, equality and connectivity are unused; the reference itself is eligible to match.</param>
+        /// <returns>The original first candidate reference for which each absolute X/Y/Z difference is at most 0.0001, or null when the valid sequence is empty or has no match. Does not return the nearest candidate, clone a node or allocate result collections.</returns>
+        /// <remarks><para>Uses the fixed source tolerance 0.0001 in model length units, inclusively and independently on each axis. This is an axis-aligned box test, not a Euclidean radius; a diagonal candidate can qualify even when its Euclidean separation exceeds 0.0001. No optional tolerance, rounding, unit conversion, ID comparison, deduplication or equality override is used. Unlike GetClosestNode, input order decides the first match and the reference itself is not excluded. GetNodesFromBeams/GetNodesFromPlates instead deduplicate captured IDs; GetDuplicateNodes groups distinct IDs and accepts a caller-selected tolerance. Global Node equality uses both ID and a different distance tolerance.</para>
+        /// <para>Validates the collection and reference coordinates at invocation, even for empty inputs. Reads each visited candidate's complete finite coordinate triple before comparing, and throws for null or nonfinite visited entries instead of silently treating malformed data as a non-match. Does not read any candidate ID, connected entities or native binding. Signed zero and ordinary finite extremes are accepted; subtraction follows Double arithmetic and an overflowed difference cannot match the small fixed tolerance.</para>
+        /// <para>Streams once without sorting or materializing the sequence. Stops immediately at the first match and disposes the enumerator; later null/nonfinite entries, side effects or failures are deliberately unobserved. Enumerator/getter failures encountered before a match propagate unchanged. All work occurs before return, with no deferred requery or supplied/native mutation. Captured reference/candidate coordinates are not atomic across writers; callers coordinate edits. Returned nodes remain caller-owned and mutable, so later edits can invalidate the earlier match without recomputing it. No STAAD acquisition, geometry hydration, selection, merge, renumbering, analysis, save or native validation occurs.</para></remarks>
+        /// <exception cref="ArgumentNullException">nodeCollection or node is null.</exception>
+        /// <exception cref="ArgumentException">The reference node or a visited candidate contains nonfinite coordinates, or a visited candidate is null.</exception>
+        /// <example><code>
+        /// var candidate = new StaadPro.Interop.Entities.Node(99, 0.0001, -0.0001, 0);
+        /// var nodes = new[] { candidate, new StaadPro.Interop.Entities.Node(1, 0, 0, 0) };
+        /// var reference = new StaadPro.Interop.Entities.Node(7, 0, 0, 0);
+        /// var match = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.FirstNodeWithSameCoordinatesAs(
+        ///     nodes, reference);
+        /// System.Console.WriteLine(System.Object.ReferenceEquals(match, candidate)); // True: input order wins
+        /// </code></example>
+        public static Node FirstNodeWithSameCoordinatesAs(this IEnumerable<Node> nodeCollection, Node node)
+        {
+            if (nodeCollection == null) throw new ArgumentNullException(nameof(nodeCollection));
+            if (ReferenceEquals(node, null)) throw new ArgumentNullException(nameof(node));
+            double x = node.X, y = node.Y, z = node.Z;
+            if (!Finite(x) || !Finite(y) || !Finite(z))
+                throw new ArgumentException("Reference coordinates must be finite.", nameof(node));
+            return FindFirstCoordinateMatch(nodeCollection, x, y, z);
+        }
+
+        /// <summary>Finds the first supplied node within a fixed inclusive coordinate tolerance on all three axes.</summary>
+        /// <param name="nodeCollection">Non-null candidate sequence, visited once in input order until the first match. Every visited entry must be non-null with finite X/Y/Z coordinates; later entries are not examined.</param>
+        /// <param name="x">Finite reference X coordinate in the same model length units as the candidates.</param>
+        /// <param name="y">Finite reference Y coordinate in the same model length units as the candidates.</param>
+        /// <param name="z">Finite reference Z coordinate in the same model length units as the candidates.</param>
+        /// <returns>The original first candidate reference for which each absolute X/Y/Z difference is at most 0.0001, or null when the valid sequence is empty or has no match. Does not return the nearest candidate, clone a node or allocate result collections.</returns>
+        /// <remarks><para>Uses the fixed source tolerance 0.0001 in model length units, inclusively and independently on each axis. This is an axis-aligned box test, not a Euclidean radius; a diagonal candidate can qualify even when its Euclidean separation exceeds 0.0001. No optional tolerance, rounding, unit conversion, ID comparison, deduplication or equality override is used. Unlike GetClosestNode, input order decides the first match and the reference itself is not excluded. GetNodesFromBeams/GetNodesFromPlates instead deduplicate captured IDs; GetDuplicateNodes groups distinct IDs and accepts a caller-selected tolerance. Global Node equality uses both ID and a different distance tolerance.</para>
+        /// <para>Validates the collection and reference coordinates at invocation, even for empty inputs. Reads each visited candidate's complete finite coordinate triple before comparing, and throws for null or nonfinite visited entries instead of silently treating malformed data as a non-match. Does not read any candidate ID, connected entities or native binding. Signed zero and ordinary finite extremes are accepted; subtraction follows Double arithmetic and an overflowed difference cannot match the small fixed tolerance.</para>
+        /// <para>Streams once without sorting or materializing the sequence. Stops immediately at the first match and disposes the enumerator; later null/nonfinite entries, side effects or failures are deliberately unobserved. Enumerator/getter failures encountered before a match propagate unchanged. All work occurs before return, with no deferred requery or supplied/native mutation. Captured reference/candidate coordinates are not atomic across writers; callers coordinate edits. Returned nodes remain caller-owned and mutable, so later edits can invalidate the earlier match without recomputing it. No STAAD acquisition, geometry hydration, selection, merge, renumbering, analysis, save or native validation occurs.</para></remarks>
+        /// <exception cref="ArgumentNullException">nodeCollection is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">x, y or z is NaN or infinite.</exception>
+        /// <exception cref="ArgumentException">A visited candidate is null or has nonfinite coordinates.</exception>
+        /// <example><code>
+        /// var candidate = new StaadPro.Interop.Entities.Node(99, 0.0001, -0.0001, 0);
+        /// var nodes = new[] { candidate, new StaadPro.Interop.Entities.Node(1, 0, 0, 0) };
+        /// var match = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.FirstNodeWithSameCoordinatesAs(
+        ///     nodes, 0, 0, 0);
+        /// System.Console.WriteLine(System.Object.ReferenceEquals(match, candidate)); // True: input order wins
+        /// </code></example>
+        public static Node FirstNodeWithSameCoordinatesAs(this IEnumerable<Node> nodeCollection, double x, double y, double z)
+        {
+            if (nodeCollection == null) throw new ArgumentNullException(nameof(nodeCollection));
+            if (!Finite(x)) throw new ArgumentOutOfRangeException(nameof(x), "The reference coordinate must be finite.");
+            if (!Finite(y)) throw new ArgumentOutOfRangeException(nameof(y), "The reference coordinate must be finite.");
+            if (!Finite(z)) throw new ArgumentOutOfRangeException(nameof(z), "The reference coordinate must be finite.");
+            return FindFirstCoordinateMatch(nodeCollection, x, y, z);
+        }
+
+        private static Node FindFirstCoordinateMatch(IEnumerable<Node> nodeCollection, double x, double y, double z)
+        {
+            foreach (Node candidate in nodeCollection)
+            {
+                if (ReferenceEquals(candidate, null)) throw new ArgumentException("A visited node is null.", nameof(nodeCollection));
+                double cx = candidate.X, cy = candidate.Y, cz = candidate.Z;
+                if (!Finite(cx) || !Finite(cy) || !Finite(cz))
+                    throw new ArgumentException("Visited node coordinates must be finite.", nameof(nodeCollection));
+                if (Math.Abs(cx - x) <= CoordinateSearchTolerance && Math.Abs(cy - y) <= CoordinateSearchTolerance &&
+                    Math.Abs(cz - z) <= CoordinateSearchTolerance) return candidate;
+            }
+            return null;
+        }
+
         private static void AddExtractedNode(Node node, HashSet<int> ids, List<Node> result)
         {
             int id = node.Id;

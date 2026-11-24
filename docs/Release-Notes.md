@@ -1,5 +1,13 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261124 - 24 November 2026
+
+Added both `FirstNodeWithSameCoordinatesAs` overloads in `GeometryDiagnosticsExtensions`, accepting a reference `Node` or explicit X/Y/Z coordinates with complete XML IntelliSense. Reused the existing `Node` model and retained source function/parameter/return contracts. See [coordinate lookup contracts and examples](Geometry-Diagnostics.md).
+
+Preserved first supplied matching reference selection using the fixed inclusive 0.0001 threshold independently on all three axes. Node IDs, nearest-distance ranking and global entity equality are unused. Reference coordinates are captured before streaming candidates; each visited candidate is validated and captured once. Null/nonfinite visited geometry produces explicit argument errors. Enumeration stops and is disposed at the first match, leaving later entries/failures unobserved. Empty/no-match sequences return null, and returned nodes remain shared editable references. No source/native mutation, geometry hydration or STAAD query occurs.
+
+Release build passed with zero warnings/errors. Passed 7,653 offline tests, including 58 new cases covering axis-box boundaries, first/self matches, streaming/disposal, finite extremes, null/nonfinite data, capture timing, IDs, randomized source-predicate parity and expanded XML contracts. Exact installed-package checks execute twenty-three geometry examples and 1,351 selected XML examples overall, verify signatures/ownership and compile the packaged guide with isolated restore/build/runtime/archive checks. No new live native or engineering qualification is claimed.
+
 ## 1.0.0-preview.20261123.1 - 23 November 2026
 
 Added `GetNodesFromBeams(this IEnumerable<Beam> beams)` and `GetNodesFromPlates(this IEnumerable<Plate> plates)` in `GeometryDiagnosticsExtensions` with complete XML IntelliSense. See [node extraction contracts and examples](Geometry-Diagnostics.md).

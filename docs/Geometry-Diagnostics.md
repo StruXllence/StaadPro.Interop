@@ -8,6 +8,8 @@ Related beam/node and physical-member connectivity extensions use selected node 
 | --- | --- |
 | `GetDuplicateNodes(nodesCollection, tolerance = 0.0001)` | Seed-based groups of distinctly numbered nodes within the inclusive tolerance on each axis. |
 | `GetZeroLengthBeams(beamsCollection, tolerance = 0.0001)` | Beams whose endpoint Euclidean distance is at most the inclusive tolerance. |
+| `FirstNodeWithSameCoordinatesAs(nodeCollection, node)` | First candidate within a fixed inclusive 0.0001 per-axis box around captured reference-node coordinates; ID-independent. |
+| `FirstNodeWithSameCoordinatesAs(nodeCollection, x, y, z)` | Same first-match search using an explicit finite coordinate triple. |
 | `GetClosestNode(nodesCollection, referenceNode)` | Nearest eligible node, excluding the reference by ID-plus-distance equality. |
 | `GetClosestBeam(beamsCollection, referenceNode)` | Beam with the nearer endpoint closest to the reference. |
 | `GetBeamsWithinRadius(beamsCollection, minRadius, maxRadius, centre = null)` | Materialized radial band filter over beam midpoints in the XZ plane. |
@@ -110,6 +112,14 @@ Results are editable `List<BeamGroup<double>>` records with `Key` and independen
 Both functions preserve public names, parameter order and defaults. Tolerance is finite nonnegative, in supplied length units, and applied inclusively to both endpoint eligibility and group membership. Zero means exact computed equality; no relative/angular tolerance or unit conversion is introduced. First seeds are never averaged or moved: grouping is order-dependent and nontransitive. Reversing endpoints can change a key within tolerance. Groups sort by ascending seed, but their beam occurrences preserve original input order and duplicates, without the plan-angle method's midpoint-distance sorting.
 
 Inputs are enumerated once, both finite initialized endpoints captured once per occurrence and every entry validated before grouping. IDs are unused; draft IDs are allowed. Missing/nonfinite geometry or enumeration errors propagate at invocation with no partial result. Origin is required and validated even for empty radius input. Result outer lists, `BeamGroup<double>` records and each beam list are independently owned and editable; original Beam references remain shared, with later edits visible but without regrouping. Empty/no eligible inputs return new empty lists. Worst-case grouping is quadratic; memory grows with input. Captures are not atomic, so callers coordinate writers and supply compatible coordinates/units.
+
+## First node at supplied coordinates
+
+`FirstNodeWithSameCoordinatesAs` accepts either a `Node node` or explicit `double x, double y, double z`, retaining the original source parameter names and `Node` return type. Returns the original first candidate within **0.0001 model-length units on every axis, inclusively**, or `null` for empty/no-match input. The fixed threshold is an axis-aligned box, so a diagonal point can qualify with Euclidean distance greater than 0.0001. Input order wins; no nearest-distance ranking, ID comparison, equality exclusion, deduplication, rounding or unit conversion occurs. The reference itself may match. Global `Node.Equals` instead requires the same ID and a Euclidean threshold of 0.001; ID-extraction helpers deduplicate IDs without coordinate tests.
+
+Reference coordinates are captured and validated before enumeration. Null collections/reference nodes and nonfinite reference values fail even when input is empty. Each visited non-null candidate has its entire finite XYZ triple captured and validated before comparison; malformed visited geometry throws instead of being silently excluded. Node IDs, including draft/negative values, are unused. Ordinary finite extremes/signed zero/subnormal deltas are accepted; an overflowed coordinate difference is too large to match the fixed threshold.
+
+The sequence is streamed once and stops immediately at the first match, disposing its enumerator. **Later entries and failures are intentionally unobserved.** This differs from `GetClosestNode`, which scans and validates the complete candidate sequence. No materialization, sorting or deferred requery is introduced. Enumerator failures reached before success propagate unchanged. Returned nodes remain editable shared references; later collection/coordinate edits do not rerun the search. Captures are not atomic, so callers coordinate simultaneous writers. These helpers do not query/hydrate STAAD geometry, merge/renumber nodes, validate model membership or change native state.
 
 ## Node extraction by supplied ID
 
@@ -232,6 +242,13 @@ System.Console.WriteLine(notInSuppliedGroups.Count());
 var extractedBeamNodes = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.GetNodesFromBeams(beams);
 var extractedPlateNodes = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.GetNodesFromPlates(new[] { plate, neighbour });
 System.Console.WriteLine(extractedBeamNodes.Count + ": " + extractedPlateNodes.Count);
+var firstCoordinateMatch = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.FirstNodeWithSameCoordinatesAs(
+    new[] { new StaadPro.Interop.Entities.Node(50, 0.0001, 0.0001, 0),
+        new StaadPro.Interop.Entities.Node(51, 0, 0, 0) }, new StaadPro.Interop.Entities.Node(0, 0, 0, 0));
+var explicitCoordinateMatch = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.FirstNodeWithSameCoordinatesAs(
+    new[] { firstCoordinateMatch }, 0, 0, 0);
+System.Console.WriteLine(System.Object.ReferenceEquals(firstCoordinateMatch, explicitCoordinateMatch)); // True
+
 ```
 
-Offline tests cover seed/nontransitive grouping, inclusive axis/distance boundaries, exact/duplicate IDs, nulls, invalid coordinates/tolerances, missing incidence, collection ownership, one-pass enumeration, source failures, huge finite values and subnormal deltas. The installed NuGet consumer checks expanded XML, exact signatures/defaults, executes all twenty-one XML examples and compiles this guide. Nearest-search tests also cover equality exclusion, endpoint-versus-segment semantics, stable ties, reference capture, full-sequence validation and randomized moderate geometry. No live STAAD operation is involved.
+Offline tests cover seed/nontransitive grouping, inclusive axis/distance boundaries, exact/duplicate IDs, nulls, invalid coordinates/tolerances, missing incidence, collection ownership, one-pass enumeration, source failures, huge finite values and subnormal deltas. The installed NuGet consumer checks expanded XML, exact signatures/defaults, executes all twenty-three XML examples and compiles this guide. Nearest-search tests also cover equality exclusion, endpoint-versus-segment semantics, stable ties, reference capture, full-sequence validation and randomized moderate geometry. No live STAAD operation is involved.
