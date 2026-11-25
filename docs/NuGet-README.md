@@ -26,7 +26,9 @@ code-insiders --install-extension StruXllence.struxllence-themes
 
 After installation, run **Preferences: Color Theme** and select **StruXllence Dark** or **StruXllence Light**. See the [theme previews and icon setup](https://github.com/StruXllence/struxllence-themes). The editor theme is optional and is installed separately from the NuGet library.
 
-## Version 1.0.0-preview.20261124.1
+## Version 1.0.0-preview.20261125
+
+Added `InYRange<T>` and `InZRange<T>` in `GeometryDiagnosticsExtensions` with complete XML IntelliSense. Both retain whole Node/Beam/Plate Y and Z extent containment, ordered open-ended bounds and dedicated source set equality: beam/plate IDs and node ID plus 0.000001 distance, without changing global entities or calling STAAD. See [range selection contracts](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md).
 
 Added `HasSameCoordinatesAs` and `InXRange<T>` with complete XML IntelliSense. Coordinate comparison ignores IDs, while range selection uses whole extents and dedicated set equality: beam/plate IDs and node ID plus 0.000001 distance. No global equality or native state changes occur. See [comparison and range contracts](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md).
 

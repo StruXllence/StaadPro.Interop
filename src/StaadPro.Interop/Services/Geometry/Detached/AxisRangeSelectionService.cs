@@ -5,16 +5,29 @@ using StaadPro.Interop.Entities;
 
 namespace StaadPro.Interop.Services.Geometry.Detached
 {
-    internal static class XRangeSelectionService
+    internal enum CoordinateAxis
     {
-        internal static HashSet<T> Select<T>(IEnumerable<T> source, double xMin, double xMax) where T : IEntity
+        X,
+        Y,
+        Z
+    }
+
+    internal static class AxisRangeSelectionService
+    {
+        internal static HashSet<T> Select<T>(
+            IEnumerable<T> source,
+            double min,
+            double max,
+            string minParamName,
+            string maxParamName,
+            CoordinateAxis axis) where T : IEntity
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
-            if (double.IsNaN(xMin)) throw new ArgumentOutOfRangeException(nameof(xMin));
-            if (double.IsNaN(xMax) || xMax < xMin) throw new ArgumentOutOfRangeException(nameof(xMax));
+            if (double.IsNaN(min)) throw new ArgumentOutOfRangeException(minParamName);
+            if (double.IsNaN(max) || max < min) throw new ArgumentOutOfRangeException(maxParamName);
             Type type = typeof(T);
             if (type != typeof(Node) && type != typeof(Beam) && type != typeof(Plate))
-                throw new NotSupportedException("X-range selection requires Node, Beam or Plate as the declared generic type.");
+                throw new NotSupportedException($"{axis}-range selection requires Node, Beam or Plate as the declared generic type.");
             var accepted = new List<Entry<T>>();
             foreach (T entity in source)
             {
@@ -24,21 +37,27 @@ namespace StaadPro.Interop.Services.Geometry.Detached
                 if (type == typeof(Node))
                 {
                     point = new GeometryConnectivityService.NodeSnapshot((Node)(object)entity, nameof(source));
-                    minimum = maximum = point.X;
+                    minimum = maximum = GetCoordinate(point, axis);
                 }
                 else if (type == typeof(Beam))
                 {
                     var beam = (Beam)(object)entity; Node start = beam.StartNode, end = beam.EndNode;
-                    double a = X(start), b = X(end); minimum = Math.Min(a, b); maximum = Math.Max(a, b);
+                    double a = Coordinate(start, axis), b = Coordinate(end, axis);
+                    minimum = Math.Min(a, b); maximum = Math.Max(a, b);
                 }
                 else
                 {
                     var plate = (Plate)(object)entity; Node a = plate.A, b = plate.B, c = plate.C, d = plate.D;
-                    double ax = X(a), bx = X(b), cx = X(c);
-                    minimum = Math.Min(ax, Math.Min(bx, cx)); maximum = Math.Max(ax, Math.Max(bx, cx));
-                    if (!ReferenceEquals(d, null)) { double dx = X(d); minimum = Math.Min(minimum, dx); maximum = Math.Max(maximum, dx); }
+                    double ac = Coordinate(a, axis), bc = Coordinate(b, axis), cc = Coordinate(c, axis);
+                    minimum = Math.Min(ac, Math.Min(bc, cc)); maximum = Math.Max(ac, Math.Max(bc, cc));
+                    if (!ReferenceEquals(d, null))
+                    {
+                        double dc = Coordinate(d, axis);
+                        minimum = Math.Min(minimum, dc);
+                        maximum = Math.Max(maximum, dc);
+                    }
                 }
-                if (minimum >= xMin && maximum <= xMax)
+                if (minimum >= min && maximum <= max)
                     accepted.Add(new Entry<T>(entity, point == null ? entity.Id : point.Id, point));
             }
             // Avoid publishing a set whose hash-relevant metadata changed while input was enumerated.
@@ -49,13 +68,33 @@ namespace StaadPro.Interop.Services.Geometry.Detached
             return result;
         }
 
-        private static double X(Node node)
+        private static double GetCoordinate(GeometryConnectivityService.NodeSnapshot point, CoordinateAxis axis)
+        {
+            switch (axis)
+            {
+                case CoordinateAxis.X: return point.X;
+                case CoordinateAxis.Y: return point.Y;
+                case CoordinateAxis.Z: return point.Z;
+                default: throw new ArgumentOutOfRangeException(nameof(axis));
+            }
+        }
+
+        private static double Coordinate(Node node, CoordinateAxis axis)
         {
             if (ReferenceEquals(node, null)) throw new ArgumentException("Required beam/plate incidence is missing.", "source");
-            double value = node.X;
-            if (double.IsNaN(value) || double.IsInfinity(value)) throw new ArgumentException("Participating X coordinates must be finite.", "source");
+            double value;
+            switch (axis)
+            {
+                case CoordinateAxis.X: value = node.X; break;
+                case CoordinateAxis.Y: value = node.Y; break;
+                case CoordinateAxis.Z: value = node.Z; break;
+                default: throw new ArgumentOutOfRangeException(nameof(axis));
+            }
+            if (double.IsNaN(value) || double.IsInfinity(value))
+                throw new ArgumentException($"Participating {axis} coordinates must be finite.", "source");
             return value;
         }
+
         private sealed class Entry<T> where T : IEntity
         {
             internal readonly T Entity;
@@ -71,6 +110,7 @@ namespace StaadPro.Interop.Services.Geometry.Detached
                     throw new ArgumentException("Accepted node coordinates changed during selection.", "source");
             }
         }
+
         private sealed class RangeComparer<T> : IEqualityComparer<T> where T : IEntity
         {
             internal static readonly RangeComparer<T> Instance = new RangeComparer<T>();

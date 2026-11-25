@@ -1,5 +1,15 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261125 - 25 November 2026
+
+Added generic `InYRange<T>(source, yMin, yMax)` and `InZRange<T>(source, zMin, zMax)` in `GeometryDiagnosticsExtensions` with comprehensive XML IntelliSense, retaining the existing `Node`, `Beam` and `Plate` models. See [range selection contracts](Geometry-Diagnostics.md).
+
+Y-range and Z-range selection share whole-extent containment, inclusive ordered open-ended bounds and source-specific set equality: beam/plate IDs, and node ID with Euclidean separation at most 0.000001. Nodes require finite coordinates on all three axes for Euclidean equality, whereas beams and plates validate only participating Y or Z coordinates on the selected axis without reading unselected coordinates. Global entity equality remains unchanged.
+
+Selections enumerate once, validate complete input before returning owned editable sets and retain the first equal qualifying reference. Invalid bounds, unsupported declared types, missing incidence and detected changes to accepted hash-relevant metadata produce explicit errors without leaking partial sets. No native calls, geometry hydration, source writes or model changes occur.
+
+Release build passed with zero warnings/errors. Passed 7,714 offline tests including 25 new cases covering Y/Z extent boundaries, source-versus-global equality, draft IDs, finite extremes/open bounds, malformed input, unselected off-axis coordinates, mutation detection, ownership, enumeration failures, randomized predicate parity and compiled XML contracts. Exact installed-package checks execute twenty-seven geometry examples and 1,355 selected XML examples overall, verify overloads and compile the guide with isolated restore/build/runtime/archive equality checks. No new native or engineering qualification is claimed.
+
 ## 1.0.0-preview.20261124.1 - 24 November 2026
 
 Added `HasSameCoordinatesAs(left, right)` and generic `InXRange<T>(source, xMin, xMax)` in `GeometryDiagnosticsExtensions` with comprehensive XML IntelliSense, retaining the existing `Node`, `Beam` and `Plate` models. See [comparison and range contracts](Geometry-Diagnostics.md).

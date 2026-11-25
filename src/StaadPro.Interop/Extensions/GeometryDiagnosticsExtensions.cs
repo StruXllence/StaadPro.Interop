@@ -615,7 +615,58 @@ namespace StaadPro.Interop.Extensions
         /// System.Console.WriteLine(selected.Count); // 1: both endpoints are inside, including boundaries
         /// </code></example>
         public static HashSet<T> InXRange<T>(this IEnumerable<T> source, double xMin, double xMax) where T : IEntity =>
-            StaadPro.Interop.Services.Geometry.Detached.XRangeSelectionService.Select(source, xMin, xMax);
+            StaadPro.Interop.Services.Geometry.Detached.AxisRangeSelectionService.Select(
+                source, xMin, xMax, nameof(xMin), nameof(xMax), StaadPro.Interop.Services.Geometry.Detached.CoordinateAxis.X);
+
+        /// <summary>Selects nodes or whole beam/plate Y extents inside an inclusive closed coordinate interval.</summary>
+        /// <typeparam name="T">Exactly Node, Beam or Plate as the declared generic type. Interface-typed, mixed and other entity sequences are unsupported.</typeparam>
+        /// <param name="source">Non-null finite entity sequence, enumerated once and fully validated before a set is returned. Null entries and missing required incidence are invalid.</param>
+        /// <param name="yMin">Inclusive lower Y bound in the same model length units; may be negative infinity for an open lower end. NaN is invalid.</param>
+        /// <param name="yMax">Inclusive upper Y bound, at least yMin; may be positive infinity for an open upper end. NaN is invalid.</param>
+        /// <returns>A fresh editable HashSet retaining original qualifying entity references, with the first equal qualifying occurrence retained. Empty valid input/no matches return an empty set. Enumeration order of the returned set is unspecified.</returns>
+        /// <remarks><para>Nodes qualify by Y. A beam qualifies only when both endpoint Y values lie in the interval; a plate requires all A/B/C and optional D Y values to lie inside. This is complete extent containment, not midpoint selection, interval overlap or intersection. Bounds are inclusive with no expansion/tolerance or unit conversion. Beam endpoints and plate A/B/C must exist; D may be null or repeated. All visited participating Y values must be finite, even on ultimately excluded entities. Node selections additionally require finite X/Z for well-defined node-set equality; beam/plate X/Z and incidence IDs are unused.</para>
+        /// <para>The returned comparer preserves this selection's identity rules: beams and plates compare only integer IDs, including zero/negative/draft IDs; nodes require equal IDs and Euclidean separation at most 0.000001. These rules deliberately differ from general Beam/Plate geometry equality and Node's 0.001 equality tolerance. They also differ from HasSameCoordinatesAs, which ignores IDs and uses a 0.0001 per-axis box. Near-node equality is not transitive clustering; retained representatives can depend on input order. No entity ID, equality implementation or global tolerance is changed.</para>
+        /// <para>Captures incidence/Y bounds per occurrence and materializes qualifying metadata before building the set. Accepted IDs and accepted-node coordinates must remain stable while building; detectable changes throw rather than publishing corrupted hash membership. Captures/checks are not atomic, so callers coordinate concurrent writers. Full enumeration/validation occurs even after an early match; original enumeration failures propagate with no partial set returned. Working storage is proportional to qualifying occurrences.</para>
+        /// <para>Owns editable set storage and retains mutable source objects. Later geometry edits do not reapply the range; Add/Remove do not run selection again. Keep stored IDs and node coordinates stable, or remove before editing/re-add afterwards. After bulk edits, rebuild through a materialized sequence with the returned comparer, for example new HashSet&lt;T&gt;(set.ToArray(), set.Comparer), to rehash and deduplicate. No cloning, native membership check, STAAD acquisition/query, geometry hydration, selection, analysis, save or supplied/native mutation is performed.</para></remarks>
+        /// <exception cref="ArgumentNullException">source is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">A bound is NaN, or yMax is smaller than yMin.</exception>
+        /// <exception cref="NotSupportedException">T is not exactly Node, Beam or Plate.</exception>
+        /// <exception cref="ArgumentException">A visited entity/incidence is missing, participating coordinates are nonfinite, or accepted hash-relevant metadata changes during construction.</exception>
+        /// <example><code>
+        /// var start = new StaadPro.Interop.Entities.Node(1, 0, 1, 0);
+        /// var end = new StaadPro.Interop.Entities.Node(2, 0, 3, 0);
+        /// var beam = new StaadPro.Interop.Entities.Beam(8, start, end);
+        /// var selected = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.InYRange(new[] { beam }, 1, 3);
+        /// System.Console.WriteLine(selected.Count); // 1: both endpoints are inside, including boundaries
+        /// </code></example>
+        public static HashSet<T> InYRange<T>(this IEnumerable<T> source, double yMin, double yMax) where T : IEntity =>
+            StaadPro.Interop.Services.Geometry.Detached.AxisRangeSelectionService.Select(
+                source, yMin, yMax, nameof(yMin), nameof(yMax), StaadPro.Interop.Services.Geometry.Detached.CoordinateAxis.Y);
+
+        /// <summary>Selects nodes or whole beam/plate Z extents inside an inclusive closed coordinate interval.</summary>
+        /// <typeparam name="T">Exactly Node, Beam or Plate as the declared generic type. Interface-typed, mixed and other entity sequences are unsupported.</typeparam>
+        /// <param name="source">Non-null finite entity sequence, enumerated once and fully validated before a set is returned. Null entries and missing required incidence are invalid.</param>
+        /// <param name="zMin">Inclusive lower Z bound in the same model length units; may be negative infinity for an open lower end. NaN is invalid.</param>
+        /// <param name="zMax">Inclusive upper Z bound, at least zMin; may be positive infinity for an open upper end. NaN is invalid.</param>
+        /// <returns>A fresh editable HashSet retaining original qualifying entity references, with the first equal qualifying occurrence retained. Empty valid input/no matches return an empty set. Enumeration order of the returned set is unspecified.</returns>
+        /// <remarks><para>Nodes qualify by Z. A beam qualifies only when both endpoint Z values lie in the interval; a plate requires all A/B/C and optional D Z values to lie inside. This is complete extent containment, not midpoint selection, interval overlap or intersection. Bounds are inclusive with no expansion/tolerance or unit conversion. Beam endpoints and plate A/B/C must exist; D may be null or repeated. All visited participating Z values must be finite, even on ultimately excluded entities. Node selections additionally require finite X/Y for well-defined node-set equality; beam/plate X/Y and incidence IDs are unused.</para>
+        /// <para>The returned comparer preserves this selection's identity rules: beams and plates compare only integer IDs, including zero/negative/draft IDs; nodes require equal IDs and Euclidean separation at most 0.000001. These rules deliberately differ from general Beam/Plate geometry equality and Node's 0.001 equality tolerance. They also differ from HasSameCoordinatesAs, which ignores IDs and uses a 0.0001 per-axis box. Near-node equality is not transitive clustering; retained representatives can depend on input order. No entity ID, equality implementation or global tolerance is changed.</para>
+        /// <para>Captures incidence/Z bounds per occurrence and materializes qualifying metadata before building the set. Accepted IDs and accepted-node coordinates must remain stable while building; detectable changes throw rather than publishing corrupted hash membership. Captures/checks are not atomic, so callers coordinate concurrent writers. Full enumeration/validation occurs even after an early match; original enumeration failures propagate with no partial set returned. Working storage is proportional to qualifying occurrences.</para>
+        /// <para>Owns editable set storage and retains mutable source objects. Later geometry edits do not reapply the range; Add/Remove do not run selection again. Keep stored IDs and node coordinates stable, or remove before editing/re-add afterwards. After bulk edits, rebuild through a materialized sequence with the returned comparer, for example new HashSet&lt;T&gt;(set.ToArray(), set.Comparer), to rehash and deduplicate. No cloning, native membership check, STAAD acquisition/query, geometry hydration, selection, analysis, save or supplied/native mutation is performed.</para></remarks>
+        /// <exception cref="ArgumentNullException">source is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">A bound is NaN, or zMax is smaller than zMin.</exception>
+        /// <exception cref="NotSupportedException">T is not exactly Node, Beam or Plate.</exception>
+        /// <exception cref="ArgumentException">A visited entity/incidence is missing, participating coordinates are nonfinite, or accepted hash-relevant metadata changes during construction.</exception>
+        /// <example><code>
+        /// var start = new StaadPro.Interop.Entities.Node(1, 0, 0, -2);
+        /// var end = new StaadPro.Interop.Entities.Node(2, 0, 0, 2);
+        /// var beam = new StaadPro.Interop.Entities.Beam(9, start, end);
+        /// var selected = StaadPro.Interop.Extensions.GeometryDiagnosticsExtensions.InZRange(new[] { beam }, -2, 2);
+        /// System.Console.WriteLine(selected.Count); // 1: both endpoints are inside, including boundaries
+        /// </code></example>
+        public static HashSet<T> InZRange<T>(this IEnumerable<T> source, double zMin, double zMax) where T : IEntity =>
+            StaadPro.Interop.Services.Geometry.Detached.AxisRangeSelectionService.Select(
+                source, zMin, zMax, nameof(zMin), nameof(zMax), StaadPro.Interop.Services.Geometry.Detached.CoordinateAxis.Z);
 
         private static void AddExtractedNode(Node node, HashSet<int> ids, List<Node> result)
         {
