@@ -324,7 +324,7 @@ namespace StaadPro.Interop.Tests.Adapter
         {
             Assert.That(Queries, Has.Length.EqualTo(15));
             var all = typeof(IOSOutput).GetMethods().Where(m => !m.IsSpecialName).ToArray();
-            Assert.That(all, Has.Length.EqualTo(96));
+            Assert.That(all, Has.Length.EqualTo(98));
             foreach (var method in all)
             {
                 Assert.That(method.GetParameters().Any(p => p.ParameterType.IsByRef), Is.False);

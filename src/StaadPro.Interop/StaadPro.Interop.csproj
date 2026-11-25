@@ -12,12 +12,12 @@
     <RootNamespace>StaadPro.Interop</RootNamespace>
     <PackageId>StaadPro.Interop</PackageId>
     <Version>1.0.0</Version>
-    <ReleaseDocumentationVersion>1.0.0-preview.20261125</ReleaseDocumentationVersion>
+    <ReleaseDocumentationVersion>1.0.0-preview.20261125.1</ReleaseDocumentationVersion>
     <PackageVersion>$(ReleaseDocumentationVersion)</PackageVersion>
     <Authors>Srinivasa Rao Masanam</Authors>
     <Company>StruXllence</Company>
     <Copyright>Copyright (c) 2026 StruXllence</Copyright>
-    <PackageReleaseNotes>Added generic InYRange and InZRange with comprehensive XML IntelliSense. Preserved whole Node/Beam/Plate Y and Z extent containment and dedicated source set equality without changing global entities: beam/plate IDs and node ID plus 0.000001 distance. Retained ordered open-ended bounds, finite-geometry and stable hash-metadata validation, owned editable results and no native operations. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
+    <PackageReleaseNotes>Added GetBucklingFactor and the Node-based GetBucklingModeDisplacements overload with comprehensive XML IntelliSense. Qualified by-reference factor output, native success/failure evidence and finite written Double values without default-zero fallback. Reused complete six-component mode-shape snapshots and captured node identity without geometry hydration or native mutation. Output now provides 98 managed overloads reaching 48 documented native names. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
     <Description>A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD Developer resources include Marketplace installation links for the optional StruXllence VS Code dark and light themes in the packaged README.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageTags>staad;staad-pro;openstaad;structural-engineering;structural-analysis;engineering-automation;csharp;dotnet-framework;com-interop;geometry;loads;bentley;struxllence</PackageTags>

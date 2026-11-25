@@ -26,7 +26,9 @@ code-insiders --install-extension StruXllence.struxllence-themes
 
 After installation, run **Preferences: Color Theme** and select **StruXllence Dark** or **StruXllence Light**. See the [theme previews and icon setup](https://github.com/StruXllence/struxllence-themes). The editor theme is optional and is installed separately from the NuGet library.
 
-## Version 1.0.0-preview.20261125
+## Version 1.0.0-preview.20261125.1
+
+Added `GetBucklingFactor(bucklingMode)` and the Node-based `GetBucklingModeDisplacements(nativeBucklingModeNumber, node)` overload with complete matching XML IntelliSense. Factor retrieval qualifies native status and written by-reference finite Double output. Mode queries retain all six translation/rotation components, captured node identity and native normalization without hydration, scaling or model changes. Output now provides 98 managed overloads reaching 48 documented native names. See [buckling contracts and examples](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Output-Extended-Queries.md#buckling-factor-and-node-overload).
 
 Added `InYRange<T>` and `InZRange<T>` in `GeometryDiagnosticsExtensions` with complete XML IntelliSense. Both retain whole Node/Beam/Plate Y and Z extent containment, ordered open-ended bounds and dedicated source set equality: beam/plate IDs and node ID plus 0.000001 distance, without changing global entities or calling STAAD. See [range selection contracts](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Geometry-Diagnostics.md).
 
@@ -261,7 +263,7 @@ See the [root guide](https://github.com/StruXllence/StaadPro.Interop/blob/main/d
 
 ## IntelliSense and included documentation
 
-Expanded XML IntelliSense is included for **143 Geometry overloads, 171 Load overloads, 249 common Property overloads plus five optional catalog queries, 96 Output overloads, 27 Support operations, seventeen Commands methods, ten Design methods, twenty-nine Table methods, twenty-one View methods, 53 common Root operations and three optional Root operation interfaces**, on both interfaces and concrete adapters. Keep `StaadPro.Interop.xml` beside the library when distributing assemblies outside normal NuGet restore.
+Expanded XML IntelliSense is included for **143 Geometry overloads, 171 Load overloads, 249 common Property overloads plus five optional catalog queries, 98 Output overloads, 27 Support operations, seventeen Commands methods, ten Design methods, twenty-nine Table methods, twenty-one View methods, 53 common Root operations and three optional Root operation interfaces**, on both interfaces and concrete adapters. Keep `StaadPro.Interop.xml` beside the library when distributing assemblies outside normal NuGet restore.
 
 The archive includes Property, Geometry, Load, Output and Root guides, installation and publishing instructions, and the release history.
 

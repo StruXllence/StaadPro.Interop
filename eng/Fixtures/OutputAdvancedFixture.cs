@@ -53,6 +53,14 @@ namespace PackageVerification
                     station=S("criticalStation",0.5);clause=S("clause","H1-1a");section=S("section","W12X26");slenderness=S("slenderness",55.0);}
                 Fill(ref actions,"designActions");return raw;
             }
+            public object GetBucklingFactor(int mode,ref object factor)
+            {
+                if (!(factor is double sentinel) || !double.IsNaN(sentinel))
+                    throw new InvalidOperationException("Expected a Double NaN buckling factor sentinel.");
+                var response = R(nameof(GetBucklingFactor), true, mode);
+                if (WriteOutputs) factor = S("bucklingFactor", 2.5);
+                return response;
+            }
             public object GetNoOfBucklingFactors()=>R(nameof(GetNoOfBucklingFactors),3);
             public object GetNoOfModesExtracted()=>R(nameof(GetNoOfModesExtracted),3);
             public object GetSteelDesignParameterBlockCount()=>R(nameof(GetSteelDesignParameterBlockCount),3);

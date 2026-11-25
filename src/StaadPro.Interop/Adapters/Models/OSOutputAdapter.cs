@@ -1610,5 +1610,48 @@ namespace StaadPro.Interop.Adapters.Models
             corners.GetPlateCornerForces(keys, loadCaseType, geometry, load);
 
         #endregion
+
+        /// <summary>Reads the native buckling factor for one requested eigen-buckling mode.</summary>
+        /// <param name="bucklingMode">Positive native buckling mode number, forwarded unchanged. The documented example uses 1 for the first mode; no rebasing or count-derived remapping occurs.</param>
+        /// <returns>A status/data result containing the written finite Double factor on success. Native false/zero produces NativeFailure with no accessible Data. Actual Boolean and integral response evidence remain distinct.</returns>
+        /// <remarks>
+        /// <para>When to use: GetBucklingFactorCount reports how many factors were computed; this query retrieves one factor. GetBucklingResultAvailability observes availability, while GetBucklingModeDisplacements returns a six-component mode shape. None starts analysis. The factor is the native load multiplier, not a utilization ratio, safety certification or a physical displacement. Its finite zero, sign and magnitude are preserved without scaling or positivity assumptions.</para>
+        /// <para>Calls GetBucklingFactor once with an internal by-reference Double-NaN sentinel. A native Boolean true or integral one response and a completely written finite Double are required. Strings, integers, Single values, null, NaN and infinities are not coerced into factors. Native false takes precedence over output contents; an unwritten successful output fails explicitly instead of appearing as zero. No alternate signature, initialized-zero fallback, retry or replay occurs.</para>
+        /// <para>Uses the common installed 2024-2026 contract synchronously on the caller's established COM apartment under the shared expanded-query gate. Captured binding identity is checked before and after the call; reacquire wrapper.Output after refresh and serialize external access. No Task.Run, case activation, model edit, save, eigenanalysis, unit conversion or result-freshness guarantee is introduced. Wrapper input units do not define modal normalization. Live native marshaling and engineering qualification remain necessary for the acquired build.</para>
+        /// </remarks>
+        /// <exception cref="System.ArgumentOutOfRangeException">bucklingMode is not positive.</exception>
+        /// <exception cref="System.InvalidOperationException">The binding is stale/disposed/replaced, status is unsupported or a successful factor is unwritten, non-Double or nonfinite.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The original native exception propagates with its HRESULT.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The required native signature is unavailable.</exception>
+        /// <example><code>var result = output.GetBucklingFactor(1);
+        /// if (result.IsSuccessful) System.Console.WriteLine(result.Data);
+        /// else System.Console.WriteLine(result.Status);</code></example>
+        public OutputQueryResult<double> GetBucklingFactor(int bucklingMode) =>
+            advanced.GetBucklingFactor(bucklingMode);
+
+        /// <summary>Reads all six eigen-buckling mode-shape components using an existing node's identifier.</summary>
+        /// <param name="nativeBucklingModeNumber">Nonnegative native buckling mode number/index, passed unchanged with the same rules as the integer-node overload. Negative values are rejected; STAAD decides availability for the requested number.</param>
+        /// <param name="node">Non-null existing node metadata with a positive Id, captured once before the query. Coordinates and other metadata are unused; native membership is decided by STAAD.</param>
+        /// <returns>Status and the existing owned ModeDisplacements snapshot containing captured NativeModeNumber/NodeId, X/Y/Z translations and Rx/Ry/Rz rotations. Native false/zero exposes NativeFailure with no Data; requested EntityId is retained.</returns>
+        /// <remarks>
+        /// <para>When to use: Prefer this overload when node metadata is already available. The integer-node overload retrieves exactly the same payload from a node ID without requiring entity construction. This overload does not hydrate geometry, attach the node to a model, alter it, read coordinates or recompute a scalar magnitude. GetBucklingFactor returns a load multiplier; GetNodeDisplacements returns load-case response; GetModalNodeDisplacements addresses the separate dynamic modal family.</para>
+        /// <para>Captures node.Id once and reuses the existing qualified buckling reader. Calls GetBucklingModeDisplacementAtNode once using a six-Double NaN-sentinel buffer passed by reference internally. Boolean true/integral one success requires an exact rank-one six-Double fully written finite array, including replaced and nonzero-bound arrays. Components are copied into independent translation and rotation value snapshots; malformed successful data throws. Native false takes precedence over any output contents. Later edits to node metadata cannot rewrite the captured identifiers or returned component values.</para>
+        /// <para>Mode shapes retain native axes, signs, normalization and reported units; they are not physical static displacements and no normalization, angular conversion, resultant or frame rotation is inferred. Uses the common 2024-2026 reader synchronously on the caller's COM apartment under the shared expanded-query gate, checking binding identity before and after dispatch. Reacquire wrapper.Output after refresh and coordinate raw/other-adapter/external access. No worker COM, fallback, retry, case activation, analysis, save, native mutation or freshness/engineering guarantee occurs.</para>
+        /// </remarks>
+        /// <exception cref="System.ArgumentNullException">node is null.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">nativeBucklingModeNumber is negative or the captured node ID is not positive.</exception>
+        /// <exception cref="System.InvalidOperationException">The binding is stale/disposed/replaced, status is unsupported or successful data is unwritten, malformed or nonfinite.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The original native exception propagates with its HRESULT.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The required native signature is unavailable.</exception>
+        /// <example><code>var node = new StaadPro.Interop.Entities.Node { Id = 11 };
+        /// var result = output.GetBucklingModeDisplacements(1, node);
+        /// if (result.IsSuccessful) System.Console.WriteLine(result.Data.Translation);
+        /// else System.Console.WriteLine(result.Status);</code></example>
+        public OutputQueryResult<ModeDisplacements> GetBucklingModeDisplacements(int nativeBucklingModeNumber, Node node)
+        {
+            if (node == null) throw new ArgumentNullException(nameof(node));
+            int nodeId = node.Id;
+            return advanced.GetBucklingModeDisplacements(nativeBucklingModeNumber, nodeId);
+        }
     }
 }

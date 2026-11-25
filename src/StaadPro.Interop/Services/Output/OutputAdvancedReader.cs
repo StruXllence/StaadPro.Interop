@@ -63,6 +63,22 @@ namespace StaadPro.Interop.Services.Output
                 return Result(op, data, response: response, entity: memberId);
             });
         }
+        internal OutputQueryResult<double> GetBucklingFactor(int bucklingMode)
+        {
+            Positive(bucklingMode, nameof(bucklingMode));
+            return Run(p =>
+            {
+                const string op = "GetBucklingFactor";
+                object factor = double.NaN;
+                object raw = p.GetBucklingFactor(bucklingMode, ref factor);
+                if (!ReadFlag(raw, op, false))
+                    return Result<double>(op, status: OutputQueryStatus.NativeFailure, response: raw);
+                if (!(factor is double))
+                    throw new InvalidOperationException(op + " returned an unwritten or non-Double factor.");
+                return Result(op, ReadNumber(factor, op), response: raw);
+            });
+        }
+
         internal OutputQueryResult<int> GetBucklingFactorCount() => Run(p => { const string op = "GetNoOfBucklingFactors"; object raw = p.GetNoOfBucklingFactors(); return Result(op, Count(raw, op), response: raw); });
         internal OutputQueryResult<int> GetExtractedModeCount() => Run(p => { const string op = "GetNoOfModesExtracted"; object raw = p.GetNoOfModesExtracted(); return Result(op, Count(raw, op), response: raw); });
         internal OutputQueryResult<int> GetSteelDesignParameterBlockCount() => Run(p => { const string op = "GetSteelDesignParameterBlockCount"; object raw = p.GetSteelDesignParameterBlockCount(); return Result(op, Count(raw, op), response: raw); });

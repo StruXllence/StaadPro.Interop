@@ -258,7 +258,7 @@ try {
     if ($xml.OuterXml -match 'cref="!:|<inheritdoc|<include') { throw 'Unresolved documentation in installed package XML.' }
     if ($snippets.Count -ne 310) { throw "Expected 310 existing packaged XML examples; found $($snippets.Count)." }
     $outputSnippets = @()
-    $advancedOutputNames = @('GetMemberSteelDesignResults', 'GetBucklingFactorCount', 'GetBucklingModeDisplacements', 'GetRelativeMemberDisplacement', 'GetAbsoluteMemberDisplacement', 'GetPhysicalMemberEndForces', 'GetMemberAxialForceExtrema', 'GetMemberForcesAtDistance', 'GetPhysicalMemberForcesAtDistance', 'GetMemberDeflectionAtDistance', 'GetMatInfluenceAreas', 'GetBasePressures', 'GetSolidNormalStresses', 'GetSolidShearStresses', 'GetSolidPrincipalStresses', 'GetNonlinearLoadStep', 'GetSteelDesignParameterBlockCount', 'GetExtractedModeCount', 'GetModeFrequency', 'GetModalNodeDisplacements', 'GetModalMassParticipationFactors', 'GetTimeHistoryIntegrationInfo', 'GetTimeHistoryResponseAtTime', 'GetTimeHistoryResponse', 'GetMultipleSteelDesignResultAvailability')
+    $advancedOutputNames = @('GetBucklingFactor', 'GetMemberSteelDesignResults', 'GetBucklingFactorCount', 'GetBucklingModeDisplacements', 'GetRelativeMemberDisplacement', 'GetAbsoluteMemberDisplacement', 'GetPhysicalMemberEndForces', 'GetMemberAxialForceExtrema', 'GetMemberForcesAtDistance', 'GetPhysicalMemberForcesAtDistance', 'GetMemberDeflectionAtDistance', 'GetMatInfluenceAreas', 'GetBasePressures', 'GetSolidNormalStresses', 'GetSolidShearStresses', 'GetSolidPrincipalStresses', 'GetNonlinearLoadStep', 'GetSteelDesignParameterBlockCount', 'GetExtractedModeCount', 'GetModeFrequency', 'GetModalNodeDisplacements', 'GetModalMassParticipationFactors', 'GetTimeHistoryIntegrationInfo', 'GetTimeHistoryResponseAtTime', 'GetTimeHistoryResponse', 'GetMultipleSteelDesignResultAvailability')
     $steelBlockOutputNames = @('GetSteelDesignParameterBlockName', 'GetMaximumMemberSteelUtilizationRatio', 'GetMinimumSteelDesignFailureRatio', 'GetMaximumSteelDesignFailureRatio')
     $steelBlockOutputGuide = Read-PackageEntry 'docs/Output-Steel-Design-Blocks.md'
     $outputAdvancedGuide = Read-PackageEntry 'docs/Output-Extended-Queries.md'
@@ -273,7 +273,7 @@ try {
     $newLine = [Environment]::NewLine
     foreach ($owner in @('Adapters.Interfaces.IOSOutput', 'Adapters.Models.OSOutputAdapter')) {
         $entries = @($xml.doc.members.member | Where-Object { $_.name.StartsWith("M:StaadPro.Interop.$owner.") -and $_.name -notmatch '\.#ctor' })
-        if ($entries.Count -ne 96) { throw "Expected 96 documented Output queries for $owner." }
+        if ($entries.Count -ne 98) { throw "Expected 98 documented Output queries for $owner." }
         foreach ($entry in $entries) {
             foreach ($tag in @('summary', 'returns', 'remarks', 'example/code')) {
                 $node = $entry.SelectSingleNode($tag)
@@ -300,7 +300,7 @@ try {
             $outputSnippets += 'using (var wrapper = new OpenStaadWrapper(' + $rootExpression + ')) {' + $newLine + $binding + $newLine + $example + $newLine + '}'
         }
     }
-    if ($outputSnippets.Count -ne 192) { throw 'Expected 192 Output XML examples.' }
+    if ($outputSnippets.Count -ne 196) { throw 'Expected 196 Output XML examples.' }
     $supportSnippets = @()
     $supportGuide = (Read-PackageEntry 'docs/Support-Foundations.md') + (Read-PackageEntry 'docs/Commands-and-Support.md')
     foreach ($owner in @('Adapters.Interfaces.IOSSupport', 'Adapters.Models.OSSupportAdapter')) {
@@ -791,7 +791,7 @@ public static class Program
         using (var wrapper = new OpenStaadWrapper(new FakeOutputRoot()))
         {
             var output = wrapper.Output;
-            Check(typeof(IOSOutput).GetMethods().Count(m => !m.IsSpecialName) == 96, "installed Output query count");
+            Check(typeof(IOSOutput).GetMethods().Count(m => !m.IsSpecialName) == 98, "installed Output query count");
             Check(output.GetMemberEndForces(17, MemberEnd.Start, 1).Data.Fx == 1.25, "installed local end actions");
             Check(output.GetPlateCenterPrincipalStressesAndAnglesEx(17, 1).Data.AngleBottom == 2.25, "installed split principal buffers");
             var native = (FakeOutput)(object)wrapper.RawOutput;

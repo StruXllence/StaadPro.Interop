@@ -6,7 +6,38 @@ Added 25 documented Output routes to IOSOutput and the single non-partial OSOutp
 
 Import `StaadPro.Interop.Enums.Output` for the new coordinate, response and design enums, and `StaadPro.Interop.Models.Output` for named results. Examples assume an already acquired `wrapper` and `output = wrapper.Output`, running on the established COM apartment.
 
-**Current source checkpoint:** six later steel-design routes bring Output to 46/60, with fourteen remaining. See [the steel-block guide](Output-Steel-Design-Blocks.md). The 40/60 and twenty-pending figures above describe the preceding increment.
+**Current source checkpoint, 25 November 2026:** Output exposes **98 managed overloads covering 48/60 documented native names**, with twelve native routes remaining separately gated. The buckling-factor query and Node-based mode-shape overload below are available in 1.0.0-preview.20261125.1. Earlier 40/60 and 46/60 figures describe preceding increments. See [the steel-block guide](Output-Steel-Design-Blocks.md) and [overall Output status](Output.md).
+
+## Buckling factor and Node overload
+
+Use the factor query for the native load multiplier at a particular positive buckling mode number. It is different from GetBucklingFactorCount (the number computed) and GetBucklingResultAvailability (availability); none performs eigenanalysis.
+
+~~~csharp
+OutputQueryResult<double> GetBucklingFactor(int bucklingMode);
+OutputQueryResult<ModeDisplacements> GetBucklingModeDisplacements(
+    int nativeBucklingModeNumber, Node node);
+~~~
+
+~~~csharp
+var factor = output.GetBucklingFactor(1);
+if (factor.IsSuccessful) System.Console.WriteLine(factor.Data);
+else System.Console.WriteLine(factor.Status);
+var node = new StaadPro.Interop.Entities.Node { Id = 11 };
+var shape = output.GetBucklingModeDisplacements(1, node);
+if (shape.IsSuccessful)
+{
+    System.Console.WriteLine(shape.Data.Translation);
+    System.Console.WriteLine(shape.Data.Rotation);
+}
+~~~
+
+GetBucklingFactor calls the native member once with an internal by-reference Double NaN sentinel. Boolean true or integral one must accompany a written finite Double; an unwritten success is an error, while native false/zero yields NativeFailure and no accessible Data. Single/integer/string/null outputs are not coerced. Finite zero, negative and extreme factors retain their literal sign/magnitude; no safety or engineering acceptance is inferred.
+
+The Node overload reuses GetBucklingModeDisplacements(nativeBucklingModeNumber, nodeId), captures the positive node.Id once and ignores coordinates. Its mode argument uses the same nonnegative, unchanged native numbering rules as that existing overload; a negative number is rejected and STAAD determines result availability. It performs no geometry hydration, coordinate validation, magnitude reduction or node mutation. Native mode examples use 1; neither overload rebases an index.
+
+A successful mode observation contains all six named translation/rotation components, captured NativeModeNumber and NodeId. It accepts only a fully written finite rank-one six-Double array, including replaced/nonzero-bound buffers, and copies the components into independent value snapshots. Native false precedes output qualification. The returned result's EntityId also retains the captured node ID after later metadata edits.
+
+Native status evidence remains distinct in NativeBooleanReturn and NativeReturnCode. The factor is a load multiplier; mode shapes retain native axes, normalization and units and are not physical static displacements. No rotation, scaling, unit conversion, analysis, case activation or save occurs. Both queries execute synchronously on the caller's COM apartment, with the existing expanded-query gate and captured-binding checks before/after dispatch. Reacquire Output after refresh; coordinate other/raw/external callers. Original transport/missing-signature errors propagate without retry. Managed fixtures do not certify live native or engineering behavior.
 
 ## Public contracts
 

@@ -42,11 +42,11 @@ Use `GetBeamsWithinRadius(...)`, `GetBoundingBox(...)` and `IsConnectedToBeam(..
 
 Runtime requires **Windows, .NET Framework 4.8.1 (net481), and a licensed STAAD.Pro installation** exposing the APIs used by your application. The .NET SDK used to build the project is separate from the application's target framework.
 
-The latest locally prepared preview is **1.0.0-preview.20261125**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
+The latest locally prepared preview is **1.0.0-preview.20261125.1**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
 
-## Latest preview — 1.0.0-preview.20261125
+## Latest preview — 1.0.0-preview.20261125.1
 
-Added `InYRange<T>(source, yMin, yMax)` and `InZRange<T>(source, zMin, zMax)` with comprehensive XML IntelliSense. Selections retain complete Node/Beam/Plate Y and Z extents, ordered open-ended bounds and dedicated source set equality without changing global entities. See [detached geometry contracts and examples](docs/Geometry-Diagnostics.md).
+Added `GetBucklingFactor(bucklingMode)` and `GetBucklingModeDisplacements(nativeBucklingModeNumber, node)` with comprehensive XML IntelliSense. Factor retrieval qualifies written by-reference Double output and native status. Node-based retrieval reuses the complete six-component mode-shape snapshot, preserving captured identity, normalization and units without geometry hydration. Output now provides 98 managed overloads reaching 48 documented native names. See [buckling query contracts and examples](docs/Output-Extended-Queries.md#buckling-factor-and-node-overload).
 
 ## Quick start: read an open model
 

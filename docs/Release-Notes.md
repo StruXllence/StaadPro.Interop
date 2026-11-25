@@ -1,5 +1,16 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261125.1 - 25 November 2026
+
+Added GetBucklingFactor(bucklingMode) and the Node-based GetBucklingModeDisplacements(nativeBucklingModeNumber, node) overload with comprehensive matching interface/adapter XML IntelliSense. Output now exposes 98 managed overloads covering 48 of 60 documented native names. See [buckling query contracts](Output-Extended-Queries.md#buckling-factor-and-node-overload) for overload selection, examples and execution behavior.
+
+Qualified factor retrieval through a by-reference Double NaN sentinel, preserving native Boolean/integral response evidence and written finite factor values. Unwritten or malformed successful output fails explicitly; native false/zero exposes no payload. Retained finite zero and signed factors without coercion, initialized-zero fallback, implicit analysis or retries.
+
+Reused the existing ModeDisplacements model and six-component buckling reader for Node-based queries. Captured node identity before dispatch, preserved all translations/rotations, native normalization, axes and units, and copied values independently without geometry hydration or node mutation. Both functions use the existing synchronous COM apartment and binding checks.
+
+Release build passed with zero warnings/errors. All **7,755 offline tests** passed, including **41 new cases** covering factor transport/status/sentinels, signed finite values, invalid inputs, full mode-shape output, mutable node identity, stale/replaced/disposed bindings, original exceptions and matching XML contracts. Exact installed-package checks execute **1,359 selected XML examples**, including 196 Output examples, and verify isolated restore/build/runtime/archive equality. Managed stand-ins do not certify live native, cross-version runtime or engineering behavior.
+
+
 ## 1.0.0-preview.20261125 - 25 November 2026
 
 Added generic `InYRange<T>(source, yMin, yMax)` and `InZRange<T>(source, zMin, zMax)` in `GeometryDiagnosticsExtensions` with comprehensive XML IntelliSense, retaining the existing `Node`, `Beam` and `Plate` models. See [range selection contracts](Geometry-Diagnostics.md).
