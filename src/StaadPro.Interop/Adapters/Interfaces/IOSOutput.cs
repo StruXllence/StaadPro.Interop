@@ -1575,5 +1575,43 @@ namespace StaadPro.Interop.Adapters.Interfaces
         /// if (result.IsSuccessful) System.Console.WriteLine(result.Data);
         /// else System.Console.WriteLine(result.Status);</code></example>
         Task<OutputQueryResult<double>> GetMemberSteelUtilizationRatioAsync(Beam beam);
+
+        /// <summary>Reads one analytical member's steel utilization and returns a settled task.</summary>
+        /// <param name="beamId">Positive analytical member number passed to the native ratio query.</param>
+        /// <returns>A completed task containing the member ID and an OutputQueryResult of double. Inspect IsSuccessful before Data. On success, Data is a finite nonnegative dimensionless ratio, including a written zero.</returns>
+        /// <remarks>
+        /// <para>Use this overload when you already have the analytical member number. It calls GetMemberSteelDesignRatio once, on the calling COM apartment, before returning the task. Awaiting the task reads the completed observation or rethrows the captured error. Invocation can block, so call from the application's STAAD automation thread and coordinate access to the model.</para>
+        /// <para>Native false produces NativeFailure before inspecting output. After native success, -999 maps to MemberNotDesigned and -1 to AnalysisNotPerformed. These are completed tasks with an unsuccessful query result. Malformed status or a successful response with missing, nonfinite or undocumented negative data faults the task. The ratio is dimensionless in any model force and length units. A ratio observation alone cannot establish design acceptance or freshness.</para>
+        /// <para>The captured Output binding is checked before and after dispatch. Use the current adapter after wrapper refresh. The query observes the existing design result and leaves managed beam caches untouched.</para>
+        /// </remarks>
+        /// <exception cref="System.ArgumentOutOfRangeException">A nonpositive beamId faults the task.</exception>
+        /// <exception cref="System.InvalidOperationException">An unavailable or replaced binding, malformed status or invalid successful ratio faults the task.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">A native transport error faults the task with its original exception and HRESULT.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">An unavailable native signature faults the task.</exception>
+        /// <example><code>var result = wrapper.Output.GetMemberSteelUtilizationRatioAsync(17).GetAwaiter().GetResult();
+        /// if (result.IsSuccessful) System.Console.WriteLine(result.Data);
+        /// else System.Console.WriteLine(result.Status);</code></example>
+        Task<OutputQueryResult<double>> GetMemberSteelUtilizationRatioAsync(int beamId);
+
+        /// <summary>Reads steel-utilization observations for supplied beams and returns a settled task.</summary>
+        /// <param name="beams">Non-null set of at most 100,000 beams, each with a positive unique analytical member ID. Beam incidence, coordinates and cached ratios are not inputs.</param>
+        /// <returns>A completed task containing an owned OutputBatchResult of double. Items follow captured set enumeration order and retain each member ID and status. Inspect each item's IsSuccessful before Data. An empty validated set returns an empty successful batch.</returns>
+        /// <remarks>
+        /// <para>The set is captured and validated before the first native call. Duplicate member IDs are rejected even if the set's equality comparer admits distinct beams with the same ID. The reader queries each captured ID sequentially on the calling COM apartment and checks the observed beam's ID after its read. Coordinate edits with other callers. The set's own enumeration order determines result order.</para>
+        /// <para>Native false yields a NativeFailure row and the batch continues. A successful native response with -999 or -1 yields MemberNotDesigned or AnalysisNotPerformed, respectively. Successful ratios are finite and nonnegative, independent of model force and length units. A malformed response, binding change, observed member ID change or transport exception faults the task and leaves the batch without a result.</para>
+        /// <para>All work finishes before the task is returned. Invocation can block, so call on the appropriate STAAD automation thread. The batch reads existing results and leaves the supplied beams' UtilizationRatio values untouched.</para>
+        /// </remarks>
+        /// <exception cref="System.ArgumentNullException">A null set or beam entry faults the task.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">A nonpositive member ID faults the task.</exception>
+        /// <exception cref="System.ArgumentException">Duplicate member IDs or a selection above the bound fault the task.</exception>
+        /// <exception cref="System.InvalidOperationException">An invalid binding, observed identity change or malformed native status or ratio faults the task.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">A native transport error faults the task with its original exception and HRESULT.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">An unavailable native signature faults the task.</exception>
+        /// <example><code>var selected = new HashSet&lt;Beam&gt; { new Beam { Id = 17 }, new Beam { Id = 18 } };
+        /// var result = wrapper.Output.GetMemberSteelUtilizationRatiosAsync(selected).GetAwaiter().GetResult();
+        /// foreach (var item in result.Items)
+        ///     if (item.IsSuccessful) System.Console.WriteLine(item.Data);
+        ///     else System.Console.WriteLine(item.Status);</code></example>
+        Task<OutputBatchResult<double>> GetMemberSteelUtilizationRatiosAsync(HashSet<Beam> beams);
     }
 }

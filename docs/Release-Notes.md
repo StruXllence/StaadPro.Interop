@@ -1,5 +1,15 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261126.1 - 26 November 2026
+
+Added `GetMemberSteelUtilizationRatioAsync(int beamId)` and `GetMemberSteelUtilizationRatiosAsync(HashSet<Beam> beams)` with matching interface and adapter XML IntelliSense. Output now exposes 102 managed overloads covering 48 documented native names. [Member task contracts and examples](Output-Managed-Workflows.md#task-shaped-member-observations).
+
+The single-ID overload returns `Task<OutputQueryResult<double>>`. The batch returns `Task<OutputBatchResult<double>>` with one identified observation per captured member ID in the input set's enumeration order. This preserves native failure and design absence statuses alongside successful ratios in the same batch. Ordinary unsuccessful observations allow subsequent members to be queried.
+
+Both calls finish validation and native reads on the calling COM apartment before returning a completed or faulted task. Transport, validation, binding and malformed-output exceptions fault the task. The batch reuses the existing selection and identity checks and leaves each beam's utilization cache intact. Use the existing population operation to update those caches.
+
+The Release build completed with zero warnings and errors. All 7,796 tests passed, including 13 new cases. The installed .NET Framework 4.8.1 consumer verified 102 Output contracts and executed 1,367 XML examples, including 204 Output examples.
+
 ## 1.0.0-preview.20261126 - 26 November 2026
 
 Added GetMemberEndForcesAsync(loadCaseTitle, memberId, loadCaseId, memberEnd) and GetMemberSteelUtilizationRatioAsync(beam) with full matching XML IntelliSense. Reused OutputQueryResult, IdentifiedMemberForces and the existing shared readers without adding public data models or services. Output now exposes 100 managed overloads covering 48 documented native names. See [task-shaped member observations](Output-Managed-Workflows.md#task-shaped-member-observations).

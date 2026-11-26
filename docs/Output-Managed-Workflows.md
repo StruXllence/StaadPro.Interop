@@ -22,12 +22,14 @@
 
 ## Task-shaped member observations
 
-Two task counterparts reuse the existing synchronous workflows and named results:
+The task-returning overloads use the existing synchronous workflows and named results.
 
 ~~~csharp
 Task<OutputQueryResult<IdentifiedMemberForces>> GetMemberEndForcesAsync(
     string loadCaseTitle, int memberId, int loadCaseId, MemberEnd memberEnd);
 Task<OutputQueryResult<double>> GetMemberSteelUtilizationRatioAsync(Beam beam);
+Task<OutputQueryResult<double>> GetMemberSteelUtilizationRatioAsync(int beamId);
+Task<OutputBatchResult<double>> GetMemberSteelUtilizationRatiosAsync(HashSet<Beam> beams);
 ~~~
 
 ~~~csharp
@@ -36,21 +38,29 @@ var forces = wrapper.Output.GetMemberEndForcesAsync("Dead", 17, 1, MemberEnd.Sta
 if (forces.IsSuccessful) System.Console.WriteLine(forces.Data.Components.Fx);
 else System.Console.WriteLine(forces.Status);
 
-var beam = new Beam(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0));
-var ratio = wrapper.Output.GetMemberSteelUtilizationRatioAsync(beam).GetAwaiter().GetResult();
+var ratio = wrapper.Output.GetMemberSteelUtilizationRatioAsync(17).GetAwaiter().GetResult();
 if (ratio.IsSuccessful) System.Console.WriteLine(ratio.Data);
 else System.Console.WriteLine(ratio.Status);
+
+var beam = new Beam(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0));
+var batch = wrapper.Output.GetMemberSteelUtilizationRatiosAsync(new HashSet<Beam> { beam })
+    .GetAwaiter().GetResult();
+foreach (var item in batch.Items)
+{
+    if (item.IsSuccessful) System.Console.WriteLine($"{item.EntityId}: {item.Data}");
+    else System.Console.WriteLine($"{item.EntityId}: {item.Status}");
+}
 ~~~
 
-Both perform validation and the native query **synchronously on the calling COM apartment before returning** an already completed or faulted task. Calling can block. They introduce no Task.Run, worker COM, dispatcher, cancellation or native asynchronous I/O. Invoke on the proper STAAD automation thread and coordinate model access; await does not marshal a native call. Choose the synchronous counterparts when task-shaped composition is unnecessary.
+Invoke these methods on the established STAAD COM apartment. Validation and native reads finish synchronously before the method returns an already completed or faulted task. Invocation can block. Awaiting observes the result or rethrows the original error. Coordinate access by other adapters, raw callers and external model edits. Reacquire the current Output adapter after refreshing bindings.
 
-Task completion and query success are separate. Native false produces a completed task containing NativeFailure; ratio -999 means MemberNotDesigned and -1 means AnalysisNotPerformed, also without Data. Check IsSuccessful before reading Data. Validation, stale/replaced/disposed bindings, malformed successful output, changed Beam identity and original transport failures fault the task; await/GetAwaiter().GetResult rethrows the original error. An unavailable result is not replaced with an initialized zero.
+Inspect `IsSuccessful` before accessing an observation's `Data`. A completed task can contain `NativeFailure`, `MemberNotDesigned` (native ratio -999) or `AnalysisNotPerformed` (native ratio -1). The result exposes a dimensionless ratio only when the native call succeeds with qualified data. Validation, stale or disposed bindings, malformed successful outputs, detected identity changes and transport errors fault the task.
 
-Member-end task results retain the exact caller-supplied case label, member/case/end IDs and native Local frame. The label is not looked up in STAAD. Six finite copied force/moment components retain native incidence, beta and end-action signs/units; no offset transfer, rotation or sign reversal is applied. ToMemberForces creates an independent editable copy while the immutable packet retains its explicit coordinate-system metadata.
+The analytical ID overload takes a positive member ID and makes one `GetMemberSteelDesignRatio` call. The Beam overload captures the member ID from the supplied Beam and checks it after the read. Both return the same status-bearing result type as their synchronous counterparts. The member-end task retains the supplied case label, member/case/end identities and six copied components in native local axes. `ToMemberForces` creates a separate editable copy of those components.
 
-The ratio task captures and checks Beam identity, ignoring its coordinates and existing nullable UtilizationRatio cache. It never populates that cache or raises property notifications. Use PopulateMemberSteelUtilizationRatios for an explicit staged cache update. The result preserves dimensionless ratios and documented absence statuses rather than certifying design success or freshness. Other native Output units remain unchanged; cached input units do not prove them.
+The batch accepts up to 100,000 beams and validates a populated reference and a positive, distinct member ID for each selection before native reads. It captures the set's enumeration order and reads one member at a time. A valid empty set returns a successful empty batch. The batch contains a read-only list with an `EntityId` and a status for each captured member. Ordinary unsuccessful observations allow subsequent reads. An exception faults the whole task without a partial returned batch.
 
-No new native function, analysis, activation, save, native mutation, fallback or retry is added. The same before/after captured-binding checks and common native readers are reused. Managed fixtures do not establish live engineering qualification.
+All ratio overloads read the native result directly and leave `Beam.UtilizationRatio` intact. Use `PopulateMemberSteelUtilizationRatios` for a staged cache update. The task counterparts retain the source function names and parameters, and use `OutputQueryResult<double>` and `OutputBatchResult<double>` so callers can distinguish unavailable data from a written zero. Analysis and design run separately.
 
 ## Status, ownership and consistency
 

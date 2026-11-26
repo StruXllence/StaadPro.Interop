@@ -2,14 +2,54 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using StaadPro.Interop.Adapters.Interfaces;
+using StaadPro.Interop.Entities;
 using StaadPro.Interop.Enums;
 using StaadPro.Interop.Enums.Output;
+using StaadPro.Interop.Models;
+using StaadPro.Interop.Models.Output;
 namespace PackageVerification
 {
     // Exact managed native signatures used by the expanded Output reader; no STAAD activation or mutation.
     public static class OutputAdvancedFixture
     {
+        public static void VerifyRatioTasks()
+        {
+            const string nativeMethod = "GetMemberSteelDesignRatio";
+            var native = new RatioTaskNative();
+            native.Responses[nativeMethod] = new Queue<object>(new object[] { true, false, true });
+            var first = new Beam(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0)) { UtilizationRatio = 0.1 };
+            var second = new Beam(25, new Node(2, 2, 0, 0), new Node(3, 3, 0, 0)) { UtilizationRatio = 0.2 };
+            var beams = new HashSet<Beam> { first, second };
+            int[] ids = beams.Select(beam => beam.Id).ToArray();
+            using (var wrapper = new OpenStaadWrapper(new Root { Output = native }))
+            {
+                IOSOutput output = wrapper.Output;
+                Task<OutputQueryResult<double>> single = output.GetMemberSteelUtilizationRatioAsync(33);
+                if (single.Status != TaskStatus.RanToCompletion || !single.Result.IsSuccessful ||
+                    single.Result.EntityId != 33 || single.Result.Data != 0.75 || native.Calls.Count != 1)
+                    throw new InvalidOperationException("Installed member-ID ratio task did not produce a settled, identified observation.");
+
+                native.OnCall = operation => beams.Clear();
+                Task<OutputBatchResult<double>> batch = output.GetMemberSteelUtilizationRatiosAsync(beams);
+                if (batch.Status != TaskStatus.RanToCompletion || batch.Result.Items.Count != 2 ||
+                    batch.Result.Items[0].Status != OutputQueryStatus.NativeFailure || batch.Result.Items[1].Data != 0.75 ||
+                    !batch.Result.Items.Select(item => item.EntityId).SequenceEqual(ids.Select(id => (int?)id)))
+                    throw new InvalidOperationException("Installed ratio batch task did not retain its captured order and item outcomes.");
+                if (first.UtilizationRatio != 0.1 || second.UtilizationRatio != 0.2 ||
+                    !native.Calls.SequenceEqual(new[] { nativeMethod, nativeMethod, nativeMethod }) ||
+                    !native.Arguments.Select(args => (int)args.Single()).SequenceEqual(new[] { 33 }.Concat(ids)) ||
+                    native.Threads.Any(thread => thread != Thread.CurrentThread.ManagedThreadId))
+                    throw new InvalidOperationException("Installed ratio task calls must run sequentially on the caller thread with the captured IDs and preserve the beam caches.");
+
+                var invalid = output.GetMemberSteelUtilizationRatioAsync(0);
+                if (!invalid.IsFaulted || !(invalid.Exception?.InnerException is ArgumentOutOfRangeException argument) ||
+                    argument.ParamName != "beamId" || native.Calls.Count != 3)
+                    throw new InvalidOperationException("Installed scalar ratio task must validate beamId before native dispatch.");
+            }
+        }
+
         public sealed class Root
         {
             public object Output { get; set; }
@@ -18,6 +58,17 @@ namespace PackageVerification
             public int Major = 26;
             public object GetApplicationVersion(ref object major, ref object update, ref object revision, ref object build)
             { major=Major; update=0; revision=0; build=340; return Major + ".0.0.340"; }
+        }
+        public sealed class RatioTaskNative : Native
+        {
+            public object GetMemberSteelDesignRatio(int memberId, ref object ratio)
+            {
+                if (!(ratio is double sentinel) || !double.IsNaN(sentinel))
+                    throw new InvalidOperationException("Expected a Double NaN steel ratio sentinel.");
+                var response = R(nameof(GetMemberSteelDesignRatio), true, memberId);
+                if (WriteOutputs) ratio = S("ratio", 0.75);
+                return response;
+            }
         }
         public class Native
         {

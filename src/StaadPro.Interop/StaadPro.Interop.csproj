@@ -12,12 +12,12 @@
     <RootNamespace>StaadPro.Interop</RootNamespace>
     <PackageId>StaadPro.Interop</PackageId>
     <Version>1.0.0</Version>
-    <ReleaseDocumentationVersion>1.0.0-preview.20261126</ReleaseDocumentationVersion>
+    <ReleaseDocumentationVersion>1.0.0-preview.20261126.1</ReleaseDocumentationVersion>
     <PackageVersion>$(ReleaseDocumentationVersion)</PackageVersion>
     <Authors>Srinivasa Rao Masanam</Authors>
     <Company>StruXllence</Company>
     <Copyright>Copyright (c) 2026 StruXllence</Copyright>
-    <PackageReleaseNotes>Added task-shaped identified member-end force and Beam steel-utilization queries with comprehensive XML IntelliSense. Reused existing named/status results, native validation, captured identities and binding checks. Completed native work on the calling COM apartment before returning settled tasks without worker COM; distinguished query failure/absence from faulted tasks and preserved caller caches. Output now provides 100 managed overloads reaching 48 documented native names. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
+    <PackageReleaseNotes>Added the integer-ID overload of GetMemberSteelUtilizationRatioAsync and GetMemberSteelUtilizationRatiosAsync for a set of Beam objects, both with comprehensive XML IntelliSense. Reused the existing qualified ratio reader and batch result model. Completed native queries sequentially on the calling COM apartment before returning tasks. Retained per-member success or absence status, captured IDs and existing caller cache values. Output now provides 102 managed overloads reaching 48 documented native names. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
     <Description>A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD Developer resources include Marketplace installation links for the optional StruXllence VS Code dark and light themes in the packaged README.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageTags>staad;staad-pro;openstaad;structural-engineering;structural-analysis;engineering-automation;csharp;dotnet-framework;com-interop;geometry;loads;bentley;struxllence</PackageTags>

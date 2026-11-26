@@ -273,7 +273,7 @@ try {
     $newLine = [Environment]::NewLine
     foreach ($owner in @('Adapters.Interfaces.IOSOutput', 'Adapters.Models.OSOutputAdapter')) {
         $entries = @($xml.doc.members.member | Where-Object { $_.name.StartsWith("M:StaadPro.Interop.$owner.") -and $_.name -notmatch '\.#ctor' })
-        if ($entries.Count -ne 100) { throw "Expected 100 documented Output queries for $owner." }
+        if ($entries.Count -ne 102) { throw "Expected 102 documented Output queries for $owner." }
         foreach ($entry in $entries) {
             foreach ($tag in @('summary', 'returns', 'remarks', 'example/code')) {
                 $node = $entry.SelectSingleNode($tag)
@@ -287,7 +287,7 @@ try {
             $rootExpression = if ($signature -in $cornerOutputSignatures) {
                 if ($cornerOutputGuide -notmatch $methodName) { throw "Missing Output corner guidance for $methodName" }
                 'new PackageVerification.OutputPlateCornerFixture.Root()'
-            } elseif ($signature -in $workflowOutputSignatures -or $methodName -in @('GetMemberEndForcesAsync', 'GetMemberSteelUtilizationRatioAsync')) {
+            } elseif ($signature -in $workflowOutputSignatures -or $methodName -in @('GetMemberEndForcesAsync', 'GetMemberSteelUtilizationRatioAsync', 'GetMemberSteelUtilizationRatiosAsync')) {
                 if ($workflowOutputGuide -notmatch $methodName) { throw "Missing Output workflow guidance for $methodName" }
                 'new PackageVerification.OutputWorkflowFixture.Root()'
             } elseif ($methodName -in $steelBlockOutputNames -or $isBlockOverload) {
@@ -300,7 +300,7 @@ try {
             $outputSnippets += 'using (var wrapper = new OpenStaadWrapper(' + $rootExpression + ')) {' + $newLine + $binding + $newLine + $example + $newLine + '}'
         }
     }
-    if ($outputSnippets.Count -ne 200) { throw 'Expected 200 Output XML examples.' }
+    if ($outputSnippets.Count -ne 204) { throw 'Expected 204 Output XML examples.' }
     $supportSnippets = @()
     $supportGuide = (Read-PackageEntry 'docs/Support-Foundations.md') + (Read-PackageEntry 'docs/Commands-and-Support.md')
     foreach ($owner in @('Adapters.Interfaces.IOSSupport', 'Adapters.Models.OSSupportAdapter')) {
@@ -788,10 +788,11 @@ public static class Program
             Check(typeof(IOSGeometry).GetMethod("SegregatePlatesByConnectivity").GetParameters()[1].DefaultValue.Equals(PlateConnectivityScope.SharedEdge), "plate default scope");
         }
         RunOutputDocumentationExamples();
+        PackageVerification.OutputAdvancedFixture.VerifyRatioTasks();
         using (var wrapper = new OpenStaadWrapper(new FakeOutputRoot()))
         {
             var output = wrapper.Output;
-            Check(typeof(IOSOutput).GetMethods().Count(m => !m.IsSpecialName) == 100, "installed Output query count");
+            Check(typeof(IOSOutput).GetMethods().Count(m => !m.IsSpecialName) == 102, "installed Output query count");
             Check(output.GetMemberEndForces(17, MemberEnd.Start, 1).Data.Fx == 1.25, "installed local end actions");
             Check(output.GetPlateCenterPrincipalStressesAndAnglesEx(17, 1).Data.AngleBottom == 2.25, "installed split principal buffers");
             var native = (FakeOutput)(object)wrapper.RawOutput;

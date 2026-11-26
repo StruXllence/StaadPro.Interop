@@ -42,11 +42,11 @@ Use `GetBeamsWithinRadius(...)`, `GetBoundingBox(...)` and `IsConnectedToBeam(..
 
 Runtime requires **Windows, .NET Framework 4.8.1 (net481), and a licensed STAAD.Pro installation** exposing the APIs used by your application. The .NET SDK used to build the project is separate from the application's target framework.
 
-The latest locally prepared preview is **1.0.0-preview.20261126**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
+The latest locally prepared preview is **1.0.0-preview.20261126.1**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
 
-## Latest preview — 1.0.0-preview.20261126
+## Latest preview — 1.0.0-preview.20261126.1
 
-Added `GetMemberEndForcesAsync(loadCaseTitle, memberId, loadCaseId, memberEnd)` and `GetMemberSteelUtilizationRatioAsync(beam)` with full XML IntelliSense. They reuse identified/status results and qualified synchronous native readers, returning settled tasks on the calling COM apartment without worker COM or cache updates. Task completion is distinct from query success. Output now has 100 managed overloads covering 48 documented native names. See [member task contracts and examples](docs/Output-Managed-Workflows.md#task-shaped-member-observations).
+Added `GetMemberSteelUtilizationRatioAsync(beamId)` and `GetMemberSteelUtilizationRatiosAsync(beams)` with full XML IntelliSense. Both complete the native reads on the calling COM apartment before returning a task. Batch queries keep a result and status for each captured member ID. Output now has 102 managed overloads covering 48 documented native names. [Member task contracts and examples](docs/Output-Managed-Workflows.md#task-shaped-member-observations).
 
 ## Quick start: read an open model
 

@@ -6,7 +6,7 @@ Added 25 documented Output routes to IOSOutput and the single non-partial OSOutp
 
 Import `StaadPro.Interop.Enums.Output` for the new coordinate, response and design enums, and `StaadPro.Interop.Models.Output` for named results. Examples assume an already acquired `wrapper` and `output = wrapper.Output`, running on the established COM apartment.
 
-**Current source checkpoint, 26 November 2026:** Output exposes **100 managed overloads covering 48/60 documented native names**, with twelve native routes remaining separately gated. The buckling-factor query and Node-based mode-shape overload below are available in 1.0.0-preview.20261125.1. The later task-shaped member observations are described in [managed workflows](Output-Managed-Workflows.md#task-shaped-member-observations). Earlier 40/60 and 46/60 figures describe preceding increments. See [the steel-block guide](Output-Steel-Design-Blocks.md) and [overall Output status](Output.md).
+**Current source checkpoint, 26 November 2026:** Output exposes **102 managed overloads covering 48/60 documented native names**, with twelve native routes remaining separately gated. The buckling-factor query and Node-based mode-shape overload below are available in 1.0.0-preview.20261125.1. Preview 1.0.0-preview.20261126.1 adds task-returning ratio queries by member ID and beam selection. See [managed workflows](Output-Managed-Workflows.md#task-shaped-member-observations). Earlier 40/60 and 46/60 figures describe preceding increments. See [the steel-block guide](Output-Steel-Design-Blocks.md) and [overall Output status](Output.md).
 
 ## Buckling factor and Node overload
 
