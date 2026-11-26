@@ -1,6 +1,6 @@
 # Output managed workflows
 
-**Updated:** 26 October 2026
+**Updated:** 26 November 2026
 
 ## Choosing a workflow
 
@@ -19,6 +19,38 @@
 | Four families together | GetPlateCenterResults | Four native observations per pair, not the combined eight-slot native query. |
 | Ordered equilibrium checks | GetStaticCheckResults | Keeps duplicate requests and individual status; no equality-based result collapse. |
 | Opposite support action | GetSupportForces | Negates all six native global reaction components, including moments. |
+
+## Task-shaped member observations
+
+Two task counterparts reuse the existing synchronous workflows and named results:
+
+~~~csharp
+Task<OutputQueryResult<IdentifiedMemberForces>> GetMemberEndForcesAsync(
+    string loadCaseTitle, int memberId, int loadCaseId, MemberEnd memberEnd);
+Task<OutputQueryResult<double>> GetMemberSteelUtilizationRatioAsync(Beam beam);
+~~~
+
+~~~csharp
+var forces = wrapper.Output.GetMemberEndForcesAsync("Dead", 17, 1, MemberEnd.Start)
+    .GetAwaiter().GetResult();
+if (forces.IsSuccessful) System.Console.WriteLine(forces.Data.Components.Fx);
+else System.Console.WriteLine(forces.Status);
+
+var beam = new Beam(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0));
+var ratio = wrapper.Output.GetMemberSteelUtilizationRatioAsync(beam).GetAwaiter().GetResult();
+if (ratio.IsSuccessful) System.Console.WriteLine(ratio.Data);
+else System.Console.WriteLine(ratio.Status);
+~~~
+
+Both perform validation and the native query **synchronously on the calling COM apartment before returning** an already completed or faulted task. Calling can block. They introduce no Task.Run, worker COM, dispatcher, cancellation or native asynchronous I/O. Invoke on the proper STAAD automation thread and coordinate model access; await does not marshal a native call. Choose the synchronous counterparts when task-shaped composition is unnecessary.
+
+Task completion and query success are separate. Native false produces a completed task containing NativeFailure; ratio -999 means MemberNotDesigned and -1 means AnalysisNotPerformed, also without Data. Check IsSuccessful before reading Data. Validation, stale/replaced/disposed bindings, malformed successful output, changed Beam identity and original transport failures fault the task; await/GetAwaiter().GetResult rethrows the original error. An unavailable result is not replaced with an initialized zero.
+
+Member-end task results retain the exact caller-supplied case label, member/case/end IDs and native Local frame. The label is not looked up in STAAD. Six finite copied force/moment components retain native incidence, beta and end-action signs/units; no offset transfer, rotation or sign reversal is applied. ToMemberForces creates an independent editable copy while the immutable packet retains its explicit coordinate-system metadata.
+
+The ratio task captures and checks Beam identity, ignoring its coordinates and existing nullable UtilizationRatio cache. It never populates that cache or raises property notifications. Use PopulateMemberSteelUtilizationRatios for an explicit staged cache update. The result preserves dimensionless ratios and documented absence statuses rather than certifying design success or freshness. Other native Output units remain unchanged; cached input units do not prove them.
+
+No new native function, analysis, activation, save, native mutation, fallback or retry is added. The same before/after captured-binding checks and common native readers are reused. Managed fixtures do not establish live engineering qualification.
 
 ## Status, ownership and consistency
 

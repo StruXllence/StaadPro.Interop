@@ -320,16 +320,19 @@ namespace StaadPro.Interop.Tests.Adapter
             }
         }
         [Test]
-        public void PublicContractHasNinetySixTypedOperationsWithoutReferenceOutputs()
+        public void PublicContractHasOneHundredTypedOperationsWithoutReferenceOutputs()
         {
             Assert.That(Queries, Has.Length.EqualTo(15));
             var all = typeof(IOSOutput).GetMethods().Where(m => !m.IsSpecialName).ToArray();
-            Assert.That(all, Has.Length.EqualTo(98));
+            Assert.That(all, Has.Length.EqualTo(100));
             foreach (var method in all)
             {
                 Assert.That(method.GetParameters().Any(p => p.ParameterType.IsByRef), Is.False);
-                Assert.That(method.ReturnType == typeof(PlateCornerForcesResultSet) || method.ReturnType == typeof(MemberCoordinateSystem) || method.ReturnType == typeof(OutputPopulationResult) ||
-                    method.ReturnType.IsGenericType && new[] { typeof(OutputQueryResult<>), typeof(OutputBatchResult<>) }.Contains(method.ReturnType.GetGenericTypeDefinition()), Is.True);
+                var resultType = method.ReturnType;
+                if (resultType.IsGenericType && resultType.GetGenericTypeDefinition() == typeof(System.Threading.Tasks.Task<>))
+                    resultType = resultType.GetGenericArguments()[0];
+                Assert.That(resultType == typeof(PlateCornerForcesResultSet) || resultType == typeof(MemberCoordinateSystem) || resultType == typeof(OutputPopulationResult) ||
+                    resultType.IsGenericType && new[] { typeof(OutputQueryResult<>), typeof(OutputBatchResult<>) }.Contains(resultType.GetGenericTypeDefinition()), Is.True);
                 Assert.That(typeof(OSOutputAdapter).GetMethod(method.Name, method.GetParameters().Select(p => p.ParameterType).ToArray()), Is.Not.Null);
             }
         }

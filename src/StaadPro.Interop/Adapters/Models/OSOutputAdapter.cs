@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using StaadPro.Interop.Entities;
 using System.Windows.Media.Media3D;
@@ -1652,6 +1653,56 @@ namespace StaadPro.Interop.Adapters.Models
             if (node == null) throw new ArgumentNullException(nameof(node));
             int nodeId = node.Id;
             return advanced.GetBucklingModeDisplacements(nativeBucklingModeNumber, nodeId);
+        }
+
+        /// <summary>Retrieves identified native-local member-end actions and returns an already settled task.</summary>
+        /// <param name="loadCaseTitle">Exact caller-supplied label, not a native title lookup. Empty/whitespace/Unicode labels are retained; null or embedded NUL is invalid.</param>
+        /// <param name="memberId">Positive analytical member number, not a physical-member ID.</param>
+        /// <param name="loadCaseId">Positive native result load-case number, passed unchanged.</param>
+        /// <param name="memberEnd">Native analytical incidence Start (0) or End (1); no other value is accepted.</param>
+        /// <returns>A completed task containing the same OutputQueryResult of IdentifiedMemberForces as the title-based synchronous overload, including case/member/end identity and native Local frame. Native false produces a completed task containing NativeFailure, with no accessible Data. Validation, binding, malformed-output and transport exceptions instead fault the task and are rethrown when awaited. Task completion alone does not imply IsSuccessful.</returns>
+        /// <remarks>
+        /// <para>When to use: Choose this task-shaped counterpart when composing with task-based application code. GetMemberEndForces(loadCaseTitle, memberId, loadCaseId, memberEnd) returns the same observation synchronously. The three-argument numeric-ID query returns component data without this title/frame packet; the coordinate-selector overload can explicitly request Global. This overload always requests native Local flag zero, preserving STAAD member incidence, beta conventions and end-action signs without offset transfer, support sign reversal or managed rotation.</para>
+        /// <para>All validation and the single native GetMemberEndForces call finish synchronously on the caller's established COM apartment before the method returns. Invocation can block. No Task.Run, worker COM, dispatcher, apartment switch, cancellation or background execution is introduced. Marshal invocation to the appropriate STAAD automation thread yourself; awaiting a returned task does not marshal COM or establish thread ownership. Coordinate other/raw/external callers.</para>
+        /// <para>Reuses the existing workflow reader and captured-binding checks before/after dispatch. Reacquire wrapper.Output after refresh; disposal or replaced native binding faults the task. Successful native data requires all six finite Double values from an initialized NaN-sentinel buffer; replacements and nonzero SAFEARRAY lower bounds are copied. Native false takes precedence over malformed outputs. Status/evidence are preserved, original transport exceptions/HRESULTs remain available and no retry/default-zero fallback occurs.</para>
+        /// <para>Data owns immutable force/moment components and exact supplied title metadata. ToMemberForces creates an independent editable copy; retain the packet's frame separately. Native force and moment units are unchanged, and cached input units do not certify Output units. No analysis, case activation, save, native mutation, result-freshness or engineering-acceptance guarantee is added.</para>
+        /// </remarks>
+        /// <exception cref="System.ArgumentNullException">Invalid null title faults the returned task.</exception>
+        /// <exception cref="System.ArgumentException">An invalid title, identifier or member-end value faults the task.</exception>
+        /// <exception cref="System.InvalidOperationException">Invalid binding or successful native output faults the task.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">Original native transport failure faults the task with its HRESULT.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">A missing native signature faults the task without alternate dispatch.</exception>
+        /// <example><code>var result = wrapper.Output.GetMemberEndForcesAsync("Dead", 17, 1, MemberEnd.Start).GetAwaiter().GetResult();
+        /// if (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);
+        /// else System.Console.WriteLine(result.Status);</code></example>
+        public Task<OutputQueryResult<IdentifiedMemberForces>> GetMemberEndForcesAsync(string loadCaseTitle, int memberId, int loadCaseId, MemberEnd memberEnd)
+        {
+            try { return Task.FromResult(workflows.GetMemberEndForces(loadCaseTitle, memberId, loadCaseId, memberEnd)); }
+            catch (Exception error) { return Task.FromException<OutputQueryResult<IdentifiedMemberForces>>(error); }
+        }
+
+        /// <summary>Retrieves the native steel-utilization observation for one supplied beam and returns an already settled task.</summary>
+        /// <param name="beam">Non-null caller-owned Beam with a positive ID captured before dispatch and checked afterward. Coordinates, incidence and cached UtilizationRatio are not used as native query inputs.</param>
+        /// <returns>A completed task containing the same OutputQueryResult of double as GetMemberSteelUtilizationRatio(beam). Success exposes a finite nonnegative dimensionless ratio. Native false, -999 (MemberNotDesigned) and -1 (AnalysisNotPerformed) produce completed tasks with the corresponding unsuccessful query status and no Data. Validation, identity-change, binding, malformed-output and transport errors fault the task; awaiting preserves original exceptions. Task completion alone does not imply IsSuccessful.</returns>
+        /// <remarks>
+        /// <para>When to use: Choose this task-shaped single-beam counterpart for task-based composition. The synchronous Beam overload supplies the same status/data observation, and the synchronous GetMemberSteelUtilizationRatio(int) overload avoids entity construction. GetMemberSteelUtilizationRatios returns a selection of observations; PopulateMemberSteelUtilizationRatios explicitly updates managed beam caches. This method never populates or clears beam.UtilizationRatio and does not treat an existing cached zero/value as a current design result.</para>
+        /// <para>All validation and one native GetMemberSteelDesignRatio call finish synchronously on the caller's established COM apartment before task return. Invocation can block; awaiting performs no COM dispatch. No Task.Run, worker COM, dispatcher, apartment switch, cancellation or asynchronous native I/O is introduced. Invoke on the appropriate automation thread and serialize raw/other-adapter/external model access yourself.</para>
+        /// <para>Reuses the existing Beam workflow, captured-binding checks and qualified ratio reader. Beam ID changes during extraction fault the task instead of returning a result for a different mutable identity. Successful output must be written and finite; false native status is failure before interpreting any ratio. Only -999/-1 receive documented absence classifications; other negative values are malformed and fault the task. Written zero and positive finite extremes remain valid observations. No integer/string coercion, initialized-zero fallback, retry or invented acknowledgement evidence occurs.</para>
+        /// <para>The result retains captured EntityId and the shared reader's original status/evidence conventions. This ratio is dimensionless, not a design pass/fail or freshness certificate. Other Output values retain native units; wrapper input-unit caches do not certify them. Reacquire Output after refresh. No analysis, design, activation, save, unit conversion, property notification or native/caller-cache mutation is performed.</para>
+        /// </remarks>
+        /// <exception cref="System.ArgumentNullException">A null beam faults the returned task.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">A nonpositive captured beam ID faults the task.</exception>
+        /// <exception cref="System.InvalidOperationException">Binding/beam identity changed or successful native output is unwritten, nonfinite or invalid; the task faults.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">Original native transport failure faults the task with its HRESULT.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">A missing native signature faults the task without alternate dispatch.</exception>
+        /// <example><code>var beam = new Beam(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0));
+        /// var result = wrapper.Output.GetMemberSteelUtilizationRatioAsync(beam).GetAwaiter().GetResult();
+        /// if (result.IsSuccessful) System.Console.WriteLine(result.Data);
+        /// else System.Console.WriteLine(result.Status);</code></example>
+        public Task<OutputQueryResult<double>> GetMemberSteelUtilizationRatioAsync(Beam beam)
+        {
+            try { return Task.FromResult(workflows.GetMemberSteelUtilizationRatio(beam)); }
+            catch (Exception error) { return Task.FromException<OutputQueryResult<double>>(error); }
         }
     }
 }

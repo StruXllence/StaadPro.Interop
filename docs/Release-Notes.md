@@ -1,5 +1,15 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261126 - 26 November 2026
+
+Added GetMemberEndForcesAsync(loadCaseTitle, memberId, loadCaseId, memberEnd) and GetMemberSteelUtilizationRatioAsync(beam) with full matching XML IntelliSense. Reused OutputQueryResult, IdentifiedMemberForces and the existing shared readers without adding public data models or services. Output now exposes 100 managed overloads covering 48 documented native names. See [task-shaped member observations](Output-Managed-Workflows.md#task-shaped-member-observations).
+
+Completed validation and native queries synchronously on the caller's established COM apartment before returning settled tasks. Native failure and documented design-absence statuses remain completed query results with inaccessible Data; validation, binding, malformed-output and transport errors fault the task. No Task.Run, worker COM, dispatcher, fallback or native replay is introduced.
+
+Preserved exact supplied case labels, analytical member/case/end identity, native Local force components and independent owned values. Beam ratio queries capture/check identity while leaving the nullable utilization cache and property notifications unchanged. Native units, signs, ratio sentinels, original exceptions and existing binding checks are retained without analysis, save or native mutation.
+
+Release build passed with zero warnings/errors. All **7,783 offline tests** passed, including **28 new cases** covering calling-thread/task completion behavior, status/fault separation, native shape/sentinel qualification, immutable snapshots, ratio absence/cache behavior, invalid metadata, binding changes and original exceptions. Exact installed-package checks execute **1,363 selected XML examples**, including **200 Output examples**, and verify isolated restore/build/runtime/archive equality. Managed native stand-ins do not certify live native or engineering behavior.
+
 ## 1.0.0-preview.20261125.1 - 25 November 2026
 
 Added GetBucklingFactor(bucklingMode) and the Node-based GetBucklingModeDisplacements(nativeBucklingModeNumber, node) overload with comprehensive matching interface/adapter XML IntelliSense. Output now exposes 98 managed overloads covering 48 of 60 documented native names. See [buckling query contracts](Output-Extended-Queries.md#buckling-factor-and-node-overload) for overload selection, examples and execution behavior.
