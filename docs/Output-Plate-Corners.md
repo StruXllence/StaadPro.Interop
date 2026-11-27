@@ -65,6 +65,34 @@ if (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);
 else System.Console.WriteLine(result.Status);
 ~~~
 
+## Task-shaped corner selections
+
+Both selection overloads return `Task<PlateCornerForcesResultSet>`. They capture and validate the selection before a force read and complete the native calls on the calling COM apartment. Use the STAAD automation thread.
+
+- `GetPlateCornerForcesAsync(loadCases, plate, cornerNode)` enumerates up to 100,000 load cases once. It coalesces duplicate case, family, plate and corner keys in first-seen order and rejects conflicting metadata. It can hydrate incomplete plate incidence through the current Geometry adapter.
+- `GetPlateCornerForcesAsync(loadCase, plate)` reads A, B, C and an optional D in incidence order. Supply the plate incidence and finite coordinates. A repeated D with matching coordinates is coalesced.
+
+Successful observations own their force components and corner coordinates. Ordinary native failures stay indexed with their case family, plate and corner identity. Invalid selections, malformed native data and transport errors fault the task without yielding a partial result set. If a caller supplies a null literal as the first argument to the three-argument overload, use the named argument `loadCase:` or `loadCases:` to select the intended overload.
+
+~~~csharp
+var loadCases = new ILoadCase[] { new LoadCase(1, "Dead"), new LoadCase(2, "Live") };
+var cornerNode = new Node(1, 0, 0, 0);
+var plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0));
+var results = wrapper.Output.GetPlateCornerForcesAsync(loadCases, plate, cornerNode).GetAwaiter().GetResult();
+foreach (var item in results.Items)
+    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);
+    else System.Console.WriteLine(item.Status);
+~~~
+
+~~~csharp
+ILoadCase loadCase = new LoadCase(1, "Dead");
+var plate = new Plate(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0), new Node(3, 2, 2, 0));
+var results = wrapper.Output.GetPlateCornerForcesAsync(loadCase, plate).GetAwaiter().GetResult();
+foreach (var item in results.Items)
+    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);
+    else System.Console.WriteLine(item.Status);
+~~~
+
 ## Status and metadata identity
 
 Inspect **IsSuccessful before Data**. Native false returns NativeFailure with no data, even if the server wrote buffer values. Success requires exactly one rank-one six-Double array with all values written and finite; nonzero SAFEARRAY lower bounds are supported. No initialized zeros escape as extracted forces. Original transport exceptions propagate without retries.

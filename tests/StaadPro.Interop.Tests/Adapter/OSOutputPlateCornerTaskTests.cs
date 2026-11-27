@@ -152,7 +152,7 @@ namespace StaadPro.Interop.Tests.Adapter
             var plate = CreatePlate();
             using (var wrapper = new OpenStaadWrapper(root))
             {
-                var badEntity = wrapper.Output.GetPlateCornerForcesAsync(null, plate, plate.A);
+                var badEntity = wrapper.Output.GetPlateCornerForcesAsync(loadCase: null, plate: plate, cornerNode: plate.A);
                 var badId = wrapper.Output.GetPlateCornerForcesAsync(1, 17, 0);
                 Assert.That(badEntity.IsFaulted, Is.True);
                 Assert.That(badId.IsFaulted, Is.True);

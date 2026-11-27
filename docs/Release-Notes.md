@@ -1,5 +1,11 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261127.2 - 27 November 2026
+
+Added `GetPlateCornerForcesAsync(IEnumerable<ILoadCase> loadCases, Plate plate, Node cornerNode)` and `GetPlateCornerForcesAsync(ILoadCase loadCase, Plate plate)`. Both return `Task<PlateCornerForcesResultSet>` with matching interface and adapter XML IntelliSense. [Plate-corner selection guide](Output-Plate-Corners.md#task-shaped-corner-selections).
+
+The first overload captures the input sequence once and reads the selected corner in first-seen case and family order. The second reads each unique supplied corner in incidence order. Both keep ordinary native failures in the indexed set and fault the task on invalid selections, binding failures, malformed native output or transport errors. Native reads complete on the calling COM apartment before either method returns. Output now provides 108 managed overloads across 48 documented native names.
+
 ## 1.0.0-preview.20261127.1 - 27 November 2026
 
 Added two `GetPlateCornerForcesAsync` overloads for numeric IDs and the acquired wrapper's current Geometry and Load adapters. The automatic overload searches primary, combination and reference metadata and reports an ambiguous case number. The explicit overload searches only the selected metadata family. Both send the numeric case selector to OpenSTAAD. [Plate-corner task guide](Output-Plate-Corners.md#task-shaped-corner-observations)
