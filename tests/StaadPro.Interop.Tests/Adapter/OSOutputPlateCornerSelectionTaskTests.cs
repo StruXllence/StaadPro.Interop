@@ -167,5 +167,142 @@ namespace StaadPro.Interop.Tests.Adapter
                 Assert.That(native.Calls, Has.Count.EqualTo(2));
             }
         }
+
+        [Test]
+        public void AllCornersAcrossCasesPreserveFamilyOrderAndNativeFailure()
+        {
+            var root = new OutputPlateCornerFixture.Root();
+            var native = (OutputPlateCornerFixture.Native)root.Output;
+            var a = new Node(1, 0, 0, 0);
+            var plate = new Plate(17, a, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0), new Node(4, 0, 2, 0));
+            var primary = new LoadCase(5, "Dead");
+            var reference = new LoadCase(5, "Reference", LoadCaseType.ReferenceLoad);
+            int enumerations = 0;
+            IEnumerable<ILoadCase> Cases()
+            {
+                Assert.That(++enumerations, Is.EqualTo(1));
+                yield return primary;
+                yield return new LoadCase(5, "Dead");
+                yield return reference;
+            }
+
+            native.Responses.Enqueue(0);
+            native.OnCall = () => { primary.Id = 99; a.X = 400; };
+            using (var wrapper = new OpenStaadWrapper(root))
+            {
+                var task = wrapper.Output.GetPlateCornerForcesAsync(Cases(), plate);
+                Assert.That(task.Status, Is.EqualTo(TaskStatus.RanToCompletion));
+                var result = task.GetAwaiter().GetResult();
+
+                Assert.That(result.Keys.Select(k => k.CornerNodeId), Is.EqualTo(new[] { 1, 2, 3, 4, 1, 2, 3, 4 }));
+                Assert.That(result.Keys.Take(4).Select(k => k.LoadCaseType), Is.All.EqualTo(LoadCaseType.PrimaryLoad));
+                Assert.That(result.Keys.Skip(4).Select(k => k.LoadCaseType), Is.All.EqualTo(LoadCaseType.ReferenceLoad));
+                Assert.That(result.Items[0].Status, Is.EqualTo(OutputQueryStatus.NativeFailure));
+                Assert.That(result.FailedCount, Is.EqualTo(1));
+                Assert.That(result.Items[4].Data.CornerPosition.X, Is.Zero);
+                Assert.That(native.Calls.Select(args => (int)args[2]), Is.All.EqualTo(5));
+                Assert.That(native.Threads, Is.All.EqualTo(Thread.CurrentThread.ManagedThreadId));
+            }
+        }
+
+        [Test]
+        public void AllCornersAcrossPlatesSnapshotIncidenceAndReadDistinctRequestsInOrder()
+        {
+            var root = new OutputPlateCornerFixture.Root();
+            var native = (OutputPlateCornerFixture.Native)root.Output;
+            var first = Triangle(true);
+            var second = new Plate(42, new Node(1, 0, 0, 0), new Node(5, 2, 0, 0), new Node(7, 2, 3, 0));
+            int enumerations = 0;
+            IEnumerable<Plate> Plates()
+            {
+                Assert.That(++enumerations, Is.EqualTo(1));
+                yield return first;
+                yield return second;
+                yield return Triangle(true);
+            }
+
+            native.OnCall = () => { second.Id = 99; second.C.X = 400; };
+            using (var wrapper = new OpenStaadWrapper(root))
+            {
+                var task = wrapper.Output.GetPlateCornerForcesAsync(new LoadCase(3), Plates());
+                Assert.That(task.Status, Is.EqualTo(TaskStatus.RanToCompletion));
+                var result = task.GetAwaiter().GetResult();
+
+                Assert.That(result.Keys.Select(k => k.PlateId), Is.EqualTo(new[] { 17, 17, 17, 42, 42, 42 }));
+                Assert.That(result.Keys.Select(k => k.CornerNodeId), Is.EqualTo(new[] { 1, 2, 3, 1, 5, 7 }));
+                Assert.That(result[new PlateCornerForcesKey(3, 42, 7, LoadCaseType.PrimaryLoad)].Data.CornerPosition.X, Is.EqualTo(2d));
+                Assert.That(native.Calls.Select(args => (int)args[0]), Is.EqualTo(new[] { 17, 17, 17, 42, 42, 42 }));
+                Assert.That(native.Threads, Is.All.EqualTo(Thread.CurrentThread.ManagedThreadId));
+                Assert.That(((OutputPlateCornerFixture.Geometry)root.Geometry).IncidenceCalls, Is.Zero);
+            }
+        }
+
+        [Test]
+        public void AllCornerSelectionsValidateIncidenceAndConflictsBeforeDispatch()
+        {
+            var root = new OutputPlateCornerFixture.Root();
+            var plate = Triangle(false);
+            using (var wrapper = new OpenStaadWrapper(root))
+            {
+                var caseConflict = wrapper.Output.GetPlateCornerForcesAsync(
+                    new ILoadCase[] { new LoadCase(3, "A"), new LoadCase(3, "B") }, plate);
+                var incomplete = wrapper.Output.GetPlateCornerForcesAsync(
+                    new ILoadCase[] { new LoadCase(3) }, new Plate { Id = 17 });
+                var conflictingPlate = Triangle(false);
+                conflictingPlate.A.X += 1;
+                var plateConflict = wrapper.Output.GetPlateCornerForcesAsync(new LoadCase(3),
+                    new[] { plate, conflictingPlate });
+
+                foreach (var task in new[] { caseConflict, incomplete, plateConflict })
+                {
+                    Assert.That(task.IsFaulted, Is.True);
+                    Assert.Throws<ArgumentException>(() => task.GetAwaiter().GetResult());
+                }
+
+                Assert.That(wrapper.Output.GetPlateCornerForcesAsync(Array.Empty<ILoadCase>(), plate).Result.IsSuccessful, Is.True);
+                Assert.That(wrapper.Output.GetPlateCornerForcesAsync(new LoadCase(3), Array.Empty<Plate>()).Result.Items, Is.Empty);
+                Assert.That(((OutputPlateCornerFixture.Native)root.Output).Calls, Is.Empty);
+                Assert.That(((OutputPlateCornerFixture.Geometry)root.Geometry).IncidenceCalls, Is.Zero);
+            }
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void AllCornerExpansionChecksLimitBeforeDeduplicatingOrReading(bool byCase)
+        {
+            var root = new OutputPlateCornerFixture.Root();
+            var plate = Triangle(false);
+            var loadCase = new LoadCase(3);
+            using (var wrapper = new OpenStaadWrapper(root))
+            {
+                var task = byCase
+                    ? wrapper.Output.GetPlateCornerForcesAsync(Enumerable.Repeat<ILoadCase>(loadCase, 33334), plate)
+                    : wrapper.Output.GetPlateCornerForcesAsync(loadCase, Enumerable.Repeat(plate, 33334));
+                Assert.That(task.IsFaulted, Is.True);
+                Assert.That(Assert.Throws<ArgumentException>(() => task.GetAwaiter().GetResult()).Message, Does.Contain("100000 outcomes"));
+                Assert.That(((OutputPlateCornerFixture.Native)root.Output).Calls, Is.Empty);
+            }
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void AllCornerSelectionFaultRetainsOriginalTransportError(bool byCase)
+        {
+            var root = new OutputPlateCornerFixture.Root();
+            var native = (OutputPlateCornerFixture.Native)root.Output;
+            var failure = new COMException("Native read failed", unchecked((int)0x800706BA));
+            native.OnCall = () => { if (native.Calls.Count == 2) throw failure; };
+            var plate = Triangle(false);
+            var loadCase = new LoadCase(3);
+            using (var wrapper = new OpenStaadWrapper(root))
+            {
+                var task = byCase
+                    ? wrapper.Output.GetPlateCornerForcesAsync(new ILoadCase[] { loadCase }, plate)
+                    : wrapper.Output.GetPlateCornerForcesAsync(loadCase, new[] { plate });
+                Assert.That(task.IsFaulted, Is.True);
+                Assert.That(Assert.Throws<COMException>(() => task.GetAwaiter().GetResult()), Is.SameAs(failure));
+                Assert.That(native.Calls, Has.Count.EqualTo(2));
+            }
+        }
     }
 }

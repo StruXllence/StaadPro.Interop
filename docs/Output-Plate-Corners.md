@@ -1,6 +1,6 @@
 # Output plate-corner extraction and transformations
 
-**Updated:** 27 November 2026
+**Updated:** 28 November 2026
 
 ## Contract evidence and coordinate decision
 
@@ -92,6 +92,38 @@ foreach (var item in results.Items)
     if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);
     else System.Console.WriteLine(item.Status);
 ~~~
+
+## Task-shaped all-corner batches
+
+Use `GetPlateCornerForcesAsync(loadCases, plate)` to read every corner of one plate across a case selection. Results follow case order and then corner incidence order. Use `GetPlateCornerForcesAsync(loadCase, plates)` to read one case for several plates. Results follow plate order and then corner incidence order.
+
+Supply distinct A/B/C incidence and finite coordinates for every plate. D is optional. A repeated fourth node is coalesced when its coordinates agree. The reader captures the selected sequence once and limits input and the expanded corner selection to 100,000 entries before deduplication. Duplicate keys retain first-seen order, and conflicting case or plate metadata faults the task before force reads.
+
+Both overloads run on the calling COM apartment and return a completed or faulted `Task<PlateCornerForcesResultSet>`. Ordinary native failures remain indexed alongside successes. Transport failures and malformed output fault the task without returning a partial result set.
+
+~~~csharp
+var loadCases = new ILoadCase[] { new LoadCase(1, "Dead"), new LoadCase(2, "Live") };
+var plate = new Plate(17, new Node(1, 0, 0, 0), new Node(2, 2, 0, 0), new Node(3, 2, 2, 0));
+var results = wrapper.Output.GetPlateCornerForcesAsync(loadCases, plate).GetAwaiter().GetResult();
+foreach (var item in results.Items)
+    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);
+    else System.Console.WriteLine(item.Status);
+~~~
+
+~~~csharp
+ILoadCase loadCase = new LoadCase(1, "Dead");
+var a = new Node(1, 0, 0, 0);
+var b = new Node(2, 2, 0, 0);
+var c = new Node(3, 2, 2, 0);
+var d = new Node(4, 0, 2, 0);
+var plates = new[] { new Plate(17, a, b, c), new Plate(18, a, c, d) };
+var results = wrapper.Output.GetPlateCornerForcesAsync(loadCase, plates).GetAwaiter().GetResult();
+foreach (var item in results.Items)
+    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);
+    else System.Console.WriteLine(item.Status);
+~~~
+
+For a two-argument call with a bare `null`, use the named arguments `loadCase:` or `loadCases:` and `plate:` or `plates:` to select the intended overload. A cast to the expected type also resolves the call.
 
 ## Status and metadata identity
 

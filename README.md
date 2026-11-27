@@ -42,11 +42,11 @@ Use `GetBeamsWithinRadius(...)`, `GetBoundingBox(...)` and `IsConnectedToBeam(..
 
 Runtime requires **Windows, .NET Framework 4.8.1 (net481), and a licensed STAAD.Pro installation** exposing the APIs used by your application. The .NET SDK used to build the project is separate from the application's target framework.
 
-The latest locally prepared preview is **1.0.0-preview.20261127.2**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
+The latest locally prepared preview is **1.0.0-preview.20261128**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
 
-## Latest preview — 1.0.0-preview.20261127.2
+## Latest preview — 1.0.0-preview.20261128
 
-Two new `GetPlateCornerForcesAsync` overloads read one corner across a set of load cases or all unique corners for one load case. Both return an indexed result set that retains per-observation status and completes native work on the calling COM apartment. Output provides 108 managed overloads across 48 documented native names. [Plate-corner selection contracts and examples](docs/Output-Plate-Corners.md#task-shaped-corner-selections).
+Two new `GetPlateCornerForcesAsync` overloads read every corner of one plate across selected load cases, or every corner of selected plates for one load case. Both complete native reads on the calling COM apartment and return indexed results that retain per-corner status. Output provides 110 managed overloads across 48 documented native names. [All-corner batch guide](docs/Output-Plate-Corners.md#task-shaped-all-corner-batches).
 
 ## Quick start: read an open model
 
