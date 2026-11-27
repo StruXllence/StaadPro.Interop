@@ -264,8 +264,22 @@ try {
     $outputAdvancedGuide = Read-PackageEntry 'docs/Output-Extended-Queries.md'
     $cornerOutputGuide = Read-PackageEntry 'docs/Output-Plate-Corners.md'
     $cornerContracts = (Read-PackageEntry 'docs/contracts/OutputPlateCornerContractIndex.json' | ConvertFrom-Json).contracts
-    if ($cornerContracts.Count -ne 25) { throw 'Expected 25 corner contracts.' }
+    if ($cornerContracts.Count -ne 27) { throw 'Expected 27 corner contracts.' }
     $cornerOutputSignatures = @($cornerContracts | ForEach-Object { $_.xmlSignature })
+    $cornerTasks = @($cornerContracts | Where-Object name -eq 'GetPlateCornerForcesAsync')
+    if ($cornerTasks.Count -ne 2) { throw 'Expected two corner task contracts.' }
+    foreach ($task in $cornerTasks) {
+        $suffix = $task.xmlSignature
+        $contract = $xml.SelectSingleNode("//member[@name='M:StaadPro.Interop.Adapters.Interfaces.IOSOutput.$suffix']")
+        $adapter = $xml.SelectSingleNode("//member[@name='M:StaadPro.Interop.Adapters.Models.OSOutputAdapter.$suffix']")
+        if ($null -eq $contract -or $null -eq $adapter -or $contract.InnerXml -cne $adapter.InnerXml) {
+            throw "Missing or mismatched corner task IntelliSense for $suffix."
+        }
+        if ((@($contract.SelectNodes('param') | ForEach-Object { $_.name }) -join ',') -cne
+            (@($task.parameters | ForEach-Object { $_.name }) -join ',')) {
+            throw "Mismatched corner task XML parameters for $suffix."
+        }
+    }
     $workflowOutputGuide = Read-PackageEntry 'docs/Output-Managed-Workflows.md'
     $workflowContracts = (Read-PackageEntry 'docs/contracts/OutputManagedWorkflowContractIndex.json' | ConvertFrom-Json).contracts
     if ($workflowContracts.Count -ne 25) { throw 'Expected 25 workflow contracts.' }
@@ -273,7 +287,7 @@ try {
     $newLine = [Environment]::NewLine
     foreach ($owner in @('Adapters.Interfaces.IOSOutput', 'Adapters.Models.OSOutputAdapter')) {
         $entries = @($xml.doc.members.member | Where-Object { $_.name.StartsWith("M:StaadPro.Interop.$owner.") -and $_.name -notmatch '\.#ctor' })
-        if ($entries.Count -ne 102) { throw "Expected 102 documented Output queries for $owner." }
+        if ($entries.Count -ne 104) { throw "Expected 104 documented Output queries for $owner." }
         foreach ($entry in $entries) {
             foreach ($tag in @('summary', 'returns', 'remarks', 'example/code')) {
                 $node = $entry.SelectSingleNode($tag)
@@ -300,7 +314,7 @@ try {
             $outputSnippets += 'using (var wrapper = new OpenStaadWrapper(' + $rootExpression + ')) {' + $newLine + $binding + $newLine + $example + $newLine + '}'
         }
     }
-    if ($outputSnippets.Count -ne 204) { throw 'Expected 204 Output XML examples.' }
+    if ($outputSnippets.Count -ne 208) { throw 'Expected 208 Output XML examples.' }
     $supportSnippets = @()
     $supportGuide = (Read-PackageEntry 'docs/Support-Foundations.md') + (Read-PackageEntry 'docs/Commands-and-Support.md')
     foreach ($owner in @('Adapters.Interfaces.IOSSupport', 'Adapters.Models.OSSupportAdapter')) {
@@ -792,7 +806,7 @@ public static class Program
         using (var wrapper = new OpenStaadWrapper(new FakeOutputRoot()))
         {
             var output = wrapper.Output;
-            Check(typeof(IOSOutput).GetMethods().Count(m => !m.IsSpecialName) == 102, "installed Output query count");
+            Check(typeof(IOSOutput).GetMethods().Count(m => !m.IsSpecialName) == 104, "installed Output query count");
             Check(output.GetMemberEndForces(17, MemberEnd.Start, 1).Data.Fx == 1.25, "installed local end actions");
             Check(output.GetPlateCenterPrincipalStressesAndAnglesEx(17, 1).Data.AngleBottom == 2.25, "installed split principal buffers");
             var native = (FakeOutput)(object)wrapper.RawOutput;

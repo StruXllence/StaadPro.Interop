@@ -1,6 +1,6 @@
 # Output plate-corner extraction and transformations
 
-**Updated:** 26 October 2026
+**Updated:** 27 November 2026
 
 ## Contract evidence and coordinate decision
 
@@ -21,7 +21,33 @@ The installed 2024/2025/2026 VBA examples allocate **six Double values** for Get
 | Conceptual local direction | Other-node overloads | Uses corner-to-node X and zero beta, with no fabricated member ID. |
 | Transform existing observations | TransformPlateCornerForcesToMemberLocal | Pure managed math; no result re-read or implicit moment transfer. |
 
-These are **nodal forces and moments**, not the plate-center stress families or moment-per-unit-width quantities. Source compatibility helpers marked obsolete, thread-pool async conveniences, point/cut queries and other unresolved native routes remain separate work.
+These are **nodal forces and moments**, not the plate-center stress families or moment-per-unit-width quantities. Obsolete compatibility helpers, point/cut queries and unresolved native routes remain separate work.
+
+## Task-shaped corner observations
+
+Use `GetPlateCornerForcesAsync` to read a single corner from supplied entities or numeric IDs. Both overloads return `Task<OutputQueryResult<PlateCornerForces>>` and complete the underlying synchronous work on the calling COM apartment. Invoke on the STAAD automation thread. The task may already contain an unsuccessful observation or a fault when returned.
+
+| Input | Query behavior |
+| --- | --- |
+| `ILoadCase loadCase, Plate plate, Node cornerNode` | Captures the supplied case metadata and selects the canonical corner by ID. Hydrates incidence and coordinates through Geometry when the plate is only partially supplied. |
+| `int loadCaseId, int plateId, int cornerNodeId` | Resolves primary, combination or reference metadata. Missing or ambiguous case IDs return `MetadataUnavailable` without reading forces. Invalid resolved incidence can return `NotFound`. |
+
+Both overloads preserve the six qualified components and the reported units and signs. Native false or zero returns `NativeFailure` without exposing the buffer. Validation, stale/replaced bindings, malformed reported success and transport failures fault the returned task. Neither overload activates a case or changes model data.
+
+~~~csharp
+ILoadCase loadCase = new LoadCase(1, "Dead");
+var cornerNode = new Node(1, 0, 0, 0);
+var plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0));
+var result = wrapper.Output.GetPlateCornerForcesAsync(loadCase, plate, cornerNode).GetAwaiter().GetResult();
+if (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);
+else System.Console.WriteLine(result.Status);
+~~~
+
+~~~csharp
+var result = wrapper.Output.GetPlateCornerForcesAsync(1, 17, 1).GetAwaiter().GetResult();
+if (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);
+else System.Console.WriteLine(result.Status);
+~~~
 
 ## Status and metadata identity
 

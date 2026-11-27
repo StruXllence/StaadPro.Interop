@@ -1,5 +1,13 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261127 - 27 November 2026
+
+`GetPlateCornerForcesAsync` now accepts supplied case, plate and corner entities or their numeric IDs. Both overloads ship matching interface and adapter XML IntelliSense and reuse the synchronous single-corner readers. [Plate-corner task contracts](Output-Plate-Corners.md#task-shaped-corner-observations).
+
+The supplied-entity overload captures case metadata and uses the canonical incidence corner. The numeric overload discovers unambiguous case metadata and hydrates plate incidence with the current Load and Geometry bindings. Ordinary unsuccessful observations retain their identifiers and status. Validation, binding replacement, malformed reported success and native dispatch exceptions fault the task.
+
+Both overloads finish work on the calling COM apartment before returning. Output now provides 104 managed overloads across 48 documented native names.
+
 ## 1.0.0-preview.20261126.1 - 26 November 2026
 
 Added `GetMemberSteelUtilizationRatioAsync(int beamId)` and `GetMemberSteelUtilizationRatiosAsync(HashSet<Beam> beams)` with matching interface and adapter XML IntelliSense. Output now exposes 102 managed overloads covering 48 documented native names. [Member task contracts and examples](Output-Managed-Workflows.md#task-shaped-member-observations).

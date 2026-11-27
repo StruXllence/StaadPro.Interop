@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-26",
-  "managedOverloads": 25,
+  "date": "2026-11-27",
+  "managedOverloads": 27,
   "typedEnablingOverloads": 7,
   "nativeNamesAdded": 1,
   "contracts": [
@@ -643,6 +643,56 @@
       "signature": "PlateCornerForcesResultSet GetPlateCornerForces(IEnumerable<PlateCornerForcesKey> keys, LoadCaseType loadCaseType, IOSGeometry geometry, IOSLoad load)",
       "example": "var result = wrapper.Output.GetPlateCornerForces(new[] { new PlateCornerForcesKey(1, 17, 1) }, LoadCaseType.PrimaryLoad, wrapper.Geometry, wrapper.Load);\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);\n    else System.Console.WriteLine(item.Status);",
       "xmlSignature": "GetPlateCornerForces(System.Collections.Generic.IEnumerable{StaadPro.Interop.Models.Output.PlateCornerForcesKey},StaadPro.Interop.Enums.LoadCaseType,StaadPro.Interop.Adapters.Interfaces.IOSGeometry,StaadPro.Interop.Adapters.Interfaces.IOSLoad)"
+    },
+    {
+      "returnType": "Task<OutputQueryResult<PlateCornerForces>>",
+      "name": "GetPlateCornerForcesAsync",
+      "parameters": [
+        {
+          "type": "ILoadCase",
+          "name": "loadCase"
+        },
+        {
+          "type": "Plate",
+          "name": "plate"
+        },
+        {
+          "type": "Node",
+          "name": "cornerNode"
+        }
+      ],
+      "summary": "Reads one global plate-corner force and moment observation from supplied entities and returns a settled task.",
+      "args": "loadCase, plate, cornerNode",
+      "setup": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0));",
+      "sourceSignature": "Task<PlateCornerForces> GetPlateCornerForcesAsync(ILoadCase loadCase, Plate plate, Node cornerNode)",
+      "signature": "Task<OutputQueryResult<PlateCornerForces>> GetPlateCornerForcesAsync(ILoadCase loadCase, Plate plate, Node cornerNode)",
+      "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0));\nvar result = wrapper.Output.GetPlateCornerForcesAsync(loadCase, plate, cornerNode).GetAwaiter().GetResult();\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
+      "xmlSignature": "GetPlateCornerForcesAsync(StaadPro.Interop.Entities.ILoadCase,StaadPro.Interop.Entities.Plate,StaadPro.Interop.Entities.Node)"
+    },
+    {
+      "returnType": "Task<OutputQueryResult<PlateCornerForces>>",
+      "name": "GetPlateCornerForcesAsync",
+      "parameters": [
+        {
+          "type": "int",
+          "name": "loadCaseId"
+        },
+        {
+          "type": "int",
+          "name": "plateId"
+        },
+        {
+          "type": "int",
+          "name": "cornerNodeId"
+        }
+      ],
+      "summary": "Resolves case metadata and plate incidence from numeric IDs and returns a settled plate-corner force task.",
+      "args": "loadCaseId, plateId, cornerNodeId",
+      "setup": "",
+      "sourceSignature": "Task<PlateCornerForces> GetPlateCornerForcesAsync(int loadCaseId, int plateId, int cornerNodeId)",
+      "signature": "Task<OutputQueryResult<PlateCornerForces>> GetPlateCornerForcesAsync(int loadCaseId, int plateId, int cornerNodeId)",
+      "example": "var result = wrapper.Output.GetPlateCornerForcesAsync(1, 17, 1).GetAwaiter().GetResult();\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
+      "xmlSignature": "GetPlateCornerForcesAsync(System.Int32,System.Int32,System.Int32)"
     }
   ]
 }

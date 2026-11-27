@@ -320,11 +320,11 @@ namespace StaadPro.Interop.Tests.Adapter
             }
         }
         [Test]
-        public void PublicContractHas102TypedOperationsWithoutReferenceOutputs()
+        public void PublicContractHas104TypedOperationsWithoutReferenceOutputs()
         {
             Assert.That(Queries, Has.Length.EqualTo(15));
             var all = typeof(IOSOutput).GetMethods().Where(m => !m.IsSpecialName).ToArray();
-            Assert.That(all, Has.Length.EqualTo(102));
+            Assert.That(all, Has.Length.EqualTo(104));
             foreach (var method in all)
             {
                 Assert.That(method.GetParameters().Any(p => p.ParameterType.IsByRef), Is.False);
