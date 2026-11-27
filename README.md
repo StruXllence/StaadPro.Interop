@@ -42,11 +42,11 @@ Use `GetBeamsWithinRadius(...)`, `GetBoundingBox(...)` and `IsConnectedToBeam(..
 
 Runtime requires **Windows, .NET Framework 4.8.1 (net481), and a licensed STAAD.Pro installation** exposing the APIs used by your application. The .NET SDK used to build the project is separate from the application's target framework.
 
-The latest locally prepared preview is **1.0.0-preview.20261127**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
+The latest locally prepared preview is **1.0.0-preview.20261127.1**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
 
-## Latest preview — 1.0.0-preview.20261127
+## Latest preview — 1.0.0-preview.20261127.1
 
-`GetPlateCornerForcesAsync` now accepts supplied case, plate and corner entities or their numeric IDs. Both overloads finish the existing qualified query on the calling COM apartment before returning a task. Each result retains the queried IDs and status, including native failure and unavailable metadata. Output now provides 104 managed overloads across 48 documented native names. [Plate-corner task contracts and examples](docs/Output-Plate-Corners.md#task-shaped-corner-observations).
+Two new `GetPlateCornerForcesAsync` overloads accept numeric IDs and the current Geometry and Load adapters. Choose automatic case metadata discovery or supply the load-case family when it is known. Both preserve qualified results and status and complete on the calling COM apartment before returning a task. Output now provides 106 managed overloads across 48 documented native names. [Plate-corner task contracts and examples](docs/Output-Plate-Corners.md#task-shaped-corner-observations).
 
 ## Quick start: read an open model
 

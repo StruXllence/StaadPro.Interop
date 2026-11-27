@@ -25,14 +25,18 @@ These are **nodal forces and moments**, not the plate-center stress families or 
 
 ## Task-shaped corner observations
 
-Use `GetPlateCornerForcesAsync` to read a single corner from supplied entities or numeric IDs. Both overloads return `Task<OutputQueryResult<PlateCornerForces>>` and complete the underlying synchronous work on the calling COM apartment. Invoke on the STAAD automation thread. The task may already contain an unsuccessful observation or a fault when returned.
+Use `GetPlateCornerForcesAsync` to read one corner from supplied entities or numeric IDs. All four overloads return `Task<OutputQueryResult<PlateCornerForces>>` and complete the synchronous query on the calling COM apartment before returning. Invoke on the STAAD automation thread.
 
 | Input | Query behavior |
 | --- | --- |
 | `ILoadCase loadCase, Plate plate, Node cornerNode` | Captures the supplied case metadata and selects the canonical corner by ID. Hydrates incidence and coordinates through Geometry when the plate is only partially supplied. |
 | `int loadCaseId, int plateId, int cornerNodeId` | Resolves primary, combination or reference metadata. Missing or ambiguous case IDs return `MetadataUnavailable` without reading forces. Invalid resolved incidence can return `NotFound`. |
+| `loadCaseId, plateId, cornerNodeId, geometry, load` | Uses the supplied current adapters and searches all three supported case families. Missing or ambiguous metadata returns `MetadataUnavailable`. |
+| `loadCaseId, plateId, cornerNodeId, loadCaseType, geometry, load` | Searches just the requested primary, combination or reference family. A missing case returns `MetadataUnavailable` and retains the requested family. |
 
-Both overloads preserve the six qualified components and the reported units and signs. Native false or zero returns `NativeFailure` without exposing the buffer. Validation, stale/replaced bindings, malformed reported success and transport failures fault the returned task. Neither overload activates a case or changes model data.
+Pass Geometry and Load from the same acquired wrapper. Reacquire the adapters after a binding refresh. Selecting a family constrains the metadata lookup. OpenSTAAD still uses only the numeric case ID for the force query.
+
+All four overloads preserve the six qualified components and the reported units and signs. Native false or zero returns `NativeFailure` without exposing the buffer. Validation, stale/replaced bindings, malformed reported success and transport failures fault the returned task. The task variants read the existing model results.
 
 ~~~csharp
 ILoadCase loadCase = new LoadCase(1, "Dead");
@@ -45,6 +49,18 @@ else System.Console.WriteLine(result.Status);
 
 ~~~csharp
 var result = wrapper.Output.GetPlateCornerForcesAsync(1, 17, 1).GetAwaiter().GetResult();
+if (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);
+else System.Console.WriteLine(result.Status);
+~~~
+
+~~~csharp
+var result = wrapper.Output.GetPlateCornerForcesAsync(1, 17, 1, wrapper.Geometry, wrapper.Load).GetAwaiter().GetResult();
+if (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);
+else System.Console.WriteLine(result.Status);
+~~~
+
+~~~csharp
+var result = wrapper.Output.GetPlateCornerForcesAsync(1, 17, 1, LoadCaseType.PrimaryLoad, wrapper.Geometry, wrapper.Load).GetAwaiter().GetResult();
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);
 else System.Console.WriteLine(result.Status);
 ~~~

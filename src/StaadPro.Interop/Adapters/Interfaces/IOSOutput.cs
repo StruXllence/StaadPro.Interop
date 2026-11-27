@@ -1664,5 +1664,60 @@ namespace StaadPro.Interop.Adapters.Interfaces
         /// else System.Console.WriteLine(result.Status);
         /// </code></example>
         Task<OutputQueryResult<PlateCornerForces>> GetPlateCornerForcesAsync(int loadCaseId, int plateId, int cornerNodeId);
+
+        /// <summary>Reads one plate-corner observation through the supplied adapters, resolves the case family and returns a settled task.</summary>
+        /// <param name="loadCaseId">Positive load-case or combination number passed to the native query once metadata is resolved.</param>
+        /// <param name="plateId">Positive analytical plate ID. The Geometry binding resolves its incidence and coordinates.</param>
+        /// <param name="cornerNodeId">Positive incidence-node ID within the resolved plate, rather than a corner ordinal.</param>
+        /// <param name="geometry">The same wrapper's current Geometry adapter.</param>
+        /// <param name="load">The same wrapper's current Load adapter.</param>
+        /// <returns>A settled task. A successful observation retains the resolved case, plate and corner identity and six copied force and moment components. Check IsSuccessful before Data. An ordinary unsuccessful observation completes the task with its status and no Data.</returns>
+        /// <remarks>
+        /// <para>Reuses the matching synchronous query. All validation, metadata, incidence and native force reads run on the calling COM apartment before the task is returned. Invoke on the STAAD automation thread and coordinate model access. Awaiting observes the completed result or original error.</para>
+        /// <para>Searches primary, combination and reference metadata. If the number is missing or occurs in more than one family, returns MetadataUnavailable before reading geometry or forces. Supply the family explicitly when you know which metadata record to use.</para>
+        /// <para>Family selection affects metadata. The native call accepts the numeric case selector and receives no family flag. Missing plate or corner incidence can return NotFound. Native false or zero yields NativeFailure and discards the entire buffer.</para>
+        /// <para>The copied values represent forces and moments at the corner with the reported units and signs. The global interpretation follows the sampled STAAD.Pro 2026 build. Verify it for other models and builds. The query reads existing results without activating a case, running analysis or certifying freshness.</para>
+        /// <para>Pass both adapters from the current acquired wrapper. Reacquire them together with Output after refresh. Null, foreign, stale or replaced bindings, invalid input, malformed native data and dispatch failures fault the task.</para>
+        /// </remarks>
+        /// <exception cref="System.ArgumentNullException">The task faults because a required adapter is null.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">The task faults because an ID is nonpositive.</exception>
+        /// <exception cref="System.ArgumentException">The task faults because an adapter does not match the wrapper's current binding or the resolved geometry is invalid.</exception>
+        /// <exception cref="System.InvalidOperationException">The task faults because a binding is unavailable, stale or disposed, lookup exceeds its bound, or native status or successful data is malformed.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The task faults with the original transport exception and HRESULT.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The task faults because a required native signature is unavailable.</exception>
+        /// <example><code>
+        /// var result = wrapper.Output.GetPlateCornerForcesAsync(1, 17, 1, wrapper.Geometry, wrapper.Load).GetAwaiter().GetResult();
+        /// if (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);
+        /// else System.Console.WriteLine(result.Status);
+        /// </code></example>
+        Task<OutputQueryResult<PlateCornerForces>> GetPlateCornerForcesAsync(int loadCaseId, int plateId, int cornerNodeId, IOSGeometry geometry, IOSLoad load);
+
+        /// <summary>Reads one plate-corner observation using the specified load-case metadata family and returns a settled task.</summary>
+        /// <param name="loadCaseId">Positive load-case or combination number passed to the native query once metadata is resolved.</param>
+        /// <param name="plateId">Positive analytical plate ID. The Geometry binding resolves its incidence and coordinates.</param>
+        /// <param name="cornerNodeId">Positive incidence-node ID within the resolved plate, rather than a corner ordinal.</param>
+        /// <param name="loadCaseType">Metadata family to search. Use primary, combination or reference. Repeat load has no independent metadata route.</param>
+        /// <param name="geometry">The same wrapper's current Geometry adapter.</param>
+        /// <param name="load">The same wrapper's current Load adapter.</param>
+        /// <returns>A settled task. A successful observation retains the resolved case, plate and corner identity and six copied force and moment components. Check IsSuccessful before Data. An ordinary unsuccessful observation completes the task with its status and no Data.</returns>
+        /// <remarks>
+        /// <para>Reuses the matching synchronous query. All validation, metadata, incidence and native force reads run on the calling COM apartment before the task is returned. Invoke on the STAAD automation thread and coordinate model access. Awaiting observes the completed result or original error.</para>
+        /// <para>Searches only the supplied metadata family. Use this overload when a case number could occur in more than one family or the intended family is known. If the number is missing in that family, returns MetadataUnavailable and keeps the supplied family in the observation.</para>
+        /// <para>Family selection affects metadata. The native call accepts the numeric case selector and receives no family flag. Missing plate or corner incidence can return NotFound. Native false or zero yields NativeFailure and discards the entire buffer.</para>
+        /// <para>The copied values represent forces and moments at the corner with the reported units and signs. The global interpretation follows the sampled STAAD.Pro 2026 build. Verify it for other models and builds. The query reads existing results without activating a case, running analysis or certifying freshness.</para>
+        /// <para>Pass both adapters from the current acquired wrapper. Reacquire them together with Output after refresh. Null, foreign, stale or replaced bindings, invalid input, malformed native data and dispatch failures fault the task.</para>
+        /// </remarks>
+        /// <exception cref="System.ArgumentNullException">The task faults because a required adapter is null.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">The task faults because an ID is nonpositive or the metadata family is unsupported.</exception>
+        /// <exception cref="System.ArgumentException">The task faults because an adapter does not match the wrapper's current binding or the resolved geometry is invalid.</exception>
+        /// <exception cref="System.InvalidOperationException">The task faults because a binding is unavailable, stale or disposed, lookup exceeds its bound, or native status or successful data is malformed.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The task faults with the original transport exception and HRESULT.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The task faults because a required native signature is unavailable.</exception>
+        /// <example><code>
+        /// var result = wrapper.Output.GetPlateCornerForcesAsync(1, 17, 1, LoadCaseType.PrimaryLoad, wrapper.Geometry, wrapper.Load).GetAwaiter().GetResult();
+        /// if (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);
+        /// else System.Console.WriteLine(result.Status);
+        /// </code></example>
+        Task<OutputQueryResult<PlateCornerForces>> GetPlateCornerForcesAsync(int loadCaseId, int plateId, int cornerNodeId, LoadCaseType loadCaseType, IOSGeometry geometry, IOSLoad load);
     }
 }

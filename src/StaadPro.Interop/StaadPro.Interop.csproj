@@ -12,12 +12,12 @@
     <RootNamespace>StaadPro.Interop</RootNamespace>
     <PackageId>StaadPro.Interop</PackageId>
     <Version>1.0.0</Version>
-    <ReleaseDocumentationVersion>1.0.0-preview.20261127</ReleaseDocumentationVersion>
+    <ReleaseDocumentationVersion>1.0.0-preview.20261127.1</ReleaseDocumentationVersion>
     <PackageVersion>$(ReleaseDocumentationVersion)</PackageVersion>
     <Authors>Srinivasa Rao Masanam</Authors>
     <Company>StruXllence</Company>
     <Copyright>Copyright (c) 2026 StruXllence</Copyright>
-    <PackageReleaseNotes>Added two GetPlateCornerForcesAsync overloads for supplied entities and numeric IDs. Reused the existing status-bearing corner readers, metadata resolution and plate hydration. Completed native reads on the calling COM apartment before returning a task. Output now provides 104 managed overloads across 48 documented native names. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
+    <PackageReleaseNotes>Added two GetPlateCornerForcesAsync overloads that use the current Geometry and Load adapters with automatic or explicit load-case family resolution. Retained query status and completed native work on the calling COM apartment. Output provides 106 managed overloads across 48 documented native names. Full release notes: https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Release-Notes.md</PackageReleaseNotes>
     <Description>A strongly-typed .NET Framework wrapper for Bentley STAAD.Pro OpenSTAAD Developer resources include Marketplace installation links for the optional StruXllence VS Code dark and light themes in the packaged README.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageTags>staad;staad-pro;openstaad;structural-engineering;structural-analysis;engineering-automation;csharp;dotnet-framework;com-interop;geometry;loads;bentley;struxllence</PackageTags>

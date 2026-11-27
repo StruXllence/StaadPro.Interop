@@ -183,5 +183,191 @@ namespace StaadPro.Interop.Tests.Adapter
                 Assert.That(((OutputPlateCornerFixture.Native)root.Output).Calls, Is.Empty);
             }
         }
+
+        private static Task<OutputQueryResult<PlateCornerForces>> QueryWithAdapters(
+            IOSOutput output, IOSGeometry geometry, IOSLoad load, bool explicitFamily) =>
+            explicitFamily
+                ? output.GetPlateCornerForcesAsync(1, 17, 1, LoadCaseType.PrimaryLoad, geometry, load)
+                : output.GetPlateCornerForcesAsync(1, 17, 1, geometry, load);
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void ExplicitAdaptersFinishLookupAndExtractionOnTheCallingApartment(bool explicitFamily)
+        {
+            var root = new OutputPlateCornerFixture.Root();
+            var load = (OutputPlateCornerFixture.Load)root.Load;
+            var geometry = (OutputPlateCornerFixture.Geometry)root.Geometry;
+            var native = (OutputPlateCornerFixture.Native)root.Output;
+            int apartment = Thread.CurrentThread.ManagedThreadId;
+            Action checkThread = () => Assert.That(Thread.CurrentThread.ManagedThreadId, Is.EqualTo(apartment));
+            load.OnCall = checkThread;
+            geometry.OnCall = checkThread;
+            native.OnCall = checkThread;
+
+            using (var wrapper = new OpenStaadWrapper(root))
+            {
+                var task = QueryWithAdapters(wrapper.Output, wrapper.Geometry, wrapper.Load, explicitFamily);
+                Assert.That(task.Status, Is.EqualTo(TaskStatus.RanToCompletion));
+                var result = task.GetAwaiter().GetResult();
+                Assert.That(result.IsSuccessful, Is.True);
+                Assert.That(result.Data.Key, Is.EqualTo(new PlateCornerForcesKey(1, 17, 1, LoadCaseType.PrimaryLoad)));
+                Assert.That(result.Data.Components.Fx, Is.EqualTo(1.25));
+                Assert.That(geometry.IncidenceCalls, Is.EqualTo(1));
+                Assert.That(geometry.CoordinateCalls, Is.EqualTo(4));
+                Assert.That(native.Calls.Single(), Is.EqualTo(new object[] { 17, 1, 1 }));
+            }
+        }
+
+        [TestCase(LoadCaseType.PrimaryLoad, "GetPrimaryLoadCaseCount")]
+        [TestCase(LoadCaseType.LoadCombination, "GetLoadCombinationCaseCount")]
+        [TestCase(LoadCaseType.ReferenceLoad, "GetReferenceLoadCaseCount")]
+        public void SpecifiedFamilyDisambiguatesMetadataWithoutAddingANativeSelector(LoadCaseType family, string countMethod)
+        {
+            var root = new OutputPlateCornerFixture.Root();
+            var load = (OutputPlateCornerFixture.Load)root.Load;
+            var native = (OutputPlateCornerFixture.Native)root.Output;
+            load.CombinationIds = new[] { 1 };
+            load.ReferenceIds = new[] { 1 };
+
+            using (var wrapper = new OpenStaadWrapper(root))
+            {
+                var ambiguous = QueryWithAdapters(wrapper.Output, wrapper.Geometry, wrapper.Load, false);
+                Assert.That(ambiguous.Status, Is.EqualTo(TaskStatus.RanToCompletion));
+                Assert.That(ambiguous.Result.Status, Is.EqualTo(OutputQueryStatus.MetadataUnavailable));
+                Assert.That(ambiguous.Result.LoadCaseType, Is.Null);
+                Assert.That(native.Calls, Is.Empty);
+                Assert.That(((OutputPlateCornerFixture.Geometry)root.Geometry).IncidenceCalls, Is.Zero);
+                load.Calls.Clear();
+
+                var result = wrapper.Output.GetPlateCornerForcesAsync(1, 17, 1, family, wrapper.Geometry, wrapper.Load)
+                    .GetAwaiter().GetResult();
+
+                Assert.That(result.IsSuccessful, Is.True);
+                Assert.That(result.LoadCaseType, Is.EqualTo(family));
+                Assert.That(load.Calls, Does.Contain(countMethod));
+                Assert.That(load.Calls.Where(c => c.EndsWith("CaseCount", StringComparison.Ordinal)), Is.All.EqualTo(countMethod));
+                Assert.That(native.Calls.Single(), Is.EqualTo(new object[] { 17, 1, 1 }));
+            }
+        }
+
+        [Test]
+        public void MissingSpecifiedFamilyKeepsIdentityAndDoesNotFallBackToPrimary()
+        {
+            var root = new OutputPlateCornerFixture.Root();
+            using (var wrapper = new OpenStaadWrapper(root))
+            {
+                var task = wrapper.Output.GetPlateCornerForcesAsync(1, 17, 1, LoadCaseType.ReferenceLoad, wrapper.Geometry, wrapper.Load);
+                Assert.That(task.Status, Is.EqualTo(TaskStatus.RanToCompletion));
+                var result = task.Result;
+                Assert.That(result.Status, Is.EqualTo(OutputQueryStatus.MetadataUnavailable));
+                Assert.That(result.LoadCaseId, Is.EqualTo(1));
+                Assert.That(result.EntityId, Is.EqualTo(17));
+                Assert.That(result.CornerNodeId, Is.EqualTo(1));
+                Assert.That(result.LoadCaseType, Is.EqualTo(LoadCaseType.ReferenceLoad));
+                Assert.That(((OutputPlateCornerFixture.Load)root.Load).Calls, Does.Not.Contain("GetPrimaryLoadCaseCount"));
+                Assert.That(((OutputPlateCornerFixture.Geometry)root.Geometry).IncidenceCalls, Is.Zero);
+                Assert.That(((OutputPlateCornerFixture.Native)root.Output).Calls, Is.Empty);
+            }
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void NullForeignAndStaleAdaptersFaultBeforeReadingMetadata(bool explicitFamily)
+        {
+            var root = new OutputPlateCornerFixture.Root();
+            using (var wrapper = new OpenStaadWrapper(root))
+            using (var foreign = new OpenStaadWrapper(new OutputPlateCornerFixture.Root()))
+            {
+                var geometry = wrapper.Geometry;
+                var load = wrapper.Load;
+                var noGeometry = QueryWithAdapters(wrapper.Output, null, load, explicitFamily);
+                var noLoad = QueryWithAdapters(wrapper.Output, geometry, null, explicitFamily);
+                Assert.That(noGeometry.IsFaulted && noLoad.IsFaulted, Is.True);
+                Assert.That(Assert.Throws<ArgumentNullException>(() => noGeometry.GetAwaiter().GetResult()).ParamName, Is.EqualTo("geometry"));
+                Assert.That(Assert.Throws<ArgumentNullException>(() => noLoad.GetAwaiter().GetResult()).ParamName, Is.EqualTo("load"));
+                Assert.Throws<ArgumentException>(() => QueryWithAdapters(wrapper.Output, foreign.Geometry, load, explicitFamily).GetAwaiter().GetResult());
+                Assert.Throws<ArgumentException>(() => QueryWithAdapters(wrapper.Output, geometry, foreign.Load, explicitFamily).GetAwaiter().GetResult());
+                Assert.That(((OutputPlateCornerFixture.Load)root.Load).Calls, Is.Empty);
+
+                root.Geometry = new OutputPlateCornerFixture.Geometry();
+                root.Load = new OutputPlateCornerFixture.Load();
+                wrapper.RefreshComObjects();
+
+                var staleGeometry = QueryWithAdapters(wrapper.Output, geometry, wrapper.Load, explicitFamily);
+                var staleLoad = QueryWithAdapters(wrapper.Output, wrapper.Geometry, load, explicitFamily);
+                Assert.That(staleGeometry.IsFaulted && staleLoad.IsFaulted, Is.True);
+                Assert.Throws<ArgumentException>(() => staleGeometry.GetAwaiter().GetResult());
+                Assert.Throws<ArgumentException>(() => staleLoad.GetAwaiter().GetResult());
+                Assert.That(((OutputPlateCornerFixture.Load)root.Load).Calls, Is.Empty);
+                Assert.That(((OutputPlateCornerFixture.Geometry)root.Geometry).IncidenceCalls, Is.Zero);
+                Assert.That(((OutputPlateCornerFixture.Native)root.Output).Calls, Is.Empty);
+            }
+        }
+
+        [TestCase(LoadCaseType.RepeatLoad)]
+        [TestCase((LoadCaseType)0)]
+        public void UnsupportedFamilyFaultsWithoutNativeDispatch(LoadCaseType family)
+        {
+            var root = new OutputPlateCornerFixture.Root();
+            using (var wrapper = new OpenStaadWrapper(root))
+            {
+                var task = wrapper.Output.GetPlateCornerForcesAsync(1, 17, 1, family, wrapper.Geometry, wrapper.Load);
+                Assert.That(task.IsFaulted, Is.True);
+                Assert.Throws<ArgumentOutOfRangeException>(() => task.GetAwaiter().GetResult());
+                Assert.That(((OutputPlateCornerFixture.Load)root.Load).Calls, Is.Empty);
+                Assert.That(((OutputPlateCornerFixture.Native)root.Output).Calls, Is.Empty);
+            }
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void ExplicitAdapterTaskStopsAfterAParticipatingBindingChanges(bool changeLoad)
+        {
+            var root = new OutputPlateCornerFixture.Root();
+            using (var wrapper = new OpenStaadWrapper(root))
+            {
+                if (changeLoad)
+                    ((OutputPlateCornerFixture.Load)root.Load).OnCall = () =>
+                    {
+                        root.Load = new OutputPlateCornerFixture.Load();
+                        wrapper.RefreshComObjects();
+                    };
+                else
+                    ((OutputPlateCornerFixture.Geometry)root.Geometry).OnCall = () =>
+                    {
+                        root.Geometry = new OutputPlateCornerFixture.Geometry();
+                        wrapper.RefreshComObjects();
+                    };
+
+                var task = QueryWithAdapters(wrapper.Output, wrapper.Geometry, wrapper.Load, changeLoad);
+                Assert.That(task.IsFaulted, Is.True);
+                Assert.Throws<InvalidOperationException>(() => task.GetAwaiter().GetResult());
+                Assert.That(((OutputPlateCornerFixture.Native)root.Output).Calls, Is.Empty);
+            }
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void ExplicitAdapterTaskPreservesNativeFailureAndOriginalTransportError(bool explicitFamily)
+        {
+            var root = new OutputPlateCornerFixture.Root();
+            var native = (OutputPlateCornerFixture.Native)root.Output;
+            var original = new COMException("Native dispatch failed", unchecked((int)0x800706BA));
+
+            using (var wrapper = new OpenStaadWrapper(root))
+            {
+                native.Status = false;
+                native.ReplaceArray = _ => "This buffer must be discarded";
+                var rejected = QueryWithAdapters(wrapper.Output, wrapper.Geometry, wrapper.Load, explicitFamily);
+                Assert.That(rejected.Status, Is.EqualTo(TaskStatus.RanToCompletion));
+                Assert.That(rejected.Result.Status, Is.EqualTo(OutputQueryStatus.NativeFailure));
+                Assert.Throws<InvalidOperationException>(() => { _ = rejected.Result.Data; });
+
+                native.OnCall = () => throw original;
+                var failed = QueryWithAdapters(wrapper.Output, wrapper.Geometry, wrapper.Load, explicitFamily);
+                Assert.That(failed.IsFaulted, Is.True);
+                Assert.That(Assert.Throws<COMException>(() => failed.GetAwaiter().GetResult()), Is.SameAs(original));
+            }
+        }
     }
 }

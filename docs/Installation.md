@@ -1,12 +1,12 @@
 # Installing and using StaadPro.Interop
 
-**Prepared preview, 27 November 2026:** `1.0.0-preview.20261127` adds two task-returning plate-corner queries for supplied entities and numeric IDs. Use a local feed until this exact version is available on NuGet.org. [Plate-corner task guide](Output-Plate-Corners.md#task-shaped-corner-observations).
+**Prepared preview, 27 November 2026:** `1.0.0-preview.20261127.1` adds two task-returning plate-corner queries with explicitly supplied Geometry and Load adapters. Use a local feed until this exact version is available on NuGet.org. [Plate-corner task guide](Output-Plate-Corners.md#task-shaped-corner-observations).
 
 ## Package and runtime
 
-Preview `1.0.0-preview.20261127` adds two `GetPlateCornerForcesAsync` overloads with full XML IntelliSense for 104 managed Output contracts across 48 documented native names. Native calls finish on the calling COM apartment before the task returns. The numeric overload resolves metadata and hydrates incidence through the current bindings. [Plate-corner task guide](Output-Plate-Corners.md#task-shaped-corner-observations).
+Preview `1.0.0-preview.20261127.1` adds two `GetPlateCornerForcesAsync` overloads for the current Geometry and Load adapters. Choose automatic or explicit load-case metadata resolution. Native reads finish on the calling COM apartment before the task returns. The archive includes XML IntelliSense for 106 Output overloads across 48 native names. [Plate-corner task guide](Output-Plate-Corners.md#task-shaped-corner-observations).
 
-This guide uses preview version `1.0.0-preview.20261127` of package `StaadPro.Interop`. Public-feed commands apply after that exact version is accepted and available on NuGet.org; [Publishing.md](Publishing.md) explains upload and verification. The same verified archive can be installed immediately through a local feed.
+This guide uses preview version `1.0.0-preview.20261127.1` of package `StaadPro.Interop`. Public-feed commands apply after that exact version is accepted and available on NuGet.org; [Publishing.md](Publishing.md) explains upload and verification. The same verified archive can be installed immediately through a local feed.
 
 | Requirement | Purpose |
 | --- | --- |
@@ -18,7 +18,7 @@ This guide uses preview version `1.0.0-preview.20261127` of package `StaadPro.In
 
 Installation and managed package checks do not require a STAAD license. Native STAAD operations do. Bentley software/binaries are separately installed and licensed. The package targets `net481`; this release does not advertise .NET 8/9/10 application compatibility. SDK version and the consuming application's target framework are different things.
 
-Newtonsoft.Json is restored as a package dependency. Expanded XML documentation is included beside the DLL for IntelliSense on interfaces and concrete adapters, including all 249 common IOSProperty/OSPropertyAdapter overloads, five acquired catalog queries and 104 Output overloads. The [Property completion guide](Property-Profile-Names-and-Final-Cleanup.md), [plate-corner guide](Output-Plate-Corners.md) and [Support guide](Support-Foundations.md) describe the current APIs. The [Property guide](Property.md) links the preceding increments. IntelliSense describes native flags, units, inputs and failure behavior. No Bentley binaries are bundled.
+Newtonsoft.Json is restored as a package dependency. Expanded XML documentation is included beside the DLL for IntelliSense on interfaces and concrete adapters, including all 249 common IOSProperty/OSPropertyAdapter overloads, five acquired catalog queries and 106 Output overloads. The [Property completion guide](Property-Profile-Names-and-Final-Cleanup.md), [plate-corner guide](Output-Plate-Corners.md) and [Support guide](Support-Foundations.md) describe the current APIs. The [Property guide](Property.md) links the preceding increments. IntelliSense describes native flags, units, inputs and failure behavior. No Bentley binaries are bundled.
 
 The newer catalog group requires `property.Capabilities.GetStandardCatalog()` acquisition. Update the 17 renamed public UPT methods using [the migration table](Property-API-Naming.md); see [all new contracts](Property-Catalog-Capabilities-and-Cleanup.md).
 
@@ -29,11 +29,11 @@ See [incremental View rotations](View-Incremental-Rotations.md) for degree units
 For an existing SDK-style project targeting `net481`, run:
 
 ```powershell
-dotnet add ./YourApp.csproj package StaadPro.Interop --version 1.0.0-preview.20261127 --source https://api.nuget.org/v3/index.json
+dotnet add ./YourApp.csproj package StaadPro.Interop --version 1.0.0-preview.20261127.1 --source https://api.nuget.org/v3/index.json
 dotnet restore ./YourApp.csproj
 dotnet build ./YourApp.csproj -c Release
 ```
-For SDK 10's noun-first CLI, the equivalent command is `dotnet package add StaadPro.Interop --project ./YourApp.csproj --version 1.0.0-preview.20261127 --source https://api.nuget.org/v3/index.json`. The older verb-first command above matches the SDK used for this repository's verification. See Microsoft's [package add reference](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-package-add).
+For SDK 10's noun-first CLI, the equivalent command is `dotnet package add StaadPro.Interop --project ./YourApp.csproj --version 1.0.0-preview.20261127.1 --source https://api.nuget.org/v3/index.json`. The older verb-first command above matches the SDK used for this repository's verification. See Microsoft's [package add reference](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-package-add).
 
 The resulting project reference should pin the version:
 
@@ -42,7 +42,7 @@ The resulting project reference should pin the version:
   <TargetFramework>net481</TargetFramework>
 </PropertyGroup>
 <ItemGroup>
-  <PackageReference Include="StaadPro.Interop" Version="1.0.0-preview.20261127" />
+  <PackageReference Include="StaadPro.Interop" Version="1.0.0-preview.20261127.1" />
 </ItemGroup>
 ```
 For a fresh-cache public restore check, create a new consumer directory and this `NuGet.Config`:
@@ -68,12 +68,12 @@ Then run `dotnet restore ./YourApp.csproj --configfile ./NuGet.Config --packages
 The NuGet Package Manager Console equivalent is:
 
 ```powershell
-Install-Package StaadPro.Interop -Version 1.0.0-preview.20261127 -Source https://api.nuget.org/v3/index.json
+Install-Package StaadPro.Interop -Version 1.0.0-preview.20261127.1 -Source https://api.nuget.org/v3/index.json
 ```
 For the legacy WPF test solution `NugetTestApp`, the project is at `NugetTest\NugetTest.csproj`, one directory below the solution. Use the Package Manager Console command with an explicit project:
 
 ```powershell
-Install-Package StaadPro.Interop -Version 1.0.0-preview.20261127 -ProjectName NugetTest -Source https://api.nuget.org/v3/index.json
+Install-Package StaadPro.Interop -Version 1.0.0-preview.20261127.1 -ProjectName NugetTest -Source https://api.nuget.org/v3/index.json
 ```
 `dotnet add package` searches its current directory for a project; Visual Studio's **Default project** selection does not change that directory for an external CLI command. Running it in the solution directory produces **Could not find any project**. Pointing it at this unconfigured legacy project produces **The project does not support adding package references through the add package command**. Use `Install-Package` or the Visual Studio NuGet UI. Alternatively, add a `PackageReference` to the legacy project and restore/build it with Visual Studio MSBuild; converting the entire WPF project to SDK style is unnecessary.
 
@@ -98,7 +98,7 @@ In the consumer directory, use a project-scoped `NuGet.Config`:
 NuGet.org remains configured for dependencies. Add the exact package reference with:
 
 ```powershell
-dotnet add ./YourApp.csproj package StaadPro.Interop --version 1.0.0-preview.20261127
+dotnet add ./YourApp.csproj package StaadPro.Interop --version 1.0.0-preview.20261127.1
 dotnet restore ./YourApp.csproj --configfile ./NuGet.Config --packages ./packages
 dotnet build ./YourApp.csproj -c Release --no-restore
 ```
@@ -117,7 +117,7 @@ For a small Windows console consumer, this SDK-style project is sufficient:
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <PackageReference Include="StaadPro.Interop" Version="1.0.0-preview.20261127" />
+    <PackageReference Include="StaadPro.Interop" Version="1.0.0-preview.20261127.1" />
   </ItemGroup>
 </Project>
 ```
@@ -156,11 +156,11 @@ Assignment queries such as `GetNodalLoads` activate the supplied primary/referen
 
 If the path does not exist, the provider retains its existing behavior of creating a blank model there. Connection failures/timeouts return null and emit `System.Diagnostics.Trace` messages. Check the result before using the adapters. `GetRunning()` attaches to a running session and never launches STAAD. Wrapper disposal releases managed references; it does not close the model or application.
 
-These connection fixes require a new package build; they are not present in published `1.0.0-preview.20261012`. Use a new version such as `1.0.0-preview.20261127` for the corrected archive.
+These connection fixes require a new package build; they are not present in published `1.0.0-preview.20261012`. Use a new version such as `1.0.0-preview.20261127.1` for the corrected archive.
 
 ## Check IntelliSense and package contents
 
-Under the installed package's `lib/net481` folder, check for both `StaadPro.Interop.dll` and `StaadPro.Interop.xml`. With the default cache, this is beneath `%USERPROFILE%\.nuget\packages\staadpro.interop\1.0.0-preview.20261127`. A custom cache uses the location you passed to restore.
+Under the installed package's `lib/net481` folder, check for both `StaadPro.Interop.dll` and `StaadPro.Interop.xml`. With the default cache, this is beneath `%USERPROFILE%\.nuget\packages\staadpro.interop\1.0.0-preview.20261127.1`. A custom cache uses the location you passed to restore.
 
 The XML supplies full method summaries, parameters, return/null semantics, mappings, side effects, exceptions and examples for the 21 ported query methods on both the interface and concrete adapter. The package's `docs` directory contains the load, installation and publishing guides. Editing a local package-cache copy is not a supported way to change the library; create a new source build/version instead.
 

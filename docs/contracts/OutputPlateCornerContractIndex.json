@@ -1,6 +1,6 @@
 {
   "date": "2026-11-27",
-  "managedOverloads": 27,
+  "managedOverloads": 29,
   "typedEnablingOverloads": 7,
   "nativeNamesAdded": 1,
   "contracts": [
@@ -693,6 +693,76 @@
       "signature": "Task<OutputQueryResult<PlateCornerForces>> GetPlateCornerForcesAsync(int loadCaseId, int plateId, int cornerNodeId)",
       "example": "var result = wrapper.Output.GetPlateCornerForcesAsync(1, 17, 1).GetAwaiter().GetResult();\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
       "xmlSignature": "GetPlateCornerForcesAsync(System.Int32,System.Int32,System.Int32)"
+    },
+    {
+      "returnType": "Task<OutputQueryResult<PlateCornerForces>>",
+      "name": "GetPlateCornerForcesAsync",
+      "parameters": [
+        {
+          "type": "int",
+          "name": "loadCaseId"
+        },
+        {
+          "type": "int",
+          "name": "plateId"
+        },
+        {
+          "type": "int",
+          "name": "cornerNodeId"
+        },
+        {
+          "type": "IOSGeometry",
+          "name": "geometry"
+        },
+        {
+          "type": "IOSLoad",
+          "name": "load"
+        }
+      ],
+      "summary": "Reads one plate-corner observation through the supplied adapters, resolves the case family and returns a settled task.",
+      "args": "1, 17, 1, wrapper.Geometry, wrapper.Load",
+      "setup": "",
+      "sourceSignature": "Task<PlateCornerForces> GetPlateCornerForcesAsync(int loadCaseId, int plateId, int cornerNodeId, IOSGeometry geometry, IOSLoad load)",
+      "signature": "Task<OutputQueryResult<PlateCornerForces>> GetPlateCornerForcesAsync(int loadCaseId, int plateId, int cornerNodeId, IOSGeometry geometry, IOSLoad load)",
+      "example": "var result = wrapper.Output.GetPlateCornerForcesAsync(1, 17, 1, wrapper.Geometry, wrapper.Load).GetAwaiter().GetResult();\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
+      "xmlSignature": "GetPlateCornerForcesAsync(System.Int32,System.Int32,System.Int32,StaadPro.Interop.Adapters.Interfaces.IOSGeometry,StaadPro.Interop.Adapters.Interfaces.IOSLoad)"
+    },
+    {
+      "returnType": "Task<OutputQueryResult<PlateCornerForces>>",
+      "name": "GetPlateCornerForcesAsync",
+      "parameters": [
+        {
+          "type": "int",
+          "name": "loadCaseId"
+        },
+        {
+          "type": "int",
+          "name": "plateId"
+        },
+        {
+          "type": "int",
+          "name": "cornerNodeId"
+        },
+        {
+          "type": "LoadCaseType",
+          "name": "loadCaseType"
+        },
+        {
+          "type": "IOSGeometry",
+          "name": "geometry"
+        },
+        {
+          "type": "IOSLoad",
+          "name": "load"
+        }
+      ],
+      "summary": "Reads one plate-corner observation using the specified load-case metadata family and returns a settled task.",
+      "args": "1, 17, 1, LoadCaseType.PrimaryLoad, wrapper.Geometry, wrapper.Load",
+      "setup": "",
+      "sourceSignature": "Task<PlateCornerForces> GetPlateCornerForcesAsync(int loadCaseId, int plateId, int cornerNodeId, LoadCaseType loadCaseType, IOSGeometry geometry, IOSLoad load)",
+      "signature": "Task<OutputQueryResult<PlateCornerForces>> GetPlateCornerForcesAsync(int loadCaseId, int plateId, int cornerNodeId, LoadCaseType loadCaseType, IOSGeometry geometry, IOSLoad load)",
+      "example": "var result = wrapper.Output.GetPlateCornerForcesAsync(1, 17, 1, LoadCaseType.PrimaryLoad, wrapper.Geometry, wrapper.Load).GetAwaiter().GetResult();\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
+      "xmlSignature": "GetPlateCornerForcesAsync(System.Int32,System.Int32,System.Int32,StaadPro.Interop.Enums.LoadCaseType,StaadPro.Interop.Adapters.Interfaces.IOSGeometry,StaadPro.Interop.Adapters.Interfaces.IOSLoad)"
     }
   ]
 }
