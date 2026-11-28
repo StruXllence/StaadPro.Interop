@@ -1,5 +1,13 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261128.3 - 28 November 2026
+
+Added `GetPlateCornerForcesAsync(ILoadCase loadCase, Plate plate, Node cornerNode, Node otherMemberNode)`. The projection uses the direction from the canonical plate corner to the supplied node and zero beta.
+
+Added `GetPlateCornerForcesAsync(ILoadCase loadCase, Plate plate, Node cornerNode, Beam member)`. The projection uses the beam's supplied start-to-end orientation and beta angle and records which member end matched the corner.
+
+Both complete on the calling COM apartment and return `Task<OutputQueryResult<PlateCornerMemberForces>>`. Successful observations retain the original global packet and the projected components at the same reference point. Ordinary native failures remain available through `Status`. Output provides 116 managed overloads with XML IntelliSense across 48 documented native names. [Member-local corner query guide](Output-Plate-Corners.md#task-shaped-member-local-corner-queries).
+
 ## 1.0.0-preview.20261128.2 - 28 November 2026
 
 Added `GetPlateCornerForcesAsync(IEnumerable<int> loadCaseIds, int plateId, int cornerNodeId, IOSGeometry geometry, IOSLoad load)`. It captures case IDs in first-seen order, resolves metadata through the current Load adapter and reuses successful plate incidence and coordinates. Missing or ambiguous case numbers retain `MetadataUnavailable` in the indexed result.

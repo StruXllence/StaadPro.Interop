@@ -42,11 +42,11 @@ Use `GetBeamsWithinRadius(...)`, `GetBoundingBox(...)` and `IsConnectedToBeam(..
 
 Runtime requires **Windows, .NET Framework 4.8.1 (net481), and a licensed STAAD.Pro installation** exposing the APIs used by your application. The .NET SDK used to build the project is separate from the application's target framework.
 
-The latest locally prepared preview is **1.0.0-preview.20261128.2**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
+The latest locally prepared preview is **1.0.0-preview.20261128.3**. Check [NuGet](https://www.nuget.org/packages/StaadPro.Interop) for versions already published; the current prepared archive is available for manual upload. Follow [installation instructions](docs/Installation.md) for local-feed and exact public-version commands. No Bentley binaries are bundled.
 
-## Latest preview — 1.0.0-preview.20261128.2
+## Latest preview — 1.0.0-preview.20261128.3
 
-The new numeric batch reads one plate corner across selected case IDs using the current Geometry and Load adapters. The `GetPlateCornerForcesInGlobalCoordinatesAsync` alias returns a status-bearing global XYZ observation. Both complete native reads on the calling COM apartment. Output provides 114 managed overloads across 48 documented native names. [Numeric and global corner query guide](docs/Output-Plate-Corners.md#task-shaped-numeric-and-global-queries).
+Two new `GetPlateCornerForcesAsync` overloads read one plate corner and project its forces and moments into a conceptual corner-to-node basis or the supplied beam basis. Both return `Task<OutputQueryResult<PlateCornerMemberForces>>` and complete native reads and projection on the calling COM apartment. Output provides 116 managed overloads across 48 documented native names. [Member-local corner query guide](docs/Output-Plate-Corners.md#task-shaped-member-local-corner-queries).
 
 ## Quick start: read an open model
 

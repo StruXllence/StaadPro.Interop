@@ -1,6 +1,6 @@
 {
   "date": "2026-11-28",
-  "managedOverloads": 37,
+  "managedOverloads": 39,
   "typedEnablingOverloads": 7,
   "nativeNamesAdded": 1,
   "contracts": [
@@ -947,6 +947,64 @@
       "signature": "Task<OutputQueryResult<PlateCornerForces>> GetPlateCornerForcesInGlobalCoordinatesAsync(ILoadCase loadCase, Plate plate, Node cornerNode)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0));\nvar result = wrapper.Output.GetPlateCornerForcesInGlobalCoordinatesAsync(loadCase, plate, cornerNode).GetAwaiter().GetResult();\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
       "xmlSignature": "GetPlateCornerForcesInGlobalCoordinatesAsync(StaadPro.Interop.Entities.ILoadCase,StaadPro.Interop.Entities.Plate,StaadPro.Interop.Entities.Node)"
+    },
+    {
+      "returnType": "Task<OutputQueryResult<PlateCornerMemberForces>>",
+      "name": "GetPlateCornerForcesAsync",
+      "parameters": [
+        {
+          "type": "ILoadCase",
+          "name": "loadCase"
+        },
+        {
+          "type": "Plate",
+          "name": "plate"
+        },
+        {
+          "type": "Node",
+          "name": "cornerNode"
+        },
+        {
+          "type": "Node",
+          "name": "otherMemberNode"
+        }
+      ],
+      "summary": "Reads one plate-corner observation and projects it into conceptual zero-beta member-local axes.",
+      "args": "loadCase, plate, cornerNode, otherMemberNode",
+      "setup": "",
+      "sourceSignature": "Task<MemberForces> GetPlateCornerForcesAsync(ILoadCase loadCase, Plate plate, Node cornerNode, Node otherMemberNode)",
+      "signature": "Task<OutputQueryResult<PlateCornerMemberForces>> GetPlateCornerForcesAsync(ILoadCase loadCase, Plate plate, Node cornerNode, Node otherMemberNode)",
+      "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0));\nvar otherMemberNode = plate.B;\nvar result = wrapper.Output.GetPlateCornerForcesAsync(loadCase, plate, cornerNode, otherMemberNode).GetAwaiter().GetResult();\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
+      "xmlSignature": "GetPlateCornerForcesAsync(StaadPro.Interop.Entities.ILoadCase,StaadPro.Interop.Entities.Plate,StaadPro.Interop.Entities.Node,StaadPro.Interop.Entities.Node)"
+    },
+    {
+      "returnType": "Task<OutputQueryResult<PlateCornerMemberForces>>",
+      "name": "GetPlateCornerForcesAsync",
+      "parameters": [
+        {
+          "type": "ILoadCase",
+          "name": "loadCase"
+        },
+        {
+          "type": "Plate",
+          "name": "plate"
+        },
+        {
+          "type": "Node",
+          "name": "cornerNode"
+        },
+        {
+          "type": "Beam",
+          "name": "member"
+        }
+      ],
+      "summary": "Reads one plate-corner observation and projects it into the managed local axes of a supplied member.",
+      "args": "loadCase, plate, cornerNode, member",
+      "setup": "",
+      "sourceSignature": "Task<MemberForces> GetPlateCornerForcesAsync(ILoadCase loadCase, Plate plate, Node cornerNode, Beam member)",
+      "signature": "Task<OutputQueryResult<PlateCornerMemberForces>> GetPlateCornerForcesAsync(ILoadCase loadCase, Plate plate, Node cornerNode, Beam member)",
+      "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0));\nvar member = new Beam(18, cornerNode, plate.B) { BetaAngle = 30 };\nvar result = wrapper.Output.GetPlateCornerForcesAsync(loadCase, plate, cornerNode, member).GetAwaiter().GetResult();\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
+      "xmlSignature": "GetPlateCornerForcesAsync(StaadPro.Interop.Entities.ILoadCase,StaadPro.Interop.Entities.Plate,StaadPro.Interop.Entities.Node,StaadPro.Interop.Entities.Beam)"
     }
   ]
 }

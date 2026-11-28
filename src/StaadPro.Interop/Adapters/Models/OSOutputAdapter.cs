@@ -2209,5 +2209,83 @@ namespace StaadPro.Interop.Adapters.Models
                 return Task.FromException<OutputQueryResult<PlateCornerForces>>(error);
             }
         }
+
+        /// <summary>Reads one plate-corner observation and projects it into conceptual zero-beta member-local axes.</summary>
+        /// <param name="loadCase">Case metadata with a positive case ID and a primary, combination or reference family.</param>
+        /// <param name="plate">Plate with a positive ID. Uses supplied A/B/C incidence when complete. Otherwise, the current Geometry binding resolves incidence and coordinates.</param>
+        /// <param name="cornerNode">Positive incidence-node ID. Projection uses the plate's canonical corner coordinates.</param>
+        /// <param name="otherMemberNode">Distinct positive node ID with finite coordinates. Its position defines the direction from the canonical plate corner.</param>
+        /// <returns>A completed task containing the identified observation, or a faulted task. Check IsSuccessful before reading Data. A successful payload keeps the original global packet and the six projected components. An ordinary native failure preserves its status and IDs without a projected payload.</returns>
+        /// <remarks>
+        /// <para>Local X points from the canonical corner to the supplied direction point. The direction must have finite length greater than 1e-9 native length units. The conceptual basis uses zero beta and leaves MemberId and MemberEnd unset.</para>
+        /// <para>Builds a managed local basis using projected global Y, with global Z as the reference near vertical. Rotation preserves the native units, signs and corner reference point. The calculation neither shifts moments nor reads native member-end forces.</para>
+        /// <para>Queries OpenSTAAD by numeric case ID. The supplied case family is retained as metadata. Model results are read without changing the model or case activation. Missing resolved incidence can return NotFound.</para>
+        /// <para>Validation, any incidence reads, force retrieval and projection run on the calling COM apartment before the task is returned. Invocation can block. Use the STAAD automation thread.</para>
+        /// </remarks>
+        /// <exception cref="System.ArgumentNullException">A required entity is null. The task faults.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">An ID is nonpositive or the case family is unsupported. The task faults.</exception>
+        /// <exception cref="System.ArgumentException">The supplied case data, corner, coordinates or target direction are invalid, or the projection produces a nonfinite value. The task faults.</exception>
+        /// <exception cref="System.InvalidOperationException">A required binding is unavailable, stale or disposed, or OpenSTAAD reports malformed status or values.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">Native transport fails. The task preserves the original exception and HRESULT.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">A required native signature is unavailable. The task faults.</exception>
+        /// <example><code>
+        /// ILoadCase loadCase = new LoadCase(1, "Dead");
+        /// var cornerNode = new Node(1, 0, 0, 0);
+        /// var plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0));
+        /// var otherMemberNode = plate.B;
+        /// var result = wrapper.Output.GetPlateCornerForcesAsync(loadCase, plate, cornerNode, otherMemberNode).GetAwaiter().GetResult();
+        /// if (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);
+        /// else System.Console.WriteLine(result.Status);
+        /// </code></example>
+        public Task<OutputQueryResult<PlateCornerMemberForces>> GetPlateCornerForcesAsync(ILoadCase loadCase, Plate plate, Node cornerNode, Node otherMemberNode)
+        {
+            try
+            {
+                return Task.FromResult(GetPlateCornerForces(loadCase, plate, cornerNode, otherMemberNode));
+            }
+            catch (Exception error)
+            {
+                return Task.FromException<OutputQueryResult<PlateCornerMemberForces>>(error);
+            }
+        }
+
+        /// <summary>Reads one plate-corner observation and projects it into the managed local axes of a supplied member.</summary>
+        /// <param name="loadCase">Case metadata with a positive case ID and a primary, combination or reference family.</param>
+        /// <param name="plate">Plate with a positive ID. Uses supplied A/B/C incidence when complete. Otherwise, the current Geometry binding resolves incidence and coordinates.</param>
+        /// <param name="cornerNode">Positive incidence-node ID. Projection uses the plate's canonical corner coordinates.</param>
+        /// <param name="member">Member with a positive ID, two distinct positive end-node IDs, finite end coordinates more than 1e-9 native length units apart and a finite beta angle in degrees.</param>
+        /// <returns>A completed task containing the identified observation, or a faulted task. Check IsSuccessful before reading Data. A successful payload keeps the original global packet and the six projected components. An ordinary native failure preserves its status and IDs without a projected payload.</returns>
+        /// <remarks>
+        /// <para>Local X follows the supplied start-to-end direction at either end. The corner must match one endpoint ID and its coordinates within 1e-9 native length units. The result retains that member ID, matched end and supplied beta angle.</para>
+        /// <para>Builds a managed local basis using projected global Y, with global Z as the reference near vertical. Rotation preserves the native units, signs and corner reference point. The calculation neither shifts moments nor reads native member-end forces.</para>
+        /// <para>Queries OpenSTAAD by numeric case ID. The supplied case family is retained as metadata. Model results are read without changing the model or case activation. Missing resolved incidence can return NotFound.</para>
+        /// <para>Validation, any incidence reads, force retrieval and projection run on the calling COM apartment before the task is returned. Invocation can block. Use the STAAD automation thread.</para>
+        /// </remarks>
+        /// <exception cref="System.ArgumentNullException">A required entity is null. The task faults.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">An ID is nonpositive or the case family is unsupported. The task faults.</exception>
+        /// <exception cref="System.ArgumentException">The supplied case data, corner, coordinates or target direction are invalid, or the projection produces a nonfinite value. The task faults.</exception>
+        /// <exception cref="System.InvalidOperationException">A required binding is unavailable, stale or disposed, or OpenSTAAD reports malformed status or values.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">Native transport fails. The task preserves the original exception and HRESULT.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">A required native signature is unavailable. The task faults.</exception>
+        /// <example><code>
+        /// ILoadCase loadCase = new LoadCase(1, "Dead");
+        /// var cornerNode = new Node(1, 0, 0, 0);
+        /// var plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0));
+        /// var member = new Beam(18, cornerNode, plate.B) { BetaAngle = 30 };
+        /// var result = wrapper.Output.GetPlateCornerForcesAsync(loadCase, plate, cornerNode, member).GetAwaiter().GetResult();
+        /// if (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);
+        /// else System.Console.WriteLine(result.Status);
+        /// </code></example>
+        public Task<OutputQueryResult<PlateCornerMemberForces>> GetPlateCornerForcesAsync(ILoadCase loadCase, Plate plate, Node cornerNode, Beam member)
+        {
+            try
+            {
+                return Task.FromResult(GetPlateCornerForces(loadCase, plate, cornerNode, member));
+            }
+            catch (Exception error)
+            {
+                return Task.FromException<OutputQueryResult<PlateCornerMemberForces>>(error);
+            }
+        }
     }
 }

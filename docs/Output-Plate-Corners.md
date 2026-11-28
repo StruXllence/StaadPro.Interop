@@ -25,7 +25,7 @@ These are **nodal forces and moments**, not the plate-center stress families or 
 
 ## Task-shaped corner observations
 
-Use `GetPlateCornerForcesAsync` to read one corner from supplied entities or numeric IDs. All four overloads return `Task<OutputQueryResult<PlateCornerForces>>` and complete the synchronous query on the calling COM apartment before returning. Invoke on the STAAD automation thread.
+Use `GetPlateCornerForcesAsync` to read one corner from supplied entities or numeric IDs. These four global query overloads return `Task<OutputQueryResult<PlateCornerForces>>` and complete the synchronous query on the calling COM apartment before returning. Invoke on the STAAD automation thread.
 
 | Input | Query behavior |
 | --- | --- |
@@ -178,6 +178,36 @@ ILoadCase loadCase = new LoadCase(1, "Dead");
 var cornerNode = new Node(1, 0, 0, 0);
 var plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0));
 var result = wrapper.Output.GetPlateCornerForcesInGlobalCoordinatesAsync(loadCase, plate, cornerNode).GetAwaiter().GetResult();
+if (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);
+else System.Console.WriteLine(result.Status);
+~~~
+
+## Task-shaped member-local corner queries
+
+Use `GetPlateCornerForcesAsync(loadCase, plate, cornerNode, otherMemberNode)` to define a conceptual local X axis from the canonical corner to a distinct node more than 1e-9 native length units away. Beta is zero. `MemberId` and `MemberEnd` are null.
+
+Use `GetPlateCornerForcesAsync(loadCase, plate, cornerNode, member)` to project into a supplied beam's start-to-end basis. Supply distinct endpoints, a positive member ID and a finite beta angle in degrees. The canonical corner must match an end by ID and coordinates within 1e-9 native length units. X keeps its start-to-end direction at either end. The result records the supplied member ID and the matched end.
+
+Both methods return `Task<OutputQueryResult<PlateCornerMemberForces>>`. They read the global plate-corner packet and project its force and moment vectors at the same point. The result retains the original global packet, the local components and the basis axes. The projection preserves the reported units and action signs. It performs no moment transfer or native member-force extraction. See [Transformations and signs](#transformations-and-signs) for the basis convention.
+
+Call on the STAAD automation apartment. Each method completes its read and projection on that apartment before returning a completed or faulted task. Check `IsSuccessful` before reading `Data`. Ordinary native failure is represented in `Status`. Invalid inputs, malformed outputs, binding errors and transport exceptions fault the task.
+
+~~~csharp
+ILoadCase loadCase = new LoadCase(1, "Dead");
+var cornerNode = new Node(1, 0, 0, 0);
+var plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0));
+var otherMemberNode = plate.B;
+var result = wrapper.Output.GetPlateCornerForcesAsync(loadCase, plate, cornerNode, otherMemberNode).GetAwaiter().GetResult();
+if (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);
+else System.Console.WriteLine(result.Status);
+~~~
+
+~~~csharp
+ILoadCase loadCase = new LoadCase(1, "Dead");
+var cornerNode = new Node(1, 0, 0, 0);
+var plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0));
+var member = new Beam(18, cornerNode, plate.B) { BetaAngle = 30 };
+var result = wrapper.Output.GetPlateCornerForcesAsync(loadCase, plate, cornerNode, member).GetAwaiter().GetResult();
 if (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);
 else System.Console.WriteLine(result.Status);
 ~~~
