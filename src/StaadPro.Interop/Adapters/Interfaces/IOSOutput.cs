@@ -1885,5 +1885,58 @@ namespace StaadPro.Interop.Adapters.Interfaces
         ///     else System.Console.WriteLine(item.Status);
         /// </code></example>
         Task<PlateCornerForcesResultSet> GetPlateCornerForcesAsync(IEnumerable<PlateCornerForcesRequest> requests);
+
+        /// <summary>Reads one plate corner across numeric load cases using the specified adapters and returns a settled task.</summary>
+        /// <param name="loadCaseIds">Sequence of at most 100,000 positive load-case IDs. The reader captures the sequence once and coalesces repeated IDs in first-seen order.</param>
+        /// <param name="plateId">Positive native plate ID to resolve through Geometry.</param>
+        /// <param name="cornerNodeId">Positive incidence node ID. Coordinates are read from the resolved plate.</param>
+        /// <param name="geometry">The current Geometry adapter from this acquired wrapper.</param>
+        /// <param name="load">The current Load adapter from this acquired wrapper.</param>
+        /// <returns>A completed task with an owned, indexed result set in first-seen ID order, or a faulted task. Check each observation's IsSuccessful before accessing Data. An empty validated selection yields an empty set.</returns>
+        /// <remarks>
+        /// <para>Discovers metadata across primary, combination and reference cases. A missing or ambiguous number retains MetadataUnavailable without reading forces for that case. Successful metadata is identified by its resolved case family. OpenSTAAD receives the numeric case selector.</para>
+        /// <para>Resolves the plate and canonical corner through the current Geometry binding. Successful incidence and coordinates are reused within the batch. A missing plate or unrelated node retains NotFound. An ordinary native failure retains NativeFailure and lets later queries run.</para>
+        /// <para>Requires the supplied adapters to belong to this wrapper and rejects stale or replaced bindings. The operation does not change case activation or the model.</para>
+        /// <para>Validation and native reads complete on the calling COM apartment before returning the task. The call may block. Preserve the STAAD automation thread and coordinate access to the connected model. Successful results contain six qualified global force and moment components in native units and signs.</para>
+        /// </remarks>
+        /// <exception cref="System.ArgumentNullException">A required selection, entity or adapter is null. The task faults.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">An ID is nonpositive or a case family is unsupported. The task faults.</exception>
+        /// <exception cref="System.ArgumentException">Metadata, incidence, adapters or the selection are invalid. The task faults.</exception>
+        /// <exception cref="System.InvalidOperationException">A required binding is stale, missing or disposed, or a native status or result is malformed. The task faults.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">Native transport fails. The task preserves the original exception and HRESULT.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The connected interface lacks a required native signature. The task faults.</exception>
+        /// <example><code>
+        /// var result = wrapper.Output.GetPlateCornerForcesAsync(new[] { 1, 2 }, 17, 1, wrapper.Geometry, wrapper.Load).GetAwaiter().GetResult();
+        /// foreach (var item in result.Items)
+        ///     if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);
+        ///     else System.Console.WriteLine(item.Status);
+        /// </code></example>
+        Task<PlateCornerForcesResultSet> GetPlateCornerForcesAsync(IEnumerable<int> loadCaseIds, int plateId, int cornerNodeId, IOSGeometry geometry, IOSLoad load);
+
+        /// <summary>Reads one plate corner in global STAAD XYZ and returns a settled task.</summary>
+        /// <param name="loadCase">Supplied metadata with a positive case number and primary, combination or reference family.</param>
+        /// <param name="plate">Plate with a positive ID. Complete A/B/C incidence is captured. Otherwise the current Geometry binding resolves incidence and finite coordinates.</param>
+        /// <param name="cornerNode">Positive corner-node ID. The selected corner uses the plate's captured or resolved coordinates.</param>
+        /// <returns>A completed task with an identified force observation or a faulted task. Check IsSuccessful before reading Data. An ordinary native failure remains available through Status.</returns>
+        /// <remarks>
+        /// <para>Uses the same global observation as the synchronous alias. Copies the native components directly in global axes without plate-basis rotation or moment transfer. It uses supplied case metadata and passes only the numeric case ID to OpenSTAAD.</para>
+        /// <para>The operation uses the canonical corner from supplied or hydrated incidence. A corner outside supplied incidence faults the task. An unresolved plate or a corner absent after native incidence resolution retains NotFound.</para>
+        /// <para>Validation and native reads complete on the calling COM apartment before returning the task. The call may block. Preserve the STAAD automation thread and coordinate access to the connected model. Successful results contain six qualified global force and moment components in native units and signs.</para>
+        /// </remarks>
+        /// <exception cref="System.ArgumentNullException">A required selection, entity or adapter is null. The task faults.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">An ID is nonpositive or a case family is unsupported. The task faults.</exception>
+        /// <exception cref="System.ArgumentException">Metadata, incidence, adapters or the selection are invalid. The task faults.</exception>
+        /// <exception cref="System.InvalidOperationException">A required binding is stale, missing or disposed, or a native status or result is malformed. The task faults.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">Native transport fails. The task preserves the original exception and HRESULT.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">The connected interface lacks a required native signature. The task faults.</exception>
+        /// <example><code>
+        /// ILoadCase loadCase = new LoadCase(1, "Dead");
+        /// var cornerNode = new Node(1, 0, 0, 0);
+        /// var plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0));
+        /// var result = wrapper.Output.GetPlateCornerForcesInGlobalCoordinatesAsync(loadCase, plate, cornerNode).GetAwaiter().GetResult();
+        /// if (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);
+        /// else System.Console.WriteLine(result.Status);
+        /// </code></example>
+        Task<OutputQueryResult<PlateCornerForces>> GetPlateCornerForcesInGlobalCoordinatesAsync(ILoadCase loadCase, Plate plate, Node cornerNode);
     }
 }

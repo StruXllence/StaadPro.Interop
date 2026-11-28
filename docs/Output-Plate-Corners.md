@@ -158,6 +158,30 @@ foreach (var item in results.Items)
     else System.Console.WriteLine(item.Status);
 ~~~
 
+## Task-shaped numeric and global queries
+
+`GetPlateCornerForcesAsync(loadCaseIds, plateId, cornerNodeId, geometry, load)` reads one corner for up to 100,000 case IDs. Pass the current Geometry and Load adapters from the same wrapper. The task reader keeps first-seen ID order, resolves case families, and reuses successful incidence and coordinates for that plate. Missing or ambiguous case metadata produces `MetadataUnavailable`. If no case resolves, the task makes no Geometry or Output reads.
+
+`GetPlateCornerForcesInGlobalCoordinatesAsync(loadCase, plate, cornerNode)` reads a single identified force observation. It preserves the original global components and uses the plate's captured or hydrated corner coordinates. The returned task contains `OutputQueryResult<PlateCornerForces>`. Check `IsSuccessful` before reading `Data`.
+
+Both finish the native work on the calling COM apartment and retain ordinary failures as statuses. Invalid inputs, stale bindings, malformed output and transport failures fault the task.
+
+~~~csharp
+var result = wrapper.Output.GetPlateCornerForcesAsync(new[] { 1, 2 }, 17, 1, wrapper.Geometry, wrapper.Load).GetAwaiter().GetResult();
+foreach (var item in result.Items)
+    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);
+    else System.Console.WriteLine(item.Status);
+~~~
+
+~~~csharp
+ILoadCase loadCase = new LoadCase(1, "Dead");
+var cornerNode = new Node(1, 0, 0, 0);
+var plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0));
+var result = wrapper.Output.GetPlateCornerForcesInGlobalCoordinatesAsync(loadCase, plate, cornerNode).GetAwaiter().GetResult();
+if (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);
+else System.Console.WriteLine(result.Status);
+~~~
+
 ## Status and metadata identity
 
 Inspect **IsSuccessful before Data**. Native false returns NativeFailure with no data, even if the server wrote buffer values. Success requires exactly one rank-one six-Double array with all values written and finite; nonzero SAFEARRAY lower bounds are supported. No initialized zeros escape as extracted forces. Original transport exceptions propagate without retries.

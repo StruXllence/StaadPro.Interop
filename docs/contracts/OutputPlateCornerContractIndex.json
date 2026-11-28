@@ -1,6 +1,6 @@
 {
   "date": "2026-11-28",
-  "managedOverloads": 35,
+  "managedOverloads": 37,
   "typedEnablingOverloads": 7,
   "nativeNamesAdded": 1,
   "contracts": [
@@ -889,6 +889,64 @@
       "signature": "Task<PlateCornerForcesResultSet> GetPlateCornerForcesAsync(IEnumerable<PlateCornerForcesRequest> requests)",
       "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar a = new Node(1, 0, 0, 0);\nvar b = new Node(2, 2, 0, 0);\nvar plate = new Plate(17, a, b, new Node(3, 2, 2, 0));\nvar requests = new[] { new PlateCornerForcesRequest(loadCase, plate, b), new PlateCornerForcesRequest(loadCase, plate, a) };\nvar results = wrapper.Output.GetPlateCornerForcesAsync(requests).GetAwaiter().GetResult();\nforeach (var item in results.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);\n    else System.Console.WriteLine(item.Status);",
       "xmlSignature": "GetPlateCornerForcesAsync(System.Collections.Generic.IEnumerable{StaadPro.Interop.Models.Output.PlateCornerForcesRequest})"
+    },
+    {
+      "returnType": "Task<PlateCornerForcesResultSet>",
+      "name": "GetPlateCornerForcesAsync",
+      "parameters": [
+        {
+          "type": "IEnumerable<int>",
+          "name": "loadCaseIds"
+        },
+        {
+          "type": "int",
+          "name": "plateId"
+        },
+        {
+          "type": "int",
+          "name": "cornerNodeId"
+        },
+        {
+          "type": "IOSGeometry",
+          "name": "geometry"
+        },
+        {
+          "type": "IOSLoad",
+          "name": "load"
+        }
+      ],
+      "summary": "Reads one plate corner across numeric load cases using the specified adapters and returns a settled task.",
+      "args": "loadCaseIds, plateId, cornerNodeId, geometry, load",
+      "setup": "",
+      "sourceSignature": "Task<PlateCornerForcesResultSet> GetPlateCornerForcesAsync(IEnumerable<int> loadCaseIds, int plateId, int cornerNodeId, IOSGeometry geometry, IOSLoad load)",
+      "signature": "Task<PlateCornerForcesResultSet> GetPlateCornerForcesAsync(IEnumerable<int> loadCaseIds, int plateId, int cornerNodeId, IOSGeometry geometry, IOSLoad load)",
+      "example": "var result = wrapper.Output.GetPlateCornerForcesAsync(new[] { 1, 2 }, 17, 1, wrapper.Geometry, wrapper.Load).GetAwaiter().GetResult();\nforeach (var item in result.Items)\n    if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);\n    else System.Console.WriteLine(item.Status);",
+      "xmlSignature": "GetPlateCornerForcesAsync(System.Collections.Generic.IEnumerable{System.Int32},System.Int32,System.Int32,StaadPro.Interop.Adapters.Interfaces.IOSGeometry,StaadPro.Interop.Adapters.Interfaces.IOSLoad)"
+    },
+    {
+      "returnType": "Task<OutputQueryResult<PlateCornerForces>>",
+      "name": "GetPlateCornerForcesInGlobalCoordinatesAsync",
+      "parameters": [
+        {
+          "type": "ILoadCase",
+          "name": "loadCase"
+        },
+        {
+          "type": "Plate",
+          "name": "plate"
+        },
+        {
+          "type": "Node",
+          "name": "cornerNode"
+        }
+      ],
+      "summary": "Reads one plate corner in global STAAD XYZ and returns a settled task.",
+      "args": "loadCase, plate, cornerNode",
+      "setup": "",
+      "sourceSignature": "Task<PlateCornerForces> GetPlateCornerForcesInGlobalCoordinatesAsync(ILoadCase loadCase, Plate plate, Node cornerNode)",
+      "signature": "Task<OutputQueryResult<PlateCornerForces>> GetPlateCornerForcesInGlobalCoordinatesAsync(ILoadCase loadCase, Plate plate, Node cornerNode)",
+      "example": "ILoadCase loadCase = new LoadCase(1, \"Dead\");\nvar cornerNode = new Node(1, 0, 0, 0);\nvar plate = new Plate(17, cornerNode, new Node(2, 2, 0, 0), new Node(3, 2, 2, 0));\nvar result = wrapper.Output.GetPlateCornerForcesInGlobalCoordinatesAsync(loadCase, plate, cornerNode).GetAwaiter().GetResult();\nif (result.IsSuccessful) System.Console.WriteLine(result.Data.Components.Fx);\nelse System.Console.WriteLine(result.Status);",
+      "xmlSignature": "GetPlateCornerForcesInGlobalCoordinatesAsync(StaadPro.Interop.Entities.ILoadCase,StaadPro.Interop.Entities.Plate,StaadPro.Interop.Entities.Node)"
     }
   ]
 }
