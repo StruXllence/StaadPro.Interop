@@ -1827,5 +1827,63 @@ namespace StaadPro.Interop.Adapters.Interfaces
         ///     else System.Console.WriteLine(item.Status);
         /// </code></example>
         Task<PlateCornerForcesResultSet> GetPlateCornerForcesAsync(ILoadCase loadCase, IEnumerable<Plate> plates);
+
+        /// <summary>Reads every unique plate corner for each selected case and plate and returns a settled task.</summary>
+        /// <param name="loadCases">Case sequence with at most 100,000 entries. Each supplies a positive ID and primary, combination or reference metadata.</param>
+        /// <param name="plates">Plate sequence with at most 100,000 entries. Each plate supplies a positive ID, distinct A/B/C incidence, optional D and finite coordinates.</param>
+        /// <returns>A completed task with an owned indexed result set or a faulted task. The set retains case family, plate and corner keys, in order, including unsuccessful observations. Inspect IsSuccessful before accessing Data.</returns>
+        /// <remarks>
+        /// <para>Captures both sequences and their metadata before reading forces. Visits cases in input order, then plates in input order, then corners in A/B/C/D order. A repeated D node with matching coordinates is coalesced. Uses supplied incidence for all-corner expansion.</para>
+        /// <para>The expanded selection is limited to 100,000 corner observations before duplicate request keys are removed. First-seen keys keep their positions. An empty validated selection returns an empty set. Conflicting metadata for one case identity or conflicting incidence for one plate ID faults the task before native dispatch.</para>
+        /// <para>Validation and native calls finish on the calling COM apartment before the task is returned. Invocation can block. Use the current Output adapter on the STAAD automation thread. The query reads the existing analysis results without activating a case or changing the model.</para>
+        /// <para>Each successful observation captures six global force and moment components at the corner in native units and signs. The family labels managed metadata. The native force call receives the numeric case ID only. A false or zero native force status keeps a failed observation and allows subsequent requests to run.</para>
+        /// </remarks>
+        /// <exception cref="System.ArgumentNullException">A required selection or entity is null. The task faults.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">An ID is nonpositive or the case family is unsupported. The task faults.</exception>
+        /// <exception cref="System.ArgumentException">The selection exceeds its bound, or its requests, metadata, incidence or coordinates are invalid or conflicting. The task faults.</exception>
+        /// <exception cref="System.InvalidOperationException">A required binding is stale, missing or disposed, or a native status or output is invalid. The task faults without a partial result.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native transport fails. The task preserves the original exception and HRESULT.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">A required native signature is unavailable. The task faults.</exception>
+        /// <example><code>
+        /// var loadCases = new ILoadCase[] { new LoadCase(1, "Dead"), new LoadCase(2, "Live") };
+        /// var a = new Node(1, 0, 0, 0);
+        /// var b = new Node(2, 2, 0, 0);
+        /// var c = new Node(3, 2, 2, 0);
+        /// var d = new Node(4, 0, 2, 0);
+        /// var plates = new[] { new Plate(17, a, b, c), new Plate(18, a, c, d) };
+        /// var results = wrapper.Output.GetPlateCornerForcesAsync(loadCases, plates).GetAwaiter().GetResult();
+        /// foreach (var item in results.Items)
+        ///     if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);
+        ///     else System.Console.WriteLine(item.Status);
+        /// </code></example>
+        Task<PlateCornerForcesResultSet> GetPlateCornerForcesAsync(IEnumerable<ILoadCase> loadCases, IEnumerable<Plate> plates);
+
+        /// <summary>Reads only the specified case, plate and corner combinations and returns a settled task.</summary>
+        /// <param name="requests">Sequence of up to 100,000 non-null requests. Each supplies positive case, plate and corner IDs and a supported primary, combination or reference family.</param>
+        /// <returns>A completed task with an owned indexed result set or a faulted task. The set retains case family, plate and corner keys, in order, including unsuccessful observations. Inspect IsSuccessful before accessing Data.</returns>
+        /// <remarks>
+        /// <para>Captures the requests and supplied metadata before native calls. Exact keys are coalesced in first-seen order. Conflicting case metadata or inconsistent supplied geometry for one plate ID faults the task. An empty sequence returns an empty set.</para>
+        /// <para>With supplied A/B/C incidence, the selected ID must belong to the plate and the result uses its canonical coordinates. Otherwise, the current Geometry binding resolves incidence and finite coordinates, reusing each successful plate resolution within the call. A missing resolved plate or a corner absent from resolved incidence produces NotFound. An ordinary incidence failure produces NativeFailure.</para>
+        /// <para>Validation and native calls finish on the calling COM apartment before the task is returned. Invocation can block. Use the current Output adapter on the STAAD automation thread. The query reads the existing analysis results without activating a case or changing the model.</para>
+        /// <para>Each successful observation captures six global force and moment components at the corner in native units and signs. The family labels managed metadata. The native force call receives the numeric case ID only. A false or zero native force status keeps a failed observation and allows subsequent requests to run.</para>
+        /// </remarks>
+        /// <exception cref="System.ArgumentNullException">A required selection or entity is null. The task faults.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">An ID is nonpositive or the case family is unsupported. The task faults.</exception>
+        /// <exception cref="System.ArgumentException">The selection exceeds its bound, or its requests, metadata, incidence or coordinates are invalid or conflicting. The task faults.</exception>
+        /// <exception cref="System.InvalidOperationException">A required binding is stale, missing or disposed, or a native status or output is invalid. The task faults without a partial result.</exception>
+        /// <exception cref="System.Runtime.InteropServices.COMException">The native transport fails. The task preserves the original exception and HRESULT.</exception>
+        /// <exception cref="Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">A required native signature is unavailable. The task faults.</exception>
+        /// <example><code>
+        /// ILoadCase loadCase = new LoadCase(1, "Dead");
+        /// var a = new Node(1, 0, 0, 0);
+        /// var b = new Node(2, 2, 0, 0);
+        /// var plate = new Plate(17, a, b, new Node(3, 2, 2, 0));
+        /// var requests = new[] { new PlateCornerForcesRequest(loadCase, plate, b), new PlateCornerForcesRequest(loadCase, plate, a) };
+        /// var results = wrapper.Output.GetPlateCornerForcesAsync(requests).GetAwaiter().GetResult();
+        /// foreach (var item in results.Items)
+        ///     if (item.IsSuccessful) System.Console.WriteLine(item.Data.Components.Fx);
+        ///     else System.Console.WriteLine(item.Status);
+        /// </code></example>
+        Task<PlateCornerForcesResultSet> GetPlateCornerForcesAsync(IEnumerable<PlateCornerForcesRequest> requests);
     }
 }

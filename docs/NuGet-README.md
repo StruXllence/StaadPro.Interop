@@ -26,7 +26,11 @@ code-insiders --install-extension StruXllence.struxllence-themes
 
 After installation, run **Preferences: Color Theme** and select **StruXllence Dark** or **StruXllence Light**. See the [theme previews and icon setup](https://github.com/StruXllence/struxllence-themes). The editor theme is optional and is installed separately from the NuGet library.
 
-## Version 1.0.0-preview.20261128
+## Version 1.0.0-preview.20261128.1
+
+Two new `GetPlateCornerForcesAsync` overloads read every corner across selected load cases and plates or read a sparse sequence of individual requests. Both complete native reads on the calling COM apartment and retain per-corner status in the indexed result. Output provides 112 managed overloads across 48 documented native names. [Cartesian and sparse batch guide](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Output-Plate-Corners.md#task-shaped-cartesian-and-sparse-batches).
+
+## 1.0.0-preview.20261128
 
 Two new `GetPlateCornerForcesAsync` overloads read every corner of one plate across selected load cases, or every corner of selected plates for one load case. Both complete native reads on the calling COM apartment and return indexed results that retain per-corner status. Output provides 110 managed overloads across 48 documented native names. [All-corner batch guide](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Output-Plate-Corners.md#task-shaped-all-corner-batches).
 
@@ -175,7 +179,7 @@ The package does not include Bentley executables, COM binaries or a STAAD.Pro li
 After this version is available on NuGet.org:
 
 ```powershell
-dotnet add package StaadPro.Interop --version 1.0.0-preview.20261128
+dotnet add package StaadPro.Interop --version 1.0.0-preview.20261128.1
 ```
 For a .NET Framework project, the package reference is:
 
@@ -184,7 +188,7 @@ For a .NET Framework project, the package reference is:
   <TargetFramework>net481</TargetFramework>
 </PropertyGroup>
 <ItemGroup>
-  <PackageReference Include="StaadPro.Interop" Version="1.0.0-preview.20261128" />
+  <PackageReference Include="StaadPro.Interop" Version="1.0.0-preview.20261128.1" />
 </ItemGroup>
 ```
 Enable prerelease packages when searching in Visual Studio. The [installation guide](https://github.com/StruXllence/StaadPro.Interop/blob/main/docs/Installation.md) covers runtime requirements, public and local feeds, and consumer setup.
@@ -279,7 +283,7 @@ See the [root guide](https://github.com/StruXllence/StaadPro.Interop/blob/main/d
 
 ## IntelliSense and included documentation
 
-Expanded XML IntelliSense is included for **143 Geometry overloads, 171 Load overloads, 249 common Property overloads plus five optional catalog queries, 110 Output overloads, 27 Support operations, seventeen Commands methods, ten Design methods, twenty-nine Table methods, twenty-one View methods, 53 common Root operations and three optional Root operation interfaces**, on both interfaces and concrete adapters. Keep `StaadPro.Interop.xml` beside the library when distributing assemblies outside normal NuGet restore.
+Expanded XML IntelliSense is included for **143 Geometry overloads, 171 Load overloads, 249 common Property overloads plus five optional catalog queries, 112 Output overloads, 27 Support operations, seventeen Commands methods, ten Design methods, twenty-nine Table methods, twenty-one View methods, 53 common Root operations and three optional Root operation interfaces**, on both interfaces and concrete adapters. Keep `StaadPro.Interop.xml` beside the library when distributing assemblies outside normal NuGet restore.
 
 The archive includes Property, Geometry, Load, Output and Root guides, installation and publishing instructions, and the release history.
 

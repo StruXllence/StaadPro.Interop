@@ -1,5 +1,11 @@
 # StaadPro.Interop release notes
 
+## 1.0.0-preview.20261128.1 - 28 November 2026
+
+Added `GetPlateCornerForcesAsync(IEnumerable<ILoadCase> loadCases, IEnumerable<Plate> plates)` and `GetPlateCornerForcesAsync(IEnumerable<PlateCornerForcesRequest> requests)`. Both return `Task<PlateCornerForcesResultSet>` on the calling COM apartment. The Cartesian overload reads supplied incidence in case, plate and corner order. The sparse overload reads each distinct requested corner in first-seen order and can hydrate incomplete incidence through the current Geometry binding.
+
+Ordinary native failures remain indexed with their case, plate and corner identities. Invalid requests, malformed native results and transport failures fault the task. Output provides 112 managed overloads with XML IntelliSense across 48 documented native names. [Cartesian and sparse batch guide](Output-Plate-Corners.md#task-shaped-cartesian-and-sparse-batches).
+
 ## 1.0.0-preview.20261128 - 28 November 2026
 
 Added `GetPlateCornerForcesAsync(IEnumerable<ILoadCase> loadCases, Plate plate)` and `GetPlateCornerForcesAsync(ILoadCase loadCase, IEnumerable<Plate> plates)`. Both return `Task<PlateCornerForcesResultSet>` with matching interface and adapter IntelliSense. [All-corner batch guide](Output-Plate-Corners.md#task-shaped-all-corner-batches).
